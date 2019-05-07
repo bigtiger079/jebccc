@@ -1,0 +1,4921 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.10
+Class-Path: swt.jar jface.jar jeb.jar lz4-java-1.4.1.jar xpp3-1.1.4c.j
+ ar commons-configuration2-2.2.jar commons-logging-1.2.jar commons-cod
+ ec-1.11.jar sqlite-jdbc-3.20.0.jar z3-4.5.0.jar jsr305-3.0.2.jar comm
+ ons-compress-1.16.1.jar okio-1.13.0.jar okhttp-3.9.0.jar jsoup-1.10.3
+ .jar commons-io-2.6.jar guava-25.0-jre.jar xz-1.6.jar antlr4-runtime-
+ 4.7.1.jar snakeyaml-1.17.jar commons-beanutils-1.9.3.jar dx.jar commo
+ ns-text-1.3.jar commons-collections4-4.1.jar objenesis-2.6.jar json-s
+ imple-1.1.1.jar commons-lang3-3.7.jar
+Created-By: 1.8.0_181-b13 (Oracle Corporation)
+Main-Class: com.pnfsoftware.jeb.rcpclient.Launcher
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/InteractiveTableVie
+ wer.class
+SHA1-Digest: eOTtVK5lDJYvuzyVLvVcEEZwqeY=
+
+Name: icons/eclipse/builder.gif
+SHA1-Digest: 6wTIW9BBX9JhCW7N9ND8nA10zd4=
+
+Name: icons/eclipse/native_co.png
+SHA1-Digest: kfvI0ySIiC2cckI4Rdi9Nunm7Us=
+
+Name: icons/eclipse/export_wiz.png
+SHA1-Digest: +E/oFLUZSiHJWadd0adSh3JZHFU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesSiglibsHa
+ ndler.class
+SHA1-Digest: 5T0fjO+I6+IjjdklAn5NX2779sI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$7.class
+SHA1-Digest: Ro/NqN30uvIx/Z874Uhh6bI36+Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerBaseHand
+ ler.class
+SHA1-Digest: TBalR0BTYATlbYpwRj2EE+Pxe7k=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FilterText$1.c
+ lass
+SHA1-Digest: ieyXLF9StDMz6Wd8QgoAFxWvRT0=
+
+Name: icons/eclipse/debugt_obj_2.gif
+SHA1-Digest: JFo3Fq7lC63EF7029QQt+F2MVZA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionNavigateBac
+ kwardHandler.class
+SHA1-Digest: uRzcP3K4lDaRgg09n4iIZ6JGHtM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/DalvikCodeGraph
+ View$1.class
+SHA1-Digest: nk/u1Y2ONhETbEIM3M8Tsc5EvbI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/MoveToPackageDialog.class
+SHA1-Digest: awo8zCuW76davMqr7loI6K+VRK0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/IGraph.class
+SHA1-Digest: 5KE+A4XDDpIkYZ/XBHEHjX+qB3A=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/package-info.c
+ lass
+SHA1-Digest: k4Vm+VDFcroNVvq+0qBHZm1R0nM=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener$4.class
+SHA1-Digest: SEpVNHJBucV3nNvzL6n32BX6MHM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditS
+ tackframeHandler.class
+SHA1-Digest: zNxsMYH5q5vr2FmqlrJn/itg2UQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorView$1
+ .class
+SHA1-Digest: JP9NL+uBzVlXSFftwbczyc+CXI4=
+
+Name: icons/eclipse/field_public_obj.png
+SHA1-Digest: AVL8LjFDov8uzJcppum321Aco2k=
+
+Name: icons/eclipse/unknown_obj.png
+SHA1-Digest: 7lFFrYV1zbbG4oCoWpyCNWGzcT0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoHelpDialog.clas
+ s
+SHA1-Digest: JutAYiUV4EfEM6OMLyo/BtBTjaA=
+
+Name: icons/eclipse/package_obj.png
+SHA1-Digest: NAFsE33X6K1RthhzVLVWb+Bto0I=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionDefin
+ eStringHandler.class
+SHA1-Digest: ejlHl8KdVjiQLGizzkSFdo3KYJk=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView.class
+SHA1-Digest: 7PdscwmkHltpY2Z/hjrly1KBq98=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar.class
+SHA1-Digest: F7ML11C0dgdyGDGttWgzug5Hm9w=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportWriter.cla
+ ss
+SHA1-Digest: SDTXq8weUYaKfdM9+HL/0h/6xqc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileShareHandler.cla
+ ss
+SHA1-Digest: PE9ZnmMJztFEzqrI0sDaBobYVxU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$5.class
+SHA1-Digest: KJp3hLPKCs4uyUtLuEwcOw9FTPY=
+
+Name: icons/eclipse/cu_obj.gif
+SHA1-Digest: ynLRQOVN3JNe4UXSNlAr1AdPkKI=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener.class
+SHA1-Digest: 8sy3KvUyz5sN/xQ0R68FkLiGK3k=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextFindR
+ esult.class
+SHA1-Digest: KjQbCrp11un9fcpzb8VLR1HfPvM=
+
+Name: icons/eclipse/pause.gif
+SHA1-Digest: 89yJfL7Em7JwLNNSWfJDHKjAREY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$2.class
+SHA1-Digest: j9CD0jNYEkIIIIg/zRg28DTaKHI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/impl/SimpleCodePa
+ ckage.class
+SHA1-Digest: pz4K76/Wwy8i2etvX9R2cDJUit8=
+
+Name: com/pnfsoftware/jeb/rcpclient/Assets.class
+SHA1-Digest: f28NxFbjp7jg5HmrwPN5YFYgm4c=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$1.cl
+ ass
+SHA1-Digest: oiVKBIQYg5p/gWzwjfgpLOQ/y2s=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment.c
+ lass
+SHA1-Digest: AWhgU6+6/atCTlm9ucEeG5BFcTw=
+
+Name: icons/eclipse/save_edit.png
+SHA1-Digest: u7Ur6yHQRbsF6A+lMRdrbMD+Z7E=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField.class
+SHA1-Digest: 4+svS1A0fradvaVRuYs0qzsSbqQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractInteractiveTex
+ tView.class
+SHA1-Digest: rUfp0TbIEffv886YwwNvmHMfVNE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ SelectType.class
+SHA1-Digest: nDWbvZ8BOQVnJ9zecWwhe+s5KTg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/BinaryDataView$1.class
+SHA1-Digest: uLEiGVGqNjGAMK4EA+BmDSjevJg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderS
+ egmentsView.class
+SHA1-Digest: uK77aVCP/CTTd7K7Qc0nSG+THHQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesPluginsHa
+ ndler.class
+SHA1-Digest: P7e5/b/4VKimS36ZQbGq52JG3hY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowOpenView.cl
+ ass
+SHA1-Digest: iNfWjglGPFcpv/SEVBOTy25MdQI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$1.class
+SHA1-Digest: RN9+deaFVXbUTolIpDvYAMbc84w=
+
+Name: icons/jeb1/icon-info.png
+SHA1-Digest: aPjIJn054RDWKt8iPaoL+a553Uc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$7.class
+SHA1-Digest: EmD8Llr/ZxsiIhECvxLGlLQ4vM0=
+
+Name: icons/eclipse/method_protected_obj.png
+SHA1-Digest: /haJ5v1La3NaZtMvHQ/GL61vFA0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextFactory.class
+SHA1-Digest: giWFxNqG9P9IB1iItAMoipI68KI=
+
+Name: icons/eclipse/type.gif
+SHA1-Digest: hMnTHXcsbs45r9RDvUR2LosMeZM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/export/ExportUtil.class
+SHA1-Digest: CVSsdhFAnpoHxCLOSpY9oHSR8Ps=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$2.class
+SHA1-Digest: NoB2GsGfvZHTDCJj4WrW5QLCZtA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/InfiniTableVie
+ w$2.class
+SHA1-Digest: lGKMu/aUksqqDCB1hY+OdEuoYrY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBarPropertie
+ s.class
+SHA1-Digest: noewRon+VnW5h0XNseasMTp3QRc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/IItemListener.class
+SHA1-Digest: jIkUC40rq7oPSwKVZaFh++GQt+M=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Panel.class
+SHA1-Digest: U5zs3nJxzukV09o6BKKd82frPJA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoSignupDialog.cl
+ ass
+SHA1-Digest: Yvrw0VxkCz0JebCcyj5Sjqy3X+Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerRunHandl
+ er.class
+SHA1-Digest: D6Xz62CGHiWhIMqA4wHgyzkTTrM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$1.class
+SHA1-Digest: YDz31X7aO8h4h+5CMpVWWszJni0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$4.class
+SHA1-Digest: 4IPrc9xH/ZuZbR6pXNocT5xbJgM=
+
+Name: icons/jeb1/icon-memory.png
+SHA1-Digest: ttWRR99QREuW8PVSWcGV0Xj7db0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/UITask$1.class
+SHA1-Digest: mOB3aQBnjHD/ZphpIGzR6yezWsg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$Conte
+ ntProvider$2.class
+SHA1-Digest: AmwWYgji8kvMsCpAPsmVbNYq5Co=
+
+Name: icons/eclipse/jcu_obj.png
+SHA1-Digest: 5eO3a9/amRH5xhK4gu+ILE0QvIs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode.class
+SHA1-Digest: KdKboVABlfNHjiH77GjjyAeQUds=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NamedConstantsVie
+ w.class
+SHA1-Digest: fFp2XJqyio1LPijAM+xFbqMijBY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CommentDialog.class
+SHA1-Digest: dufsRddUZ4Kim6xaECxpYbXleFs=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerRunToLin
+ eHandler.class
+SHA1-Digest: PkceNc/R5fSR7gXb+K54ngciYeU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsChanges$Cha
+ nges.class
+SHA1-Digest: i12x79+OP37u6Q0qXP1lHq4O9aY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/InteractiveTreeViewe
+ r$1.class
+SHA1-Digest: 1gOZiGJYS/SkasQfYmeJVkaR8ek=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField$OverwriteContentAdapter.class
+SHA1-Digest: fs93bGT1pHYJhaVKV+JgsESnD3U=
+
+Name: icons/eclipse/owned_monitor_obj.png
+SHA1-Digest: yGyWIWP5xdXq3jWdA4GnRgKuz6I=
+
+Name: icons/eclipse/resume_co.gif
+SHA1-Digest: URVvg7nbY4mOfX5YY14txMjgZbo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectTreeContentProvider$1
+ .class
+SHA1-Digest: CrH41x3zs+2opqc9246b8HPzvgY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog.cla
+ ss
+SHA1-Digest: X+/UMYC8gxU21tGaKL+Mu4lbJ+o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog$1.cla
+ ss
+SHA1-Digest: NCyYegkHbeRV511DEh3dS6JWdtQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMDock.class
+SHA1-Digest: IN3n+zbKsL+7lxix/ZweZGydHgM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileScriptsExecutere
+ centMenuHandler.class
+SHA1-Digest: BeWZapAJ8K+Kc2Sv7X+rYJpnVQc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseOptionsDialog$2.cla
+ ss
+SHA1-Digest: j8OiPcZVGooFVQcJ7oiTMA/XHdY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/DropZone.class
+SHA1-Digest: MhfYLe8qlU6W5a6skPbWHkQjQvA=
+
+Name: icons/eclipse/help_topic.gif
+SHA1-Digest: JAxXwpvALHCFwrNu/PQpur4d4+U=
+
+Name: icons/eclipse/update.gif
+SHA1-Digest: QBjELuV/+2+fQuiDkpMwGNuau+M=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$6.class
+SHA1-Digest: flvYKB7vSV7XSQ23OzLH45wUDfY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$3.class
+SHA1-Digest: OAO8PpfQ/D73txwHza6a4ss4P5Y=
+
+Name: icons/eclipse/all_sc_obj.png
+SHA1-Digest: EOmFl+lIn5KMADOktd1/e3kUmMI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$2.class
+SHA1-Digest: MDd8UpINuDKatpIaHEYSffnlpO8=
+
+Name: icons/android.png
+SHA1-Digest: UxiuFaQz8APa166IIGj99e/TD94=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$TreeContentProvider.class
+SHA1-Digest: 3iXCLPVYLrVroHJbiLiYaeBqj+U=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileAdvancedUnitOpti
+ onsHandler.class
+SHA1-Digest: O7i6XXCKsNiVsVQUe/j2HvYYuF0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpGroupHandler.cla
+ ss
+SHA1-Digest: AdK7m4kkwWV1zilxlmc6szh7gT0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTableView$2
+ .class
+SHA1-Digest: NipuK4AcoHJDPpmj2UbDgFIUKcs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabFolderEvent.clas
+ s
+SHA1-Digest: 7KNc9sNeTgopoP+UeGxm7tS4blA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ManualSoftwareUpdateDialog
+ .class
+SHA1-Digest: WPGF8GotHLfYqNaXWRegij9tp1g=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$2.class
+SHA1-Digest: 8/kf5xi6cfC++SS6h4nnX9zcpd0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorView$S
+ tackItemLabelProvider.class
+SHA1-Digest: u+/2n+9E41JIPhhonroAQL5wo1g=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField$3.class
+SHA1-Digest: TaErIaF6KT+6ArMso70vayTOhpM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/TextDialog.class
+SHA1-Digest: A1ljCp8hROo86yQTm+5k/q/JopQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPreview$1.cl
+ ass
+SHA1-Digest: e5YduIs+qXn0BAt98V3wmj7LCl4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypesView$C
+ ontentProvider.class
+SHA1-Digest: zLNa1URHX59+lH0aW4x6X0rI4n8=
+
+Name: icons/eclipse/class_obj.gif
+SHA1-Digest: tZ7orkb17ACtO47YWZM27mwrcpA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTreeVie
+ wer.class
+SHA1-Digest: MPJ/BfdyhmBq+EGGLJoOHxalfMM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/JebStatusIndicator$1.class
+SHA1-Digest: nWtls8l0TZtcvMdR4s2x9efLxbY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeListener
+ .class
+SHA1-Digest: 9+qtWNDWw3LP7Yv1CkZU0Fhm4t4=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/DataFrame.class
+SHA1-Digest: u30ECD99kApi1k4w9sUKRb179qs=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/IFileExport.c
+ lass
+SHA1-Digest: 4JWvMnh5hbHFIBN/17EIYE+aUdI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $ContentProvider$LabelRule.class
+SHA1-Digest: d1DDAFZmS0LWVQg0r8w0++N+70A=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$5.class
+SHA1-Digest: QYmYpVyfKw5U3X+9CnwfpxqSZMo=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListSiglibsDialog.class
+SHA1-Digest: wgNNOGs/Fq8ANMrl+p9O1OeR38I=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/IFilteredConten
+ tProvider.class
+SHA1-Digest: mT5AcBNPWnFiYSsrbfWyHK45Zfg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $2.class
+SHA1-Digest: jaaCdTUNG/CzHJXwRs4LQmsQ33c=
+
+Name: icons/eclipse/writeout_co.gif
+SHA1-Digest: tzSBYantal7djUSnsjYCcXiOFUQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpAboutHandler.cla
+ ss
+SHA1-Digest: T1vdQRZ5SdB6t96DWDOJzCliySM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ Define.class
+SHA1-Digest: aEeHTa4xhDBPn4xL6hLJ8BOt8p4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/arraygroup/Arra
+ yGroup.class
+SHA1-Digest: /77YbyFxITbajRr6Yj+Ecmq+XGI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog.class
+SHA1-Digest: 24L8pGdT5k800qLHHH6iCV5A6bI=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/AbstractOperation.class
+SHA1-Digest: J6vFgNoeJn2i7NcaMSbBglDnMIY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeRoutinesVie
+ w$ContentProvider$1.class
+SHA1-Digest: IeSOcREJ5ZY/3BicnWR8qdOMsm8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph.class
+SHA1-Digest: C/9VK33HtfTI1m7vqS1d2g2Vx58=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$6.class
+SHA1-Digest: gVEJGC6q0BBVupxH4fNp/bxB+dA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowMaximizeHan
+ dler.class
+SHA1-Digest: 6Bp3UEJ/5LrazYCpDAkXHY9t5FA=
+
+Name: icons/jeb1/icon-jeb-128.png
+SHA1-Digest: gF8uuiIRSdfJwRuHkQHRduMDTz8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DecompDynamicOp
+ tionsDialog.class
+SHA1-Digest: dkYioRugkCcnMILh16Dz64RBQc0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NativeRoutineCh
+ ooserDialog$1.class
+SHA1-Digest: VLiXPK+iZcD5P43BMSxO5hxjuZU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/IntroDialog.class
+SHA1-Digest: e2AlEKf4xSfh1sFI2yV3qNMby/I=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NativeTypeChoos
+ erDialog$1.class
+SHA1-Digest: xU8efljhI52aPnX4B/JWIP1VZQ4=
+
+Name: icons/eclipse/field_default_obj.gif
+SHA1-Digest: WgT229fwjgJsY8rN4xBTcoP7gHM=
+
+Name: icons/eclipse/next_nav.gif
+SHA1-Digest: 64OZ5+n+Y1m2rHg6J7NOKykNe7w=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/JebDialog$2.class
+SHA1-Digest: k/KLfNcMiBx5GTx8VrLzitkTQxM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/TerminalPartManager$2.class
+SHA1-Digest: 953KLUPPX45iHnSQtbITVyQMJN4=
+
+Name: icons/jeb1/icon-letter-x.png
+SHA1-Digest: zcLRBGsNer+6pJxYhkU2T7vRD24=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment$F
+ ragmentType.class
+SHA1-Digest: WXGf3G9nrvG10XB7fQbnkO8B/34=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/ITaskProgressMonitor
+ .class
+SHA1-Digest: yZByATAYvMWQBPlRHJMzSXlcOYE=
+
+Name: icons/program/jeb_128px.png
+SHA1-Digest: yz8Dk6YphKQyfZLww7BoXXCYRuI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/RenameItemDialog$1.class
+SHA1-Digest: ridKVrf4nerPVxCmQunyVUgBpvA=
+
+Name: icons/jeb1/icon-export.png
+SHA1-Digest: pCxTWEC7yvUuQv8q9dKKitYraq0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $StackItemsProvider.class
+SHA1-Digest: Bwf/6fJ3J9E87ZGUAxNnM1W0vwY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/Style.class
+SHA1-Digest: HOTiI6um4yCGx/CG0cD4a+FdHOY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ArtifactPropertiesDialog.c
+ lass
+SHA1-Digest: xrsKTvuQPzdyiNt7Heyo3CdPl38=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderS
+ egmentsView$1.class
+SHA1-Digest: +CD9xw9GBfq7d5ivZlA6DENyuI0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $LabelProvider.class
+SHA1-Digest: B6P9vUyTDRc7EDaAwNHfH8TBL5U=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$5.class
+SHA1-Digest: yo0BXdpB9hAYaSk2BWAH4h/sHn8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$2.c
+ lass
+SHA1-Digest: LqcinWwWBN99thcKt2i8aWa52qQ=
+
+Name: icons/eclipse/glyph7.gif
+SHA1-Digest: KxErs2oqmanuG3HRmpWRI8hHxy4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileScriptsExecuteHa
+ ndler.class
+SHA1-Digest: WhZ4RqP1iZrrXGJsCR6EJSdqAmE=
+
+Name: com/pnfsoftware/jeb/rcpclient/CocoaUIEnhancer$MenuHookObject.cla
+ ss
+SHA1-Digest: k2zsW/gKReuT6iGPCdobWg8zZ8k=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$2.class
+SHA1-Digest: tisoMtXdjG6ME6B/jKcsnOKRqcM=
+
+Name: com/pnfsoftware/jeb/rcpclient/PublicContext.class
+SHA1-Digest: wrjAEo41d9WdaVaomatzrEOQ6FE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListTypelibsDialog$Content
+ ProviderListener.class
+SHA1-Digest: ApgnOIjqE0LJfIHo25f8tJyrGig=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/UITaskManager.class
+SHA1-Digest: DBMu+yV16zii+UpNcygDmsKeRX8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineStringDia
+ log.class
+SHA1-Digest: eNjHF2cpEidSFPzkyOUTJocofSA=
+
+Name: icons/eclipse/console_view.png
+SHA1-Digest: AFG2JAdj3gzHRa8aoGYkiPOyJ2E=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$6.class
+SHA1-Digest: SlXLj+dYVfuZtC1QifdCU/75JxY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractLocalGr
+ aphView$FindTextInGraphImpl.class
+SHA1-Digest: rdZ0NW0pEFBmOL/KbMQET6+Qp2s=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NamedConstantsVie
+ w$LabelProvider.class
+SHA1-Digest: oX0CgG3IIpSo7UUur25u80epN2A=
+
+Name: icons/program/7.ico
+SHA1-Digest: W0fPNGvc5KxsPpQ0a7HCS36rfFc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/InfiniTableView
+ er.class
+SHA1-Digest: 6m+O8DpQOyVWVW6Qpc2I41Bmi6k=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/EditableList$I
+ Checkable.class
+SHA1-Digest: sn7x80/Z+ehunjI+TrZYDcRRVFQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPlaceholder$
+ 2.class
+SHA1-Digest: pbSqeqT16grtSPfQgZ3OkYWl3Jw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/RenameItemDialog.class
+SHA1-Digest: EBN/uyfu6fKd2Qr4f6v6cCFp4qU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/Toast.class
+SHA1-Digest: FZekz5w1lzLQkLGdKCr1kNSRy14=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/ITabFolderListener.
+ class
+SHA1-Digest: nksroSreOWsQ35/6I8LHHDEV81o=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileDeleteHandler.cl
+ ass
+SHA1-Digest: V8Z96rEYMSatz+8UnDprhPMr8Uw=
+
+Name: com/pnfsoftware/jeb/rcpclient/PublicContext$1.class
+SHA1-Digest: ddd//62kXUUgJOlDon+4DFnK7Ps=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper.cla
+ ss
+SHA1-Digest: dFmNKd90Ai60nx4h86RgWqC1XIk=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractFilteredTableV
+ iew.class
+SHA1-Digest: iKX8s9b/XMNOWH4oGQ+PqGWlnuI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/UnitImageView.class
+SHA1-Digest: 2T2GmaYGs8FeUj9kW46xeovA7iI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ContextMenuFilter.class
+SHA1-Digest: Uv/UbzXGlugGarGCb0Q6gu18pZM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$5.class
+SHA1-Digest: f0Sf8yA58GDKV5XkCZfGyLBgGnk=
+
+Name: icons/eclipse/generic_element.png
+SHA1-Digest: 0Nty9kFkEWklOGX0Cj0rSkW3g5U=
+
+Name: com/pnfsoftware/jeb/rcpclient/UIAssetManager.class
+SHA1-Digest: nDmmRwF4XQCv+9NFCIMZlLvtaiM=
+
+Name: icons/eclipse/term_sbook.gif
+SHA1-Digest: 9I9kxGH6ubkqxMdin2mklfP2clU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpChangelistHandle
+ r.class
+SHA1-Digest: CVD4mlZaub/zxu1SWFD4y9v4fpI=
+
+Name: icons/jeb1/icon-delete.png
+SHA1-Digest: 4aJUeqx6JyaJtyI4IhGjCEwZDXo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/_test/TestInputDialog$2.c
+ lass
+SHA1-Digest: Y+IjD6iE2wE1lWyb9SHbORcBypU=
+
+Name: icons/eclipse/add_obj.gif
+SHA1-Digest: yoxjmqMtVphUpFQAd45TKQuy8gU=
+
+Name: icons/images/wasm_icon.png
+SHA1-Digest: O6ddQ1PLaUQyjBCSoBzZLGA4V5s=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$5.class
+SHA1-Digest: V03FiwmZ+X1yktRNVjI0V8x2Kd0=
+
+Name: icons/jeb1/icon-jeb-256.bmp
+SHA1-Digest: mYLE+/kQFm3/uV5/IiJO47PEuj0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/Checkbox.class
+SHA1-Digest: 8iMEm628sc2D3Wj5/hk7PXXyuew=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypesView$L
+ abelProvider.class
+SHA1-Digest: EwkVwRNuLBgUEpAz4H/R4I3JHBM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditFindHandler.c
+ lass
+SHA1-Digest: fo9e65JzjyNeFgTlp9C2HzNm+AA=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/PartUtil.class
+SHA1-Digest: FN5NBUOwEOrD2PK7dCdXiOy87jY=
+
+Name: icons/jeb1/icon-letter-x-red.png
+SHA1-Digest: uS+Tb2RnTZTQQHJVjZS0v8EZd7Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/P.class
+SHA1-Digest: 3gkZFfj0k+Xza4nOUJips2BCmiA=
+
+Name: icons/eclipse/runtoline_co.gif
+SHA1-Digest: QZAKcal0w22fYQqtaoi1+E8lIK0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$9.class
+SHA1-Digest: mlVyw6o38WeOiIic8HFlXb97Ukk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$1.
+ class
+SHA1-Digest: HhJqx23NJl/Onwv63y1teFVVJx0=
+
+Name: com/pnfsoftware/jeb/rcpclient/DebuggerListener.class
+SHA1-Digest: oDy2ILwj2N8bL0A77xW2QJri1+k=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPlaceholder$
+ 1.class
+SHA1-Digest: dkk7PP+dl2n9D5SLfALJoKbRt90=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ Undefine.class
+SHA1-Digest: 8PnirU03HZJRM21bSTcVdCZmyfA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/SignaturePackag
+ eSetupInformation.class
+SHA1-Digest: oyRmVr0WQmUeLSbBAWec5gVSyD8=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationFind.class
+SHA1-Digest: hbRdnRHRp5WlHTi2OO/WquXm6Aw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/NativeCodeGraph
+ View$1.class
+SHA1-Digest: o+i3NFYKZX5TzNAATlyxsbGFaOU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$2.class
+SHA1-Digest: CM/r+oJKHgVqh9gjB03JafcEOzs=
+
+Name: icons/eclipse/forward_nav.gif
+SHA1-Digest: lmLlDPE2WjVohevt+GNU13MFL5w=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/DndDragSource.c
+ lass
+SHA1-Digest: d8Rx5iRFi+gXgLotcThu5cs7DX4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/AbstractRefresher.class
+SHA1-Digest: XPpsMopS/V5vtWpkHk0OnEy844c=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPreview$2.cl
+ ass
+SHA1-Digest: L/WefD1vnaq/24gH+iIA6VqsZDU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/CommunityDe
+ tector.class
+SHA1-Digest: 7OwkQFswTR9Ye5xIb95zS4re6qc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$CallgraphComposite$1.class
+SHA1-Digest: prOig5+Ab+k3297lignNKihl0Tk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerAttachHa
+ ndler$1.class
+SHA1-Digest: 8o3zDaouM2LmtVZlFgM1AsujWs8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportDec
+ ompileAllJob.class
+SHA1-Digest: 9DH5viHzXRrrzliH2a0yAfDD08w=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper$ICo
+ lumnWidgetManager.class
+SHA1-Digest: 7NB6fPAEk5KH4G0OivSIa9j4JYY=
+
+Name: icons/images/chrome_icon.png
+SHA1-Digest: xaisYKHXJTTfD9+6FSuGzWJ/GBY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoSignupDialog$2.
+ class
+SHA1-Digest: TpW/Vp09ovbhv9a4jImGv6mb6eo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileCloseHandler.cla
+ ss
+SHA1-Digest: GE4jCGNo3PxDeSmjpM1x5O29Nfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$1.class
+SHA1-Digest: 8Fzur9RCl1pOBh8G08+SLY58+kk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/IDndProvider.cl
+ ass
+SHA1-Digest: AOHqdTFdybMHWRCrOofELuxsofo=
+
+Name: icons/eclipse/new_wiz.png
+SHA1-Digest: VQQF+dooNBIWyeBbhZXHHhEf0As=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$5$1.
+ class
+SHA1-Digest: a/grnk8U13J1ca/Ug3WMSwgqsXI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/IOutOfRangeHel
+ per.class
+SHA1-Digest: GacrbFz/ziBTNkmC0a45KcBKeWw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ZoomableUtil.c
+ lass
+SHA1-Digest: 185Z3op3e/cAMQBpz/xI4crYpcA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$10.class
+SHA1-Digest: RWyNbxcN3JOs5AK1ekY2UrAzG6w=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewG
+ eneral.class
+SHA1-Digest: P1AWhL76Q4/fsEQ3kZXCJY/293I=
+
+Name: icons/eclipse/saveas_edit.gif
+SHA1-Digest: L9LZaPY40SwOCnzW/ZlFCZhvbBk=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/HoverableHtm
+ l.class
+SHA1-Digest: /22CUM0tkrHxmAIWZEzbulH6QUI=
+
+Name: icons/jeb1/icon-code-class.png
+SHA1-Digest: hT96TsGR680G4OUPa2opJTITs/Y=
+
+Name: icons/eclipse/stepreturn_co.png
+SHA1-Digest: hzMv4iGtjgTTDL02DAiIRQul9CM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$2.class
+SHA1-Digest: 1gUdXdxbzgBzHvKlsZzyo84CPwA=
+
+Name: icons/images/processor-icon.png
+SHA1-Digest: UgkwN+6XPoJIV2XtBdj4mho+kM0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTreeView$1.
+ class
+SHA1-Digest: Jd52CA1VndG8ADIwgC82gB+oPLc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ShellWrapper$BoundsRest
+ orationType.class
+SHA1-Digest: sbfld95gEilVzN9gRwvschk81Sc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$4.class
+SHA1-Digest: EetyJv7tnUrFWYmFRpfHPtB7iE0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/V.class
+SHA1-Digest: QEQA4pmcHudbofS8Z8A2bd88GFk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ProxyConfigDialog$2.class
+SHA1-Digest: TVxpTiBDu9w9+EXETqr/BebqsTA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/ThemeManager.cla
+ ss
+SHA1-Digest: sERiGickGBTY17IniXIOHqYuNGI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nDefine.class
+SHA1-Digest: SZmGd1pyZziHf31TcqWIZ9NTAcg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/IGraphVertex
+ Listener.class
+SHA1-Digest: kHHZTtk6Gluv/GsNLnNpvbhAxLI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$3.class
+SHA1-Digest: PvF4nDFDq/3RY9rKOBnF4jF9mWM=
+
+Name: icons/program/jeb.xpm
+SHA1-Digest: sXDBFb2EZdTZZ1Xj2YyZ4alKICM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabContextMenuManag
+ er.class
+SHA1-Digest: 1sZMQYdSaNoa1zrkJCXtj4IA808=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UI$1.class
+SHA1-Digest: ZOugLqsPWUoMOML4XT1pVPTqzM8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Orientation.class
+SHA1-Digest: KpZg++iNMHAezV3iX9IoEK0eXVQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionSelec
+ tTypeHandler.class
+SHA1-Digest: aa5zO6q3FIYZTjQ6W13vAxJ+Qrw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTextView$1.
+ class
+SHA1-Digest: O/32LK1Bv9+YxL6/X2qHYXE9MtI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/TableUtil.class
+SHA1-Digest: GiMdJKIYoFHMXQ1gApOnZL85vrc=
+
+Name: icons/eclipse/enum_obj.png
+SHA1-Digest: ow+5WTWlN1nKYTgwHGjSRTw98w0=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$2.class
+SHA1-Digest: UTa2Dtw6CAhgQ6T/L6L+Hmb3fHg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$1$2.c
+ lass
+SHA1-Digest: sbjG/nnthQYSXBHnY+g1Z72XLYY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditStyleHandler.
+ class
+SHA1-Digest: fCzNwhLlDboXtkkDVvj1Dsns9j4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/InfiniTableVie
+ w$1.class
+SHA1-Digest: 5s26WbjOkmnjZYK0PY2H5wy8MyI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/_test/TestInputDialog$1.c
+ lass
+SHA1-Digest: Kv8hKaZ0tyXxk6RVdcyNjIebpZc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionCreat
+ eProcedureSignatureHandler.class
+SHA1-Digest: w0Qa+PFg0ctL8wY4ylJmBbDoN7M=
+
+Name: icons/eclipse/breakpoint_crossed.png
+SHA1-Digest: oLsaSPFNNoas/mCgk4WgjZ8FocQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerAttachHa
+ ndler.class
+SHA1-Digest: udJqyX4bZexZ+cmrumKmpyJ0QLo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UIState.class
+SHA1-Digest: +d3AikWgJ0rVi9qdQJxNexKEuug=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$6$1.class
+SHA1-Digest: XepgF6HWoMP7ayPmjxzaNldZI0s=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderI
+ nfoView$1.class
+SHA1-Digest: CJ0LsQh/5T/gxLlhPge88qXLWa8=
+
+Name: com/pnfsoftware/jeb/rcpclient/GlobalPosition.class
+SHA1-Digest: jKeoyWlacHWvT68OOw1odE6Ku6E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$BreakpointProvider.class
+SHA1-Digest: V2rYHZtb5G2PcVLFySLE8M2RlmU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionNavigateFor
+ wardHandler.class
+SHA1-Digest: /rIf1/LVK9xf7p0mgQJEXYgvAT8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeDocum
+ ent$ViewType.class
+SHA1-Digest: 497rOnUbtgHwFAhEpZ3A4qec5is=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lasspath$1.class
+SHA1-Digest: eU21BsBUxAhsb6Q05reJAY/Fqdo=
+
+Name: icons/program/6.ico
+SHA1-Digest: TVYnzpzcKq6CbrO2a92q5dCNN+M=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$5.class
+SHA1-Digest: V4Z6nWX7BVy18O5VUvZSuHFIYzM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTreeView$2.
+ class
+SHA1-Digest: 7oyZ7XzjQWGL3ihzJOocQu8Vgus=
+
+Name: icons/eclipse/synced.gif
+SHA1-Digest: Ghj9SQaJ6vJj8hRCpmwiAfHF1uI=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$13.class
+SHA1-Digest: TjN+e5KLvJ3yXIzJbFPOv+PoOcc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/NotificationsDialog.class
+SHA1-Digest: Cgk+vm41wXucj1b1vkoTqqKKK/8=
+
+Name: icons/android-np.png
+SHA1-Digest: M2y9y28pSppyBc6qRKsKZF4xb1A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractInteractiveTex
+ tView$1.class
+SHA1-Digest: tkmHGDS7KwOK4xlQP6MAcYomMB8=
+
+Name: icons/eclipse/category_obj.gif
+SHA1-Digest: abvSgmg5ucJou6XGHf/AGuwM8eU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ImageViewer.class
+SHA1-Digest: P2NXrmg5EsYxI5dHJCCACqevquY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/L.class
+SHA1-Digest: vatVwFvsNTDfO7KnVxzxl9Bw0g4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$5.class
+SHA1-Digest: 9NntOC5IfElHHnpjdF1VQnSjM0U=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNodeListener
+ Adapter.class
+SHA1-Digest: x2MykBWVfpWJx7Nraylf1aSBfIc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$1.class
+SHA1-Digest: eTBdGjWQj17ZRvDdoTXjiCdqm4E=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/AbstractFiltere
+ dViewer$1.class
+SHA1-Digest: BgPgK4mbaeDA0/EXfY1pweTt62Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusProjec
+ tExplorerHandler.class
+SHA1-Digest: zzPIzuQrWHKVOGykIWcQ1Ulo6a4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/HoverableDat
+ a.class
+SHA1-Digest: SYsyZMmQ6kYYYc8fR/BIiFiREUo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DataFrameView$
+ 1.class
+SHA1-Digest: g/7ocb8p2jqUe++2vOXDzO3g/kg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog.class
+SHA1-Digest: xXLDVA0SqsJSmmy3j2SNolp2x2o=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/AddressNavigator$1.class
+SHA1-Digest: O7pLrmlTLSR2rWTqq756Jkentxo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/CFGLayout.
+ class
+SHA1-Digest: 8DgN9yo939/mcwHImB0wUEnemfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$4.class
+SHA1-Digest: oRh8yVyAUxzPVRj+RvtHpwe2ioY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CreatePackageDialog.class
+SHA1-Digest: 6AUqRDPgz4H2NMPRRx+uU/XNVGg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsBooleanView
+ er.class
+SHA1-Digest: ki00ujnzI+mwi60CM8NYrbf31KQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMFolder.clas
+ s
+SHA1-Digest: 4FdRKmlJqHCDmwa36Woi0fz0om0=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/IContextMenu.class
+SHA1-Digest: 90iVW7tT7mgth921hxTI7xYH5/I=
+
+Name: icons/jeb1/icon-script.png
+SHA1-Digest: JghyaxC6rIaAV9F1t02lHz0BbPU=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$9.class
+SHA1-Digest: M2slvOs4criwVGagMuOPB9x9hPA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$1$1.c
+ lass
+SHA1-Digest: 8MsA/nktNECZDiejn88AJFuZ+Kw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsText$
+ 1.class
+SHA1-Digest: /ylddN0y8CzgJ7ljM+qN1iFqnf8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMPart.class
+SHA1-Digest: Pc6RXK4PhyiDgKBd4/fXOxl+cos=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/AppService.cl
+ ass
+SHA1-Digest: 3HCPDVyGRWvqZUqDeb8Kou1VU8E=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationItem
+ PreviousHandler.class
+SHA1-Digest: QmbZ4Y+OBcGfrTN+sdG1L+51mDU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationLoca
+ teInGlobalGraphHandler.class
+SHA1-Digest: cvqLolJZbpgWb/7colXmzcf56cI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager.class
+SHA1-Digest: dH0PDryT2sCRYgdih32D+wVAlJg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ .class
+SHA1-Digest: hAoI8Iwfl7dktke1TM8kHWJxp4c=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowClosepartHa
+ ndler.class
+SHA1-Digest: 3VeIUXx4nNm/qaMO/kG8+U8y+B8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabFolderView$2.cla
+ ss
+SHA1-Digest: gecq4T9YXFQTIB6QaW5K9pXUeCM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractTextView$1.cla
+ ss
+SHA1-Digest: 06j5RuBnFErXZH/ytQBGzxOLwoQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ProxyConfigDialog$1.class
+SHA1-Digest: fj/E/8DvY/Kc/J+USquNKBw3qcE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectTreeContentProvider.c
+ lass
+SHA1-Digest: F0yb2WYfTKmFD4EXenKLxcZzgkw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNodeListener
+ .class
+SHA1-Digest: wcM5oFTy/q23g6Klnb9AQsoRD+A=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/ContextMenu$1.class
+SHA1-Digest: HZ9Y50wPAr0QWXt9mgYhcBeDUn8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListSiglibsDialog$ContentP
+ roviderListener.class
+SHA1-Digest: E1qtX+nPtAkFzuHA//Cf/QiFabA=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/ContentProvider.clas
+ s
+SHA1-Digest: uh+mzgVHV1ntzWzl4rovD2Zx9Vw=
+
+Name: icons/eclipse/clear_co.png
+SHA1-Digest: LjFfPyB1VwDbJ0BTsJJ2zkY592o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AllNotificationsDialog.cla
+ ss
+SHA1-Digest: +lZe3gj0F/VLsJlakq3Nvh8LwYQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DataFrameDialog.class
+SHA1-Digest: fXzodRj7zNR6WCu8pfimoew/Z6I=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener$5.class
+SHA1-Digest: KCFT3xJt34YLqlKOiQOGMNi7xaE=
+
+Name: icons/eclipse/classfilegeneration_tab.gif
+SHA1-Digest: hpqpwsfvEB+43VtiCZUkNgXU3MM=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationCopy.class
+SHA1-Digest: 6Jh3DMd0FuStd8K4stu8cjeFStI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$1.class
+SHA1-Digest: TFQKcHlsfziZuO+rgUamhMICRLw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FileSelectionL
+ istener.class
+SHA1-Digest: YxPWpF6b/aBjSIqhp9G/zynjqMM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/AbstractArrayGr
+ oupFilteredTreeContentProvider.class
+SHA1-Digest: d3u7nnpQfmva2DZj3JpCzPpT/gs=
+
+Name: icons/program/5.ico
+SHA1-Digest: gFN1u20ijp6QMe+EJbpfTHja0RA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportActiveView
+ Handler.class
+SHA1-Digest: BCF6574D87NQHpme+Pr73yzd6F0=
+
+Name: icons/eclipse/loop_node_obj.gif
+SHA1-Digest: +E7bW9oSRRKgSwMrI6K/D3hijPM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeListener
+ Adapter.class
+SHA1-Digest: BnTwfNKSNtWHJMFWmRUpAJzlV6c=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$5.class
+SHA1-Digest: 0yQiuT2RdJSJJOQGA+vI0A7qaf4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/package-info.class
+SHA1-Digest: z06UMecMT8M/+7d04PpPaHKWpMc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineCodeDialo
+ g$1.class
+SHA1-Digest: 0jk4cAWV81dBCpvA+QeW9kVG9MI=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/ContextMenu$2.class
+SHA1-Digest: 3lUTPNNE1ci+H5b2gGWcKjpSKYQ=
+
+Name: icons/eclipse/write_obj.gif
+SHA1-Digest: h98wPT9BIL+W/cCXSYnALEz8Hag=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportWriter$Ove
+ rwritePopup.class
+SHA1-Digest: TVWeTcDoxKSjZx9KxloSSlCwfXQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/LineDelegate.class
+SHA1-Digest: rPMFe/8NxD9yQ6q1SnF9VgeN6oU=
+
+Name: icons/eclipse/help_contents.gif
+SHA1-Digest: GDhay4oMkYB95ewy0R5RkMLttF8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ContextMenuFilter$1.cla
+ ss
+SHA1-Digest: 3Wmw2yiB8i0foRlU8ytm0tUIzdY=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/JebAction.class
+SHA1-Digest: IcNRLt+R4S7M/H4nf6OhxgH0a2w=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/IGraphController.
+ class
+SHA1-Digest: zOdnlbT3qYDwzKmPOyYETZYXZ/M=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/BinaryDataView$2.class
+SHA1-Digest: s2fTBw7/IVzAET02njk8zWjdB1Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/DecompilerListener.class
+SHA1-Digest: dhngr2jiEgyiPbFuJi3DN7TpnHQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$1.class
+SHA1-Digest: lQBdz76fJoBOBJ6KWi+J4K0UUP8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Dock$1.class
+SHA1-Digest: qA/YEo+z/i9cOA+7qxKLzOv5ETY=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$12.class
+SHA1-Digest: CU1zZZ0DgAkxwKXB72baOp8szHU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesTypelibsH
+ andler.class
+SHA1-Digest: Fv+3o0ook+fpqkHMRFcuZXFog9g=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ .class
+SHA1-Digest: dzx4oqDT39xr2pbIU8z1XUt85cs=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/VisualPosition.class
+SHA1-Digest: H/AaI1Rr23ssWhf3I5QOIdnUt64=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ConsoleViewer.class
+SHA1-Digest: OAKhRMz+FxTGf/8vSXpaywLCGe8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExitHandler.clas
+ s
+SHA1-Digest: 7MzSP/pX518UL7Pe+3XRMEnEwLM=
+
+Name: icons/eclipse/stepover_co.png
+SHA1-Digest: EAcQtIbWkUYaK2mU6Pp7P4dtIgo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportCod
+ eMethod.class
+SHA1-Digest: lY8zzbruYq37Yz+23Rg1/nyD3fc=
+
+Name: icons/eclipse/cut_edit.gif
+SHA1-Digest: ULU5pID/iaXdF3oTS6yqg0zmw84=
+
+Name: icons/eclipse/close_view.gif
+SHA1-Digest: 7CsEAy4syfpMiUZ+2IEfdMqVY0A=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditCutHandler.cl
+ ass
+SHA1-Digest: hJbjcngDbCKM8dqr0xWwrZBzHOI=
+
+Name: icons/images/s_icon.png
+SHA1-Digest: fAizz8AIyBZQg5YpHSVp5y/ishw=
+
+Name: icons/eclipse/goto_obj.gif
+SHA1-Digest: YDmZFqAcrZIcxKGazeSnEDNS1wE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionCreatePacka
+ geHandler.class
+SHA1-Digest: yHF3j2DZdFbEsym5xRmUegvIh5o=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionViewComment
+ sHandler.class
+SHA1-Digest: EhMgStnX9bRs1rLsP1heN7dF1qo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTableView.c
+ lass
+SHA1-Digest: 3gEGKpmn4Nk4GxrDv2zqathjpQM=
+
+Name: icons/eclipse/loop_obj.png
+SHA1-Digest: FGQPAbOL+6E52XalphW/JRNXf78=
+
+Name: icons/jeb1/icon-world.png
+SHA1-Digest: pQiH0odhCoSHhp3OsDgrXqzUpBw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/HandlerUtil$1.class
+SHA1-Digest: z4c4jAOS3PVJOK5tOfCD8qg5X9A=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$2.class
+SHA1-Digest: 6smf2Xk397Vbt2O4e+4jnGY/wec=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/StyledTextFindIm
+ pl.class
+SHA1-Digest: nVXqvO+q+CjJDbr6GPE0dBx/wNs=
+
+Name: icons/eclipse/fatalerror_obj_crossed.gif
+SHA1-Digest: 1bOrl64JJbH0dW0xGKimloiKTQg=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/InteractiveTextHove
+ r$1.class
+SHA1-Digest: 0QQbkyONx7pqtUwCj8KwT+9NbRE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/JebDialog$1.class
+SHA1-Digest: ouOks0lmtTToelYHOjj/doXzQyk=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$ContentProvider$2.class
+SHA1-Digest: iY20VCsgz9hY62QDu3Y7+ADWzrs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NativeRoutineCh
+ ooserDialog.class
+SHA1-Digest: wEX0riANQDTHwOpKcwyOJQkax+4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/LoggerPartManager$1.class
+SHA1-Digest: e+WnkLhsNzGHbTfcw3WaPMXLVeQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/Launcher.class
+SHA1-Digest: jzuAmyMf2M0/QOhGSnaxG6iaC5g=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/IFindTextResult.
+ class
+SHA1-Digest: v3gRZBusFd4capKHN76vlwzPy7Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/InputDialog.class
+SHA1-Digest: W9pWG+UHQUPq61Rp80mC1Kb5Qn0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ $State.class
+SHA1-Digest: Kl0u53ShllRPTPikgT6XvJL8q1Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Constraint
+ Solver.class
+SHA1-Digest: qo1V5Q0dqkBQOZTwI+3NCbGlopg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$2.class
+SHA1-Digest: LYvSDiZWqDBUyFs4I0tgHTKn4GY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ .class
+SHA1-Digest: VC+G/ffI/zOAz39LnkOr6X1+0tE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$4.class
+SHA1-Digest: cpCkaldEK+hx39rlu3QHvKOG0eM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/InfiniTableVie
+ w$3.class
+SHA1-Digest: kkJu2n1lN5L074MGsM1ESn5OeB4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/InteractiveTreeViewe
+ r$2.class
+SHA1-Digest: k9MNNTEgWFTLG8UXeh0EfMEpyaA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$Va
+ lueEditingSupport.class
+SHA1-Digest: mZD+3LhvcWR5hEgxCso9acBNSgU=
+
+Name: com/pnfsoftware/jeb/rcpclient/AssetManagerOverlay$OverlayImageDe
+ scriptor.class
+SHA1-Digest: 5D1bilWydiLBEnrjaO6HWdmGKUI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportFac
+ tory.class
+SHA1-Digest: /kfXaDskb7yERVSmth/LK/MAgg8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nUndefine.class
+SHA1-Digest: uMVobmNdVgVYOXM3FlYtN47f8TM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/PrimitiveDispl
+ ayView.class
+SHA1-Digest: mVJiShCwB86Ls0lE1op4ZQkHFZU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTableVi
+ ewer.class
+SHA1-Digest: Z9x3+eYRGShzXed8V1JNic8mMa0=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/wrapped/WrappedText.
+ class
+SHA1-Digest: O77ejVyLmZeHBZLsNPG7odyaGxs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Panel$SashSelection
+ Filter.class
+SHA1-Digest: HxtW1p9T2L3vqNuvIebW6K3pmAg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$TreeContentProvider$1.class
+SHA1-Digest: SR1yar7V6dqhoUVWl8YRAPQWGlw=
+
+Name: icons/eclipse/terminate_co.png
+SHA1-Digest: yAiBqM5oyGRyhPOnIYgN/LXGWjw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog.class
+SHA1-Digest: DlTVcJlqOxX+KnRwxCef65so7yM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/InfiniTableView
+ er$3.class
+SHA1-Digest: WAzSiaV7vZ0Ijz2Y8yR8SH/eMfM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusTermin
+ alHandler.class
+SHA1-Digest: Q8aJrCRYE+KrTiY7s/1eLkJxNQA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$1
+ .class
+SHA1-Digest: QAZ5wm0/IyE5KzO2ItMGdtaHqgY=
+
+Name: icons/eclipse/help_view.gif
+SHA1-Digest: HqhflAH6pcX35QaZR+5wg2cQiE8=
+
+Name: icons/eclipse/resume_co.png
+SHA1-Digest: i5+uHnF52VPoF5otlw0xMfb4LZA=
+
+Name: icons/eclipse/debugt_obj.gif
+SHA1-Digest: lGxT1EvwA05G1Efbbqo96qa5xdw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/Toast$1.class
+SHA1-Digest: nyNC3IRql+buMMqO/tM1XBk0v90=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/UITask.class
+SHA1-Digest: BuBBEmskqR2LlbRV6J1CCdXJPfs=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractLocalGr
+ aphView$2.class
+SHA1-Digest: KDpA02pKMSc0dS+FIojAcJgFdOA=
+
+Name: icons/eclipse/comment_edit.gif
+SHA1-Digest: BV48K+89JpX9NhBag1q0PWiN/fg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$BreakpointProvider$1.class
+SHA1-Digest: oR9whBjYv+/5m86q1Lh8RvVWYyc=
+
+Name: icons/eclipse/jar_obj.png
+SHA1-Digest: o2ObMnkODPBKLAH/9rmAoVQu62I=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/AbstractPartManager.class
+SHA1-Digest: MAbphabnC6WPZ71S5q2f5IjsnLU=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/package-info.class
+SHA1-Digest: vp7VHz9A/1btqt+tzkGhaBTTm6o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$1.c
+ lass
+SHA1-Digest: oA2MDV+WWkKxFcyd8JYyAbVCJa4=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/Extensions.class
+SHA1-Digest: BCtVQh+ngx8N2xMtZI6Xz8/834c=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/CTabFolderUtils.class
+SHA1-Digest: gPgwuDhQBZM6iBCMrsAB21XUnZ8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$6.c
+ lass
+SHA1-Digest: /ncD+uhRXWKF3EWR3Qawmv+9kkw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$StructFieldsProvider.class
+SHA1-Digest: j45uc/WhnXswitoZ7p5gF52TKFI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewG
+ eneral$1.class
+SHA1-Digest: CNZceCAhjT8XWuwmtNXNtSpcPSQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $StackItemsProvider$1$1.class
+SHA1-Digest: HVxHj1NtHRyTf4Njlq/uNd3+N0I=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpErrorHandler.class
+SHA1-Digest: w6x+3JpPoDs2+xl6/bojPdnhmgM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditSelectAllHand
+ ler.class
+SHA1-Digest: H4r/s8ToLvmRdufIQZIISMekdDo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/WidgetBoundsManager.cla
+ ss
+SHA1-Digest: YFerh3U/Yz5vkwSMWs76T4bGRfg=
+
+Name: icons/program/jeb.bmp
+SHA1-Digest: mYLE+/kQFm3/uV5/IiJO47PEuj0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionExtractToHa
+ ndler.class
+SHA1-Digest: dns2KkDd9+eEc9UJJ2YsQhpbxfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionDefin
+ eProcedureHandler.class
+SHA1-Digest: YW8oMmw8IT7BxG25F3YUB2T03zU=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationFindNext.class
+SHA1-Digest: 4LPAzF5NahkrPkJ6jZw8mvMyRu4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPreview.clas
+ s
+SHA1-Digest: EQ1n9dLR0HDNb1oW8wxiUFTKb6k=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$5.class
+SHA1-Digest: nbYYpcJUs4C/I8CwL8MdsttK5mY=
+
+Name: icons/images/js_icon.png
+SHA1-Digest: 7MiSgZkCxlb8A6YwAZXIl0Ch65g=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowToggleStatu
+ sHandler.class
+SHA1-Digest: MxRlzYYlB9cyNF0HWb1W7zeD5/4=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/TextHistory.class
+SHA1-Digest: i0pkxqvC4mG/5oTY9XrzxLn1Lc8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpCheckupdateHandl
+ er.class
+SHA1-Digest: i0BVmRM662KlIjGQ8dYhUenDays=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$6.class
+SHA1-Digest: 9ZrUXelYTXfab4t0J/6Vn4FczTc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/binding/KeyAcceleratorM
+ anager$1.class
+SHA1-Digest: Ex4R4JW+NLBikbshYMhdcsdjO/Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReferencesDialog.class
+SHA1-Digest: sEZhK/Ml1UcXIELv3AnQb7rkIWE=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/AnnotationRuler
+ ColumnEx.class
+SHA1-Digest: KfDz2fL2EcHt1yFBbgzkBBDI9wA=
+
+Name: icons/eclipse/methpri_obj.gif
+SHA1-Digest: jdoRmauQoq98wvx7YkONAG4+iKI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$5.class
+SHA1-Digest: 1/c5gZ0Z5zzYqetYCwY0WrxhLoE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/DescriptionView$1.clas
+ s
+SHA1-Digest: 69fxVa+U8c2q43c2IGiERA4qDxk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/TaskMonitorDialog$1.
+ class
+SHA1-Digest: Qg06Bx6mXlPli559Y5ZuNvkKywY=
+
+Name: icons/program/jeb_16px.png
+SHA1-Digest: zMCpdlBvKRqLcCOEod1DiBEJVMI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$6
+ .class
+SHA1-Digest: qIFEk91qFZRPbyNosU7Xdn7NmEM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/TreeUtil$TreeFormatt
+ er.class
+SHA1-Digest: wNBBz1iX0MiSbt35SUxpfsFeBW8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditCopyHandler.c
+ lass
+SHA1-Digest: YjhV1qKttu28GcBiMVjS4gFFsmI=
+
+Name: icons/jeb1/icon-jeb-48.png
+SHA1-Digest: U0C/MJ2cuNjo0c3atjhbm4K7hYw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusPartHa
+ ndler.class
+SHA1-Digest: m1SyKsjeA+YEKVdSd415VBWNFWo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NamedConstantsVie
+ w$ContentProvider.class
+SHA1-Digest: iTKa2q0GqzhV6DWdm+mzsUZi6yg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$3.class
+SHA1-Digest: wHfWUh6dlCyDZm5SKPdZatHfSTY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseOptionsDialog$1.cla
+ ss
+SHA1-Digest: AgKjwo9DIyCZV+Z+aziFvjS24p4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$10.clas
+ s
+SHA1-Digest: 4cw+HT8fSOQOpFiS0rLRWhFvAK4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$La
+ belProvider.class
+SHA1-Digest: LOt/QurpN3+UHcY9g6yRgg6K7z8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgLogView$2
+ .class
+SHA1-Digest: d3Ym9JuSp3Frh1Z3aSNEcEZPUhQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$Information.
+ class
+SHA1-Digest: obSQS8cKkUpQG0CrlNsJKsrxx5I=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerRestartH
+ andler.class
+SHA1-Digest: aW2wOVZ5bb3xxzJzKpkXGiXPhcY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UI.class
+SHA1-Digest: x6NLXOZSD95+KCV0LxkByNylpEY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View.class
+SHA1-Digest: XnXbtmKw+CJ45ZwL3HqQRZH1iPo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Constraint
+ Solver$1.class
+SHA1-Digest: MvCmwPBIZgJPVF2TDDAXl7n+3Gc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AnimatedGif.cl
+ ass
+SHA1-Digest: M32zs9C6HcZcMx44KZbnnIXK8uY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er.class
+SHA1-Digest: UgCmVb3c4ymeztn9/0Bmgxklg1Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/R.class
+SHA1-Digest: pIKAhd+lMsgEwFuvtyBEipxiyis=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/TerminalPartManager.class
+SHA1-Digest: 9R1fbyQfxnBD9PQ5oh/04BYWHZY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$2.class
+SHA1-Digest: JTPxqVwmEuU7JUJ0iY05DG5sGfA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationCanv
+ asCenterHandler.class
+SHA1-Digest: ZAbDRDAv/dM3f8Nr0z76IKJzSrM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$InnerUrl.class
+SHA1-Digest: xCqsE2y1HNIN4GFQ9gmpMuq7Scg=
+
+Name: icons/eclipse/fldr_obj.gif
+SHA1-Digest: 5TF7ftfUsp4Z3KdTaSlgyQoFpuk=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager.c
+ lass
+SHA1-Digest: kZYwK5nDSmkrzCdezjeZmzjzsp8=
+
+Name: icons/eclipse/super_co.png
+SHA1-Digest: JZOHgITsLopUbDQjlhR9s1OjghA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/Digraph$1.c
+ lass
+SHA1-Digest: pjST22jzPDOIyD8qr870ZuC8Wgk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Constraint
+ Solver$Constraint.class
+SHA1-Digest: ZB7VoupzGDHx8Ddh1G1qXKLSw0c=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $StackItemLabelProvider.class
+SHA1-Digest: l9hKdisAtpIGu9gq6+UPMUiEAlI=
+
+Name: icons/jeb1/icon-code-context.png
+SHA1-Digest: 1r1gT2VTmhQrpMf7QhnYP6TKBEQ=
+
+Name: icons/jeb1/icon-media-stop.png
+SHA1-Digest: sGbxhllXQD0Drym/vmm61mYmaSo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditLanguageHandl
+ er.class
+SHA1-Digest: 3JW1PPZWdZe9m0CamzPeYrXcDAc=
+
+Name: icons/eclipse/static_co.gif
+SHA1-Digest: hx3gTXdhqEHpZWgZmZMgOxJuOyo=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$9.class
+SHA1-Digest: 2hL1zD1J03kKthe/wt2WBI6jQD4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$1.class
+SHA1-Digest: 4ETTGB+NGx23wiHp0/CXXvg5RIw=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/LabelProvider.class
+SHA1-Digest: eGMRJyaWu/tG0AU0kkqqUb7XhsQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileAddHandler.class
+SHA1-Digest: hKovEKEsQd4qQIfW2aOiRVeM7Ms=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPlaceholder.
+ class
+SHA1-Digest: 1jzQHrzqVI5psd8/E5KDGcTJa7s=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTextView.cl
+ ass
+SHA1-Digest: DZT7/yAmcDQiLKkMBazkKnSRKE8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nSetType.class
+SHA1-Digest: YFrtC9PySSmD5Rz65P9IX5z9QZY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DataFrameView$
+ DataFrameContentProvider.class
+SHA1-Digest: jw7K7JxqyK4PXOUGdm2kzdpS6mA=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$7.class
+SHA1-Digest: VgC309v+4E6te/JEKVzvHysPMvE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIUtil.class
+SHA1-Digest: 2OQG5M/Fr9dAEy7btUidexJLQtc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/NativeCodeB
+ aseHandler.class
+SHA1-Digest: LN0WeSJP+GiLSqlIk6Koeb81ctM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/App$2.class
+SHA1-Digest: 79vt/ejeQPmGGV2rg4vZWJEpSZY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$ActionZo
+ om.class
+SHA1-Digest: VedP+8KUYIwpU3OeqWdt72b2H9k=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$9.class
+SHA1-Digest: X+kHP7LIM51j50mv+5oEJcZ6Yh8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMWindow.clas
+ s
+SHA1-Digest: U+ph4Bzsgpl7gwJS8FGX0Jur05k=
+
+Name: icons/eclipse/image_obj.gif
+SHA1-Digest: DT00AOgk+LSxwyBDkotC5FiPYRI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/EditInstruction
+ Dialog.class
+SHA1-Digest: uTDPxTwMY1RpYJAj0s+TMJvIsQQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/JebDialog$3.class
+SHA1-Digest: crO/foyBwtz0qsk5FxNIIW3VpMg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ .class
+SHA1-Digest: q8k5WA3omyuKde5Icatm9CK2HaM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionUndef
+ ineHandler.class
+SHA1-Digest: fcMmHX2o4W3CUK202ac0QqLRDC8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/IFindTextImpl.cl
+ ass
+SHA1-Digest: Cz/DxTKeeh3pgWK3qKaAGgi6fAE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/HandlerUtil.class
+SHA1-Digest: j3AWDXE9Te+7IIRewk5hNsU9w2s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField$2.class
+SHA1-Digest: ipjywYMogwqWDQNXMSEUcz9KxtY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationItem
+ NextHandler.class
+SHA1-Digest: adinr9tLOyx3jIjhBFnoGEG6Wcw=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/ColorsGradient$1.class
+SHA1-Digest: goKQiNYrs4ijipirhR6TFeg5Ov8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$5.class
+SHA1-Digest: J/YKwZ0Gtt1GRxP0vzgyqbLmgjI=
+
+Name: icons/warning-animated.gif
+SHA1-Digest: NaHHRBCI5zZI5SpDXviY9EBkluc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/LazyContentProvider.
+ class
+SHA1-Digest: KDoprm1NLlryfAXHzDIRuGuPY6E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/DescriptionView$4.clas
+ s
+SHA1-Digest: PqVxHUs2lNQvi5ZCJedQ4VFwaLA=
+
+Name: icons/eclipse/elref_sc_obj.gif
+SHA1-Digest: 2ZHXkoa5COxU8/4L26LIQaq7DY4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerStepInto
+ Handler.class
+SHA1-Digest: Ya5dT/kA+dOTskHhmoxwnT0XAXg=
+
+Name: icons/eclipse/inst_ptr_top.gif
+SHA1-Digest: p6ExrrQEwpv5Yh05j0+J06IyeoE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/IGraphNode.class
+SHA1-Digest: 3/lBJ+yuNcGNfvksaL56f36shPw=
+
+Name: icons/eclipse/jcu_obj.gif
+SHA1-Digest: 095E6yV6LDm/81H6zTvLkyoAtkc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $3.class
+SHA1-Digest: ZAGM88iB0w0fKO+aheBeEGGPXy0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$3.c
+ lass
+SHA1-Digest: rrkoId2h8mjo3ZRcw06L7CWcK7A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractTextView.class
+SHA1-Digest: +uj7omyBaJUgt2cVrI+lKQBu5Pw=
+
+Name: icons/eclipse/method_private_obj.png
+SHA1-Digest: 0NqJa9DMvHFaOUMC74N0tTZI6sg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$4.class
+SHA1-Digest: DjfP2lwRQzmMptx8sVQw1k8k93k=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportActiveView
+ Handler$1.class
+SHA1-Digest: 1ACVX/rEQmvw6aOeZ8wvY8jG14c=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/TextDocumentLocation
+ Generator.class
+SHA1-Digest: KBOH7ij5NrbhZa71bAd1f4UPXrs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$3.class
+SHA1-Digest: SmBuxuatDNZsOXPPIkO6gg6MQow=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionXrefHandler
+ .class
+SHA1-Digest: hX8gBvjjD/4r7p2o9hKdH0XiBhk=
+
+Name: icons/eclipse/genericregister_obj.gif
+SHA1-Digest: 8z00LKR65d4hhwBYWkKSFVur+H8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CodeHierarchyDialog$1.clas
+ s
+SHA1-Digest: 9YbFJlhqGgiu2ggQF0XrjiYc44E=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/StackframeEdito
+ rDialog.class
+SHA1-Digest: 3hN2XjjlcWKMJLMbR5GyJEUG4eg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportDec
+ ompileAllJob$ExportJob.class
+SHA1-Digest: q2VTQd2ssr2Vim11LgH8q+H1cjc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ SetType.class
+SHA1-Digest: 0swhPEZReSXZvyvcYmlRJ/VC3v4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/InteractiveTableVie
+ wer$1.class
+SHA1-Digest: zPiFRNqkijjMYvLGkcRW3dCC5jM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/GhostWidget.class
+SHA1-Digest: aWDyj1IyW+UBbr1JF+qFaRtXshk=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationClear.class
+SHA1-Digest: 5v4BL0o+DchRdAWE1cig0i9zr6E=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$7.class
+SHA1-Digest: U0zXomlrniz7JHsMznYYKdTJvfM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ProxyConfigDialog.class
+SHA1-Digest: pN8/jfhy3p6E7awe5XS+XClkSBE=
+
+Name: com/pnfsoftware/jeb/rcpclient/actions/GraphicalActionExecutor.cl
+ ass
+SHA1-Digest: Em23nYsBbzfI9eDyWGlSNGVsAVw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/GraphicalTextFin
+ der.class
+SHA1-Digest: M9JUPJ0qJstkL7Gldg2BG2rvNvs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/GraphicalTextFin
+ der$3.class
+SHA1-Digest: ChTbJLiBUocfGTQk8jnLaEH9xKM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/OptionsDialog.class
+SHA1-Digest: oleczcicQY+vXLkATp/J54ibQgw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/App$1.class
+SHA1-Digest: K4pNN7kWh85/FCudcUMcX0AbzoA=
+
+Name: icons/jeb1/icon-forum.png
+SHA1-Digest: xjAIVk8tAA2tfee5BWt2n9N/FJU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog.class
+SHA1-Digest: Px9KW7J7lkUVkBycCHBAtxoY4UU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$4
+ .class
+SHA1-Digest: ZAYVoMeXzqvZel5vGCKSoSi5JRQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lasspath.class
+SHA1-Digest: iwTvT+MtSZrbVOnQzOvVkd8o97o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$Tr
+ eeContentProvider.class
+SHA1-Digest: uTwhjitLP+my7oBaDizqawK+oQI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Part.class
+SHA1-Digest: SUzJZ7TsprzTMcpklnHdyYjoGyk=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$4.class
+SHA1-Digest: 0Gk7aMHE/MlFfLmN50pgidBK0MI=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/IValueProvider.class
+SHA1-Digest: G0tWDc1eHddPk5eXEuYh9inofbQ=
+
+Name: icons/eclipse/delete_obj.gif
+SHA1-Digest: ORJe0sG1BDPf20zkd9DI+HUjfk8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$8.class
+SHA1-Digest: y8FrAwM7xU8uiEd3BDRJTFUfWP8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$1.class
+SHA1-Digest: BsstQAmCbQAiGr3met7IpRe3ohw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DirectorySelec
+ tionListener.class
+SHA1-Digest: eV5b30UxGCnv0sxUdxPcetrelms=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$7.class
+SHA1-Digest: 34kK+d3kXF/oB1r3jU27bI17Ylc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $ContentProvider.class
+SHA1-Digest: wt7y2ZZBnhwtuD9ybmA/HYDooDk=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/RowLabelProvider.cla
+ ss
+SHA1-Digest: RISvk1hCllXFWeg1Jqr612YDbb0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$2.class
+SHA1-Digest: V5chDOK4sLg5q+WMQXo2I6shRi0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabContextMenuManag
+ er$2.class
+SHA1-Digest: 51FWGh31+SFLhZTvtJrfhSyyekI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $1.class
+SHA1-Digest: uTwNVQQCF7frLhlkSYtbwZIhs+k=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/TerminalPartManager$1.class
+SHA1-Digest: ZYfB4hLTICPU4aJu5fttPG1ctEA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$CheckableDevPluginClassname.class
+SHA1-Digest: sFO8YSuK1GWk+CX6lVO0tjkhwhs=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $1.class
+SHA1-Digest: ShEMS09AG+rN/3cbCsSkX9nbX3s=
+
+Name: icons/android-128.png
+SHA1-Digest: iybNCPJpMoigawmJqGD0xQ2L/ng=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$1.class
+SHA1-Digest: 95Bcgp8ROm/nME7X2ZKTCk7/aWc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/TaskMonitorDialog.cl
+ ass
+SHA1-Digest: dGHbktRcdOQnzAkjM/ILel0nWUg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewD
+ evelopment.class
+SHA1-Digest: Pg6GL7+kBllgxz37LA4B6tw9DM4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$5
+ .class
+SHA1-Digest: PIjK7GYEAgylPKLgkLq2YGnXG2s=
+
+Name: icons/jeb1/icon-save.png
+SHA1-Digest: HqiMa1erwcWBBRMCaxrr5QVitDA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$8.class
+SHA1-Digest: vWEFm9VMHaCXB7tSZuaBeOyTWUU=
+
+Name: icons/images/java_icon.png
+SHA1-Digest: xaac/mNHYKBzCfPk9/Dt+3llhDc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/AbstractOptionsSim
+ pleWidget.class
+SHA1-Digest: 9kh/+FfIu19E3mzm+7O0RMwHZmY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NamedConstantsVie
+ w$ContentProvider$1.class
+SHA1-Digest: iv3LBiRUMySd5867CrL/41l2wUo=
+
+Name: icons/eclipse/suspend_co.png
+SHA1-Digest: IHIo+BcHUcvKEea43g51HVV8Fx4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$13.clas
+ s
+SHA1-Digest: yi53WWgltw9X7rHYdqbtYQ8IQvE=
+
+Name: icons/eclipse/inst_ptr.png
+SHA1-Digest: B3G/x4rmC+bXFHz35YP/gMeqEDU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FilteredTableV
+ iew.class
+SHA1-Digest: eAz8HwDHMFAe0t4jI3u3Y4CSD/4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabContextMenuManag
+ er$1.class
+SHA1-Digest: Oya3OVvr4YeOI8nJ/75yWvNSwcA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/SimpleTextFindRe
+ sults.class
+SHA1-Digest: D4y3LecJVoHwfdWSApDYiwihXS8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$8.class
+SHA1-Digest: LfYm/ndWc/GCANSjMW025H/dlmU=
+
+Name: icons/eclipse/fastview_restore.png
+SHA1-Digest: fMDY044WbZ8J0cEJamfVOVcJGZ0=
+
+Name: icons/jeb1/icon-arrow-left.png
+SHA1-Digest: FoI8gRp48YjrLgH5LUKt5XPyjpU=
+
+Name: icons/eclipse/stepinto_co.png
+SHA1-Digest: kzQHdQCo0X0W02L7q8xB3+i7MyQ=
+
+Name: icons/jeb1/icon-doc.png
+SHA1-Digest: F/T40TRt3sYkYn5cbek7mHd95KU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew.class
+SHA1-Digest: PC/1op5XyAJU5+HBJrBkNYFbPS4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$2.class
+SHA1-Digest: mtz47DiCZJ8eScm3gW0QsAh40o4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$14.clas
+ s
+SHA1-Digest: 3yZIZPpCVHXagim9TO3hpZ64n8E=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FilePropertiesHandle
+ r.class
+SHA1-Digest: YweXrYbDGi8LUhMr21MUzBLnTyI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/InteractiveTreeViewe
+ r.class
+SHA1-Digest: 3jFxdMAgr0yNsBGdrzJ2QaRjMgU=
+
+Name: icons/eclipse/search_ref_obj.png
+SHA1-Digest: nK9hOTWjDWdIAp9QDQ3r1o6i140=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$7.class
+SHA1-Digest: fLD2pU+DFB3t6nOOiXdCaLp1/yM=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationRefresh.class
+SHA1-Digest: 6QzArUWM6rWaKgcTUo6gYnPriKE=
+
+Name: com/pnfsoftware/jeb/rcpclient/JebApp.class
+SHA1-Digest: luMVcSrKYQqnwcdsdlK+rSwIKdk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphStyleData.cl
+ ass
+SHA1-Digest: XFvU2CSgiSQz8Ef972V5DVkPweo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsText.
+ class
+SHA1-Digest: j1MALZueDxPXCKTqscLgFR002/M=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeRoutinesVie
+ w$ContentProvider.class
+SHA1-Digest: wwRo8AelRmp58RJhdHKbdHRZAjU=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/IPatternMatcher.class
+SHA1-Digest: 8w2zgiyvKdsM+nmSi5eZnid8VfE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/IRcpUnitView.class
+SHA1-Digest: VSgoLuakMi2DqjV3BNJ5ZL19xxY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/IImageDocument.class
+SHA1-Digest: Y6VHIagMOxSvktH8e76gglCA+Ck=
+
+Name: icons/eclipse/runtoline_co.png
+SHA1-Digest: vC7EtFkLJgSDmHxKHP6hVRykjjU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ShellWrapper.class
+SHA1-Digest: z/T2nCi4x5/QjLfqVivEs+MdgJg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/AbstractGraph.cla
+ ss
+SHA1-Digest: tOr3Glc0ZTPu6jiN3CuapZkm07A=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$ActiveLine.
+ class
+SHA1-Digest: 7WPvW7nCIl9lyMTcyux4MxeO3S4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTreeView.cl
+ ass
+SHA1-Digest: +vLDgdBYafX9GAMNr2LJy3CVG9c=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMApp.class
+SHA1-Digest: 8gFhQnCnr9UosVrioIhVOy5kMhw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$Conte
+ ntProvider$1.class
+SHA1-Digest: HjeHmV7AHC/nNtfZ/DcXZY+dV/M=
+
+Name: icons/images/dollar_icon.png
+SHA1-Digest: 5cz4Sjr5jpd50Cmih6w25naBtFQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$4.class
+SHA1-Digest: gxMaVYDdgyR3pF+JVBDrpm6Z56M=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListParsersDialog$ContentP
+ roviderListener.class
+SHA1-Digest: 9fJhub+iy2Pg/iUh0Eev9UxYU60=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$3
+ .class
+SHA1-Digest: /PAi4NHotC1B+9B2HVcz4wRh8eE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionConvertHand
+ ler.class
+SHA1-Digest: 0lGr3j/lknfeUTdBBVBpNJuJt0I=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractLocalGr
+ aphView$1.class
+SHA1-Digest: zLCHbuE9GzaZmpYMs1e5xHMVTRM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/TaskMonitorDialog$2.
+ class
+SHA1-Digest: UNAwaY/H2rvsNTWb4+9o3E4S0ag=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$1.class
+SHA1-Digest: AXYLVC8DyAXMf4Xqv2gWoBYOzw4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ ombo.class
+SHA1-Digest: vc8u3jhreILxBEW4nB4tDwl0/8Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/wrapped/WrappedText$
+ 1.class
+SHA1-Digest: ReXBP706rkKwGDv2l7qlClvgx9c=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$1.class
+SHA1-Digest: ik5XfUi/mQPBQCYnV4enRYh0/l0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/ICFGLayout
+ .class
+SHA1-Digest: /HG8cb9AaI5akM7tZ4rTDSsr+yQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$5.class
+SHA1-Digest: kKI9GEgloZ3QfxwyC3trWLrYbUE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/PointAndLine
+ Factory.class
+SHA1-Digest: LHb30mLBuCmBRyncFTlWTgFIY9E=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/StyleManager.class
+SHA1-Digest: G8pTtPM2zh2z91+AXb8c87A/7P8=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/ScrollBufferManager.
+ class
+SHA1-Digest: NNMtOHzi5gM3M9Fg319pDzJI1MM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypesView$1
+ .class
+SHA1-Digest: VmfXueFzMidpkZgUijL56RMl2+w=
+
+Name: icons/images/thumbs_icon.png
+SHA1-Digest: d6L8Cb+NvXQ7V4gBOMjGllJuZ0o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$3.class
+SHA1-Digest: bxXz7mVMTTRZnha1kanoADutfA8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/OptionsForEnginesPluginDia
+ log.class
+SHA1-Digest: fKdSX5jf4a0BlTa1QyKGFvg9Fro=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/media/SoundManager$2.cl
+ ass
+SHA1-Digest: 8Ti4DSleCmh+y6WJtZsgoKoqja8=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/GenericHistory.class
+SHA1-Digest: ZWJWYL92cgvRZ93aCCiBt2u8hRg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditFindnextHandl
+ er.class
+SHA1-Digest: bIjAXKop4nCznynAhY6/vXjMtlA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileScriptsExecutere
+ centHandler.class
+SHA1-Digest: kachL4iUxf0/iaVozzJ0BQchp4A=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/IZoomable.clas
+ s
+SHA1-Digest: geKYw8+RDEQwT0K57jDCAsCGz3k=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/arraygroup/Virt
+ ualArrayGroup.class
+SHA1-Digest: rOPLbO2IBuFS1zUIznxsnsrn184=
+
+Name: icons/eclipse/exportdir_wiz.gif
+SHA1-Digest: 5QeXrwdSnbJpFZC4xbRCqALn3W0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/JumpToDialog.class
+SHA1-Digest: n99hweRzvTRuMF3BtmLLxhyNG4c=
+
+Name: icons/eclipse/builder.png
+SHA1-Digest: c6NNmE9bjZPerCfBdVlWToxuThY=
+
+Name: icons/jeb1/icon-help.png
+SHA1-Digest: PwG9sTiSHYUMQswptcIo24WTxAM=
+
+Name: icons/eclipse/composite_obj.gif
+SHA1-Digest: hLdGAP46cAj+exZwu9RrY9jMlYU=
+
+Name: icons/eclipse/comment_edit.png.bak
+SHA1-Digest: kLq5QBalD2UFr6ggoVdz9SjvAP8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ $ExportStatus.class
+SHA1-Digest: zObvDN6RUwl1lplISVdmGXpoeM4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/OperationHandler$1.class
+SHA1-Digest: oBfylxIClLpAuqxQvFvzl1l2Wbc=
+
+Name: icons/jeb1/icon-arrow-right.png
+SHA1-Digest: ddF0OkdjsKqzRpqUaVqTOL7vr1U=
+
+Name: icons/eclipse/generic_xml_obj.gif
+SHA1-Digest: cq1VUPpO1kbCJZ6UD0zIfFvlRnk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/media/SoundManager.clas
+ s
+SHA1-Digest: MxGBGfetrTMBfsBYdQi6P+MEbg4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/IStyleProvider.class
+SHA1-Digest: iGbi7hmCeoQ0UNuISedudP03Jrk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewT
+ ext$1.class
+SHA1-Digest: Q2SAhZNdfdc3l0nAhTjMoCuIr54=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$4.class
+SHA1-Digest: wA/4h0LttAhsjuQ+R+Ux3FEKHHw=
+
+Name: icons/eclipse/owned_monitor_obj.gif
+SHA1-Digest: JBivF7fbY0DCRBsGp17TM27yO2w=
+
+Name: icons/eclipse/field_protected_obj.gif
+SHA1-Digest: b2fjuZX3M4Cg30zVaPzh7r0B7zI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$12.clas
+ s
+SHA1-Digest: nzvfUZ06Jr2ZetrndVdjMqL2hDo=
+
+Name: icons/jeb1/icon-jeb-64.png
+SHA1-Digest: eJeiF/rnNhiF9I0YCK7aiWye6sg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$10.clas
+ s
+SHA1-Digest: 4aIyo2Td60867VnQR+y7EdCEWFA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerResumeTh
+ readHandler.class
+SHA1-Digest: gq/Tf/OWgHEiK07s9fYR4Mpu1gE=
+
+Name: icons/eclipse/breakpoint.png
+SHA1-Digest: 7Dc4tztc9cj/sBsLX0wCcDdgqa8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DataFrameView.
+ class
+SHA1-Digest: Q4T9cEQRAfnrCLkM7aY+I/AK6dA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$3.class
+SHA1-Digest: RAvWvNSRqTrK1f0h4Rp2bZ8uXfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$1.class
+SHA1-Digest: E71kaap9SCybcQxPyifjl5wErac=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIExecutor$2.class
+SHA1-Digest: TkYjaF6MgqJcL/Vr08j/3yNoXfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/UnwrappedBufferPoint
+ .class
+SHA1-Digest: 0Gkl0lMuCB4dMDGEOqjrxKMejhw=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/AnnotationServi
+ ce.class
+SHA1-Digest: PcX2TFK5+QTayXuEZauKi7l8kV8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$5.class
+SHA1-Digest: 4LWPcSwN6JnEeDjwgCGcyNS1Zy8=
+
+Name: icons/eclipse/forward_nav.png
+SHA1-Digest: n+d7tLS040U/QEiYw+odUidT5ys=
+
+Name: icons/program/jeb_256px.png
+SHA1-Digest: oibT1ZI1qrlOFvOvHZxfupGUOIw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/IThemeChangeList
+ ener.class
+SHA1-Digest: vo3Mtag5miLgO9qKvjBcV4cWdPU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/E.class
+SHA1-Digest: 2G/9atvE7iIz2D6ibq2xUyfUlY4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/PartManager$PropertyProvider
+ .class
+SHA1-Digest: dsEVR5W+EWW02/7/zvux+BpUlWc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper$1.c
+ lass
+SHA1-Digest: isNQrRcES59uQsCODOQ+I+yVVs4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $StackEntry.class
+SHA1-Digest: e096I6i3GM0VbW2W7H0xoZQWJRg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$3.class
+SHA1-Digest: IpbA8XvuBIF8sC8t66Autnz8KyI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/PartManager.class
+SHA1-Digest: A7jXdf7+Ye0Ybg5yzSOl7LLKZfY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/JebDialog.class
+SHA1-Digest: oQK87TWvFmkpHGMXW76L/11j/dY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/Toast$2.class
+SHA1-Digest: MeE0vFnp/plhP/UnL7LFjA4k5GE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionDecompileHa
+ ndler.class
+SHA1-Digest: VfG4bizoqpQsh/WsE4+wH683U/k=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractLocalGr
+ aphView$3.class
+SHA1-Digest: s1noFPlD2OADgUaeELfSNYUjbHM=
+
+Name: icons/eclipse/internal_browser.png
+SHA1-Digest: YgbYB6gsA1hLo9Np72tXSEg55II=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/GraphicalTextFin
+ der$1.class
+SHA1-Digest: udqVcDCZTQxvKJKaHOF5yk0mJZQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/LoggerPartManager$2.class
+SHA1-Digest: y9gQReK/kOQhS0HUJUD0p2vehik=
+
+Name: icons/eclipse/clear_co.gif
+SHA1-Digest: VlQe11EC8Oaogw6cJZ8novJsO8o=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/RowCol.cla
+ ss
+SHA1-Digest: CwoIKRshSNOC2EpuU6rTWtk300Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/DecompDynamicOpti
+ onsView.class
+SHA1-Digest: OtQMTklYzmJY7tXQ7TfWEKzV/1E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectExplorerPartManager$2
+ .class
+SHA1-Digest: lRNzqRZi0CpuZps6GWbzbE/ZQFE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileOpenrecentMenuHa
+ ndler.class
+SHA1-Digest: a0DU0ockr5KjQO78q3bPCCcZ+hc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper$2.c
+ lass
+SHA1-Digest: RNZzOwcFeRedHvZcZr/jFkSEYtc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionGenerateGra
+ phHandler.class
+SHA1-Digest: Thx8EZwcrYdK/wMxtzEXiYSfcKk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$11.clas
+ s
+SHA1-Digest: g0d/1wiYgYsU3hgDsLlRlabKj/k=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$2.class
+SHA1-Digest: t1mhSt5UK3ONPhmsD6HtenYsWOg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$3.class
+SHA1-Digest: ZLkLYG3mJLq1x2IXgixOZZl2e4A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractControl
+ FlowGraphView.class
+SHA1-Digest: ueHe5jzD3aqJFTWhZjNNEk337NU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListTypelibsDialog.class
+SHA1-Digest: Qb9C8YYHd5L8rIr3BdRARyT1iio=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIExecutor$1.class
+SHA1-Digest: xAfo3JvzEXWRZZQSJvGDEUkVycE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeNodeWrapper.c
+ lass
+SHA1-Digest: Xw1C8qmlY8lvyZESnotEMNuZPj8=
+
+Name: icons/eclipse/stepreturn_co.gif
+SHA1-Digest: aEnqaVIGCBZibB/7TmLJ4xDW+c4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/InteractiveTableVie
+ wer$2.class
+SHA1-Digest: +12jX4vCoO/5kh8OZcVKR1jnlQQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$6.class
+SHA1-Digest: tfgWPzges5XMfKrqGYE74g4M3wE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/GraphicalTextFin
+ der$2.class
+SHA1-Digest: cKdY/q56WCC7wqx2HK8qxO/q1Kk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NativeTypeChoos
+ erDialog.class
+SHA1-Digest: tYUFika+/RgLjnU/jBP5CWNoFE4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIUtil$1.class
+SHA1-Digest: k3ktUrYVx1q78jqR7vuECWk4ZfU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$2.class
+SHA1-Digest: m+eFJju5vaIkIcPGPjKEMjfWR54=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider2.cla
+ ss
+SHA1-Digest: Lgyznn2XWPu+EkOP9JayLLGAa2k=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/ItemEvent.class
+SHA1-Digest: t3JEvbkD5BILn15cX3irK9eG92g=
+
+Name: icons/eclipse/abstract_co.png
+SHA1-Digest: dEWF7rS4Lc0wgPO9ra9NPcWWmZo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/media/SoundManager$1.cl
+ ass
+SHA1-Digest: hfzzOQLnXRFsxSMFhtZaHGbALDc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/VisualSelectionUnwra
+ pped.class
+SHA1-Digest: UZGTG1rD1yKKUZjjhF/GxJAOZgY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/Toast$3.class
+SHA1-Digest: YyTxiw9HgD0AQ1KlSpdoZ0l9oeQ=
+
+Name: icons/program/jeb_48px.png
+SHA1-Digest: YBhONGuwGnY90JDFcJxFxaAGPEU=
+
+Name: icons/images/outlook_icon.png
+SHA1-Digest: Sem4JtRU/1esdElynO3NCDr7rw0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectTreeLabelProvider.cla
+ ss
+SHA1-Digest: MfKshk+Od/eowisJpJQ6A0ag8wQ=
+
+Name: icons/eclipse/paste_edit.png
+SHA1-Digest: 6t48tI8evymXy+G7ItD2xIzOJY4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ $2.class
+SHA1-Digest: PAmRJHlmziMPLF2e0ahVpeH3Kvc=
+
+Name: icons/eclipse/super_co.gif
+SHA1-Digest: tV6Ej/bdlr4Mvydpo0tTH8d2ETI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/binding/KeyShortcutsMan
+ ager.class
+SHA1-Digest: IHCfRO4ZVXKVrbh+AY+dwVM6UbU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment$1
+ .class
+SHA1-Digest: VwkNCfwxX6DR6vQYZQ4kZlrYYDI=
+
+Name: icons/program/1.ico
+SHA1-Digest: QgC3t1Th89TpE8qhpzMwyV+ddBU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTreeVie
+ wer$RegexViewerFilter.class
+SHA1-Digest: 7gDnX46/hnR26oHrED7vZodIQT8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$2.class
+SHA1-Digest: aClZK9x/djQ3WsRxp+gqBbQtNxI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/WidgetActionWrapper$Vie
+ werKeyAdapter.class
+SHA1-Digest: RluxF5dreW6nJ8nUDAlzQg5adlM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$3.class
+SHA1-Digest: mWOoJiUf0xTrJZUW2KQbB9eMCKs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/IFilteredTableC
+ ontentProvider.class
+SHA1-Digest: wfsn2IIV49FMkUf9plJ5Rji+nvI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/CommunityDe
+ tector$Node.class
+SHA1-Digest: KI0LQahRtKWygtUeBQKCKugj++0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditLanguageMenuH
+ andler.class
+SHA1-Digest: Vm7YqIOsDxJJ04IDKr0k8B+q+ow=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$10$1.class
+SHA1-Digest: vMgCm1ifXqBuhKmte7gKybE+BTI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/SharedTextColors.cla
+ ss
+SHA1-Digest: j5Wvt5ZlzsOOHo/cgoPlHcg6s6c=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nRename.class
+SHA1-Digest: Hr0Z0FFhXlIGXzVI90jQkwMpecA=
+
+Name: icons/eclipse/cut_edit.png
+SHA1-Digest: kA+G9ID+HsWyLuiJRlcIh1JCqt8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$OrderType.class
+SHA1-Digest: edUIpFz+B/X9JBPyyBm+OK5HzmI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider2$2.c
+ lass
+SHA1-Digest: NVSz3UtBL3/pgBfUvESPwwz4IIY=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/Dictionary.class
+SHA1-Digest: ldptlAYmoNmjeOLYqOQT0S9Kl7c=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/EditMethodDialo
+ g$1.class
+SHA1-Digest: iGbmmk9VTl4dmu1aBGa2Hp31sZI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewG
+ eneral$2.class
+SHA1-Digest: awgRBDH5qIjokrmgRbmvNU5QqKY=
+
+Name: icons/eclipse/html_tag_obj.png
+SHA1-Digest: vt7Ybmp4JfMSM5POxEHdykoNows=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/InteractiveTreeViewe
+ r$1$1.class
+SHA1-Digest: /5lAPnTZdwKVP7VaMoVu8q3otaw=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/AbstractOperation$1.cla
+ ss
+SHA1-Digest: dm9PPwxqJT9NP/2XW35e2+Ojnho=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$8.class
+SHA1-Digest: Cs/PGeAqr1hUce5uE0Te3qi1pE4=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/DbgTypedValueUtil.class
+SHA1-Digest: 7Vz6qrJF7aJ88em/Pkkz5+wQ73s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/GhostWidget$1.class
+SHA1-Digest: BF5EoODB7x/+nBDXcNj/bnzVIY0=
+
+Name: icons/eclipse/static_co.png
+SHA1-Digest: Kb3Z1Y8QFsPL7v9j8YAHvrGgfX0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ContextMenuFilter$Filte
+ rAction.class
+SHA1-Digest: C1aYFuNxTL5Y9eXRer27g7cOsFo=
+
+Name: icons/eclipse/tasks_tsk.png
+SHA1-Digest: 2fyG8n16hdYS1S4mTqMNZszuCio=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$4.class
+SHA1-Digest: N4pehBuUZ6i52TMeXmB8hxKoo2w=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$5.class
+SHA1-Digest: laSmDBibwYtfBCCpd7QBkN+54M8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $4.class
+SHA1-Digest: 4PrJz0KlvV/Sh/Plu+y2q4KRStk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileScriptsExecutela
+ stHandler.class
+SHA1-Digest: G8e5ffshnHtgTCz2+N+VwKA9pGk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditA
+ rrayHandler.class
+SHA1-Digest: BBU5slJCz74KA3aw/mFcrGp7X+w=
+
+Name: icons/jeb1/icon-open.png
+SHA1-Digest: uu19/PdfU8UmalYBOaPjURvJjLY=
+
+Name: com/pnfsoftware/jeb/rcpclient/IStatusIndicator.class
+SHA1-Digest: lBJt38oZutqDosIi9IHwnN27ZNs=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$4$1.class
+SHA1-Digest: pG4HDJRExb4UNQs+cwtkUGbDhJo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/ICallgraphBuild
+ er.class
+SHA1-Digest: /QBKwDCCHelkE686i809KfbPap0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionDefin
+ eDataHandler.class
+SHA1-Digest: Sf3DT1YGMWuwEeCtO6sUtQo9wZ0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder.class
+SHA1-Digest: odKk/ZSkJCv6/cVuW/jPJZ2oxzA=
+
+Name: icons/eclipse/fldr_obj.png
+SHA1-Digest: jJElPcFLpTIQNSw5j+EJytj86Fw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditSwitchThemeHa
+ ndler.class
+SHA1-Digest: Jv1S11tgkKCa4Oxt/5xiOxPaGRc=
+
+Name: icons/jeb1/icon-media-record.png
+SHA1-Digest: dzBtbG19dQRhUdDCnF0vswZ9aNU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/DropZones.class
+SHA1-Digest: gfyRKZrRyDiEUzRNYlAeHPkBJbk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextView$3.class
+SHA1-Digest: aukDPPYICOYIAW6cATn5pXzMnfo=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog$6.class
+SHA1-Digest: GO+rkZt6Ykx1Tw9GfHqaFY1CdRg=
+
+Name: com/pnfsoftware/jeb/rcpclient/FontManager$1.class
+SHA1-Digest: XuMu3TBHHLbIDZT3v6bXBjdZIWc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/AddressNavigator.class
+SHA1-Digest: mROK2UdFRDLLA2wfLXbxCVI+zzo=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AdaptivePopupDialog.class
+SHA1-Digest: sHpqeHr8oddUY7Z1v7FfhPpcyng=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$15.class
+SHA1-Digest: OcqYDjvIcTTAZhq5fzk5PXoTQHA=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientProperties.class
+SHA1-Digest: LBlrVqVFI89C0mB2RwqzrOYAlao=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/IGraphBounds
+ Listener.class
+SHA1-Digest: aGh8tFCKr/WgzMWpjYd1QNg4zaQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/TextHistoryCollection.class
+SHA1-Digest: S9ZmWqs/lq2pRjo0KKAwdDXzkcw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/EditMethodDialo
+ g.class
+SHA1-Digest: kZ5XWjhQmo0Lj3nB4H70S97/nEk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphChangeListen
+ er.class
+SHA1-Digest: 4ZnMFeAcxUgFsBLVih6C2lWW3pU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew.class
+SHA1-Digest: bKtoC8tdtfQFhJnrRaUW6wt5ygc=
+
+Name: icons/eclipse/final_co.png
+SHA1-Digest: IY+8dxpJLNyRDEMTys7/YqqZ8NI=
+
+Name: com/pnfsoftware/jeb/rcpclient/IWidgetManager.class
+SHA1-Digest: 2gi5dCfmsEhAX5181rz+E6fzuSI=
+
+Name: com/pnfsoftware/jeb/rcpclient/NotificationWarningContribution$1.
+ class
+SHA1-Digest: w8Pt3z3LMCpr6gIqTjSzuIzplu4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/IDebuggerListener.class
+SHA1-Digest: PkQ3gabtmKYkPboRSkJEDU73vno=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$3.class
+SHA1-Digest: gW/g/2hmx8TQEoT0YFl0GG52JqA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView.class
+SHA1-Digest: Z6KJMNMDYRNe/Ahl9rcrs5N2IzY=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/StateDataProvider.class
+SHA1-Digest: uwg9UkEyVepOCiPAgEAHmF3e2wM=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/SimplePattern.class
+SHA1-Digest: WIzs397kPANtREO3oFlR2PcxMUM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/GhostStyleData.clas
+ s
+SHA1-Digest: hukomM30DL7GMFtpwQAT+duLnts=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/Theme.class
+SHA1-Digest: cqMv1SkZ0jIyMPEfjPHLgacdl9U=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DirectorySelec
+ torView.class
+SHA1-Digest: vlpC+zJjB7iGP3iqFN/La3bNwNs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$4.class
+SHA1-Digest: 1s9BaodfAcgyguB0NHZC3EeB47I=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredViewerC
+ omparator.class
+SHA1-Digest: PKtXP88K0HD+t4WDfRNfSyC3kLs=
+
+Name: com/pnfsoftware/jeb/rcpclient/IRcpClientContext.class
+SHA1-Digest: P+essJpaupfi/bOi0h3ct0ewqco=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyDialog$2.class
+SHA1-Digest: 1dOmN2pQhER3hHy3U/+bZsfvI7g=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionStart
+ AnalysisHandler.class
+SHA1-Digest: ZNoHjLCjTHK8prEOCGSCo2lZ/D8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$1.cla
+ ss
+SHA1-Digest: bKpKfRmaCdEqyvMoNz8UCgy0+vM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/DarkTheme.class
+SHA1-Digest: O0/GOi2pjodPJSfUwzIp1bs7K1o=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionReplaceHand
+ ler.class
+SHA1-Digest: 3Ib01zvMCwr0hyqGAA8colwJSGQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationCanv
+ asZoomResetHandler.class
+SHA1-Digest: KMgoIalDZ0S9cIg2OTT6Qa3oxUY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesExecutepl
+ uginMenuHandler.class
+SHA1-Digest: +2cwWl8A5/1zgte+DSBu0NPnUeU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog$9.class
+SHA1-Digest: ld9EgNDkb1vqbLpKHjnac7r8ZDE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderC
+ ellItem.class
+SHA1-Digest: 9xBo1hLLgK39+eLcSOvx1tt1cb0=
+
+Name: com/pnfsoftware/jeb/rcpclient/CocoaUIEnhancer.class
+SHA1-Digest: hicEjdji1aMnsbZYRv14JTFGNpQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/ThreadManager.class
+SHA1-Digest: vPKDBa3p6uUKClRgt5OYA1YD+8g=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$5.class
+SHA1-Digest: ITKv7/smTeqe/Jeim76TWGSztVc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/AbstractGraph$1.c
+ lass
+SHA1-Digest: Usan3eogTYUosSE86c9Yj1gTJZQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphMode.class
+SHA1-Digest: LVjoNML/azHLzNMfMPitv67Bbew=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/InfiniTableView
+ er$2.class
+SHA1-Digest: QHwxPDWbOJ67No172AZ1zPlw1+s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$2.class
+SHA1-Digest: bEWQHtpA3fVIjkogXiCY04L2kRs=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/OperationHandler.class
+SHA1-Digest: OZIfhgeG5AyN+2S3JEAiGdtjihw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTableVi
+ ewer$ColumnSelectionListener.class
+SHA1-Digest: +Si+61NQhJ8wsLLtr9IBFkMRRbs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsBooleanView
+ er$1.class
+SHA1-Digest: ANPvfrgvVfUfGKOJLSpBfVoIRDo=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$4.class
+SHA1-Digest: XVWqqTUu5fY76uUaRe0IJfkknqE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMPanel.class
+SHA1-Digest: T8WncVA9ClrbVsUvWlRQ3DtysfY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileOpenrecentHandle
+ r.class
+SHA1-Digest: fmS9caZgBL8jOcXBU+roX03SlHQ=
+
+Name: icons/images/powerpoint_icon.png
+SHA1-Digest: tpz/Cb/610KNk9z0h+7wd2uANAk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ImageViewer$1.class
+SHA1-Digest: 333C4aknPCpGkU6Pf8fQDSofJEI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileSaveAsHandler.cl
+ ass
+SHA1-Digest: wfNZ6MqAn/0UIT5F8DwoBGPx5Iw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CustomSurveyDialog$1.class
+SHA1-Digest: L5DTxztQqo5r8kACX3oDQY/tfGc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lasspath$3.class
+SHA1-Digest: I8db8450Qp20OvidyuKLHJ9uNN4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ConsoleViewer$3.class
+SHA1-Digest: c+/2fSylhxewSWE7KCYaz+asrbw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoMessages.class
+SHA1-Digest: fZYmV9EUEaEqdY3PuI8vnKUCmOU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper$Tab
+ leColumnManager.class
+SHA1-Digest: EgJiSLQZdJB6/rb3wSU96ZeFIqo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/LoggerPartManager.class
+SHA1-Digest: 5Iz8opsv0oMEH3tK8kp9bXWI7fg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$5.c
+ lass
+SHA1-Digest: +ZnZYzpvju8uX04GfO2LXWziVVM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/AbstractRefresher$1.cla
+ ss
+SHA1-Digest: 0UkP0oJB0KWAgfjzzw+91Z4bA7Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgLogView.c
+ lass
+SHA1-Digest: 5VrKzGYSz/93Ve6ny/73oy5U0Q0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/SoftwareUpdateDialog$2.cla
+ ss
+SHA1-Digest: aBAo9ON10/gUn5dKO0AK2SOOBI8=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/ColLabelProvider.cl
+ ass
+SHA1-Digest: Ilift4O+ycuxtIPauASn6dG1DSY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/StyleOptionsDialog.class
+SHA1-Digest: mAFoUb/IyEh25jMtTrPfmu9xxAM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/ITextDocumentViewer.
+ class
+SHA1-Digest: nDu59EregPMabsKb9f09Ekg/j/Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/HandlerUtil$2.class
+SHA1-Digest: dSYgxOk8UFpHU2xv+7+/UCjm1qw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AnimatedGif$1$
+ 2.class
+SHA1-Digest: mWfLrS1uJNTxSllJ8P4Tsyw5Yrk=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$3.class
+SHA1-Digest: bVluioooSyywvPJZf1bFmujJqjE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionJumpToHandl
+ er.class
+SHA1-Digest: aszZPLPvGuGHRucs9lRu+pVOe4I=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/DescriptionView$2.clas
+ s
+SHA1-Digest: AGqEgPVfQYeuYaoy0zbb6i4KHug=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$ContentProvider$1.class
+SHA1-Digest: 8Yl6mquR9qcc0HxHw2ssJ3Vza5A=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Cell.class
+SHA1-Digest: a5arVAEEyvlv4d290zBTaViW7JE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewL
+ ist$1.class
+SHA1-Digest: 6YEzeVU9565YdRXu0kf9CoEj67s=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r.class
+SHA1-Digest: IIdHtDb0N9D7eT/0N+1XLBUTbnI=
+
+Name: icons/program/2.ico
+SHA1-Digest: kBl07ky+rXrVxRdbEsqiIQ8L4iM=
+
+Name: com/pnfsoftware/jeb/rcpclient/StatusIndicatorData.class
+SHA1-Digest: gehU6L3VOkmJfDU4VkWzMIamCk4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NativeTypeEdito
+ rDialog.class
+SHA1-Digest: KLXGzhCLvdVFyILpCo1VjvzR//M=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UI$3.class
+SHA1-Digest: SzNvdBvtFAiBYCcCJA0Mpx8R+8k=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$2.class
+SHA1-Digest: u3cGIWNgQgbKLYqSXjUYKggY7eg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Vector.cla
+ ss
+SHA1-Digest: b74y+mnpFjCKKHF7URJG66/bZr0=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/ContentProvider.cla
+ ss
+SHA1-Digest: a5c+GOS/VeAyDM8mI33xEgBxY0k=
+
+Name: icons/eclipse/importzip_wiz.png
+SHA1-Digest: GvNbmgPETtcUq2N9zWaOmIfU09U=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DataFrameView$
+ CopyAction.class
+SHA1-Digest: YCL+G3AnlXRKMWL3JOQwJwJCXZ0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderS
+ ymbolsView$2.class
+SHA1-Digest: CT8DI0HrmtqwcsCeimjFst/fTgc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Panel$1.class
+SHA1-Digest: ePJQ1mCdwuztc9xfejLhgwuuics=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$7.class
+SHA1-Digest: eJYKHJF8aeIBjt2C9RnzEdgoeF8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$LabelProvider.class
+SHA1-Digest: NbHhAJg6lYwhb2JXd8O/mFUsUww=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractControl
+ FlowGraphView$2.class
+SHA1-Digest: +Cqlfy3Uffzn4VPh+pjxCiXfp14=
+
+Name: icons/program/jeb.icns
+SHA1-Digest: jX8ZiPJY1u9H9G0oqdHXy+WuR4M=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ITextControl.c
+ lass
+SHA1-Digest: xJwSwuVtwGyuIPxju1Pyqf7ek9U=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/internal/InternalLoadMode
+ lHandler.class
+SHA1-Digest: ENsYtnQ87wMjg0/QJmJd7zdDRnM=
+
+Name: icons/eclipse/logical_package_obj.gif
+SHA1-Digest: mNlRjC4p/wAMRwkfH4fkqqtQg54=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/TextAnnotation.
+ class
+SHA1-Digest: 8Q9Xbc+yJ63dHPncDRjKu7BYzRI=
+
+Name: icons/jeb1/icon-letter-b.png
+SHA1-Digest: C0AmapoTLpZ5nyGyFIBld1mFr7k=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/PatternFilter.class
+SHA1-Digest: aCaGHHX3Rt4r2UpFwG8ATjwwZus=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/PatternTreeVie
+ w.class
+SHA1-Digest: 5pSpcIXc/T5pNx+pb6O0oEsAtAs=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nSelectType.class
+SHA1-Digest: qIA/aI0X2Az2SGINoD1yWJrOoOM=
+
+Name: icons/eclipse/file_obj.gif
+SHA1-Digest: OTIaEAHeJKMlx0H/h+IV9QXx9kE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderS
+ ymbolsView.class
+SHA1-Digest: nCpVdJXbUGh009rVYW8avMOEsro=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$4.class
+SHA1-Digest: BXKu9d7kOyu6ZzEOmEShCSEumEc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog$4.cla
+ ss
+SHA1-Digest: Na0RIpiYfyIIDwaQ0RmtJ9LHL7o=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/OrangeTheme.clas
+ s
+SHA1-Digest: St5TLqQdRIiAjGMT3Qrz1KvT38Q=
+
+Name: icons/eclipse/constr_ovr.png
+SHA1-Digest: KpcbH5dHyFG+SEJUyIj6yekeFtc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/StandardAnnotat
+ ionAccess.class
+SHA1-Digest: iO0FNsz4QQeLgeANshHn0UmqRMk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/IntroDialog$1.class
+SHA1-Digest: K7tGhVGulbMxt9EmYrMVg08/8Xk=
+
+Name: icons/eclipse/cheatsheet_intro_obj.gif
+SHA1-Digest: kDt5q99bk9UKwRD3vfi2oXgfPSQ=
+
+Name: icons/eclipse/stepbystep_co.gif
+SHA1-Digest: oxdkLLxMqRybedp9HfvYCivkCn4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditS
+ tringHandler.class
+SHA1-Digest: SsiTrWRdryNGkkGXPCaqfZr2DfA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider$2.cl
+ ass
+SHA1-Digest: 0i32mVg2duhqCgSYyt9/oln92Vg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowRefreshHand
+ ler.class
+SHA1-Digest: UehELuhzQUJ3QFw15RkIZLAIwUg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeFactory.
+ class
+SHA1-Digest: 8f7X8+CfcNSilBeVJTgHyIyk2+8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/TablePatternMat
+ cher.class
+SHA1-Digest: ArPx0Frq9lWmozu7sDCT7jgfcrM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationCanv
+ asZoomOutHandler.class
+SHA1-Digest: D9c57cxDviKwWCY0MNfCaOqrdfY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/NativeCallgraph
+ View.class
+SHA1-Digest: 84PDTBQpUR+aNHYTy3xB2/+AgHU=
+
+Name: com/pnfsoftware/jeb/rcpclient/AssetManagerOverlay.class
+SHA1-Digest: XnEMIvsSXPLfnTRCKXJQT7SCEqI=
+
+Name: icons/eclipse/backward_nav.png
+SHA1-Digest: sTdE6AT/WEnIvv+O8vwOFzvtxbM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/IFilterText.cl
+ ass
+SHA1-Digest: cy5cM+muJJ9uNWNJ+aPeXCYAKMo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypesView$C
+ ontentProvider$1.class
+SHA1-Digest: 5NorfJIyhcZwisB4PdMtSUHtjN4=
+
+Name: icons/eclipse/prev_nav.png
+SHA1-Digest: qM1zKh/5YRcLJcVJzr59X4gOIps=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/filter/AbstractFiltered
+ Filter.class
+SHA1-Digest: D3P7E9ir0n8cdIV2ekrI1d78OsY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView$BreakpointProvider$1$1.class
+SHA1-Digest: 7wIKDP/LtrkMw9DqqJrpAKSDKJI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTableVi
+ ewer$Filter.class
+SHA1-Digest: EzHz/u2HVpPgBBnVxH//AYZjQl0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/MultiInterpreter.class
+SHA1-Digest: Gt+3E+7sOtIYiwWVYul5lwJbgK4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ DefineArray.class
+SHA1-Digest: pZESp4GU+FCHvYkWFLY1A9OzX34=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView.cl
+ ass
+SHA1-Digest: /KYRa91QS9e8gxFHwxi+zZuZl8o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DataFrameDialog$1.class
+SHA1-Digest: nIzxFuKk0EAqL8SH/MxJJSIKkfA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FilterText.cla
+ ss
+SHA1-Digest: CA3f+ulk3LSuqkmUNX1tFfjBq4g=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog$1.class
+SHA1-Digest: xh87J3kVVpfL31NVF75a9oJlTkI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider$3.cl
+ ass
+SHA1-Digest: 6J5KnTLZOQKHFewA64ZmAXrDUwU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Constraint
+ Solver$2.class
+SHA1-Digest: roIIVDkcZzW8gp8DVEVwrC+XlAo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ nDefineArray.class
+SHA1-Digest: Gzazr67T6k83+jA5dF29mb1YMDA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/DalvikCallgraph
+ View.class
+SHA1-Digest: IP8a8gRmH90ajuVDGRzjoo8fyCk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$Pr
+ opertyLine.class
+SHA1-Digest: Bh+MxGckr7X63h9GCoflQUz5+RE=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/ContextMenu.class
+SHA1-Digest: 0P6w3ZCZ2HcUKvqfOl0gcOjeb4s=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/JebAction$1.class
+SHA1-Digest: mctt5hmSDpkv/aPRpe0M8Ggg1wg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgLogView$1
+ .class
+SHA1-Digest: eo0PP6cJenJXqhKxwiL3Rlx4+6E=
+
+Name: com/pnfsoftware/jeb/rcpclient/IViewManager.class
+SHA1-Digest: L4y5SFMHxDyPhk9yrTgcxVS01j0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMAppContext.
+ class
+SHA1-Digest: yo3yoeLgENs5EU0xhsNLaWoV2LE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportAllBinaryU
+ nitsHandler.class
+SHA1-Digest: 9k7zjmhaE9yhskdEiMIN0ir+Pks=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabFolderView$1.cla
+ ss
+SHA1-Digest: 5liBWffnqhrDIjtJdgtIFKxRaiw=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/IHoverableWi
+ dget.class
+SHA1-Digest: eGmjhUKVhUDI0qgQOd8JYdNd8SU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoLoginDialog$4.c
+ lass
+SHA1-Digest: N8iaB5rUGIjVcNjLOjOPkaZh+P0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgStackView
+ $StackItemsProvider$1.class
+SHA1-Digest: uhKIjEHXMs6b+jDDR5Bm2L8h6nY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$CheckableClassnameProvider.class
+SHA1-Digest: /g4yWQ1kfaNzcf9gBJyO7vnrOOk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/SwtRegistry.class
+SHA1-Digest: jEpwio5dHeZnFDSWU7Jnd9udwa8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusLogger
+ Handler.class
+SHA1-Digest: zgeKcCoUYefmD8CrKe1kAqK3yMU=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/DataFrame$Row.class
+SHA1-Digest: JNwwmP3jEH0Z1Ql5Mj88CibEQEA=
+
+Name: com/pnfsoftware/jeb/rcpclient/IGlobalPositionManager.class
+SHA1-Digest: VuDZhqy5y1Z5bCQrFzcMjw7Cp8g=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/ForceDirect
+ edLayout.class
+SHA1-Digest: MA+gkRQtEa5xotT4MgKoQ/FT7ag=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$TreeContentProvider$1$1.class
+SHA1-Digest: cM3AatfX6dLuLPu+11Fa5F8DS54=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/AbstractDynamicMenuHandle
+ r.class
+SHA1-Digest: Yg8cPPBi2/9P28AnVY9frGuck10=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$3.class
+SHA1-Digest: kA5EcI3vsdXm7R6oMqp+SgBuam4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $ContentProvider$SeparatorRule.class
+SHA1-Digest: QYp1xLqyCvtTXleagBnTKhCg1oU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/DescriptionView$3.clas
+ s
+SHA1-Digest: vmrPSrCqbzKrOCAmf6kcjyY7U4c=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UI$2.class
+SHA1-Digest: FlEOcnKsjUB+szJgCFRgho/IKBQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager$3$1.class
+SHA1-Digest: QtvAKwbY+EmPKYrQS6YEGJT1SAA=
+
+Name: icons/program/3.ico
+SHA1-Digest: iNc4ZRTG6VcLiG7Z7Twfbzsh53A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $DndProvider.class
+SHA1-Digest: +EoT42ftdaaJmekB+CUduxcxUfM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CustomerActionDialog.class
+SHA1-Digest: G1TSZnQ+R3i2SYqq7giXYShvPoU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname$5.class
+SHA1-Digest: 8rpIpaP/haFNasA2OfbEyGbUezw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$4.class
+SHA1-Digest: DGDl8JAv7rw6KY2Ht6oNDNq7Sj4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerToggleBr
+ eakpointHandler.class
+SHA1-Digest: MKahOBS6COFlFe+84hjjEEWotfI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$TreeContentProvider$1$1.class
+SHA1-Digest: psbbiuePDW0duwNP1kwyA44dXnI=
+
+Name: icons/jeb1/icon-jeb-32.png
+SHA1-Digest: mNn+Hl5pxshZI/uafvEzdERvguU=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener$1.class
+SHA1-Digest: /pX/4IQM5VOW5Hg6yCOFgeUXsPI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$6.class
+SHA1-Digest: 7ed7GlkQ0TyH81g5iaRl0nlVl+c=
+
+Name: com/pnfsoftware/jeb/rcpclient/FontManager.class
+SHA1-Digest: mBbdY9SJ8ISURRX44lpuB3Q4f24=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$LogManagerRoutine
+ $1.class
+SHA1-Digest: T2gP5hHKHaHqUd0xkn7AhjJBsXo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ItemEntry.class
+SHA1-Digest: Mo7VR2GinFSoQ/k+KT/AM/OM3MU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$LabelProvider.class
+SHA1-Digest: jxy95iA7nyqL0ohXFPesx/fYESM=
+
+Name: icons/jeb1/icon-refresh.png
+SHA1-Digest: gz98X06SuwQtwt/arPP6+qWi/CU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMElementWith
+ Label.class
+SHA1-Digest: MTGp7yt9Gd5yo4lCQY9UrzkxXKs=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$7.class
+SHA1-Digest: /RlUtYq6xvT4FhjhZvUfbnJjTj8=
+
+Name: icons/eclipse/debug_view.gif
+SHA1-Digest: lEL3cuV5u9/Y3/qMFs+5qXTl9hs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/DefaultCheckSta
+ teProvider.class
+SHA1-Digest: t/GpiLnixHeqqP4RUe+EZszyPAE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsChanges.cla
+ ss
+SHA1-Digest: ulRguxcIgTE0kz7vtmNXvFBWON0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField$1.class
+SHA1-Digest: /sSv9U9HdIoMtgQ4M4ddOP9SX0w=
+
+Name: icons/eclipse/fatalerror_obj.gif
+SHA1-Digest: a42vxxnQ9sKpaR4X21PVTXQpU3o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog$3.cla
+ ss
+SHA1-Digest: X+L3kEyIonjytXKy+MiZCkQN78U=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineCodeDialo
+ g$2.class
+SHA1-Digest: qxMHxk119IvgXWBFP3Ig49Mb6NQ=
+
+Name: icons/eclipse/dep_loop.gif
+SHA1-Digest: /T0PiWGX+TVYOsuDjyUkNENWsRI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesInterpret
+ ersHandler.class
+SHA1-Digest: XAKimur84zzL6Vic2rmhOeVwgJo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/NativeImageReparseExtraOptio
+ nsDialog.class
+SHA1-Digest: t2xSgnfTHIAeGpYFfCvFoO3chjg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewT
+ ext.class
+SHA1-Digest: yXcQPcRsNVnuUiFYz/mD4RPn8Yo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$3.class
+SHA1-Digest: UNr029UcW88yX4B8utUF3WoXt4g=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerStepOver
+ Handler.class
+SHA1-Digest: Xh9d28TOgtQ/rY/YnJs9pM7Vya0=
+
+Name: icons/eclipse/delete_obj.png
+SHA1-Digest: Spw8ywKUWgixSrNS4pDBDxK1+nM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListSiglibsDialog$ContentP
+ roviderListener$1.class
+SHA1-Digest: qUtY8LzLkjH2IEMmyPNI7JS0FZk=
+
+Name: icons/images/odex_icon.png
+SHA1-Digest: sy/Z/kbFQn+mnjFnGpHAlPnGBNc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/internal/InternalPrintMod
+ elHandler.class
+SHA1-Digest: cWwEwJBLsOczpeNeCEUPZHgfhLk=
+
+Name: icons/eclipse/synch_co.png
+SHA1-Digest: hXFBTSm6Sx9N1SncsAaTHLfsVXU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/CTabFolderEventLogg
+ er.class
+SHA1-Digest: MtiMly0ivaRukY2jZ602OYf6jn4=
+
+Name: com/pnfsoftware/jeb/rcpclient/AllHandlers.class
+SHA1-Digest: +RhqySAhEnwTfwQ1ZlsVCGOV7m4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyDialog$3.class
+SHA1-Digest: amy2CalCQuUcTBHPgoHrdiAPjoo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTextView$2.
+ class
+SHA1-Digest: JCq74nX3ItpDn/4dNIVYSJVTs7A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeRoutinesVie
+ w$1.class
+SHA1-Digest: cH2YcRlpEQq/wfWS82WzsUFtMlc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lasspath$2.class
+SHA1-Digest: vGqfZVzKxitLhCeiGcm9hwg3dUM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/state/WidgetWrapper$Tre
+ eColumnManager.class
+SHA1-Digest: jhXrjQu5yrmqUm0LmOh3KgP2QTU=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/BrowserUtil.class
+SHA1-Digest: Wcf0/p73QexxgrkLaEjBKp31yM0=
+
+Name: icons/eclipse/types.png
+SHA1-Digest: dNNY2IYqHQUSqG71qcywcMZRDUw=
+
+Name: icons/jeb1/icon-arrow-down.png
+SHA1-Digest: vlznL1kYI11ydvsU8Y8FiWc+ORI=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener$2.class
+SHA1-Digest: 1wlYZK1BltcN3pD4mktMY5JS9yc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$2.class
+SHA1-Digest: +HWJhnkrkzfoPxGUbed4gEOqZSY=
+
+Name: icons/eclipse/import_wiz.gif
+SHA1-Digest: KBgRjdXon6FcAufJ9wYEAVQ3SNw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$1$2.class
+SHA1-Digest: XIn2h9G/UgLVAnhl1wxZQGFCkmE=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/StyleManager$ColorScheme.
+ class
+SHA1-Digest: ogYId56dlUYyLAe1DzP5KIHBcSU=
+
+Name: icons/jeb1/icon-letter-n.png
+SHA1-Digest: 3pNVXCq8Ou5mzuvEY7D0ZpP3XkA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FilteredTableV
+ iew$1.class
+SHA1-Digest: fPEZnyY/N7KQQNNKqiPpMWb9r0E=
+
+Name: icons/program/jeb_32px.png
+SHA1-Digest: pS2LdX8lRBaF5p3tXm+ZeGxqpvE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/InfiniTableView
+ er$1.class
+SHA1-Digest: ED5RtvvkDg/y5pQryjYKNAEQJA8=
+
+Name: icons/eclipse/next_nav.png
+SHA1-Digest: qd+9M8WsuairjNDW3FogsRY5aK0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportDec
+ ompiledDecompJob.class
+SHA1-Digest: a63EPQTUXfTMptaM89qhACBQcIU=
+
+Name: icons/eclipse/prj_obj.png
+SHA1-Digest: paB6FX5QQGd0bj8EIDY3+bNHR5M=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorAction
+ Rename.class
+SHA1-Digest: SMO6j5yTFlHGkPo+bYKAUpIQTmQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionDefin
+ eCodeHandler.class
+SHA1-Digest: b9yKcjOzplEtH9cCZeRUNjeqg1s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/EditableList$S
+ impleCheckable.class
+SHA1-Digest: 03vwU/Xh/XNMxNJBQlsE5Adf4H0=
+
+Name: icons/images/word_icon.png
+SHA1-Digest: qyHCiO/7m1l1aw83N2jtq4ZGXro=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/TreeUtil.class
+SHA1-Digest: M6sa/6FUk4BzoGnHR2tohGvmXuE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditP
+ rocedureHandler.class
+SHA1-Digest: D2njKC8RT0kw7I/VHY6jE0dUrbs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ControllerAddressDialog.cl
+ ass
+SHA1-Digest: ACZdi26q7h3vJWxWBYzKlReh40I=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$4.class
+SHA1-Digest: a19BhEWAPxMDXANdlPyPO5kZ5wc=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CodeHierarchyDialog.class
+SHA1-Digest: 3h6iVkXn9IJIprVxID9AKZn0peI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/AddressNavigator$2.class
+SHA1-Digest: kkgwD5F4wikeK2m2PAN0rNYq+2k=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$1$1.class
+SHA1-Digest: AaTra8LLd+klscX21XkfmaQAlPA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$3.class
+SHA1-Digest: sjwqGEcSHeMUv7MAh3siEKrHuRg=
+
+Name: icons/jeb1/icon-jeb.png
+SHA1-Digest: 3ahhQfoA+3jpgNfr6fD+9vIAWe4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPreview$3.cl
+ ass
+SHA1-Digest: AULWqpXNf5I8WSlMmiSNgqNjPQo=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$8.class
+SHA1-Digest: ie1otwvs2xhODoV3wx1R2vLuebI=
+
+Name: icons/eclipse/inst_ptr_top.png
+SHA1-Digest: wVznOP+D4T9QAU9sa1wE6hb9rWI=
+
+Name: icons/jeb1/icon-properties.png
+SHA1-Digest: zav5Q6Dz2VGZcMZt1e9o87xcENg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionOpenT
+ ypeEditorHandler.class
+SHA1-Digest: XuSx/aDLsIrKw9I4pEH15vWKjnQ=
+
+Name: icons/eclipse/field_private_obj.png
+SHA1-Digest: KIN03ZhIifC6rtaGD9U2idE6aUU=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/ColorsGradient.class
+SHA1-Digest: 2xl7BDOnTXEeYl0EfEg/9POD6po=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$Conte
+ ntProvider.class
+SHA1-Digest: w4ha0GP617dWnjuRykTvjf0QMJ0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/NativeCallgraph
+ Builder.class
+SHA1-Digest: OCx7LXuCzda/gxD/mOWB2C+qIBI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/MethodSetupInfo
+ rmation.class
+SHA1-Digest: 2mBeVBODe/dBSkXBzh6Csj+PrTk=
+
+Name: icons/jeb1/icon-letter-c.png
+SHA1-Digest: 9FPAVRrRa2u/6xiEakAYAVqEuFQ=
+
+Name: icons/eclipse/unknown_obj.gif
+SHA1-Digest: 154XbZWt4/Z7SxjcmOJ08xZLJR4=
+
+Name: icons/eclipse/hierarchy_co.gif
+SHA1-Digest: FFNUDZHFCK4MHDCdDjzXil+Wiws=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTreeView$3.
+ class
+SHA1-Digest: nDr0J85HK0Uk5MMOZ7TYsWISd24=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditI
+ nstructionHandler.class
+SHA1-Digest: dh7WrcNZF+XkYKOhyMx6Xa85Fso=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/SimplePatternMatcher.cl
+ ass
+SHA1-Digest: jldcT+/pQ3+vfuBafgZn+GMpOtI=
+
+Name: icons/eclipse/change_obj.gif
+SHA1-Digest: R8HcObKb0v2GdTsmx2C6Lk5iM7U=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/BinaryDataView.class
+SHA1-Digest: urGUZChxFwFsFY8BodbvZSV5KF0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$2.class
+SHA1-Digest: NaE7xhGEw1PlwRitZ0DcE784v/Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$10.class
+SHA1-Digest: qqcxZm7acNay66oHtmpkO5vmvKo=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$10.class
+SHA1-Digest: K7MHMxRkUpsHIJPki9CM1xonLV0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphPreview$4.cl
+ ass
+SHA1-Digest: sLwrC4eq1/wzq/kVBj3udIeDbxo=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/BufferPoint.class
+SHA1-Digest: OFiAZMCOkac/bdjy/OPmR+xdwM4=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleListe
+ ner.class
+SHA1-Digest: hI/guxMNPB3pOq2sLHMLAB12c48=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileNotificationsHan
+ dler.class
+SHA1-Digest: klXo2+PsZGZNOFCLpvHkzXOWur8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/UnitPropertiesDialog.class
+SHA1-Digest: BZZpMIXQd4iP4iuJ0nuqt6DkOL4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractInteractiveTab
+ leView.class
+SHA1-Digest: L6twMwn94VdjO2D4zOZFHdfLsIs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Anchor.class
+SHA1-Digest: 7w81W37A1Zi2FKBzxq2ErF/XTtk=
+
+Name: icons/eclipse/correction_cast.png
+SHA1-Digest: UkNw81Pz9kx5rVGbNY42Jl4OEPM=
+
+Name: icons/eclipse/copy_edit.gif
+SHA1-Digest: t2yjkh4Fe/eXbNEAT6ALPln5rBE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/ILabelProvi
+ der.class
+SHA1-Digest: B1ssNDsOaQXMyNDcoTX1IMWwxbo=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/IHoverableProvider.
+ class
+SHA1-Digest: p1O5ok834pUhRsoWqGBI3UVCocM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ManualSoftwareUpdateDialog
+ $1.class
+SHA1-Digest: z/SdO/wJUBDzsemcUzgo5W5FdvU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsTreeView$Tr
+ eeContentProvider$1.class
+SHA1-Digest: B70Q25BXZ0zPr8B/HumzgjYNUeU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider2$1.c
+ lass
+SHA1-Digest: zfvxYjke9js0RDuO5r1IjHcU9Iw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/MenuUtil.class
+SHA1-Digest: NRA5uZ12qXKnGGEkaYSIeHDvtB8=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationDoNo
+ tReplaceViewsHandler.class
+SHA1-Digest: 3UcGeWXF8wXAYnxG3ujPou1UdQA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIRunnable.class
+SHA1-Digest: QXYCHZjsOfhFUfRVD2F4kF36MeQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/IViewNavigator.class
+SHA1-Digest: 1DwMyXMvPNNAgNL7mpeoNfub3Ac=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTextView$3.
+ class
+SHA1-Digest: T4NJld+gvvhudLZA8hT/qqv+Gus=
+
+Name: icons/eclipse/internal_browser.gif
+SHA1-Digest: T9nn+eQcxzjSbyQkRq79KR4Z5gg=
+
+Name: com/pnfsoftware/jeb/rcpclient/DebuggerListener$1.class
+SHA1-Digest: xX0632uPkWPi7xKulI0WqWm+qNc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$4.class
+SHA1-Digest: PafOhix9sg+j4BJJyK37seht7Io=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/DndDropTarget.c
+ lass
+SHA1-Digest: 88zCs7sIuAf72bfMwIHDSSKkJ1U=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquareMa
+ nager$3.class
+SHA1-Digest: T0DqWoqwwQUTo/PeOByWBb2376Q=
+
+Name: icons/eclipse/warning.png
+SHA1-Digest: spXTIzRRTqG3+0qhUdyj7DuOIxE=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl$JebLocationListener.class
+SHA1-Digest: JnPefUX12QggGN7PNtF4PeWdf8g=
+
+Name: icons/eclipse/field_public_obj.gif
+SHA1-Digest: 0mnjb9VnRH6s8+79en39co0v0sY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/_test/TestInputDialog$3.c
+ lass
+SHA1-Digest: bM3du9rgERybA/ANzfYbu4iuZGk=
+
+Name: com/pnfsoftware/jeb/rcpclient/IGraphicalTaskExecutor.class
+SHA1-Digest: E6+kGeix3G9Ay/tCEUHVxf7Ju00=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$7.class
+SHA1-Digest: 5Kyc2HyRKhvQGkYjM650C0x0cGA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListParsersDialog.class
+SHA1-Digest: IBw/+G3iD928s1jhuiwuxLgzi0M=
+
+Name: icons/eclipse/methpub_obj.gif
+SHA1-Digest: /7Dfxu3TApYuV0jK7Fszug5lQ0I=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/_test/TestInputDialog$4.c
+ lass
+SHA1-Digest: 6/trh1moNOD+t74vRHHpkPBVWdo=
+
+Name: icons/eclipse/search_ref_obj.gif
+SHA1-Digest: rOF5wB6iqgilQvLuCPenOgSqBYU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/GraphVertexA
+ dapter.class
+SHA1-Digest: eQsdAmxmt1kMgQjNZflUIdI7sJU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationCanv
+ asZoomInHandler.class
+SHA1-Digest: jEp6il78st9Bj+ecD6SwgWPjizQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$11.class
+SHA1-Digest: UGVrryF/6b94MqdoZsj7WjFE2po=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdge.class
+SHA1-Digest: wR2hTB10/kl0uo3QMJmfegIxl2Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/wrapped/WrappedText$
+ SelectionData.class
+SHA1-Digest: yVox+4dEIh55GjMbUwp3VMRNfmI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionFollowHandl
+ er.class
+SHA1-Digest: XKTpCWDBgpS2kJ3Q0HSRRJrzRlU=
+
+Name: com/pnfsoftware/jeb/rcpclient/DebuggerListener$2.class
+SHA1-Digest: ffKNsbe8thrbHkNin8UPqaADsYo=
+
+Name: icons/eclipse/generic_xml_obj.png
+SHA1-Digest: IwYtFWtdHbrkyJKgxG4EAlCf/FE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoSignupDialog$1.
+ class
+SHA1-Digest: 8wMbo7ijignnO+dEn05YwMtXuc8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeDocum
+ ent$1.class
+SHA1-Digest: qP85RWUoe4Z0xuTshgoBJ9OcFHk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpUserManualHandle
+ r.class
+SHA1-Digest: Ez9xV+1iCUc7RoNw9Qn5ANrDQ2w=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/UnitTextAnnotator.clas
+ s
+SHA1-Digest: bAvl1zlXmJ7z2n0jPoXCeNYFDbQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMElement.cla
+ ss
+SHA1-Digest: nm7ERIWRzMC2ooY3eSxCII9ov5Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionDeleteHandl
+ er.class
+SHA1-Digest: gB5OatwaTBumvoS7VygGacfMZrk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesExecutepl
+ uginHandler$1.class
+SHA1-Digest: cyqJGVo3eJ/ztEzhSl5f0DWOX4E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ArtifactManager.class
+SHA1-Digest: G2oOhyaH43H8+MkChGd556GbGiE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/StaticCodeTextDocument
+ .class
+SHA1-Digest: 50L1SALH7uM1rvVkEUBuCk52Oig=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$1.class
+SHA1-Digest: sPmImYv3IRE48tKmI7UgkKuu72o=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ProjectTreeContentProvider$1
+ $1.class
+SHA1-Digest: 4RHjJeRaoEVJ3Z4g1E4tH3tIvqM=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditT
+ ypeHandler.class
+SHA1-Digest: xiPrZsUq3ulTwsEodfz1glrGaLw=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ListTypelibsDialog$Content
+ ProviderListener$1.class
+SHA1-Digest: C7H9m1OPZo6+kQt2vC4SuNx5tE0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/CTabFolderRendererFix.class
+SHA1-Digest: rpXPxv2V+8OUxEhNU2ntqirQlck=
+
+Name: com/pnfsoftware/jeb/rcpclient/actions/ActionUIContext.class
+SHA1-Digest: a0Rq/ZDyiMeNsERFDgHpLJ9344I=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ContextMenuFilter$2.cla
+ ss
+SHA1-Digest: 3punNe47NvwO3GLzSRPHxSiZoYY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/App.class
+SHA1-Digest: +IcXEk/5vKbmk6FiK8Ke5KNiBQg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$8.class
+SHA1-Digest: 9XsygYt3jTCgMlZ18jJcyObmP0k=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/SwtUtil.class
+SHA1-Digest: W8KhgHivT62eMDmhI2ALyxTWL0Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/TextHoverableProvider$
+ TextItemRetriever.class
+SHA1-Digest: 2LbT6QiJUgzcryMvknK0sFXfA+I=
+
+Name: icons/eclipse/inst_ptr.gif
+SHA1-Digest: TbBJbMzZZCmBqXMbbGNg03mFG4Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ViewerRefresher.class
+SHA1-Digest: ak/87uJRh0zmXe7m+UHX2XYjJqs=
+
+Name: icons/jeb1/icon-media-play.png
+SHA1-Digest: ghvHwM4AaglNXsMReZQNT5DnyKE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/MenuUtil$1.class
+SHA1-Digest: s0xBBSogtrK1cv34VE6SHjAF8Tw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/ILazyView.class
+SHA1-Digest: AsRJZGGWg+Qky6AJYbEmrYWLdtg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileExportDecompiled
+ CodeHandler.class
+SHA1-Digest: TCUm+rxbSplTOjBbMoWJ4tbAy/g=
+
+Name: icons/jeb1/icon-manual.png
+SHA1-Digest: Fg4eit3fz3zWRda7rsQOUZLBsE0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorView$S
+ tackItemsProvider.class
+SHA1-Digest: wwnhV6RmbG8PkgRaU6eaVs62AHA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditClearHandler.
+ class
+SHA1-Digest: 6TCIgpS5ZpDdQPuwMsR5gpZMJAY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/DocumentManager.clas
+ s
+SHA1-Digest: dLjIoTOJa+SqG9pHstRfe83btMk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMPanelElemen
+ t.class
+SHA1-Digest: q5fKjf0bB1D0tBWwbBE/SzH59Aw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$ValueEditingSupport.class
+SHA1-Digest: i8Gp4m+iQlnwzLDlpFy+l0ubu88=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$1.class
+SHA1-Digest: LR4HNl4TJ/2Es1zIKguica/kPPY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/AnnotationFacto
+ ry.class
+SHA1-Digest: rDz/0nS4+C8qy5FDxXdESFT5Swo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeSquare.c
+ lass
+SHA1-Digest: gNpfuJYvGrvv1CUQ/OgSvihtYcY=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyDialog$1.class
+SHA1-Digest: MxuORSVIYHkEQT7PvywJRelIx40=
+
+Name: icons/jeb1/icon-jeb.bmp
+SHA1-Digest: 6qKtAvZmWhcOWz/Djv4U5klky4A=
+
+Name: com/pnfsoftware/jeb/rcpclient/CoreListener.class
+SHA1-Digest: uAsqJa+TDlHnzqtb+RrzGcdoHAA=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypesView.c
+ lass
+SHA1-Digest: dDNo86rfUUtSTOOMnHezP99Qibs=
+
+Name: icons/eclipse/field_protected_obj.png
+SHA1-Digest: nSHORDaGN7b29bGQvD1UTyzD46M=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$1.class
+SHA1-Digest: wBeJQgm9lJbLKIg7PdjMryUl/WQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTextView$4.
+ class
+SHA1-Digest: Ko/AuYV7ZvoDXmVCMu9AAbkmxio=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractLocalGr
+ aphView.class
+SHA1-Digest: slkyTBps4WgqBuo2VFleogXi/Gw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabFolderView$Entry
+ .class
+SHA1-Digest: SAzJ+HRmHjC3B22c2r7NYzzxNpU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileSaveHandler.clas
+ s
+SHA1-Digest: QpefeMyiBa6E6bcyjfWjmT08jRA=
+
+Name: com/pnfsoftware/jeb/rcpclient/FontManager$2.class
+SHA1-Digest: yORBjC36op/wJKD7YcF2DMeK/fE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/SoftwareUpdateDialog$1$1.c
+ lass
+SHA1-Digest: GpelyZwnCQRraBsM9GiiNBa+QbY=
+
+Name: icons/eclipse/cprj_obj.gif
+SHA1-Digest: 84S90OyYP+taEx+lrerai2tTd10=
+
+Name: icons/eclipse/find_obj.gif
+SHA1-Digest: KAeudWAcz8OwfYCiUsRwtKa5t+Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractControl
+ FlowGraphView$1.class
+SHA1-Digest: 9/niq7hdXWDVhEMiRHkImvEF2mc=
+
+Name: icons/eclipse/hierarchy_co.png
+SHA1-Digest: L3HGD9mEk2MpbfpN7u0nkwnbiNY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$6.class
+SHA1-Digest: br3sKuGoGdkvolQlEYUlm+etm4Y=
+
+Name: icons/eclipse/importzip_wiz.gif
+SHA1-Digest: KvT0hn+fIEZwqykme2qQ/Wllx3Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesExecutepl
+ uginHandler.class
+SHA1-Digest: rUIVJ6IJNarqEgoHpG5bU3fZN00=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$6.class
+SHA1-Digest: Cfan0csKRfe5aII8c5i0wt4H2BA=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$14.class
+SHA1-Digest: R54kSQrz+4QAkcrzCcQ70VPWEK0=
+
+Name: icons/jeb1/icon-jeb-48.bmp
+SHA1-Digest: SsR0837txPqRqJpHA4ErrvGEqFg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NamedConstantsC
+ hooserDialog$1.class
+SHA1-Digest: O0WX6FbH8SdyR3L3QKDKhsZv3/I=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerDetachHa
+ ndler.class
+SHA1-Digest: yGr7hEZf/F7u7ZjD1B1LDQjn4Kg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionEditC
+ odeHandler.class
+SHA1-Digest: ISa8MsjixIQLZbhHN8CLa5fVGm0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$1.class
+SHA1-Digest: EB27tIodKi363mWOMrIv7ipw+28=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/CodeSetupInform
+ ation.class
+SHA1-Digest: 1uYkIYAJtTR79NE/iN0IcJ3dL4Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/AbstractRefresher$2.cla
+ ss
+SHA1-Digest: 67Rk6fqFpP5uQlXe/zvN2MOkgIo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/AbstractGlobalG
+ raphView$CallgraphComposite.class
+SHA1-Digest: v5Bx1Xm4kMn9V1Tc6xnlfJFPViw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgThreadsVi
+ ew$3.class
+SHA1-Digest: lQD/jnlZLb8baGWSFukzXW9n6tU=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionCreat
+ eSignaturePackageHandler.class
+SHA1-Digest: yKhTDYjjEKktnL4pVEYaLoxq+QU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/export/IExportableData.
+ class
+SHA1-Digest: cx+S2tvWOjJmvyGV6u2kqSdOH44=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/FilteredTreeVi
+ ew.class
+SHA1-Digest: zsdLF0BqVi5DVgklod15gGQl7YA=
+
+Name: icons/eclipse/generic_element.gif
+SHA1-Digest: lbjyJgwlHnlTnjGQCV2elSPJEYY=
+
+Name: icons/eclipse/method_default_obj.png
+SHA1-Digest: tbJQIH9aBZtoLUN3/X0zJZniIq8=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/IPositionListener.cl
+ ass
+SHA1-Digest: ftrWsKPp+c9D8HclKV6YDBNjT7g=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineCodeDialo
+ g.class
+SHA1-Digest: B4OUBD+Bg61RUw0bvNvfWxjD0KA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextView$2.class
+SHA1-Digest: Rv+dI/IVDh2RdtugFx3Wl1VeBjU=
+
+Name: icons/eclipse/backward_nav.gif
+SHA1-Digest: qx89HZcOfCNP8URrsbXsnJSbNro=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeDocum
+ ent.class
+SHA1-Digest: +8b2hgGsrP/hWte5S+1uCIFs1lc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionRenameHandl
+ er.class
+SHA1-Digest: rlPaTZe9BU7pUBmfLPTcZ2Ujuvo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerStepOutH
+ andler.class
+SHA1-Digest: FsLbI+e0/6QyhzMEYvC82KOF22g=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/InteractiveTextHove
+ r.class
+SHA1-Digest: +aYRMsGFCUsB6nRFHcQMOsI/t2M=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewL
+ ist.class
+SHA1-Digest: WOp3GwhlMI8ymHkwl5Da9qjIBXc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StructEditorActio
+ n.class
+SHA1-Digest: SZqdEZVD2iPI9zmyhpRffvAAYSg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTableView$1
+ .class
+SHA1-Digest: h7rE1/R+l+okq0Ions9WYGS5OSI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ImageView$1.cl
+ ass
+SHA1-Digest: vSqd+EF8jaQVQuHRZvMrrbUHuSQ=
+
+Name: icons/program/4.ico
+SHA1-Digest: WVvFVtdWUrw3no5jUmstH2HkaBc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/JebStatusIndicator.class
+SHA1-Digest: ar7wfz1tlOsGOaBsV6IkxxHus6k=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/SignaturePackag
+ eCreationDialog.class
+SHA1-Digest: te+HFBA+nwxTtEgwTnDlTvGweL0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StringsView$2.cla
+ ss
+SHA1-Digest: ewufY6iL+4B4v1oCBWyxwcHcRDs=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/IFilteredTreeCo
+ ntentProvider.class
+SHA1-Digest: vSbaOHpcFmeSt181uES4lsTqIa4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/TextDocumentPartDele
+ gate.class
+SHA1-Digest: srdr1UGfRE9iCFToCjtI34YPGgc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/InfiniTableVie
+ w.class
+SHA1-Digest: SFuIZEl89poJM8MDT9w+hH5o9Aw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/search/FindTextOptions.
+ class
+SHA1-Digest: 2aprafSp0wpkmJSkdEJo1qqp9Rg=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/ColorsGradient$InfiIter.class
+SHA1-Digest: R2yRt8xU7R0bqr2Nu2PN6JORef0=
+
+Name: icons/eclipse/autoform_menu.gif
+SHA1-Digest: e4jlBdouDL+rFa/RIgUImdoetzE=
+
+Name: icons/images/pdf_icon.png
+SHA1-Digest: d+DxWufDMjHFwHZ5087ANZTRKGk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/TriStateField.
+ class
+SHA1-Digest: 1DdLpWETCSLoXVvqPTzVZW3TO0c=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/DbgAttachDialog$DbgAttachI
+ nfo.class
+SHA1-Digest: NOGrV+9MG0phGZqQQPLd7wFdJII=
+
+Name: icons/eclipse/export_wiz.gif
+SHA1-Digest: LQPT2QoQELD7YcZiJV2Viw4nKYo=
+
+Name: icons/eclipse/lrun_obj.gif
+SHA1-Digest: 9nUFtkM1LiPz9RddB8tq+Zl7LlE=
+
+Name: icons/eclipse/logical_package_obj.png
+SHA1-Digest: 42AYv0y7BLI9NVahk2ftpXfPAco=
+
+Name: com/pnfsoftware/jeb/rcpclient/NotificationWarningContribution.cl
+ ass
+SHA1-Digest: HPA3iPp8Hc5YT/XKR8raH1ywecw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$2.cl
+ ass
+SHA1-Digest: 9vrg8UfqZTjylV1d0Gmjev910EA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpFAQHandler.class
+SHA1-Digest: Kh95fMXtssFPy7yVAikKlI1PG0g=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider2$3.c
+ lass
+SHA1-Digest: bzFHjnDnMNGhdfd2reBHLRLDPZQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionCommentHand
+ ler.class
+SHA1-Digest: 1QS1ah1feTyANz90N7I61sRwUkM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractInteractiveTab
+ leView$1.class
+SHA1-Digest: qprjUsUAVgMJguAXBZzJm9OjmKM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeRoutinesVie
+ w.class
+SHA1-Digest: +fBAajabr7mcgzRTpvShnlYBfkc=
+
+Name: icons/eclipse/write_obj.png
+SHA1-Digest: XHUJKyHohOt3F5PaUyYDNSBopVY=
+
+Name: icons/eclipse/package_obj.gif
+SHA1-Digest: TAzEv4kYyock9dC9OENnoK2FF1Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/wrapped/WrappedAncho
+ r.class
+SHA1-Digest: Oqv+iJUWyWOwhASImlj2IRP6w/s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/binding/KeyAcceleratorM
+ anager.class
+SHA1-Digest: sPDy3hDu1U0QPUxnKkqLk7lIcyI=
+
+Name: icons/eclipse/file_obj.png
+SHA1-Digest: cTxe+iZA0dVSjZ4wl/uBPiQnF+k=
+
+Name: com/pnfsoftware/jeb/rcpclient/EnginesListener$3.class
+SHA1-Digest: 5yxJMi00trhg9lzM6pB0ARfKD3k=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowToggleToolb
+ arHandler.class
+SHA1-Digest: TS2z9aUKX47uXxEfe7AX/60a6X0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ProgressMonitorHideableDia
+ log.class
+SHA1-Digest: lU/RnDtwM7BInG4+KrV/Knb7NJU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/DecompDynamicOpti
+ onsView$ContentProviderListener.class
+SHA1-Digest: /ZK51kIvVb7iMg9adXlxFepQOYs=
+
+Name: icons/eclipse/console_view.gif
+SHA1-Digest: zUZzXRRtecdO63atvZ4XveqZ878=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/arraygroup/Arra
+ yLogicalGroup.class
+SHA1-Digest: sxOfHBnfBKr+KovlZW405FrES9o=
+
+Name: icons/eclipse/prev_nav.gif
+SHA1-Digest: zKcEf383WE1yfe6yvSXDBDxXFvM=
+
+Name: com/pnfsoftware/jeb/rcpclient/AssetManagerOverlay$OverlayImage.c
+ lass
+SHA1-Digest: wcwBhHGcnKtNTyurohajFZ6iPLo=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog$2.cla
+ ss
+SHA1-Digest: hxMZ1IfdLMNkKuWA4AGwMkkoMK8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextView.class
+SHA1-Digest: k+PNGPBAS7QAMmfoCxzXnL00hiY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$5.cl
+ ass
+SHA1-Digest: wrWj1kd6BZc2g/geUPRVNpgqqVQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/CallgraphPrepar
+ er.class
+SHA1-Digest: qSMEA1NCUDfHUnWko/JjyEmSW7E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider$1.cl
+ ass
+SHA1-Digest: epq/k739K45rpFLIcpimIhW2ylk=
+
+Name: icons/eclipse/save_edit.gif
+SHA1-Digest: U9r6zdvy60UCCQJytBcOUSp+Rbg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$1.class
+SHA1-Digest: me9CAjj4fXecJ7nJN8/mdUosniQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$6.class
+SHA1-Digest: iHIFlmvHl4RnD07vegGRofMoNow=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationProperties.cla
+ ss
+SHA1-Digest: Y1jkXGXjlhAXaCuZlE8caxChmTE=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/EditableList$1
+ .class
+SHA1-Digest: fXY1NHpVqLZnI9SycZeKr47o+kY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/ScrollBufferManager$
+ UpdateDocumentData.class
+SHA1-Digest: X3mOaOgssW9u4t1hm4y4v/DPfqk=
+
+Name: icons/program/jeb.png
+SHA1-Digest: oibT1ZI1qrlOFvOvHZxfupGUOIw=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext.class
+SHA1-Digest: Pt/Bhfz2Tn6l+HnTET6vnt2DRzg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$8.class
+SHA1-Digest: Bji733jiBtYbmZa3ioL6GhLOwPI=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationLoca
+ teUnitHandler.class
+SHA1-Digest: r3XYgoPJrvSDnewsiEnJUu5a17w=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineStringDia
+ log$2.class
+SHA1-Digest: iNbXS+VO0ImwG0FHUNQ/qvVka+Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$16.class
+SHA1-Digest: auQlrwoX4hWWkTqetntadrvcdN4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditPasteHandler.
+ class
+SHA1-Digest: LBBnKl5X40hMSXy5WjwkBH49CLM=
+
+Name: icons/eclipse/new_wiz.gif
+SHA1-Digest: oPC08qQt59LJWyeGE0eAboeBTn4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/Graph$PreviewNode
+ .class
+SHA1-Digest: 9j3T/v6yumS7lgRU1IFeKIJjSds=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionParseAtHand
+ ler.class
+SHA1-Digest: 192PSBfe9vhPco6Ez5EFIU/fkXg=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/internal/InternalSaveMode
+ lHandler.class
+SHA1-Digest: 5Z47UMUG34cRcvUoMYj21+HcY7U=
+
+Name: icons/eclipse/paste_edit.gif
+SHA1-Digest: wMU2/pJ0Y+TtS2NlKKKcvTcUFQQ=
+
+Name: icons/eclipse/memory_view.gif
+SHA1-Digest: l+s/uJvS1cNjom/+aEEjX+G8tSI=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ ombo$1.class
+SHA1-Digest: jywGQvmMK1FHupYqxKfDEDJ5KcE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog$2.class
+SHA1-Digest: WzxHLceQfgRRLaEayUOFPxVoGGA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/arraygroup/IArr
+ ayGroup.class
+SHA1-Digest: oDQwAd9y5Eh9yD0129dRq3YXiDU=
+
+Name: icons/images/pe_icon.png
+SHA1-Digest: 0Bg4WSusZuM2HSaKy+/TdH2L7kk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$5.class
+SHA1-Digest: 8gCSwTH+BV/G1/RJUzMtJ2NOFxA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/EditInstruction
+ Dialog$1.class
+SHA1-Digest: I3tB/iC4S+eCGCaN3yJLlcf+zoI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeView.
+ class
+SHA1-Digest: mutSMHab/HM8sT1cBt7ZloKwWPY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionMoveToPacka
+ geHandler.class
+SHA1-Digest: N6CPG3LAsnwqd//WCrl+ztNSw0Y=
+
+Name: icons/jeb1/icon-media-pause.png
+SHA1-Digest: 8NLgpEnBUwZMvajgCVUvNtubjkQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/AbstractInfiniT
+ ableSectionProvider.class
+SHA1-Digest: 0KIikGcqeCDEMRD3wpu5TmWlW2c=
+
+Name: icons/eclipse/debug_view.png
+SHA1-Digest: ipasn3LeFelAC2sZls/hj6nlYl4=
+
+Name: icons/jeb1/icon-jeb-32.bmp
+SHA1-Digest: bCKZHF1MBVCChmSIgjXX3c+AqBM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$4.class
+SHA1-Digest: fYH+8ZO7gNQRZlw9k5jIyEwq/uM=
+
+Name: icons/eclipse/stepinto_co.gif
+SHA1-Digest: Tunbr6mxlciX62C24IaJo5Kp14c=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ConsoleViewer$1.class
+SHA1-Digest: emeA7FShH3ixEJivpzqWNd5Yom0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpApidocHandler.cl
+ ass
+SHA1-Digest: JPI9lwyRLrZfxmYF3y8DKGav6Yw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerPauseHan
+ dler.class
+SHA1-Digest: yxTmjB7pQE5TiC9J4FGVtd2K4Lg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/CFGLayoutM
+ anager.class
+SHA1-Digest: C8cw5jU3GFNvosWM4LDPqKayEM8=
+
+Name: icons/eclipse/field_default_obj.png
+SHA1-Digest: +3vX/MI/guaxfFL3sDvpRGl+9N0=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/edition/EditOptionsHandle
+ r.class
+SHA1-Digest: rDqfkpf4UJd2RSuHrCmegTIJwEE=
+
+Name: icons/eclipse/editor.gif
+SHA1-Digest: GBFyUw66caqMlFO5ueclN4e8YPY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AnimatedGif$1$
+ 1.class
+SHA1-Digest: VWTsgKNWUvLEVLh2gqWqPF5KTQY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/model/Digraph.cla
+ ss
+SHA1-Digest: 2FjrXLwvaLM16EI6fIIMEwLtbgk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UI$4.class
+SHA1-Digest: EeYxtTpmSwPqwSWGySuR5KlrRmQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ColorPickerView$1.class
+SHA1-Digest: qclnJMJOToYgqtaXBBvoTtTg+8c=
+
+Name: com/pnfsoftware/jeb/rcpclient/DecompilerListener$1.class
+SHA1-Digest: LGmiyi7twljC36EqaxOLtELTVaU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/HistoryAssiste
+ dTextField$HistoryProposalProvider.class
+SHA1-Digest: 62/nzDIoU0TS8s9YuPmiOtXLdfI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$3.class
+SHA1-Digest: tceBHIQ9Rz9b6uMRzXmA1xxCNq4=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/LogDocument.class
+SHA1-Digest: WKbbTlcv5WUVumEhEzz/GLqUNNI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/media/IStateChangedList
+ ener.class
+SHA1-Digest: 0Eak4+tgMOq3wieu0qa59D845hI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgBreakpoin
+ tsView.class
+SHA1-Digest: BdqZE0KFrGhLvboN9vc0aPRaYG8=
+
+Name: icons/images/elf_icon.png
+SHA1-Digest: 0c7KNvkP8TUc/i70COBA9Adu5iw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderS
+ ymbolsView$1.class
+SHA1-Digest: tJM/vKNPYpL0y27thQUCJWqVvSM=
+
+Name: icons/eclipse/class_obj.png
+SHA1-Digest: SSnpwCUyxOXigcrNAGp/ueLaRMo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ImageView$4.cl
+ ass
+SHA1-Digest: 68aeUcR6QdVEslS4BG/wGhypcaY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View.class
+SHA1-Digest: 1F617VOntf2kaIkdV8nv7sybzr8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$6.class
+SHA1-Digest: xTvK2SVMb13Kmh89kwFa4C2QY9o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ControllerAddressDialog$1.
+ class
+SHA1-Digest: 42va34gj2rHbZ0CkmrMNdGTukZY=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/InteractiveTextViewe
+ r$4.class
+SHA1-Digest: HR6PF5hSU6eWwcE1ziBQlQYPxQA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$3.class
+SHA1-Digest: nFlyQQPA1mAPkugHWSRQ/GqFisU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AnimatedGif$1.
+ class
+SHA1-Digest: HAL7eX2m38OjO9nH1skRdext29A=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/ILabelValueProvider.cla
+ ss
+SHA1-Digest: m6SD97InGAR9nrxTKuOGjRRG624=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ShellActivationTracker.
+ class
+SHA1-Digest: EG3RbDmh6Fiq1ko+p/k6gwuKgVQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/UIExecutor.class
+SHA1-Digest: uGB69KWo7hOLmXh7tgb/g0GuRfI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphNode$1.class
+SHA1-Digest: cy9jzDb68bd39qW+kfwce2lsJtM=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/table/InteractiveTableVie
+ wer$1$1.class
+SHA1-Digest: c17G303zXkg/hWc5Pr4pktM6rAw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/export/FileExportCod
+ eClass.class
+SHA1-Digest: yMs0/tq+JV330WKB4lYANWdaj8E=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/Position.class
+SHA1-Digest: IjX+sq+u2EkAIwVl+Z7F0i2RA9w=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ButtonGroup.cl
+ ass
+SHA1-Digest: EWSk5LwIS+MaNsySZjZW9la5yEE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lasspath$4.class
+SHA1-Digest: TMyhV7L9wb+KkZOBSLG2i8ixDGg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ $1.class
+SHA1-Digest: 9tKCpiZmQSO675Ml79VUOvi82Yw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/IGraphNodeContent
+ s.class
+SHA1-Digest: kg1u5r3BhIPopbepy2EYiiVSHTE=
+
+Name: com/pnfsoftware/jeb/rcpclient/DecompilerListener$2.class
+SHA1-Digest: sWrFCskQvamefjRZPa93C2HcY8I=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdgeManager.
+ class
+SHA1-Digest: llJ8ikIR2nAnhRVQXuIEkjBnWYE=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/navigation/NavigationLoca
+ teInCodeHierarchyHandler.class
+SHA1-Digest: 3Bm++gzNIfX0p6/apfh51mPdDfg=
+
+Name: icons/eclipse/loop_obj.gif
+SHA1-Digest: fA4pes54+F9SjzVFrBcYbF+jcBo=
+
+Name: icons/jeb1/icon-options.png
+SHA1-Digest: w8emclQKjpILc00HWMp6Ai+6n9A=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$2.class
+SHA1-Digest: ieIKy7pR84UEGP/ipS7FwZ94l5w=
+
+Name: icons/eclipse/methdef_obj.gif
+SHA1-Digest: UZZSIKJ/W7kz6y7A1H46eyfEO+A=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeView$
+ 2.class
+SHA1-Digest: +rD8etRBUlWQiAJXexw86nvrj5Y=
+
+Name: icons/jeb1/icon-letter-r.png
+SHA1-Digest: yjDm5O6igyh/LrA7/Z5C/tZb3u0=
+
+Name: com/pnfsoftware/jeb/rcpclient/CocoaUIEnhancer$2.class
+SHA1-Digest: +fPWh1aMtQnQyliH/At63WG97WA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/EditInstruction
+ Dialog$2.class
+SHA1-Digest: rbvmW0lE83pUKFN9QJeZ0DWP+tY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/UnitPartManager.class
+SHA1-Digest: vSzdUtamqn2BaZfUZ3yA+AUUohk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusPartMe
+ nuHandler.class
+SHA1-Digest: N+LIOHKOx35+bhxq60TeDVw2czg=
+
+Name: icons/eclipse/warning.gif
+SHA1-Digest: ephugAqnGSA1Bn2gdY4602d9uxw=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$4.class
+SHA1-Digest: A6UaBuXSQRPRJxdOxvD43psqi8g=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpClientContext$LogManagerRoutine
+ .class
+SHA1-Digest: 3LFcXDu1eS9id+fyN3gWjT1lehw=
+
+Name: icons/eclipse/datasheet.gif
+SHA1-Digest: 2fC2y13f8c27JN5Kt0mQ0jRJH7A=
+
+Name: icons/eclipse/copy_edit.png
+SHA1-Digest: Lcqq2keNInV3Vg8rac2w96RmRio=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/Toast$2$1.class
+SHA1-Digest: SyFVKpdoow5F1T49uyhv9tRh6UU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/FilteredTreeVie
+ wer$ColumnSelectionListener.class
+SHA1-Digest: uNXrV+k4C0DLaEF82389hp8sSII=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/tab/TabFolderView.class
+SHA1-Digest: rVw6GYvyjWTrmYFNnoNET/POTKc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment$4
+ .class
+SHA1-Digest: VlG7JNNQNredxHlKH3iPnM9p9UA=
+
+Name: com/pnfsoftware/jeb/rcpclient/ThreadManager$1.class
+SHA1-Digest: Uu8AatsVpWWRpHB+d3xx7HQqFJA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/SoftwareUpdateDialog$1.cla
+ ss
+SHA1-Digest: QhzLCqtVsjI9KYoiVtwR2fcC3Eg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/IInfiniTableSec
+ tionProvider.class
+SHA1-Digest: uc3lQoIKoizILUKez6p6DHDOEBs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoShareDialog.cla
+ ss
+SHA1-Digest: JnaQQUPiRWuGLGPjmvEI9+eQUms=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ConsoleViewer$2.class
+SHA1-Digest: N7ntn62qYljzXpzxwsdlt0JlE48=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/DalvikCodeGraph
+ View.class
+SHA1-Digest: c/schl5hALbRWYvCcJQ2WWWYSu8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoShareDialog$1.c
+ lass
+SHA1-Digest: UBlvIE210DSXE2Hsy3DbLhKHFAo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/IDockListener.class
+SHA1-Digest: W/VMK6ry4QYGJW2mtr5jtNVF0z4=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$TreeContentProvider.class
+SHA1-Digest: 8L6Al462er6eJOkAo9glF6dnXQI=
+
+Name: icons/eclipse/import_wiz.png
+SHA1-Digest: h/QDT5sbg9NibIidS7O1GsYtHcA=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowOpenNewView
+ .class
+SHA1-Digest: 7J55NSiKdXuQFioUxx5uY3sQCE0=
+
+Name: icons/eclipse/writeout_co.png
+SHA1-Digest: rn5yjiNUdXAkhG0KdImbYl90JKA=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph.clas
+ s
+SHA1-Digest: IFAGfgigONV3McLMoFTqyU6kYpI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ImageView$3.cl
+ ass
+SHA1-Digest: Rsn6yZbORr0qz7w2oBHSi0W2lqo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$4.cl
+ ass
+SHA1-Digest: P5QmSmiD5U4TPc1mZ/6yxife2as=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IMPartManager
+ .class
+SHA1-Digest: ssTMEp+pf5tHv+NdaFZoUWVhO/o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/SoftwareUpdateDialog.class
+SHA1-Digest: hpuZXtqPpJr5bGqDQ+3d7cdk5Jw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/themes/ThemeManager$1.c
+ lass
+SHA1-Digest: u0vmTLjdwAxu9bVRI9GZ7o6CplU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/StringSetupInfo
+ rmation.class
+SHA1-Digest: Wj2AtSXtURnd0aIhVZ+yvbdLBG4=
+
+Name: icons/jeb1/icon-checkupdate.png
+SHA1-Digest: rl4beZPboRAQe09Zkn5xoNoZQo8=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog$3.class
+SHA1-Digest: vhhYR9omuL2IPEG+XjgKp9sFSgU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ShellWrapper$2.class
+SHA1-Digest: vLcNTnt4a8PNeJZvl4A9J/3jrPo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/AbstractGraph$3.c
+ lass
+SHA1-Digest: W+EAUV3qFCd9oPGMYaqVbhTPtq8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ImageView.clas
+ s
+SHA1-Digest: nwuXVf8NTLfSlVWxYswyTntuep0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewL
+ ist$ICheckableProvider.class
+SHA1-Digest: YWbkot6F518cPOtD0SmtZIzF6Fs=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionGenericHand
+ ler.class
+SHA1-Digest: m2cdDN6/NXM0ckw3f1LsqGZy8JI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeTypeEditorV
+ iew$StructFieldLabelProvider.class
+SHA1-Digest: 1VHhiKo4UIcHOzgTZfN9JqWCgfY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionStopA
+ nalysisHandler$1.class
+SHA1-Digest: NQ1zvXBq6tsCzlsCz9gCMz1aLSk=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/OverviewBar$1.class
+SHA1-Digest: DMoaGWjGGQdLRd5c6ADVxQN4DLU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ItemStyleProvider.clas
+ s
+SHA1-Digest: Xjmhxf38FELzEB8EqKzl/xORIzc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/CallgraphPackag
+ eFilterDialog.class
+SHA1-Digest: NncFG1lWyAzspe2L60V92u6NDno=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionAutoS
+ igningModeHandler.class
+SHA1-Digest: FHNfQKIbdG8eCM25LqY7K7EQJeY=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionTypeHierarc
+ hyHandler.class
+SHA1-Digest: WJJj2vd+iAjgWwjWLnV7V6Z0014=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeView$
+ 2$1.class
+SHA1-Digest: iwmRm8fu2aBaecF/Io1MKQCfIZM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseDialog$1.class
+SHA1-Digest: IY8quOKYJ1KUz34dDuYyLLxMShI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/fast/XYGraph$3.cl
+ ass
+SHA1-Digest: mHAJ2iO7JGGWTHfw0Iwo2/MCYds=
+
+Name: icons/images/excel_icon.png
+SHA1-Digest: nMFefzLvKZHrGHC/hI3hI8/qZSQ=
+
+Name: icons/images/json_icon.png
+SHA1-Digest: ElDQHjAbHrKrWULD7EwzHks63gE=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyAutoDialog$2$1.c
+ lass
+SHA1-Digest: 2jEwBeKlR84NBmvz0tQU0gD5TdI=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/binding/ActionEx.class
+SHA1-Digest: U/IS04/337uCBLl970cx5iJXOmQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/DocumentManager$Rend
+ eredItem.class
+SHA1-Digest: aVm7llvojVLVC/bh7V67C3udkGw=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/AbstractGraph$2.c
+ lass
+SHA1-Digest: S4Qg8x9cNeZTMjMQwLvBF/0Vpyg=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/DataFrameView$
+ DataFrameLabelProvider.class
+SHA1-Digest: i4GydMi5OJON17Hm7jjolZHLGic=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ExportDecompiledCodeDialog
+ $ExportSelectionListener.class
+SHA1-Digest: cUY0qDi6mFr2BiLZt208B51Crt0=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/NamedConstantsC
+ hooserDialog.class
+SHA1-Digest: afXbbGjitt0GTl+TviiH1QydAII=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ImageView$2.cl
+ ass
+SHA1-Digest: ijg1KElHfT7/I60U5PFrg1Co5ms=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextView$1.class
+SHA1-Digest: e8ZPdfs1T57pkMeSnDStVxhwcUA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/nativecode/DefineStringDia
+ log$1.class
+SHA1-Digest: KM+FXyJwaz7CO78nDoy+3XJ7q/o=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerTerminat
+ eHandler.class
+SHA1-Digest: +pjgs/B1+fh90zdfFSUhyDh+vhU=
+
+Name: icons/eclipse/configure.gif
+SHA1-Digest: u00OQMgpkEVocu1yADmpR+jEi7M=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/package-info.class
+SHA1-Digest: XanO3+da6OlToZegvuXCnhl0Y2Q=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/GraphEdge$1.class
+SHA1-Digest: 8DKD7i6BiGjGY3duSYeDoMUBGxg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/FindTextDialog.class
+SHA1-Digest: f2czuQQ1Zt6OUaCxgbV9LTy8xSk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Folder$9.class
+SHA1-Digest: mstvIB7YrTEEHz/RO+87enS+jFE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/impl/SimpleCodeNo
+ de.class
+SHA1-Digest: ysj+axO530Eo5wfPHvfRs513uR4=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/ColorsGradient$RandomIter.cla
+ ss
+SHA1-Digest: 9t2h3XNmfGRZLQNdiqN4zhoIuY0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/InputField.cla
+ ss
+SHA1-Digest: EasxtKXUDuz6vRaYAsEj1xbnXlY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/model/IAppService.c
+ lass
+SHA1-Digest: P/OGTmZtdXTq7HAS7hLHTWIukhY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/Dock.class
+SHA1-Digest: HLNc8zIH/3qEGm7DaU5ui1uGe74=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeView$
+ 1.class
+SHA1-Digest: 59sZF7/ClKFoLdutO/5tMNcVUpA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog$4.class
+SHA1-Digest: C7JHvhK97T76wT+/jSn+cYWLi34=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ui/TaskMonitorDialog$1$
+ 1.class
+SHA1-Digest: AtRsbZhybgQcKwxa92Fuo6LDxSg=
+
+Name: icons/eclipse/stepover_co.gif
+SHA1-Digest: +kc88nB0q3ph+CAuyJbq50901MM=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/AboutDialog$5.class
+SHA1-Digest: ceY65D+qMe92Ni51jqpa2U7sqz4=
+
+Name: com/pnfsoftware/jeb/rcpclient/operations/OperationSelectAll.clas
+ s
+SHA1-Digest: GITRe2gAjiyjBLYfUey6tdKDgPA=
+
+Name: icons/eclipse/field_private_obj.gif
+SHA1-Digest: qAgWNXvmEa0s8NY3u5Ck8H4+sfc=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/NodeContentsInter
+ activeTextView$4.class
+SHA1-Digest: 5OKPHgRbMPbxb1e1yEGWqW3ldm8=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/DefaultCellLabe
+ lProvider.class
+SHA1-Digest: VU/ul/5oD1YArceIvehYHR0LNwg=
+
+Name: icons/eclipse/goto_obj.png
+SHA1-Digest: BJwtbugGETlRPq3ZDy/l3fPI97o=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ColorPickerView.class
+SHA1-Digest: a2N9jfh8e6n922SBqyMdNllerYM=
+
+Name: icons/eclipse/debugt_obj.png
+SHA1-Digest: nh1PrHZsreIeCgGN3Wv8uc+anX0=
+
+Name: icons/eclipse/over_co.png
+SHA1-Digest: DGkAUhREYdn5+LzHt+2jtnn94O0=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/viewers/AbstractFiltere
+ dViewer.class
+SHA1-Digest: RfC8aRkROejrWB1aE4hphwvTw1s=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/Spreadshee
+ t.class
+SHA1-Digest: jioEyyUOiSYs+lSZceC7toTCSM4=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/anno/AnnotationModel
+ Ex.class
+SHA1-Digest: Hd7PZNKjjJDLWJPdHZgWca71s+g=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CustomSurveyDialog.class
+SHA1-Digest: DYUlFg2ZTmbFmL8+5dOz8/29OuQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/options/OptionsSimpleViewC
+ lassname.class
+SHA1-Digest: 5x3zzcsVKDyG2qJVcmxZW8D0j4g=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/UnitImageView$StaticIm
+ ageDocument.class
+SHA1-Digest: gfA5r2E9afu+aguJ0xB7xXDG0iM=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/NativeCodeGraph
+ View.class
+SHA1-Digest: 2pfpPaVWIEPzkeuCKE4jaRhoIwM=
+
+Name: icons/eclipse/ilow_obj.gif
+SHA1-Digest: wAtRYKFnL5qoURQIXumOywvQmIk=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowResetUIStat
+ eHandler.class
+SHA1-Digest: LTHGPqvnd+X9elS6jzfZqD88NKo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/StackEditorView.c
+ lass
+SHA1-Digest: 8WdFVMaoRmpf+hh8kMAkKgQ0F/I=
+
+Name: icons/eclipse/method_public_obj.png
+SHA1-Digest: tM6hOqEMK3pIy9/uWVrlyfXjqKo=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/tree/TreeUtil$SwtTreeForm
+ atter.class
+SHA1-Digest: fcTJQtq8iKnSAtYrlr8I0XglA0U=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/InteractiveTableView$3
+ .class
+SHA1-Digest: QS4peK1wkVW9VsJcQc2bwAQ8UHc=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/DalvikCallgraph
+ Builder.class
+SHA1-Digest: tradvg026q8eCwpp7F0VFqvm5hg=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoShareDialog$3.c
+ lass
+SHA1-Digest: tS4DfusgJ0eptxeR+KohWrDW6QA=
+
+Name: icons/images/dark_white.png
+SHA1-Digest: gDXjEXKB9uDDXBSeIlDO/pPnv3s=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesParsersHa
+ ndler.class
+SHA1-Digest: ZlL6BbFISAC0E8RxKEJ4pWftyBs=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/ScrollBufferManager$
+ MaxLine.class
+SHA1-Digest: MX79z2WyooFCeIeGqWuaIwud+YI=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/INavigableViewer.cla
+ ss
+SHA1-Digest: MVohbSI3YDzLWLQvbR+yZ/fNVrg=
+
+Name: icons/eclipse/image_application.png
+SHA1-Digest: 8gfhTAv5uzDz0pN5MsyNozb8ByY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/ITableEventLis
+ tener.class
+SHA1-Digest: UAJAsCosB1ZPDKfGyH8ejgbvV5M=
+
+Name: icons/eclipse/add_obj.png
+SHA1-Digest: UlTlgROpP3Srou4c3dnpqZ6/Uhc=
+
+Name: icons/eclipse/comment_edit.png
+SHA1-Digest: qTTCBIACppmdlKZxGUKPa9GhBks=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$3.class
+SHA1-Digest: 2tDA17wtBuOILBcGCd2eKgH1kUo=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/hover/extend/JebInformati
+ onControl.class
+SHA1-Digest: QtjDyQM4oa8laCguzNylo+Fc9sI=
+
+Name: icons/eclipse/refresh_tab.png
+SHA1-Digest: fpnBtvk8E2cMOxW3FL/BJf1H8eU=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/DescriptionView.class
+SHA1-Digest: xTVF3P6W3AU9vbDoL9BMF6G4XmQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AbstractFilter
+ edView$2.class
+SHA1-Digest: b/NETq6nNs17h2KeMNxZeC0ZmWg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractDataFrameView.
+ class
+SHA1-Digest: RVAhOdQ5jtnv3CFjmCOzaEX82JU=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/ShellWrapper$1.class
+SHA1-Digest: Rtq0pRXdGgZKXK6Mc+HCK1QcHQs=
+
+Name: icons/eclipse/final_co.gif
+SHA1-Digest: yojAZ2dIT0V5Fn2nvgzK8f58OmM=
+
+Name: com/pnfsoftware/jeb/rcpclient/CocoaUIEnhancer$1.class
+SHA1-Digest: 3m9y4YT04KRJVh3cdHcHuw6iZIA=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/CustomerActionDialog$1.cla
+ ss
+SHA1-Digest: qaBuk1SUFDPWS+dNyNZs/Ys+/pc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/help/HelpDevPortalHandler
+ .class
+SHA1-Digest: ngBcgXyDHofZnfQKMen4z7AFYZY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/EditableList.c
+ lass
+SHA1-Digest: 1CHShuLzHCh9OwchR/vuvha1tMc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileEnginesContribut
+ ionsHandler.class
+SHA1-Digest: Nr4RlQIF5WGjcOjHrgkD8PnR5yg=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$TreeContentProvider$1.class
+SHA1-Digest: N/jwzAihSflC1gRrPOKPxh95T60=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/debugger/DebuggerSuspendT
+ hreadHandler.class
+SHA1-Digest: H5pWFlq1H8cnysRArVuYEZc4sJQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/graphs/StaticCodeGraph
+ View.class
+SHA1-Digest: 5JtZIWgbDwh0pe+qH/0yjedkIV0=
+
+Name: icons/eclipse/synced.png
+SHA1-Digest: BMMjHAKXFaEZ50ssUnGMiUh1M3I=
+
+Name: icons/eclipse/classpath_obj.gif
+SHA1-Digest: RitZpvZx8izfzpqNPSmKNWmpUUQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ReparseOptionsDialog.class
+SHA1-Digest: FPmkWtJ+1zwuBGkUVpIDzQMH5rw=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/actions/ActionOverridesHa
+ ndler.class
+SHA1-Digest: 0XZdSjHu9xb2o5TdI8FJzl4kWWY=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment$3
+ .class
+SHA1-Digest: OD2kibHpnADFgdIjRZ+8jnuC9+s=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/regex/IPattern.class
+SHA1-Digest: qhzkMJMiZcCNnj+1wMW0cT78oUc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/file/FileOpenHandler.clas
+ s
+SHA1-Digest: 1XCwK2PPSpGj8QUM/QUW8HK3Vo0=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/codeobject/CodeLoaderI
+ nfoView.class
+SHA1-Digest: EtAaYM2CkCre8bRE1+f6lhgDVHs=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/NativeActio
+ nUtil.class
+SHA1-Digest: vX/RgYv1GEKp0Aico/sfNK1p79c=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/windows/WindowFocusHierar
+ chyHandler.class
+SHA1-Digest: 3R3psvtN+sEr7QhKFcilMtRB8WM=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/INodeContentsMast
+ erController.class
+SHA1-Digest: 7MsZ3HPzx/DkxHO8J1fILDRHqIk=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/WidgetActionWrapper.cla
+ ss
+SHA1-Digest: s7ROw7tjj7rvjgw22o2J0JEap5Y=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AbstractFilter
+ edView.class
+SHA1-Digest: 1q2Wvg6UCTMFuhw3aQUXfjeJfSU=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$6.class
+SHA1-Digest: +kn9smL9oDfHdUam9OZUjD41CZU=
+
+Name: com/pnfsoftware/jeb/rcpclient/util/IPersistenceProvider.class
+SHA1-Digest: dNf+n4BIOr78nCcDrPxXDLXxNFk=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/LicenseKeyDialog.class
+SHA1-Digest: HF/89BzMrF1GjVMffuGgWINB7UQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/_test/TestInputDialog.cla
+ ss
+SHA1-Digest: wy3gj56ZZfmFlP7DAOvJsJ2ABJs=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/OptionsDialog$1.class
+SHA1-Digest: MkfmylVKwKXpLwFkGXIgcSy8Suo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/IRcpUnitFragment.class
+SHA1-Digest: RzgARVvjWpOhnZ6WQMaXUeQ48Yo=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/AbstractFilter
+ edView$1.class
+SHA1-Digest: VcUK0ZHbbBDVTv+QcwaeFWBmcmE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/CodeHierarchyView
+ $ContentProvider$1.class
+SHA1-Digest: V47dokfNqyJp1FxMo6jiIc/OPYo=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionStopA
+ nalysisHandler.class
+SHA1-Digest: iEhPgc2+8OGJoKMnnusXCUtS2Qo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/ILocationListener.clas
+ s
+SHA1-Digest: AwbcV14jEoHoHTujUSjKoB5Hlzw=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/AbstractUnitFragment$2
+ .class
+SHA1-Digest: f8Dxdwx373tlHIh0pX0AVhaQcNQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/app/IFolderListener.cla
+ ss
+SHA1-Digest: EfPmIwKgcOYthYJB8C6/AqYHzNc=
+
+Name: icons/eclipse/int_obj.png
+SHA1-Digest: ENk3I23hSiifWa5k4YcMnKYlv+c=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/NativeRoutinesVie
+ w$LabelProvider.class
+SHA1-Digest: ztDlm50kEVKtnjj9XMm/cdmEf3w=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/controls/LongInputField
+ .class
+SHA1-Digest: oRTOXl0UHI+YfAvfzQEUcNQRBFo=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/TextHoverableProvider.
+ class
+SHA1-Digest: nJ1UxHQjdaWBz+NtDX3GF0kw/rI=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/DecompiledViewNavigator.clas
+ s
+SHA1-Digest: /2QJHpNI/53QlXC/8zGW4X5zHkU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/ProjectPropertiesDialog.cl
+ ass
+SHA1-Digest: YRBOxGGm3Wbk8urVq1g7XfDOYxE=
+
+Name: icons/eclipse/methpro_obj.gif
+SHA1-Digest: yO3DL7gZmzMzN1lzBmUsP6rR2to=
+
+Name: com/pnfsoftware/jeb/rcpclient/RcpErrorHandler$1.class
+SHA1-Digest: tYBaT96C5ePp40fs9TRtJimL8eE=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgCodeDocum
+ ent$Chunk.class
+SHA1-Digest: gNJwNDpZl8lE0U7wN+KPSMGRRGU=
+
+Name: com/pnfsoftware/jeb/rcpclient/dialogs/jebio/JebIoShareDialog$2.c
+ lass
+SHA1-Digest: p8krIToVr1Ugwc3WaoxW2mZFigY=
+
+Name: com/pnfsoftware/jeb/rcpclient/extensions/graph/layout/CFGLayoutE
+ xp1.class
+SHA1-Digest: 3HijP4sKw+vrenWcf1ARWOCaZg8=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/IArtifactManager.class
+SHA1-Digest: 7HiVQt1y2MsI8B2+bfHBgY8OnUc=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/nativeactions/ActionSelec
+ tSignaturePackageHandler.class
+SHA1-Digest: aH8RHCyaY2g3epoa5j5WQpSm4kc=
+
+Name: icons/eclipse/prj_obj.gif
+SHA1-Digest: +qtPrDKpe6LoIvP44rxgsSmCEJ4=
+
+Name: com/pnfsoftware/jeb/rcpclient/handlers/JebBaseHandler.class
+SHA1-Digest: UsyCtahOBKGDhO7IMfcfNF0QjYQ=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/code/ReferencedMethods
+ View$ContentProvider.class
+SHA1-Digest: JuB/DA+QWnR05wYf8zwd9nzp5uc=
+
+Name: com/pnfsoftware/jeb/rcpclient/iviewers/text/NavigationEventManag
+ er$5.class
+SHA1-Digest: woaVt6jtLbxZmaU52sE+DcuBoss=
+
+Name: com/pnfsoftware/jeb/rcpclient/parts/units/debuggers/DbgVariables
+ View$1.class
+SHA1-Digest: +vPDsBOsbw6f4utVMft3WhsYl14=
+

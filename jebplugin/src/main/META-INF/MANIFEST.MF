@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+JebPlugin-entryclass: com.bigger.jebextern.JEBExtern
+JebPlugin-version: 1.0.0
+
