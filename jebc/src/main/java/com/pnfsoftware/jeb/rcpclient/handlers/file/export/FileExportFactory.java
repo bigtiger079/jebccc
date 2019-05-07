@@ -1,65 +1,42 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.file.export;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.units.code.ICodeClass;
-/*    */ import com.pnfsoftware.jeb.core.units.code.ICodeItem;
-/*    */ import com.pnfsoftware.jeb.core.units.code.ICodeMethod;
-/*    */ import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
-/*    */ import java.util.List;
+import com.pnfsoftware.jeb.core.units.code.ICodeItem;
+import com.pnfsoftware.jeb.core.units.code.ICodeMethod;
+import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class FileExportFactory
-        /*    */ {
-    /*    */
-    public static IFileExport<? extends ICodeItem> get(ICodeUnit codeUnit)
-    /*    */ {
-        /* 33 */
+import java.util.List;
+
+
+public class FileExportFactory {
+
+    public static IFileExport<? extends ICodeItem> get(ICodeUnit codeUnit) {
+
         List<? extends ICodeClass> allClasses = codeUnit.getClasses();
-        /* 34 */
+
         if ((allClasses != null) && (!allClasses.isEmpty())) {
-            /* 35 */
+
             return new FileExportCodeClass(allClasses);
-            /*    */
+
         }
-        /*    */
-        /*    */
-        /* 39 */
+
+
         List<? extends ICodeMethod> allMethods = null;
-        /* 40 */
+
         allMethods = codeUnit.getMethods();
-        /* 41 */
+
         if ((allMethods != null) && (!allMethods.isEmpty())) {
-            /* 42 */
+
             return new FileExportCodeMethod(allMethods);
-            /*    */
+
         }
-        /* 44 */
+
         return null;
-        /*    */
+
     }
-    /*    */
+
 }
 
 

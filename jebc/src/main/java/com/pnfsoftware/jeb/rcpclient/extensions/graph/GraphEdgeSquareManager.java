@@ -433,7 +433,7 @@ public class GraphEdgeSquareManager
             int adjx1;
 
             int adjxi;
-            int xi,yi,yj;
+            int xi, yi, yj;
 
             if (b_x0 > a_x1 + 2 * this.MARGIN_MIN) {
 

@@ -263,7 +263,7 @@ public class Dock
 
             }
             //TODO  panel0.setWeights(new int[]{ 100 - ratio, first ? new int[]{ratio, 100 - ratio} : ratio});
-            panel0.setWeights(new int[]{ 100 - ratio, first ? 100 - ratio : ratio});
+            panel0.setWeights(new int[]{100 - ratio, first ? 100 - ratio : ratio});
 
         } else if (cnt == 2) {
 

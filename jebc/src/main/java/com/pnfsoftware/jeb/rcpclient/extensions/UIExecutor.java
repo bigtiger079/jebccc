@@ -20,11 +20,10 @@ import org.eclipse.swt.widgets.Widget;
 
 public class UIExecutor {
     private static UIExecutor instance = new UIExecutor();
-
     private static AtomicInteger synccnt = new AtomicInteger();
     private static AtomicInteger executingSyncCnt = new AtomicInteger();
 
-    private static Object alock = new Object();
+    private static final Object alock = new Object();
     private static AtomicInteger asynccnt = new AtomicInteger();
     private static int asynccntExec;
     private static Map<String, Integer> asyncCallers = Collections.synchronizedMap(new HashMap());
@@ -33,18 +32,18 @@ public class UIExecutor {
 
     private static long asyncAvgWaitTime;
 
-
-    public static UIExecutor getInstance() {
-
-        return instance;
-
+    static synchronized int access$108() {
+        int i = asynccntExec;
+        asynccntExec = i + 1;
+        return i;
     }
 
+    public static UIExecutor getInstance() {
+        return instance;
+    }
 
     public static void async(Widget w, UIRunnable runnable) {
-
         asyncInternal(w.getDisplay(), runnable);
-
     }
 
 
@@ -173,116 +172,69 @@ public class UIExecutor {
 
 
     private static void monitorUITask(UIRunnable task) {
-
         String threadName = "monitorUITask: " + getCaller();
-
         ThreadUtil.start(threadName, new Runnable() {
-
             public void run() {
-
-                while (!this.val$task.isDone()) {
-
+                while (!task.isDone()) {
                     try {
-
                         Thread.sleep(500L);
-
                     } catch (InterruptedException e) {
-
                         return;
-
                     }
 
                 }
 
                 synchronized (UIExecutor.alock) {
-
                     UIExecutor.access$108();
-
-                    long waitTime = this.val$task.getExecStartTs() - this.val$task.getCreatedTs();
-
+                    long waitTime = task.getExecStartTs() - task.getCreatedTs();
                     if (waitTime < UIExecutor.asyncBestWaitTime) {
-
-                        UIExecutor.access$202(waitTime);
-
+                        UIExecutor.asyncBestWaitTime = waitTime;
                     }
-
                     if (waitTime > UIExecutor.asyncWorstWaitTime) {
-
-                        UIExecutor.access$302(waitTime);
-
+                        UIExecutor.asyncWorstWaitTime = waitTime;
                     }
-
                     if (UIExecutor.asynccntExec == 1) {
-
-                        UIExecutor.access$402(waitTime);
-
+                        UIExecutor.asyncAvgWaitTime = waitTime;
                     } else {
-
-                        long n = UIExecutor.asynccntExec - 1L;
-
-                        UIExecutor.access$402((n * UIExecutor.asyncAvgWaitTime + waitTime) / UIExecutor.asynccntExec);
-
+                        UIExecutor.asyncAvgWaitTime = ((UIExecutor.asyncAvgWaitTime * (((long) UIExecutor.asynccntExec) - 1)) + waitTime) / ((long) UIExecutor.asynccntExec);
                     }
 
                 }
-
             }
-
         });
-
     }
 
 
     private static String getCaller() {
-
         StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-
         for (int i = 1; i < stack.length; i++) {
-
             if ((!stack[i].getClassName().startsWith(UIExecutor.class.getName())) &&
                     (!stack[i].getClassName().contains(".Abstract"))) {
-
                 return stack[i].getClassName();
-
             }
-
         }
-
         return "";
-
     }
 
-
     public static String format() {
-
         StringBuilder sb = new StringBuilder();
-
-
-        List<Map.Entry<String, Integer>> list;
-
+        ArrayList<Map.Entry<String, Integer>> list;
         synchronized (asyncCallers) {
-
             list = new ArrayList(asyncCallers.entrySet());
         }
 
-        List<Map.Entry<String, Integer>> list;
-
-        Collections.sort(list, new Comparator() {
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
 
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-
-                return -Integer.compare(((Integer) o1.getValue()).intValue(), ((Integer) o2.getValue()).intValue());
-
+                return -Integer.compare(o1.getValue(), o2.getValue());
             }
-
-
         });
 
-        sb.append(String.format("=> %d sync executed (currently executing: %d)\n", new Object[]{Integer.valueOf(synccnt.get()),
-                Integer.valueOf(executingSyncCnt.get())}));
+        sb.append(String.format("=> %d sync executed (currently executing: %d)\n", synccnt.get(),
+                executingSyncCnt.get()));
 
-        sb.append(String.format("=> %d/%d async executed (wait times: avg=%dms best=%dms worst=%dms)\n", new Object[]{Integer.valueOf(asynccntExec),
-                Integer.valueOf(asynccnt.get()), Long.valueOf(asyncAvgWaitTime), Long.valueOf(asyncBestWaitTime), Long.valueOf(asyncWorstWaitTime)}));
+        sb.append(String.format("=> %d/%d async executed (wait times: avg=%dms best=%dms worst=%dms)\n", asynccntExec,
+                asynccnt.get(), asyncAvgWaitTime, asyncBestWaitTime, asyncWorstWaitTime));
 
 
         sb.append("Top callers:\n");

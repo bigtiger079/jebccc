@@ -262,22 +262,13 @@ public class UIUtil {
             public void keyTraversed(TraverseEvent e) {
 
                 if ((e.detail == 16) || (e.detail == 8)) {
-
                     e.doit = true;
-
-
-                    if (this.val$nextFocusControl != null) {
-
-                        this.val$nextFocusControl.setFocus();
-
+                    if (nextFocusControl != null) {
+                        nextFocusControl.setFocus();
                     }
-
                 }
-
             }
-
         });
-
     }
 
 
@@ -290,21 +281,16 @@ public class UIUtil {
         l.wrap = wrap;
 
         return l;
-
     }
 
 
     public static void setStandardLayout(Composite composite) {
-
         setStandardLayout(composite, 1);
-
     }
 
 
     public static void setStandardLayout(Composite composite, int numColumns) {
-
         setStandardLayout(composite, numColumns, 5);
-
     }
 
 
@@ -326,9 +312,7 @@ public class UIUtil {
 
 
     public static GridData createGridDataFillHorizontally() {
-
         return createGridDataFill(true, false);
-
     }
 
 

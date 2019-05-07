@@ -172,11 +172,11 @@ public class Digraph {
         ((V) this.vertexmap.get(Integer.valueOf(id))).setLabel(label);
     }
 
-    private static /* synthetic */ boolean lambda$removeVertex$0(V v, E e) {
+    private static boolean lambda$removeVertex$0(V v, E e) {
         return e.dst == v;
     }
 
-    private static /* synthetic */ boolean lambda$removeVertex$1(V v, E e) {
+    private static boolean lambda$removeVertex$1(V v, E e) {
         return e.src == v;
     }
 
@@ -294,7 +294,7 @@ public class Digraph {
         }
     }
 
-    private static /* synthetic */ boolean lambda$addEdge$2(V b, E e) {
+    private static boolean lambda$addEdge$2(V b, E e) {
         return e.dst == b;
     }
 
@@ -327,11 +327,11 @@ public class Digraph {
         }
     }
 
-    private /* synthetic */ int lambda$getEdgeIndexesByDescendingBetweenness$5(Integer a, Integer b) {
+    private int lambda$getEdgeIndexesByDescendingBetweenness$5(Integer a, Integer b) {
         return -Double.compare(((E) this.edges.get(a.intValue())).ebscore.doubleValue(), ((E) this.edges.get(b.intValue())).ebscore.doubleValue());
     }
 
-    private /* synthetic */ int lambda$getVertexIndexesByDescendingCentrality$6(Integer a, Integer b) {
+    private int lambda$getVertexIndexesByDescendingCentrality$6(Integer a, Integer b) {
         return -Double.compare(((V) this.vertices.get(a.intValue())).vcscore.doubleValue(), ((V) this.vertices.get(b.intValue())).vcscore.doubleValue());
     }
 

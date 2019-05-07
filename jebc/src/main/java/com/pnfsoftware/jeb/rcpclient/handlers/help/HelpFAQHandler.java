@@ -1,67 +1,48 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.help;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-/*    */ import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
-/*    */ import java.io.File;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
+import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class HelpFAQHandler
-        /*    */ extends JebBaseHandler
-        /*    */ {
-    /*    */
-    public HelpFAQHandler()
-    /*    */ {
-        /* 25 */
+import java.io.File;
+
+
+public class HelpFAQHandler
+        extends JebBaseHandler {
+
+    public HelpFAQHandler() {
+
         super(null, S.s(503), null, null);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 30 */
+
+    public boolean canExecute() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 35 */
+
+    public void execute() {
+
         File f = new File(this.context.getBaseDirectory(), "doc" + File.separator + "manual" + File.separator + "faq" + File.separator + "index.html");
-        /* 36 */
+
         if (f.isFile()) {
-            /* 37 */
+
             BrowserUtil.openInBrowser(f);
-            /*    */
-        }
-        /*    */
-        else {
-            /* 40 */
+
+        } else {
+
             BrowserUtil.openInBrowser("https://www.pnfsoftware.com/jeb/manual/faq");
-            /*    */
+
         }
-        /*    */
+
     }
-    /*    */
+
 }
 
 

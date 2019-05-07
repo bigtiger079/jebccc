@@ -1,129 +1,116 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
-/*    */ import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignatureDBManager;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageEntry;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageMetadata;
-/*    */ import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
-/*    */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.dialogs.DataFrameDialog;
-/*    */ import com.pnfsoftware.jeb.rcpclient.extensions.UI;
-/*    */ import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
-/*    */ import com.pnfsoftware.jeb.util.format.Strings;
-/*    */ import java.util.List;
+import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
+import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
+import com.pnfsoftware.jeb.core.units.code.IInstruction;
+import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeAnalyzer;
+import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
+import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignatureDBManager;
+import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageEntry;
+import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageMetadata;
+import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.dialogs.DataFrameDialog;
+import com.pnfsoftware.jeb.rcpclient.extensions.UI;
+import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
+import com.pnfsoftware.jeb.util.format.Strings;
 
-/*    */
-/*    */
-/*    */
-/*    */ public class ActionSelectSignaturePackageHandler
-        /*    */ extends NativeCodeBaseHandler
-        /*    */ {
-    /*    */
-    public ActionSelectSignaturePackageHandler()
-    /*    */ {
-        /* 25 */
+import java.util.List;
+
+
+public class ActionSelectSignaturePackageHandler
+        extends NativeCodeBaseHandler {
+
+    public ActionSelectSignaturePackageHandler() {
+
         super("selectSignaturePackage", "Select Signature Package...", 0);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 30 */
+
+    public boolean canExecute() {
+
         return canExecuteAndNativeCheck(this.part, false, false, false);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 36 */
+
+    public void execute() {
+
         this.context.getTelemetry().record("actionSelectSignaturePackage");
-        /*    */
-        /* 38 */
-        INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        /* 39 */
-        NativeSignatureDBManager nsdbManager = pbcu.getSignatureManager();
-        /*    */
-        /* 41 */
-        List<NativeSignaturePackageEntry> userPackages = nsdbManager.getUserCreatedPackages(pbcu.getProcessor().getType());
-        /* 42 */
-        NativeSignaturePackageEntry selectedEntry = null;
-        /*    */
-        /* 44 */
-        if (userPackages.isEmpty()) {
-            /* 45 */
-            UI.warn("No compatible signature packages found, please create one first.");
-            /*    */
-            /*    */
-            /* 48 */
-            new ActionCreateSignaturePackageHandler().execute();
-            /*    */
-        }
-        /*    */
-        /* 51 */
-        userPackages = nsdbManager.getUserCreatedPackages(pbcu.getProcessor().getType());
-        /* 52 */
-        if (userPackages.isEmpty()) {
-            /* 53 */
-            UI.error("No compatible signature packages found, please create one first.");
-            /* 54 */
-            return;
-            /*    */
-        }
-        /*    */
-        /* 57 */
-        DataFrame df = new DataFrame(new String[]{S.s(591), S.s(268), S.s(86)});
-        /* 58 */
-        for (NativeSignaturePackageEntry entry : userPackages) {
-            /* 59 */
-            String name = Strings.safe(entry.getMetadata().getName());
-            /* 60 */
-            String author = Strings.safe(entry.getMetadata().getAuthor());
-            /* 61 */
-            String description = Strings.safe(entry.getMetadata().getDescription());
-            /*    */
-            /* 63 */
-            df.addRow(new Object[]{name, description, author});
-            /*    */
-        }
-        /*    */
-        /* 66 */
-        DataFrameDialog dlg = new DataFrameDialog(this.shell, String.format("Signature Packages (%s processor)", new Object[]{pbcu.getProcessor().getType().toString()}), true, "sigPackagesListDialog");
-        /*    */
-        /* 68 */
-        dlg.setDataFrame(df);
-        /* 69 */
-        int index = dlg.open().intValue();
-        /* 70 */
-        if ((index >= 0) && (index < userPackages.size())) {
-            /* 71 */
-            selectedEntry = (NativeSignaturePackageEntry) userPackages.get(index);
-            /*    */
-        }
-        /*    */
-        /* 74 */
-        if (selectedEntry == null) {
-            /* 75 */
-            return;
-            /*    */
-        }
-        /* 77 */
-        nsdbManager.setUserSelectedPackage(pbcu.getCodeAnalyzer(), selectedEntry);
-        /*    */
-    }
-    /*    */
-}
 
+
+        INativeCodeUnit<IInstruction> pbcu = (INativeCodeUnit<IInstruction>) getNativeCodeUnit(this.part);
+
+        NativeSignatureDBManager nsdbManager = pbcu.getSignatureManager();
+
+
+        List<NativeSignaturePackageEntry> userPackages = nsdbManager.getUserCreatedPackages(pbcu.getProcessor().getType());
+
+        NativeSignaturePackageEntry selectedEntry = null;
+
+
+        if (userPackages.isEmpty()) {
+
+            UI.warn("No compatible signature packages found, please create one first.");
+
+
+            new ActionCreateSignaturePackageHandler().execute();
+
+        }
+
+
+        userPackages = nsdbManager.getUserCreatedPackages(pbcu.getProcessor().getType());
+
+        if (userPackages.isEmpty()) {
+
+            UI.error("No compatible signature packages found, please create one first.");
+
+            return;
+
+        }
+
+
+        DataFrame df = new DataFrame(S.s(591), S.s(268), S.s(86));
+
+        for (NativeSignaturePackageEntry entry : userPackages) {
+
+            String name = Strings.safe(entry.getMetadata().getName());
+
+            String author = Strings.safe(entry.getMetadata().getAuthor());
+
+            String description = Strings.safe(entry.getMetadata().getDescription());
+
+
+            df.addRow(name, description, author);
+
+        }
+
+
+        DataFrameDialog dlg = new DataFrameDialog(this.shell, String.format("Signature Packages (%s processor)", pbcu.getProcessor().getType().toString()), true, "sigPackagesListDialog");
+
+
+        dlg.setDataFrame(df);
+
+        int index = dlg.open();
+
+        if ((index >= 0) && (index < userPackages.size())) {
+            selectedEntry =  userPackages.get(index);
+        }
+
+        if (selectedEntry == null) {
+
+            return;
+
+        }
+
+        nsdbManager.setUserSelectedPackage(pbcu.getCodeAnalyzer(), selectedEntry);
+    }
+
+}
 
 /* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\handlers\nativeactions\ActionSelectSignaturePackageHandler.class
  * Java compiler version: 8 (52.0)

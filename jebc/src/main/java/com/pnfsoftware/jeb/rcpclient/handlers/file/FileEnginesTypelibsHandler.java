@@ -1,65 +1,49 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.IEnginesContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.dialogs.ListTypelibsDialog;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.dialogs.ListTypelibsDialog;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class FileEnginesTypelibsHandler
-        /*    */ extends JebBaseHandler
-        /*    */ {
-    /*    */
-    public FileEnginesTypelibsHandler()
-    /*    */ {
-        /* 22 */
+
+public class FileEnginesTypelibsHandler
+        extends JebBaseHandler {
+
+    public FileEnginesTypelibsHandler() {
+
         super(null, "Type Libraries...", null, null);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 27 */
+
+    public boolean canExecute() {
+
         return this.context.getEnginesContext() != null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 32 */
+
+    public void execute() {
+
         IEnginesContext engctx = this.context.getEnginesContext();
-        /* 33 */
+
         if (engctx == null) {
-            /* 34 */
+
             return;
-            /*    */
+
         }
-        /*    */
-        /* 37 */
+
+
         ListTypelibsDialog dlg = new ListTypelibsDialog(this.shell, this.context);
-        /* 38 */
+
         dlg.setInput(engctx.getTypeLibraryService());
-        /* 39 */
+
         dlg.open();
-        /*    */
+
     }
-    /*    */
+
 }
 
 

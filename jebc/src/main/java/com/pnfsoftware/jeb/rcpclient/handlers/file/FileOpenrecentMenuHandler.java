@@ -1,69 +1,50 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.AbstractDynamicMenuHandler;
-/*    */ import org.eclipse.jface.action.IMenuManager;
-/*    */ import org.eclipse.jface.action.Separator;
+import com.pnfsoftware.jeb.rcpclient.handlers.AbstractDynamicMenuHandler;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.Separator;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class FileOpenrecentMenuHandler
-        /*    */ extends AbstractDynamicMenuHandler
-        /*    */ {
-    /*    */
-    public void menuAboutToShow(IMenuManager manager)
-    /*    */ {
-        /* 28 */
+
+public class FileOpenrecentMenuHandler
+        extends AbstractDynamicMenuHandler {
+
+    public void menuAboutToShow(IMenuManager manager) {
+
         if (!canExecute()) {
-            /* 29 */
+
             return;
-            /*    */
+
         }
-        /*    */
-        /* 32 */
+
+
         int cnt = 0;
-        /* 33 */
+
         for (String path : this.context.getRecentlyOpenedFiles()) {
-            /* 34 */
-            if (path.length() != 0)
-                /*    */ {
-                /*    */
-                /* 37 */
+
+            if (path.length() != 0) {
+
+
                 manager.add(new FileOpenrecentHandler(path));
-                /* 38 */
+
                 cnt++;
-                /*    */
+
             }
-            /*    */
+
         }
-        /* 41 */
+
         if (cnt > 0) {
-            /* 42 */
+
             manager.add(new Separator());
-            /* 43 */
+
             manager.add(new FileOpenrecentHandler());
-            /*    */
+
         }
-        /*    */
+
     }
-    /*    */
+
 }
 
 

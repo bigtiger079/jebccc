@@ -1,56 +1,38 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.operations;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.client.api.IOperable;
-/*    */ import com.pnfsoftware.jeb.client.api.Operation;
-/*    */ import org.eclipse.swt.SWT;
+import com.pnfsoftware.jeb.client.api.IOperable;
+import com.pnfsoftware.jeb.client.api.Operation;
+import org.eclipse.swt.SWT;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class OperationProperties
-        /*    */ extends AbstractOperation
-        /*    */ {
-    /*    */
-    public OperationProperties(IOperable object)
-    /*    */ {
-        /* 24 */
+
+public class OperationProperties
+        extends AbstractOperation {
+
+    public OperationProperties(IOperable object) {
+
         super(object, S.s(666));
-        /* 25 */
+
         setAccelerator(SWT.MOD3 | 0xD);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    protected String getOperationImageData()
-    /*    */ {
-        /* 30 */
+
+    protected String getOperationImageData() {
+
         return null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    protected Operation getOperation()
-    /*    */ {
-        /* 35 */
+
+    protected Operation getOperation() {
+
         return Operation.PROPERTIES;
-        /*    */
+
     }
-    /*    */
+
 }
 
 

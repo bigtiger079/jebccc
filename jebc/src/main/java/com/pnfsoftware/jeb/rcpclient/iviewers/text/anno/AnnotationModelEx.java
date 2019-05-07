@@ -1,56 +1,38 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.iviewers.text.anno;
-/*    */
-/*    */
+
 
 import org.eclipse.jface.text.IDocument;
-/*    */ import org.eclipse.jface.text.source.AnnotationModel;
+import org.eclipse.jface.text.source.AnnotationModel;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class AnnotationModelEx
-        /*    */ extends AnnotationModel
-        /*    */ {
-    /*    */
-    public boolean isConnected()
-    /*    */ {
-        /* 24 */
+
+public class AnnotationModelEx
+        extends AnnotationModel {
+
+    public boolean isConnected() {
+
         return this.fDocument != null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
+
     public IDocument getConnectedDocument() {
-        /* 28 */
+
         return this.fDocument;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
+
     public void disconnectSafe() {
-        /* 32 */
+
         if (this.fDocument != null) {
-            /* 33 */
+
             disconnect(this.fDocument);
-            /*    */
+
         }
-        /*    */
+
     }
-    /*    */
+
 }
 
 

@@ -5,7 +5,3 @@ public abstract interface ILocationListener {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\ILocationListener.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

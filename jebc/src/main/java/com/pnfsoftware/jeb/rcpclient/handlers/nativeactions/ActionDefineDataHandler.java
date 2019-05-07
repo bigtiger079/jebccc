@@ -1,116 +1,91 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.exceptions.UnitLockedException;
-/*    */ import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
-/*    */ import com.pnfsoftware.jeb.util.logging.GlobalLog;
-/*    */ import com.pnfsoftware.jeb.util.logging.ILogger;
+import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
+import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class ActionDefineDataHandler
-        /*    */ extends NativeCodeBaseHandler
-        /*    */ {
-    /* 22 */   private static final ILogger logger = GlobalLog.getLogger(ActionDefineDataHandler.class);
 
-    /*    */
-    /*    */
-    public ActionDefineDataHandler()
-    /*    */ {
-        /* 26 */
+public class ActionDefineDataHandler
+        extends NativeCodeBaseHandler {
+    private static final ILogger logger = GlobalLog.getLogger(ActionDefineDataHandler.class);
+
+
+    public ActionDefineDataHandler() {
+
         super("defineData", "Create Simple Data", 68);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 31 */
+
+    public boolean canExecute() {
+
         return canExecuteAndNativeCheck(this.part, true);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 36 */
+
+    public void execute() {
+
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        /* 37 */
+
         long a = getActiveMemoryAddress(this.part, pbcu);
-        /*    */
-        /*    */
-        /* 40 */
+
+
         INativeType primType = null;
-        /* 41 */
+
         boolean typeSet = false;
-        /* 42 */
+
         INativeType type = pbcu.getDataTypeAt(a);
-        /* 43 */
+
         while (!typeSet) {
-            /* 44 */
+
             type = NativeActionUtil.rotateType(pbcu.getTypeManager(), type);
-            /* 45 */
+
             if (primType == type) {
-                /*    */
+
                 break;
-                /*    */
+
             }
-            /*    */
-            /* 49 */
-            if (primType == null)
-                /*    */ {
-                /* 51 */
+
+
+            if (primType == null) {
+
                 primType = type;
-                /*    */
+
             }
-            /*    */
-            try
-                /*    */ {
-                /* 55 */
+
+            try {
+
                 typeSet = pbcu.setDataTypeAt(a, type);
-                /*    */
-            }
-            /*    */ catch (UnitLockedException e)
-                /*    */ {
-                /* 59 */
+
+            } catch (UnitLockedException e) {
+
                 throw e;
-                /*    */
-            }
-            /*    */ catch (Exception e)
-                /*    */ {
-                /* 63 */
+
+            } catch (Exception e) {
+
                 logger.catching(e);
-                /*    */
+
             }
-            /*    */
+
         }
-        /*    */
-        /* 67 */
+
+
         if (!typeSet) {
-            /* 68 */
+
             logger.error("Failed to define data at address %Xh", new Object[]{Long.valueOf(a)});
-            /*    */
+
         }
-        /*    */
-        /* 71 */
+
+
         postExecute(this.shell);
-        /*    */
+
     }
-    /*    */
+
 }
 
 

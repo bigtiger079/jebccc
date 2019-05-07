@@ -27,6 +27,7 @@ public class AnimatedGif
         super(parent, style);
         this.display = parent.getDisplay();
     }
+
     public void load(InputStream resource) {
         this.loader.load(resource);
     }
@@ -56,6 +57,7 @@ public class AnimatedGif
     private Thread createThread() {
         return new Thread() {
             long currentTime = System.currentTimeMillis();
+
             public void run() {
                 AnimatedGif.this.animating = true;
                 while (AnimatedGif.this.animating) {

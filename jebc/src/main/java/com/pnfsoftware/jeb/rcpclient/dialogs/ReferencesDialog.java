@@ -31,7 +31,6 @@ public class ReferencesDialog
         IInteractiveUnit iunit;
         DataFrame df;
         int i;
-        DataFrame df;
         if ((unit instanceof IInteractiveUnit)) {
             iunit = (IInteractiveUnit) unit;
             df = new DataFrame(new String[]{S.s(52), S.s(424), details != null ? S.s(270) : S.s(203)});
@@ -42,7 +41,6 @@ public class ReferencesDialog
                 if ((label == null) && ((unit instanceof INativeCodeUnit))) {
                     label = Long.valueOf(((INativeCodeUnit) iunit).getCanonicalMemoryAddress(address));
                 }
-                String extra;
                 String extra;
                 if ((details == null) || (details.get(i) == null)) {
                     extra = iunit.getComment(address);

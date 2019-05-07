@@ -1,83 +1,61 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class UnwrappedBufferPoint
-        /*    */ extends BufferPoint
-        /*    */ {
-    /*    */   public boolean eol;
 
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    public UnwrappedBufferPoint(int columnOffset, int lineIndex, boolean eol)
-    /*    */ {
-        /* 23 */
+public class UnwrappedBufferPoint
+        extends BufferPoint {
+    public boolean eol;
+
+
+    public UnwrappedBufferPoint(int columnOffset, int lineIndex, boolean eol) {
+
         super(columnOffset, lineIndex);
-        /* 24 */
+
         this.eol = eol;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public int hashCode()
-    /*    */ {
-        /* 29 */
+
+    public int hashCode() {
+
         int prime = 31;
-        /* 30 */
+
         int result = super.hashCode();
-        /* 31 */
+
         result = 31 * result + (this.eol ? 1231 : 1237);
-        /* 32 */
+
         return result;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean equals(Object obj)
-    /*    */ {
-        /* 37 */
+
+    public boolean equals(Object obj) {
+
         if (this == obj)
-            /* 38 */ return true;
-        /* 39 */
+            return true;
+
         if (!super.equals(obj))
-            /* 40 */ return false;
-        /* 41 */
+            return false;
+
         if (getClass() != obj.getClass())
-            /* 42 */ return false;
-        /* 43 */
+            return false;
+
         UnwrappedBufferPoint other = (UnwrappedBufferPoint) obj;
-        /* 44 */
+
         if (this.eol != other.eol)
-            /* 45 */ return false;
-        /* 46 */
+            return false;
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public String toString()
-    /*    */ {
-        /* 51 */
+
+    public String toString() {
+
         return String.format("unwrapped_%s[eol=%b]", new Object[]{super.toString(), Boolean.valueOf(this.eol)});
-        /*    */
+
     }
-    /*    */
+
 }
 
 

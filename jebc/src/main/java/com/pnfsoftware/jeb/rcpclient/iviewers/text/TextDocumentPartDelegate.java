@@ -1,75 +1,57 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.output.text.IAnchor;
-/*    */ import com.pnfsoftware.jeb.core.output.text.ILine;
-/*    */ import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
-/*    */ import java.util.ArrayList;
-/*    */ import java.util.List;
+import com.pnfsoftware.jeb.core.output.text.ILine;
+import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class TextDocumentPartDelegate
-        /*    */ implements ITextDocumentPart
-        /*    */ {
-    /*    */   private ITextDocumentPart part;
-    /*    */   private List<ILine> lines;
+import java.util.ArrayList;
+import java.util.List;
 
-    /*    */
-    /*    */
-    public TextDocumentPartDelegate(ITextDocumentPart part, int maxCharsPerLine, int charsEndLine)
-    /*    */ {
-        /* 27 */
+
+public class TextDocumentPartDelegate
+        implements ITextDocumentPart {
+    private ITextDocumentPart part;
+    private List<ILine> lines;
+
+
+    public TextDocumentPartDelegate(ITextDocumentPart part, int maxCharsPerLine, int charsEndLine) {
+
         this.part = part;
-        /* 28 */
+
         this.lines = new ArrayList(part.getLines());
-        /* 29 */
+
         for (int i = 0; i < this.lines.size(); i++) {
-            /* 30 */
+
             ILine line = (ILine) this.lines.get(i);
-            /* 31 */
-            if (line.getText().length() > maxCharsPerLine)
-                /*    */ {
-                /* 33 */
+
+            if (line.getText().length() > maxCharsPerLine) {
+
                 this.lines.remove(i);
-                /* 34 */
+
                 this.lines.add(i, new LineDelegate(line, maxCharsPerLine, charsEndLine));
-                /*    */
+
             }
-            /*    */
+
         }
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public List<ILine> getLines()
-    /*    */ {
-        /* 41 */
+
+    public List<ILine> getLines() {
+
         return this.lines;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public List<? extends IAnchor> getAnchors()
-    /*    */ {
-        /* 46 */
+
+    public List<? extends IAnchor> getAnchors() {
+
         return this.part.getAnchors();
-        /*    */
+
     }
-    /*    */
+
 }
 
 

@@ -1,164 +1,118 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.parts.units.code.impl;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.units.code.ICodeItem;
-/*    */ import com.pnfsoftware.jeb.core.units.code.ICodePackage;
-/*    */ import java.util.List;
+import com.pnfsoftware.jeb.core.units.code.ICodePackage;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class SimpleCodePackage
-        /*    */ implements ICodePackage
-        /*    */ {
-    /*    */   private String name;
-    /*    */   private String address;
+import java.util.List;
 
-    /*    */
-    /*    */
-    public SimpleCodePackage(String name)
-    /*    */ {
-        /* 29 */
+
+public class SimpleCodePackage
+        implements ICodePackage {
+    private String name;
+    private String address;
+
+
+    public SimpleCodePackage(String name) {
+
         this(name, null);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
+
     public SimpleCodePackage(String name, String address) {
-        /* 33 */
+
         this.name = name;
-        /* 34 */
+
         this.address = address;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public long getItemId()
-    /*    */ {
-        /* 39 */
+
+    public long getItemId() {
+
         return 0L;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public int getIndex()
-    /*    */ {
-        /* 44 */
+
+    public int getIndex() {
+
         return 0;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public String getAddress()
-    /*    */ {
-        /* 49 */
+
+    public String getAddress() {
+
         return this.address;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public String getName(boolean effective)
-    /*    */ {
-        /* 54 */
+
+    public String getName(boolean effective) {
+
         return this.name;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public String getSignature(boolean effective)
-    /*    */ {
-        /* 59 */
+
+    public String getSignature(boolean effective) {
+
         return null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean isInternal()
-    /*    */ {
-        /* 64 */
+
+    public boolean isInternal() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean isArtificial()
-    /*    */ {
-        /* 69 */
+
+    public boolean isArtificial() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public int getGenericFlags()
-    /*    */ {
-        /* 74 */
+
+    public int getGenericFlags() {
+
         return 0;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean isRootPackage()
-    /*    */ {
-        /* 79 */
+
+    public boolean isRootPackage() {
+
         return false;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public ICodePackage getParentPackage()
-    /*    */ {
-        /* 84 */
+
+    public ICodePackage getParentPackage() {
+
         return null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public List<? extends ICodePackage> getChildrenPackages()
-    /*    */ {
-        /* 89 */
+
+    public List<? extends ICodePackage> getChildrenPackages() {
+
         return null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public List<? extends ICodeItem> getChildren()
-    /*    */ {
-        /* 94 */
+
+    public List<? extends ICodeItem> getChildren() {
+
         return null;
-        /*    */
+
     }
-    /*    */
+
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\code\impl\SimpleCodePackage.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

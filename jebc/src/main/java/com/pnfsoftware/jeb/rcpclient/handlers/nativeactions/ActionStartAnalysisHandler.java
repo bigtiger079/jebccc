@@ -1,73 +1,55 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class ActionStartAnalysisHandler
-        /*    */ extends NativeCodeBaseHandler
-        /*    */ {
-    /*    */
-    public ActionStartAnalysisHandler()
-    /*    */ {
-        /* 20 */
+
+public class ActionStartAnalysisHandler
+        extends NativeCodeBaseHandler {
+
+    public ActionStartAnalysisHandler() {
+
         super("startAnalysis", "Start or resume an analysis", 0);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 25 */
+
+    public boolean canExecute() {
+
         if (!canExecuteAndNativeCheck(this.part, false)) {
-            /* 26 */
+
             return false;
-            /*    */
+
         }
-        /*    */
-        /* 29 */
+
+
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        /* 30 */
+
         if (pbcu == null) {
-            /* 31 */
+
             return false;
-            /*    */
+
         }
-        /*    */
-        /* 34 */
+
+
         return pbcu.isAnalysisCompleted();
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 39 */
+
+    public void execute() {
+
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        /*    */
-        /*    */
-        /* 42 */
+
+
         pbcu.performAnalysis(true, Boolean.valueOf(true), null);
-        /*    */
-        /* 44 */
+
+
         postExecute(this.shell);
-        /*    */
+
     }
-    /*    */
+
 }
 
 

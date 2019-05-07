@@ -671,19 +671,12 @@ public class ConsoleViewer
 
     private int getCommonLength(String reference, String comparison) {
 
-        for (int i = 0;
-             (i < reference.length()) && (i < comparison.length()); i++) {
-
+        for (int i = 0; (i < reference.length()) && (i < comparison.length()); i++) {
             if (reference.charAt(i) != comparison.charAt(i)) {
-
                 return i;
-
             }
-
         }
-
-        return i;
-
+        return 0;
     }
 
 

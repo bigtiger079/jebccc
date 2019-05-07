@@ -1,49 +1,33 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class WindowMaximizeHandler
-        /*    */ extends JebBaseHandler
-        /*    */ {
-    /* 19 */   final String tagMaximized = "Maximized";
 
-    /*    */
-    /*    */
+public class WindowMaximizeHandler
+        extends JebBaseHandler {
+    final String tagMaximized = "Maximized";
+
+
     public WindowMaximizeHandler() {
-        /* 22 */
+
         super(null, S.s(517), null, null);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 27 */
+
+    public boolean canExecute() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
+
     public void execute() {
     }
-    /*    */
+
 }
 
 

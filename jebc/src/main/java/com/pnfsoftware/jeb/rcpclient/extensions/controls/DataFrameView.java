@@ -234,8 +234,9 @@ public class DataFrameView
     private class CopyAction implements IOperable {
         public CopyAction() {
         }
+
         public boolean verifyOperation(OperationRequest req) {
-            switch (req.getOperation().ordinal()){
+            switch (req.getOperation().ordinal()) {
                 case 1:
                     return DataFrameView.this.getSelectedRow() >= 0;
             }
@@ -243,7 +244,7 @@ public class DataFrameView
         }
 
         public boolean doOperation(OperationRequest req) {
-            switch (req.getOperation().ordinal()){
+            switch (req.getOperation().ordinal()) {
                 case 1:
                     IStructuredSelection selection = (IStructuredSelection) DataFrameView.this.viewer.getSelection();
                     if ((DataFrameView.this.viewer.getLabelProvider() instanceof IExportableData)) {

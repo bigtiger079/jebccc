@@ -1,36 +1,31 @@
-/*    */
 package com.pnfsoftware.jeb.rcpclient;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class Launcher
-        /*    */ {
-    /*    */
-    public static void main(String[] args)
-    /*    */ {
-        /* 18 */
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class Launcher {
+    private static final ILogger logger = GlobalLog.getLogger(Launcher.class);
+    public static void main(String[] args) {
         JebApp app = new JebApp(args);
-        /* 19 */
         app.build();
-        /* 20 */
         app.run();
-        /*    */
+        logger.info("Ha Ha Ha!!! I am start up");
+        File file = new File("E:/test.txt");
+        try {
+            FileOutputStream outputStream = new FileOutputStream(file);
+            outputStream.write("Ha Ha Ha!!! I am start up".getBytes());
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    /*    */
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\Launcher.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -1,81 +1,54 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class FileOpenrecentHandler
-        /*    */ extends JebBaseHandler
-        /*    */ {
-    /*    */ String path;
 
-    /*    */
-    /*    */
-    public FileOpenrecentHandler()
-    /*    */ {
-        /* 21 */
+public class FileOpenrecentHandler
+        extends JebBaseHandler {
+    String path;
+
+
+    public FileOpenrecentHandler() {
+
         super(null, "Clear the recent files list", null, null);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
+
     public FileOpenrecentHandler(String path) {
-        /* 25 */
+
         super(null, path, null, null);
-        /* 26 */
+
         this.path = path;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 31 */
+
+    public boolean canExecute() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 36 */
-        if (this.path != null)
-            /*    */ {
-            /*    */
-            /*    */
-            /*    */
-            /*    */
-            /*    */
-            /*    */
-            /*    */
-            /*    */
-            /* 46 */
+
+    public void execute() {
+
+        if (this.path != null) {
+
+
             this.context.loadInputAsProject(this.shell, this.path);
-            /*    */
-        }
-        /*    */
-        else {
-            /* 49 */
+
+        } else {
+
             this.context.clearRecentlyOpenedFiles();
-            /*    */
+
         }
-        /*    */
+
     }
-    /*    */
+
 }
 
 

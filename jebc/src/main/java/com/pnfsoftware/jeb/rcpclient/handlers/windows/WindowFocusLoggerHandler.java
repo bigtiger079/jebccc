@@ -1,55 +1,39 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-/*    */ import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
-/*    */ import org.eclipse.swt.SWT;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
+import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
+import org.eclipse.swt.SWT;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class WindowFocusLoggerHandler
-        /*    */ extends JebBaseHandler
-        /*    */ {
-    /*    */
-    public WindowFocusLoggerHandler()
-    /*    */ {
-        /* 23 */
+
+public class WindowFocusLoggerHandler
+        extends JebBaseHandler {
+
+    public WindowFocusLoggerHandler() {
+
         super("showLogger", S.s(565), null, null);
-        /* 24 */
+
         setAccelerator(SWT.MOD1 | 0x32);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 29 */
+
+    public boolean canExecute() {
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 34 */
+
+    public void execute() {
+
         this.context.getPartManager().activateLogger(true);
-        /*    */
+
     }
-    /*    */
+
 }
 
 

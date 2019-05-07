@@ -1,47 +1,31 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.operations;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.client.api.IOperable;
-/*    */ import com.pnfsoftware.jeb.client.api.Operation;
-/*    */ import org.eclipse.swt.SWT;
+import com.pnfsoftware.jeb.client.api.IOperable;
+import com.pnfsoftware.jeb.client.api.Operation;
+import org.eclipse.swt.SWT;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class OperationFindNext
-        /*    */ extends AbstractOperation
-        /*    */ {
-    /*    */
-    public OperationFindNext(IOperable object)
-    /*    */ {
-        /* 24 */
+
+public class OperationFindNext
+        extends AbstractOperation {
+
+    public OperationFindNext(IOperable object) {
+
         super(object, S.s(346));
-        /* 25 */
+
         setAccelerator(SWT.MOD1 | 0x4B);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    protected Operation getOperation()
-    /*    */ {
-        /* 30 */
+
+    protected Operation getOperation() {
+
         return Operation.FIND_NEXT;
-        /*    */
+
     }
-    /*    */
+
 }
 
 

@@ -9,7 +9,3 @@ public abstract interface IPatternMatcher {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclien\\util\regex\IPatternMatcher.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

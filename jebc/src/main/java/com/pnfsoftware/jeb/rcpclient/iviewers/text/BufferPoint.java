@@ -1,86 +1,68 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class BufferPoint
-        /*    */ {
-    /*    */   public int lineIndex;
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */   public int columnOffset;
 
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    /*    */
-    public BufferPoint(int columnOffset, int lineIndex)
-    /*    */ {
-        /* 21 */
+public class BufferPoint {
+    public int lineIndex;
+
+
+    public int columnOffset;
+
+
+    public BufferPoint(int columnOffset, int lineIndex) {
+
         this.lineIndex = lineIndex;
-        /* 22 */
+
         this.columnOffset = columnOffset;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public int hashCode()
-    /*    */ {
-        /* 27 */
+
+    public int hashCode() {
+
         int prime = 31;
-        /* 28 */
+
         int result = 1;
-        /* 29 */
+
         result = 31 * result + this.columnOffset;
-        /* 30 */
+
         result = 31 * result + this.lineIndex;
-        /* 31 */
+
         return result;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean equals(Object obj)
-    /*    */ {
-        /* 36 */
+
+    public boolean equals(Object obj) {
+
         if (this == obj)
-            /* 37 */ return true;
-        /* 38 */
+            return true;
+
         if (obj == null)
-            /* 39 */ return false;
-        /* 40 */
+            return false;
+
         if (getClass() != obj.getClass())
-            /* 41 */ return false;
-        /* 42 */
+            return false;
+
         BufferPoint other = (BufferPoint) obj;
-        /* 43 */
+
         if (this.columnOffset != other.columnOffset)
-            /* 44 */ return false;
-        /* 45 */
+            return false;
+
         if (this.lineIndex != other.lineIndex)
-            /* 46 */ return false;
-        /* 47 */
+            return false;
+
         return true;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public String toString()
-    /*    */ {
-        /* 52 */
+
+    public String toString() {
+
         return String.format("(%d,%d)", new Object[]{Integer.valueOf(this.lineIndex), Integer.valueOf(this.columnOffset)});
-        /*    */
+
     }
-    /*    */
+
 }
 
 

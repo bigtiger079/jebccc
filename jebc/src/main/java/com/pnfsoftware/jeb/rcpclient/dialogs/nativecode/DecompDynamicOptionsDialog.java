@@ -5,6 +5,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.decompiler.IOptimizerInfo;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JebDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.parts.units.code.DecompDynamicOptionsView;
+
 import java.util.Map;
 
 import org.eclipse.swt.widgets.Composite;

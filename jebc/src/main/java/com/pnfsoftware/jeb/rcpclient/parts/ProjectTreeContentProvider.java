@@ -1,368 +1,253 @@
-/*     */
+
 package com.pnfsoftware.jeb.rcpclient.parts;
-/*     */
-/*     */
+
 
 import com.pnfsoftware.jeb.core.IArtifact;
-/*     */ import com.pnfsoftware.jeb.core.IEnginesContext;
-/*     */ import com.pnfsoftware.jeb.core.ILiveArtifact;
-/*     */ import com.pnfsoftware.jeb.core.IRuntimeProject;
-/*     */ import com.pnfsoftware.jeb.core.units.IUnit;
-/*     */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*     */ import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
-/*     */ import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
-/*     */ import com.pnfsoftware.jeb.rcpclient.extensions.UIRunnable;
-/*     */ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTreeContentProvider;
-/*     */ import com.pnfsoftware.jeb.util.collect.ArrayUtil;
-/*     */ import com.pnfsoftware.jeb.util.events.AggregatorDispatcher;
-/*     */ import com.pnfsoftware.jeb.util.events.IEvent;
-/*     */ import com.pnfsoftware.jeb.util.events.IEventListener;
-/*     */ import com.pnfsoftware.jeb.util.logging.GlobalLog;
-/*     */ import com.pnfsoftware.jeb.util.logging.ILogger;
-/*     */ import java.util.ArrayList;
-/*     */ import java.util.Arrays;
-/*     */ import java.util.List;
-/*     */ import org.eclipse.jface.viewers.TreeViewer;
-/*     */ import org.eclipse.jface.viewers.Viewer;
-/*     */ import org.eclipse.swt.widgets.Control;
-/*     */ import org.eclipse.swt.widgets.Display;
+import com.pnfsoftware.jeb.core.IEnginesContext;
+import com.pnfsoftware.jeb.core.ILiveArtifact;
+import com.pnfsoftware.jeb.core.IRuntimeProject;
+import com.pnfsoftware.jeb.core.units.IUnit;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
+import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
+import com.pnfsoftware.jeb.rcpclient.extensions.UIRunnable;
+import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTreeContentProvider;
+import com.pnfsoftware.jeb.util.collect.ArrayUtil;
+import com.pnfsoftware.jeb.util.events.AggregatorDispatcher;
+import com.pnfsoftware.jeb.util.events.IEvent;
+import com.pnfsoftware.jeb.util.events.IEventListener;
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
 
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */ class ProjectTreeContentProvider
-        /*     */ implements IFilteredTreeContentProvider
-        /*     */ {
-    /*  40 */   private static final ILogger logger = GlobalLog.getLogger(ProjectTreeContentProvider.class);
-    /*     */   private IEnginesContext engctx;
-    /*     */   private IEventListener listener;
-    /*     */   private RcpClientContext context;
-    /*     */   private PartManager pman;
-    /*     */   private RcpClientProperties contextProperties;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    /*     */
-    /*     */
-    public ProjectTreeContentProvider(RcpClientContext context, PartManager pman)
-    /*     */ {
-        /*  49 */
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+
+
+class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
+    private static final ILogger logger = GlobalLog.getLogger(ProjectTreeContentProvider.class);
+    private IEnginesContext engctx;
+    private IEventListener listener;
+    private RcpClientContext context;
+    private PartManager pman;
+    private RcpClientProperties contextProperties;
+
+
+    public ProjectTreeContentProvider(RcpClientContext context, PartManager pman) {
+
         this.context = context;
-        /*  50 */
+
         this.pman = pman;
-        /*     */
-        /*  52 */
+
+
         this.contextProperties = context.getProperties();
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    /*     */
+
     public void dispose() {
     }
 
-    /*     */
-    /*     */
-    /*     */
-    public void inputChanged(final Viewer viewer, Object oldInput, Object newInput)
-    /*     */ {
-        /*  61 */
+
+    public void inputChanged(final Viewer viewer, Object oldInput, Object newInput) {
         logger.i("Input changed from %s to %s", new Object[]{oldInput, newInput});
-        /*     */
-        /*  63 */
         if (this.listener != null) {
-            /*  64 */
             if (oldInput != this.engctx) {
-                /*  65 */
                 throw new RuntimeException();
-                /*     */
             }
-            /*  67 */
             this.engctx.removeListener(this.listener);
-            /*  68 */
             this.listener = null;
-            /*     */
         }
-        /*     */
-        /*  71 */
         if (newInput == null) {
-            /*  72 */
             this.engctx = null;
-            /*  73 */
-            return;
-            /*     */
-        }
-        /*     */
-        /*  76 */
-        if (!(newInput instanceof IEnginesContext)) {
-            /*  77 */
-            throw new RuntimeException();
-            /*     */
-        }
-        /*  79 */
-        this.engctx = ((IEnginesContext) newInput);
-        /*     */
-        /*  81 */
-        Display display = viewer.getControl().getDisplay();
-        /*     */
-        /*     */
-        /*     */
-        /*  85 */
-        this.engctx.addListener(this. = new AggregatorDispatcher(10000, 500L)
-                /*     */ {
-            /*     */
-            public void onMultipleEvents(final List<IEvent> events) {
-                /*  88 */
-                ProjectTreeContentProvider.logger.i("Event received: %s", new Object[]{events});
-                /*     */
-                /*     */
-                /*  91 */
-                if (!viewer.isDisposed()) {
-                    /*  92 */
-                    UIExecutor.async(viewer, new UIRunnable()
-                            /*     */ {
-                        /*     */
-                        public void runi() {
-                            /*  95 */
-                            if ((ProjectTreeContentProvider .1. this.val$display.isDisposed()) ||
-                            (ProjectTreeContentProvider .1. this.val$viewer.getControl().isDisposed())){
-                                /*  96 */
-                                return;
-                                /*     */
-                            }
-                            /*     */
-                            /*  99 */
-                            TreeViewer treeViewer = (TreeViewer) ProjectTreeContentProvider .1. this.val$viewer;
-                            /*     */
-                            /*     */
-                            /* 102 */
-                            ProjectTreeContentProvider .1. this.val$viewer.refresh();
-                            /*     */
-                            /* 104 */
-                            for (IEvent e : events) {
-                                /* 105 */
-                                Object object = e.getData();
-                                /* 106 */
-                                if ((object instanceof ILiveArtifact))
-                                    /*     */ {
-                                    /* 108 */
-                                    boolean useAManager = (ProjectTreeContentProvider.this.contextProperties != null) && (ProjectTreeContentProvider.this.contextProperties.shouldAutoOpenDefaultUnit());
-                                    /*     */
-                                    /* 110 */
-                                    IArtifactManager amanager = ArtifactManager.getInstance();
-                                    /*     */
-                                    /*     */
-                                    /* 113 */
-                                    List<Object> expanded = new ArrayList();
-                                    /* 114 */
-                                    expanded.add(((ILiveArtifact) object).getRuntimeProject());
-                                    /* 115 */
-                                    expanded.add(object);
-                                    /* 116 */
-                                    if (useAManager) {
-                                        /* 117 */
-                                        expanded.addAll(amanager.getExpandedUnits((ILiveArtifact) object));
-                                        /*     */
+        } else if (newInput instanceof IEnginesContext) {
+            this.engctx = (IEnginesContext) newInput;
+            final Display display = viewer.getControl().getDisplay();
+            IEnginesContext iEnginesContext = this.engctx;
+            final Viewer viewer2 = viewer;
+            this.listener = new AggregatorDispatcher(10000, 500) {
+                public void onMultipleEvents(final List<IEvent> events) {
+                    ProjectTreeContentProvider.logger.i("Event received: %s", new Object[]{events});
+                    if (!display.isDisposed()) {
+                        UIExecutor.async(display, new UIRunnable() {
+                            public void runi() {
+                                if (!display.isDisposed() && !viewer2.getControl().isDisposed()) {
+                                    TreeViewer treeViewer = (TreeViewer) viewer2;
+                                    viewer2.refresh();
+                                    for (IEvent e : events) {
+                                        Object object = e.getData();
+                                        if (object instanceof ILiveArtifact) {
+                                            boolean useAManager;
+                                            if (ProjectTreeContentProvider.this.contextProperties == null || !ProjectTreeContentProvider.this.contextProperties.shouldAutoOpenDefaultUnit()) {
+                                                useAManager = false;
+                                            } else {
+                                                useAManager = true;
+                                            }
+                                            IArtifactManager amanager = ArtifactManager.getInstance();
+                                            List<Object> expanded = new ArrayList();
+                                            expanded.add(((ILiveArtifact) object).getRuntimeProject());
+                                            expanded.add(object);
+                                            if (useAManager) {
+                                                expanded.addAll(amanager.getExpandedUnits((ILiveArtifact) object));
+                                            }
+                                            ProjectTreeContentProvider.logger.i("  newly expanded (%d): %s", new Object[]{Integer.valueOf(expanded.size()), expanded});
+                                            expanded.addAll(0, Arrays.asList(treeViewer.getExpandedElements()));
+                                            treeViewer.setExpandedElements(expanded.toArray());
+                                            if (useAManager) {
+                                                amanager.processLiveArtifact(ProjectTreeContentProvider.this.context, ProjectTreeContentProvider.this.pman, (ILiveArtifact) object, treeViewer);
+                                            }
+                                        }
                                     }
-                                    /* 119 */
-                                    ProjectTreeContentProvider.logger.i("  newly expanded (%d): %s", new Object[]{Integer.valueOf(expanded.size()), expanded});
-                                    /* 120 */
-                                    expanded.addAll(0, Arrays.asList(treeViewer.getExpandedElements()));
-                                    /* 121 */
-                                    treeViewer.setExpandedElements(expanded.toArray());
-                                    /*     */
-                                    /* 123 */
-                                    if (useAManager)
-                                        /*     */ {
-                                        /* 125 */
-                                        amanager.processLiveArtifact(ProjectTreeContentProvider.this.context, ProjectTreeContentProvider.this.pman, (ILiveArtifact) object, treeViewer);
-                                        /*     */
-                                    }
-                                    /*     */
                                 }
-                                /*     */
                             }
-                            /*     */
-                        }
-                        /*     */
-                    });
-                    /*     */
+                        });
+                    }
                 }
-                /*     */
-            }
-            /*     */
-        });
-        /*     */
+            };
+            iEnginesContext.addListener(this.listener);
+        } else {
+            throw new RuntimeException();
+        }
+
     }
 
-    /*     */
-    /*     */
-    /*     */
-    public Object[] getElements(Object element)
-    /*     */ {
-        /* 139 */
+
+    public Object[] getElements(Object element) {
+
         return getChildren(element);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    /*     */
-    public Object getParent(Object element)
-    /*     */ {
-        /* 145 */
+
+    public Object getParent(Object element) {
+
         return null;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    /*     */
-    public Object[] getChildren(Object element)
-    /*     */ {
-        /* 151 */
+
+    public Object[] getChildren(Object element) {
+
         Object[] r = new Object[0];
-        /* 152 */
+
         if ((element instanceof IEnginesContext)) {
-            /* 153 */
+
             IEnginesContext input = (IEnginesContext) element;
-            /* 154 */
+
             r = input.getProjects().toArray();
-            /*     */
-        }
-        /* 156 */
-        else if ((element instanceof IRuntimeProject)) {
-            /* 157 */
+
+        } else if ((element instanceof IRuntimeProject)) {
+
             IRuntimeProject input = (IRuntimeProject) element;
-            /* 158 */
+
             r = input.getLiveArtifacts().toArray();
-            /*     */
-        }
-        /* 160 */
-        else if ((element instanceof ILiveArtifact)) {
-            /* 161 */
+
+        } else if ((element instanceof ILiveArtifact)) {
+
             ILiveArtifact input = (ILiveArtifact) element;
-            /* 162 */
+
             r = input.getUnits().toArray();
-            /*     */
-        }
-        /* 164 */
-        else if ((element instanceof IUnit)) {
-            /* 165 */
+
+        } else if ((element instanceof IUnit)) {
+
             IUnit input = (IUnit) element;
-            /* 166 */
+
             if (input.getChildren() != null) {
-                /* 167 */
+
                 r = input.getChildren().toArray();
-                /*     */
-            }
-            /*     */
-            else {
-                /* 170 */
+
+            } else {
+
                 r = ArrayUtil.NO_OBJECT;
-                /*     */
+
             }
-            /*     */
+
         }
-        /*     */
-        /* 174 */
+
+
         return r;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    /*     */
-    public boolean hasChildren(Object element)
-    /*     */ {
-        /* 180 */
+
+    public boolean hasChildren(Object element) {
+
         boolean r = false;
-        /* 181 */
+
         if ((element instanceof IEnginesContext)) {
-            /* 182 */
+
             IEnginesContext input = (IEnginesContext) element;
-            /* 183 */
+
             r = !input.getProjects().isEmpty();
-            /*     */
-        }
-        /* 185 */
-        else if ((element instanceof IRuntimeProject)) {
-            /* 186 */
+
+        } else if ((element instanceof IRuntimeProject)) {
+
             IRuntimeProject input = (IRuntimeProject) element;
-            /* 187 */
+
             r = !input.getLiveArtifacts().isEmpty();
-            /*     */
-        }
-        /* 189 */
-        else if ((element instanceof ILiveArtifact)) {
-            /* 190 */
+
+        } else if ((element instanceof ILiveArtifact)) {
+
             ILiveArtifact input = (ILiveArtifact) element;
-            /* 191 */
+
             r = !input.getUnits().isEmpty();
-            /*     */
-        }
-        /* 193 */
-        else if ((element instanceof IUnit)) {
-            /* 194 */
+
+        } else if ((element instanceof IUnit)) {
+
             IUnit input = (IUnit) element;
-            /* 195 */
+
             r = (input.getChildren() != null) && (!input.getChildren().isEmpty());
-            /*     */
+
         }
-        /*     */
-        /* 198 */
+
+
         return r;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
+
     public static String getString(Object element) {
-        /* 202 */
+
         if ((element instanceof IRuntimeProject)) {
-            /* 203 */
+
             return ((IRuntimeProject) element).getName();
-            /*     */
+
         }
-        /* 205 */
+
         if ((element instanceof ILiveArtifact)) {
-            /* 206 */
+
             return ((ILiveArtifact) element).getArtifact().getName();
-            /*     */
+
         }
-        /* 208 */
+
         if ((element instanceof IUnit)) {
-            /* 209 */
+
             return ((IUnit) element).getName();
-            /*     */
+
         }
-        /* 211 */
+
         if (element != null) {
-            /* 212 */
+
             return element.toString();
-            /*     */
+
         }
-        /* 214 */
+
         return null;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public Object[] getRowElements(Object row)
-    /*     */ {
-        /* 219 */
+
+    public Object[] getRowElements(Object row) {
+
         return new Object[]{getString(row)};
-        /*     */
+
     }
-    /*     */
+
 }
 
 

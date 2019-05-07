@@ -117,8 +117,8 @@ class DropZones {
 
 //                Rectangle r = folder.getItems();
 //                DropZone dropzone = r.length;
-                for(CTabItem item : folder.getItems()){
-                //for (DropZone localDropZone1 = 0; localDropZone1 < dropzone; localDropZone1++) {
+                for (CTabItem item : folder.getItems()) {
+                    //for (DropZone localDropZone1 = 0; localDropZone1 < dropzone; localDropZone1++) {
 
                     if (!avoidIndexes.contains(Integer.valueOf(index))) {
 

@@ -9,7 +9,3 @@ public abstract interface IRcpUnitView
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\IRcpUnitView.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

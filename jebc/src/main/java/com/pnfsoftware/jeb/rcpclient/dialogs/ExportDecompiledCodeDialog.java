@@ -114,7 +114,7 @@ public class ExportDecompiledCodeDialog
         public void widgetSelected(SelectionEvent e) {
 
             //TODO state.ordinal ???
-            switch (this.state.ordinal()){
+            switch (this.state.ordinal()) {
                 case 1:
                 case 2:
                 case 3:

@@ -1,51 +1,34 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*    */ import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
-/*    */ import com.pnfsoftware.jeb.rcpclient.handlers.AbstractDynamicMenuHandler;
-/*    */ import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
-/*    */ import org.eclipse.jface.action.IMenuManager;
+import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
+import com.pnfsoftware.jeb.rcpclient.handlers.AbstractDynamicMenuHandler;
+import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
+import org.eclipse.jface.action.IMenuManager;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class WindowFocusPartMenuHandler
-        /*    */ extends AbstractDynamicMenuHandler
-        /*    */ {
-    /*    */
-    public void menuAboutToShow(IMenuManager manager)
-    /*    */ {
-        /* 28 */
+
+public class WindowFocusPartMenuHandler
+        extends AbstractDynamicMenuHandler {
+
+    public void menuAboutToShow(IMenuManager manager) {
+
         if (!canExecute()) {
-            /* 29 */
+
             return;
-            /*    */
+
         }
-        /*    */
-        /* 32 */
+
+
         for (IMPart part : this.context.getPartManager().getUnitParts()) {
-            /* 33 */
+
             manager.add(new WindowFocusPartHandler(part));
-            /*    */
+
         }
-        /*    */
+
     }
-    /*    */
+
 }
 
 

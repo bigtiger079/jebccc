@@ -64,7 +64,7 @@ import com.pnfsoftware.jeb.rcpclient.extensions.WidgetBoundsManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.App;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Dock;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Folder;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.Panel.SashSelectionFilter;
+import com.pnfsoftware.jeb.rcpclient.extensions.app.Panel;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMAppContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.extensions.binding.ActionEx;
@@ -74,6 +74,7 @@ import com.pnfsoftware.jeb.rcpclient.extensions.state.WidgetWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.themes.ThemeManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.ui.Toast;
 import com.pnfsoftware.jeb.rcpclient.extensions.ui.UITaskManager;
+import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCommentHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionConvertHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCreatePackageHandler;
@@ -439,33 +440,20 @@ public class RcpClientContext
             throw new IllegalStateException("A single instance of the RCP client context is allowed per VM");
         }
         singleIntance = this;
-
-
         this.display = UI.getDisplay();
-
-
         JebDialog.setStandardWidgetManager(this);
-
-
         getThemeManager();
-
 
         this.handlersRefresher = new AbstractRefresher(this.display) {
             protected void performRefresh() {
                 RcpClientContext.this.internalSynchronizedRefreshHandlersStates();
             }
-
-
         };
         this.display.addFilter(3, new Listener() {
-
             public void handleEvent(Event event) {
-
                 Control cursorCtrl = RcpClientContext.this.app.getDisplay().getCursorControl();
                 Control focusControl = RcpClientContext.this.app.getDisplay().getFocusControl();
                 if ((cursorCtrl != null) && (cursorCtrl != focusControl)) {
-
-
                     IMPart part = PartUtil.getPart(cursorCtrl);
                     if (part != null) {
                         RcpClientContext.logger.i("Focus forced in %s", new Object[]{part});
@@ -478,10 +466,8 @@ public class RcpClientContext
         });
         this.display.addFilter(15, new Listener() {
 
-
             public void handleEvent(Event event) {
             }
-
 
         });
         this.display.addFilter(13, new Panel.SashSelectionFilter(30));
@@ -526,10 +512,9 @@ public class RcpClientContext
         }
         updateContributionsRecursively(this.app.getMenuManager());
 
-
-        for (??? =AllHandlers.getInstance().getAll().iterator();
-        ((Iterator) ? ??).hasNext();){
-            JebAction action = (JebAction) ((Iterator) ? ??).next();
+        Iterator<JebBaseHandler> iterator = AllHandlers.getInstance().getAll().iterator();
+       while (iterator.hasNext()) {
+            JebAction action = (JebAction)iterator.next();
             if (action.isEnabled()) {
                 action.setEnabled(true);
             }
@@ -600,7 +585,7 @@ public class RcpClientContext
 
 
         this.logDocument = new Document();
-        ThreadUtil.start(Licensing.isDebugBuild() ? LogManagerRoutine.class.getSimpleName() : null, new LogManagerRoutine(null));
+        ThreadUtil.start(Licensing.isDebugBuild() ? LogManagerRoutine.class.getSimpleName() : null, new LogManagerRoutine());
 
 
         this.errorHandler = new RcpErrorHandler(this);
@@ -1348,7 +1333,7 @@ public class RcpClientContext
     }
 
     Thread startUpdater() {
-        ThreadUtil.start(Licensing.isDebugBuild() ? "Software Updater" : null, new Runnable() {
+        return ThreadUtil.start(Licensing.isDebugBuild() ? "Software Updater" : null, new Runnable() {
             public void run() {
                 int periodInHours = 6;
                 for (; ; ) {
@@ -1383,7 +1368,7 @@ public class RcpClientContext
             int ping = ping(true, Integer.MAX_VALUE, sbi, progressCallback);
             String message;
             if ((ping == -2) && (calledByUser)) {
-                String message = String.format(S.s(94), new Object[]{"software@pnfsoftware.com"});
+                message = String.format(S.s(94), new Object[]{"software@pnfsoftware.com"});
                 UI.warn(message);
             } else if (ping == 2) {
                 this.updateCheckState.set(2);
@@ -1408,7 +1393,7 @@ public class RcpClientContext
                 }
                 UI.info(message);
             }
-            return 1;
+            return true;
         } finally {
             this.updateCheckState.compareAndSet(1, 0);
         }
@@ -1904,23 +1889,23 @@ public class RcpClientContext
     }
 
     public boolean processFileArtifact(Shell shell, final IRuntimeProject project, String path) {
-        logger.info("Adding artifact to project: %s", new Object[]{path});
+        logger.info("Adding artifact to project: %s", path);
         File artifactFile = new File(path);
-
+        final IArtifact artifact;
         try {
-            IArtifact artifact = new Artifact(artifactFile.getName(), new FileInput(artifactFile));
+            artifact = new Artifact(artifactFile.getName(), new FileInput(artifactFile));
             this.projectArtifactCount += 1;
         } catch (IOException e) {
-            logger.warn("The artifact cannot be processed", new Object[0]);
+            logger.warn("The artifact cannot be processed");
             return false;
         }
-        final IArtifact artifact;
+
         getTelemetry().record("projectAddArtifact", "filesize", "" + artifactFile.length());
 
-        executeTask(S.s(664) + "...", new Runnable() {
+        return executeTask(S.s(664) + "...", new Runnable() {
             public void run() {
                 ILiveArtifact liveArtifact = project.processArtifact(artifact);
-                RcpClientContext.logger.i("Artifact yield: %d units", new Object[]{Integer.valueOf(liveArtifact.getUnits().size())});
+                RcpClientContext.logger.i("Artifact yield: %d units", liveArtifact.getUnits().size());
             }
         });
     }
@@ -2049,33 +2034,28 @@ public class RcpClientContext
         if (code == 0L) {
             throw new RuntimeException();
         }
-
-
         notification.clientChoice = 0;
-
         UIExecutor.sync(this.display, new UIRunnable() {
             public void runi() {
                 Shell shell = RcpClientContext.this.getActiveShell();
                 if ((shell == null) || (shell.isDisposed())) {
                     return;
                 }
-
                 if (code == -1L) {
-                    if (notification >= 1) {
+                    if (hintContinueLeft >= 1) {
                         MessageBox mbox = new MessageBox(shell, 456);
                         mbox.setText(S.s(821));
-                        mbox.setMessage(String.format("%s.\n\n%s.", new Object[]{S.s(219),
-                                S.s(220)}));
+                        mbox.setMessage(String.format("%s.\n\n%s.", S.s(219), S.s(220)));
                         int r = mbox.open();
                         if (r == 64) {
                             RcpClientContext.this.saveOpenedProject(shell, false, null);
                         } else if (r == 256) {
-                            this.val$notification.clientChoice = 1;
+                            notification.clientChoice = 1;
                         }
                     } else {
                         MessageBox mbox = new MessageBox(shell, 193);
                         mbox.setText(S.s(304));
-                        mbox.setMessage(String.format("%s.\n\n%s.", new Object[]{S.s(219), "Press Yes to save your work and exit, No to exit without saving"}));
+                        mbox.setMessage(String.format("%s.\n\n%s.", S.s(219), "Press Yes to save your work and exit, No to exit without saving"));
 
                         int r = mbox.open();
                         if (r == 64) {
@@ -2452,27 +2432,26 @@ public class RcpClientContext
     private void saveAppLayoutInformation() {
         if (this.mainShell != null) {
             String s;
-            String s;
             if (this.mainShell.getMaximized()) {
                 s = "-1";
             } else {
                 Rectangle bounds = this.mainShell.getBounds();
-                s = String.format("%d,%d,%d,%d", new Object[]{Integer.valueOf(bounds.x), Integer.valueOf(bounds.y), Integer.valueOf(bounds.width), Integer.valueOf(bounds.height)});
+                s = String.format("%d,%d,%d,%d", bounds.x, bounds.y, bounds.width, bounds.height);
             }
             getPropertyManager().setString("state.MainShellBounds", s);
         }
 
         int ratio = this.app.folderProject.getPanelShare();
-        getPropertyManager().setInteger("state.ProjectFolderRatio", Integer.valueOf(ratio));
+        getPropertyManager().setInteger("state.ProjectFolderRatio", ratio);
 
         ratio = this.app.folderConsoles.getPanelShare();
-        getPropertyManager().setInteger("state.ConsolesFolderRatio", Integer.valueOf(ratio));
+        getPropertyManager().setInteger("state.ConsolesFolderRatio", ratio);
     }
 
     private void removeAppLayoutInformation() {
         getPropertyManager().setString("state.MainShellBounds", "");
-        getPropertyManager().setInteger("state.ProjectFolderRatio", Integer.valueOf(0));
-        getPropertyManager().setInteger("state.ConsolesFolderRatio", Integer.valueOf(0));
+        getPropertyManager().setInteger("state.ProjectFolderRatio", 0);
+        getPropertyManager().setInteger("state.ConsolesFolderRatio", 0);
     }
 
     public void setShouldShowDialog(String widgetName, boolean enabled) {
@@ -2501,7 +2480,7 @@ public class RcpClientContext
     public String getDefaultPathForDialog(String widgetName) {
         String encodedState = getDialogPersistenceDataProvider().load(widgetName);
         Map<String, String> state = Strings.decodeMap(encodedState);
-        return (String) state.get("defaultPath");
+        return state.get("defaultPath");
     }
 
     public ExecutorService getExecutorService() {
@@ -2542,7 +2521,3 @@ public class RcpClientContext
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\RcpClientContext.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

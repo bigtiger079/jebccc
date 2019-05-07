@@ -7,8 +7,7 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 
-public abstract class UIRunnable
-        implements Runnable {
+public abstract class UIRunnable implements Runnable {
     private static final ILogger logger = GlobalLog.getLogger(UIRunnable.class);
 
     public static final long UITHREAD_BLOCK_WARNING_TIME = 100L;

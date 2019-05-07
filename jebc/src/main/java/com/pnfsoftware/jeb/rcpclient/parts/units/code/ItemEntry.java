@@ -1,53 +1,39 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ class ItemEntry
-        /*    */ {
-    /*    */ int offset;
-    /*    */ int size;
-    /*    */ String name;
-    /*    */ INativeType type;
-    /*    */ String comment;
-    /*    */ boolean slack;
 
-    /*    */
-    /*    */   ItemEntry() {
+class ItemEntry {
+    int offset;
+    int size;
+    String name;
+    INativeType type;
+    String comment;
+    boolean slack;
+
+
+    ItemEntry() {
     }
 
-    /*    */
-    /*    */   ItemEntry(int offset, int size, String name, INativeType type, String comment, boolean slack)
-    /*    */ {
-        /* 29 */
+
+    ItemEntry(int offset, int size, String name, INativeType type, String comment, boolean slack) {
+
         this.offset = offset;
-        /* 30 */
+
         this.size = size;
-        /* 31 */
+
         this.name = name;
-        /* 32 */
+
         this.type = type;
-        /* 33 */
+
         this.comment = comment;
-        /* 34 */
+
         this.slack = slack;
-        /*    */
+
     }
-    /*    */
+
 }
 
 

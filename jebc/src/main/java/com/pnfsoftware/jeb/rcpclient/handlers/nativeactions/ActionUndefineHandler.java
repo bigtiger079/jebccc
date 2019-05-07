@@ -1,85 +1,66 @@
-/*    */
+
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
-/*    */
-/*    */
+
 
 import com.pnfsoftware.jeb.client.S;
-/*    */ import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-/*    */ import com.pnfsoftware.jeb.core.units.code.asm.items.INativeItem;
-/*    */ import com.pnfsoftware.jeb.util.logging.GlobalLog;
-/*    */ import com.pnfsoftware.jeb.util.logging.ILogger;
+import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
+import com.pnfsoftware.jeb.core.units.code.asm.items.INativeItem;
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
 
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */
-/*    */ public class ActionUndefineHandler
-        /*    */ extends NativeCodeBaseHandler
-        /*    */ {
-    /* 22 */   private static final ILogger logger = GlobalLog.getLogger(ActionUndefineHandler.class);
 
-    /*    */
-    /*    */
+public class ActionUndefineHandler
+        extends NativeCodeBaseHandler {
+    private static final ILogger logger = GlobalLog.getLogger(ActionUndefineHandler.class);
+
+
     public ActionUndefineHandler() {
-        /* 25 */
+
         super("undefine", S.s(580), 85);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecute()
-    /*    */ {
-        /* 30 */
+
+    public boolean canExecute() {
+
         return canExecuteAndNativeCheck(this.part, true);
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public boolean canExecuteAt(INativeCodeUnit<?> pbcu, long memAddress)
-    /*    */ {
-        /* 35 */
+
+    public boolean canExecuteAt(INativeCodeUnit<?> pbcu, long memAddress) {
+
         if (memAddress == -1L) {
-            /* 36 */
+
             return false;
-            /*    */
+
         }
-        /* 38 */
+
         INativeItem item = pbcu.getNativeItemAt(memAddress);
-        /* 39 */
+
         return item != null;
-        /*    */
+
     }
 
-    /*    */
-    /*    */
-    public void execute()
-    /*    */ {
-        /* 44 */
+
+    public void execute() {
+
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        /* 45 */
+
         long a = getActiveMemoryAddress(this.part, pbcu);
-        /*    */
-        /* 47 */
+
+
         if (!pbcu.undefineItem(a)) {
-            /* 48 */
+
             logger.error("Failed to undefine item at address %Xh", new Object[]{Long.valueOf(a)});
-            /*    */
+
         }
-        /*    */
-        /* 51 */
+
+
         postExecute(this.shell);
-        /*    */
+
     }
-    /*    */
+
 }
 
 

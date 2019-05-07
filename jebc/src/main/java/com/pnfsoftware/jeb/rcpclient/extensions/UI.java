@@ -362,7 +362,7 @@ public class UI {
 
             public void runi() {
 
-                Shell shell0 = this.val$shell != null ? this.val$shell : UI.shellTracker.get();
+                Shell shell0 = shell != null ? shell : UI.shellTracker.get();
 
                 if (shell0 != null) {
 
@@ -442,8 +442,6 @@ public class UI {
             return false;
 
         }
-
-        String title;
 
         String title;
 

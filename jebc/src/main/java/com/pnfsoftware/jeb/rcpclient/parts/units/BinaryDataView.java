@@ -1,234 +1,192 @@
-/*     */
+
 package com.pnfsoftware.jeb.rcpclient.parts.units;
-/*     */
-/*     */
+
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
-/*     */ import com.pnfsoftware.jeb.core.input.InputHelper;
-/*     */ import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
-/*     */ import com.pnfsoftware.jeb.core.output.IItem;
-/*     */ import com.pnfsoftware.jeb.core.output.text.impl.HexDumpDocument;
-/*     */ import com.pnfsoftware.jeb.core.units.IUnit;
-/*     */ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-/*     */ import com.pnfsoftware.jeb.rcpclient.extensions.controls.PrimitiveDisplayView;
-/*     */ import com.pnfsoftware.jeb.util.encoding.Conversion;
-/*     */ import com.pnfsoftware.jeb.util.logging.GlobalLog;
-/*     */ import com.pnfsoftware.jeb.util.logging.ILogger;
-/*     */ import java.io.IOException;
-/*     */ import org.eclipse.swt.custom.SashForm;
-/*     */ import org.eclipse.swt.events.DisposeEvent;
-/*     */ import org.eclipse.swt.events.DisposeListener;
-/*     */ import org.eclipse.swt.layout.FillLayout;
-/*     */ import org.eclipse.swt.widgets.Composite;
+import com.pnfsoftware.jeb.core.input.InputHelper;
+import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
+import com.pnfsoftware.jeb.core.output.IItem;
+import com.pnfsoftware.jeb.core.output.text.impl.HexDumpDocument;
+import com.pnfsoftware.jeb.core.units.IUnit;
+import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
+import com.pnfsoftware.jeb.rcpclient.extensions.controls.PrimitiveDisplayView;
+import com.pnfsoftware.jeb.util.encoding.Conversion;
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
 
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */
-/*     */ public class BinaryDataView
-        /*     */ extends AbstractUnitFragment<IUnit>
-        /*     */ {
-    /*  38 */   private static final ILogger logger = GlobalLog.getLogger(BinaryDataView.class);
-    /*     */
-    /*     */   private InteractiveTextView text;
-    /*     */   private PrimitiveDisplayView helper;
-    /*     */   private ILocationListener locationListener;
+import java.io.IOException;
 
-    /*     */
-    /*     */
-    public BinaryDataView(Composite parent, int flags, RcpClientContext context, IUnit unit, IRcpUnitView unintView, final HexDumpDocument idoc)
-    /*     */ {
-        /*  46 */
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Composite;
+
+
+public class BinaryDataView
+        extends AbstractUnitFragment<IUnit> {
+    private static final ILogger logger = GlobalLog.getLogger(BinaryDataView.class);
+
+    private InteractiveTextView text;
+    private PrimitiveDisplayView helper;
+    private ILocationListener locationListener;
+
+
+    public BinaryDataView(Composite parent, int flags, RcpClientContext context, IUnit unit, IRcpUnitView unintView, final HexDumpDocument idoc) {
+
         super(parent, flags, unit, unintView, context);
-        /*  47 */
+
         setLayout(new FillLayout());
-        /*     */
-        /*  49 */
+
+
         SashForm container = new SashForm(this, 256);
-        /*     */
-        /*  51 */
+
+
         this.text = new InteractiveTextView(container, 0, context, unit, this.unitView, idoc);
-        /*     */
-        /*  53 */
+
+
         this.helper = new PrimitiveDisplayView(container, 0);
-        /*  54 */
+
         container.setWeights(new int[]{65, 35});
-        /*     */
-        /*  56 */
-        this.text.addLocationListener(this. = new ILocationListener()
-                /*     */ {
-            /*     */
+
+
+        this.text.addLocationListener(this.locationListener = new ILocationListener() {
+
             public void locationChanged(String address) {
-                /*  59 */
+
                 if ((address == null) || (address.isEmpty()) || (address.charAt(0) != '@')) {
-                    /*  60 */
+
                     BinaryDataView.this.helper.setBytes(null);
-                    /*  61 */
+
                     return;
-                    /*     */
+
                 }
-                /*     */
-                /*     */
-                /*  65 */
+
+
                 long offset = Conversion.stringToLong(address.substring(1), -1L);
-                /*  66 */
+
                 if (offset < 0L) {
-                    /*  67 */
+
                     BinaryDataView.this.helper.setBytes(null);
-                    /*  68 */
+
                     return;
-                    /*     */
+
                 }
-                /*     */
-                /*  71 */
+
+
                 byte[] data = new byte[32];
-                /*     */
+
                 try {
-                    /*  73 */
+
                     int len = InputHelper.readBytes(idoc.getInput(), offset, data, 0, data.length);
-                    /*  74 */
+
                     BinaryDataView.this.helper.setBytes(data, 0, len);
-                    /*     */
-                    /*     */
+
+
+                } catch (IOException localIOException) {
                 }
-                /*     */ catch (IOException localIOException) {
-                }
-                /*     */
+
             }
-            /*     */
-            /*  80 */
+
+
         });
-        /*  81 */
-        addDisposeListener(new DisposeListener()
-                /*     */ {
-            /*     */
+
+        addDisposeListener(new DisposeListener() {
+
             public void widgetDisposed(DisposeEvent e) {
-                /*  84 */
+
                 BinaryDataView.this.text.removeLocationListener(BinaryDataView.this.locationListener);
-                /*     */
+
             }
-            /*     */
+
         });
-        /*     */
+
     }
 
-    /*     */
-    /*     */
+
     public InteractiveTextView getInteractiveText() {
-        /*  90 */
+
         return this.text;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
+
     public PrimitiveDisplayView getHelper() {
-        /*  94 */
+
         return this.helper;
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public boolean verifyOperation(OperationRequest req)
-    /*     */ {
-        /*  99 */
+
+    public boolean verifyOperation(OperationRequest req) {
+
         return this.text.verifyOperation(req);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public boolean doOperation(OperationRequest req)
-    /*     */ {
-        /* 104 */
+
+    public boolean doOperation(OperationRequest req) {
+
         return this.text.doOperation(req);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public boolean isActiveItem(IItem item)
-    /*     */ {
-        /* 109 */
+
+    public boolean isActiveItem(IItem item) {
+
         return this.text.isActiveItem(item);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public IItem getActiveItem()
-    /*     */ {
-        /* 114 */
+
+    public IItem getActiveItem() {
+
         return this.text.getActiveItem();
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public String getActiveAddress(AddressConversionPrecision precision)
-    /*     */ {
-        /* 119 */
+
+    public String getActiveAddress(AddressConversionPrecision precision) {
+
         return this.text.getActiveAddress();
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public boolean isValidActiveAddress(String address, Object object)
-    /*     */ {
-        /* 124 */
+
+    public boolean isValidActiveAddress(String address, Object object) {
+
         return this.text.isValidActiveAddress(address, object);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public boolean setActiveAddress(String address, Object extra, boolean record)
-    /*     */ {
-        /* 129 */
+
+    public boolean setActiveAddress(String address, Object extra, boolean record) {
+
         return this.text.setActiveAddress(address, extra, record);
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public byte[] export()
-    /*     */ {
-        /* 134 */
+
+    public byte[] export() {
+
         return this.text.export();
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public AbstractUnitFragment.FragmentType getFragmentType()
-    /*     */ {
-        /* 139 */
+
+    public AbstractUnitFragment.FragmentType getFragmentType() {
+
         return this.text.getFragmentType();
-        /*     */
+
     }
 
-    /*     */
-    /*     */
-    public String getExportExtension()
-    /*     */ {
-        /* 144 */
+
+    public String getExportExtension() {
+
         return this.text.getExportExtension();
-        /*     */
+
     }
-    /*     */
+
 }
 
 
