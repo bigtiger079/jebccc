@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Launcher {
     private static final ILogger logger = GlobalLog.getLogger(Launcher.class);
+
     public static void main(String[] args) {
         JebApp app = new JebApp(args);
         app.build();

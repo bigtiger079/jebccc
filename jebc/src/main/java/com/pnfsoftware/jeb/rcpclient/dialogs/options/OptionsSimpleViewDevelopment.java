@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-
 public class OptionsSimpleViewDevelopment
         extends Composite {
     protected static final String CLIENT = "Client";
@@ -30,16 +29,11 @@ public class OptionsSimpleViewDevelopment
     public OptionsSimpleViewDevelopment(Composite parent, OptionsChanges optionsChanges) {
         super(parent, 0);
         setLayout(new FillLayout());
-
         Composite ph = new Composite(this, 0);
         ph.setLayout(new GridLayout(1, false));
-
         this.optionsChanges = optionsChanges;
-
         initSimpleViewElementListener("Client");
         initSimpleViewElementListener("Engines");
-
-
         Group dev = createGroup(ph, S.s(271));
         createBooleanOption(dev, S.s(272), S.s(816), "Client", "DevelopmentMode");
         EditableList cp = createClasspathOption(dev, S.s(646), "Engines",
@@ -75,7 +69,6 @@ public class OptionsSimpleViewDevelopment
 
     private EditableList createClassnameOption(Composite parent, String label, String propertyManagerKey, String propertyKey, String separator, String classPathProperty, String classPathSeparator) {
         return
-
                 new OptionsSimpleViewClassname(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator, classPathProperty, classPathSeparator).create(parent, label);
     }
 

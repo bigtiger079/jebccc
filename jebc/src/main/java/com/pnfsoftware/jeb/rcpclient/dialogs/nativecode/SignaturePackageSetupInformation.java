@@ -1,10 +1,8 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
-
 public class SignaturePackageSetupInformation {
     String name;
     String author;
-
     String description;
 
     public String getName() {

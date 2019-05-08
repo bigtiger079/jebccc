@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class DefineCodeDialog extends JebDialog {
     private long address;
     private INativeCodeUnit<?> unit;
@@ -34,7 +33,6 @@ public class DefineCodeDialog extends JebDialog {
     public DefineCodeDialog(Shell parent, long address, INativeCodeUnit<?> unit) {
         super(parent, "Define code", true, true);
         this.scrolledContainer = true;
-
         this.address = address;
         this.unit = unit;
     }
@@ -57,49 +55,39 @@ public class DefineCodeDialog extends JebDialog {
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         this.widgetInfo = new Label(parent, 0);
         this.widgetInfo.setText("N/A");
         this.widgetInfo.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
-
         new Label(parent, 0).setText(S.s(52) + ": ");
         this.widgetAddress = new Text(parent, 2052);
         this.widgetAddress.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 16));
         this.widgetAddress.setText(String.format("%Xh", new Object[]{Long.valueOf(this.address)}));
         this.widgetAddress.selectAll();
         this.widgetAddress.setFocus();
-
-
         Group g1 = new Group(parent, 0);
         g1.setText("Mode");
         g1.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         g1.setLayout(new GridLayout(2, false));
-
         createHelpLabel(g1, "0: \"default\" mode; -1: \"current\" mode; else, use 16/32/64/etc.");
         new Label(g1, 0).setText(S.s(723) + ": ");
         this.widgetProcMode = new Text(g1, 2052);
         GridData textGridData = UIUtil.createGridDataFillHorizontally();
-
         textGridData.minimumWidth = 30;
         this.widgetProcMode.setLayoutData(textGridData);
         this.widgetProcMode.setText("" + this.info.getProcessorMode());
         this.widgetProcMode.selectAll();
-
         Group g2 = new Group(parent, 0);
         g2.setText("Count");
         g2.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         g2.setLayout(new GridLayout(2, false));
-
         createHelpLabel(g2, "Use -1 to disassemble as many instructions as possible.");
         new Label(g2, 0).setText("Maximum instruction count: ");
         this.widgetMaxInsnCount = new Text(g2, 2052);
         this.widgetMaxInsnCount.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetMaxInsnCount.setText("" + this.info.getMaxInstructionCount());
         this.widgetMaxInsnCount.selectAll();
-
         createOkayCancelButtons(parent);
         this.widgetOk = getButtonByStyle(32);
-
         this.widgetAddress.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 DefineCodeDialog.this.update();
@@ -109,7 +97,6 @@ public class DefineCodeDialog extends JebDialog {
             public void modifyText(ModifyEvent e) {
                 DefineCodeDialog.this.update();
             }
-
         });
         update();
     }

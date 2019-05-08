@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
-
 import java.io.InputStream;
 
 import org.eclipse.swt.SWTException;
@@ -13,11 +12,9 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-
 public class AnimatedGif
         extends Canvas {
     private final ImageLoader loader = new ImageLoader();
-
     private Display display;
     private int img;
     private volatile boolean animating;
@@ -95,7 +92,6 @@ public class AnimatedGif
                     }
                 }
                 AnimatedGif.this.display.syncExec(new Runnable() {
-
                     public void run() {
                         // Byte code:
                         //   0: aconst_null
@@ -158,16 +154,9 @@ public class AnimatedGif
                         // Exception table:
                         //   from	to	target	type
                         //   2	49	67	finally
-
                     }
-
                 });
-
             }
-
         };
-
     }
-
-
 }

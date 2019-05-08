@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class SignaturePackageCreationDialog
         extends JebDialog {
     private INativeCodeUnit<?> unit;
@@ -42,7 +41,6 @@ public class SignaturePackageCreationDialog
         return this.info;
     }
 
-
     protected void onConfirm() {
         if (this.packageName.getText().isEmpty()) {
             UI.error("Package name cannot be empty");
@@ -51,12 +49,9 @@ public class SignaturePackageCreationDialog
         NativeSignatureDBManager nsdbManager = this.unit.getSignatureManager();
         if (nsdbManager.getUserCreatedPackageFolder() == null) {
             UI.error(String.format("Folder for user-created signatures has not been set. Please create the folder 'siglibs%s%s' in your JEB client folder (and re-start the client).", new Object[]{File.separator, "custom"}));
-
-
             return;
         }
         File packageFile = new File(nsdbManager.getUserCreatedPackageFolder() + File.separator + this.packageName.getText() + ".siglib");
-
         if (packageFile.exists()) {
             MessageBox mb = new MessageBox(this.shell, 200);
             mb.setText(S.s(821));
@@ -67,40 +62,30 @@ public class SignaturePackageCreationDialog
             }
             packageFile.delete();
         }
-
         this.info = new SignaturePackageSetupInformation();
         this.info.name = this.packageName.getText();
         this.info.author = this.packageAuthor.getText();
         this.info.description = this.packageDescription.getText();
-
         this.confirmed = true;
         super.onConfirm();
     }
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         new Label(parent, 0).setText("Name: ");
         this.packageName = new InputField(parent, "(cannot be empty)", null, 30);
-
         new Label(parent, 0).setText("Author: ");
         this.packageAuthor = new InputField(parent, null, Licensing.user_name, 30);
-
         new Label(parent, 0).setText("Description: ");
         this.packageDescription = new InputField(parent, null, null, 40);
-
-
         new Label(parent, 0).setText("Architecture: ");
         Text packageProcMode = new Text(parent, 2052);
         packageProcMode.setLayoutData(UIUtil.createGridDataFillHorizontally());
         packageProcMode.setText(this.unit.getProcessor().getType().toString());
         packageProcMode.setEditable(false);
-
         UIUtil.setStandardLayout(parent, 1);
         new Label(parent, 0)
                 .setText(String.format("Note: package will be created under 'siglibs%s%s' in JEB client folder", new Object[]{File.separator, "custom"}));
-
-
         createOkayCancelButtons(parent);
     }
 }

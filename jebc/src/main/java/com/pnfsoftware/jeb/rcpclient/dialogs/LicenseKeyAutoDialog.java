@@ -27,34 +27,23 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class LicenseKeyAutoDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(LicenseKeyAutoDialog.class);
-
     private String licdata;
-
     private Net net;
-
     private boolean success;
-
     private String lickey;
-
     private IGraphicalTaskExecutor executor;
-
     private Text textKeyname;
-
     private Text textKey;
-
     private Button btnGen;
-
     private Button btnManualGen;
 
     public LicenseKeyAutoDialog(Shell parent, String licdata, Net net, IGraphicalTaskExecutor executor) {
         super(parent, "JEB", true, true);
         this.scrolledContainer = true;
         setVisualBounds(-1, 50, -1, -1);
-
         this.licdata = licdata;
         this.net = new Net(net);
         this.executor = executor;
@@ -71,14 +60,11 @@ public class LicenseKeyAutoDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
-
         parent.addListener(21, new Listener() {
             public void handleEvent(Event event) {
                 if (!LicenseKeyAutoDialog.this.success) {
                     LicenseKeyAutoDialog.this.lickey = null;
                 }
-
             }
         });
         String hello = String.format(S.s(364), new Object[]{Licensing.user_name});
@@ -86,41 +72,28 @@ public class LicenseKeyAutoDialog
         Label labelInfo = new Label(parent, 64);
         labelInfo.setText(message);
         labelInfo.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
-
         new Label(parent, 0).setText(S.s(423) + ": ");
         this.textKeyname = new Text(parent, 2052);
         this.textKeyname.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.textKeyname.setText(String.format("%s on %s", new Object[]{SystemInformation.username, SystemInformation.compname}));
         this.textKeyname.selectAll();
         this.textKeyname.setFocus();
-
-
         new Label(parent, 0).setText(S.s(436) + ": ");
         this.textKey = new Text(parent, 2060);
         this.textKey.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
-
         Composite c4 = new Composite(parent, 0);
         c4.setLayout(new RowLayout(256));
-
-
         this.btnGen = UIUtil.createPushbox(c4, S.s(362), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 Button btn = (Button) event.widget;
-
-
                 if (LicenseKeyAutoDialog.this.lickey != null) {
                     LicenseKeyAutoDialog.this.success = true;
                     LicenseKeyAutoDialog.this.shell.close();
                     return;
                 }
-
                 String keyname = LicenseKeyAutoDialog.this.textKeyname.getText();
                 final String urlparams = String.format("licdata=%s&keyname=%s", new Object[]{Strings.urlencodeUTF8(LicenseKeyAutoDialog.this.licdata), Strings.urlencodeUTF8(keyname)});
-
                 btn.setText(S.s(638) + "...");
-
                 BusyIndicator.showWhile(event.display, new Runnable() {
                     public void run() {
                         String[] urlbases = {"https://www.pnfsoftware.com/jps/genkey", "https://lise.pnfsoftware.com/jps/genkey"};
@@ -140,7 +113,6 @@ public class LicenseKeyAutoDialog
                         LicenseKeyAutoDialog.logger.error("Server did not respond with a license key", new Object[0]);
                     }
                 });
-
                 if (LicenseKeyAutoDialog.this.lickey != null) {
                     LicenseKeyAutoDialog.this.onLicenseKeyChange(false);
                     String msg = String.format("%s.\n\n%s.", new Object[]{S.s(438),
@@ -149,16 +121,12 @@ public class LicenseKeyAutoDialog
                 } else {
                     btn.setText(S.s(362));
                     String msg = String.format("%s. Potential reasons for failure include:\n\n- This machine could be offline or blocking connections to pnfsoftware.com: Automatic Key Generation requires an active Internet connection. If that is the case, you may try Manual Key Generation.\n- You may have reached the maximum number of keys that can be generated for this license: If you need to generate new keys or deprecate old ones, email licensing@pnfsoftware.com.", new Object[]{
-
-
                             S.s(439)});
                     MessageDialog.openError(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 }
             }
         });
         this.btnGen.setToolTipText("The automatic generation of a license key requires an active Internet connection.\nSpecify your proxy settings first if you are using one.");
-
-
         this.btnManualGen = UIUtil.createPushbox(c4, S.s(452), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 LicenseKeyDialog dlg2 = new LicenseKeyDialog(UIUtil.getParentShell(LicenseKeyAutoDialog.this.shell), LicenseKeyAutoDialog.this.licdata);
@@ -168,7 +136,6 @@ public class LicenseKeyAutoDialog
                     String msg = String.format("%s.\n\n%s.", new Object[]{S.s(770), S.s(637)});
                     MessageDialog.openInformation(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 }
-
             }
         });
         UIUtil.createPushbox(c4, S.s(668), new SelectionAdapter() {
@@ -177,7 +144,6 @@ public class LicenseKeyAutoDialog
                 if (proxyinfo != null) {
                     Net.setGlobalProxyInformation(proxyinfo);
                 }
-
             }
         });
         this.shell.setDefaultButton(this.btnGen);
@@ -187,7 +153,6 @@ public class LicenseKeyAutoDialog
         if (this.lickey == null) {
             throw new IllegalStateException();
         }
-
         if (unknownKeyname) {
             this.textKeyname.setText("N/A");
         }

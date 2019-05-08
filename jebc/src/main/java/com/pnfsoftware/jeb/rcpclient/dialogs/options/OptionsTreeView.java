@@ -41,11 +41,9 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
-
 public class OptionsTreeView
         extends PatternTreeView {
     private static final ILogger logger = GlobalLog.getLogger(OptionsTreeView.class);
-
     private static final String[] titleColumns = {S.s(667), S.s(779), S.s(247), S.s(815)};
     private final OptionsChanges.Changes changes;
 
@@ -55,18 +53,13 @@ public class OptionsTreeView
         return new OptionsTreeView(parent, pm, changes, labelProvider, patternMatcher, expandAfterFilter);
     }
 
-
     private OptionsTreeView(Composite parent, IPropertyManager pm, OptionsChanges.Changes changes, LabelProvider labelProvider, IPatternMatcher patternMatcher, boolean expandAfterFilter) {
         super(parent, 65664, titleColumns, null, patternMatcher, expandAfterFilter);
         this.changes = changes;
-
-
         final FilteredTreeViewer viewer = getTreeViewer();
         ContextMenuFilter.addContextMenu(viewer.getViewer(), getFilterText(), labelProvider, new String[]{
                 S.s(667), S.s(779)}, new Boolean[]{Boolean.FALSE, Boolean.TRUE});
-
         final TreeContentProvider contentProvider = new TreeContentProvider();
-
         EditingSupport editingSupport = new ValueEditingSupport(viewer.getViewer());
         ColumnViewerToolTipSupport.enableFor(viewer.getViewer());
         changes.listeners.add(new Listener() {
@@ -78,9 +71,7 @@ public class OptionsTreeView
                         prop.display = Objects.toString(data[1]);
                         ((TreeViewer) viewer.getViewer()).update(prop, null);
                     }
-
                 }
-
             }
         });
         Tree tree = getTree();
@@ -89,13 +80,9 @@ public class OptionsTreeView
         TreeColumn[] cols = tree.getColumns();
         TreeViewerColumn tcv = new TreeViewerColumn((TreeViewer) viewer.getViewer(), cols[3]);
         tcv.setEditingSupport(editingSupport);
-
-
         viewer.setContentProvider(contentProvider);
         viewer.setLabelProvider(labelProvider);
         viewer.setInput(pm);
-
-
         viewer.expandAll();
         for (TreeColumn col : cols) {
             col.pack();
@@ -113,10 +100,8 @@ public class OptionsTreeView
         IPropertyManager pm;
         List<OptionsTreeView.PropertyLine> propertyLines = new ArrayList();
 
-
         public void dispose() {
         }
-
 
         public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
             this.pm = ((IPropertyManager) newInput);
@@ -144,17 +129,13 @@ public class OptionsTreeView
                 IPropertyDefinitionManager pdm = (IPropertyDefinitionManager) parentElement;
                 return enumerate(this.pm, pdm);
             }
-
             return ArrayUtil.NO_OBJECT;
         }
 
         private Object[] enumerate(IPropertyManager pm, IPropertyDefinitionManager pdm) {
             List<Object> r = new ArrayList();
-
-
             for (IPropertyDefinition definition : pdm.getDefinitions())
                 if (!definition.isInternal()) {
-
                     OptionsTreeView.PropertyLine line = new OptionsTreeView.PropertyLine();
                     line.fqname = (pdm.getNamespace() + "." + definition.getName());
                     line.definition = definition;
@@ -182,13 +163,9 @@ public class OptionsTreeView
                     return ((OptionsTreeView.PropertyLine) o1).definition.getName().compareTo(((OptionsTreeView.PropertyLine) o2).definition.getName());
                 }
             });
-
-
             for (IPropertyDefinitionManager pdmNext : pdm.getChildren()) {
                 r.add(pdmNext);
             }
-
-
             return r.toArray();
         }
 
@@ -215,7 +192,6 @@ public class OptionsTreeView
             String text = "";
             Object elt = cell.getElement();
             int index = cell.getColumnIndex();
-
             if (((elt instanceof IPropertyDefinitionManager)) &&
                     (index == 0)) {
                 text = ((IPropertyDefinitionManager) elt).getRegion();
@@ -223,7 +199,6 @@ public class OptionsTreeView
                     text = "<root>";
                 }
             }
-
             if ((elt instanceof OptionsTreeView.PropertyLine)) {
                 if (index == 0) {
                     text = ((OptionsTreeView.PropertyLine) elt).definition.getName();
@@ -235,7 +210,6 @@ public class OptionsTreeView
                     text = ((OptionsTreeView.PropertyLine) elt).display;
                 }
             }
-
             cell.setText(text);
             super.update(cell);
         }
@@ -252,7 +226,6 @@ public class OptionsTreeView
                     (key == 0)) {
                 return ((PropertyDefinitionManager) element).getRegion();
             }
-
             if (element != null) {
                 return element.toString();
             }
@@ -272,7 +245,6 @@ public class OptionsTreeView
         public ValueEditingSupport(ColumnViewer viewer) {
             super(viewer);
             this.viewer = viewer;
-
             Composite parent = (Composite) viewer.getControl();
             this.editor = new TextCellEditor(parent);
             this.booleanEditor = new CheckboxCellEditor(parent);
@@ -282,12 +254,10 @@ public class OptionsTreeView
             if (!(element instanceof OptionsTreeView.PropertyLine)) {
                 return null;
             }
-
             OptionsTreeView.PropertyLine line = (OptionsTreeView.PropertyLine) element;
             if ((line.definition.getType() instanceof IPropertyTypeBoolean)) {
                 return this.booleanEditor;
             }
-
             return this.editor;
         }
 
@@ -300,7 +270,6 @@ public class OptionsTreeView
             if ((line.definition.getType() instanceof IPropertyTypeBoolean)) {
                 return Boolean.valueOf(line.value.toString());
             }
-
             Object value = ((OptionsTreeView.PropertyLine) element).value;
             if (value == null) {
                 return "";
@@ -314,13 +283,10 @@ public class OptionsTreeView
                 OptionsTreeView.logger.i("Illegal value for property", new Object[0]);
                 return;
             }
-
             OptionsTreeView.logger.i("Property %s is being updated", new Object[]{line.fqname});
             line.value = value;
             line.display = value.toString();
-
             this.viewer.update(element, null);
-
             OptionsTreeView.this.changes.addChange(line.fqname, value);
         }
     }

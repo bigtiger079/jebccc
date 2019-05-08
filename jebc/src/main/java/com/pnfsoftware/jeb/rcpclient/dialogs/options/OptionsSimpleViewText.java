@@ -9,7 +9,6 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-
 public class OptionsSimpleViewText
         extends AbstractOptionsSimpleWidget {
     public OptionsSimpleViewText(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey) {
@@ -33,7 +32,6 @@ public class OptionsSimpleViewText
         DirectorySelectorView dsv = new DirectorySelectorView(parent, label, getValue());
         dsv.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         Text text = dsv.getTextbox();
-
         if (toolTip != null) {
             text.setToolTipText(toolTip);
         }
@@ -63,11 +61,9 @@ public class OptionsSimpleViewText
                 }
                 OptionsSimpleViewText.this.changes.addChange(OptionsSimpleViewText.this.propertyKey, newValue);
             }
-
         });
         addSimpleViewElements(text);
     }
-
 
     protected static void refresh(Text t, Object[] data) {
         Object tokenPositionObj = t.getData("TOKENIZE_NUMBER");

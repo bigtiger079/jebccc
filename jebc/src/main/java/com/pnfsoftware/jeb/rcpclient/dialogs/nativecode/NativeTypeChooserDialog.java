@@ -13,7 +13,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class NativeTypeChooserDialog
         extends JebDialog {
     private INativeCodeUnit<?> unit;
@@ -23,7 +22,6 @@ public class NativeTypeChooserDialog
     public NativeTypeChooserDialog(Shell parent, INativeCodeUnit<?> unit) {
         super(parent, "Choose a type", true, false);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         if (unit == null) {
             throw new NullPointerException();
         }
@@ -37,16 +35,12 @@ public class NativeTypeChooserDialog
 
     public void createContents(Composite parent) {
         parent.setLayout(new GridLayout(1, false));
-
         this.v = new NativeTypesView(parent, 0, null, this.unit, null, 3);
         this.v.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, true));
-
-
         this.v.getViewer().addDoubleClickListener(new IDoubleClickListener() {
             public void doubleClick(DoubleClickEvent e) {
                 NativeTypeChooserDialog.this.onConfirm();
             }
-
         });
         createOkayCancelButtons(parent);
     }

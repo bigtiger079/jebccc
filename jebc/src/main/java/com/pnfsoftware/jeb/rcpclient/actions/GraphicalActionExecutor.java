@@ -60,7 +60,6 @@ public class GraphicalActionExecutor {
     public boolean execute(ActionUIContext uictx, Object value) {
         logger.i("Executing: %s", new Object[]{uictx});
         ActionContext info = uictx.getActionContext();
-
         switch (info.getActionId()) {
             case 2: {
                 ActionRenameData data = new ActionRenameData();
@@ -81,7 +80,6 @@ public class GraphicalActionExecutor {
                     }
                 }
                 break;
-
             }
             case 3: {
                 ActionCommentData data = new ActionCommentData();
@@ -158,8 +156,6 @@ public class GraphicalActionExecutor {
                     }
                     return info.getUnit().executeAction(info, data);
                 }
-
-
                 IUnitFragment fragment = uictx.getFragment();
                 if ((fragment instanceof InteractiveTextView)) {
                     long itemId = info.getItemId();
@@ -177,7 +173,6 @@ public class GraphicalActionExecutor {
                         }
                     }
                 }
-
                 break;
             }
             case 12: {
@@ -194,7 +189,6 @@ public class GraphicalActionExecutor {
                     if (codeUnit != null) {
                         CodeHierarchyDialog dlg = new CodeHierarchyDialog(this.shell, codeUnit, data.getBaseNode(), data.getBaseNodeForAscendingHierarchy(), this.context);
                         String selectedAddress = dlg.open();
-
                         gotoAddress(this.context, info.getUnit(), selectedAddress);
                         return info.getUnit().executeAction(info, data);
                     }
@@ -208,12 +202,10 @@ public class GraphicalActionExecutor {
                     int index = dlg.open().intValue();
                     if (index >= 0) {
                         String address = (String) data.getAddresses().get(index);
-
                         gotoAddress(this.context, info.getUnit(), address);
                     }
                     return info.getUnit().executeAction(info, data);
                 }
-
                 break;
             }
             case 1: {
@@ -221,7 +213,6 @@ public class GraphicalActionExecutor {
                 if (info.getUnit().prepareExecution(info, data)) {
                     return info.getUnit().executeAction(info, data);
                 }
-
                 break;
             }
             case 5: {
@@ -229,8 +220,6 @@ public class GraphicalActionExecutor {
                 if (info.getUnit().prepareExecution(info, data)) {
                     return info.getUnit().executeAction(info, data);
                 }
-
-
                 break;
             }
             case 6: {
@@ -238,7 +227,6 @@ public class GraphicalActionExecutor {
                 if (pbcu == null) {
                     return false;
                 }
-
                 ActionReplaceData data = new ActionReplaceData();
                 if (info.getUnit().prepareExecution(info, data)) {
                     Object o = data.getTargetObject();
@@ -266,11 +254,9 @@ public class GraphicalActionExecutor {
 
     public static int gotoAddress(RcpClientContext context, IUnit unit, String selectedAddress) {
         PartManager pman = context.getPartManager();
-
         if ((pman == null) || (unit == null)) {
             throw new IllegalArgumentException();
         }
-
         if (selectedAddress == null) {
             return 0;
         }
@@ -282,7 +268,6 @@ public class GraphicalActionExecutor {
         }
         UnitPartManager object;
         IRcpUnitFragment activeFragment;
-
         for (Iterator localIterator1 = objects.iterator(); localIterator1.hasNext(); ) {
             object = (UnitPartManager) localIterator1.next();
             activeFragment = object.getActiveFragment();
@@ -290,10 +275,8 @@ public class GraphicalActionExecutor {
                 cnt++;
                 break;
             }
-
             for (IRcpUnitFragment fragment : object.getPreviouslyActiveFragments())
                 if (fragment != activeFragment) {
-
                     if (fragment.setActiveAddress(selectedAddress, null, true)) {
                         object.setActiveFragment(fragment);
                         cnt++;

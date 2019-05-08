@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.extensions.ui;
 
-
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
 import com.pnfsoftware.jeb.util.base.Couple;
 import com.pnfsoftware.jeb.util.concurrent.ThreadUtil;
@@ -26,272 +25,144 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class Toast {
     private static final ILogger logger = GlobalLog.getLogger(Toast.class);
-
     private static final String TEXTPAD = "  ";
-
     private static final int MARGIN = 70;
-
     private int state;
-
     private Display display;
-
     private Composite topLevelContainer;
-
     private List<Couple<Control, PaintListener>> paintListeners = new ArrayList();
-
     private Point toastSize;
-
     private Rectangle toastRectangle;
-
     private int position;
-
     private long duration;
-
     private String text;
-
     private Font font;
-
     private Color fgcolor;
-
     private Color bgcolor;
 
-
     public Toast(Composite topLevelContainer, String text) {
-
         this.topLevelContainer = topLevelContainer;
-
         this.display = topLevelContainer.getDisplay();
-
-
         setText(text);
-
-
         this.position = 1024;
-
         this.duration = 1500L;
-
     }
-
 
     public static Toast normal(Composite topLevelContainer, String text) {
-
         return new Toast(topLevelContainer, text);
-
     }
-
 
     public static Toast inverted(Composite topLevelContainer, String text) {
-
         return
                 new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getBackground()).setBackgroundColor(topLevelContainer.getForeground());
-
     }
-
 
     public static Toast urgent(Composite topLevelContainer, String text) {
-
         return
-
-
                 new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getDisplay().getSystemColor(3)).setBackgroundColor(topLevelContainer.getDisplay().getSystemColor(7)).setFont(SwtRegistry.getInstance().getFont(topLevelContainer.getFont(), null, Integer.valueOf(1)));
-
     }
-
 
     public Display getDisplay() {
-
         return this.display;
-
     }
-
 
     public Composite getTopLevelContainer() {
-
         return this.topLevelContainer;
-
     }
-
 
     private void prepareGC(GC gc) {
-
         if (this.bgcolor != null) {
-
             gc.setBackground(this.bgcolor);
-
         }
-
         if (this.fgcolor != null) {
-
             gc.setForeground(this.fgcolor);
-
         }
-
         if (this.font != null) {
-
             gc.setFont(this.font);
-
         }
-
     }
-
 
     private void verifyState() {
-
         if (this.state != 0) {
-
             throw new IllegalStateException();
-
         }
-
     }
-
 
     public void show() {
-
         verifyState();
-
         this.state = 1;
-
-
         this.topLevelContainer.addControlListener(new ControlAdapter() {
-
             public void controlResized(ControlEvent e) {
-
                 Toast.this.updateToastBounds();
-
             }
-
         });
-
         updateToastBounds();
-
-
         prepare(this.topLevelContainer);
-
-
         ThreadUtil.start(new Runnable() {
-
             public void run() {
-
                 try {
-
                     Thread.sleep(Toast.this.duration);
-
                 } catch (InterruptedException localInterruptedException) {
                 }
-
-
                 Toast.this.display.asyncExec(new Runnable() {
-
                     public void run() {
-
                         Toast.this.dispose();
-
                     }
-
                 });
-
             }
-
         });
-
         this.topLevelContainer.redraw();
-
     }
-
 
     public Toast setPosition(int position) {
-
         this.position = position;
-
         return this;
-
     }
-
 
     public Toast setDuration(long duration) {
-
         verifyState();
-
         this.duration = duration;
-
         return this;
-
     }
-
 
     public Toast setText(String text) {
-
         verifyState();
-
         this.text = ("  " + Strings.safe(text) + "  ");
-
         return this;
-
     }
-
 
     public Toast setFont(Font font) {
-
         verifyState();
-
         this.font = font;
-
         return this;
-
     }
-
 
     public Toast setForegroundColor(Color fgcolor) {
-
         verifyState();
-
         this.fgcolor = fgcolor;
-
         return this;
-
     }
-
 
     public Toast setBackgroundColor(Color bgcolor) {
-
         verifyState();
-
         this.bgcolor = bgcolor;
-
         return this;
-
     }
 
-
     final PaintListener paintListener = new PaintListener() {
-
         public void paintControl(PaintEvent e) {
-
             if (!(e.widget instanceof Control)) {
-
                 return;
-
             }
-
             Control ctl = (Control) e.widget;
-
-
             GC gc = e.gc;
-
             Rectangle r = e.display.map(Toast.this.topLevelContainer, ctl, Toast.this.toastRectangle);
-
             Toast.this.prepareGC(gc);
-
             gc.drawText(Toast.this.text, r.x, r.y);
-
         }
-
     };
-
 
     private void updateToastBounds() {
         // Byte code:
@@ -409,81 +280,44 @@ public class Toast {
         // Exception table:
         //   from	to	target	type
         //   19	36	43	finally
-
     }
-
 
     private void prepare(Control ctl) {
-
         ctl.addPaintListener(this.paintListener);
-
         this.paintListeners.add(new Couple(ctl, this.paintListener));
-
-
         if ((ctl instanceof Composite)) {
-
             for (Control c : ((Composite) ctl).getChildren()) {
-
                 prepare(c);
-
             }
-
         }
-
     }
-
 
     private void redrawAll() {
-
         if (this.topLevelContainer != null) {
-
             redraw(this.topLevelContainer);
-
         } else {
-
             for (Shell shell : this.display.getShells()) {
-
                 redraw(shell);
-
             }
-
         }
-
     }
-
 
     private void redraw(Control ctl) {
-
         Point size = ctl.getSize();
-
         ctl.redraw(0, 0, size.x, size.y, true);
-
         ctl.update();
-
     }
-
 
     private void dispose() {
-
         for (Couple<Control, PaintListener> e : this.paintListeners) {
-
             Control ctl = (Control) e.getFirst();
-
             PaintListener listener = (PaintListener) e.getSecond();
-
             if (!ctl.isDisposed()) {
-
                 ctl.removePaintListener(listener);
-
             }
-
         }
-
-
         redrawAll();
-
     }
-
 }
 
 

@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient;
 
-
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCommentHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionConvertHandler;
@@ -133,301 +132,151 @@ import java.util.Map;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.Separator;
 
-
 public class AllHandlers {
     private static final ILogger logger = GlobalLog.getLogger(AllHandlers.class);
-
     private static final AllHandlers instance = new AllHandlers();
 
-
     public static AllHandlers getInstance() {
-
         return instance;
-
     }
-
 
     private Map<Class<? extends JebBaseHandler>, JebBaseHandler> all = new LinkedHashMap();
     public static final int GRP_EDITION = 1;
 
-
     private AllHandlers() {
         add(new FileExportDecompiledCodeHandler());
-
         add(new FileExportActiveViewHandler());
-
         add(new FileExportAllBinaryUnitsHandler());
-
-
         add(new FileScriptsExecuteHandler());
-
         add(new FileScriptsExecutelastHandler());
-
-
         add(new FileEnginesPluginsHandler());
-
         add(new FileEnginesParsersHandler());
-
         add(new FileEnginesContributionsHandler());
-
         add(new FileEnginesInterpretersHandler());
-
-
         add(new FileEnginesTypelibsHandler());
-
         add(new FileEnginesSiglibsHandler());
-
-
         add(new FileOpenHandler());
-
         add(new FileAddHandler());
-
         add(new FileCloseHandler());
-
         add(new FileSaveHandler());
-
         add(new FileSaveAsHandler());
-
         add(new FilePropertiesHandler());
-
         add(new FileShareHandler());
-
         add(new FileDeleteHandler());
-
         add(new FileNotificationsHandler());
-
         add(new FileAdvancedUnitOptionsHandler());
-
         add(new FileExitHandler());
-
-
         add(new EditCutHandler());
-
         add(new EditCopyHandler());
-
         add(new EditPasteHandler());
-
         add(new EditSelectAllHandler());
-
         add(new EditClearHandler());
-
         add(new EditFindHandler());
-
         add(new EditFindnextHandler());
-
         add(new EditSwitchThemeHandler());
-
         add(new EditStyleHandler());
-
         add(new EditOptionsHandler());
-
-
         add(new NavigationDoNotReplaceViewsHandler());
-
         add(new NavigationLocateUnitHandler());
-
         add(new ActionNavigateForwardHandler());
-
         add(new ActionNavigateBackwardHandler());
-
         add(new ActionJumpToHandler());
-
         add(new ActionFollowHandler());
-
         add(new NavigationItemPreviousHandler());
-
         add(new NavigationItemNextHandler());
-
         add(new NavigationLocateInCodeHierarchyHandler());
-
         add(new NavigationLocateInGlobalGraphHandler());
-
         add(new NavigationCanvasCenterHandler());
-
         add(new NavigationCanvasZoomInHandler());
-
         add(new NavigationCanvasZoomOutHandler());
-
         add(new NavigationCanvasZoomResetHandler());
-
-
         add(new ActionDecompileHandler());
-
         add(new ActionGenerateGraphHandler());
-
         add(new ActionCommentHandler());
-
         add(new ActionViewCommentsHandler());
-
         add(new ActionRenameHandler());
-
         add(new ActionXrefHandler());
-
         add(new ActionConvertHandler());
-
         add(new ActionReplaceHandler());
-
         add(new ActionDeleteHandler());
-
         add(new ActionCreatePackageHandler());
-
         add(new ActionMoveToPackageHandler());
-
         add(new ActionTypeHierarchyHandler());
-
         add(new ActionOverridesHandler());
-
-
         add(new ActionStartAnalysisHandler());
-
         add(new ActionStopAnalysisHandler());
-
         add(new ActionDefineDataHandler());
-
         add(new ActionEditTypeHandler());
-
         add(new ActionSelectTypeHandler());
-
         add(new ActionEditArrayHandler());
-
         add(new ActionDefineStringHandler());
-
         add(new ActionEditStringHandler());
-
         add(new ActionOpenTypeEditorHandler());
-
         add(new ActionDefineCodeHandler());
-
         add(new ActionEditInstructionHandler());
-
         add(new ActionEditCodeHandler());
-
         add(new ActionDefineProcedureHandler());
-
         add(new ActionEditProcedureHandler());
-
         add(new ActionEditStackframeHandler());
-
         add(new ActionCreateProcedureSignatureHandler());
-
         add(new ActionSelectSignaturePackageHandler());
-
         add(new ActionCreateSignaturePackageHandler());
-
         add(new ActionAutoSigningModeHandler());
-
         add(new ActionUndefineHandler());
-
-
         add(new DebuggerAttachHandler());
-
         add(new DebuggerRestartHandler());
-
         add(new DebuggerDetachHandler());
-
         add(new DebuggerRunHandler());
-
         add(new DebuggerPauseHandler());
-
         add(new DebuggerTerminateHandler());
-
         add(new DebuggerResumeThreadHandler());
-
         add(new DebuggerSuspendThreadHandler());
-
         add(new DebuggerStepIntoHandler());
-
         add(new DebuggerStepOverHandler());
-
         add(new DebuggerStepOutHandler());
-
         add(new DebuggerRunToLineHandler());
-
         add(new DebuggerToggleBreakpointHandler());
-
-
         add(new WindowToggleToolbarHandler());
-
         add(new WindowToggleStatusHandler());
-
         add(new WindowRefreshHandler());
-
         add(new WindowResetUIStateHandler());
-
         add(new WindowClosepartHandler());
-
         add(new WindowFocusProjectExplorerHandler());
-
         add(new WindowFocusLoggerHandler());
-
         add(new WindowFocusTerminalHandler());
-
         add(new WindowFocusHierarchyHandler());
-
-
         add(new HelpUserManualHandler());
-
         add(new HelpFAQHandler());
-
         add(new HelpGroupHandler());
-
         add(new HelpDevPortalHandler());
-
         add(new HelpApidocHandler());
-
         add(new HelpChangelistHandler());
-
         add(new HelpCheckupdateHandler());
-
         add(new HelpAboutHandler());
-
-
         add(new ActionExtractToHandler());
-
         add(new ActionParseAtHandler());
-
-
         add(new InternalPrintModelHandler());
-
         add(new InternalLoadModelHandler());
-
         add(new InternalSaveModelHandler());
-
     }
-
 
     private void add(JebBaseHandler handler) {
-
         if (this.all.put(handler.getClass(), handler) != null) {
-
             throw new RuntimeException("Duplicate handler: " + handler.getClass().getSimpleName());
-
         }
-
     }
-
 
     public JebBaseHandler get(Class<? extends JebBaseHandler> c) {
-
         JebBaseHandler h = (JebBaseHandler) this.all.get(c);
-
         if (h == null) {
-
             throw new RuntimeException("Unknown handler: " + c.getSimpleName());
-
         }
-
         return h;
-
     }
-
 
     public Collection<JebBaseHandler> getAll() {
-
         return this.all.values();
-
     }
-
 
     public <T extends JebBaseHandler> T create(Class<T> cl) {
         try {
@@ -449,205 +298,105 @@ public class AllHandlers {
         if (mgr.getItems().length > 0) {
             mgr.add(new Separator());
         }
-
         if (group == 1) {
             mgr.add(new EditCutHandler());
-
             mgr.add(new EditCopyHandler());
-
             mgr.add(new EditPasteHandler());
-
             mgr.add(new EditSelectAllHandler());
-
         } else if (group == 2) {
-
             mgr.add(new EditFindHandler());
-
             mgr.add(new EditFindnextHandler());
-
         } else if (group == 3) {
-
             mgr.add(new ActionJumpToHandler());
-
             mgr.add(new ActionFollowHandler());
-
             mgr.add(new ActionNavigateForwardHandler());
-
             mgr.add(new ActionNavigateBackwardHandler());
-
         } else if (group == 4) {
-
             mgr.add(new NavigationCanvasCenterHandler());
-
             mgr.add(new NavigationCanvasZoomInHandler());
-
             mgr.add(new NavigationCanvasZoomOutHandler());
-
             mgr.add(new NavigationCanvasZoomResetHandler());
-
         } else if (group == 5) {
-
             mgr.add(new ActionDecompileHandler());
-
             mgr.add(new ActionCommentHandler());
-
             mgr.add(new ActionRenameHandler());
-
             mgr.add(new ActionXrefHandler());
-
             mgr.add(new ActionCreatePackageHandler());
-
             mgr.add(new ActionMoveToPackageHandler());
-
             mgr.add(new ActionTypeHierarchyHandler());
-
             mgr.add(new ActionOverridesHandler());
-
         } else if (group == 6) {
-
             mgr.add(new ActionDecompileHandler());
-
             mgr.add(new ActionGenerateGraphHandler());
-
             mgr.add(new ActionCommentHandler());
-
             mgr.add(new ActionViewCommentsHandler());
-
             mgr.add(new ActionRenameHandler());
-
             mgr.add(new ActionXrefHandler());
-
             mgr.add(new ActionConvertHandler());
-
             mgr.add(new ActionReplaceHandler());
-
             mgr.add(new ActionDeleteHandler());
-
             mgr.add(new ActionCreatePackageHandler());
-
             mgr.add(new ActionMoveToPackageHandler());
-
             mgr.add(new ActionTypeHierarchyHandler());
-
             mgr.add(new ActionOverridesHandler());
-
         } else if (group == 7) {
-
             mgr.add(new ActionDefineDataHandler());
-
             mgr.add(new ActionDefineCodeHandler());
-
             mgr.add(new ActionEditTypeHandler());
-
             mgr.add(new ActionSelectTypeHandler());
-
             mgr.add(new ActionEditArrayHandler());
-
             mgr.add(new ActionDefineStringHandler());
-
             mgr.add(new ActionEditStringHandler());
-
             mgr.add(new ActionOpenTypeEditorHandler());
-
             mgr.add(new ActionEditInstructionHandler());
-
             mgr.add(new ActionEditCodeHandler());
-
             mgr.add(new ActionDefineProcedureHandler());
-
             mgr.add(new ActionEditProcedureHandler());
-
             mgr.add(new ActionEditStackframeHandler());
-
             mgr.add(new ActionCreateProcedureSignatureHandler());
-
             mgr.add(new ActionSelectSignaturePackageHandler());
-
             mgr.add(new ActionCreateSignaturePackageHandler());
-
             mgr.add(new ActionAutoSigningModeHandler());
-
             mgr.add(new ActionUndefineHandler());
-
         } else if (group == 8) {
-
             mgr.add(new DebuggerRunHandler());
-
             mgr.add(new DebuggerPauseHandler());
-
             mgr.add(new DebuggerTerminateHandler());
-
             mgr.add(new DebuggerResumeThreadHandler());
-
             mgr.add(new DebuggerSuspendThreadHandler());
-
             mgr.add(new DebuggerStepIntoHandler());
-
             mgr.add(new DebuggerStepOverHandler());
-
             mgr.add(new DebuggerStepOutHandler());
-
             mgr.add(new DebuggerRunToLineHandler());
-
             mgr.add(new DebuggerToggleBreakpointHandler());
-
         }
-
     }
-
 
     public boolean attemptExecution(Class<? extends JebBaseHandler> handlerType) {
-
         JebBaseHandler h = get(handlerType);
-
         if (!h.canExecute()) {
-
             return false;
-
         }
-
-
         h.execute();
-
         return true;
-
     }
-
 
     public static void dumpTemplateShortcutsFile(String basedir)
             throws IOException {
-
         StringBuilder sb = new StringBuilder("#------------------------------------------------------------------------------\n# JEB Custom Keyboard Shortcuts\n#------------------------------------------------------------------------------\n\n# 1) Rename or copy this file to jeb-shortcuts.cfg\n# 2) Uncomment and add your own keyboard shortcuts for the actions for which you'd like to override the default shortcuts\n\n# Example: by default, Jump is mapped to the 'G' key; the following line (minus the # character) can be used to remap the action to CTRL+J:\n#jump=Ctrl+J\n\n# *** CUSTOMIZABLE HANDLERS ***\n\n");
-
-
         for (JebBaseHandler h : getInstance().getAll()) {
-
             String id = h.getId();
-
             if (!Strings.isBlank(id)) {
-
                 sb.append(String.format("#%s=\n", new Object[]{id}));
-
             }
-
         }
-
-
         String s = sb.toString();
-
         if (OSType.determine().isWindows()) {
-
             s = s.replace("\n", "\r\n");
-
         }
-
-
         File file = new File(basedir, "build/extra/bin/jeb-shortcuts.cfg.TEMPLATE");
-
         IO.writeFile(file, s);
-
     }
-
 }
 
 

@@ -19,9 +19,7 @@ public class KeyShortcutsManager {
     Map<Integer, String> rmap = new HashMap();
 
     public KeyShortcutsManager(SimplePropertyManager pm) {
-
         this.pm = pm;
-
         for (String actionId : pm.getConfiguration().getAllPropertyKeys()) {
             if (Strings.isBlank(actionId)) {
                 logger.error("Action id is blank \"%s\"", new Object[]{actionId});
@@ -30,7 +28,6 @@ public class KeyShortcutsManager {
             if (keycode == 0) {
                 logger.error("Illegal action definition \"%s=%s\"", new Object[]{actionId, pm.getString(actionId)});
             }
-
             if (this.map.containsKey(actionId)) {
                 logger.error("Action \"%s\" is already defined", new Object[]{actionId});
             }
@@ -42,7 +39,6 @@ public class KeyShortcutsManager {
             this.rmap.put(Integer.valueOf(keycode), actionId);
         }
     }
-
 
     public boolean isReserved(int keycode) {
         return getActionIdForKeycode(keycode) != null;
@@ -61,7 +57,6 @@ public class KeyShortcutsManager {
         if (Strings.isBlank(actionId)) {
             return 0;
         }
-
         String s = this.pm.getString(actionId);
         if (Strings.isBlank(s)) {
             return 0;
@@ -69,17 +64,10 @@ public class KeyShortcutsManager {
         KeyStroke ks;
         try {
             ks = KeyStroke.getInstance(s.trim());
-
         } catch (ParseException e) {
-
             return 0;
-
         }
-
         int keycode = ks.getModifierKeys() | ks.getNaturalKey();
-
         return keycode;
-
     }
-
 }

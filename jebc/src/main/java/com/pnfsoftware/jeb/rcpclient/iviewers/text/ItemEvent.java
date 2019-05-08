@@ -1,9 +1,7 @@
 
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
-
 import com.pnfsoftware.jeb.core.output.text.ITextItem;
-
 
 public class ItemEvent {
     public static final int CaretOut = 0;
@@ -12,15 +10,10 @@ public class ItemEvent {
     public ITextItem item;
     public int type;
 
-
     public ItemEvent(ITextItem item, int type) {
-
         this.item = item;
-
         this.type = type;
-
     }
-
 }
 
 

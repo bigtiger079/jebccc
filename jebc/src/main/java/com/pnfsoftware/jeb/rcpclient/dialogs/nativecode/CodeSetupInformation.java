@@ -1,15 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
-
 public class CodeSetupInformation {
     long address;
-
-
     int procMode;
-
-
     int maxInsnCount;
-
 
     public CodeSetupInformation(long address) {
         this(address, 0, 100);

@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-
 public class OptionsSimpleViewClasspath
         extends OptionsSimpleViewList {
     public OptionsSimpleViewClasspath(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey, String separator) {
@@ -30,36 +29,25 @@ public class OptionsSimpleViewClasspath
                 return "";
             }
 
-
             public void setText(String dirname) {
                 OptionsSimpleViewClasspath.this.addToClasspath(dirname);
             }
         }, false);
-
-
         list.addButton(S.s(51) + "...", new FileSelectionListener(parent.getShell(), null, new String[]{"*.jar"}) {
             public String getDefaultText() {
                 return "";
             }
 
-
             public void setText(String file) {
                 OptionsSimpleViewClasspath.this.addToClasspath(file);
             }
         }, false);
-
-
         list.addButton(S.s(284) + "...", new SelectionAdapter() {
-
             public void widgetSelected(SelectionEvent e) {
                 OptionsSimpleViewClasspath.this.onEdit(list);
             }
         }, true);
-
-
         addRemoveButton(list);
-
-
         list.getTable().addMouseListener(new MouseAdapter() {
             public void mouseDoubleClick(MouseEvent e) {
                 OptionsSimpleViewClasspath.this.onEdit(list);

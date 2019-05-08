@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
-
 import com.pnfsoftware.jeb.core.output.code.coordinates.ICodeCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.InstructionCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.MethodCoordinates;
@@ -27,7 +26,6 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-
 public class DalvikCallgraphBuilder
         implements ICallgraphBuilder {
     private ICodeUnit unit;
@@ -37,126 +35,64 @@ public class DalvikCallgraphBuilder
     private String rawfilter;
     private int fltCount;
 
-
     public DalvikCallgraphBuilder(ICodeUnit unit) {
-
         this.unit = unit;
-
     }
 
-
     public Digraph buildModel() {
-
         MultiMap<Integer, Integer> typeToInternalMethods = new MultiMap();
-
         Map<Integer, Integer> methodToType = new HashMap();
-
         Map<Integer, Set<Integer>> methodToMethods = new HashMap();
-
-
         int edgecnt = 0;
-
-
         Map<Integer, ICodeMethod> internal_methods = new TreeMap();
-
         for (ICodeMethod method : this.unit.getMethods()) {
-
             if ((method.isInternal()) &&
-
-
                     (filter(method))) {
-
-
                 internal_methods.put(Integer.valueOf(method.getIndex()), method);
-
             }
-
         }
         int typeIndex;
         int methodIndex;
         for (ICodeClass classObject : this.unit.getClasses()) {
-
             if (((classObject.getGenericFlags() & 0x100000) == 0) && (filter(classObject))) {
-
                 typeIndex = classObject.getClassType().getIndex();
                 if (classObject.getMethods() != null) {
-
-
                     for (ICodeMethod methodObject : classObject.getMethods()) {
-
                         methodIndex = methodObject.getIndex();
-
                         typeToInternalMethods.put(Integer.valueOf(typeIndex), Integer.valueOf(methodIndex));
-
                         methodToType.put(Integer.valueOf(methodIndex), Integer.valueOf(typeIndex));
-
-
                         List<? extends IInstruction> instructions = methodObject.getInstructions();
-
                         if (instructions != null) {
-
-
                             for (IInstruction insn : instructions) {
-
                                 String s = insn.format(null);
-
                                 int refMethodIndex = extractMethodIndex(s);
-
                                 if ((refMethodIndex >= 0) && (internal_methods.containsKey(Integer.valueOf(refMethodIndex)))) {
-
                                     Set<Integer> set = (Set) methodToMethods.get(Integer.valueOf(methodIndex));
-
                                     if (set == null) {
-
                                         set = new TreeSet();
-
                                         methodToMethods.put(Integer.valueOf(methodIndex), set);
-
                                     }
-
                                     if (set.add(Integer.valueOf(refMethodIndex))) {
-
                                         edgecnt++;
-
                                     }
-
                                 }
-
                             }
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
         String name;
-
         this.model = new Digraph();
-
         this.vertexIdToMethodObject = new WeakValueMap();
-
         this.methodObjectToVertexId = new WeakIdentityHashMap();
-
-
         for (ICodeMethod m : internal_methods.values()) {
-
             name = m.getClassType().getName(true) + "." + m.getName(true);
-
             int insncount = m.getInstructions() == null ? 0 : m.getInstructions().size();
-
             this.model.v(m.getIndex(), Double.valueOf(insncount), name);
-
             this.vertexIdToMethodObject.put(Integer.valueOf(m.getIndex()), m);
-
             this.methodObjectToVertexId.put(m, Integer.valueOf(m.getIndex()));
         }
-
-
         Iterator<Integer> iterator = methodToMethods.keySet().iterator();
         int i0;
         while (iterator.hasNext()) {
@@ -164,259 +100,134 @@ public class DalvikCallgraphBuilder
             Iterator iterator1 = ((Set) methodToMethods.get(i0)).iterator();
             while (iterator1.hasNext()) {
                 int i1 = (Integer) iterator1.next();
-
                 this.model.e(i0, i1);
             }
         }
         return this.model;
-
     }
-
 
     private static int extractMethodIndex(String s) {
-
         if (s.startsWith("invoke")) {
-
             int i = s.indexOf("method@");
-
             if (i >= 0) {
-
                 i += 7;
-
                 int j = s.indexOf(",", i);
-
                 if (j < 0) {
-
                     j = s.length();
-
                 }
-
                 return Integer.parseInt(s.substring(i, j));
-
             }
-
         }
-
         return -1;
-
     }
-
 
     public String getAddressForVertexId(int vertexId) {
-
         ICodeMethod m = this.vertexIdToMethodObject == null ? null : (ICodeMethod) this.vertexIdToMethodObject.get(Integer.valueOf(vertexId));
-
         if (m == null) {
-
             return null;
-
         }
-
         return m.getAddress();
-
     }
-
 
     public Integer getVertexIdForAddress(String address) {
-
         ICodeCoordinates cc = this.unit.getCodeCoordinatesFromAddress(address);
-
         Integer index = null;
-
         if ((cc instanceof InstructionCoordinates)) {
-
             index = Integer.valueOf(((InstructionCoordinates) cc).getMethodId());
-
         } else if ((cc instanceof MethodCoordinates)) {
-
             index = Integer.valueOf(((MethodCoordinates) cc).getMethodId());
-
         } else {
-
             return null;
-
         }
-
-
         ICodeMethod m = (ICodeMethod) this.unit.getMethods().get(index.intValue());
-
         if (m == null) {
-
             return null;
-
         }
-
-
         return (Integer) this.methodObjectToVertexId.get(m);
-
     }
-
 
     private Set<String> wlFltFull = new HashSet();
     private List<String> wlFltStart = new ArrayList();
     private Set<String> blFltFull = new HashSet();
     private List<String> blFltStart = new ArrayList();
 
-
     public String getFilter() {
-
         return this.rawfilter;
-
     }
-
 
     public void setFilter(String filter) {
-
         this.rawfilter = filter;
-
         this.wlFltStart.clear();
-
         this.blFltStart.clear();
-
-
         if (this.rawfilter == null) {
-
             return;
-
         }
-
-
         this.fltCount = 0;
-
         for (String line : Strings.splitLines(this.rawfilter)) {
-
             line = Strings.trim(line);
-
             if ((!line.isEmpty()) && (!line.startsWith("#"))) {
-
-
                 boolean blacklisted = false;
-
                 if (line.startsWith("-")) {
-
                     line = line.substring(1);
-
                     if (!line.isEmpty()) {
-
-
                         blacklisted = true;
-
                     }
-
                 } else {
-
                     if (line.endsWith("*")) {
-
                         line = line.substring(0, line.length() - 1);
-
                         if (blacklisted) {
-
                             this.blFltStart.add(line);
-
                         } else {
-
                             this.wlFltStart.add(line);
-
                         }
-
-
                     } else if (blacklisted) {
-
                         this.blFltFull.add(line);
-
                     } else {
-
                         this.wlFltFull.add(line);
-
                     }
-
-
                     this.fltCount += 1;
-
                 }
-
             }
-
         }
     }
-
 
     private boolean filter(ICodeItem item) {
         if (this.fltCount == 0) {
-
             return true;
-
         }
-
-
         String sig = item.getSignature(true);
-
         if (sig == null) {
-
             return false;
-
         }
-
         int pos = sig.indexOf(";");
-
         if (pos < 2) {
-
             return false;
-
         }
-
         String pname = sig.substring(1, pos).replace('/', '.');
-
-
         boolean proceed;
-
         if (((!this.wlFltFull.isEmpty()) || (!this.wlFltStart.isEmpty())) &&
                 (!this.wlFltFull.contains(pname))) {
-
             proceed = false;
-
             for (String f : this.wlFltStart) {
-
                 if (pname.startsWith(f)) {
-
                     proceed = true;
-
                     break;
-
                 }
-
             }
-
             if (!proceed) {
-
                 return false;
-
             }
-
         }
-
-
         if (this.blFltFull.contains(pname)) {
-
             return false;
-
         }
-
         for (String f : this.blFltStart) {
-
             if (pname.startsWith(f)) {
-
                 return false;
-
             }
-
         }
-
-
         return true;
-
     }
-
 }
 
 

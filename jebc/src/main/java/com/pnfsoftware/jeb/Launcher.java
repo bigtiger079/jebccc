@@ -21,8 +21,7 @@ public class Launcher {
         int var6 = 0;
         String[] var7 = var0;
         int var8 = var0.length;
-
-        for(int var9 = 0; var9 < var8; ++var9) {
+        for (int var9 = 0; var9 < var8; ++var9) {
             String var10 = var7[var9];
             if (!var10.equalsIgnoreCase("-c")) {
                 if (var10.equalsIgnoreCase("--license")) {
@@ -55,24 +54,21 @@ public class Launcher {
                     }
                 }
             }
-
             ++var6;
         }
-
         if (var1 != null) {
             if (var3 == 1) {
-                com.pnfsoftware.jeb.SS var12 = new com.pnfsoftware.jeb.SS(var2, (String[])var5);
-                var12.SW((String)var1, (String)var4);
+                com.pnfsoftware.jeb.SS var12 = new com.pnfsoftware.jeb.SS(var2, (String[]) var5);
+                var12.SW((String) var1, (String) var4);
                 var12.SW();
             } else if (var3 == 2) {
-                Nq var13 = new Nq(var2, (String)var1, (String)var4, (String[])var5);
+                Nq var13 = new Nq(var2, (String) var1, (String) var4, (String[]) var5);
                 var13.initialize(var0);
                 var13.start();
                 var13.stop();
             }
         }
         SW.info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-
     }
 
     static {

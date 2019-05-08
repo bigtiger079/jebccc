@@ -32,11 +32,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class JebIoShareDialog
         extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoShareDialog.class);
-
     private static final int SETTINGS_ID = 1025;
     RcpClientContext context;
     IArtifact artifact;
@@ -62,8 +60,6 @@ public class JebIoShareDialog
 
     public void create() {
         super.create();
-
-
         getShell().addHelpListener(new HelpListener() {
             public void helpRequested(HelpEvent e) {
                 new JebIoHelpDialog(JebIoShareDialog.this.getShell()).open();
@@ -75,8 +71,6 @@ public class JebIoShareDialog
         getShell().setText("Share");
         setTitle("Share a sample on the JEB Malware Sharing Network");
         setMessage("The name and comments fields are optional, feel free to redact them.", 1);
-
-
         Composite area = (Composite) super.createDialogArea(parent);
         Composite container = new Composite(area, 0);
         container.setLayoutData(new GridData(4, 4, true, true));
@@ -88,7 +82,6 @@ public class JebIoShareDialog
             UI.error("The sample data cannot be retrieved");
             close();
         }
-
         String filename = this.artifact.getName();
         String comments = "";
         SampleDetermination determination = SampleDetermination.UNKNOWN;
@@ -100,32 +93,23 @@ public class JebIoShareDialog
             comments = ud.getComments();
             determination = ud.getDetermination();
         }
-
         createHashField(container, this.sha256);
         createNameField(container, filename);
         createCommentsField(container, comments);
         createDeterminationField(container, determination);
-
         this.txtName.setFocus();
         this.txtName.selectAll();
         return area;
     }
 
-
     protected void createButtonsForButtonBar(Composite parent) {
         parent.setLayoutData(new GridData(4, 16777216, true, false));
-
         createButton(parent, 1025, "Settings", false);
-
-
         Label spacer = new Label(parent, 0);
         spacer.setLayoutData(new GridData(4, 16777216, true, false));
-
-
         GridLayout layout = (GridLayout) parent.getLayout();
         layout.numColumns += 1;
         layout.makeColumnsEqualWidth = false;
-
         createButton(parent, 0, "Share", true);
         createButton(parent, 1, "Cancel", false);
     }
@@ -142,11 +126,9 @@ public class JebIoShareDialog
     private void createHashField(Composite container, String defValue) {
         Label lbtFirstName = new Label(container, 0);
         lbtFirstName.setText("SHA-256:");
-
         GridData data = new GridData();
         data.grabExcessHorizontalSpace = true;
         data.horizontalAlignment = 4;
-
         this.txtHash = new Text(container, 2056);
         this.txtHash.setLayoutData(data);
         this.txtHash.setText(Strings.safe(defValue));
@@ -155,11 +137,9 @@ public class JebIoShareDialog
     private void createNameField(Composite container, String defValue) {
         Label lbtFirstName = new Label(container, 0);
         lbtFirstName.setText("Sample name:");
-
         GridData data = new GridData();
         data.grabExcessHorizontalSpace = true;
         data.horizontalAlignment = 4;
-
         this.txtName = new Text(container, 2048);
         this.txtName.setLayoutData(data);
         this.txtName.setText(Strings.safe(defValue));
@@ -168,11 +148,9 @@ public class JebIoShareDialog
     private void createCommentsField(Composite container, String defValue) {
         Label lbtFirstName = new Label(container, 0);
         lbtFirstName.setText("Comments:");
-
         GridData data = new GridData();
         data.grabExcessHorizontalSpace = true;
         data.horizontalAlignment = 4;
-
         this.txtComments = new Text(container, 2048);
         this.txtComments.setLayoutData(data);
         this.txtComments.setText(Strings.safe(defValue));
@@ -181,11 +159,9 @@ public class JebIoShareDialog
     private void createDeterminationField(Composite container, SampleDetermination determination) {
         Label lbtFirstName = new Label(container, 0);
         lbtFirstName.setText("Determination:");
-
         GridData data = new GridData();
         data.grabExcessHorizontalSpace = true;
         data.horizontalAlignment = 4;
-
         this.wDetermination = new Combo(container, 12);
         this.wDetermination.setLayoutData(data);
         int defaultIndex = -1;
@@ -200,14 +176,12 @@ public class JebIoShareDialog
         this.wDetermination.select(defaultIndex);
     }
 
-
     protected void okPressed() {
         UserCredentials creds = JebIoUtil.retrieveCredentials(this.context);
         if (!creds.lookValid()) {
             UI.error("Your credentials seem invalid");
             return;
         }
-
         File f = null;
         try {
             f = FileShareHandler.getArtifactFile(this.artifact);
@@ -215,18 +189,15 @@ public class JebIoShareDialog
             UI.error("Cannot process the sample file");
             return;
         }
-
         SampleDetermination det = SampleDetermination.UNKNOWN;
         if ((this.wDetermination.getSelectionIndex() >= 0) &&
                 (this.wDetermination.getSelectionIndex() < SampleDetermination.values().length)) {
             det = SampleDetermination.values()[this.wDetermination.getSelectionIndex()];
         }
-
         final File _f = f;
         final String _name = this.txtName.getText();
         final String _comments = this.txtComments.getText();
         final SampleDetermination _det = det;
-
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), creds);
         Integer retcode = (Integer) this.context.executeNetworkTask(new Callable() {
             public Integer call() throws Exception {
@@ -238,14 +209,11 @@ public class JebIoShareDialog
                 return null;
             }
         });
-
         if (retcode == null) {
             return;
         }
-
         if (retcode.intValue() < 0) {
             UI.error("The sample was not successfully shared. Are your credentials valid?\n\nResponse code: " + retcode);
-
             return;
         }
         try {
@@ -265,7 +233,6 @@ public class JebIoShareDialog
             UI.error("Your credentials seem invalid");
             return null;
         }
-
         final JebIoApiHelper helper = new JebIoApiHelper(context.getNetworkUtility(), creds);
         return (JebIoObjectFile) context.executeNetworkTask(new Callable() {
             public JebIoObjectFile call() throws Exception {

@@ -8,17 +8,14 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-
 public class NotificationsDialog
         extends DataFrameDialog {
     public NotificationsDialog(Shell parent, List<? extends IUnitNotification> anomalies) {
         super(parent, S.s(602), true, "notificationsDialog");
-
         DataFrame df = new DataFrame(new String[]{S.s(779), S.s(268), S.s(52)});
         for (IUnitNotification a : anomalies) {
             df.addRow(new Object[]{a.getType(), a.getDescription(), a.getAddress()});
         }
-
         setDataFrame(df);
         setDisplayIndex(true);
     }

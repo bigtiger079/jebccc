@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient;
 
-
 import com.pnfsoftware.jeb.client.ErrorLogGenerator;
 import com.pnfsoftware.jeb.client.JebNet;
 import com.pnfsoftware.jeb.client.Licensing;
@@ -38,81 +37,49 @@ import java.util.Map;
 import org.apache.commons.lang3.BooleanUtils;
 import org.eclipse.swt.SWTException;
 
-
 public class RcpErrorHandler {
     private static final ILogger logger = GlobalLog.getLogger(RcpErrorHandler.class);
-
     public static final long STD_FAILSAFE__SLIDING_WINDOW_DURATION_MS = 60000L;
-
     public static final int STD_FAILSAFE__MAX_REPORT_COUNT_PER_SLIDING_WINDOW = 5;
     private long failsafeSlidingWindowDurationMs = 60000L;
     private int failsafeMaxReportCountPerSlidingWindow = 5;
     private List<Long> errorTimestamps = new ArrayList();
     private RcpClientContext ctx;
 
-
     public RcpErrorHandler(RcpClientContext ctx) {
-
         this.ctx = ctx;
-
     }
-
 
     public void disableFailsafe() {
-
         this.failsafeSlidingWindowDurationMs = 0L;
-
         this.failsafeMaxReportCountPerSlidingWindow = 0;
-
     }
-
 
     public void enableFailsafe(long failsafeSlidingWindowDurationMs, int failsafeMaxReportCountPerSlidingWindow) {
-
         this.failsafeSlidingWindowDurationMs = failsafeSlidingWindowDurationMs;
-
         this.failsafeMaxReportCountPerSlidingWindow = failsafeMaxReportCountPerSlidingWindow;
-
     }
-
 
     public void handle(Throwable t) {
-
         logger.catching(t);
-
         try {
-
             processThrowableVerbose(t);
-
         } catch (Exception e) {
-
             logger.catchingSilent(e);
-
         }
-
     }
-
 
     private static void displayUnitLockedException(UnitLockedException e) {
-
         UI.error("Please wait, analysis is executing in the background...");
-
     }
-
 
     public void processThrowableVerbose(Throwable t) {
-
         processThrowable(t, true, false, false, null, null, null);
-
     }
-
 
     public void processThrowableSilent(Throwable t) {
-
         processThrowable(t, false, false, false, null, null, null);
-
     }
-
 
     public void processThrowable(Throwable t, boolean verbose, boolean forceUpload, boolean doNotUploadSample, String details, Map<String, Object> extramap, IUnit faultyUnit) {
         if ((t instanceof UnitLockedException)) {
@@ -129,10 +96,8 @@ public class RcpErrorHandler {
                 return;
             }
         }
-
         Throwable t0 = Throwables.getRootCause(t);
         boolean done = false;
-
         if (((t0 instanceof ClassNotFoundException)) || ((t0 instanceof NoSuchFieldException)) || ((t0 instanceof NoSuchMethodException)) || ((t0 instanceof NoClassDefFoundError)) || ((t0 instanceof IncompatibleClassChangeError))) {
             StringBuilder msg = new StringBuilder();
             msg.append(String.format("%s.\n%s.", new Object[]{S.s(310), S.s(193)}));
@@ -152,7 +117,6 @@ public class RcpErrorHandler {
                 verbose = false;
             }
         }
-
         if (done) {
             return;
         }
@@ -165,13 +129,11 @@ public class RcpErrorHandler {
             gen.addRecord("sp-hash", supportPackageHash);
         } catch (IOException localIOException) {
         }
-
         String prjReloaded = "unknown";
         String prjSha256 = "";
         Long prjFilesize = Long.valueOf(-1L);
         List<String> artSha256List = new ArrayList();
         List<Long> artFilesizeList = new ArrayList();
-
         IRuntimeProject prj = this.ctx.getOpenedProject();
         IInput input;
         if (prj != null) {
@@ -213,11 +175,9 @@ public class RcpErrorHandler {
                         HashCalculator h = new HashCalculator(in, 16);
                         if (h.compute()) {
                             prjSha256 = Formatter.byteArrayToHexString(h.getSha256());
-
                         }
                     } catch (Throwable localThrowable5) {
                         throw localThrowable5;
-
                     } finally {
                         if (in != null) {
                             if (t0 != null) {
@@ -231,12 +191,10 @@ public class RcpErrorHandler {
                             }
                         }
                     }
-
                 } catch (IOException localIOException2) {
                 }
             }
         }
-
         gen.addRecord("project-reloaded", prjReloaded);
         gen.addRecord("project-sha256", prjSha256);
         gen.addRecord("project-filesize", prjFilesize);
@@ -246,11 +204,9 @@ public class RcpErrorHandler {
         boolean cfgUploadErrorLogs = BooleanUtils.toBoolean(Boolean.valueOf(pm.getBoolean(".UploadErrorLogs")));
         boolean cfgUploadErrorFiles = BooleanUtils.toBoolean(Boolean.valueOf(pm.getBoolean(".UploadErrorFiles")));
         gen.addRecord("up-set", String.format("%b;%b", new Object[]{Boolean.valueOf(cfgUploadErrorLogs), Boolean.valueOf(cfgUploadErrorFiles)}));
-
         if (details != null) {
             gen.addRecord("details", details);
         }
-
         if (extramap != null) {
             for (String key : extramap.keySet()) {
                 if (key != null) {
@@ -267,182 +223,96 @@ public class RcpErrorHandler {
                 gen.addRecord("unit_info_Gen_error", "Cannot generate unit information");
             }
         }
-
         final boolean uploadErrorLogs = (!Licensing.isDebugBuild()) && ((forceUpload) || (cfgUploadErrorLogs) || (Licensing.isDemoBuild()));
         final boolean uploadErrorFiles = (uploadErrorLogs) && (!doNotUploadSample) && ((forceUpload) || (cfgUploadErrorFiles) || (Licensing.isDemoBuild()));
         final boolean verbose1 = verbose;
         ThreadUtil.start(Licensing.isDebugBuild() ? "UploadError" : null, new Runnable() {
-
             public void run() {
-
                 boolean errorLogUploaded = false;
-
                 if ((uploadErrorLogs) || (uploadErrorFiles)) {
-
                     Net net = new Net(RcpErrorHandler.this.ctx.getNetworkUtility());
-
-
                     if (uploadErrorLogs) {
-
                         String r = JebNet.post(net, "https://www.pnfsoftware.com/upload_errorlog", gen.getLog());
-
                         errorLogUploaded = r != null;
-
                     }
-
-
                     if (uploadErrorFiles) {
-
                         try {
-
                             File f = RcpErrorHandler.this.getPrimaryArtifact();
-
                             if (f == null) {
-
                                 f = RcpErrorHandler.this.getReloadedProjectFile();
-
                             }
-
                             if (f != null) {
-
                                 if ((!f.isFile()) || (!f.canRead())) {
-
                                     throw new IOException("No file or cannot read artifact file: " + f);
-
                                 }
-
-
                                 if (f.length() <= 134217728L) {
-
                                     JebNet.uploadFile(net, f, true);
-
                                 }
-
-
                             }
-
-
                         } catch (Exception e) {
-
                             ErrorLogGenerator gen2 = new ErrorLogGenerator(e);
-
                             JebNet.post(net, "https://www.pnfsoftware.com/upload_errorlog", gen2.getLog());
-
                         }
-
                     }
-
                 }
-
-
                 boolean devMode = (RcpErrorHandler.this.ctx.isDevelopmentMode()) || (Licensing.isDebugBuild());
-
                 if ((!errorLogUploaded) || (devMode)) {
-
                     File errorlogsFolder = new File(RcpErrorHandler.this.ctx.getBaseDirectory(), "errorlogs");
-
                     errorlogsFolder.mkdir();
-
                     String path = gen.dumpTo(errorlogsFolder.getAbsolutePath());
-
-
                     StringBuilder msg = new StringBuilder();
-
-
                     msg.append(String.format("%s.", new Object[]{S.s(305)}));
-
                     msg.append(String.format("\n\n%s: %s.", new Object[]{S.s(307), path}));
-
-
                     RcpErrorHandler.this.display(msg, verbose1);
-
                 }
-
             }
-
         });
-
     }
-
 
     private void display(CharSequence msg, boolean verbose) {
-
         if (verbose) {
-
             UI.error(msg.toString());
-
         }
-
     }
 
-
     private File getPrimaryArtifact() throws IOException {
-
         IRuntimeProject prj = this.ctx.getOpenedProject();
-
         if ((prj != null) && (!prj.getLiveArtifacts().isEmpty())) {
-
             IInput input = ((ILiveArtifact) prj.getLiveArtifacts().get(0)).getArtifact().getInput();
-
             if ((input instanceof FileInput)) {
-
                 return ((FileInput) input).getFile();
-
             }
-
             InputStream in = input.getStream();
             Throwable localThrowable3 = null;
-
             try {
                 File f = IO.createTempFile();
-
                 f.deleteOnExit();
-
                 IO.writeFile(f, IO.readInputStream(in));
-
                 return f;
-
             } catch (Throwable localThrowable1) {
-
                 localThrowable3 = localThrowable1;
                 throw localThrowable1;
-
-
             } finally {
-
                 if (in != null) if (localThrowable3 != null) try {
                     in.close();
                 } catch (Throwable localThrowable2) {
                     localThrowable3.addSuppressed(localThrowable2);
                 }
                 else in.close();
-
             }
         }
-
         return null;
-
     }
-
 
     private File getReloadedProjectFile() {
-
         if (this.ctx.getLastReloadedProjectPath() != null) {
-
             File prjFile = new File(this.ctx.getLastReloadedProjectPath());
-
             if ((prjFile.isFile()) && (prjFile.canRead())) {
-
                 return prjFile;
-
             }
-
         }
-
         return null;
-
     }
-
 }
 
 

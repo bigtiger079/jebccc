@@ -28,13 +28,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ProxyConfigDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ProxyConfigDialog.class);
-
     NetProxyInfo proxyinfo;
-
     NetProxyInfo proxyinfo2;
     IGraphicalTaskExecutor executor;
     Combo widgetType;
@@ -56,7 +53,6 @@ public class ProxyConfigDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         UIUtil.createLabel(parent, S.s(672));
         this.widgetType = new Combo(parent, 12);
         GridData layoutData = UIUtil.createGridDataFillHorizontally();
@@ -67,32 +63,24 @@ public class ProxyConfigDialog
             this.widgetType.add(proxyType);
         }
         this.widgetType.select(0);
-
         this.widgetType.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 ProxyConfigDialog.this.onProxyTypeChange();
             }
-
         });
         UIUtil.createLabel(parent, S.s(670));
         this.widgetHostname = new Text(parent, 2052);
         this.widgetHostname.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
-
         UIUtil.createLabel(parent, S.s(671));
         this.widgetPort = new Text(parent, 2052);
         this.widgetPort.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         Group grpAuth = UIUtil.createGroupGrid(parent, "Authentication (optional)", 2, 2);
-
         UIUtil.createLabel(grpAuth, S.s(811));
         this.widgetUsername = new Text(grpAuth, 2052);
         this.widgetUsername.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         UIUtil.createLabel(grpAuth, S.s(631));
         this.widgetPassword = new Text(grpAuth, 2052);
         this.widgetPassword.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         if (this.proxyinfo != null) {
             this.widgetHostname.setText(Strings.safe(this.proxyinfo.getHostname()));
             this.widgetPort.setText(Integer.toString(this.proxyinfo.getPort()));
@@ -103,9 +91,7 @@ public class ProxyConfigDialog
             this.widgetUsername.setText(Strings.safe(this.proxyinfo.getUser()));
             this.widgetPassword.setText(Strings.safe(this.proxyinfo.getPassword()));
         }
-
         onProxyTypeChange();
-
         createOkayCancelButtons(parent);
     }
 
@@ -133,38 +119,31 @@ public class ProxyConfigDialog
         if (index == 0) {
             return new NetProxyInfo(Proxy.NO_PROXY);
         }
-
         index--;
         if ((index < 0) || (index >= NetProxyInfo.getProxyTypes().size())) {
             UI.error("Illegal proxy type");
             return null;
         }
         String proxyType = (String) NetProxyInfo.getProxyTypes().get(index);
-
         String hostname = this.widgetHostname.getText();
         if (Strings.isBlank(hostname)) {
             UI.error("Illegal hostname");
             return null;
         }
-
         int port = Conversion.stringToInt(this.widgetPort.getText());
         if ((port <= 0) || (port >= 65535)) {
             UI.error("Illegal port number");
             return null;
         }
-
         String username = this.widgetUsername.getText();
         String password = this.widgetPassword.getText();
-
         return NetProxyInfo.build(proxyType, hostname, port, username, password);
     }
 
     private boolean verify(NetProxyInfo proxyinfo) {
         final AtomicBoolean r = new AtomicBoolean();
-
         NetProxyInfo previousProxyinfo = Net.getGlobalProxyInformation();
         Net.setGlobalProxyInformation(proxyinfo);
-
         final Net net = new Net();
         Runnable task = new Runnable() {
             public void run() {
@@ -183,12 +162,10 @@ public class ProxyConfigDialog
         } else {
             this.executor.executeTaskWithPopupDelay(500, "Verifying connectivity...", false, task);
         }
-
         if (!r.get()) {
             Net.setGlobalProxyInformation(previousProxyinfo);
             return false;
         }
-
         return true;
     }
 }

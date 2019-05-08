@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.handlers;
 
-
 import com.pnfsoftware.jeb.core.output.IActionableItem;
 import com.pnfsoftware.jeb.core.output.IItem;
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -25,70 +24,41 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public abstract class JebBaseHandler
         extends JebAction {
     private static final ILogger logger = GlobalLog.getLogger(JebBaseHandler.class);
-
     protected RcpClientContext context;
     protected Shell shell;
     protected IMPart part;
     private boolean executing;
 
-
     public JebBaseHandler(String id, String name, String tooltip, String icon) {
-
         this(id, name, 0, tooltip, icon, 0);
-
     }
-
 
     public JebBaseHandler(String id, String name, int style, String tooltip, String icon, int accelerator) {
-
         super(id, name, style, tooltip, icon, accelerator);
-
         initialize();
-
     }
-
 
     protected void initialize() {
-
         if (this.executing) {
-
             return;
-
         }
-
-
         this.context = RcpClientContext.getInstance();
-
         if (this.context != null) {
-
             this.shell = this.context.getActiveShell();
-
             this.part = this.context.getPartManager().getActivePart();
-
         }
-
     }
-
 
     public boolean isEnabled() {
-
         if (this.executing) {
-
             return true;
-
         }
-
-
         initialize();
-
         return canExecute();
-
     }
-
 
     public void run() {
         // Byte code:
@@ -132,102 +102,56 @@ public abstract class JebBaseHandler
         // Exception table:
         //   from	to	target	type
         //   13	21	29	finally
-
     }
-
 
     public abstract boolean canExecute();
 
-
     public abstract void execute();
 
-
     public boolean isDisableHandlers(IMPart part) {
-
         Control ctl = this.context.getDisplay().getFocusControl();
-
         if ((((ctl instanceof Text)) && (((Text) ctl).getEditable())) || (((ctl instanceof StyledText)) &&
                 (((StyledText) ctl).getEditable()))) {
-
             return true;
-
         }
-
-
         if (FilterText.isSelected()) {
-
             return true;
-
         }
-
-
         AbstractUnitFragment<?> fragment = getActiveFragment(part);
-
         if ((!(fragment instanceof InteractiveTextView)) && (!(fragment instanceof InteractiveTableView)) && (!(fragment instanceof InteractiveTreeView)) && (!(fragment instanceof CodeHierarchyView)) && (!(fragment instanceof AbstractLocalGraphView))) {
-
-
             return true;
-
         }
-
-
         return false;
-
     }
-
 
     public static AbstractUnitFragment<?> getActiveFragment(IMPart part) {
-
         Object object = part == null ? null : part.getManager();
-
         return !(object instanceof UnitPartManager) ? null : ((UnitPartManager) object).getActiveFragment();
-
     }
-
 
     public static IUnit getActiveUnit(IMPart part) {
-
         Object object = part == null ? null : part.getManager();
-
         return !(object instanceof UnitPartManager) ? null : ((UnitPartManager) object).getUnit();
-
     }
-
 
     public static String getActiveAddress(IMPart part) {
-
         Object object = part == null ? null : part.getManager();
-
         return !(object instanceof UnitPartManager) ? null : ((UnitPartManager) object).getActiveAddress();
-
     }
-
 
     public static IItem getActiveItem(IMPart part) {
-
         Object object = part == null ? null : part.getManager();
-
         return !(object instanceof UnitPartManager) ? null : ((UnitPartManager) object).getActiveItem();
-
     }
-
 
     public static long getActiveItemId(IMPart part) {
-
         IItem item = getActiveItem(part);
-
         if (item == null) {
-
             return 0L;
-
         }
-
         long itemId = (item instanceof IActionableItem) ? ((IActionableItem) item).getItemId() : 0L;
-
         return itemId;
-
     }
-
 }
 
 

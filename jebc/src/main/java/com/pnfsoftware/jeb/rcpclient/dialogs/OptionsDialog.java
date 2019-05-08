@@ -21,23 +21,17 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class OptionsDialog
         extends JebDialog {
     private static final String GENERAL = S.s(361);
     private static final String DEV = S.s(271);
-
     public static final String CLIENT = "Client";
-
     public static final String ENGINES = "Engines";
     public static final String PROJECT_SPECIFIC = "Project-specific";
     private static final String[] advancedTabs = {"Client", "Engines", "Project-specific"};
     private static final String[] simpleTabs = {GENERAL, DEV};
-
     private RcpClientProperties clientProperties;
-
     private IPropertyManager clientPM;
-
     private IPropertyManager corePM;
     private IPropertyManager prjPM;
     private boolean blockModeChange;
@@ -46,24 +40,18 @@ public class OptionsDialog
     private OptionsChanges changes = new OptionsChanges();
     private boolean advancedOptions = false;
     private boolean saveChanges = false;
-
-
     private TabFolderView tabman;
-
 
     public OptionsDialog(Shell parent, RcpClientProperties clientProperties, IPropertyManager clientPM, IPropertyManager corePM, IPropertyManager prjPM) {
         super(parent, S.s(616), true, true);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         this.clientProperties = clientProperties;
-
         if ((clientPM == null) && (corePM == null) && (prjPM == null)) {
             throw new IllegalArgumentException("Please provide at least one property manager.");
         }
         this.clientPM = clientPM;
         this.corePM = corePM;
         this.prjPM = prjPM;
-
         boolean advanced = false;
         if (clientProperties != null) {
             advanced = clientProperties.getOptionsDialogAdvancedMode();
@@ -91,7 +79,6 @@ public class OptionsDialog
         return this.expandOnFiltering;
     }
 
-
     public Boolean open() {
         super.open();
         if (!this.saveChanges) {
@@ -104,17 +91,11 @@ public class OptionsDialog
         return Boolean.valueOf(engChanges.hasChanges());
     }
 
-
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 4);
-
         this.shell.setMinimumSize(600, 500);
-
-
         this.tabman = new TabFolderView(parent, 2048, true, this.lazyInit);
         this.tabman.setLayoutData(UIUtil.createGridDataSpanHorizontally(4, true, true));
-
-
         CTabFolder folder = this.tabman.getContainer();
         if (this.clientPM != null) {
             this.changes.addPropertyManager("Client", this.clientPM);
@@ -128,20 +109,16 @@ public class OptionsDialog
             this.changes.addPropertyManager("Project-specific", this.prjPM);
             this.tabman.addEntry("Project-specific", OptionsTreeView.build(folder, this.prjPM, this.changes.get("Project-specific"), this.expandOnFiltering), this.advancedOptions);
         }
-
         if ((this.clientPM != null) && (this.corePM != null)) {
             this.tabman.addEntry(GENERAL, new OptionsSimpleViewGeneral(folder, this.changes), !this.advancedOptions);
             this.tabman.addEntry(DEV, new OptionsSimpleViewDevelopment(folder, this.changes), !this.advancedOptions);
         }
-
         createButtons(parent, 288, 32);
-
         createButtons(parent, 0, new int[][]{{-5, 559}}, 0);
         if (this.blockModeChange) {
             getButtonByStyle(-5).setEnabled(false);
         }
         updateButtonText(this.advancedOptions);
-
         Button btnHelp = UIUtil.createPushbox(parent, S.s(365), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 BrowserUtil.openInBrowser("https://www.pnfsoftware.com/jeb/manual");
@@ -150,8 +127,6 @@ public class OptionsDialog
         GridData data = new GridData();
         data.horizontalAlignment = 3;
         btnHelp.setLayoutData(data);
-
-
         for (TabFolderView.Entry e : this.tabman.getEntries()) {
             if (e.hasTab()) {
                 this.tabman.showEntry(e, true);
@@ -163,9 +138,7 @@ public class OptionsDialog
     protected void onButtonClick(int style) {
         if (style == -5) {
             setMode(!this.advancedOptions);
-
         } else {
-
             super.onButtonClick(style);
         }
     }
@@ -180,8 +153,6 @@ public class OptionsDialog
         if (advancedOptions == this.advancedOptions) {
             return;
         }
-
-
         if (this.tabman != null) {
             if (advancedOptions) {
                 for (String e : advancedTabs) {
@@ -200,10 +171,7 @@ public class OptionsDialog
                 }
             }
         }
-
         updateButtonText(advancedOptions);
-
-
         this.advancedOptions = advancedOptions;
         if (this.clientProperties != null) {
             this.clientProperties.setOptionsDialogAdvancedMode(advancedOptions);

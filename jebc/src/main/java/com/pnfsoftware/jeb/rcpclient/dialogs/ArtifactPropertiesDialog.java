@@ -30,11 +30,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ArtifactPropertiesDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ArtifactPropertiesDialog.class);
-
     private ILiveArtifact liveArtifact;
     private IArtifact artifact;
     private Text widgetName;
@@ -43,27 +41,23 @@ public class ArtifactPropertiesDialog
     public ArtifactPropertiesDialog(Shell parent, ILiveArtifact liveArtifact) {
         super(parent, S.s(76), true, true);
         this.scrolledContainer = true;
-
         this.liveArtifact = liveArtifact;
         this.artifact = liveArtifact.getArtifact();
     }
 
     public Object open() {
         super.open();
-
         return null;
     }
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         IInput input = this.artifact.getInput();
         if ((input instanceof FileInput)) {
             FileInput fileInput = (FileInput) input;
             File f = fileInput.getFile();
             if (f == null) {
                 String msg = String.format("It appears the input file artifact does not exist.\n\nWould you like to update the artifact path?", new Object[0]);
-
                 if (MessageDialog.openQuestion(this.shell, "Invalid input artifact", msg)) {
                     FileDialog dlg2 = new FileDialog(this.shell, 4096);
                     dlg2.setText("Artifact Path");
@@ -78,14 +72,12 @@ public class ArtifactPropertiesDialog
                 }
             }
         }
-
         new Label(parent, 0).setText(S.s(73) + ": ");
         this.widgetName = new Text(parent, 2052);
         this.widgetName.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetName.setText(this.artifact.getName());
         this.widgetName.selectAll();
         this.widgetName.setFocus();
-
         new Label(parent, 0).setText(S.s(214) + ": ");
         Text widgetCtime = new Text(parent, 2060);
         widgetCtime.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -94,21 +86,15 @@ public class ArtifactPropertiesDialog
         String str_tz = df.getTimeZone().getDisplayName(false, 0);
         widgetCtime.setText(str_ctime + " " + str_tz);
         widgetCtime.selectAll();
-
         String hashMd5 = "?";
         String hashSha1 = "?";
         String hashSha256 = "?";
-
         long inputSize = input.getCurrentSize();
-
         int warnSizeMb = 256;
-
         boolean skipHashComp = false;
         if (inputSize >= 268435456L) {
             skipHashComp = MessageDialog.openQuestion(this.shell, S.s(821), "The input size is very large. Computing message digests may take a long time.\n\nWould you like to skip hash computations?");
         }
-
-
         if (!skipHashComp) {
             try {
                 InputStream stream = input.getStream();
@@ -123,10 +109,7 @@ public class ArtifactPropertiesDialog
                 } catch (Throwable localThrowable1) {
                     localThrowable3 = localThrowable1;
                     throw localThrowable1;
-
-
                 } finally {
-
                     if (stream != null) if (localThrowable3 != null) try {
                         stream.close();
                     } catch (Throwable localThrowable2) {
@@ -138,7 +121,6 @@ public class ArtifactPropertiesDialog
                 logger.catching(e);
             }
         }
-
         new Label(parent, 0).setText(S.s(232) + ": ");
         new Label(parent, 0).setText(inputSize + " bytes");
         Text widgetData = new Text(parent, 2058);
@@ -149,10 +131,8 @@ public class ArtifactPropertiesDialog
         widgetData.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         widgetData.setText(sb.toString());
         widgetData.setFont(JFaceResources.getTextFont());
-
         new Label(parent, 0).setText(S.s(685) + ": ");
         new Label(parent, 0).setText("" + this.liveArtifact.getUnits().size());
-
         new Label(parent, 0).setText(S.s(599) + ": ");
         new Label(parent, 0).setText("");
         this.widgetNotes = new StyledText(parent, 2818);
@@ -167,7 +147,6 @@ public class ArtifactPropertiesDialog
         griddata.verticalAlignment = 4;
         this.widgetNotes.setLayoutData(griddata);
         UIUtil.disableTabOutput(this.widgetNotes);
-
         createOkayCancelButtons(parent);
     }
 

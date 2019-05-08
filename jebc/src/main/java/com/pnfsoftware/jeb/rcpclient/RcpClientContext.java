@@ -270,17 +270,11 @@ public class RcpClientContext
         extends AbstractClientContext
         implements IGraphicalTaskExecutor, IWidgetManager, IMAppContext {
     public static final ILogger logger = GlobalLog.getLogger(RcpClientContext.class);
-
     private static String mainShellOriginalTitle;
-
     public static final String shortcutsFilename = "jeb-shortcuts.cfg";
-
     private static final int maxRecentFiles = 10;
-
     private static final int maxRecentScripts = 10;
-
     private static RcpClientContext singleIntance;
-
     private Display display;
     private JebApp app;
 
@@ -297,7 +291,6 @@ public class RcpClientContext
         public void run() {
             this.logLimit = RcpClientContext.this.uiProperties.getLoggerMaxLength();
             this.logLimitHalf = (this.logLimit / 2);
-
             StringBuilder addition = new StringBuilder();
             for (; ; ) {
                 try {
@@ -305,10 +298,7 @@ public class RcpClientContext
                 } catch (InterruptedException e1) {
                     break;
                 }
-
                 this.status = RcpClientContext.this.logStatusSink.retrieve();
-
-
                 this.additionString = null;
                 synchronized (RcpClientContext.this.logBuffer) {
                     if (!RcpClientContext.this.logBuffer.isEmpty()) {
@@ -322,15 +312,10 @@ public class RcpClientContext
                     this.additionString = addition.toString();
                     addition.setLength(0);
                 }
-
-
                 if ((this.status != null) || (this.additionString != null)) {
-
-
                     if (RcpClientContext.this.display.isDisposed()) {
                         break;
                     }
-
                     UIExecutor.sync(RcpClientContext.this.display, new UIRunnable() {
                         public void runi() {
                             try {
@@ -338,8 +323,6 @@ public class RcpClientContext
                                         (RcpClientContext.LogManagerRoutine.this.status != null)) {
                                     RcpClientContext.this.getStatusIndicator().setText(1, RcpClientContext.LogManagerRoutine.this.status);
                                 }
-
-
                                 if (RcpClientContext.LogManagerRoutine.this.additionString != null) {
                                     int addLen = RcpClientContext.LogManagerRoutine.this.additionString.length();
                                     int curLen = RcpClientContext.this.logDocument.getLength();
@@ -372,25 +355,17 @@ public class RcpClientContext
     static {
         GlobalLog.addDestinationStream(System.out);
         if (Licensing.isDebugBuild()) {
-
-
             String[] filterPatterns = new String[0];
-
-
             for (String pattern : filterPatterns) {
                 GlobalLog.addGlobalFilter(pattern, Integer.MAX_VALUE);
             }
         }
-
-
         mainShellOriginalTitle = "JEB";
-
         String cname = getChannelName();
         if (cname != null) {
             mainShellOriginalTitle = mainShellOriginalTitle + app_ver.getMajor() + " " + cname;
         }
     }
-
 
     private ExecutorService executorService = DaemonExecutors.newFixedThreadPool(20);
     private PrintStream jebSessionLogStream;
@@ -417,19 +392,13 @@ public class RcpClientContext
     private List<String> recentScripts;
     private String lastScript;
     private Map<Object, Map<Object, Object>> assoData = new WeakHashMap();
-
     private MultiInterpreter masterInterpreter;
-
     private Thread threadMonitor;
-
     private Thread threadSoftwareUpdater;
     private boolean queuedSampleSharingNagger;
     private AtomicInteger updateCheckState = new AtomicInteger();
-
     private int sessionProjectCount;
-
     private int projectReadyTimestamp;
-
     private int projectArtifactCount;
     private String lastReloadedProjectPath;
     Boolean preferQuickSave;
@@ -443,7 +412,6 @@ public class RcpClientContext
         this.display = UI.getDisplay();
         JebDialog.setStandardWidgetManager(this);
         getThemeManager();
-
         this.handlersRefresher = new AbstractRefresher(this.display) {
             protected void performRefresh() {
                 RcpClientContext.this.internalSynchronizedRefreshHandlersStates();
@@ -459,16 +427,12 @@ public class RcpClientContext
                         RcpClientContext.logger.i("Focus forced in %s", new Object[]{part});
                         cursorCtrl.forceFocus();
                     }
-
                 }
-
             }
         });
         this.display.addFilter(15, new Listener() {
-
             public void handleEvent(Event event) {
             }
-
         });
         this.display.addFilter(13, new Panel.SashSelectionFilter(30));
     }
@@ -493,28 +457,23 @@ public class RcpClientContext
         return this.app;
     }
 
-
     public void refreshHandlersStates() {
         this.handlersRefresher.request();
     }
-
 
     public void internalSynchronizedRefreshHandlersStates() {
         this.app.getToolbarManager().update(true);
         for (IContributionItem item : this.app.getToolbarManager().getItems()) {
             item.update();
         }
-
-
         this.app.getMenuManager().updateAll(true);
         for (IContributionItem item : this.app.getMenuManager().getItems()) {
             item.update();
         }
         updateContributionsRecursively(this.app.getMenuManager());
-
         Iterator<JebBaseHandler> iterator = AllHandlers.getInstance().getAll().iterator();
-       while (iterator.hasNext()) {
-            JebAction action = (JebAction)iterator.next();
+        while (iterator.hasNext()) {
+            JebAction action = (JebAction) iterator.next();
             if (action.isEnabled()) {
                 action.setEnabled(true);
             }
@@ -561,8 +520,6 @@ public class RcpClientContext
 
     public void onApplicationBuilt(App app) {
         this.app = ((JebApp) app);
-
-
         logger.setEnabledLevel(GlobalLog.getEnabledLevel());
         if (Licensing.isDebugBuild()) {
             try {
@@ -572,26 +529,17 @@ public class RcpClientContext
                 logger.catching(e);
             }
         }
-
         this.logBuffer = Collections.synchronizedList(new ArrayList());
         GlobalLog.addDestinationBuffer(this.logBuffer);
         this.logStatusSink = new LogStatusSink();
         GlobalLog.addStatusSink(this.logStatusSink);
-
-
         String[] argv = app.getArguments();
         initialize(argv);
         this.uiProperties = new RcpClientProperties(getPropertyManager());
-
-
         this.logDocument = new Document();
         ThreadUtil.start(Licensing.isDebugBuild() ? LogManagerRoutine.class.getSimpleName() : null, new LogManagerRoutine());
-
-
         this.errorHandler = new RcpErrorHandler(this);
         this.threadManager = new ThreadManager(this.errorHandler);
-
-
         String shortcutsPath = getPropertyManager().getStringUnsafe(".ui.KeyboardShortcutsFile");
         if (!Strings.isBlank(shortcutsPath)) {
             File file = new File(shortcutsPath);
@@ -600,7 +548,6 @@ public class RcpClientContext
             }
             if (file.canRead()) {
                 Parameters params = new Parameters();
-
                 FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder(PropertiesConfiguration.class).configure(new BuilderParameters[]{(BuilderParameters) params.properties().setFile(file)});
                 builder.setAutoSave(true);
                 try {
@@ -610,28 +557,19 @@ public class RcpClientContext
                 }
             }
         }
-
-
         AllHandlers h = AllHandlers.getInstance();
         KeyAcceleratorManager kam = new KeyAcceleratorManager(this.display);
         kam.registerHandlers(h.getAll());
-
-
         this.statusIndicator = new JebStatusIndicator(app.getStatusManager());
-
-
         buildShell(app.getPrimaryShell());
         buildDock(app.getDock());
         buildMenu(app.getMenuManager());
         buildToolbar(app.getToolbarManager());
-
-
         initTheme();
     }
 
     private void buildShell(Shell shell) {
         shell.setImage(UIAssetManager.getInstance().getImage("program/jeb_32px.png"));
-
         boolean maximized = false;
         Rectangle bounds = null;
         String strBounds = getPropertyManager().getString("state.MainShellBounds");
@@ -647,7 +585,6 @@ public class RcpClientContext
                 bounds = new Rectangle(x, y, w, h);
             }
         }
-
         if (maximized) {
             shell.setMaximized(true);
         } else if (bounds != null) {
@@ -664,14 +601,12 @@ public class RcpClientContext
         ProjectExplorerPartManager.setupDragAndDrop(this.app.getDock(), this);
         this.app.folderWorkspace = dock.getInitialFolder();
         this.app.folderWorkspace.setCloseOnEmpty(false);
-
         int projectFolderRatio = getPropertyManager().getInteger("state.ProjectFolderRatio");
         if ((projectFolderRatio <= 0) || (projectFolderRatio >= 100)) {
             projectFolderRatio = 18;
         }
         this.app.folderProject = dock.splitFolder(this.app.folderWorkspace, -3, projectFolderRatio);
         this.app.folderProject.setCloseOnEmpty(false);
-
         int consolesFolderRatio = getPropertyManager().getInteger("state.ConsolesFolderRatio");
         if ((consolesFolderRatio <= 0) || (consolesFolderRatio >= 100)) {
             consolesFolderRatio = Licensing.isDebugBuild() ? 35 : 20;
@@ -682,7 +617,6 @@ public class RcpClientContext
 
     private void buildMenu(MenuManager menuManager) {
         boolean isMac = OSType.determine().isMac();
-
         AllHandlers h = AllHandlers.getInstance();
         if (Licensing.isDebugBuild()) {
             try {
@@ -691,30 +625,24 @@ public class RcpClientContext
                 logger.catching(e);
             }
         }
-
         MenuManager menuOpenRecent = new MenuManager(S.s(529), null);
         menuOpenRecent.setRemoveAllWhenShown(true);
         menuOpenRecent.addMenuListener(new FileOpenrecentMenuHandler());
-
         MenuManager menuExport = MenuUtil.createAutoRefreshMenu(S.s(501));
         menuExport.add(h.get(FileExportDecompiledCodeHandler.class));
         menuExport.add(h.get(FileExportActiveViewHandler.class));
         menuExport.add(h.get(FileExportAllBinaryUnitsHandler.class));
-
         MenuManager menuScriptsRecent = new MenuManager(S.s(545));
         menuScriptsRecent.setRemoveAllWhenShown(true);
         menuScriptsRecent.addMenuListener(new FileScriptsExecuterecentMenuHandler());
-
         MenuManager menuScripts = MenuUtil.createAutoRefreshMenu(S.s(558));
         menuScripts.add(menuScriptsRecent);
         menuScripts.add(new Separator());
         menuScripts.add(h.get(FileScriptsExecuteHandler.class));
         menuScripts.add(h.get(FileScriptsExecutelastHandler.class));
-
         MenuManager menuPluginsExecuteEP = new MenuManager(S.s(499));
         menuPluginsExecuteEP.setRemoveAllWhenShown(true);
         menuPluginsExecuteEP.addMenuListener(new FileEnginesExecutepluginMenuHandler());
-
         MenuManager menuPlugins = MenuUtil.createAutoRefreshMenu(S.s(539));
         menuPlugins.add(menuPluginsExecuteEP);
         menuPlugins.add(h.get(FileEnginesPluginsHandler.class));
@@ -722,11 +650,9 @@ public class RcpClientContext
         menuPlugins.add(h.get(FileEnginesParsersHandler.class));
         menuPlugins.add(h.get(FileEnginesContributionsHandler.class));
         menuPlugins.add(h.get(FileEnginesInterpretersHandler.class));
-
         MenuManager menuEngines = MenuUtil.createAutoRefreshMenu(S.s(496));
         menuEngines.add(h.get(FileEnginesTypelibsHandler.class));
         menuEngines.add(h.get(FileEnginesSiglibsHandler.class));
-
         MenuManager menuFile = MenuUtil.createAutoRefreshMenu(S.s(504));
         menuFile.add(h.get(FileOpenHandler.class));
         menuFile.add(menuOpenRecent);
@@ -751,18 +677,15 @@ public class RcpClientContext
             menuFile.add(new Separator());
             menuFile.add(h.get(FileExitHandler.class));
         }
-
         MenuManager menuEditLanguage = new MenuManager(S.s(515));
         menuEditLanguage.setRemoveAllWhenShown(true);
         menuEditLanguage.addMenuListener(new EditLanguageMenuHandler());
-
         MenuManager menuEdit = MenuUtil.createAutoRefreshMenu(S.s(487));
         menuEdit.add(h.get(EditCutHandler.class));
         menuEdit.add(h.get(EditCopyHandler.class));
         menuEdit.add(h.get(EditPasteHandler.class));
         menuEdit.add(h.get(EditSelectAllHandler.class));
         menuEdit.add(h.get(EditClearHandler.class));
-
         menuEdit.add(new Separator());
         menuEdit.add(h.get(EditFindHandler.class));
         menuEdit.add(h.get(EditFindnextHandler.class));
@@ -774,7 +697,6 @@ public class RcpClientContext
         if (!isMac) {
             menuEdit.add(h.get(EditOptionsHandler.class));
         }
-
         MenuManager menuNavigation = MenuUtil.createAutoRefreshMenu(S.s(522));
         menuNavigation.add(h.get(NavigationDoNotReplaceViewsHandler.class));
         menuNavigation.add(new Separator());
@@ -794,7 +716,6 @@ public class RcpClientContext
         menuNavigation.add(h.get(NavigationCanvasZoomInHandler.class));
         menuNavigation.add(h.get(NavigationCanvasZoomOutHandler.class));
         menuNavigation.add(h.get(NavigationCanvasZoomResetHandler.class));
-
         MenuManager menuAction = MenuUtil.createAutoRefreshMenu(S.s(459));
         menuAction.add(h.get(ActionDecompileHandler.class));
         menuAction.add(h.get(ActionGenerateGraphHandler.class));
@@ -811,7 +732,6 @@ public class RcpClientContext
         menuAction.add(h.get(ActionMoveToPackageHandler.class));
         menuAction.add(h.get(ActionTypeHierarchyHandler.class));
         menuAction.add(h.get(ActionOverridesHandler.class));
-
         MenuManager menuNative = MenuUtil.createAutoRefreshMenu("Nati&ve");
         menuNative.add(h.get(ActionDefineCodeHandler.class));
         menuNative.add(h.get(ActionDefineDataHandler.class));
@@ -841,7 +761,6 @@ public class RcpClientContext
         menuNative.add(new Separator());
         menuNative.add(h.get(ActionStartAnalysisHandler.class));
         menuNative.add(h.get(ActionStopAnalysisHandler.class));
-
         MenuManager menuDebugger = MenuUtil.createAutoRefreshMenu(S.s(474));
         menuDebugger.add(h.get(DebuggerAttachHandler.class));
         menuDebugger.add(h.get(DebuggerRestartHandler.class));
@@ -860,11 +779,9 @@ public class RcpClientContext
         menuDebugger.add(h.get(DebuggerRunToLineHandler.class));
         menuDebugger.add(new Separator());
         menuDebugger.add(h.get(DebuggerToggleBreakpointHandler.class));
-
         MenuManager menuFocusPart = new MenuManager(S.s(568), null);
         menuFocusPart.setRemoveAllWhenShown(true);
         menuFocusPart.addMenuListener(new WindowFocusPartMenuHandler());
-
         MenuManager menuWindow = MenuUtil.createAutoRefreshMenu(S.s(582));
         menuWindow.add(h.get(WindowToggleToolbarHandler.class));
         menuWindow.add(h.get(WindowToggleStatusHandler.class));
@@ -878,12 +795,10 @@ public class RcpClientContext
         menuWindow.add(h.get(WindowFocusTerminalHandler.class));
         menuWindow.add(h.get(WindowFocusHierarchyHandler.class));
         menuWindow.add(menuFocusPart);
-
         MenuManager menuInternal = MenuUtil.createAutoRefreshMenu("Internal");
         menuInternal.add(h.get(InternalPrintModelHandler.class));
         menuInternal.add(h.get(InternalLoadModelHandler.class));
         menuInternal.add(h.get(InternalSaveModelHandler.class));
-
         MenuManager menuHelp = MenuUtil.createAutoRefreshMenu(S.s(510));
         if (Licensing.isDebugBuild()) {
             menuHelp.add(menuInternal);
@@ -902,7 +817,6 @@ public class RcpClientContext
             menuHelp.add(new Separator());
             menuHelp.add(h.get(HelpAboutHandler.class));
         }
-
         menuManager.add(menuFile);
         menuManager.add(menuEdit);
         menuManager.add(menuNavigation);
@@ -911,40 +825,33 @@ public class RcpClientContext
         menuManager.add(menuDebugger);
         menuManager.add(menuWindow);
         menuManager.add(menuHelp);
-
         menuManager.updateAll(true);
     }
 
     private void buildToolbar(ToolBarManager toolbarManager) {
         AllHandlers h = AllHandlers.getInstance();
-
         toolbarManager.add(h.get(FileOpenHandler.class));
         toolbarManager.add(h.get(FileSaveHandler.class));
         toolbarManager.add(h.get(EditOptionsHandler.class));
         toolbarManager.add(h.get(EditSwitchThemeHandler.class));
         toolbarManager.add(h.get(FileNotificationsHandler.class));
-
         toolbarManager.add(new Separator());
         toolbarManager.add(h.get(FileShareHandler.class));
-
         toolbarManager.add(new Separator());
         toolbarManager.add(h.get(ActionJumpToHandler.class));
         toolbarManager.add(h.get(ActionFollowHandler.class));
         toolbarManager.add(h.get(ActionNavigateBackwardHandler.class));
         toolbarManager.add(h.get(ActionNavigateForwardHandler.class));
-
         toolbarManager.add(new Separator());
         toolbarManager.add(h.get(ActionDecompileHandler.class));
         toolbarManager.add(h.get(ActionCommentHandler.class));
         toolbarManager.add(h.get(ActionRenameHandler.class));
         toolbarManager.add(h.get(ActionXrefHandler.class));
-
         toolbarManager.add(new Separator());
         toolbarManager.add(h.get(ActionCreatePackageHandler.class));
         toolbarManager.add(h.get(ActionMoveToPackageHandler.class));
         toolbarManager.add(h.get(ActionTypeHierarchyHandler.class));
         toolbarManager.add(h.get(ActionOverridesHandler.class));
-
         toolbarManager.add(new Separator());
         toolbarManager.add(h.get(DebuggerAttachHandler.class));
         toolbarManager.add(h.get(DebuggerRunHandler.class));
@@ -953,45 +860,33 @@ public class RcpClientContext
         toolbarManager.add(h.get(DebuggerStepIntoHandler.class));
         toolbarManager.add(h.get(DebuggerStepOverHandler.class));
         toolbarManager.add(h.get(DebuggerRunToLineHandler.class));
-
         toolbarManager.update(true);
     }
 
     public void onApplicationReady(App app) {
         logMemoryUsage();
-
         this.mainShell = app.getPrimaryShell();
         if (this.mainShell == null) {
             throw new RuntimeException("Cannot retrieve the main window's shell");
         }
         UI.getShellTracker().setMainShell(this.mainShell);
-
-
         this.mainShell.setText(mainShellOriginalTitle);
-
-
         final Shell shell = this.mainShell;
         UIUtil.setWidgetName(shell, "mainShell");
-
-
         this.threadMonitor = ThreadUtil.start(Licensing.isDebugBuild() ? "Memory Monitor" : null, new Runnable() {
             public void run() {
                 int i = 0;
                 for (; ; ) {
                     Runtime rt = Runtime.getRuntime();
                     final long used = rt.totalMemory() - rt.freeMemory();
-
                     UIExecutor.sync(RcpClientContext.this.display, new UIRunnable() {
                         public void runi() {
                             RcpClientContext.this.getStatusIndicator().setText(3, SizeFormatter.formatByteSize(used));
                         }
                     });
-
-
                     if (i++ % 10 == 0) {
                         RcpClientContext.logger.status("", new Object[0]);
                     }
-
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException e) {
@@ -1000,17 +895,13 @@ public class RcpClientContext
                 }
             }
         });
-
         try {
             start();
         } catch (JebException e) {
             String f = "The following error occurred while JEB was initializing:\n\n\"%s\"\n\nPlease update your settings or contact support, and restart JEB. The program will now terminate.";
-
             UI.error(String.format(f, new Object[]{e.getMessage()}));
             terminate();
         }
-
-
         String taskname = "Initializing JEB engines...";
         if (this.coreOptions.isDevelopmentMode()) {
             taskname = taskname + " (dev. mode)";
@@ -1023,7 +914,6 @@ public class RcpClientContext
                     return Boolean.valueOf(true);
                 } catch (JebException e) {
                     String f = "The following error occurred while JEB was initializing:\n\n\"%s\"\n\nPlease update your settings or contact support, and restart JEB. The program will now terminate.";
-
                     UI.error(String.format(f, new Object[]{e.getMessage()}));
                     AbstractContext.terminate();
                 }
@@ -1031,36 +921,19 @@ public class RcpClientContext
             }
         });
         logger.debug("The JEB engines are initialized", new Object[0]);
-
         if ((getEnginesContext() == null) || (getCoreContext() == null)) {
             logger.error("The JEB engines were not initialized!", new Object[0]);
             return;
         }
-
-
         EnginesListener.initialize(this, getEnginesContext());
-
-
         CoreListener.initialize(this, getCoreContext());
-
-
         this.threadSoftwareUpdater = startUpdater();
-
-
         if (shouldCheckPublicAnnouncements()) {
             checkPublicAnnouncement();
         }
-
-
         showAvailableDecompilers();
-
-
         notifyListeners(new JebClientEvent(JC.InitializationComplete));
-
-
         getPartManager().initialize();
-
-
         if ((!isRestartRequired()) && (getPropertyManager().getInteger(".ui.survey.CustomSurvey1Timestamp") == 0) &&
                 (getPropertyManager().getInteger(".RunCount") >= 5)) {
             this.display.timerExec(120000, new Runnable() {
@@ -1071,11 +944,7 @@ public class RcpClientContext
                 }
             });
         }
-
-
         if (this.inputpath != null) {
-
-
             UIExecutor.async(this.display, new UIRunnable() {
                 public void runi() {
                     RcpClientContext.this.loadInputAsProject(shell, RcpClientContext.this.inputpath);
@@ -1098,10 +967,7 @@ public class RcpClientContext
 
     public void initialize(String[] argv) {
         super.initialize(argv);
-
-
         IPropertyDefinitionManager pdm = new PropertyDefinitionManager("ui", super.getPropertyDefinitionManager());
-
         pdm.addDefinition("LoggerMaxLength", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(262144)));
         pdm.addDefinition("AutoSavePeriod", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(60)));
         pdm.addDefinition("AutoOpenDefaultUnit", PropertyTypeBoolean.create(Boolean.TRUE));
@@ -1126,11 +992,8 @@ public class RcpClientContext
         pdm.addDefinition("DoNotReplaceViews", PropertyTypeBoolean.create(Boolean.valueOf(true)));
         pdm.addDefinition("ShowWarningNotificationsInStatus", PropertyTypeBoolean.create(Boolean.valueOf(true)));
         pdm.addDefinition("KeyboardShortcutsFile", PropertyTypePath.create("jeb-shortcuts.cfg"));
-
         IPropertyDefinitionManager pdmState = new PropertyDefinitionManager("state", pdm);
         pdmState.addDefinition("MainShellBounds", PropertyTypeString.create(), "blank= default, -1=maximized, \"x,y,w,h\"=set");
-
-
         IPropertyDefinitionManager pdmText = new PropertyDefinitionManager("text", pdm);
         pdmText.addDefinition("ShowHorizontalScrollbar", PropertyTypeBoolean.create(Boolean.valueOf(true)));
         pdmText.addDefinition("ShowVerticalScrollbar", PropertyTypeBoolean.create(Boolean.valueOf(false)));
@@ -1143,16 +1006,13 @@ public class RcpClientContext
         pdmText.addDefinition("PageLineSize", PropertyTypeInteger.create(Integer.valueOf(0)));
         pdmText.addDefinition("PageMultiplier", PropertyTypeInteger.create(Integer.valueOf(0)));
         pdmText.addDefinition("CaretBehaviorViewportStatic", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-
         IPropertyDefinitionManager pdmCfg = new PropertyDefinitionManager("cfg", pdmText);
         pdmCfg.addDefinition("ShowAddresses", PropertyTypeBoolean.create(Boolean.valueOf(false)));
         pdmCfg.addDefinition("ShowBytesCount", PropertyTypeInteger.create(Integer.valueOf(0)));
-
         IPropertyDefinitionManager pdmGraphs = new PropertyDefinitionManager("graphs", pdmText);
         pdmGraphs.addDefinition("LockView", PropertyTypeBoolean.create(Boolean.valueOf(false)));
         pdmGraphs.addDefinition("KeepInMainDock", PropertyTypeBoolean.create(Boolean.valueOf(false)));
         pdmGraphs.addDefinition("AutoGenerate", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-
         IPropertyDefinitionManager pdmTree = new PropertyDefinitionManager("tree", pdm);
         pdmTree.addDefinition("BucketFlatThreshold", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(2000)));
         pdmTree.addDefinition("BucketTreeThreshold", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(200)));
@@ -1180,7 +1040,6 @@ public class RcpClientContext
         }
         if (i >= 1) {
             sb.insert(0, String.format("Available decompiler%s: ", new Object[]{i >= 2 ? "s" : ""}));
-
             logger.status(sb.toString(), new Object[0]);
         }
     }
@@ -1189,14 +1048,12 @@ public class RcpClientContext
         return false;
     }
 
-
     public boolean displayEula(String eula) {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
             logger.warn("The EULA cannot be displayed.", new Object[0]);
             return false;
         }
-
         TextDialog eulabox = new TextDialog(shell, S.s(312), eula, "eulaDialog");
         eulabox.setLineCount(20);
         eulabox.setColumnCount(80);
@@ -1208,11 +1065,8 @@ public class RcpClientContext
             UI.error("The license agreement must be accepted in order to proceed.\n\nJEB will terminate.");
             return false;
         }
-
-
         return true;
     }
-
 
     public void displayDemoInformation(String demoInfo) {
         Shell shell = getActiveShell();
@@ -1220,7 +1074,6 @@ public class RcpClientContext
             logger.warn("The demo information cannot be displayed.", new Object[0]);
             return;
         }
-
         TextDialog v = new TextDialog(shell, S.s(249), demoInfo, "demoInfoDialog");
         v.setLineCount(10);
         v.setColumnCount(80);
@@ -1236,7 +1089,6 @@ public class RcpClientContext
         if (optionalChangelist == null) {
             changelist = Licensing.getChangeList();
         }
-
         TextDialog v = new TextDialog(shell, S.s(190), changelist, "changelistDialog");
         v.setLineCount(15);
         v.setColumnCount(90);
@@ -1253,14 +1105,11 @@ public class RcpClientContext
             logger.warn("The changelist cannot be displayed.", new Object[0]);
             return;
         }
-
         if (changelist != null) {
             if (!isPreRelease()) {
                 openChangelistDialog(shell, changelist);
             } else if (app_ver.getMajor() == 3) {
                 String welcomeFmt = "Thank you for using this %s version of JEB 3.\n\nThis new version of JEB features:\n- A lighter, faster UI client; it also comes with a Dark theme and customizable keyboard shortcuts\n- Global interactive graphs views, such as the callgraph view\n- Major improvements to our native decompilation pipeline\n- The first release of our Intel x86 and x86-64 interactive decompilers\n- Type libraries for the Android NDK\n- Type libraries for Windows user-mode and kernel-mode binaries, for x86 and ARM (32 and 64 bit)\n- Signature libraries for common Android NDK libraries\n- Signature libraries for Visual Studio compiled programs\n- Many more additions and improvements that we will detail when the full release is available\n\nThank you for reporting bugs to our Support team.";
-
-
                 String welcomeMsg = String.format(welcomeFmt, new Object[]{getChannelName().toLowerCase()});
                 UI.popupOptional(shell, 0, "Welcome", welcomeMsg, "dlgWelcomePreRelease");
             }
@@ -1271,19 +1120,13 @@ public class RcpClientContext
                 BrowserUtil.openInBrowser("https://www.pnfsoftware.com/jeb/changelist");
             }
         }
-
         if (oldVersion == null) {
             return;
         }
-
-
         oldVersion = Version.create(oldVersion.getMajor(), oldVersion.getMinor(), oldVersion.getBuildid());
-
-
         if (Licensing.isReleaseBuild()) {
         }
     }
-
 
     public String retrieveLicenseKey(String licdata) {
         Shell shell = getActiveShell();
@@ -1291,20 +1134,15 @@ public class RcpClientContext
             logger.warn("The licensing dialog cannot be displayed.", new Object[0]);
             return null;
         }
-
         LicenseKeyAutoDialog dlg = new LicenseKeyAutoDialog(shell, licdata, getNetworkUtility(), this);
         String r = dlg.open();
         if (r == null) {
             return null;
         }
-
-
         NetProxyInfo proxyinfo = dlg.getNet().getProxyInformation();
         if (proxyinfo != null) {
             setProxyString(proxyinfo.toString());
         }
-
-
         return r;
     }
 
@@ -1314,19 +1152,15 @@ public class RcpClientContext
             logger.warn("The support expiration dialog cannot be displayed.", new Object[0]);
             return;
         }
-
         if (Licensing.isDemoBuild()) {
             String msg = S.s(255);
             UI.warn(shell, S.s(821), msg);
-
             Toast.urgent(shell, "*** Demo has expired ***")
                     .setFont(UIAssetManager.getInstance().getFont(shell.getFont(), Integer.valueOf(15), Integer.valueOf(1)))
                     .setDuration(Long.MAX_VALUE).show();
             return;
         }
-
         String msg = S.s(759) + "\n\nPress OK to check for or install an update. Press Cancel to continue.";
-
         if (UI.confirm(shell, S.s(821), msg)) {
             new SoftwareUpdateDialog(shell, this, true).open();
         }
@@ -1338,7 +1172,6 @@ public class RcpClientContext
                 int periodInHours = 6;
                 for (; ; ) {
                     if (!RcpClientContext.this.isRestartRequired()) {
-
                         if (RcpClientContext.this.shouldCheckUpdates()) {
                             RcpClientContext.this.checkUpdate();
                         }
@@ -1352,11 +1185,9 @@ public class RcpClientContext
         });
     }
 
-
     public boolean checkUpdate() {
         return checkUpdate(false, false, null);
     }
-
 
     public boolean checkUpdate(boolean calledByUser, boolean expiredLicense, IProgressCallback progressCallback) {
         if (!this.updateCheckState.compareAndSet(0, 1)) {
@@ -1364,7 +1195,6 @@ public class RcpClientContext
         }
         try {
             final SoftwareBuildInfo sbi = new SoftwareBuildInfo();
-
             int ping = ping(true, Integer.MAX_VALUE, sbi, progressCallback);
             String message;
             if ((ping == -2) && (calledByUser)) {
@@ -1372,8 +1202,6 @@ public class RcpClientContext
                 UI.warn(message);
             } else if (ping == 2) {
                 this.updateCheckState.set(2);
-
-
                 UIExecutor.async(this.display, new UIRunnable() {
                     public void runi() {
                         Shell shell = RcpClientContext.this.getActiveShell();
@@ -1384,11 +1212,8 @@ public class RcpClientContext
                 });
             } else if ((ping == 0) && (calledByUser)) {
                 message = expiredLicense ? "It seems there is no available update for your license at this time." : S.s(808);
-
                 if ((sbi.getFlags() & 0x1) != 0) {
                     message = String.format("Good news, JEB version %d is available!\n\nThis major update needs to be installed separately. Please check your registered email for download details.", new Object[]{
-
-
                             Integer.valueOf(app_ver.getMajor() + 1)});
                 }
                 UI.info(message);
@@ -1399,29 +1224,23 @@ public class RcpClientContext
         }
     }
 
-
     public boolean installUpdate(Shell shell, SoftwareBuildInfo sbi) {
         if ((this.updateCheckState.get() != 2) && (!this.updateCheckState.compareAndSet(0, 2))) {
             return false;
         }
-
         int nextState = 0;
         try {
             String channelStr = "";
             if (sbi != null) {
                 int channel = sbi.getChannel();
-
                 if (channel == 1) {
                     channelStr = " (beta)";
                 } else if (channel == 2) {
                     channelStr = " (alpha)";
-
                 } else if (channel >= 3) {
                     channelStr = String.format(" (channel-%d)", new Object[]{Integer.valueOf(channel)});
                 }
             }
-
-
             String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
             ArrayList<String> command = new ArrayList();
             command.add(javaBin);
@@ -1439,10 +1258,8 @@ public class RcpClientContext
             } catch (IOException e) {
                 logger.catchingSilent(e);
             }
-
             String title = String.format("Software update%s", new Object[]{channelStr});
             String message = "A software update is ready to be installed.\n\nClose JEB instance(s) at your best convenience. The update will be installed next time you start the program.";
-
             UI.info(shell, title, message);
             nextState = 3;
             return true;
@@ -1461,8 +1278,6 @@ public class RcpClientContext
             } catch (InterruptedException localInterruptedException) {
             }
         }
-
-
         this.threadMotd = ThreadUtil.start(Licensing.isDebugBuild() ? "Public Announcement" : null, new Runnable() {
             public void run() {
                 PublicAnnouncement r = RcpClientContext.this.retrieveLatestPublicAnnouncement();
@@ -1476,7 +1291,6 @@ public class RcpClientContext
             }
         });
     }
-
 
     public PartManager getPartManager() {
         if (this.pman == null) {
@@ -1503,12 +1317,9 @@ public class RcpClientContext
         try {
             int duration = (int) (System.currentTimeMillis() / 1000L) - getStartTimestamp();
             getTelemetry().record("sessionClose", "duration", duration + "", "projectCount", this.sessionProjectCount + "");
-
             if (Licensing.isDebugBuild()) {
                 logger.debug("UI-Executor statistics:\n%s", new Object[]{UIExecutor.format()});
             }
-
-
             if (this.clearUIState) {
                 clearWidgetBounds();
                 clearWidgetPersistenceProvider();
@@ -1517,22 +1328,17 @@ public class RcpClientContext
             saveWidgetBoundsManager();
             saveWidgetPersistenceProvider();
             saveDialogPersistenceDataProvider();
-
             saveTextHistoryData();
             saveRecentlyOpenedFiles();
             saveRecentlyExecutedScripts();
-
             if (this.styleManager != null) {
                 saveStyleManager(this.styleManager);
             }
             saveTheme();
-
-
             if (this.jebSessionLogStream != null) {
                 this.jebSessionLogStream.close();
                 this.jebSessionLogStream = null;
             }
-
             super.stop();
         } catch (Exception e) {
             logger.catching(e);
@@ -1543,7 +1349,6 @@ public class RcpClientContext
         return this.lastReloadedProjectPath;
     }
 
-
     public boolean onApplicationCloseAttempt(App app) {
         return attemptCloseOpenedProject(null);
     }
@@ -1552,11 +1357,9 @@ public class RcpClientContext
         if (shell == null) {
             shell = getActiveShell();
         }
-
         if (!dlgCheckLockedUnits(shell)) {
             return false;
         }
-
         boolean save = false;
         if ((Licensing.isFullBuild()) &&
                 (hasOpenedProject())) {
@@ -1570,43 +1373,26 @@ public class RcpClientContext
                 return false;
             }
         }
-
-
         getPartManager().closeUnitParts();
-
-
         if (this.clearUIState) {
             removeAppLayoutInformation();
         } else {
             saveAppLayoutInformation();
         }
-
-
         if (save) {
             saveOpenedProject(shell, false, null);
         }
-
         this.lastReloadedProjectPath = null;
-
         this.preferQuickSave = null;
-
-
         closeOpenedProject();
-
-
         if ((mainShellOriginalTitle != null) && (shell != null)) {
             shell.setText(mainShellOriginalTitle);
         }
-
         getStatusIndicator().clearAdditionalContributions();
-
-
         if (this.projectReadyTimestamp != 0) {
             int projectDuration = (int) (System.currentTimeMillis() / 1000L) - this.projectReadyTimestamp;
             getTelemetry().record("projectClose", "duration", projectDuration + "", "artifactCount", this.projectArtifactCount + "");
         }
-
-
         return true;
     }
 
@@ -1631,7 +1417,6 @@ public class RcpClientContext
             for (IUnit unit : RuntimeProjectUtil.getAllUnits(rp)) {
                 if (unit.getLock().isLocked()) {
                     String msg = String.format("The unit \"%s\" (and possibly others) is locked, most likely because a background task is executing.\n\nWould you like to proceed?", new Object[]{
-
                             UnitUtil.buildFullyQualifiedUnitPath(unit)});
                     return UI.confirm(shell, "Unit locked", msg);
                 }
@@ -1645,42 +1430,28 @@ public class RcpClientContext
         if (rp == null) {
             return false;
         }
-
         if ((checkForLockedUnits) && (!dlgCheckLockedUnits(shell))) {
             return false;
         }
-
-
         int strategy = rp.getPersistenceStrategy();
-
         if ((strategy == 0) && (this.preferQuickSave == null)) {
             if (shouldOfferQuickSave(rp)) {
                 String msg = String.format("This project appears to be very large. Performing a regular \"full save\" may take time and consume a large amount of memory.\n\nWould you like to perform a \"quick save\" instead?", new Object[0]);
-
-
                 this.preferQuickSave = Boolean.valueOf(UI.question(shell, "Persisting a Large Project", msg));
                 rp.setPersistenceStrategy(this.preferQuickSave.booleanValue() ? 2 : 1);
             } else {
                 this.preferQuickSave = Boolean.valueOf(false);
             }
         }
-
-
         long t0 = System.currentTimeMillis();
         boolean r = executeTask(S.s(661) + "...", new Runnable() {
             public void run() {
                 try {
                     String projectKey = rp.getKey();
-
                     RcpClientContext.this.getEnginesContext().saveProject(projectKey, persistenceKey, null);
-
-
                 } catch (SerializationException | IOException e) {
-
-
                     throw new RuntimeException(e);
                 }
-
             }
         });
         int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
@@ -1712,14 +1483,12 @@ public class RcpClientContext
         return false;
     }
 
-
     public boolean loadInputAsProject(Shell shell, String path) {
         try {
             path = new File(path).getCanonicalPath();
         } catch (IOException e) {
             path = new File(path).getAbsolutePath();
         }
-
         logger.i("Processing file: %s...", new Object[]{path});
         if ((path == null) || (!IO.isFile(path)) || (!this.basicChecksPassed)) {
             logger.warn("Invalid input or input is not a file: \"%s\"", new Object[]{path});
@@ -1729,20 +1498,15 @@ public class RcpClientContext
             logger.warn("Input file cannot be read: \"%s\"", new Object[]{path});
             return false;
         }
-
         if (!attemptCloseOpenedProject(shell)) {
             logger.warn("The existing project could not be closed", new Object[0]);
             return false;
         }
-
         IRuntimeProject project = null;
         boolean newProject = false;
-
-
         if (IO.getFirstIntLE(path) == 843203658) {
             logger.info("Opening an existing project (%s)", new Object[]{path});
             this.lastReloadedProjectPath = path;
-
             long t0 = System.currentTimeMillis();
             project = loadProject(shell, path);
             if (project == null) {
@@ -1751,29 +1515,24 @@ public class RcpClientContext
             }
             int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
             getTelemetry().record("projectLoad", "duration", "" + duration, "filesize", "" + new File(path).length());
-
             newProject = false;
         } else {
             logger.info("Creating a new project (primary file: %s)", new Object[]{path});
             String projectPath = buildProjectPath(path);
-
             int lastIndex = findLatestProjectDatabase(projectPath);
             if (lastIndex >= 1) {
                 projectPath = buildProjectPath(path, lastIndex);
             }
-
             if (IO.isFile(projectPath)) {
                 if (IO.getFirstIntLE(projectPath) == 843203658) {
                     MessageBox mb = new MessageBox(shell, 194);
                     mb.setText(S.s(207));
                     mb.setMessage(String.format("Project database \"%s\" matches the file about to be opened.\n\nWould you like to open the existing project?", new Object[]{projectPath}));
-
                     int r = mb.open();
                     if (r == 64) {
                         return loadInputAsProject(shell, projectPath);
                     }
                 }
-
                 for (; ; ) {
                     lastIndex++;
                     projectPath = buildProjectPath(path, lastIndex);
@@ -1782,7 +1541,6 @@ public class RcpClientContext
                     }
                 }
             }
-
             long t0 = System.currentTimeMillis();
             project = loadProject(shell, projectPath);
             if (project == null) {
@@ -1791,14 +1549,10 @@ public class RcpClientContext
             }
             int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
             getTelemetry().record("projectCreate", "duration", "" + duration);
-
             processFileArtifact(shell, project, path);
             newProject = true;
         }
-
         addRecentlyOpenedFile(path);
-
-
         String title = mainShellOriginalTitle;
         String key = project.getKey();
         if ((newProject) || (Strings.equals(path, key))) {
@@ -1807,16 +1561,12 @@ public class RcpClientContext
             title = String.format("%s - %s (key: %s)", new Object[]{mainShellOriginalTitle, path, key});
         }
         shell.setText(title);
-
-
         getStatusIndicator().removeContribution("contribUnitNotificationWarning");
         if ((getPropertyManager().getBoolean(".ui.ShowWarningNotificationsInStatus")) &&
                 (RuntimeProjectUtil.hasNotification(project, NotificationType.WARNING.getLevel()))) {
             StatusLineContributionItem contrib = new NotificationWarningContribution(this);
             getStatusIndicator().addContribution(contrib);
         }
-
-
         this.sessionProjectCount += 1;
         this.projectReadyTimestamp = ((int) (System.currentTimeMillis() / 1000L));
         return true;
@@ -1826,7 +1576,6 @@ public class RcpClientContext
         if (index <= 0) {
             return path + ".jdb2";
         }
-
         return path + ".jdb2." + index;
     }
 
@@ -1838,7 +1587,6 @@ public class RcpClientContext
         File projectFile = new File(projectPath);
         File dir = IO.getParentFile2(projectFile);
         FileFilter fileFilter = new WildcardFileFilter(projectFile.getName() + ".*", IOCase.INSENSITIVE);
-
         int lastIndex = 0;
         for (File f : dir.listFiles(fileFilter)) {
             int pos = f.getName().lastIndexOf(".");
@@ -1852,7 +1600,6 @@ public class RcpClientContext
             } catch (NumberFormatException localNumberFormatException) {
             }
         }
-
         return lastIndex;
     }
 
@@ -1860,9 +1607,7 @@ public class RcpClientContext
         if (this.mainShell == null) {
             return;
         }
-
         String sfx = " [DEBUGGING]";
-
         String s = this.mainShell.getText();
         if (enabled) {
             if (s.endsWith(" [DEBUGGING]")) {
@@ -1883,7 +1628,6 @@ public class RcpClientContext
         if (project == null) {
             return false;
         }
-
         processFileArtifact(shell, project, path);
         return true;
     }
@@ -1899,9 +1643,7 @@ public class RcpClientContext
             logger.warn("The artifact cannot be processed");
             return false;
         }
-
         getTelemetry().record("projectAddArtifact", "filesize", "" + artifactFile.length());
-
         return executeTask(S.s(664) + "...", new Runnable() {
             public void run() {
                 ILiveArtifact liveArtifact = project.processArtifact(artifact);
@@ -1921,7 +1663,6 @@ public class RcpClientContext
         }
         try {
             return (T) UI.getTaskManager().create(shell, taskName, callable, 0L);
-
         } catch (InterruptedException localInterruptedException) {
         } catch (InvocationTargetException e) {
             processTaskException(e.getTargetException(), errorOnCancel);
@@ -1941,14 +1682,12 @@ public class RcpClientContext
         try {
             UI.getTaskManager().create(shell, taskName, runnable, 0L);
             return true;
-
         } catch (InterruptedException localInterruptedException) {
         } catch (InvocationTargetException e) {
             processTaskException(e.getTargetException(), errorOnCancel);
         }
         return false;
     }
-
 
     public void executeTaskWithPopupDelay(int delayMs, String taskName, boolean errorOnCancel, final Runnable runnable) {
         executeTaskWithPopupDelay(delayMs, taskName, errorOnCancel, new Callable() {
@@ -1966,7 +1705,6 @@ public class RcpClientContext
         }
         try {
             return (T) UI.getTaskManager().create(shell, taskName, callable, delayMs);
-
         } catch (InterruptedException localInterruptedException) {
         } catch (InvocationTargetException e) {
             processTaskException(e.getTargetException(), errorOnCancel);
@@ -1986,14 +1724,10 @@ public class RcpClientContext
         if (e == null) {
             return;
         }
-
         logger.i(Throwables.formatStacktrace(e), new Object[0]);
-
-
         if ((!(e instanceof InterruptionException)) || (errorOnCancel)) {
             UI.error(null, S.s(768), formatTaskException(e));
             getErrorHandler().processThrowableVerbose(e);
-
         } else if ((e instanceof UnitLockedException)) {
             getErrorHandler().processThrowableVerbose(e);
         }
@@ -2022,7 +1756,6 @@ public class RcpClientContext
             logger.warn("The controller setup dialog cannot be displayed", new Object[0]);
             return false;
         }
-
         ControllerAddressDialog dlg = new ControllerAddressDialog(shell, this);
         return dlg.open().booleanValue();
     }
@@ -2030,7 +1763,6 @@ public class RcpClientContext
     public void notifyFloatingClient(final ControllerNotification notification) {
         final long code = notification.ctlCode;
         int hintContinueLeft = notification.ctlHintContinueLeft;
-
         if (code == 0L) {
             throw new RuntimeException();
         }
@@ -2056,7 +1788,6 @@ public class RcpClientContext
                         MessageBox mbox = new MessageBox(shell, 193);
                         mbox.setText(S.s(304));
                         mbox.setMessage(String.format("%s.\n\n%s.", S.s(219), "Press Yes to save your work and exit, No to exit without saving"));
-
                         int r = mbox.open();
                         if (r == 64) {
                             RcpClientContext.this.saveOpenedProject(shell, false, null);
@@ -2133,8 +1864,6 @@ public class RcpClientContext
 
     public void addRecentlyOpenedFile(String path) {
         List<String> currentList = getRecentlyOpenedFiles();
-
-
         int i = 0;
         for (String elt : currentList) {
             if (elt.equals(path)) {
@@ -2143,8 +1872,6 @@ public class RcpClientContext
             }
             i++;
         }
-
-
         currentList.add(0, path);
         while (currentList.size() > 10) {
             currentList.remove(10);
@@ -2166,8 +1893,6 @@ public class RcpClientContext
 
     public void addRecentlyExecutedScript(String path) {
         List<String> currentList = getRecentlyExecutedScripts();
-
-
         int i = 0;
         for (String elt : currentList) {
             if (elt.equals(path)) {
@@ -2176,8 +1901,6 @@ public class RcpClientContext
             }
             i++;
         }
-
-
         currentList.add(0, path);
         while (currentList.size() > 10) {
             currentList.remove(10);
@@ -2287,7 +2010,6 @@ public class RcpClientContext
 
     private void saveStyleManager(StyleManager styleman) {
         String s = styleman == null ? "" : styleman.encode();
-
         getPropertyManager().setString(".ui.ItemStyles", s);
     }
 
@@ -2311,24 +2033,20 @@ public class RcpClientContext
         }
     }
 
-
     public void setAssociatedData(Object objectKey, Object valueKey, Object valueData) {
         Map<Object, Object> map = (Map) this.assoData.get(objectKey);
         if (map == null) {
             map = new WeakHashMap();
             this.assoData.put(objectKey, map);
         }
-
         map.put(valueKey, valueData);
     }
-
 
     public Object getAssociatedData(Object objectKey, Object valueKey) {
         Map<Object, Object> map = (Map) this.assoData.get(objectKey);
         if (map == null) {
             return null;
         }
-
         return map.get(valueKey);
     }
 
@@ -2341,10 +2059,8 @@ public class RcpClientContext
         return r;
     }
 
-
     public UIState getUIGroupState(IUnit unit) {
         IUnit masterUnit = findMasterUnit(unit);
-
         UIState r = (UIState) getAssociatedData(masterUnit, "uiGroupState");
         if (r == null) {
             r = new UIState(masterUnit);
@@ -2352,7 +2068,6 @@ public class RcpClientContext
         }
         return r;
     }
-
 
     private static IUnit findMasterUnit(IUnit unit) {
         if ((unit.getParent() instanceof IDecompilerUnit)) {
@@ -2366,8 +2081,6 @@ public class RcpClientContext
 
     public boolean executeScript(Shell shell, String path) {
         getTelemetry().record("handlerExecuteClientScript");
-
-
         if (shell != null) {
             Display display = shell.getDisplay();
             while (!shell.isDisposed()) {
@@ -2415,7 +2128,6 @@ public class RcpClientContext
             }
             return false;
         }
-
         addRecentlyExecutedScript(path);
         setLastExecutedScript(path);
         return true;
@@ -2440,10 +2152,8 @@ public class RcpClientContext
             }
             getPropertyManager().setString("state.MainShellBounds", s);
         }
-
         int ratio = this.app.folderProject.getPanelShare();
         getPropertyManager().setInteger("state.ProjectFolderRatio", ratio);
-
         ratio = this.app.folderConsoles.getPanelShare();
         getPropertyManager().setInteger("state.ConsolesFolderRatio", ratio);
     }
@@ -2458,7 +2168,6 @@ public class RcpClientContext
         String encodedState = getDialogPersistenceDataProvider().load(widgetName);
         Map<String, String> state = Strings.decodeMap(encodedState);
         state.put("doNotShow", Boolean.toString(!enabled));
-
         getDialogPersistenceDataProvider().save(widgetName, Strings.encodeMap(state));
     }
 
@@ -2473,7 +2182,6 @@ public class RcpClientContext
         String encodedState = getDialogPersistenceDataProvider().load(widgetName);
         Map<String, String> state = Strings.decodeMap(encodedState);
         state.put("defaultPath", path);
-
         getDialogPersistenceDataProvider().save(widgetName, Strings.encodeMap(state));
     }
 
@@ -2486,7 +2194,6 @@ public class RcpClientContext
     public ExecutorService getExecutorService() {
         return this.executorService;
     }
-
 
     public static TextHistory getStandardAddressHistory(RcpClientContext context) {
         if (context == null) {

@@ -14,7 +14,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class CodeHierarchyDialog
         extends JebDialog {
     private RcpClientContext context;
@@ -27,7 +26,6 @@ public class CodeHierarchyDialog
 
     public CodeHierarchyDialog(Shell parent, ICodeUnit unit, ICodeNode baseNode, ICodeNode baseNodeUp, RcpClientContext context) {
         super(parent, S.s(579), true, false);
-
         this.unit = unit;
         this.baseNode = baseNode;
         this.baseNodeUp = baseNodeUp;
@@ -42,15 +40,11 @@ public class CodeHierarchyDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         boolean displayLabels = (this.baseNode != null) && (this.baseNodeUp != null);
-
         this.v = setup(parent, true, this.baseNode, displayLabels ? "Descending Hierarchy" : null);
         if (this.baseNodeUp != null) {
             this.v2 = setup(parent, false, this.baseNodeUp, displayLabels ? "Ascending Hierarchy" : null);
         }
-
-
         createOkayCancelButtons(parent);
     }
 
@@ -66,7 +60,6 @@ public class CodeHierarchyDialog
             public void doubleClick(DoubleClickEvent e) {
                 CodeHierarchyDialog.this.onConfirm();
             }
-
         });
         RcpClientContext.wrapWidget(this.context, v, "dlgCodehier" + (down ? "Down" : "Up"));
         return v;
@@ -82,7 +75,6 @@ public class CodeHierarchyDialog
         if ((this.v2 != null) && (this.v2.isFocusControl())) {
             widget = this.v2;
         }
-
         ICodeNode node = widget.getSelectedNode();
         if ((node != null) &&
                 ((node.getObject() instanceof ICodeItem))) {

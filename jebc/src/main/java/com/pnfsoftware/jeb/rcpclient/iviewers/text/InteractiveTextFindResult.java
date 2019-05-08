@@ -1,10 +1,8 @@
 
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
-
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.IFindTextResult;
-
 
 public class InteractiveTextFindResult
         implements IFindTextResult {
@@ -13,52 +11,31 @@ public class InteractiveTextFindResult
     private ICoordinates end;
     private int flag;
 
-
     public InteractiveTextFindResult(int flag) {
-
         this.flag = flag;
-
     }
-
 
     public InteractiveTextFindResult(ICoordinates begin, ICoordinates end, boolean wrappedAround) {
-
         this.begin = begin;
-
         this.end = end;
-
         this.flag = (wrappedAround ? 1 : 0);
-
     }
-
 
     public boolean isEndOfSearch() {
-
         return this.flag == -1;
-
     }
-
 
     public boolean isWrappedAround() {
-
         return this.flag == 1;
-
     }
-
 
     public ICoordinates getBegin() {
-
         return this.begin;
-
     }
-
 
     public ICoordinates getEnd() {
-
         return this.end;
-
     }
-
 }
 
 

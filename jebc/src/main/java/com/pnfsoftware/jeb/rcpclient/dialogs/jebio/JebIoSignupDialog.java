@@ -24,13 +24,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class JebIoSignupDialog
         extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoSignupDialog.class);
-
     RcpClientContext context;
-
     String emailHint;
     Text txtEmail;
     Text txtPassword;
@@ -56,8 +53,6 @@ public class JebIoSignupDialog
 
     public void create() {
         super.create();
-
-
         getShell().addHelpListener(new HelpListener() {
             public void helpRequested(HelpEvent e) {
                 new JebIoHelpDialog(JebIoSignupDialog.this.getShell()).open();
@@ -69,17 +64,14 @@ public class JebIoSignupDialog
         getShell().setText("Sign up");
         setTitle("JEB Malware Sharing Network");
         setMessage("Fill out the following form to create a new account", 1);
-
         Composite area = (Composite) super.createDialogArea(parent);
         Composite container = new Composite(area, 0);
         container.setLayoutData(new GridData(4, 4, true, true));
         GridLayout layout = new GridLayout(2, false);
         container.setLayout(layout);
-
         createEmailField(container, this.emailHint);
         createPasswordField(container, null);
         createPasswordConfirmationField(container, null);
-
         this.txtEmail.setFocus();
         this.txtEmail.selectAll();
         return area;
@@ -125,20 +117,17 @@ public class JebIoSignupDialog
             this.txtEmail.setFocus();
             return;
         }
-
         this.password = this.txtPassword.getText();
         if (Strings.isBlank(this.password)) {
             UI.warn("The password field is empty");
             this.txtPassword.setFocus();
             return;
         }
-
         if (!this.password.equals(this.txtPassword2.getText())) {
             UI.warn("The password does not match the confirmation password");
             this.txtPassword2.setFocus();
             return;
         }
-
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), null);
         JebIoObjectUser user = (JebIoObjectUser) this.context.executeNetworkTask(new Callable() {
             public JebIoObjectUser call() throws Exception {
@@ -150,20 +139,16 @@ public class JebIoSignupDialog
                 return null;
             }
         });
-
         if (user == null) {
             return;
         }
-
         if (user.getCode() != 0L) {
             UI.error("The account was not created.\n\nResponse code: " + user.getCode());
             return;
         }
-
         this.apikey = user.getApikey();
         String msg = String.format("Your account was created.\n\nA confirmation email was sent to %s", new Object[]{this.email});
         UI.info(getShell(), "Congratulations!", msg);
-
         setReturnCode(0);
         close();
     }

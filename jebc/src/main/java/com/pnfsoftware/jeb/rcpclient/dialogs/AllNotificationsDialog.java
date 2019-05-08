@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-
 public class AllNotificationsDialog
         extends DataFrameDialog {
     private static AllNotificationsDialog instance;
@@ -23,7 +22,6 @@ public class AllNotificationsDialog
 
     public AllNotificationsDialog(Shell parent, List<Couple<IUnit, IUnitNotification>> elements) {
         super(parent, S.s(602), false, "allNotificationsDialog");
-
         DataFrame df = new DataFrame(new String[]{S.s(785), S.s(779), S.s(268), S.s(52), S.s(424)});
         for (Couple<IUnit, IUnitNotification> elt : elements) {
             IUnit unit = (IUnit) elt.getFirst();
@@ -36,7 +34,6 @@ public class AllNotificationsDialog
                 df.addRow(new Object[]{path, not.getType(), not.getDescription(), addr, ""});
             }
         }
-
         setDataFrame(df);
         setDisplayIndex(false);
     }

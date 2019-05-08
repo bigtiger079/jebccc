@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class TextDialog
         extends JebDialog {
     private Text text;
@@ -34,8 +33,6 @@ public class TextDialog
 
     public TextDialog(Shell parent, String caption, String initialText, String widgetName) {
         super(parent, caption, true, true, widgetName);
-
-
         this.linecount = 1;
         this.colcount = 20;
         this.editable = true;
@@ -73,11 +70,9 @@ public class TextDialog
         this.selected = selected;
     }
 
-
     public void setOkLabelId(Integer labelId) {
         this.labelOk = labelId;
     }
-
 
     public void setCancelLabelId(Integer labelId) {
         this.labelCancel = labelId;
@@ -94,24 +89,17 @@ public class TextDialog
 
     public final void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         createBeforeText(parent);
-
         createText(parent);
-
         createAfterText(parent);
-
         createButtons(parent);
     }
-
 
     protected void createBeforeText(Composite parent) {
     }
 
-
     protected void createAfterText(Composite parent) {
     }
-
 
     protected void createText(Composite parent) {
         if (this.textLabel != null) {
@@ -137,16 +125,13 @@ public class TextDialog
         data.grabExcessVerticalSpace = true;
         data.verticalAlignment = 4;
         this.text.setLayoutData(data);
-
         this.text.setEditable(this.editable);
-
         if (this.initialText != null) {
             this.text.setText(this.initialText);
             if (this.selected) {
                 this.text.selectAll();
             }
         }
-
         UIUtil.disableTabOutput(this.text);
     }
 

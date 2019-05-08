@@ -13,15 +13,12 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-
 public class ReferencesDialog
         extends DataFrameDialog {
     private static final ILogger logger = GlobalLog.getLogger(ReferencesDialog.class);
 
-
     public ReferencesDialog(Shell parent, String caption, List<String> addresses, List<String> details, IUnit unit) {
         super(parent, caption, true, "referencesDialog");
-
         if (addresses == null) {
             logger.i("The list of addresses is null", new Object[0]);
             addresses = new ArrayList();
@@ -47,7 +44,6 @@ public class ReferencesDialog
                 } else {
                     extra = (String) details.get(i);
                 }
-
                 df.addRow(new Object[]{address, label, extra});
                 i++;
             }
@@ -57,7 +53,6 @@ public class ReferencesDialog
                 df.addRow(new Object[]{address});
             }
         }
-
         setDataFrame(df);
         setDisplayIndex(true);
     }

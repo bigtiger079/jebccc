@@ -14,14 +14,11 @@ import java.util.Objects;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-
 public class OptionsChanges {
     private Map<String, Changes> changes = new HashMap();
 
-
     public static class Changes {
         IPropertyManager pm;
-
         Map<String, Object> changeList = new HashMap();
         List<Listener> listeners = new ArrayList();
 
@@ -118,8 +115,6 @@ public class OptionsChanges {
         for (Changes c : this.changes.values()) {
             if (c.hasChanges()) {
                 c.applyChanges();
-
-
                 if (tele != null) {
                     for (Map.Entry<String, Object> e : c.getChanges().entrySet()) {
                         String key = (String) e.getKey();

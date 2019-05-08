@@ -7,7 +7,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-
 public class OptionsBooleanViewer
         extends AbstractOptionsSimpleWidget {
     public OptionsBooleanViewer(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey) {

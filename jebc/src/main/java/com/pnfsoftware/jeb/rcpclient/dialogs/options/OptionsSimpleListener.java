@@ -16,13 +16,10 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-
 public class OptionsSimpleListener
         implements Listener {
     private Map<String, List<Control>> elements = new HashMap();
-
     private Map<Control, List<Control>> enabledOnCheckBoxItems = new HashMap();
-
 
     public void handleEvent(Event event) {
         Object[] data = (Object[]) event.data;

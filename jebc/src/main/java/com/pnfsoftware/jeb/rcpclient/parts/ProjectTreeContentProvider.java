@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts;
 
-
 import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
@@ -28,7 +27,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-
 class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
     private static final ILogger logger = GlobalLog.getLogger(ProjectTreeContentProvider.class);
     private IEnginesContext engctx;
@@ -37,22 +35,14 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
     private PartManager pman;
     private RcpClientProperties contextProperties;
 
-
     public ProjectTreeContentProvider(RcpClientContext context, PartManager pman) {
-
         this.context = context;
-
         this.pman = pman;
-
-
         this.contextProperties = context.getProperties();
-
     }
-
 
     public void dispose() {
     }
-
 
     public void inputChanged(final Viewer viewer, Object oldInput, Object newInput) {
         logger.i("Input changed from %s to %s", new Object[]{oldInput, newInput});
@@ -113,141 +103,75 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
         } else {
             throw new RuntimeException();
         }
-
     }
-
 
     public Object[] getElements(Object element) {
-
         return getChildren(element);
-
     }
-
 
     public Object getParent(Object element) {
-
         return null;
-
     }
-
 
     public Object[] getChildren(Object element) {
-
         Object[] r = new Object[0];
-
         if ((element instanceof IEnginesContext)) {
-
             IEnginesContext input = (IEnginesContext) element;
-
             r = input.getProjects().toArray();
-
         } else if ((element instanceof IRuntimeProject)) {
-
             IRuntimeProject input = (IRuntimeProject) element;
-
             r = input.getLiveArtifacts().toArray();
-
         } else if ((element instanceof ILiveArtifact)) {
-
             ILiveArtifact input = (ILiveArtifact) element;
-
             r = input.getUnits().toArray();
-
         } else if ((element instanceof IUnit)) {
-
             IUnit input = (IUnit) element;
-
             if (input.getChildren() != null) {
-
                 r = input.getChildren().toArray();
-
             } else {
-
                 r = ArrayUtil.NO_OBJECT;
-
             }
-
         }
-
-
         return r;
-
     }
-
 
     public boolean hasChildren(Object element) {
-
         boolean r = false;
-
         if ((element instanceof IEnginesContext)) {
-
             IEnginesContext input = (IEnginesContext) element;
-
             r = !input.getProjects().isEmpty();
-
         } else if ((element instanceof IRuntimeProject)) {
-
             IRuntimeProject input = (IRuntimeProject) element;
-
             r = !input.getLiveArtifacts().isEmpty();
-
         } else if ((element instanceof ILiveArtifact)) {
-
             ILiveArtifact input = (ILiveArtifact) element;
-
             r = !input.getUnits().isEmpty();
-
         } else if ((element instanceof IUnit)) {
-
             IUnit input = (IUnit) element;
-
             r = (input.getChildren() != null) && (!input.getChildren().isEmpty());
-
         }
-
-
         return r;
-
     }
-
 
     public static String getString(Object element) {
-
         if ((element instanceof IRuntimeProject)) {
-
             return ((IRuntimeProject) element).getName();
-
         }
-
         if ((element instanceof ILiveArtifact)) {
-
             return ((ILiveArtifact) element).getArtifact().getName();
-
         }
-
         if ((element instanceof IUnit)) {
-
             return ((IUnit) element).getName();
-
         }
-
         if (element != null) {
-
             return element.toString();
-
         }
-
         return null;
-
     }
-
 
     public Object[] getRowElements(Object row) {
-
         return new Object[]{getString(row)};
-
     }
-
 }
 
 

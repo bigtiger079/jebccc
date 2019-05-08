@@ -1,9 +1,7 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
-
 public class MethodSetupInformation {
     Boolean routineNonReturning;
-
     Integer routineDataSPDeltaOnReturn;
 
     public Boolean getRoutineNonReturning() {

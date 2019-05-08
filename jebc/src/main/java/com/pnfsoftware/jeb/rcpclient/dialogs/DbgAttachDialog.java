@@ -41,7 +41,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-
 public class DbgAttachDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DbgAttachDialog.class);
@@ -61,20 +60,16 @@ public class DbgAttachDialog
             return String.format("info=%s,ident=%s", new Object[]{this.info, this.ident});
         }
 
-
         public IDebuggerUnitIdentifier ident;
     }
 
     private List<IDebuggerUnitIdentifier> idents = new ArrayList();
-
     private List<IDebuggerUnitIdentifier> identifiers = new ArrayList();
     private List<IDebuggerMachineInformation> machines = new ArrayList();
     private DataFrame dfMachines;
     private DataFrameView dfvMachines;
     private List<? extends IDebuggerProcessInformation> processes = new ArrayList();
-
     private DataFrame dfProcesses;
-
     private DataFrameView dfvProcesses;
     private Button btnRemoteTarget;
     private Text widgetHostname;
@@ -88,15 +83,11 @@ public class DbgAttachDialog
         super(parent, S.s(234), true, true);
         this.scrolledContainer = true;
         setVisualBounds(30, -1, -1, 70);
-
         this.taskExecutor = context;
-
         this.dbg = optionalDebuggerUnit;
-
         if ((this.dbg == null) && (context != null)) {
             this.idents = context.getEnginesContext().getDebuggerUnitIdentifiers();
         }
-
         this.target = optionalTargetUnit;
     }
 
@@ -137,7 +128,6 @@ public class DbgAttachDialog
 //                            }
 //                    }
                 }
-
             }
         };
         if (this.taskExecutor != null) {
@@ -166,9 +156,7 @@ public class DbgAttachDialog
         } else {
             this.dfMachines.clear();
         }
-
         updateMachinesList();
-
         for (IDebuggerMachineInformation machine : this.machines) {
             int flags = machine.getFlags();
             String ff = "";
@@ -187,11 +175,9 @@ public class DbgAttachDialog
         } else {
             this.dfProcesses.clear();
         }
-
         StringBuilder suggestedFilter = new StringBuilder();
         if (machine != null) {
             updateProcessesList(machine);
-
             for (IDebuggerProcessInformation process : this.processes) {
                 int flags = process.getFlags();
                 String ff = "";
@@ -201,8 +187,6 @@ public class DbgAttachDialog
                 this.dfProcesses.addRow(new Object[]{Long.valueOf(process.getId()), process.getName(), ff});
             }
         }
-
-
         IUnit unit = this.target;
         while (unit != null) {
             if (!Strings.isBlank(unit.getName())) {
@@ -211,8 +195,6 @@ public class DbgAttachDialog
                 }
                 suggestedFilter.append(unit.getName());
             }
-
-
             if (!(unit.getParent() instanceof IUnit)) {
                 break;
             }
@@ -236,7 +218,6 @@ public class DbgAttachDialog
         int index = this.dfvMachines.getSelectedRow();
         String suggFilter = prepareProcessList((index < 0) || (index >= this.machines.size()) ? null : (IDebuggerMachineInformation) this.machines.get(index));
         this.dfvProcesses.refresh();
-
         tryAutoSelectProcess(suggFilter);
     }
 
@@ -248,22 +229,17 @@ public class DbgAttachDialog
     protected void createContents(Composite parent) {
         this.shell.setMinimumSize(600, 450);
         int autoInitDone = 0;
-
         UIUtil.setStandardLayout(parent, 3);
-
         Composite c = new Composite(parent, 0);
         c.setLayoutData(UIUtil.createGridDataSpanHorizontally(3, true, true));
         c.setLayout(new GridLayout(1, false));
-
         prepareMachineList();
         IDebuggerMachineInformation machine = this.machines.isEmpty() ? null : (IDebuggerMachineInformation) this.machines.get(0);
         String suggestedFilter = prepareProcessList(machine);
-
         Group g0 = new Group(c, 0);
         g0.setLayoutData(UIUtil.createGridDataFillHorizontally());
         g0.setLayout(new GridLayout(1, false));
         g0.setText(String.format("%s / %s", new Object[]{S.s(449), S.s(273)}));
-
         this.dfvMachines = new DataFrameView(g0, this.dfMachines, true);
         this.dfvMachines.addExtraEntriesToContextMenu();
         this.dfvMachines.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -271,14 +247,10 @@ public class DbgAttachDialog
             this.dfvMachines.setSelection(0);
             autoInitDone++;
         }
-
-
         Group g1 = new Group(c, 0);
         g1.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, true));
-
         g1.setLayout(new GridLayout(1, false));
         g1.setText(S.s(663));
-
         this.dfvProcesses = new DataFrameView(g1, this.dfProcesses, true);
         this.dfvProcesses.addExtraEntriesToContextMenu();
         if (tryAutoSelectProcess(suggestedFilter)) {
@@ -286,32 +258,24 @@ public class DbgAttachDialog
         }
         this.dfvProcesses.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, true));
         this.dfvProcesses.refresh();
-
-
         this.dfvMachines.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 int index = DbgAttachDialog.this.dfvMachines.getSelectedRow();
                 DbgAttachDialog.logger.i("Selected: %d", new Object[]{Integer.valueOf(index)});
                 DbgAttachDialog.this.refreshProcessList();
-
-
             }
-
-
         });
         this.dfvProcesses.getTableViewer().addDoubleClickListener(new IDoubleClickListener() {
             public void doubleClick(DoubleClickEvent event) {
                 if (DbgAttachDialog.this.tryAttach()) {
                     DbgAttachDialog.this.shell.close();
                 }
-
             }
         });
         Group g2 = new Group(parent, 0);
         g2.setLayoutData(UIUtil.createGridDataSpanHorizontally(3, true, false));
         g2.setLayout(new GridLayout(2, false));
         g2.setText("Remote Debugging");
-
         this.btnRemoteTarget = UIUtil.createCheckbox(g2, "Debug a remote target", new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 boolean isRemote = DbgAttachDialog.this.btnRemoteTarget.getSelection();
@@ -323,30 +287,23 @@ public class DbgAttachDialog
             }
         });
         this.btnRemoteTarget.setLayoutData(UIUtil.createGridDataSpanHorizontally(2));
-
         new Label(g2, 0).setText(S.s(670) + ": ");
         this.widgetHostname = new Text(g2, 2052);
         this.widgetHostname.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetHostname.setEnabled(false);
-
         new Label(g2, 0).setText(S.s(671) + ": ");
         this.widgetPort = new Text(g2, 2052);
         this.widgetPort.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetPort.setEnabled(false);
-
         Group g3 = new Group(parent, 0);
         g3.setLayoutData(UIUtil.createGridDataSpanHorizontally(3, true, false));
         g3.setLayout(new GridLayout(1, false));
         g3.setText("Options");
-
         this.btnSuspendThreads = UIUtil.createCheckbox(g3, S.s(760), null);
         this.btnSuspendThreads.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, false));
-
         this.btnUseChildren = UIUtil.createCheckbox(g3, "Allow children debuggers (for Android apps, provide Native debugging)", null);
         this.btnUseChildren.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, false));
         this.btnUseChildren.setToolTipText("Example: when debugging an Android app with native code, the native code debugger will be a child of the bytecode debugger");
-
-
         Button btnAttach = UIUtil.createPushbox(parent, S.s(83), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 if (DbgAttachDialog.this.tryAttach()) {
@@ -358,7 +315,6 @@ public class DbgAttachDialog
             public void widgetSelected(SelectionEvent event) {
                 DbgAttachDialog.this.shell.close();
             }
-
         });
         this.btnRefresh = UIUtil.createPushbox(parent, "Refresh Machines List", new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
@@ -366,19 +322,15 @@ public class DbgAttachDialog
                 DbgAttachDialog.this.refreshProcessList();
             }
         });
-
         if (autoInitDone == 2) {
             btnAttach.setFocus();
         }
-
         this.shell.setDefaultButton(btnAttach);
     }
-
 
     private boolean tryAutoSelectProcess(String suggestedFilter) {
         if (!Strings.isBlank(suggestedFilter)) {
             this.dfvProcesses.forceFilter(suggestedFilter);
-
             int candidate = 0;
             TableItem[] items = this.dfvProcesses.getTable().getItems();
             for (int i = 0; i < items.length; i++) {
@@ -400,7 +352,6 @@ public class DbgAttachDialog
 
     private boolean tryAttach() {
         this.result = null;
-
         boolean isRemote = this.btnRemoteTarget.getSelection();
         if (!isRemote) {
             int index = this.dfvMachines.getSelectedRow();
@@ -424,12 +375,10 @@ public class DbgAttachDialog
                 this.result = new DbgAttachInfo(DebuggerSetupInformation.create(hostname, port), null);
             }
         }
-
         if (this.result == null) {
             MessageDialog.openWarning(this.shell, S.s(405), S.s(406));
             return false;
         }
-
         this.result.info.setSuspendThreads(this.btnSuspendThreads.getSelection());
         this.result.info.setUseChildrenDebuggers(this.btnUseChildren.getSelection());
         return true;

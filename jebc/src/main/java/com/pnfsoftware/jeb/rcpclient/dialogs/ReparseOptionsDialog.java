@@ -26,11 +26,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ReparseOptionsDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ReparseOptionsDialog.class);
-
     private IUnit unit;
     private List<Text> widgetDatas = new ArrayList();
     private Map<String, Object> options;
@@ -47,33 +45,25 @@ public class ReparseOptionsDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
-
         Group g = new Group(parent, 0);
         g.setText("Options");
         g.setLayoutData(UIUtil.createGridDataSpanHorizontally(2));
         g.setLayout(new GridLayout(2, false));
-
         IPropertyDefinitionManager pdm = this.unit.getPropertyDefinitionManager();
         IPropertyManager pm = this.unit.getPropertyManager();
         for (IPropertyDefinition def : pdm.getDefinitions()) {
             String name = def.getName();
             Object value = pm.getValue(name);
-
             new Label(g, 0).setText(name);
-
             Text widgetData = new Text(g, 2052);
             widgetData.setLayoutData(UIUtil.createGridDataFillHorizontally());
             widgetData.setData("optionName", name);
             this.widgetDatas.add(widgetData);
-
             widgetData.setText(Strings.safe(value));
         }
-
         Composite buttons = new Composite(parent, 0);
         buttons.setLayoutData(UIUtil.createGridDataSpanHorizontally(2));
         buttons.setLayout(new RowLayout(256));
-
         Button btn_ok = UIUtil.createPushbox(buttons, S.s(605), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
                 ReparseOptionsDialog.this.options = new HashMap();

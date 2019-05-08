@@ -13,7 +13,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 
-
 public class OptionsSimpleViewList
         extends AbstractOptionsSimpleWidget {
     protected String separator;
@@ -40,7 +39,6 @@ public class OptionsSimpleViewList
         return 0;
     }
 
-
     protected void addRemoveButton(final EditableList list) {
         list.addButton(S.s(677), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
@@ -58,7 +56,6 @@ public class OptionsSimpleViewList
             }
         }, true);
     }
-
 
     protected String[] getItems(String value) {
         return getItems(this.separator, value);

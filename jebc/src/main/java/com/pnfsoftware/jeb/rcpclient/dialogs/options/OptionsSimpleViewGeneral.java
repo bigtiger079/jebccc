@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-
 public class OptionsSimpleViewGeneral
         extends Composite {
     protected static final String CLIENT = "Client";
@@ -39,17 +38,12 @@ public class OptionsSimpleViewGeneral
     public OptionsSimpleViewGeneral(Composite parent, OptionsChanges optionsChanges) {
         super(parent, 0);
         setLayout(new FillLayout());
-
         Composite ph = new Composite(this, 0);
         ph.setLayout(new GridLayout(1, false));
-
         this.optionsChanges = optionsChanges;
-
         initSimpleViewElementListener("Client");
         initSimpleViewElementListener("Engines");
         initSimpleViewElementListener("Project-specific");
-
-
         if (optionsChanges.get("Engines") != null) {
             Group plugin = createGroup(ph, S.s(639));
             DirectorySelectorView plug = createDirectoryOption(plugin, S.s(647), null, "Engines",
@@ -58,25 +52,20 @@ public class OptionsSimpleViewGeneral
                 plug.setEnabled(false);
             }
         }
-
         Group update = createGroup(ph, S.s(796));
         createBooleanOption(update, S.s(798), null, "Client", "CheckUpdates");
-
         Group proxy = createGroup(update, S.s(668));
         Button proxyButton = createProxyOption(proxy, S.s(669), null, "Client", "NetworkProxy");
         this.proxySubEntries.add(createComboBox(proxy, S.s(672), null, "Client", "NetworkProxy", 0, new String[]{"http", "socks"}));
-
         this.proxySubEntries.add(createTextOption(proxy, S.s(670), null, "Client", "NetworkProxy", 1));
         Text portText = createTextOption(proxy, S.s(671), null, "Client", "NetworkProxy", 2);
         this.proxySubEntries.add(portText);
-
         Group proxyAuth = createGroup(proxy, "Authentication");
         proxyAuth.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         Text userText = createTextOption(proxyAuth, S.s(811), null, "Client", "NetworkProxy", 3);
         this.proxySubEntries.add(userText);
         Text passwordText = createTextOption(proxyAuth, S.s(631), null, "Client", "NetworkProxy", 4);
         this.proxySubEntries.add(passwordText);
-
         addVerifyListenerIntOnly(portText);
         ((OptionsSimpleListener) this.listeners.get("Client")).addEnabledOnCheckbox(proxyButton, this.proxySubEntries);
         initProxyOptions("Client", "NetworkProxy");
@@ -126,7 +115,6 @@ public class OptionsSimpleViewGeneral
                 if (newValue) {
                     newValueObj = parentButton.getData("PREVIOUS_DATA");
                     if (newValueObj == null) {
-
                         newValueObj = AbstractOptionsSimpleWidget.getProperty(c, propertyKey, true);
                     }
                     if ((newValueObj == null) || (StringUtils.isEmpty(newValueObj.toString()))) {

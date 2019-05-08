@@ -12,7 +12,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class NamedConstantsChooserDialog
         extends JebDialog {
     private INativeCodeUnit<?> unit;
@@ -23,7 +22,6 @@ public class NamedConstantsChooserDialog
     public NamedConstantsChooserDialog(Shell parent, INativeCodeUnit<?> unit, Object sourceValue) {
         super(parent, "Choose a constant", true, false);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         if (unit == null) {
             throw new NullPointerException();
         }
@@ -38,15 +36,12 @@ public class NamedConstantsChooserDialog
 
     public void createContents(Composite parent) {
         parent.setLayout(new GridLayout(1, false));
-
         this.v = new NamedConstantsView(parent, 0, null, this.unit, null, this.sourceValue);
         this.v.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, true));
-
         this.v.getViewer().addDoubleClickListener(new IDoubleClickListener() {
             public void doubleClick(DoubleClickEvent e) {
                 NamedConstantsChooserDialog.this.onConfirm();
             }
-
         });
         createOkayCancelButtons(parent);
     }

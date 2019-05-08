@@ -10,7 +10,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class NativeTypeEditorDialog
         extends JebDialog {
     INativeCodeUnit<?> unit;
@@ -19,7 +18,6 @@ public class NativeTypeEditorDialog
 
     public NativeTypeEditorDialog(Shell parent, INativeCodeUnit<?> unit, IStructureType initialType, FontManager fontman) {
         super(parent, "Type Editor", true, true);
-
         this.unit = unit;
         this.initialType = initialType;
         this.fontman = fontman;
@@ -32,7 +30,6 @@ public class NativeTypeEditorDialog
 
     protected void createContents(Composite parent) {
         parent.setLayout(new GridLayout());
-
         NativeTypeEditorView v = new NativeTypeEditorView(parent, 0, this.unit);
         GridData data = new GridData(4, 4, true, true);
         data.minimumHeight = 300;
@@ -41,7 +38,6 @@ public class NativeTypeEditorDialog
             v.setCodefont(this.fontman.getCodeFont());
         }
         v.setInput(this.initialType);
-
         createOkayButton(parent);
     }
 }

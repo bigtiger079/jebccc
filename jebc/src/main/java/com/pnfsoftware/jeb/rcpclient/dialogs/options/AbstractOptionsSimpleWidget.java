@@ -4,7 +4,6 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.widgets.Control;
 
-
 public class AbstractOptionsSimpleWidget {
     private static final String DEFAULT_TOKENIZER = "\\|";
     private static final String DEFAULT_RETOKENIZER = "|";

@@ -11,7 +11,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class StackframeEditorDialog
         extends JebDialog {
     INativeCodeUnit<?> unit;
@@ -21,7 +20,6 @@ public class StackframeEditorDialog
     public StackframeEditorDialog(Shell parent, INativeCodeUnit<?> unit, INativeMethodItem initialRoutine, FontManager fontman) {
         super(parent, String.format("Edit stackframe of method \"%s\"", new Object[]{initialRoutine.getName(true)}), true, true);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         this.unit = unit;
         this.initialRoutine = initialRoutine;
         this.fontman = fontman;
@@ -34,7 +32,6 @@ public class StackframeEditorDialog
 
     protected void createContents(Composite parent) {
         parent.setLayout(new GridLayout());
-
         StackEditorView v = new StackEditorView(parent, 0, this.unit);
         GridData data = new GridData(4, 4, true, true);
         data.minimumHeight = 300;
@@ -43,7 +40,6 @@ public class StackframeEditorDialog
             v.setCodefont(this.fontman.getCodeFont());
         }
         v.setInputRoutine(this.initialRoutine);
-
         createOkayButton(parent);
     }
 }

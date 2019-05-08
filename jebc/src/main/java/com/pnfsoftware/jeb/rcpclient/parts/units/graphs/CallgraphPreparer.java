@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
-
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.fast.L;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.fast.P;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.model.Digraph;
@@ -15,7 +14,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-
 class CallgraphPreparer
         implements Runnable {
     private ICallgraphBuilder callgraphBuilder;
@@ -23,50 +21,27 @@ class CallgraphPreparer
     List<P> points;
     List<L> lines;
 
-
     CallgraphPreparer(ICallgraphBuilder callgraphBuilder) {
-
         this.callgraphBuilder = callgraphBuilder;
-
     }
-
 
     public void run() {
-
         this.model = this.callgraphBuilder.buildModel();
-
-
         determineVerticesWeights(this.model);
-
-
         P[] initial_vertex_points = layoutVerticesBasedOnCentrality(this.model, 1.0D, 1.0D);
-
         ForceDirectedLayout l = new ForceDirectedLayout(this.model, 100, 1.0D, 1.0D, initial_vertex_points);
-
-
         l.layout();
-
         this.points = Arrays.asList(l.getPoints());
-
         this.lines = generateLinesForEdges(this.model);
-
     }
-
 
     private List<L> generateLinesForEdges(Digraph g) {
-
         List<L> lines = new ArrayList();
-
         for (E e : g.getEdges()) {
-
             lines.add(new L(e.getSrc().getId(), e.getDst().getId()));
-
         }
-
         return lines;
-
     }
-
 
     private void determineVerticesWeights(Digraph g) {
         double minweight = Double.MAX_VALUE;
@@ -105,98 +80,48 @@ class CallgraphPreparer
             return;
         }
         this.model.resetEdgeBetweennessScores();
-
-
     }
-
 
     private P[] layoutVerticesBasedOnCentrality(Digraph g, double w, double h) {
-
         int cnt = g.getVertexCount();
-
         P[] initial_points = new P[cnt];
-
-
         List<Integer> indices = g.getVertexIndexesByDescendingCentrality();
-
         Assert.a(indices.size() == cnt);
-
-
         double d = Math.sqrt(w * h / cnt);
-
-
         double x0 = w / 2.0D;
-
         double y0 = h / 2.0D;
-
-
         int dir = 0;
-
         int dir_change_count = 0;
-
         int requested_inline = 1;
-
         int inline = 0;
-
-
         for (int i = 0; i < cnt; i++) {
-
             int vertex_index = ((Integer) indices.get(i)).intValue();
-
             initial_points[vertex_index] = new P(Integer.valueOf(g.getVertexByIndex(vertex_index).getId()), x0, y0);
-
             switch (dir) {
-
                 case 0:
-
                     x0 += d;
-
                     break;
-
                 case 1:
-
                     y0 += d;
-
                     break;
-
                 case 2:
-
                     x0 -= d;
-
                     break;
-
                 default:
-
                     y0 -= d;
-
             }
-
-
             inline++;
-
             if (inline == requested_inline) {
-
                 dir = (dir + 1) % 4;
-
                 dir_change_count++;
-
                 if (dir_change_count % 2 == 0) {
-
                     requested_inline++;
-
                 }
-
                 inline = 0;
-
             }
-
         }
-
-
         return initial_points;
-
     }
-
 }
 
 

@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
-
 import com.pnfsoftware.jeb.core.output.code.coordinates.ICodeCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.InstructionCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.MethodCoordinates;
@@ -24,20 +23,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-
 public class NativeCallgraphBuilder implements ICallgraphBuilder {
     private INativeCodeUnit<IInstruction> unit;
     private Digraph model;
     private WeakValueMap<Integer, INativeMethodItem> vertexIdToMethodObject;
     private WeakIdentityHashMap<INativeMethodItem, Integer> methodObjectToVertexId;
 
-
     public NativeCallgraphBuilder(INativeCodeUnit<IInstruction> unit) {
-
         this.unit = unit;
-
     }
-
 
     public Digraph buildModel() {
         int i0;
@@ -76,66 +70,36 @@ public class NativeCallgraphBuilder implements ICallgraphBuilder {
             }
         }
         return this.model;
-
     }
-
 
     public String getAddressForVertexId(int vertexId) {
-
         INativeMethodItem m = this.vertexIdToMethodObject == null ? null : (INativeMethodItem) this.vertexIdToMethodObject.get(Integer.valueOf(vertexId));
-
         if (m == null) {
-
             return null;
-
         }
-
         return m.getAddress();
-
     }
-
 
     public Integer getVertexIdForAddress(String address) {
-
         ICodeCoordinates cc = this.unit.getCodeCoordinatesFromAddress(address);
-
         INativeMethodItem m = null;
-
         if ((cc instanceof MethodCoordinates)) {
-
             int index = ((MethodCoordinates) cc).getMethodId();
-
             m = this.unit.getMethodByIndex(index);
-
         } else if ((cc instanceof InstructionCoordinates)) {
-
             int index = ((InstructionCoordinates) cc).getMethodId();
-
             m = this.unit.getMethodByIndex(index);
-
         } else if ((cc instanceof NativeCoordinates)) {
-
             long a = ((NativeCoordinates) cc).getAddress();
-
             m = this.unit.getInternalMethod(a, false);
-
         } else {
-
             return null;
-
         }
-
-
         if (m == null) {
-
             return null;
-
         }
-
         return (Integer) this.methodObjectToVertexId.get(m);
-
     }
-
 }
 
 

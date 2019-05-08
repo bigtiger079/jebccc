@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.actions;
 import com.pnfsoftware.jeb.client.api.IUnitFragment;
 import com.pnfsoftware.jeb.core.actions.ActionContext;
 
-
 public class ActionUIContext {
     private ActionContext actionContext;
     private IUnitFragment fragment;

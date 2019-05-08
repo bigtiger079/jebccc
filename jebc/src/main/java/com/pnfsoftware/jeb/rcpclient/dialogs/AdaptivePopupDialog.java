@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class AdaptivePopupDialog
         extends JebDialog {
     public static final int TYPE_INFORMATION = 1;
@@ -22,13 +21,11 @@ public class AdaptivePopupDialog
     private int retval;
     boolean doNotShow = false;
 
-
     public AdaptivePopupDialog(Shell parent, int type, String caption, String message, String widgetName) {
         super(parent, caption, true, true, widgetName);
         this.scrolledContainer = true;
         setMessage(message);
         setVisualBounds(30, -1, 15, -1);
-
         if ((type != 1) && (type != 2)) {
             throw new IllegalArgumentException("Invalid dialog type");
         }
@@ -38,7 +35,6 @@ public class AdaptivePopupDialog
     public void setMessage(String message) {
         this.message = message;
     }
-
 
     public Integer open() {
         super.open();
@@ -59,23 +55,17 @@ public class AdaptivePopupDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         setPreferredShellIcon();
-
         Label label = new Label(parent, 64);
         label.setLayoutData(UIUtil.createGridDataFillHorizontally());
         label.setText(Strings.safe(this.message, "< " + S.s(287) + " >"));
-
-
         new Label(parent, 64).setText("");
-
         this.btnDoNotShow = UIUtil.createCheckbox(parent, S.s(281), null);
         if ((getWidgetManager() != null) && (getWidgetName() != null)) {
             this.btnDoNotShow.setSelection(!getWidgetManager().getShouldShowDialog(getWidgetName()));
         } else {
             this.btnDoNotShow.setEnabled(false);
         }
-
         if (this.type == 1) {
             createButtons(parent, 32, 32);
         } else if (this.type == 2) {

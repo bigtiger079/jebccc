@@ -29,11 +29,13 @@ import com.pnfsoftware.jeb.util.concurrent.ThreadUtil;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.KeyAdapter;
@@ -65,9 +67,8 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
     private InteractiveTextView textView;
     private Thread threadAutoLocate;
 
-
-    static  class AnonymousClass10 {
-        static final  int[] $SwitchMap$com$pnfsoftware$jeb$client$api$Operation = new int[Operation.values().length];
+    static class AnonymousClass10 {
+        static final int[] $SwitchMap$com$pnfsoftware$jeb$client$api$Operation = new int[Operation.values().length];
 
         static {
             try {
@@ -133,7 +134,6 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             });
         }
 
-
         public void preDrawing(GC gc) {
             if (getVertexCount() == 0) {
                 Rectangle r = getClientArea();
@@ -141,7 +141,6 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
                 gc.drawText(text, (r.width - gc.stringExtent(text).x) / 2, r.height / 2);
             }
         }
-
 
         public void postDrawing(GC gc) {
             if (!isDragging()) {
@@ -155,10 +154,9 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             }
         }
 
-        private  int lambda$determineVisibleVertices$0(P a, P b) {
+        private int lambda$determineVisibleVertices$0(P a, P b) {
             return -Double.compare(AbstractGlobalGraphView.this.model.getVertex(a.getId()).weight.doubleValue(), AbstractGlobalGraphView.this.model.getVertex(b.getId()).weight.doubleValue());
         }
-
 
         public Collection<L> determineVisibleEdges(Collection<P> visiblePoints, Collection<L> edges) {
             if (getModeId() == 1) {
@@ -179,7 +177,6 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             return r;
         }
 
-
         public void drawVertex(GC gc, P p, Point pt) {
             double w = AbstractGlobalGraphView.this.model.getVertex(p.getId()).getWeight().doubleValue();
             int r = Math.min(192, (int) ((1.0d - w) * 255.0d));
@@ -191,11 +188,9 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             gc.fillOval(pt.x - (pr / 2), pt.y - (pr / 2), pr, pr);
         }
 
-
         public void drawVertexLabel(GC gc, P p, Point pt) {
             super.drawVertexLabel(gc, p, pt);
         }
-
 
         public void drawEdge(GC gc, L l, Point a, Point b) {
             int id;
@@ -250,10 +245,8 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
         super.dispose();
     }
 
-
     public final void newGraphWithControls() {
         this.gp = new GraphPlaceholder<CallgraphComposite>(this, 0, true, true) {
-
             public CallgraphComposite createGraph(GraphPlaceholder<CallgraphComposite> gp, CallgraphComposite callgraphComposite) {
                 return new CallgraphComposite(gp);
             }
@@ -343,7 +336,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             case 1:
                 return true;
             case 3:
-            case AllHandlers.GRP_NAVCANVAS :
+            case AllHandlers.GRP_NAVCANVAS:
             case 5:
                 return true;
             default:
@@ -363,7 +356,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             case 3:
                 getGraph().zoomGraph(1);
                 return true;
-            case AllHandlers.GRP_NAVCANVAS :
+            case AllHandlers.GRP_NAVCANVAS:
                 getGraph().zoomGraph(-1);
                 return true;
             case 5:

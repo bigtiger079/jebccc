@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class RenameItemDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(RenameItemDialog.class);
@@ -28,7 +27,6 @@ public class RenameItemDialog
     public RenameItemDialog(Shell parent, TextHistory textHistory) {
         super(parent, S.s(678), true, true);
         this.scrolledContainer = true;
-
         this.textHistory = textHistory;
     }
 
@@ -51,27 +49,20 @@ public class RenameItemDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         Label hint = new Label(parent, 64);
         hint.setLayoutData(UIUtil.createGridDataFillHorizontally());
         hint.setText(this.description != null ? this.description : "Rename the selected item. Leave empty to reset to original value.");
-
         if (this.originalValue != null) {
-
             HistoryAssistedTextField text0 = new HistoryAssistedTextField(parent, "Original:\t", null, false);
             text0.setLayoutData(UIUtil.createGridDataFillHorizontally());
             text0.setText(this.originalValue);
             text0.getWidget().setEditable(false);
         }
-
         this.text = new HistoryAssistedTextField(parent, S.s(591) + ":\t", this.textHistory, true);
         this.text.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
-
         if (this.initialValue != null) {
             this.text.getWidget().setText(this.initialValue);
             this.text.getWidget().forceFocus();
-
             if (!OSType.determine().isWindows()) {
                 this.text.getWidget().selectAll();
             } else {
@@ -85,15 +76,9 @@ public class RenameItemDialog
                 });
             }
         }
-
-
         UIUtil.disableTabOutput(this.text);
-
-
         Composite c1 = new Composite(parent, 0);
         c1.setLayout(new RowLayout(256));
-
-
         createOkayCancelButtons(parent);
     }
 

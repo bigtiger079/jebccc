@@ -24,7 +24,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class ListParsersDialog
         extends JebDialog {
     private Object input;
@@ -49,17 +48,11 @@ public class ListParsersDialog
         return super.open();
     }
 
-
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
-
         int style = (this.input instanceof IEnginesContext) ? 32 : 0;
-
-
         FilteredTableView ft = new FilteredTableView(parent, style, new String[]{S.s(779), S.s(656), S.s(591), S.s(268), S.s(818), S.s(86)});
         ft.setLayoutData(UIUtil.createGridDataFill(true, true));
-
         FilteredTableViewer ftv = new FilteredTableViewer(ft);
         ContentProviderListener p = new ContentProviderListener();
         ftv.setContentProvider(p);
@@ -69,9 +62,7 @@ public class ListParsersDialog
         ftv.setLabelProvider(new DefaultCellLabelProvider(p));
         ft.addTableEventListener(p);
         ftv.setInput(this.input);
-
         createOkayButton(parent);
-
         if (getStandardWidgetManager() != null) {
             getStandardWidgetManager().wrapWidget(ft, "listParsers");
         }
@@ -84,10 +75,8 @@ public class ListParsersDialog
             this.input0 = newInput;
         }
 
-
         public void dispose() {
         }
-
 
         public Object[] getElements(Object inputElement) {
             if ((inputElement instanceof IEnginesContext)) {
@@ -104,12 +93,10 @@ public class ListParsersDialog
         public Object[] getRowElements(Object row) {
             if ((row instanceof IUnitIdentifier)) {
                 IUnitIdentifier p = (IUnitIdentifier) row;
-
                 String name = p.getClass().getName();
                 String description = null;
                 String author = null;
                 String version = null;
-
                 IPluginInformation pi = p.getPluginInformation();
                 if (pi != null) {
                     name = pi.getName();
@@ -117,10 +104,8 @@ public class ListParsersDialog
                     author = pi.getAuthor();
                     version = pi.getVersion().toString();
                 }
-
                 return new Object[]{p.getFormatType(), Double.valueOf(p.getPriority()), name, description, version, author};
             }
-
             return ArrayUtil.NO_OBJECT;
         }
 

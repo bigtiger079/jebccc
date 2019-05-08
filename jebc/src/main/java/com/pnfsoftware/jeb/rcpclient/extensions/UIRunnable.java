@@ -1,74 +1,44 @@
 
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
-
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-
 public abstract class UIRunnable implements Runnable {
     private static final ILogger logger = GlobalLog.getLogger(UIRunnable.class);
-
     public static final long UITHREAD_BLOCK_WARNING_TIME = 100L;
-
     public static final long UITHREAD_BLOCK_REPORTING_TIME = 1000L;
-
     private String name;
-
     private long createdTs;
     private long execStartTs;
     private long execEndTs;
 
-
     public UIRunnable(String name) {
-
         this.name = name;
-
         this.createdTs = System.currentTimeMillis();
-
     }
-
 
     public UIRunnable() {
-
         this(null);
-
-
         if (Licensing.isDebugBuild()) {
-
             StackTraceElement[] elts = Thread.currentThread().getStackTrace();
-
             if (elts.length >= 2) {
-
                 StackTraceElement e = elts[1];
-
                 if (Licensing.isDebugBuild()) {
-
                     this.name = e.toString();
-
                 } else {
-
                     this.name = String.format("%s.%s", new Object[]{e.getClassName(), e.getMethodName()});
-
                 }
-
             }
-
         }
-
     }
-
 
     public String getName() {
-
         return this.name;
-
     }
 
-
     public abstract void runi();
-
 
     public final void run() {
         // Byte code:
@@ -250,44 +220,27 @@ public abstract class UIRunnable implements Runnable {
         //   0	11	76	org/eclipse/swt/SWTException
         //   0	11	199	finally
         //   76	134	199	finally
-
     }
-
 
     public boolean isStarted() {
-
         return this.execStartTs != 0L;
-
     }
-
 
     public boolean isDone() {
-
         return this.execEndTs != 0L;
-
     }
-
 
     public long getCreatedTs() {
-
         return this.createdTs;
-
     }
-
 
     public long getExecStartTs() {
-
         return this.execStartTs;
-
     }
-
 
     public long getExecEndTs() {
-
         return this.execEndTs;
-
     }
-
 }
 
 

@@ -5,7 +5,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class JebIoHelpDialog
         extends MessageDialog {
     public JebIoHelpDialog(Shell shell) {

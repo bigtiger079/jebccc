@@ -12,11 +12,9 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class DataFrameDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DataFrameDialog.class);
-
     private String msg;
     private boolean displayIndex = false;
     private DataFrame df;
@@ -25,8 +23,6 @@ public class DataFrameDialog
 
     public DataFrameDialog(Shell parent, String caption, boolean modal, String widgetName) {
         super(parent, caption, true, modal, widgetName);
-
-
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
     }
 
@@ -42,33 +38,26 @@ public class DataFrameDialog
         this.msg = msg;
     }
 
-
     public Integer open() {
         if (this.df == null) {
             throw new IllegalStateException("The dataframe model was not set");
         }
-
         super.open();
         return Integer.valueOf(this.selectedIndex);
     }
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         if (this.msg != null) {
             UIUtil.createWrappedLabelInGridLayout(parent, 0, this.msg, 1);
         }
-
         this.dfv = new DataFrameView(parent, this.df, this.displayIndex);
         this.dfv.addExtraEntriesToContextMenu();
         this.dfv.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, true));
-
-
         this.dfv.getTableViewer().addDoubleClickListener(new IDoubleClickListener() {
             public void doubleClick(DoubleClickEvent e) {
                 DataFrameDialog.this.onConfirm();
             }
-
         });
         createOkayCancelButtons(parent);
     }

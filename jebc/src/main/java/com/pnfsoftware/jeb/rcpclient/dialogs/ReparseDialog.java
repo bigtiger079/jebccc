@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ReparseDialog
         extends JebDialog {
     public static class Information {
@@ -63,22 +62,17 @@ public class ReparseDialog
             return this.wantedType;
         }
 
-
         public long getOffset() {
             return this.offset;
         }
-
 
         public long getSize() {
             return this.size;
         }
     }
 
-
     private static final ILogger logger = GlobalLog.getLogger(ReparseDialog.class);
-
     private IUnit unit;
-
     private List<IUnitIdentifier> unitIdentifiers;
     private long maxsize;
     private Information reparseInfo;
@@ -92,18 +86,15 @@ public class ReparseDialog
     public ReparseDialog(Shell parent, IUnit unit) {
         super(parent, S.s(626), true, true);
         this.scrolledContainer = true;
-
         if (unit == null) {
             throw new NullPointerException();
         }
         this.unit = unit;
-
         this.unitIdentifiers = new ArrayList(RuntimeProjectUtil.findProject(unit).getProcessor().getUnitIdentifiers());
         Collections.sort(this.unitIdentifiers, new Comparator<IUnitIdentifier>() {
             public int compare(IUnitIdentifier o1, IUnitIdentifier o2) {
                 return o1.getFormatType().compareTo(o2.getFormatType());
             }
-
         });
         this.maxsize = 0L;
         if ((unit instanceof IBinaryUnit)) {
@@ -126,7 +117,6 @@ public class ReparseDialog
         if ((index < 0) || (index >= this.unitIdentifiers.size())) {
             return null;
         }
-
         return ((IUnitIdentifier) this.unitIdentifiers.get(index)).getFormatType();
     }
 
@@ -142,7 +132,6 @@ public class ReparseDialog
         if ((this.maxsize < 0L) || (isNullInput())) {
             return -1L;
         }
-
         return Conversion.stringToLong(this.widgetOffset.getText(), 0L);
     }
 
@@ -154,7 +143,6 @@ public class ReparseDialog
         if ((this.maxsize < 0L) || (isNullInput())) {
             return -1L;
         }
-
         return Conversion.stringToLong(this.widgetSize.getText(), 0L);
     }
 
@@ -167,17 +155,13 @@ public class ReparseDialog
         GridLayout layout = new GridLayout(2, false);
         layout.marginLeft = (layout.marginRight = layout.marginTop = layout.marginBottom = 6);
         parent.setLayout(layout);
-
         new Label(parent, 0).setText(S.s(591) + ": ");
-
         this.widgetSubUnitName = new Text(parent, 2052);
         this.widgetSubUnitName.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetSubUnitName.setText("sub-unit");
         this.widgetSubUnitName.selectAll();
         this.widgetSubUnitName.setFocus();
-
         new Label(parent, 0).setText(S.s(627) + ": ");
-
         this.widgetParsers = new Combo(parent, 12);
         GridData layoutData = UIUtil.createGridDataFillHorizontally();
         layoutData.widthHint = UIUtil.determineTextWidth(this.widgetParsers, 40);
@@ -185,38 +169,29 @@ public class ReparseDialog
         for (IUnitIdentifier id : this.unitIdentifiers) {
             this.widgetParsers.add(id.getFormatType());
         }
-
         new Label(parent, 0).setText(S.s(270) + ": ");
-
         final Text widgetPinfo = new Text(parent, 2060);
         widgetPinfo.setLayoutData(UIUtil.createGridDataFillHorizontally());
         widgetPinfo.setText("N/A");
-
         new Label(parent, 0).setText(S.s(388) + ": ");
         this.widgetNullInput = new Button(parent, 32);
         this.widgetNullInput.setText("null (parent unit only)");
         this.widgetNullInput.setEnabled(this.maxsize >= 0L);
-
         new Label(parent, 0).setText(S.s(604) + ": ");
         this.widgetOffset = new Text(parent, 2052);
         this.widgetOffset.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetOffset.setText("0");
-
         new Label(parent, 0).setText(S.s(741) + ": ");
         this.widgetSize = new Text(parent, 2052);
         this.widgetSize.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetSize.setText(String.format("%d", new Object[]{Long.valueOf(this.maxsize)}));
-
         new Label(parent, 0).setText(String.format("(%s: )", new Object[]{S.s(289)}));
         this.widgetEnd = new Text(parent, 2052);
         this.widgetEnd.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetEnd.setText(String.format("%d", new Object[]{Long.valueOf(this.maxsize)}));
-
         createOkayCancelButtons(parent);
         final Button widgetOk = getButtonByStyle(32);
         widgetOk.setEnabled(false);
-
-
         this.widgetOffset.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 long offset = ReparseDialog.this.getOffset();
@@ -224,7 +199,6 @@ public class ReparseDialog
                     offset = 0L;
                     ReparseDialog.this.setOffset(0L);
                 }
-
                 if (offset > ReparseDialog.this.maxsize) {
                     ReparseDialog.this.setOffset(ReparseDialog.this.maxsize);
                     ReparseDialog.this.setSize(0L);
@@ -235,10 +209,8 @@ public class ReparseDialog
                         ReparseDialog.this.setSize(size);
                     }
                 }
-
                 ReparseDialog.this.updateEnd();
             }
-
         });
         this.widgetSize.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
@@ -250,7 +222,6 @@ public class ReparseDialog
                 }
                 ReparseDialog.this.updateEnd();
             }
-
         });
         this.widgetParsers.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
@@ -258,22 +229,18 @@ public class ReparseDialog
                 if ((index < 0) || (index >= ReparseDialog.this.unitIdentifiers.size())) {
                     return;
                 }
-
                 IPluginInformation pi = ((IUnitIdentifier) ReparseDialog.this.unitIdentifiers.get(index)).getPluginInformation();
                 if (pi == null) {
                     return;
                 }
-
                 if (!widgetOk.isEnabled()) {
                     widgetOk.setEnabled(true);
                     ReparseDialog.this.shell.setDefaultButton(widgetOk);
                 }
-
                 String s = String.format("%s (v%s)", new Object[]{Strings.safe2(pi.getDescription(), String.format("(%s)", new Object[]{S.s(595)})),
                         Strings.safe2(pi.getVersion(), "?")});
                 widgetPinfo.setText(s);
             }
-
         });
         this.widgetNullInput.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {

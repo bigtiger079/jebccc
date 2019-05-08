@@ -11,7 +11,6 @@ import java.util.Map;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class DecompDynamicOptionsDialog
         extends JebDialog {
     INativeSourceUnit src;
@@ -21,7 +20,6 @@ public class DecompDynamicOptionsDialog
 
     public DecompDynamicOptionsDialog(Shell parent, INativeSourceUnit src, String address) {
         super(parent, "Decompiler Dynamic Options", true, true);
-
         if (src == null) {
             throw new NullPointerException();
         }
@@ -42,10 +40,8 @@ public class DecompDynamicOptionsDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         this.v = new DecompDynamicOptionsView(parent, 0, this.src, this.address);
         this.v.setLayoutData(UIUtil.createGridDataFill(true, true));
-
         createOkayCancelButtons(parent);
     }
 

@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class JumpToDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(JumpToDialog.class);
@@ -29,7 +28,6 @@ public class JumpToDialog
     public JumpToDialog(Shell parent, TextHistory textHistory) {
         super(parent, S.s(420), true, true, null);
         this.scrolledContainer = true;
-
         this.textHistory = textHistory;
     }
 
@@ -48,28 +46,20 @@ public class JumpToDialog
 
     public void createContents(Composite parent) {
         parent.setLayout(new GridLayout(1, false));
-
-
         Group c0 = new Group(parent, 0);
         c0.setText("Jump target");
         c0.setLayoutData(UIUtil.createGridDataFillHorizontally());
         c0.setLayout(new GridLayout(2, false));
-
         this.text = new HistoryAssistedTextField(c0, S.s(52) + ":", this.textHistory, true);
         this.text.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         this.text.getWidget().setFont(this.font);
         if (this.initialValue != null) {
             this.text.getWidget().setText(this.initialValue);
             this.text.getWidget().selectAll();
         }
-
         UIUtil.disableTabOutput(this.text);
-
-
         Composite c1 = new Composite(parent, 0);
         c1.setLayout(new RowLayout(256));
-
         createOkayCancelButtons(parent);
     }
 

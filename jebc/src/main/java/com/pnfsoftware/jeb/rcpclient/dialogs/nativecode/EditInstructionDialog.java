@@ -28,7 +28,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class EditInstructionDialog
         extends JebDialog {
     private long address;
@@ -47,7 +46,6 @@ public class EditInstructionDialog
     public EditInstructionDialog(Shell parent, long address, INativeCodeUnit<?> unit) {
         super(parent, "Edit the Instruction", true, true);
         this.scrolledContainer = true;
-
         this.address = address;
         this.unit = unit;
     }
@@ -59,32 +57,24 @@ public class EditInstructionDialog
 
     protected void createContents(final Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         new Label(parent, 0).setText(S.s(52) + ": ");
         this.widgetAddress = UIUtil.createTextboxInGrid(parent, 2060, 50, 1, true, false);
-
         new Label(parent, 0).setText(S.s(424) + ": ");
         this.widgetLabel = new Text(parent, 2060);
         this.widgetLabel.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         new Label(parent, 0).setText("Bytes: ");
         this.widgetBytes = new Text(parent, 2060);
         this.widgetBytes.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         new Label(parent, 0).setText("Disassembly: ");
         this.widgetDisas = new Text(parent, 2060);
         this.widgetDisas.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         Group grp = UIUtil.createGroupGrid(parent, "Attributes", 2, 2);
-
         new Label(grp, 0).setText("SP Delta: ");
         this.widgetHintSPDelta = new Text(grp, 2052);
         this.widgetHintSPDelta.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         new Label(grp, 0).setText("Prototype Hint: ");
         this.widgetHintProto = new Text(grp, 2052);
         this.widgetHintProto.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         new Label(grp, 0).setText("Dynamic Target: ");
         Composite c = UIUtil.createCompositeGrid(grp, 1, 3);
         UIUtil.createTightPushbox(c, "Select", new SelectionAdapter() {
@@ -102,9 +92,7 @@ public class EditInstructionDialog
         });
         this.widgetDynTarget = new Text(c, 2060);
         this.widgetDynTarget.setLayoutData(UIUtil.createGridDataFillHorizontally());
-
         loadInstruction(this.address);
-
         createOkayCancelButtons(parent);
     }
 
@@ -116,31 +104,25 @@ public class EditInstructionDialog
         this.widgetHintSPDelta.setText("");
         this.widgetHintProto.setText("");
         setDynTargetWidget(null);
-
         this.ii = null;
         INativeItem item = this.unit.getNativeItemAt(address);
         if (!(item instanceof INativeInstructionItem)) {
             return false;
         }
-
         this.ii = ((INativeInstructionItem) item);
-
         this.widgetAddress.setText(Strings.safe(this.ii.getAddress()));
         this.widgetLabel.setText(Strings.safe(this.ii.getLabel()));
         this.widgetBytes.setText(Formatter.formatBinaryLine(this.ii.getInstruction().getCode()));
         this.widgetDisas.setText(this.ii.getInstruction().format(Long.valueOf(this.ii.getMemoryAddress())));
-
         InstructionHints hints = this.ii.getHints(false);
         if (hints != null) {
             this.widgetHintSPDelta.setText(Strings.safe(hints.getStackPointerDelta()));
             this.widgetHintProto.setText(Strings.safe(hints.getCallsitePrototype()));
         }
-
         IBranchTarget target = getCurrentlyStoredResolvedTarget();
         if (target != null) {
             setDynTargetWidget(target.getRoutine());
         }
-
         return true;
     }
 
@@ -160,8 +142,6 @@ public class EditInstructionDialog
 
     protected void onConfirm() {
         this.confirmed = true;
-
-
         String text = this.widgetHintSPDelta.getText().trim();
         if (text.isEmpty()) {
             if (this.ii.getHints(false) != null) {
@@ -176,8 +156,6 @@ public class EditInstructionDialog
                 return;
             }
         }
-
-
         text = this.widgetHintProto.getText().trim();
         if (text.isEmpty()) {
             if (this.ii.getHints(false) != null) {
@@ -189,12 +167,9 @@ public class EditInstructionDialog
                 this.ii.getHints(true).setCallsitePrototype(proto);
             } catch (TypeStringParseException e) {
                 UI.error("Cannot parse prototype. The expected format is:\n\n<callingConvention> returnType(param1Type, param2Type, ...)");
-
                 return;
             }
         }
-
-
         INativeMethodItem routine = (INativeMethodItem) this.widgetDynTarget.getData("dynTargetItem");
         if (routine == null) {
             IBranchTarget current = getCurrentlyStoredResolvedTarget();
@@ -204,7 +179,6 @@ public class EditInstructionDialog
         } else {
             this.unit.getCodeAnalyzer().recordDynamicBranchTarget(this.address, true, new BranchTarget(routine), false);
         }
-
         super.onConfirm();
     }
 }

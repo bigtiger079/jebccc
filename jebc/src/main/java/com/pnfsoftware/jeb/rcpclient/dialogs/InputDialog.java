@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class InputDialog
         extends JebDialog {
     private Text text;
@@ -25,13 +24,11 @@ public class InputDialog
     public InputDialog(Shell parent, String caption, String initialValue, boolean multiline, int minColumnCount, int minLineCount) {
         super(parent, caption, true, true);
         this.scrolledContainer = true;
-
         this.value = Strings.safe(initialValue);
         this.multiline = multiline;
         this.minColumnCount = minColumnCount;
         this.minLineCount = minLineCount;
     }
-
 
     public void setMessage(String message) {
         this.message = message;
@@ -48,14 +45,11 @@ public class InputDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         Label label = new Label(parent, 0);
         label.setLayoutData(UIUtil.createGridDataSpanHorizontally(1, true, false));
         if (this.message != null) {
             label.setText(this.message);
         }
-
-
         if (this.minColumnCount <= 0) {
             if (this.value != null) {
                 this.minColumnCount = this.value.length();
@@ -63,10 +57,8 @@ public class InputDialog
                 this.minColumnCount = 40;
             }
         }
-
         this.minColumnCount = Math.max(30, Math.min(this.minColumnCount, 60));
         this.minLineCount = Math.max(1, Math.min(this.minLineCount, 10));
-
         if ((this.multiline) && (this.minLineCount >= 1)) {
             this.text = UIUtil.createTextboxInGrid(parent, 2626, this.minColumnCount, this.minLineCount);
         } else {
@@ -77,9 +69,7 @@ public class InputDialog
             this.text.selectAll();
             this.value = null;
         }
-
         UIUtil.disableTabOutput(this.text);
-
         createOkayCancelButtons(parent);
     }
 

@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class MoveToPackageDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(MoveToPackageDialog.class);
@@ -28,7 +27,6 @@ public class MoveToPackageDialog
     public MoveToPackageDialog(Shell parent, TextHistory textHistory) {
         super(parent, S.s(519), true, true);
         this.scrolledContainer = true;
-
         this.textHistory = textHistory;
     }
 
@@ -47,29 +45,21 @@ public class MoveToPackageDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         Label hint = new Label(parent, 64);
         hint.setLayoutData(UIUtil.createGridDataFillHorizontally());
         hint.setText(this.description != null ? this.description : S.s(391));
-
         this.text = new HistoryAssistedTextField(parent, S.s(591) + ":", this.textHistory, true);
-
         GridData griddata = UIUtil.createGridDataForText(this.text, 50, 0, false);
         griddata.grabExcessHorizontalSpace = true;
         griddata.horizontalAlignment = 4;
         this.text.setLayoutData(griddata);
-
         if (this.initialValue != null) {
             this.text.getWidget().setText(this.initialValue);
             this.text.getWidget().selectAll();
         }
-
         UIUtil.disableTabOutput(this.text);
-
-
         Composite c1 = new Composite(parent, 0);
         c1.setLayout(new RowLayout(256));
-
         createOkayCancelButtons(parent);
     }
 

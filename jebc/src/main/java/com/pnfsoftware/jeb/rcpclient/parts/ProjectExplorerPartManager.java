@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts;
 
-
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.client.api.IOperable;
 import com.pnfsoftware.jeb.client.api.Operation;
@@ -82,7 +81,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 
-
 public class ProjectExplorerPartManager
         extends AbstractPartManager
         implements IOperable {
@@ -92,463 +90,231 @@ public class ProjectExplorerPartManager
     private FilteredTreeViewer ftv;
     private PartManager pman;
 
-
     public ProjectExplorerPartManager(RcpClientContext context) {
-
         super(context);
-
     }
-
 
     @PostConstruct
     public void createView(Composite parent, IMPart part) {
-
         parent.setLayout(new FillLayout());
-
-
         this.parent = parent;
-
         this.pman = this.context.getPartManager();
-
-
         ProjectTreeLabelProvider labelProvider = new ProjectTreeLabelProvider();
-
         IPatternMatcher patternMatcher = new SimplePatternMatcher(labelProvider);
-
         boolean expandAfterFilter = this.context.getPropertyManager().getBoolean(".ui.ExpandTreeNodesOnFiltering");
-
         this.pt = new PatternTreeView(parent, 0, null, null, patternMatcher, expandAfterFilter);
-
         this.ftv = this.pt.getTreeViewer();
-
-
         this.ftv.addSelectionChangedListener(new ISelectionChangedListener() {
-
             public void selectionChanged(SelectionChangedEvent e) {
-
                 if (ProjectExplorerPartManager.this.context.getProperties().getProjectUnitSync()) {
-
                     ProjectExplorerPartManager.this.handleSelectionChangedEvent(e);
-
                 }
-
             }
-
         });
-
         this.ftv.addDoubleClickListener(new IDoubleClickListener() {
-
             public void doubleClick(DoubleClickEvent e) {
-
                 ProjectExplorerPartManager.this.handleDoubleClickEvent(e);
-
             }
-
-
         });
-
         this.ftv.setContentProvider(new ProjectTreeContentProvider(this.context, this.pman));
-
         this.ftv.setLabelProvider(labelProvider);
-
         this.ftv.setInput(this.context.getEnginesContext());
-
-
         this.context.addListener(new IEventListener() {
-
             public void onEvent(IEvent e) {
-
                 if ((e.getType() == JC.InitializationComplete) && (!((TreeViewer) ProjectExplorerPartManager.this.ftv.getViewer()).getControl().isDisposed())) {
-
                     ProjectExplorerPartManager.this.ftv.setInput(ProjectExplorerPartManager.this.context.getEnginesContext());
-
                 }
-
-
             }
-
-
         });
-
         new ContextMenu(((TreeViewer) this.ftv.getViewer()).getControl()).addContextMenu(new IContextMenu() {
-
             public void fillContextMenu(IMenuManager menuMgr) {
-
                 if (!ProjectExplorerPartManager.this.context.hasOpenedProject()) {
-
                     return;
-
                 }
-
                 menuMgr.add(new ActionExtractToHandler());
-
                 menuMgr.add(new ActionParseAtHandler());
-
                 menuMgr.add(new Separator());
-
                 menuMgr.add(new FileDeleteHandler());
-
                 menuMgr.add(new Separator());
-
                 menuMgr.add(new FilePropertiesHandler());
-
             }
-
         });
-
     }
-
 
     public Object getSelectedNode() {
-
         ITreeSelection treesel = (ITreeSelection) this.ftv.getSelection();
-
         if (treesel.isEmpty()) {
-
             return null;
-
         }
-
-
         return treesel.getFirstElement();
-
     }
-
 
     public boolean focusOnNode(Object node) {
-
         if ((!(node instanceof IRuntimeProject)) && (!(node instanceof ILiveArtifact)) && (!(node instanceof IUnit))) {
-
             return false;
-
         }
-
-
         TreeViewer v = (TreeViewer) this.ftv.getViewer();
-
         ISelection selection = new StructuredSelection(node);
-
-
         IRuntimeProject project = this.context.getOpenedProject();
-
-
         if ((node instanceof IRuntimeProject)) {
-
             if (node != project) {
-
                 return false;
-
             }
-
-
             selection = new StructuredSelection(project);
-
         } else if ((node instanceof ILiveArtifact)) {
-
             ILiveArtifact artifact = null;
-
             for (ILiveArtifact a : project.getLiveArtifacts()) {
-
                 if (a == node) {
-
                     artifact = a;
-
                     break;
-
                 }
-
             }
-
             if (artifact == null) {
-
                 return false;
-
             }
-
-
             selection = new TreeSelection(new TreePath(new Object[]{project, artifact}));
-
         } else if ((node instanceof IUnit)) {
-
             IUnit unit = (IUnit) node;
-
-
             Object path = new ArrayList();
-
             for (; ; ) {
-
                 ((List) path).add(0, unit);
-
                 if (!(unit.getParent() instanceof IUnit)) {
-
                     break;
-
                 }
-
-
                 unit = (IUnit) unit.getParent();
-
             }
-
-
             IArtifact artifact0 = (IArtifact) unit.getParent();
-
             ILiveArtifact artifact = null;
-
             for (ILiveArtifact a : project.getLiveArtifacts()) {
-
                 if (a.getArtifact() == artifact0) {
-
                     artifact = a;
-
                 }
-
             }
-
             if (artifact == null) {
-
                 return false;
-
             }
-
             ((List) path).add(0, artifact);
-
-
             ((List) path).add(0, project);
-
-
             selection = new TreeSelection(new TreePath(((List) path).toArray()));
-
         }
-
-
         v.reveal(node);
-
         v.setSelection(selection);
-
         return true;
-
     }
-
 
     public void setFocus() {
-
         this.pt.setFocus();
-
     }
-
 
     public static void setupDragAndDrop(final Control parent, RcpClientContext context) {
-
         DropTarget dt = new DropTarget(parent, 7);
-
         dt.setTransfer(new Transfer[]{FileTransfer.getInstance()});
-
         dt.addDropListener(new DropTargetAdapter() {
-
             public void drop(DropTargetEvent event) {
-
                 if ((FileTransfer.getInstance().isSupportedType(event.currentDataType)) && ((event.data instanceof String[]))) {
-
                     String[] paths = (String[]) event.data;
-
                     int i = 0;
-
                     for (String path : paths) {
-
                         if (i == 0) {
-
                             if (context.hasOpenedProject()) {
-
                                 MessageBox mb = new MessageBox(context.getActiveShell(), 456);
-
-
                                 mb.setText(S.s(207));
-
                                 mb.setMessage(
                                         S.s(659) + ".\n\nWould you like to create a new project?");
-
                                 int r = mb.open();
-
                                 if (r == 64) {
-
                                     if (!context.loadInputAsProject(parent.getShell(), path)) {
-
                                         break;
-
                                     }
-
                                 } else if (r == 128) {
-
                                     context.loadInputAsAdditionalArtifact(parent.getShell(), path);
-
                                 } else {
-
                                     if (r == 256) {
-
                                         break;
-
                                     }
-
                                 }
-
                             } else if (!context.loadInputAsProject(parent.getShell(), path)) {
-
                                 break;
-
                             }
-
                         } else {
-
                             context.loadInputAsAdditionalArtifact(parent.getShell(), path);
-
                         }
-
                         i++;
-
                     }
-
                 }
-
             }
-
         });
-
     }
-
 
     private void handleSelectionChangedEvent(SelectionChangedEvent e) {
-
         handleSelectionEvent(e.getSelection(), 0);
-
     }
-
 
     private void handleDoubleClickEvent(DoubleClickEvent e) {
-
         handleSelectionEvent(e.getSelection(), 1);
-
     }
-
 
     private void handleSelectionEvent(ISelection selection, int action) {
-
         if (!(selection instanceof TreeSelection)) {
-
             return;
-
         }
-
-
         TreeSelection treesel = (TreeSelection) selection;
-
         Object elt = treesel.getFirstElement();
-
         if (elt == null) {
-
             return;
-
         }
-
-
         handleNodeAction(elt, action);
-
     }
-
 
     private void handleNodeAction(Object elt, int action) {
-
         if (((elt instanceof IUnit)) && (!(elt instanceof ContainerUnit))) {
-
             IUnit unit = (IUnit) elt;
-
-
             this.context.getTelemetry().record("handlerOpenUnit", "unitType", unit.getFormatType());
-
-
             if (!HandlerUtil.processUnit(this.parent.getShell(), this.context, unit, true)) {
-
                 return;
-
             }
-
-
             this.pman.create(unit, true);
-
-
             if (action == 0) {
-
                 setFocus();
-
             }
-
-
         } else if (action == 1) {
-
             ((TreeViewer) this.ftv.getViewer()).setExpandedState(elt, !((TreeViewer) this.ftv.getViewer()).getExpandedState(elt));
-
         }
-
     }
-
 
     public boolean verifyOperation(OperationRequest req) {
-
         Object node = getSelectedNode();
-
         switch (req.getOperation()) {
-
             case PROPERTIES:
-
                 return ((node instanceof IRuntimeProject)) || ((node instanceof ILiveArtifact)) || ((node instanceof IUnit));
-
-
             case EXTRACT_TO:
-
                 return ((node instanceof ILiveArtifact)) || ((node instanceof IBinaryUnit));
-
-
             case PARSE_AT:
-
             case VIEW:
-
             case VIEW_NEW:
-
             case DELETE:
-
                 return ((node instanceof IUnit)) || ((node instanceof ILiveArtifact));
-
-
             case FIND:
-
                 return true;
-
         }
-
-
         return false;
-
     }
-
 
     public boolean doOperation(OperationRequest req) {
         Object node = getSelectedNode();
-
         switch (req.getOperation()) {
-            case PARSE_AT:{
+            case PARSE_AT: {
                 boolean successfullyIdentified;
                 if (!(node instanceof IUnit)) {
                     return false;
                 }
                 IUnit unit = (IUnit) node;
                 ReparseDialog dlg = new ReparseDialog(this.parent.getShell(), unit);
-
                 ReparseDialog.Information info = dlg.open();
                 if (info == null) {
                     return false;
                 }
                 logger.i("info= %s", new Object[]{info});
-
                 IInput subinput = null;
                 if ((unit instanceof IBinaryUnit)) {
                     IInput input = ((IBinaryUnit) unit).getInput();
@@ -609,8 +375,7 @@ public class ProjectExplorerPartManager
                 UI.info("A reparsed sub-unit was created");
                 return true;
             }
-
-            case EXTRACT_TO:{
+            case EXTRACT_TO: {
                 IInput input;
                 String name;
                 if ((node instanceof ILiveArtifact)) {
@@ -655,8 +420,7 @@ public class ProjectExplorerPartManager
                 }
                 return true;
             }
-
-            case PROPERTIES:{
+            case PROPERTIES: {
                 JebDialog dlg;
                 if ((node instanceof IRuntimeProject)) {
                     dlg = new ProjectPropertiesDialog(this.parent.getShell(), (IRuntimeProject) node);
@@ -679,7 +443,7 @@ public class ProjectExplorerPartManager
                 }
                 return true;
             }
-            case DELETE:{
+            case DELETE: {
                 if ((node instanceof IUnit)) {
                     if (MessageDialog.openConfirm(UI.getShellTracker().get(), S.s(207), S.s(791))) {
                         IUnit unit = (IUnit) node;
@@ -696,10 +460,8 @@ public class ProjectExplorerPartManager
                 this.pt.setFilterVisibility(true, true);
                 return true;
         }
-
         return false;
     }
-
 }
 
 

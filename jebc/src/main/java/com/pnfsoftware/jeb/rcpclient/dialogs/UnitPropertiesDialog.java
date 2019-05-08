@@ -19,7 +19,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class UnitPropertiesDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(UnitPropertiesDialog.class);
@@ -35,32 +34,27 @@ public class UnitPropertiesDialog
 
     public Object open() {
         super.open();
-
         return null;
     }
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         new Label(parent, 0).setText(S.s(786) + ": ");
         this.widgetName = new Text(parent, 2052);
         this.widgetName.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetName.setText(this.unit.getName());
         this.widgetName.selectAll();
         this.widgetName.setFocus();
-
         new Label(parent, 0).setText("Original name: ");
         Text widgetName0 = new Text(parent, 2060);
         widgetName0.setLayoutData(UIUtil.createGridDataFillHorizontally());
         widgetName0.setText(Strings.safe(this.unit.getRealName(), "N/A"));
         widgetName0.selectAll();
-
         new Label(parent, 0).setText(S.s(788) + ": ");
         Text widgetType = new Text(parent, 2060);
         widgetType.setLayoutData(UIUtil.createGridDataFillHorizontally());
         widgetType.setText(this.unit.getFormatType());
         widgetType.selectAll();
-
         new Label(parent, 0).setText(S.s(214) + ": ");
         Text widgetCtime = new Text(parent, 2060);
         widgetCtime.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -69,7 +63,6 @@ public class UnitPropertiesDialog
         String str_tz = df.getTimeZone().getDisplayName(false, 0);
         widgetCtime.setText(str_ctime + " " + str_tz);
         widgetCtime.selectAll();
-
         new Label(parent, 0).setText(S.s(748) + ": ");
         Text widgetStatus = new Text(parent, 2060);
         widgetStatus.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -81,7 +74,6 @@ public class UnitPropertiesDialog
             status = status + " (" + S.s(794) + ")";
         }
         widgetStatus.setText(status);
-
         new Label(parent, 0).setText(S.s(599) + ": ");
         new Label(parent, 0).setText("");
         this.widgetNotes = new StyledText(parent, 2818);
@@ -96,10 +88,8 @@ public class UnitPropertiesDialog
         griddata.verticalAlignment = 4;
         this.widgetNotes.setLayoutData(griddata);
         UIUtil.disableTabOutput(this.widgetNotes);
-
         createOkayCancelButtons(parent);
     }
-
 
     protected void onConfirm() {
         this.unit.setName(this.widgetName.getText());

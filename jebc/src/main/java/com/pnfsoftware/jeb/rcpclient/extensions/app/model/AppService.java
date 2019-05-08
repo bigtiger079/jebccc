@@ -17,14 +17,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class AppService
         implements IAppService {
     private static final ILogger logger = GlobalLog.getLogger(AppService.class);
-
-
     App app;
-
 
     public AppService(App app) {
         if (app == null) {
@@ -32,7 +28,6 @@ public class AppService
         }
         this.app = app;
     }
-
 
     public <T extends IMElement> List<T> findElements(IMElement root, String id, Class<T> type, Collection<String> tags, int flags) {
         if (id != null) {
@@ -48,7 +43,6 @@ public class AppService
                     if ((c instanceof Dock)) {
                         findElementsRecurse((Dock) c, id, type, tags, flags, out);
                     }
-
                 }
             }
         } else {
@@ -57,15 +51,12 @@ public class AppService
         return out;
     }
 
-
     public <T extends IMElement> void findElementsRecurse(IMElement elt, String id, Class<T> type, Collection<String> tags, int flags, List<T> out) {
         boolean include = true;
         if ((type != null) &&
                 (!type.isAssignableFrom(elt.getClass()))) {
             include = false;
         }
-
-
         if (include) {
             out.add((T) elt);
         }
@@ -137,7 +128,6 @@ public class AppService
 
     public IMPart getActivePart() {
         Control ctl = this.app.getDisplay().getFocusControl();
-
         return PartUtil.getPart(ctl);
     }
 

@@ -13,7 +13,6 @@ import java.util.Objects;
 import org.eclipse.swt.SWT;
 
 public class ActionEditProcedureHandler extends NativeCodeBaseHandler {
-
     public ActionEditProcedureHandler() {
         super("editProcedure", S.s(492), SWT.MOD1 | SWT.MOD3 | 0x50);
     }
@@ -30,22 +29,17 @@ public class ActionEditProcedureHandler extends NativeCodeBaseHandler {
             UI.error("No routine was found at this address");
             return;
         }
-
-
         EditMethodDialog dlg = new EditMethodDialog(this.shell, pbcu, m);
         MethodSetupInformation info = dlg.open();
         if (info == null) {
             return;
         }
-
         if (!Objects.equals(info.getRoutineNonReturning(), m.getNonReturning())) {
             m.setNonReturning(info.getRoutineNonReturning());
         }
-
         if (!Objects.equals(info.getRoutineDataSPDeltaOnReturn(), m.getData().getSPDeltaOnReturn())) {
             m.getData().setSPDeltaOnReturn(info.getRoutineDataSPDeltaOnReturn());
         }
-
         postExecute(this.shell);
     }
 }

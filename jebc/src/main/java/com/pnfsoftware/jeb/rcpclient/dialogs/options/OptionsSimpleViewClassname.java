@@ -29,15 +29,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
-
 public class OptionsSimpleViewClassname
         extends OptionsSimpleViewList {
     private static final ILogger logger = GlobalLog.getLogger(OptionsSimpleViewClassname.class);
-
     private static final String MESSAGE_TITLE = "Classname";
-
     private static final String MESSAGE_VERIFY_TITLE = "Verify classname";
-
     private String classPathProperty;
     private String classPathSeparator;
 
@@ -61,7 +57,6 @@ public class OptionsSimpleViewClassname
                     if (!checked) {
                         return;
                     }
-
                     Table table = (Table) event.widget;
                     int selected;
                     for (selected = 0; selected < table.getItemCount(); selected++) {
@@ -69,16 +64,12 @@ public class OptionsSimpleViewClassname
                             break;
                         }
                     }
-
                     List<DevPluginClassname> classnames = cp.parseDevPluginClassnames((String) OptionsSimpleViewClassname.this.getProperty());
-
                     if ((selected < 0) || (selected >= table.getItemCount())) {
                         OptionsSimpleViewClassname.logger.error("The change was not recorded!", new Object[0]);
                         return;
                     }
-
                     DevPluginClassname classname = (DevPluginClassname) classnames.get(selected);
-
                     DevPluginClassname newClassname = new DevPluginClassname(classname.getClassname(), !classname.isEnabled());
                     classnames.remove(selected);
                     classnames.add(selected, newClassname);
@@ -96,16 +87,11 @@ public class OptionsSimpleViewClassname
                 }
             }
         }, false);
-
-
         list.addButton("Edit...", new SelectionAdapter() {
-
             public void widgetSelected(SelectionEvent e) {
                 OptionsSimpleViewClassname.this.onEdit(list, cp);
             }
         }, true);
-
-
         addRemoveButton(list);
         list.addButton("Verify", new SelectionAdapter() {
             public void widgetSelected(SelectionEvent se) {
@@ -117,13 +103,10 @@ public class OptionsSimpleViewClassname
                 OptionsSimpleViewClassname.this.displayVerifyClassname(cname, list.getShell());
             }
         }, true);
-
-
         list.getTable().addMouseListener(new MouseAdapter() {
             public void mouseDoubleClick(MouseEvent e) {
                 OptionsSimpleViewClassname.this.onEdit(list, cp);
             }
-
         });
         return list;
     }
@@ -182,8 +165,6 @@ public class OptionsSimpleViewClassname
             } catch (MalformedURLException e) {
             }
         }
-
-
         return new URLClassLoader((URL[]) urls.toArray(new URL[urls.size()]), getClass().getClassLoader());
     }
 

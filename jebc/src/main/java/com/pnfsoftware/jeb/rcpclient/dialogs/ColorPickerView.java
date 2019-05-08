@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TypedListener;
 
-
 class ColorPickerView
         extends Composite {
     private Label c;
@@ -21,14 +20,11 @@ class ColorPickerView
     public ColorPickerView(Composite parent, String text, Color initial) {
         super(parent, 0);
         setLayout(new FillLayout());
-
         Label l = new Label(parent, 0);
         l.setText(text + ": ");
-
         this.c = new Label(parent, 2048);
         this.c.setText("            ");
         this.c.setBackground(initial);
-
         this.c.addMouseListener(new MouseListener() {
             public void mouseUp(MouseEvent e) {
                 ColorDialog cdlg = new ColorDialog(ColorPickerView.this.getShell());
@@ -40,16 +36,13 @@ class ColorPickerView
                 }
             }
 
-
             public void mouseDown(MouseEvent e) {
             }
-
 
             public void mouseDoubleClick(MouseEvent e) {
             }
         });
     }
-
 
     public ColorPickerView(Composite parent, String text) {
         this(parent, text, null);

@@ -27,7 +27,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class ListTypelibsDialog
         extends JebDialog {
     private IGraphicalTaskExecutor executor;
@@ -38,7 +37,6 @@ public class ListTypelibsDialog
         super(parent, "Type libraries", true, true, "typelibsDialog");
         setVisualBounds(-1, 90, -1, -1);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         this.executor = executor;
     }
 
@@ -52,14 +50,10 @@ public class ListTypelibsDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
-
         FilteredTableView ft = new FilteredTableView(parent, 32, new String[]{"Loaded", "Targets", "Group", S.s(591), S.s(268), S.s(86), S.s(341)});
-
         GridData data = UIUtil.createGridDataFill(true, true);
         data.minimumHeight = 200;
         ft.setLayoutData(data);
-
         this.ftv = new FilteredTableViewer(ft);
         ContentProviderListener p = new ContentProviderListener();
         this.ftv.setContentProvider(p);
@@ -67,9 +61,7 @@ public class ListTypelibsDialog
         this.ftv.setLabelProvider(new DefaultCellLabelProvider(p));
         ft.addTableEventListener(p);
         this.ftv.setInput(this.tls);
-
         createOkayButton(parent);
-
         if (getStandardWidgetManager() != null)
             getStandardWidgetManager().wrapWidget(ft, "listTypelibs");
     }
@@ -84,15 +76,11 @@ public class ListTypelibsDialog
             this.tls0 = ((TypeLibraryService) newInput);
         }
 
-
         public void dispose() {
         }
 
-
         public Object[] getElements(Object inputElement) {
             List<TypeLibraryEntry> r = this.tls0.getAvailables();
-
-
             TypeLibraryEntry[] a = (TypeLibraryEntry[]) r.toArray(new TypeLibraryEntry[r.size()]);
             Arrays.sort(a);
             return a;
@@ -101,20 +89,15 @@ public class ListTypelibsDialog
         public Object[] getRowElements(Object row) {
             if ((row instanceof TypeLibraryEntry)) {
                 TypeLibraryEntry e = (TypeLibraryEntry) row;
-
                 String loaded = e.getTypelib() != null ? S.s(828) : S.s(594);
-
                 TypeLibraryMetadata hdr = e.getMetadataHeader();
                 int groupId = hdr.getGroupId();
                 String proctypes = Strings.join(", ", hdr.getProcessorTypes());
-
                 String groupName = TypeLibraryService.groupIdToName(groupId);
                 String name = hdr.getName();
                 String description = hdr.getDescription();
                 String author = hdr.getAuthor();
-
                 String filepath = e.getFile().getPath();
-
                 return new Object[]{loaded, proctypes, groupName, name, description, author, filepath};
             }
             return ArrayUtil.NO_OBJECT;

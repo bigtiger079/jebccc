@@ -22,33 +22,23 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class DefineStringDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DefineStringDialog.class);
-
     private long address;
-
     private INativeCodeUnit<?> unit;
     private boolean confirmed;
     private StringSetupInformation info = new StringSetupInformation();
-
     private Label widgetInfo;
-
     private Text widgetAddress;
-
     private Text widgetMinCount;
-
     private Text widgetMaxCount;
-
     private Combo widgetStringTypes;
-
     private Button widgetOk;
 
     public DefineStringDialog(Shell parent, long address, INativeCodeUnit<?> unit) {
         super(parent, "Define String", true, true);
         this.scrolledContainer = true;
-
         this.address = address;
         this.unit = unit;
     }
@@ -63,23 +53,19 @@ public class DefineStringDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 4);
-
         this.widgetInfo = new Label(parent, 0);
         this.widgetInfo.setText("N/A");
         this.widgetInfo.setLayoutData(UIUtil.createGridDataSpanHorizontally(4, true, false));
-
         Group grp = new Group(parent, 0);
         grp.setText("Properties");
         UIUtil.setStandardLayout(grp, 4);
         grp.setLayoutData(UIUtil.createGridDataSpanHorizontally(4, true, false));
-
         new Label(grp, 0).setText(S.s(52) + ": ");
         this.widgetAddress = new Text(grp, 2052);
         this.widgetAddress.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 16));
         this.widgetAddress.setText(String.format("%Xh", new Object[]{Long.valueOf(this.address)}));
         this.widgetAddress.selectAll();
         this.widgetAddress.setFocus();
-
         new Label(grp, 0).setText("String type: ");
         this.widgetStringTypes = new Combo(grp, 12);
         GridData layoutData = UIUtil.createGridDataFillHorizontally();
@@ -89,23 +75,19 @@ public class DefineStringDialog
             this.widgetStringTypes.add(st.toString());
         }
         this.widgetStringTypes.select(0);
-
         new Label(grp, 0).setText("Min chars: ");
         this.widgetMinCount = new Text(grp, 2052);
         this.widgetMinCount.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 8));
         this.widgetMinCount.setText("");
         this.widgetMinCount.selectAll();
-
         new Label(grp, 0).setText("Max chars: ");
         this.widgetMaxCount = new Text(grp, 2052);
         this.widgetMaxCount.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 8));
         this.widgetMaxCount.setText(String.format("%X", new Object[]{Long.valueOf(this.address)}));
         this.widgetMaxCount.setText("");
         this.widgetMaxCount.selectAll();
-
         createOkayCancelButtons(parent);
         this.widgetOk = getButtonByStyle(32);
-
         this.widgetAddress.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 DefineStringDialog.this.update();
@@ -115,7 +97,6 @@ public class DefineStringDialog
             public void modifyText(ModifyEvent e) {
                 DefineStringDialog.this.update();
             }
-
         });
         update();
     }
@@ -161,7 +142,6 @@ public class DefineStringDialog
         if ((index <= 0) || (index > StringType.values().length)) {
             return null;
         }
-
         return StringType.values()[(index - 1)];
     }
 }

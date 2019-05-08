@@ -17,7 +17,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ProjectPropertiesDialog
         extends JebDialog {
     private IRuntimeProject project;
@@ -27,7 +26,6 @@ public class ProjectPropertiesDialog
     public ProjectPropertiesDialog(Shell parent, IRuntimeProject project) {
         super(parent, S.s(658), true, true);
         this.scrolledContainer = true;
-
         if (project == null) {
             throw new NullPointerException();
         }
@@ -36,20 +34,17 @@ public class ProjectPropertiesDialog
 
     public Object open() {
         super.open();
-
         return null;
     }
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
-
         new Label(parent, 0).setText(S.s(657) + ": ");
         this.widgetName = new Text(parent, 2052);
         this.widgetName.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.widgetName.setText(this.project.getName());
         this.widgetName.selectAll();
         this.widgetName.setFocus();
-
         new Label(parent, 0).setText(S.s(214) + ": ");
         Text widgetCtime = new Text(parent, 2060);
         widgetCtime.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -58,7 +53,6 @@ public class ProjectPropertiesDialog
         String str_tz = df.getTimeZone().getDisplayName(false, 0);
         widgetCtime.setText(str_ctime + " " + str_tz);
         widgetCtime.selectAll();
-
         new Label(parent, 0).setText(S.s(428) + ": ");
         Text widgetMtime = new Text(parent, 2060);
         widgetMtime.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -70,16 +64,13 @@ public class ProjectPropertiesDialog
             widgetMtime.setText(str_mtime + " " + str_tz);
         }
         widgetMtime.selectAll();
-
         new Label(parent, 0).setText(S.s(422) + ": ");
         Text widgetKey = new Text(parent, 2060);
         widgetKey.setLayoutData(UIUtil.createGridDataFillHorizontally());
         widgetKey.setText(this.project.getKey());
         widgetKey.selectAll();
-
         new Label(parent, 0).setText(S.s(78) + ": ");
         new Label(parent, 0).setText("" + this.project.getLiveArtifacts().size());
-
         new Label(parent, 0).setText(S.s(599) + ": ");
         new Label(parent, 0).setText("");
         this.widgetNotes = new StyledText(parent, 2818);
@@ -94,7 +85,6 @@ public class ProjectPropertiesDialog
         griddata.verticalAlignment = 4;
         this.widgetNotes.setLayoutData(griddata);
         UIUtil.disableTabOutput(this.widgetNotes);
-
         createOkayCancelButtons(parent);
     }
 

@@ -11,28 +11,18 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class CommentDialog
         extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(CommentDialog.class);
-
-
     private StyledText widgetComment;
-
-
     private String input;
-
     private String address;
-
     private String comment;
-
     String description;
-
 
     public CommentDialog(Shell parent, String address) {
         super(parent, S.s(203), true, true);
         this.scrolledContainer = true;
-
         this.address = address;
     }
 
@@ -51,7 +41,6 @@ public class CommentDialog
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
         new Label(parent, 0).setText(String.format("Comment at address: %s", new Object[]{this.address}));
         this.widgetComment = new StyledText(parent, 2818);
         this.widgetComment.setAlwaysShowScrollBars(false);
@@ -67,7 +56,6 @@ public class CommentDialog
         griddata.verticalAlignment = 4;
         this.widgetComment.setLayoutData(griddata);
         UIUtil.disableTabOutput(this.widgetComment);
-
         createOkayCancelButtons(parent);
     }
 

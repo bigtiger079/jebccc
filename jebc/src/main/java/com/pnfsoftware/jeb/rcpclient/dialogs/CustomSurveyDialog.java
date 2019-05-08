@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class CustomSurveyDialog
         extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(CustomSurveyDialog.class);
@@ -38,19 +37,13 @@ public class CustomSurveyDialog
         getShell().setText("Feedback");
         setTitle("What would you like to have in JEB");
         setMessage("This is an optional, single-question survey we ask our regular users.", 1);
-
-
         Composite area = (Composite) super.createDialogArea(parent);
         Composite container = new Composite(area, 0);
         container.setLayoutData(new GridData(4, 4, true, true));
         GridLayout layout = new GridLayout(1, false);
         container.setLayout(layout);
-
-
         Label label = new Label(container, 0);
         label.setText("What is the most important feature you would like to have in JEB next?\nFeel free to be as brief or as elaborate as you want.");
-
-
         GridData data = new GridData();
         data.grabExcessHorizontalSpace = true;
         data.horizontalAlignment = 4;
@@ -73,7 +66,6 @@ public class CustomSurveyDialog
             this.txtSuggestion.setFocus();
             return;
         }
-
         String r = (String) this.context.executeNetworkTask(new Callable() {
             public String call() throws Exception {
                 try {
@@ -86,12 +78,9 @@ public class CustomSurveyDialog
                 }
                 return null;
             }
-
         });
         logger.i("Server response: %s", new Object[]{r});
-
         UI.info("Thank you!");
-
         setReturnCode(0);
         close();
     }

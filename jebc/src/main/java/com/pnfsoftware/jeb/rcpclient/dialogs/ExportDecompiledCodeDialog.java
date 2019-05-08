@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
 public class ExportDecompiledCodeDialog
         extends JebDialog {
     private Text text;
@@ -82,7 +81,6 @@ public class ExportDecompiledCodeDialog
         this.initialFilter = initialFilter;
     }
 
-
     public void setInitialDirectory(String initialDirectory) {
         this.initialDirectory = initialDirectory;
     }
@@ -112,7 +110,6 @@ public class ExportDecompiledCodeDialog
         }
 
         public void widgetSelected(SelectionEvent e) {
-
             //TODO state.ordinal ???
             switch (this.state.ordinal()) {
                 case 1:
@@ -124,8 +121,6 @@ public class ExportDecompiledCodeDialog
                     ExportDecompiledCodeDialog.this.text.setEnabled(true);
                     break;
             }
-
-
             ExportDecompiledCodeDialog.this.exportState = this.state;
         }
 
@@ -134,42 +129,32 @@ public class ExportDecompiledCodeDialog
         }
     }
 
-
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 1);
-
-
         Group c0 = new Group(parent, 0);
         c0.setText(S.s(324));
         GridData exportGridData = UIUtil.createGridDataFillHorizontally();
         exportGridData.horizontalSpan = 2;
         c0.setLayoutData(exportGridData);
         c0.setLayout(new GridLayout(1, false));
-
         Button all = new Button(c0, 16);
         all.setText(S.s(54));
         all.addSelectionListener(new ExportSelectionListener(State.ALL));
-
         Button filter = new Button(c0, 16);
         filter.setText(S.s(343));
         filter.addSelectionListener(new ExportSelectionListener(State.FILTER));
-
         this.text = new Text(c0, 2048);
         this.text.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.text.setMessage(S.s(343));
-
         Button decomp = new Button(c0, 16);
         decomp.setText(S.s(607));
         decomp.addSelectionListener(new ExportSelectionListener(State.DECOMPILED));
-
         Button current = new Button(c0, 16);
         current.setText(S.s(228));
         current.addSelectionListener(new ExportSelectionListener(State.CURRENT));
         Text currentUnitText = new Text(c0, 2048);
         currentUnitText.setLayoutData(UIUtil.createGridDataFillHorizontally());
         currentUnitText.setEnabled(false);
-
-
         switch (this.exportState) {
             case ALL:
                 all.setSelection(true);
@@ -195,23 +180,17 @@ public class ExportDecompiledCodeDialog
                 if (this.initialFilter != null) {
                     currentUnitText.setText(this.initialFilter);
                 }
-
-
                 break;
         }
-
-
         Group c1 = new Group(parent, 0);
         c1.setText("Destination");
         c1.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         c1.setLayout(new GridLayout(1, false));
-
         this.folderText = new DirectorySelectorView(c1, S.s(269) + ": ", this.initialDirectory);
         this.folderText.setLayoutData(UIUtil.createGridDataFillHorizontally());
         GridData gd = new GridData();
         gd.horizontalSpan = 2;
         this.folderText.setLayoutData(gd);
-
         this.mergeAll = new Button(this.folderText, 32);
         this.mergeAll.setText("Merge to one file: ");
         this.mergeAll.addSelectionListener(new SelectionAdapter() {
@@ -221,19 +200,15 @@ public class ExportDecompiledCodeDialog
                 } else {
                     ExportDecompiledCodeDialog.this.fileText.setEnabled(false);
                 }
-
             }
         });
         this.fileText = new Text(this.folderText, 2048);
         this.fileText.setLayoutData(UIUtil.createGridDataFillHorizontally());
         this.fileText.setMessage("File name");
         this.fileText.setEnabled(false);
-
         if (this.initialFilter != null) {
             this.text.setText(this.initialFilter);
         }
-
-
         Composite buttons = createButtons(parent, 288, 32);
         GridData gdButtons = new GridData();
         gdButtons.verticalIndent = 20;
@@ -243,7 +218,6 @@ public class ExportDecompiledCodeDialog
     protected void onConfirm() {
         if (Strings.isBlank(this.folderText.getText())) {
             MessageDialog.openError(this.shell, "Empty directory", "Destination directory can not be empty. Please select one.");
-
         } else if ((this.mergeAll.getSelection()) && (Strings.isBlank(this.fileText.getText()))) {
             MessageDialog.openError(this.shell, "Empty file name", "File name can not be empty. Please enter one.");
         } else {

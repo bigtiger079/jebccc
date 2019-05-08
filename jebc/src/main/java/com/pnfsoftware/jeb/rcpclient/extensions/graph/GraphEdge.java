@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
-
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.IZoomable;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -16,168 +15,97 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 
-
 public class GraphEdge
         implements IZoomable {
     private static final ILogger logger = GlobalLog.getLogger(GraphEdge.class);
-
     protected int edgeId;
-
     protected Graph graph;
-
     protected GraphNode src;
-
     protected GraphNode dst;
     protected Anchor srcAnchor = Anchor.AUTO;
-
     protected Anchor dstAnchor = Anchor.AUTO;
-
-
     protected int style = 1;
-
-
     protected int thickness = 2;
-
-
     protected Orientation orientation = Orientation.NONE;
-
     protected Map<Integer, Color> colors = new HashMap();
-
     protected int state = 0;
 
-
     public GraphEdge(Graph graph, GraphNode src, GraphNode dst) {
-
         this.graph = graph;
-
         this.src = src;
-
         this.dst = dst;
-
-
         this.edgeId = graph.registerEdge(this);
-
-
         this.colors.put(Integer.valueOf(0), SwtRegistry.getInstance().getColor(4210752));
-
         this.colors.put(Integer.valueOf(1), SwtRegistry.getInstance().getColor(16750848));
-
     }
-
 
     public Graph getGraph() {
-
         return this.graph;
-
     }
-
 
     public GraphNode getSource() {
-
         return this.src;
-
     }
-
 
     public GraphNode getDestination() {
-
         return this.dst;
-
     }
-
 
     public void setAnchors(Anchor srcAnchor, Anchor dstAnchor) {
-
         this.srcAnchor = srcAnchor;
-
         this.dstAnchor = dstAnchor;
-
     }
-
 
     public void setThickness(int thickness) {
-
         this.thickness = thickness;
-
     }
-
 
     public void setColor(int state, Color color) {
-
         this.colors.put(Integer.valueOf(state), color);
-
     }
-
 
     public Color getColor(int state) {
-
         return (Color) this.colors.get(Integer.valueOf(state));
-
     }
-
 
     public void setState(int state) {
-
         this.state = state;
-
     }
-
 
     public int getState() {
-
         return this.state;
-
     }
-
 
     public void setStyle(int style) {
-
         this.style = style;
-
     }
-
 
     public void setOrientation(Orientation orientation) {
-
         this.orientation = orientation;
-
     }
-
 
     public int getZoomLevel() {
-
         return this.graph.getZoomLevel();
-
     }
-
 
     public boolean applyZoom(int zoom, boolean dryRun) {
-
         return false;
-
     }
-
 
     protected void draw(GC gc) {
         Anchor _srcAnchor;
         Anchor _dstAnchor;
         if ((this.srcAnchor != Anchor.AUTO) && (this.dstAnchor != Anchor.AUTO)) {
-
             _srcAnchor = this.srcAnchor;
             _dstAnchor = this.dstAnchor;
-
         } else {
-
             if ((this.srcAnchor == Anchor.AUTO) && (this.dstAnchor != Anchor.AUTO)) {
                 _srcAnchor = this.dstAnchor;
                 _dstAnchor = this.dstAnchor;
-
             } else {
-
                 if ((this.srcAnchor != Anchor.AUTO) && (this.dstAnchor == Anchor.AUTO)) {
                     _srcAnchor = this.dstAnchor;
                     _dstAnchor = this.srcAnchor;
-
                 } else {
                     Anchor[] a = determineBestAnchors();
                     _srcAnchor = a[0];
@@ -194,20 +122,17 @@ public class GraphEdge
         drawLine(gc, x0, y0, x1, y1, this.edgeId);
     }
 
-
     protected void drawLine(GC gc, int x0, int y0, int x1, int y1, int groupId) {
         setForeground(gc);
         int th = Math.max(1, this.thickness);
         gc.setLineWidth(th);
         gc.setLineStyle(this.style);
         gc.drawLine(x0, y0, x1, y1);
-
         if ((th >= 2) && (this.style == 1)) {
             gc.setLineWidth(1);
             gc.setForeground(Display.getCurrent().getSystemColor(16));
             gc.drawLine(x0, y0, x1, y1);
         }
-
         if (groupId >= 0) {
             if (x0 == x1) {
                 this.graph.registerActiveVerticalLine(y0, y1, x0, groupId);
@@ -224,7 +149,6 @@ public class GraphEdge
         if (this.orientation == Orientation.NONE) {
             return;
         }
-
         if ((x0 != x1) && (y0 != y1)) {
             throw new RuntimeException("Non straight arrows are TBI until a use-case shows up");
         }
@@ -249,7 +173,6 @@ public class GraphEdge
                     gc.fillPolygon(new int[]{x, y, x + 6, y - 3, x + 6, y + 3});
                 }
             }
-
         } else if ((this.orientation == Orientation.ORIENTED_BACKWARD) || (this.orientation == Orientation.ORIENTED_DUAL)) {
             throw new RuntimeException("Dual orientation is TBI");
         }
@@ -273,11 +196,8 @@ public class GraphEdge
         }
     }
 
-
     private Point determineSimpleAnchorCoords(GraphNode node, Anchor anchor) {
-
         Rectangle r = node.getBounds();
-
         int y;
         int x;
         switch (anchor) {
@@ -305,93 +225,48 @@ public class GraphEdge
                 x = r.x;
                 y = r.y;
         }
-
         return new Point(x, y);
     }
 
-
     private Anchor[] determineBestAnchors() {
-
         Rectangle r0 = this.src.getBounds();
-
         Rectangle r1 = this.dst.getBounds();
-
-
         if (r1.x + r1.width < r0.x) {
-
             int dY = r0.y - (r1.y + r1.height);
-
             int dX = r0.x - (r1.x + r1.width);
-
             int dZ = r1.y - (r0.y + r0.height);
-
             if ((dX >= dY) && (dX >= dZ)) {
-
                 return new Anchor[]{Anchor.LEFT, Anchor.RIGHT};
-
             }
-
             if (dY > dZ) {
-
                 return new Anchor[]{Anchor.TOP, Anchor.BOTTOM};
-
             }
-
             return new Anchor[]{Anchor.BOTTOM, Anchor.TOP};
-
         }
-
-
         if (r1.x > r0.x + r0.width) {
-
             int dY = r0.y - (r1.y + r1.height);
-
             int dX = r1.x - (r0.x + r0.width);
-
             int dZ = r1.y - (r0.y + r0.height);
-
             if ((dX >= dY) && (dX >= dZ)) {
-
                 return new Anchor[]{Anchor.RIGHT, Anchor.LEFT};
-
             }
-
             if (dY > dZ) {
-
                 return new Anchor[]{Anchor.TOP, Anchor.BOTTOM};
-
             }
-
             return new Anchor[]{Anchor.BOTTOM, Anchor.TOP};
-
         }
-
-
         if (r1.y + r1.height < r0.y) {
-
             return new Anchor[]{Anchor.TOP, Anchor.BOTTOM};
-
         }
-
-
         if (r1.y > r0.y + r0.height) {
-
             return new Anchor[]{Anchor.BOTTOM, Anchor.TOP};
-
         }
-
-
         return new Anchor[]{Anchor.CENTER, Anchor.CENTER};
-
     }
-
 
     public String toString() {
-
         return String.format("Edge{%s->%s}", new Object[]{this.src, this.dst});
-
     }
-
 }
 
 

@@ -1,7 +1,6 @@
 
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
-
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.rcpclient.DebuggerListener;
@@ -21,57 +20,29 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-
 public class DbgLogView
         extends AbstractTextView<IUnit> {
-
     public DbgLogView(Composite parent, int flags, RcpClientContext context, IDebuggerUnit unit) {
-
         super(parent, flags, context, unit);
-
         setLayout(new FillLayout());
-
-
         DebuggerListener listener = DebuggerListener.listenTo(unit, context);
-
         Document doc = listener.getLog();
-
-
         final TextViewer viewer = buildSimple(this, 768);
-
         viewer.setDocument(doc);
-
-
         Control ctl = viewer.getControl();
-
         ctl.setBackground(UIAssetManager.getInstance().getColor(15790320));
-
         ctl.setFont(context.getFontManager().getCodeFont());
-
-
         viewer.addTextListener(new ITextListener() {
-
             public void textChanged(TextEvent event) {
-
                 viewer.setTopIndex(viewer.getTextWidget().getLineCount());
-
             }
-
-
         });
-
         new ContextMenu(viewer.getControl()).addContextMenu(new IContextMenu() {
-
             public void fillContextMenu(IMenuManager menuMgr) {
-
                 DbgLogView.this.addOperationsToContextMenu(menuMgr);
-
             }
-
         });
-
     }
-
 }
 
 

@@ -26,7 +26,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-
 public class ListSiglibsDialog
         extends JebDialog {
     private IGraphicalTaskExecutor executor;
@@ -37,7 +36,6 @@ public class ListSiglibsDialog
         super(parent, "Signature libraries", true, true, "siglibsDialog");
         setVisualBounds(-1, 90, -1, -1);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
-
         this.executor = executor;
     }
 
@@ -51,13 +49,10 @@ public class ListSiglibsDialog
 
     protected void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-
-
         FilteredTableView ft = new FilteredTableView(parent, 32, new String[]{"Loaded", "Processor", S.s(591), S.s(268), S.s(86), S.s(341)});
         GridData data = UIUtil.createGridDataFill(true, true);
         data.minimumHeight = 200;
         ft.setLayoutData(data);
-
         this.ftv = new FilteredTableViewer(ft);
         ContentProviderListener p = new ContentProviderListener();
         this.ftv.setContentProvider(p);
@@ -65,9 +60,7 @@ public class ListSiglibsDialog
         this.ftv.setLabelProvider(new DefaultCellLabelProvider(p));
         ft.addTableEventListener(p);
         this.ftv.setInput(this.dbman);
-
         createOkayButton(parent);
-
         if (getStandardWidgetManager() != null)
             getStandardWidgetManager().wrapWidget(ft, "listSiglibs");
     }
@@ -82,10 +75,8 @@ public class ListSiglibsDialog
             this.dbman0 = ((NativeSignatureDBManager) newInput);
         }
 
-
         public void dispose() {
         }
-
 
         public Object[] getElements(Object inputElement) {
             return this.dbman0.getAvailablePackages().toArray();
@@ -94,17 +85,13 @@ public class ListSiglibsDialog
         public Object[] getRowElements(Object row) {
             if ((row instanceof NativeSignaturePackageEntry)) {
                 NativeSignaturePackageEntry e = (NativeSignaturePackageEntry) row;
-
                 String loaded = e.isLoadedInMemory() ? S.s(828) : S.s(594);
-
                 NativeSignaturePackageMetadata hdr = e.getMetadata();
                 String processorType = hdr.getTargetProcessorType().toString();
                 String name = hdr.getName();
                 String description = hdr.getDescription();
                 String author = hdr.getAuthor();
-
                 String filepath = e.getFile().getPath();
-
                 return new Object[]{loaded, processorType, name, description, author, filepath};
             }
             return ArrayUtil.NO_OBJECT;
@@ -127,7 +114,6 @@ public class ListSiglibsDialog
                         this.dbman0.loadPackage(e, true);
                     } else {
                         ListSiglibsDialog.this.executor.executeTask("Loading signature library...", new Runnable() {
-
                             public void run() {
                                 if (!ListSiglibsDialog.ContentProviderListener.this.dbman0.loadPackage(e, true)) {
                                     UI.error("Package could not be loaded, no suitable analyzed files were found.");

@@ -25,20 +25,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-
 public class App {
     private static final ILogger logger = GlobalLog.getLogger(App.class);
-
     Display display;
-
     String appname;
-
     Shell shell;
-
     boolean hasToolbar;
-
     MenuManager menuManager;
-
     Composite toolbarContainer;
     ToolBarManager toolbarManager;
     Dock dock;
@@ -81,7 +74,6 @@ public class App {
             item.setText(" ");
             toolbar.pack();
         }
-
         this.statusManager = new StatusLineManager();
         Control statusLine = this.statusManager.createControl(this.shell);
         this.statusManager.setMessage("");
@@ -91,7 +83,6 @@ public class App {
         formData.bottom = new FormAttachment(100, 0);
         statusLine.pack();
         statusLine.setLayoutData(formData);
-
         this.dock = new Dock(this.shell, true);
         formData = new FormData();
         formData.top = new FormAttachment(this.toolbarContainer);
@@ -102,23 +93,19 @@ public class App {
         this.shell.addShellListener(new ShellAdapter() {
             public void shellClosed(ShellEvent e) {
                 App.logger.i("Primary shell is about to close", new Object[0]);
-
                 if (!App.this.onApplicationCloseAttempt()) {
                     e.doit = false;
                 }
             }
         });
-
         this.shell.addDisposeListener(new DisposeListener() {
             public void widgetDisposed(DisposeEvent e) {
                 App.logger.i("Primary shell is being disposed", new Object[0]);
             }
         });
-
         buildShell(this.shell);
         buildDock(this.dock);
         buildMenu(this.menuManager);
-
         if (this.toolbarManager != null) {
             buildToolbar(this.toolbarManager);
         }
@@ -134,10 +121,8 @@ public class App {
 
     public void run() {
         this.shell.open();
-
         try {
             onApplicationReady();
-
         } catch (Exception e) {
             logger.catching(e);
             System.exit(-1);
@@ -162,7 +147,6 @@ public class App {
         onApplicationClose();
         try {
             this.display.dispose();
-
         } catch (Exception localException2) {
         }
         System.exit(0);
@@ -205,7 +189,6 @@ public class App {
 
     public Dock getDock() {
         return this.dock;
-
     }
 
     public StatusLineManager getStatusManager() {
@@ -217,7 +200,6 @@ public class App {
                 Throwables.formatStacktraceShort(e)});
         MessageDialog.openError(null, "Error", msg);
         return true;
-
     }
 
     public void onApplicationBuilt() {
