@@ -53,18 +53,16 @@ public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<I
     }
 
     protected void addStandardContextMenu(final int... additionalGroups) {
-        new ContextMenu(this).addContextMenu(new IContextMenu() {
-            public void fillContextMenu(IMenuManager menuMgr) {
-                if (AbstractInteractiveTextView.this.getContext() == null) {
-                    return;
-                }
-                AllHandlers.getInstance().fillManager(menuMgr, 6);
-                if ((AbstractInteractiveTextView.this.unit instanceof INativeCodeUnit)) {
-                    AllHandlers.getInstance().fillManager(menuMgr, 7);
-                }
-                for (int grp : additionalGroups) {
-                    AllHandlers.getInstance().fillManager(menuMgr, grp);
-                }
+        new ContextMenu(this).addContextMenu(menuMgr -> {
+            if (AbstractInteractiveTextView.this.getContext() == null) {
+                return;
+            }
+            AllHandlers.getInstance().fillManager(menuMgr, AllHandlers.GRP_ACTIONS);
+            if ((AbstractInteractiveTextView.this.unit instanceof INativeCodeUnit)) {
+                AllHandlers.getInstance().fillManager(menuMgr, AllHandlers.GRP_NATIVE_ACTIONS);
+            }
+            for (int grp : additionalGroups) {
+                AllHandlers.getInstance().fillManager(menuMgr, grp);
             }
         });
     }
@@ -107,10 +105,7 @@ public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<I
             return true;
         }
         String token3 = new TokenExtractor(TokenExtractor.DF_NonAlphaNum).extract(line, col);
-        if ((token3 != null) && (setActiveAddress(token3, null, true))) {
-            return true;
-        }
-        return false;
+        return (token3 != null) && (setActiveAddress(token3, null, true));
     }
 
     protected boolean followItem(IActionableItem targetItem) {
@@ -118,7 +113,7 @@ public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<I
             return false;
         }
         long targetItemId = targetItem.getItemId();
-        logger.debug("Following item: %s", new Object[]{targetItem});
+        logger.debug("Following item: %s", targetItem);
         GlobalPosition pos0 = null;
         IViewManager viewManager = getViewManager();
         if (viewManager != null) {
@@ -132,23 +127,23 @@ public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<I
             }
             return this.iviewer.setCaretCoordinates(coord, null, true);
         }
-        logger.debug("No master item found in the current part, checking if the part is addressable", new Object[0]);
+        logger.debug("No master item found in the current part, checking if the part is addressable");
         if ((getUnit() instanceof IAddressableUnit)) {
             IAddressableUnit iunit = (IAddressableUnit) getUnit();
             String address = iunit.getAddressOfItem(targetItemId);
             if ((address != null) && (!address.equals(getActiveAddress())) && (setActiveAddress(address, null, true))) {
-                logger.debug("Item to address conversion was successful, jumping to %s", new Object[]{address});
+                logger.debug("Item to address conversion was successful, jumping to %s", address);
                 return true;
             }
         }
         if ((this.viewNavigatorHelper != null) && (viewManager != null) && (this.viewNavigatorHelper.navigateTo(targetItem, viewManager, false))) {
-            logger.debug("Jump was successful using the view navigator", new Object[0]);
+            logger.debug("Jump was successful using the view navigator");
             if (pos0 != null) {
                 viewManager.recordGlobalPosition(pos0);
             }
             return true;
         }
-        logger.debug("The jump failed", new Object[0]);
+        logger.debug("The jump failed");
         return false;
     }
 
@@ -162,8 +157,7 @@ public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<I
                     if (((item0 instanceof IActionableItem)) && (((IActionableItem) item0).getItemId() == itemId)) {
                         int flags = ((IActionableItem) item0).getItemFlags();
                         if ((flags & 0x1) != 0) {
-                            Coordinates coord = new Coordinates(anchorId, lineIndex, item0.getOffset());
-                            return coord;
+                            return new Coordinates(anchorId, lineIndex, item0.getOffset());
                         }
                     }
                 }

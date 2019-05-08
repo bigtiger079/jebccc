@@ -514,7 +514,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
     }
 
     public boolean updateDocument(long anchorId, int linesAfter, int linesBefore) {
-        logger.i("updateDocument(): anchorId=%d/%Xh, after=%d, before=%d", new Object[]{Long.valueOf(anchorId), Long.valueOf(anchorId), Integer.valueOf(linesAfter), Integer.valueOf(linesBefore)});
+        logger.i("updateDocument(): anchorId=%d/%Xh, after=%d, before=%d", anchorId, anchorId, linesAfter, linesBefore);
         if (linesAfter < 0) {
             linesAfter = 0;
         }

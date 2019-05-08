@@ -113,6 +113,22 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     }
 
     private void onPositionChanged(ICoordinates coord) {
+        //TODO: mouse position
+        logger.info("onPositionChanged: " + coord.getLineDelta() +"  " + coord.getColumnOffset() +"  "+coord.getAnchorId() );
+        String activeItemAsText = getActiveItemAsText();
+        if (activeItemAsText != null) {
+            logger.info("activeItemAsText: " + activeItemAsText);
+            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 1);
+            ILine lineAt = TextPartUtil.getLineAt(documentPart, coord);
+            if (lineAt != null) {
+                ITextItem item = TextPartUtil.getItemAt(lineAt, coord.getColumnOffset());
+                if (item != null) {
+                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
+                    logger.info("Test line At: " + s);
+                }
+            }
+
+        }
         this.context.refreshHandlersStates();
         TextDocumentLocationGenerator locationGenerator = new TextDocumentLocationGenerator(this.unit, this.iviewer);
         String address = locationGenerator.getAddress(coord);
@@ -159,6 +175,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     public String getActiveItemAsText() {
         ICoordinates coords = getCurrentCoordinates();
         if ((getActiveItem() != null) && (coords != null)) {
+            logger.info("getCurrentCoordinates: " +  coords.getLineDelta() + "  " + coords.getColumnOffset() +"  " + coords.getAnchorId());
             ILine line = TextPartUtil.getLineAt(this.iviewer.getCurrentDocumentPart(), coords);
             if (line != null) {
                 ITextItem item = TextPartUtil.getItemAt(line, coords.getColumnOffset());

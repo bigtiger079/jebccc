@@ -131,28 +131,28 @@ public class ScrollBufferManager {
         if (this.wrappedText.getCurrentPart() == null) {
             return;
         }
-        logger.debug("scroll: window(%d) caret(%d) selecting(%b) lockCaretOnBounds(%b) forceFetch(%b)", new Object[]{Integer.valueOf(windowScroll), Integer.valueOf(caretScroll), Boolean.valueOf(selecting), Boolean.valueOf(lockCaretOnBounds), Boolean.valueOf(forceFetch)});
+        logger.debug("scroll: window(%d) caret(%d) selecting(%b) lockCaretOnBounds(%b) forceFetch(%b)", windowScroll, caretScroll, selecting, lockCaretOnBounds, forceFetch);
         ICoordinates oldTopLine = this.wrappedText.getTopIndexCoordinates();
         VisualSelectionUnwrapped caret = getVisualSelection();
-        Integer reqLine = Integer.valueOf(this.wrappedText.getTopIndex() + windowScroll);
-        if ((reqLine.intValue() < 0) || (reqLine.intValue() >= this.wrappedText.getLineCount())) {
+        Integer reqLine = this.wrappedText.getTopIndex() + windowScroll;
+        if ((reqLine < 0) || (reqLine >= this.wrappedText.getLineCount())) {
             forceFetch = false;
         }
         if (!forceFetch) {
-            reqLine = sanitizeScroll(reqLine.intValue());
+            reqLine = sanitizeScroll(reqLine);
         }
         UpdateDocumentData updateData = null;
         if (reqLine != null) {
             if ((!forceFetch) && (isSinglePartLoaded())) {
                 updateData = new UpdateDocumentData(-1L, 0, 0, 0);
             } else {
-                updateData = getUpdateData(reqLine.intValue(), forceFetch, selecting);
+                updateData = getUpdateData(reqLine, forceFetch, selecting);
             }
         }
         try {
             this.textWidget.setRedraw(false);
             if (updateData != null) {
-                updateDocument(reqLine.intValue(), updateData);
+                updateDocument(reqLine, updateData);
             }
             setVisualSelection(caret);
             ICoordinates newTopLine = this.wrappedText.getTopIndexCoordinates();
@@ -167,13 +167,13 @@ public class ScrollBufferManager {
         }
         if (selecting) {
             WrappedText.SelectionData sel = this.wrappedText.getSelectionData();
-            logger.debug("New Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(), Integer.valueOf(sel.getSelectionLength())});
+            logger.debug("New Selection Start(%s), selection length(%d)", sel.getSelectionStartCoord(), sel.getSelectionLength());
             if (caretScroll < 0) {
                 this.wrappedText.forceSelectionOffset(0);
             }
         } else {
             ICoordinates newCaret = this.wrappedText.getCaretCoordinates();
-            logger.debug("oldCaret=%s, newCaret=%s", new Object[]{caret.docCoord, newCaret});
+            logger.debug("oldCaret=%s, newCaret=%s", caret.docCoord, newCaret);
         }
     }
 

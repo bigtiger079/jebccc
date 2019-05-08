@@ -1,25 +1,7 @@
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCommentHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionConvertHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCreatePackageHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionDecompileHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionDeleteHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionExtractToHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionFollowHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionGenerateGraphHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionJumpToHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionMoveToPackageHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionNavigateBackwardHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionNavigateForwardHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionOverridesHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionParseAtHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionRenameHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionReplaceHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionTypeHierarchyHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionViewCommentsHandler;
-import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionXrefHandler;
+import com.pnfsoftware.jeb.rcpclient.handlers.actions.*;
 import com.pnfsoftware.jeb.rcpclient.handlers.debugger.DebuggerAttachHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.debugger.DebuggerDetachHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.debugger.DebuggerPauseHandler;
@@ -123,7 +105,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -257,6 +238,8 @@ public class AllHandlers {
         add(new InternalPrintModelHandler());
         add(new InternalLoadModelHandler());
         add(new InternalSaveModelHandler());
+
+        add(new ActionGenerateHookHandler());
     }
 
     private void add(JebBaseHandler handler) {
@@ -302,20 +285,20 @@ public class AllHandlers {
             mgr.add(new EditCopyHandler());
             mgr.add(new EditPasteHandler());
             mgr.add(new EditSelectAllHandler());
-        } else if (group == 2) {
+        } else if (group == GRP_FIND) {
             mgr.add(new EditFindHandler());
             mgr.add(new EditFindnextHandler());
-        } else if (group == 3) {
+        } else if (group == GRP_NAVIGATION) {
             mgr.add(new ActionJumpToHandler());
             mgr.add(new ActionFollowHandler());
             mgr.add(new ActionNavigateForwardHandler());
             mgr.add(new ActionNavigateBackwardHandler());
-        } else if (group == 4) {
+        } else if (group == GRP_NAVCANVAS) {
             mgr.add(new NavigationCanvasCenterHandler());
             mgr.add(new NavigationCanvasZoomInHandler());
             mgr.add(new NavigationCanvasZoomOutHandler());
             mgr.add(new NavigationCanvasZoomResetHandler());
-        } else if (group == 5) {
+        } else if (group == GRP_BASIC_ACTIONS) {
             mgr.add(new ActionDecompileHandler());
             mgr.add(new ActionCommentHandler());
             mgr.add(new ActionRenameHandler());
@@ -324,7 +307,7 @@ public class AllHandlers {
             mgr.add(new ActionMoveToPackageHandler());
             mgr.add(new ActionTypeHierarchyHandler());
             mgr.add(new ActionOverridesHandler());
-        } else if (group == 6) {
+        } else if (group == GRP_ACTIONS) {
             mgr.add(new ActionDecompileHandler());
             mgr.add(new ActionGenerateGraphHandler());
             mgr.add(new ActionCommentHandler());
@@ -338,7 +321,8 @@ public class AllHandlers {
             mgr.add(new ActionMoveToPackageHandler());
             mgr.add(new ActionTypeHierarchyHandler());
             mgr.add(new ActionOverridesHandler());
-        } else if (group == 7) {
+            mgr.add(new ActionGenerateHookHandler());
+        } else if (group == GRP_NATIVE_ACTIONS) {
             mgr.add(new ActionDefineDataHandler());
             mgr.add(new ActionDefineCodeHandler());
             mgr.add(new ActionEditTypeHandler());
@@ -357,7 +341,7 @@ public class AllHandlers {
             mgr.add(new ActionCreateSignaturePackageHandler());
             mgr.add(new ActionAutoSigningModeHandler());
             mgr.add(new ActionUndefineHandler());
-        } else if (group == 8) {
+        } else if (group == GRP_DEBUGGING) {
             mgr.add(new DebuggerRunHandler());
             mgr.add(new DebuggerPauseHandler());
             mgr.add(new DebuggerTerminateHandler());

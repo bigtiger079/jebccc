@@ -23,7 +23,6 @@ public class ContextMenu {
         this.menuManager.setRemoveAllWhenShown(true);
         this.menuManager.addMenuListener(new IMenuListener() {
             public void menuAboutToShow(IMenuManager menuMgr) {
-                logger.error("menuAboutToShow+++++++++");
                 for (IContextMenu cm : ContextMenu.this.contextMenus) {
                     cm.fillContextMenu(menuMgr);
                 }
