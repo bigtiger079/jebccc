@@ -14,7 +14,3 @@ public abstract interface GraphNodeListener
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\GraphNodeListener.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -64,7 +64,3 @@ public class NodeContentsInteractiveTextFactory
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\NodeContentsInteractiveTextFactory.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -20,7 +20,3 @@ public abstract class GraphEdgeManager {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\GraphEdgeManager.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

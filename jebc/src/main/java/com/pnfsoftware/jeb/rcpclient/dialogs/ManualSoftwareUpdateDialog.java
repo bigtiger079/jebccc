@@ -86,7 +86,3 @@ public class ManualSoftwareUpdateDialog
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\dialogs\ManualSoftwareUpdateDialog.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -277,7 +277,3 @@ public abstract class AbstractUnitFragment<T extends IUnit>
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\AbstractUnitFragment.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

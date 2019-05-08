@@ -6,7 +6,3 @@ public abstract interface IInfiniTableSectionProvider
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\viewers\IInfiniTableSectionProvider.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

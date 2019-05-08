@@ -251,7 +251,3 @@ public class SoundManager
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\media\SoundManager.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

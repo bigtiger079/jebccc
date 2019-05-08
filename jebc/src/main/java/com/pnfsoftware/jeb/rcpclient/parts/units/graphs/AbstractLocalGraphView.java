@@ -379,7 +379,3 @@ public abstract class AbstractLocalGraphView<T extends IUnit>
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\graphs\AbstractLocalGraphView.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

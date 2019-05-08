@@ -465,7 +465,3 @@ public class ScrollBufferManager {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\iviewers\text\ScrollBufferManager.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

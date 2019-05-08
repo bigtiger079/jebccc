@@ -258,7 +258,3 @@ public class StackEditorView
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\part\\units\code\StackEditorView.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

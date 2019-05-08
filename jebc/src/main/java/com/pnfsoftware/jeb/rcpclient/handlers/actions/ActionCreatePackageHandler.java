@@ -11,7 +11,3 @@ public class ActionCreatePackageHandler
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\handlers\actions\ActionCreatePackageHandler.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

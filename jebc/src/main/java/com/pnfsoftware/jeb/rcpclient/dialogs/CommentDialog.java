@@ -66,7 +66,3 @@ public class CommentDialog
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\dialogs\CommentDialog.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

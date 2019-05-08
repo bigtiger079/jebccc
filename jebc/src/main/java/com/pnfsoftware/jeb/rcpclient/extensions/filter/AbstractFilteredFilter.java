@@ -67,7 +67,3 @@ public abstract class AbstractFilteredFilter
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\filter\AbstractFilteredFilter.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

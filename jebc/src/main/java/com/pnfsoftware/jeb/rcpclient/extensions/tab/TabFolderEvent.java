@@ -12,7 +12,3 @@ public class TabFolderEvent {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\tab\TabFolderEvent.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

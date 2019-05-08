@@ -15,7 +15,3 @@ public class EditFindnextHandler
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\handlers\edition\EditFindnextHandler.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

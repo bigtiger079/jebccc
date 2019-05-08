@@ -8,7 +8,3 @@ public abstract interface GraphChangeListener
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\GraphChangeListener.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

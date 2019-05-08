@@ -119,7 +119,3 @@ public class FilterText
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\controls\FilterText.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

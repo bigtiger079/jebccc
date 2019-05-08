@@ -244,7 +244,3 @@ public abstract class UIRunnable implements Runnable {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\UIRunnable.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

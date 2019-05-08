@@ -90,7 +90,3 @@ public class UITask<T> {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extension\\ui\UITask.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

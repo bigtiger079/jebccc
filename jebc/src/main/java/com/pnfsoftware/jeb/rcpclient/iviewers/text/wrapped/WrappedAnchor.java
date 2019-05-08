@@ -31,7 +31,3 @@ public class WrappedAnchor {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\iviewers\text\wrapped\WrappedAnchor.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

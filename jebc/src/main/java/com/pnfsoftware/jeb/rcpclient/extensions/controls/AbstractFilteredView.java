@@ -133,7 +133,3 @@ public abstract class AbstractFilteredView<T extends Composite>
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\controls\AbstractFilteredView.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

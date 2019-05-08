@@ -830,7 +830,3 @@ public class XYGraph
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\fast\XYGraph.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

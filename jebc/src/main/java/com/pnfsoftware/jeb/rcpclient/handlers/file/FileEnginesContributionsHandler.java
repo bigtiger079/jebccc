@@ -26,7 +26,3 @@ public class FileEnginesContributionsHandler
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\handlers\file\FileEnginesContributionsHandler.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

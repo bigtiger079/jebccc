@@ -246,7 +246,3 @@ public class StyleOptionsDialog
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\dialogs\StyleOptionsDialog.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

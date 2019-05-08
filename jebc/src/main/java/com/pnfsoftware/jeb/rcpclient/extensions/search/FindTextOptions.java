@@ -73,7 +73,3 @@ public class FindTextOptions {
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\search\FindTextOptions.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

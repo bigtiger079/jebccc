@@ -16,7 +16,3 @@ public class GraphVertexAdapter
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\graph\fast\GraphVertexAdapter.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

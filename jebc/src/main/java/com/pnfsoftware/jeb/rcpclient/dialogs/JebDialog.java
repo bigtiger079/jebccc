@@ -312,7 +312,3 @@ public abstract class JebDialog
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\dialogs\JebDialog.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -190,7 +190,3 @@ public abstract class AbstractFilteredViewer<T extends Composite, V extends Colu
 }
 
 
-/* Location:              E:\tools\jeb32\jebc.jar!\com\pnfsoftware\jeb\rcpclient\extensions\viewers\AbstractFilteredViewer.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */
