@@ -3,6 +3,8 @@ package com.pnfsoftware.jeb.rcpclient.operations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pnfsoftware.jeb.util.logging.GlobalLog;
+import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -11,6 +13,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 
 public class ContextMenu {
+    private static final ILogger logger = GlobalLog.getLogger(ContextMenu.class);
     final List<IContextMenu> contextMenus = new ArrayList();
     private MenuManager menuManager;
     private Menu menu;
@@ -20,6 +23,7 @@ public class ContextMenu {
         this.menuManager.setRemoveAllWhenShown(true);
         this.menuManager.addMenuListener(new IMenuListener() {
             public void menuAboutToShow(IMenuManager menuMgr) {
+                logger.error("menuAboutToShow+++++++++");
                 for (IContextMenu cm : ContextMenu.this.contextMenus) {
                     cm.fillContextMenu(menuMgr);
                 }

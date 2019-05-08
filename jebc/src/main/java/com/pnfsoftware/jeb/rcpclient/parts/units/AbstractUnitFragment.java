@@ -90,6 +90,7 @@ public abstract class AbstractUnitFragment<T extends IUnit> extends Composite im
         });
         this.primaryWidget.addMouseListener(new MouseAdapter() {
             public void mouseUp(MouseEvent e) {
+                logger.error("mouseUp");
                 Operation op = null;
                 if (e.button == 4) {
                     op = Operation.NAVIGATE_BACKWARD;

@@ -405,6 +405,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     }
 
     public void setMenu(Menu menu) {
+        logger.error("onSetMenuuuuuuuuu");
         super.setMenu(menu);
         this.iviewer.getTextWidget().setMenu(menu);
     }

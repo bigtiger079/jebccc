@@ -134,12 +134,12 @@ public class Graph extends AbstractGraph implements IZoomable {
                 Graph.this.lastMouseCursorDown.x = e.x;
                 Graph.this.lastMouseCursorDown.y = e.y;
                 if (Graph.this.activeEdgeId != -1) {
-                    Graph.logger.i("Mouse click on Edge: %d", new Object[]{Integer.valueOf(Graph.this.activeEdgeId)});
+                    Graph.logger.error("Mouse click on Edge: %d", new Object[]{Integer.valueOf(Graph.this.activeEdgeId)});
                     GraphNode target = Graph.this.isPrimaryModifierKeyPressed() ? ((GraphEdge) Graph.this.edges.get(Graph.this.activeEdgeId)).src : ((GraphEdge) Graph.this.edges.get(Graph.this.activeEdgeId)).dst;
                     Graph.this.centerGraph(target, 16777216, 16777216, true);
                     Graph.this.setActiveNode(target, false);
                 } else if (Graph.this.hoverNode != null) {
-                    Graph.logger.i("Mouse click on Node: %s", new Object[]{Graph.this.activeNode});
+                    Graph.logger.error("Mouse click on Node: %s", new Object[]{Graph.this.activeNode});
                 } else {
                     Graph.this.dragging = true;
                     Graph.this.draggingX = e.x;

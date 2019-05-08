@@ -149,7 +149,7 @@ public class GraphicalActionExecutor {
                         caption = caption + " to " + data.getTarget();
                     }
                     ReferencesDialog dlg = new ReferencesDialog(this.shell, caption, data.getAddresses(), data.getDetails(), info.getUnit());
-                    int index = dlg.open().intValue();
+                    int index = dlg.open();
                     if (index >= 0) {
                         String address = (String) data.getAddresses().get(index);
                         gotoAddress(this.context, info.getUnit(), address);
@@ -163,10 +163,10 @@ public class GraphicalActionExecutor {
                     if (!coords.isEmpty()) {
                         List<String> addresses = new ArrayList();
                         for (ICoordinates coord : coords) {
-                            addresses.add(String.format("Text @ %d:%d", new Object[]{Integer.valueOf(1 + coord.getLineDelta()), Integer.valueOf(1 + coord.getColumnOffset())}));
+                            addresses.add(String.format("Text @ %d:%d", 1 + coord.getLineDelta(), 1 + coord.getColumnOffset()));
                         }
                         ReferencesDialog dlg = new ReferencesDialog(this.shell, S.s(47), addresses, null, info.getUnit());
-                        int index = dlg.open().intValue();
+                        int index = dlg.open();
                         if (index >= 0) {
                             ICoordinates coord = (ICoordinates) coords.get(index);
                             ((InteractiveTextView) fragment).setCaretCoordinates(coord);
