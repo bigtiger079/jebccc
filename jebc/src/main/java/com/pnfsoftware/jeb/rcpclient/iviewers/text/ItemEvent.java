@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.ITextItem;

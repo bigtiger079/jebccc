@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -42,8 +41,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-public class NativeTypeEditorView
-        extends Composite {
+public class NativeTypeEditorView extends Composite {
     private static final ILogger logger = GlobalLog.getLogger(NativeTypeEditorView.class);
     private static final int previewDepthLevel = 10;
     private Font codefont;
@@ -82,8 +80,7 @@ public class NativeTypeEditorView
         this.btnPreviewDeep = new Button(bar, 32);
         this.btnPreviewDeep.setText("Deep Preview   ");
         this.btnPreviewDeep.setSelection(true);
-        this.btnPreviewDeep
-                .setToolTipText(String.format("Include nested structures (up to %d) in preview", new Object[]{Integer.valueOf(10)}));
+        this.btnPreviewDeep.setToolTipText(String.format("Include nested structures (up to %d) in preview", new Object[]{Integer.valueOf(10)}));
         this.btnPreviewDeep.pack();
         item.setWidth(this.btnPreviewDeep.getSize().x);
         item.setControl(this.btnPreviewDeep);
@@ -233,8 +230,7 @@ public class NativeTypeEditorView
         PrettyTypeFormatter f = new PrettyTypeFormatter(type);
         String str = f.format(previewDeep ? 10 : 1, previewOffsets);
         if ((type.getPadding() != 1) || (type.getAlignment() != 0)) {
-            str = String.format("// Size: %d, Padding: %d, Alignment: %d\n%s", new Object[]{Integer.valueOf(type.getSize()), Integer.valueOf(type.getPadding()),
-                    Integer.valueOf(type.getAlignment()), str});
+            str = String.format("// Size: %d, Padding: %d, Alignment: %d\n%s", new Object[]{Integer.valueOf(type.getSize()), Integer.valueOf(type.getPadding()), Integer.valueOf(type.getAlignment()), str});
         }
         this.widgetPreview.setText(str);
     }
@@ -273,8 +269,7 @@ public class NativeTypeEditorView
         }
     }
 
-    class StructFieldsProvider
-            extends AbstractInfiniTableSectionProvider {
+    class StructFieldsProvider extends AbstractInfiniTableSectionProvider {
         StructFieldsProvider() {
         }
 
@@ -308,8 +303,7 @@ public class NativeTypeEditorView
                 if ((id >= currentId) && (id < nextId)) {
                     if (!elt.isSynthetic()) {
                         Assert.a(id == currentId);
-                        r.add(new ItemEntry(elt.getOffset(), elt.getSize(), elt.getName(), elt.getType(), elt
-                                .isBitfield() ? String.format("bitfield [%d:%d[", new Object[]{Integer.valueOf(elt.getBitstart()), Integer.valueOf(elt.getBitend())}) : null, false));
+                        r.add(new ItemEntry(elt.getOffset(), elt.getSize(), elt.getName(), elt.getType(), elt.isBitfield() ? String.format("bitfield [%d:%d[", new Object[]{Integer.valueOf(elt.getBitstart()), Integer.valueOf(elt.getBitend())}) : null, false));
                         id += 1L;
                     } else {
                         int off = elt.getOffset() + (int) (id - currentId);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMElement;
@@ -39,9 +38,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public class Folder
-        extends Composite
-        implements IMFolder {
+public class Folder extends Composite implements IMFolder {
     private static final ILogger logger = GlobalLog.getLogger(Folder.class);
     private static int internalFolderCreationCount = 0;
     int internalFolderId;
@@ -457,8 +454,7 @@ public class Folder
             }
             return;
         }
-        if ((action >= 1) &&
-                (part.isHidden())) {
+        if ((action >= 1) && (part.isHidden())) {
             CTabItem tab = new CTabItem(this.folderWidget, this.defaultTabStyle, index);
             part.restoreInto(tab);
             if (notify) {

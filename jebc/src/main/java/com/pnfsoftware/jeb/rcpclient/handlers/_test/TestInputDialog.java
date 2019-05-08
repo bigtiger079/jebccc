@@ -12,8 +12,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class TestInputDialog
-        extends Dialog {
+public class TestInputDialog extends Dialog {
     Double value;
 
     public TestInputDialog(Shell parent) {

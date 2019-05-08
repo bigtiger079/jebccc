@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
@@ -18,8 +17,7 @@ import java.util.Map;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class FileEnginesExecutepluginHandler
-        extends JebBaseHandler {
+public class FileEnginesExecutepluginHandler extends JebBaseHandler {
     String name;
     IEnginesPlugin plugin;
 

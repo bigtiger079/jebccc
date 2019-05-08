@@ -28,8 +28,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class EditInstructionDialog
-        extends JebDialog {
+public class EditInstructionDialog extends JebDialog {
     private long address;
     private INativeCodeUnit<?> unit;
     private boolean confirmed;

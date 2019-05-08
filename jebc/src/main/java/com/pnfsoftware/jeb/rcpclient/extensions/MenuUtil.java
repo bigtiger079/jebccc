@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import org.eclipse.jface.action.IContributionItem;

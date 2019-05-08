@@ -32,8 +32,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class JebIoShareDialog
-        extends TitleAreaDialog {
+public class JebIoShareDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoShareDialog.class);
     private static final int SETTINGS_ID = 1025;
     RcpClientContext context;
@@ -190,8 +189,7 @@ public class JebIoShareDialog
             return;
         }
         SampleDetermination det = SampleDetermination.UNKNOWN;
-        if ((this.wDetermination.getSelectionIndex() >= 0) &&
-                (this.wDetermination.getSelectionIndex() < SampleDetermination.values().length)) {
+        if ((this.wDetermination.getSelectionIndex() >= 0) && (this.wDetermination.getSelectionIndex() < SampleDetermination.values().length)) {
             det = SampleDetermination.values()[this.wDetermination.getSelectionIndex()];
         }
         final File _f = f;
@@ -219,8 +217,7 @@ public class JebIoShareDialog
         try {
             JebIoObjectUser user = helper.getUser();
             long sharecount = user.getSharecount();
-            UI.info(String.format("Thank you!\n\nYou have shared a total of %d %s.", new Object[]{Long.valueOf(sharecount),
-                    PluralFormatter.countS(Long.valueOf(sharecount), "sample")}));
+            UI.info(String.format("Thank you!\n\nYou have shared a total of %d %s.", new Object[]{Long.valueOf(sharecount), PluralFormatter.countS(Long.valueOf(sharecount), "sample")}));
         } catch (Exception e) {
             UI.info("Thank you!");
         }

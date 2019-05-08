@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -19,8 +18,7 @@ import java.util.SortedMap;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 
-public class ActionEditCodeHandler
-        extends NativeCodeBaseHandler {
+public class ActionEditCodeHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionEditCodeHandler.class);
 
     public ActionEditCodeHandler() {
@@ -50,8 +48,7 @@ public class ActionEditCodeHandler
         int cnt = 0;
         while ((info.getMaxInstructionCount() == -1) || (cnt < info.getMaxInstructionCount())) {
             boolean r = pbcu.setCodeAt(address, info.getProcessorMode(), false);
-            if ((!r) &&
-                    (cnt == 0)) {
+            if ((!r) && (cnt == 0)) {
                 boolean override = pbcu.getNativeItemAt(address) != null;
                 if (!override) {
                     IInstruction insn = null;

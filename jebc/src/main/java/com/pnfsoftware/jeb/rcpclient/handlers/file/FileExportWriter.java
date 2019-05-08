@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.output.IGenericDocument;
@@ -133,8 +132,7 @@ public class FileExportWriter {
                     if (s.length() > 16384) {
                         int offset = 0;
                         while (offset < s.length()) {
-                            writer.write(s.subSequence(offset, Math.min(s.length(), offset + 16384))
-                                    .toString());
+                            writer.write(s.subSequence(offset, Math.min(s.length(), offset + 16384)).toString());
                             offset += 16384;
                         }
                     } else {

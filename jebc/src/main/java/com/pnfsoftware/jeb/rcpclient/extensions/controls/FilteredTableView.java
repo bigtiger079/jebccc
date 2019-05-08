@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -17,8 +16,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
 
-public class FilteredTableView
-        extends AbstractFilteredView<Table> {
+public class FilteredTableView extends AbstractFilteredView<Table> {
     private List<ITableEventListener> listeners = new ArrayList();
 
     public FilteredTableView(Composite parent, int style, String[] columnNames) {

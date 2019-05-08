@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -324,8 +323,7 @@ public class UIUtil {
         String[] elts = s.split(";");
         if (elts.length == 4) {
             try {
-                return new Rectangle(Integer.parseInt(elts[0]), Integer.parseInt(elts[1]), Integer.parseInt(elts[2]),
-                        Integer.parseInt(elts[3]));
+                return new Rectangle(Integer.parseInt(elts[0]), Integer.parseInt(elts[1]), Integer.parseInt(elts[2]), Integer.parseInt(elts[3]));
             } catch (Exception localException) {
             }
         }

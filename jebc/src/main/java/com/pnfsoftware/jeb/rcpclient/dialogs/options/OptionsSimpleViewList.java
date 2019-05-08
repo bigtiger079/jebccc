@@ -13,8 +13,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 
-public class OptionsSimpleViewList
-        extends AbstractOptionsSimpleWidget {
+public class OptionsSimpleViewList extends AbstractOptionsSimpleWidget {
     protected String separator;
 
     public OptionsSimpleViewList(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey, String separator) {

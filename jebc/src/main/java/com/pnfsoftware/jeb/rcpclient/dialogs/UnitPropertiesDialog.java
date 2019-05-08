@@ -19,8 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class UnitPropertiesDialog
-        extends JebDialog {
+public class UnitPropertiesDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(UnitPropertiesDialog.class);
     private IUnit unit;
     private Text widgetName;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text.anno;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -10,8 +9,7 @@ import org.eclipse.jface.text.source.IAnnotationAccess;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.SourceViewer;
 
-public class AnnotationRulerColumnEx
-        extends AnnotationRulerColumn {
+public class AnnotationRulerColumnEx extends AnnotationRulerColumn {
     private static final ILogger logger = GlobalLog.getLogger(AnnotationRulerColumnEx.class);
     private SourceViewer viewer;
 

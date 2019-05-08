@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -48,8 +47,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolTip;
 
-public class OverviewBar
-        extends Canvas {
+public class OverviewBar extends Canvas {
     private static final ILogger logger = GlobalLog.getLogger(OverviewBar.class);
     private InteractiveTextViewer textViewer;
     private ITextDocument idoc;
@@ -354,8 +352,7 @@ public class OverviewBar
         Point p = Display.getCurrent().getCursorLocation();
         Point widgetPosition = toDisplay(0, 0);
         Point size = getSize();
-        if ((MathUtil.betweenInclusive(p.x, widgetPosition.x, widgetPosition.x + size.x)) &&
-                (MathUtil.betweenInclusive(p.y, widgetPosition.y, widgetPosition.y + size.y))) {
+        if ((MathUtil.betweenInclusive(p.x, widgetPosition.x, widgetPosition.x + size.x)) && (MathUtil.betweenInclusive(p.y, widgetPosition.y, widgetPosition.y + size.y))) {
             p.x += 5;
             p.y += 5;
             this.tip.setLocation(p);
@@ -386,8 +383,7 @@ public class OverviewBar
 
     boolean isMovingBottomEOF(int pixel) {
         int pixelMax = this.vertical ? getClientArea().height : getClientArea().width;
-        if ((this.textViewer.getWrappedText().isAnchorEndDisplayed()) &&
-                (this.textViewer.getWrappedText().isCurrentPartLastLineDisplayed()) && (pixel > pixelMax)) {
+        if ((this.textViewer.getWrappedText().isAnchorEndDisplayed()) && (this.textViewer.getWrappedText().isCurrentPartLastLineDisplayed()) && (pixel > pixelMax)) {
             return true;
         }
         return false;
@@ -490,9 +486,7 @@ public class OverviewBar
         ICoordinates carCoords = this.textViewer.getCaretCoordinates();
         if (coord.getAnchorId() >= this.barAnchorEnd) {
             this.textViewer.bufferManager.viewAtEndOfDocument();
-        } else if ((carCoords != null) && (
-                (coord.getLineDelta() == 0) || ((coord.getAnchorId() == this.barAnchorFirst) && (coord.getLineDelta() < 0)) ||
-                        (coord.getAnchorId() < this.barAnchorFirst))) {
+        } else if ((carCoords != null) && ((coord.getLineDelta() == 0) || ((coord.getAnchorId() == this.barAnchorFirst) && (coord.getLineDelta() < 0)) || (coord.getAnchorId() < this.barAnchorFirst))) {
             if (coord.getAnchorId() <= this.barAnchorFirst) {
                 if ((carCoords.getAnchorId() != this.barAnchorFirst) || (carCoords.getLineDelta() != 0)) {
                     this.textViewer.bufferManager.viewAtStartOfDocument();

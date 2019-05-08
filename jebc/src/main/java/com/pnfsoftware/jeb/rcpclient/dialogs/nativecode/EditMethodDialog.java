@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -27,8 +26,7 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class EditMethodDialog
-        extends JebDialog {
+public class EditMethodDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(EditMethodDialog.class);
     private INativeCodeUnit<?> unit;
     private INativeMethodItem method;

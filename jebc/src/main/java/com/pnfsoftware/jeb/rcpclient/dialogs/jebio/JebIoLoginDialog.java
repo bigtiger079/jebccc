@@ -34,8 +34,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class JebIoLoginDialog
-        extends TitleAreaDialog {
+public class JebIoLoginDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoLoginDialog.class);
     private static final int SIGNUP_ID = 1025;
     RcpClientContext context;
@@ -98,22 +97,20 @@ public class JebIoLoginDialog
 
     protected void createButtonsForButtonBar(Composite parent) {
         parent.setLayoutData(new GridData(4, 16777216, true, false));
-        createButton(parent, 1025, "Create an Account", false)
-                .addSelectionListener(new SelectionAdapter() {
-                    public void widgetSelected(SelectionEvent e) {
-                        if ((JebIoLoginDialog.this.previousCredentials.lookValid()) &&
-                                (!MessageDialog.openQuestion(JebIoLoginDialog.this.getShell(), "Proceed", "It looks like you have an account already.\n\nWould you like to sign up for another account?"))) {
-                            return;
-                        }
-                        JebIoSignupDialog dlg = new JebIoSignupDialog(JebIoLoginDialog.this.getShell(), JebIoLoginDialog.this.context, JebIoLoginDialog.this.txtEmail.getText());
-                        int retcode = dlg.open();
-                        if (retcode == 0) {
-                            JebIoLoginDialog.this.txtEmail.setText(dlg.getEmail());
-                            JebIoLoginDialog.this.txtPassword.setText(dlg.getPassword());
-                            JebIoLoginDialog.this.textApikey.setText(dlg.getApiKey());
-                        }
-                    }
-                });
+        createButton(parent, 1025, "Create an Account", false).addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(SelectionEvent e) {
+                if ((JebIoLoginDialog.this.previousCredentials.lookValid()) && (!MessageDialog.openQuestion(JebIoLoginDialog.this.getShell(), "Proceed", "It looks like you have an account already.\n\nWould you like to sign up for another account?"))) {
+                    return;
+                }
+                JebIoSignupDialog dlg = new JebIoSignupDialog(JebIoLoginDialog.this.getShell(), JebIoLoginDialog.this.context, JebIoLoginDialog.this.txtEmail.getText());
+                int retcode = dlg.open();
+                if (retcode == 0) {
+                    JebIoLoginDialog.this.txtEmail.setText(dlg.getEmail());
+                    JebIoLoginDialog.this.txtPassword.setText(dlg.getPassword());
+                    JebIoLoginDialog.this.textApikey.setText(dlg.getApiKey());
+                }
+            }
+        });
         Label spacer = new Label(parent, 0);
         spacer.setLayoutData(new GridData(4, 16777216, true, false));
         GridLayout layout = (GridLayout) parent.getLayout();
@@ -194,8 +191,7 @@ public class JebIoLoginDialog
                     if (sharecount == 0) {
                         sb.append("You haven't shared any sample yet!\n\n");
                     } else {
-                        sb.append(String.format("You have shared a total of %d %s.\nYour last contribution was made on %s.\n\n", new Object[]{Integer.valueOf(sharecount),
-                                PluralFormatter.countS(Integer.valueOf(sharecount), "sample"), lastsharets}));
+                        sb.append(String.format("You have shared a total of %d %s.\nYour last contribution was made on %s.\n\n", new Object[]{Integer.valueOf(sharecount), PluralFormatter.countS(Integer.valueOf(sharecount), "sample"), lastsharets}));
                     }
                     if (receivecount == 0) {
                         if (sharecount == 0) {
@@ -204,8 +200,7 @@ public class JebIoLoginDialog
                             sb.append("You haven't received samples yet.");
                         }
                     } else {
-                        sb.append(String.format("You have received a total of %d %s in exchange for your contribution.", new Object[]{
-                                Integer.valueOf(receivecount), PluralFormatter.countS(Integer.valueOf(receivecount), "sample")}));
+                        sb.append(String.format("You have received a total of %d %s in exchange for your contribution.", new Object[]{Integer.valueOf(receivecount), PluralFormatter.countS(Integer.valueOf(receivecount), "sample")}));
                     }
                     UI.log(level, JebIoLoginDialog.this.getShell(), "My Profile", sb.toString());
                 }

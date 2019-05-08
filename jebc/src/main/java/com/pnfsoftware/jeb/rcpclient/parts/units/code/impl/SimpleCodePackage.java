@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code.impl;
 
 import com.pnfsoftware.jeb.core.units.code.ICodeItem;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.core.units.code.ICodePackage;
 
 import java.util.List;
 
-public class SimpleCodePackage
-        implements ICodePackage {
+public class SimpleCodePackage implements ICodePackage {
     private String name;
     private String address;
 

@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VirtualArrayGroup
-        implements IArrayGroup {
+public class VirtualArrayGroup implements IArrayGroup {
     int firstIndex;
     Object element;
     String label;

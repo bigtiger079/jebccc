@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -14,8 +13,7 @@ import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-public final class UIAssetManager
-        extends SwtRegistry {
+public final class UIAssetManager extends SwtRegistry {
     private static final ILogger logger = GlobalLog.getLogger(UIAssetManager.class);
     private static UIAssetManager manager = null;
 

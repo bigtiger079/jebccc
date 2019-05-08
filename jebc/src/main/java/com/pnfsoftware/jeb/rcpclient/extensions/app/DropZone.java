@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import org.eclipse.swt.graphics.Rectangle;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -32,9 +31,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class ConsoleViewer
-        extends Viewer
-        implements IOperable {
+public class ConsoleViewer extends Viewer implements IOperable {
     private static final ILogger logger = GlobalLog.getLogger(ConsoleViewer.class);
     public static final String DEFAULT_PROMPT = "> ";
     private StyledText console;

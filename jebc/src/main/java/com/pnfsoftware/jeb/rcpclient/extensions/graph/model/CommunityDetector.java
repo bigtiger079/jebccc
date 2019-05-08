@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.model;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.fast.P;
@@ -104,8 +103,7 @@ public class CommunityDetector {
         IdentityHashMap<Digraph, Node> map = new IdentityHashMap();
         Node inputNode = new Node(inputGraph);
         map.put(inputGraph, inputNode);
-        while ((!q.isEmpty()) && (
-                (subgraphCountThreshold <= 0) || (q.size() < subgraphCountThreshold))) {
+        while ((!q.isEmpty()) && ((subgraphCountThreshold <= 0) || (q.size() < subgraphCountThreshold))) {
             Digraph g = (Digraph) q.remove(0);
             Node node = (Node) map.get(g);
             if (g.getVertexCount() == 1) {

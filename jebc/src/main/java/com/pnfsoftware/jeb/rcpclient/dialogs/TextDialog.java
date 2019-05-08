@@ -15,8 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class TextDialog
-        extends JebDialog {
+public class TextDialog extends JebDialog {
     private Text text;
     private String textLabel;
     private String input;

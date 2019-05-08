@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.media;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -24,8 +23,7 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundManager
-        implements LineListener {
+public class SoundManager implements LineListener {
     private static final ILogger logger = GlobalLog.getLogger(SoundManager.class);
     public static final int STOPPED = 0;
     public static final int RECORDING = 1;
@@ -44,8 +42,7 @@ public class SoundManager
     public SoundManager() {
     }
 
-    public SoundManager(InputStream in)
-            throws UnsupportedAudioFileException, IOException {
+    public SoundManager(InputStream in) throws UnsupportedAudioFileException, IOException {
         load(in);
     }
 
@@ -64,8 +61,7 @@ public class SoundManager
         ais.close();
     }
 
-    public boolean dump(OutputStream out)
-            throws IOException {
+    public boolean dump(OutputStream out) throws IOException {
         if (this.state != 0) {
             return false;
         }

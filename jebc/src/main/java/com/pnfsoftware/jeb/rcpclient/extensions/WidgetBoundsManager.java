@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;

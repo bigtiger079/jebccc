@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.util.regex.ILabelValueProvider;
@@ -6,9 +5,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 
-public class DefaultCellLabelProvider
-        extends CellLabelProvider
-        implements ILabelValueProvider {
+public class DefaultCellLabelProvider extends CellLabelProvider implements ILabelValueProvider {
     private IFilteredTableContentProvider provider;
 
     public DefaultCellLabelProvider(IFilteredTableContentProvider provider) {

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
@@ -14,12 +13,10 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Control;
 
-public class WidgetActionWrapper
-        implements IContextMenu {
+public class WidgetActionWrapper implements IContextMenu {
     private Control ctl;
 
-    private static class ViewerKeyAdapter
-            extends KeyAdapter {
+    private static class ViewerKeyAdapter extends KeyAdapter {
         private int fKeyCode;
         private Action fAction;
         private int fStateMask;
@@ -31,9 +28,7 @@ public class WidgetActionWrapper
         }
 
         public void keyPressed(KeyEvent e) {
-            if ((((e.stateMask & this.fStateMask) != 0) || (this.fStateMask == 0)) &&
-                    (e.keyCode == this.fKeyCode) &&
-                    (this.fAction.isEnabled())) {
+            if ((((e.stateMask & this.fStateMask) != 0) || (this.fStateMask == 0)) && (e.keyCode == this.fKeyCode) && (this.fAction.isEnabled())) {
                 this.fAction.run();
                 e.doit = false;
             }

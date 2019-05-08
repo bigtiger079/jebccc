@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -33,8 +32,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Composite;
 
-public class NativeCodeGraphView
-        extends AbstractControlFlowGraphView<INativeCodeUnit<IInstruction>> {
+public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCodeUnit<IInstruction>> {
     private static final ILogger logger = GlobalLog.getLogger(NativeCodeGraphView.class);
     private INativeDisassemblyDocument disasDoc;
     private INativeMethodItem currentMethod;
@@ -102,8 +100,7 @@ public class NativeCodeGraphView
     protected ITextDocument getTextForBlock(final BasicBlock<IInstruction> b) {
         return new AbstractTextPartAsDocumentProxy(this.disasDoc) {
             protected ITextDocumentPart getPartAsDocument() {
-                return ((INativeDisassemblyDocument) getFullDocument()).getDisassemblyPart(b.getFirstAddress(), b
-                        .getEndAddress());
+                return ((INativeDisassemblyDocument) getFullDocument()).getDisassemblyPart(b.getFirstAddress(), b.getEndAddress());
             }
         };
     }

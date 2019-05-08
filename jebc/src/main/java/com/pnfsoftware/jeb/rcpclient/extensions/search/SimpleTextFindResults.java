@@ -1,8 +1,6 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.search;
 
-public class SimpleTextFindResults
-        implements IFindTextResult {
+public class SimpleTextFindResults implements IFindTextResult {
     public static SimpleTextFindResults EOS = new SimpleTextFindResults(-1);
     private int indexBegin;
     private int indexEnd;

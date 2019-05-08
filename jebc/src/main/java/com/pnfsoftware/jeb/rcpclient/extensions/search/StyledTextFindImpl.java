@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.search;
 
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Display;
 
-public class StyledTextFindImpl
-        implements IFindTextImpl<SimpleTextFindResults> {
+public class StyledTextFindImpl implements IFindTextImpl<SimpleTextFindResults> {
     private static final ILogger logger = GlobalLog.getLogger(StyledTextFindImpl.class);
     StyledText widget;
     FindTextOptions findOptions;
@@ -55,8 +53,7 @@ public class StyledTextFindImpl
         }
         boolean wrappedAround = false;
         for (; ; ) {
-            int index = Strings.search(this.text, this.position, options.getSearchString(), options.isRegularExpression(), options
-                    .isCaseSensitive(), options.isReverseSearch());
+            int index = Strings.search(this.text, this.position, options.getSearchString(), options.isRegularExpression(), options.isCaseSensitive(), options.isReverseSearch());
             if (index >= 0) {
                 return new SimpleTextFindResults(index, index + options.getSearchString().length(), wrappedAround);
             }

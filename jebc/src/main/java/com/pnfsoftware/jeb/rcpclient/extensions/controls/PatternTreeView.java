@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTreeViewer;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.rcpclient.util.regex.IPatternMatcher;
 import com.pnfsoftware.jeb.rcpclient.util.regex.PatternFilter;
 import org.eclipse.swt.widgets.Composite;
 
-public class PatternTreeView
-        extends FilteredTreeView {
+public class PatternTreeView extends FilteredTreeView {
     private FilteredTreeViewer filteredViewer;
 
     public PatternTreeView(Composite parent, int style, String[] columnNames, int[] columnWidths, IPatternMatcher patternMatcher, boolean expandAfterFilter) {

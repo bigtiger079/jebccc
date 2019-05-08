@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -18,8 +17,7 @@ import java.util.Iterator;
 
 import org.eclipse.swt.widgets.Display;
 
-public class NodeContentsInteractiveTextFactory
-        implements Iterable<NodeContentsInteractiveTextView> {
+public class NodeContentsInteractiveTextFactory implements Iterable<NodeContentsInteractiveTextView> {
     static final ILogger logger = GlobalLog.getLogger(NodeContentsInteractiveTextFactory.class);
     Display display;
     FontManager fontManager;

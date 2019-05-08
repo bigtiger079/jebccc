@@ -13,8 +13,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TypedListener;
 
-class ColorPickerView
-        extends Composite {
+class ColorPickerView extends Composite {
     private Label c;
 
     public ColorPickerView(Composite parent, String text, Color initial) {

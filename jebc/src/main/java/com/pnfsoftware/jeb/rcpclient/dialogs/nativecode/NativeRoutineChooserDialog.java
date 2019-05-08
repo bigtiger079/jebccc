@@ -13,8 +13,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class NativeRoutineChooserDialog
-        extends JebDialog {
+public class NativeRoutineChooserDialog extends JebDialog {
     private INativeCodeUnit<?> unit;
     private NativeRoutinesView v;
     private INativeMethodItem selectedRoutine;

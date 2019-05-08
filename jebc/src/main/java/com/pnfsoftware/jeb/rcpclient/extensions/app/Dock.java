@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMDock;
@@ -22,9 +21,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Widget;
 
-public class Dock
-        extends Composite
-        implements IMDock {
+public class Dock extends Composite implements IMDock {
     private static final ILogger logger = GlobalLog.getLogger(Dock.class);
     private static int internalDockCreationCount = 0;
     public static final int TOP = -1;
@@ -139,8 +136,7 @@ public class Dock
         } else {
             if ((split == -3) || (split == -4)) {
                 orientation = 256;
-            } else
-                throw new RuntimeException("Invalid orientation: " + split);
+            } else throw new RuntimeException("Invalid orientation: " + split);
         }
         boolean first = (split == -1) || (split == -3);
         Panel panel0 = folder.getParentPanel();
@@ -258,8 +254,7 @@ public class Dock
             sb.append(String.format("%sDock(#%d)\n", new Object[]{Strings.generate(' ', depth * 2), Integer.valueOf(dock.internalDockId)}));
         } else if ((elt instanceof Panel)) {
             Panel panel = (Panel) elt;
-            sb.append(String.format("%sPanel(%s %s)\n", new Object[]{Strings.generate(' ', depth * 2),
-                    Arrays.toString(panel.getWeights()), panel.isVertical() ? "vertical" : "horizontal"}));
+            sb.append(String.format("%sPanel(%s %s)\n", new Object[]{Strings.generate(' ', depth * 2), Arrays.toString(panel.getWeights()), panel.isVertical() ? "vertical" : "horizontal"}));
         } else if ((elt instanceof Folder)) {
             Folder folder = (Folder) elt;
             sb.append(String.format("%sFolder(%d)\n", new Object[]{Strings.generate(' ', depth * 2), Integer.valueOf(folder.getPartsCount())}));
@@ -267,8 +262,7 @@ public class Dock
             part = (Part) elt;
             sb.append(String.format("%sPart(%s)\n", new Object[]{Strings.generate(' ', depth * 2), part.getLabel()}));
         } else {
-            throw new RuntimeException(String.format("Element not supported in this dock: %s", new Object[]{elt == null ? null : elt
-                    .getClass().getSimpleName()}));
+            throw new RuntimeException(String.format("Element not supported in this dock: %s", new Object[]{elt == null ? null : elt.getClass().getSimpleName()}));
         }
         for (IMElement child : elt.getChildrenElements()) {
             formatStructure(elt, child, depth + 1, sb);

@@ -41,8 +41,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
-public class OptionsTreeView
-        extends PatternTreeView {
+public class OptionsTreeView extends PatternTreeView {
     private static final ILogger logger = GlobalLog.getLogger(OptionsTreeView.class);
     private static final String[] titleColumns = {S.s(667), S.s(779), S.s(247), S.s(815)};
     private final OptionsChanges.Changes changes;
@@ -57,8 +56,7 @@ public class OptionsTreeView
         super(parent, 65664, titleColumns, null, patternMatcher, expandAfterFilter);
         this.changes = changes;
         final FilteredTreeViewer viewer = getTreeViewer();
-        ContextMenuFilter.addContextMenu(viewer.getViewer(), getFilterText(), labelProvider, new String[]{
-                S.s(667), S.s(779)}, new Boolean[]{Boolean.FALSE, Boolean.TRUE});
+        ContextMenuFilter.addContextMenu(viewer.getViewer(), getFilterText(), labelProvider, new String[]{S.s(667), S.s(779)}, new Boolean[]{Boolean.FALSE, Boolean.TRUE});
         final TreeContentProvider contentProvider = new TreeContentProvider();
         EditingSupport editingSupport = new ValueEditingSupport(viewer.getViewer());
         ColumnViewerToolTipSupport.enableFor(viewer.getViewer());
@@ -192,8 +190,7 @@ public class OptionsTreeView
             String text = "";
             Object elt = cell.getElement();
             int index = cell.getColumnIndex();
-            if (((elt instanceof IPropertyDefinitionManager)) &&
-                    (index == 0)) {
+            if (((elt instanceof IPropertyDefinitionManager)) && (index == 0)) {
                 text = ((IPropertyDefinitionManager) elt).getRegion();
                 if (text.isEmpty()) {
                     text = "<root>";
@@ -222,8 +219,7 @@ public class OptionsTreeView
                 if (key == 1) {
                     return ((OptionsTreeView.PropertyLine) element).definition.getType().toString();
                 }
-            } else if (((element instanceof PropertyDefinitionManager)) &&
-                    (key == 0)) {
+            } else if (((element instanceof PropertyDefinitionManager)) && (key == 0)) {
                 return ((PropertyDefinitionManager) element).getRegion();
             }
             if (element != null) {

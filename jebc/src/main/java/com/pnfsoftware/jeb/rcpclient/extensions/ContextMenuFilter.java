@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -20,8 +19,7 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Control;
 
-public class ContextMenuFilter
-        implements IContextMenu {
+public class ContextMenuFilter implements IContextMenu {
     private ColumnViewer viewer;
     private IFilterText filterText;
     private IValueProvider valueProvider;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -12,9 +11,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractInteractiveTableView<T extends IUnit, V>
-        extends AbstractUnitFragment<T>
-        implements IExportableData {
+public abstract class AbstractInteractiveTableView<T extends IUnit, V> extends AbstractUnitFragment<T> implements IExportableData {
     public AbstractInteractiveTableView(Composite parent, int style, T unit, IRcpUnitView unitView, RcpClientContext context) {
         super(parent, style, unit, unitView, context);
     }

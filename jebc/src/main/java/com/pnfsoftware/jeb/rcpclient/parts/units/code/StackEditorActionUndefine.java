@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IStackframeManager;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
-public class StackEditorActionUndefine
-        extends StackEditorAction {
+public class StackEditorActionUndefine extends StackEditorAction {
     public StackEditorActionUndefine(StackEditorView v) {
         super("Undefine", v);
         this.keyCode = 117;

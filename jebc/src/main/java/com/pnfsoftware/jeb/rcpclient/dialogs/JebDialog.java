@@ -29,8 +29,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public abstract class JebDialog
-        extends Dialog {
+public abstract class JebDialog extends Dialog {
     private static IWidgetManager standardWidgetManager;
     private IWidgetManager widgetManager;
     private String widgetName;

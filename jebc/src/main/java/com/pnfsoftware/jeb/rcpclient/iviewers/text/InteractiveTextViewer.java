@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -80,8 +79,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public class InteractiveTextViewer
-        implements IOperable, INavigableViewer, ITextDocumentViewer {
+public class InteractiveTextViewer implements IOperable, INavigableViewer, ITextDocumentViewer {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTextViewer.class, Integer.MAX_VALUE);
     public static final int FLAG_DISABLE_LINE_WRAPPING = 1;
     public static final int FLAG_DISABLE_PART_VERIFICATION = 2;
@@ -394,10 +392,8 @@ public class InteractiveTextViewer
             if ((newBufOff >= this.wrappedText.getCharCount()) || (newBufOff < 0)) {
                 IAnchor currentAnchor = this.docManager.getAnchorById(caretCoords.getAnchorId());
                 if (currentAnchor == null) {
-                    if ((caretCoords.getAnchorId() < TextPartUtil.getLastAnchorId(this.docManager.getCurrentPart())) &&
-                            (caretCoords.getAnchorId() > TextPartUtil.getFirstAnchorId(this.docManager.getCurrentPart()))) {
-                        IAnchor a = TextPartUtil.getApproximateAnchorById(this.docManager.getCurrentPart(), caretCoords
-                                .getAnchorId(), 1);
+                    if ((caretCoords.getAnchorId() < TextPartUtil.getLastAnchorId(this.docManager.getCurrentPart())) && (caretCoords.getAnchorId() > TextPartUtil.getFirstAnchorId(this.docManager.getCurrentPart()))) {
+                        IAnchor a = TextPartUtil.getApproximateAnchorById(this.docManager.getCurrentPart(), caretCoords.getAnchorId(), 1);
                         String lineContent = this.wrappedText.getLine(a.getLineIndex());
                         int columnOffset = caretCoords.getColumnOffset() > lineContent.length() ? lineContent.length() : caretCoords.getColumnOffset();
                         newCoords = new Coordinates(a.getIdentifier(), 0, columnOffset);
@@ -539,8 +535,7 @@ public class InteractiveTextViewer
             }
             return false;
         }
-        if ((this.charactersWrap < 0) &&
-                (this.maxCharsPerLine >= 10) && (this.maxCharsPerLine - this.charsEndLine > 5)) {
+        if ((this.charactersWrap < 0) && (this.maxCharsPerLine >= 10) && (this.maxCharsPerLine - this.charsEndLine > 5)) {
             for (int i = 0; i < newPart.getLines().size(); i++) {
                 ILine line = (ILine) newPart.getLines().get(i);
                 if (line.getText().length() > this.maxCharsPerLine) {
@@ -577,25 +572,23 @@ public class InteractiveTextViewer
         for (DocumentManager.RenderedItem renderedItem : this.docManager.getRenderedItems()) {
             ITextItem item = renderedItem.item;
             Style style = this.styleAdapter.getStyle(item);
-            if (style != null)
-                if (item.getLength() <= 0) {
-                    logger.error("Trying to apply a void style at offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
-                } else if (item.getOffset() < 0) {
-                    logger.error("Trying to apply a style at negative offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
-                } else {
-                    int length = item.getLength();
-                    if (renderedItem.offset + length > doc.getLength()) {
-                        if (renderedItem.offset > doc.getLength()) {
-                            logger.error("Trying to apply a style at item not in document at offset %d", new Object[]{
-                                    Integer.valueOf(renderedItem.offset)});
-                        } else {
-                            length = doc.getLength() - renderedItem.offset;
-                        }
+            if (style != null) if (item.getLength() <= 0) {
+                logger.error("Trying to apply a void style at offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
+            } else if (item.getOffset() < 0) {
+                logger.error("Trying to apply a style at negative offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
+            } else {
+                int length = item.getLength();
+                if (renderedItem.offset + length > doc.getLength()) {
+                    if (renderedItem.offset > doc.getLength()) {
+                        logger.error("Trying to apply a style at item not in document at offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
                     } else {
-                        StyleRange sr = createStyleRange(renderedItem.offset, length, style);
-                        pres.addStyleRange(sr);
+                        length = doc.getLength() - renderedItem.offset;
                     }
+                } else {
+                    StyleRange sr = createStyleRange(renderedItem.offset, length, style);
+                    pres.addStyleRange(sr);
                 }
+            }
         }
         return pres;
     }
@@ -758,8 +751,7 @@ public class InteractiveTextViewer
                     long firstAnchorId = TextPartUtil.getFirstAnchorId(part);
                     long nextAnchorId = TextPartUtil.getNextAnchorId(part);
                     if ((anchorId < firstAnchorId) || (anchorId >= nextAnchorId)) {
-                        logger.i("Requested anchor out of current part: %Xh not in [%Xh, %Xh)", new Object[]{Long.valueOf(anchorId), Long.valueOf(firstAnchorId),
-                                Long.valueOf(nextAnchorId)});
+                        logger.i("Requested anchor out of current part: %Xh not in [%Xh, %Xh)", new Object[]{Long.valueOf(anchorId), Long.valueOf(firstAnchorId), Long.valueOf(nextAnchorId)});
                         part = null;
                     }
                 }
@@ -811,8 +803,7 @@ public class InteractiveTextViewer
                 }
             }
             if (pos < 0) {
-                if ((!options.isWrapAround()) ||
-                        (wrappedAround)) {
+                if ((!options.isWrapAround()) || (wrappedAround)) {
                     break;
                 }
                 wrappedAround = true;

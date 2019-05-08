@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.fast;
 
 import java.util.ArrayList;

@@ -33,8 +33,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class FindTextDialog
-        extends JebDialog {
+public class FindTextDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(FindTextDialog.class);
     private static WeakIdentityHashMap<Object, FindTextDialog> usermap = new WeakIdentityHashMap();
     private GraphicalTextFinder<?> finder;

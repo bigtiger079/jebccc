@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.core.ILiveArtifact;
@@ -20,8 +19,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Tree;
 
-public class ArtifactManager
-        implements IArtifactManager {
+public class ArtifactManager implements IArtifactManager {
     private static final ILogger logger = GlobalLog.getLogger(ArtifactManager.class);
     private static final List<IUnit> EMPTY = new ArrayList();
     private static ArtifactManager instance;

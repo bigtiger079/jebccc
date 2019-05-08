@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file.export;
 
 import com.pnfsoftware.jeb.core.exceptions.JebRuntimeException;
@@ -30,8 +29,7 @@ import java.util.regex.Pattern;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
-public class FileExportDecompileAllJob<T extends ICodeItem>
-        implements IRunnableWithProgress {
+public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnableWithProgress {
     private static final ILogger logger = GlobalLog.getLogger(FileExportDecompileAllJob.class);
     private static final int TIME_BEFORE_CHECK_NEW_THREAD = 100;
     private static final int TIMEOUT = 3000;
@@ -58,8 +56,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem>
                     totalItems++;
                 } else {
                     fullName = this.fileExport.getFullName(item);
-                    if ((fullName != null) && (this.pattern.matcher(fullName).matches()))
-                        totalItems++;
+                    if ((fullName != null) && (this.pattern.matcher(fullName).matches())) totalItems++;
                 }
             }
         }
@@ -97,8 +94,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem>
         }
         pool.shutdown();
         int i = 0;
-        while ((!pool.isTerminated()) &&
-                (!pool.awaitTermination(500L, TimeUnit.MILLISECONDS))) {
+        while ((!pool.isTerminated()) && (!pool.awaitTermination(500L, TimeUnit.MILLISECONDS))) {
             if (monitor.isCanceled()) {
                 cancel(pool);
             }
@@ -110,8 +106,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem>
         }
     }
 
-    private ExecutorService rebuildPool(ExecutorService pool, Map<String, Future<Boolean>> futures)
-            throws InvocationTargetException {
+    private ExecutorService rebuildPool(ExecutorService pool, Map<String, Future<Boolean>> futures) throws InvocationTargetException {
         for (Map.Entry<String, Future<Boolean>> f : futures.entrySet()) {
             if (!((Future) f.getValue()).isDone()) {
                 logger.error("Method %s can not be decompiled", new Object[]{f.getKey()});
@@ -124,8 +119,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem>
         }
         for (Map.Entry<String, Future<Boolean>> f : futures.entrySet()) {
             if (!((Future) f.getValue()).isDone()) {
-                JebRuntimeException e = new JebRuntimeException(Strings.f("Export decompiled has been stopped because method %s takes too long.\nDecompilation is still pending.", new Object[]{f
-                        .getKey()}));
+                JebRuntimeException e = new JebRuntimeException(Strings.f("Export decompiled has been stopped because method %s takes too long.\nDecompilation is still pending.", new Object[]{f.getKey()}));
                 this.context.getErrorHandler().processThrowableSilent(e);
                 throw new InvocationTargetException(e, e.getMessage());
             }
@@ -169,8 +163,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem>
         futures.put(key, value);
     }
 
-    private void cancel(ExecutorService pool)
-            throws InterruptedException {
+    private void cancel(ExecutorService pool) throws InterruptedException {
         pool.shutdown();
         int activeOld = getActiveCount(pool);
         int activeNew = 0;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.api.IUnitFragment;
@@ -41,9 +40,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class StringsView
-        extends AbstractFilteredTableView<ICodeUnit, ICodeString>
-        implements ILazyView {
+public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeString> implements ILazyView {
     private static final ILogger logger = GlobalLog.getLogger(StringsView.class);
 
     public StringsView(Composite parent, int flags, RcpClientContext context, ICodeUnit unit, IRcpUnitView unitView) {
@@ -171,8 +168,7 @@ public class StringsView
         }
     }
 
-    static class ContentProvider
-            implements IFilteredTableContentProvider {
+    static class ContentProvider implements IFilteredTableContentProvider {
         ICodeUnit codeunit;
         IEventListener listener;
         ViewerRefresher refresher;

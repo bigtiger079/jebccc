@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 public class RowCol {
@@ -27,17 +26,12 @@ public class RowCol {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         RowCol other = (RowCol) obj;
-        if (this.col != other.col)
-            return false;
-        if (this.row != other.row)
-            return false;
+        if (this.col != other.col) return false;
+        if (this.row != other.row) return false;
         return true;
     }
 

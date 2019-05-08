@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.hover.extend;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -38,9 +37,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 
-public class JebInformationControl
-        extends AbstractInformationControl
-        implements IInformationControlExtension2, DisposeListener {
+public class JebInformationControl extends AbstractInformationControl implements IInformationControlExtension2, DisposeListener {
     private static final ILogger logger = GlobalLog.getLogger(JebInformationControl.class);
     private IHoverableWidget hoverable;
     private Composite contentComposite;
@@ -221,8 +218,7 @@ public class JebInformationControl
         }
 
         public void changed(LocationEvent event) {
-            if ((!event.location.equals("about:blank")) &&
-                    (event.top)) {
+            if ((!event.location.equals("about:blank")) && (event.top)) {
                 if (this.ignoreNextUrl) {
                     this.ignoreNextUrl = false;
                     return;

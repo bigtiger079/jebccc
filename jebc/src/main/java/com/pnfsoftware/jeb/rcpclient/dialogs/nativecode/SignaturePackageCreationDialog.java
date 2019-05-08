@@ -19,8 +19,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class SignaturePackageCreationDialog
-        extends JebDialog {
+public class SignaturePackageCreationDialog extends JebDialog {
     private INativeCodeUnit<?> unit;
     private boolean confirmed;
     private SignaturePackageSetupInformation info;
@@ -84,8 +83,7 @@ public class SignaturePackageCreationDialog
         packageProcMode.setText(this.unit.getProcessor().getType().toString());
         packageProcMode.setEditable(false);
         UIUtil.setStandardLayout(parent, 1);
-        new Label(parent, 0)
-                .setText(String.format("Note: package will be created under 'siglibs%s%s' in JEB client folder", new Object[]{File.separator, "custom"}));
+        new Label(parent, 0).setText(String.format("Note: package will be created under 'siglibs%s%s' in JEB client folder", new Object[]{File.separator, "custom"}));
         createOkayCancelButtons(parent);
     }
 }

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -31,8 +30,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class NamedConstantsView
-        extends AbstractFilteredTableView<INativeCodeUnit<?>, CodeConstant> {
+public class NamedConstantsView extends AbstractFilteredTableView<INativeCodeUnit<?>, CodeConstant> {
     private static final ILogger logger = GlobalLog.getLogger(NativeTypesView.class);
 
     public NamedConstantsView(Composite parent, int style, RcpClientContext context, INativeCodeUnit<?> pbcu, IRcpUnitView unitView, Object sourceValue) {
@@ -115,8 +113,7 @@ public class NamedConstantsView
         }
     }
 
-    static class LabelProvider
-            implements ILabelValueProvider, ITableLabelProvider {
+    static class LabelProvider implements ILabelValueProvider, ITableLabelProvider {
         public void addListener(ILabelProviderListener listener) {
         }
 

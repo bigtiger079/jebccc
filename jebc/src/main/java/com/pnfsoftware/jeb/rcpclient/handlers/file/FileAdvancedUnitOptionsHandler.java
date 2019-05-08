@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -11,8 +10,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.nativeactions.NativeCodeBaseHandle
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class FileAdvancedUnitOptionsHandler
-        extends JebBaseHandler {
+public class FileAdvancedUnitOptionsHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileAdvancedUnitOptionsHandler.class);
 
     public FileAdvancedUnitOptionsHandler() {

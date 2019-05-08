@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup.ArrayGroup;
@@ -13,8 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractArrayGroupFilteredTreeContentProvider
-        implements IFilteredTreeContentProvider {
+public abstract class AbstractArrayGroupFilteredTreeContentProvider implements IFilteredTreeContentProvider {
     public static final int DEFAULT_LIMIT = 1000;
     public static final int DEFAULT__GROUP_LIMIT = 100;
     public static final int DEFAULT_PERFORMANCE_LIMIT = 20;
@@ -177,8 +175,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider
                         if (flattenedElements < 0) break;
                         IArrayGroup g = (IArrayGroup) groups.remove(index);
                         for (int k = 0; k < g.size(); k++) {
-                            groups.add(index + k, new VirtualArrayGroup(g
-                                    .getFirstElementIndex() + k, g.getChildren().get(k)));
+                            groups.add(index + k, new VirtualArrayGroup(g.getFirstElementIndex() + k, g.getChildren().get(k)));
                         }
                     }
                 }

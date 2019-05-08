@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.help;
 
 import com.pnfsoftware.jeb.client.S;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
 
 import java.io.File;
 
-public class HelpFAQHandler
-        extends JebBaseHandler {
+public class HelpFAQHandler extends JebBaseHandler {
     public HelpFAQHandler() {
         super(null, S.s(503), null, null);
     }

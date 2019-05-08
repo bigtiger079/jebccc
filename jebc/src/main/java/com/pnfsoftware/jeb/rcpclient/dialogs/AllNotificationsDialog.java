@@ -12,8 +12,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class AllNotificationsDialog
-        extends DataFrameDialog {
+public class AllNotificationsDialog extends DataFrameDialog {
     private static AllNotificationsDialog instance;
 
     public static AllNotificationsDialog getInstance() {

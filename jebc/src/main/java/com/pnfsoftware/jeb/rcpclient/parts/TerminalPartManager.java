@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -29,9 +28,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 
-public class TerminalPartManager
-        extends AbstractPartManager
-        implements IOperable, IContextMenu {
+public class TerminalPartManager extends AbstractPartManager implements IOperable, IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(TerminalPartManager.class);
     private ConsoleViewer cv;
     private Listener focusInFilter;

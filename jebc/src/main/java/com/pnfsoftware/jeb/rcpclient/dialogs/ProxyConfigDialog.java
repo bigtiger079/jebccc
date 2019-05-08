@@ -28,8 +28,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ProxyConfigDialog
-        extends JebDialog {
+public class ProxyConfigDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ProxyConfigDialog.class);
     NetProxyInfo proxyinfo;
     NetProxyInfo proxyinfo2;

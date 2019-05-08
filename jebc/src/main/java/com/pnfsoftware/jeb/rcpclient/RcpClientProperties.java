@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -21,8 +20,7 @@ public class RcpClientProperties {
     }
 
     public boolean allowInternalCommands() {
-        return (Licensing.isDebugBuild()) ||
-                (BooleanUtils.toBoolean(Boolean.valueOf(this.pm.getBoolean(".ui.AllowInternalCommands"))));
+        return (Licensing.isDebugBuild()) || (BooleanUtils.toBoolean(Boolean.valueOf(this.pm.getBoolean(".ui.AllowInternalCommands"))));
     }
 
     public int getLoggerMaxLength() {

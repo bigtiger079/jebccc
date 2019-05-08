@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.fast;
 
 public class L {
@@ -27,17 +26,12 @@ public class L {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         L other = (L) obj;
-        if (this.dst != other.dst)
-            return false;
-        if (this.src != other.src)
-            return false;
+        if (this.dst != other.dst) return false;
+        if (this.src != other.src) return false;
         return true;
     }
 

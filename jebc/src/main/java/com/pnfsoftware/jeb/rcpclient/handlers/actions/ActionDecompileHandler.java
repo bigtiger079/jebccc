@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
 import com.google.common.collect.Iterables;
@@ -30,8 +29,7 @@ import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 
-public class ActionDecompileHandler
-        extends JebBaseHandler {
+public class ActionDecompileHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionDecompileHandler.class);
 
     public ActionDecompileHandler() {
@@ -78,8 +76,7 @@ public class ActionDecompileHandler
             return;
         }
         IDecompilerUnit decompiler = DecompilerHelper.getDecompiler(unit);
-        if ((decompiler == null) && (
-                (!(unit.getParent() instanceof IUnit)) || (!((IUnit) unit.getParent()).getName().equals("decompiler")))) {
+        if ((decompiler == null) && ((!(unit.getParent() instanceof IUnit)) || (!((IUnit) unit.getParent()).getName().equals("decompiler")))) {
             StringBuilder msg = new StringBuilder("Your build does not provide decompilation support for this type of code.\n\nThe decompilers available with your license type are:\n");
             msg.append(Strings.join(", ", DecompilerHelper.getAvailableDecompilerNames(this.context.getEnginesContext())));
             if (!UI.popupOptional(this.shell, 0, "Decompiler not available", msg.toString(), "dlgDecompilerNotAvailable")) {

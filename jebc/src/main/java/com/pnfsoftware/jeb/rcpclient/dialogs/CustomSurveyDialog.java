@@ -22,8 +22,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class CustomSurveyDialog
-        extends TitleAreaDialog {
+public class CustomSurveyDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(CustomSurveyDialog.class);
     RcpClientContext context;
     Text txtSuggestion;

@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ListParsersDialog;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-public class FileEnginesParsersHandler
-        extends JebBaseHandler {
+public class FileEnginesParsersHandler extends JebBaseHandler {
     public FileEnginesParsersHandler() {
         super(null, "Parsers...", null, null);
     }

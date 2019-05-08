@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.rcpclient.dialogs.JebDialog;
@@ -10,8 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class CallgraphPackageFilterDialog
-        extends JebDialog {
+public class CallgraphPackageFilterDialog extends JebDialog {
     private StyledText wPlist;
     private String input;
     private String plist;

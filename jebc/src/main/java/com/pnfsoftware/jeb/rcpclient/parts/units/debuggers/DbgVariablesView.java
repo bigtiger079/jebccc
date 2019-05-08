@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -66,9 +65,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
-public class DbgVariablesView
-        extends AbstractUnitFragment<IDebuggerUnit>
-        implements IContextMenu {
+public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgVariablesView.class);
     private FilteredTreeViewer viewer;
     private IDebuggerThreadStackFrame targetFrame;
@@ -128,8 +125,7 @@ public class DbgVariablesView
                 }
 
                 public boolean isEnabled() {
-                    return ((v.getTypedValue() instanceof ValueObject)) &&
-                            (((ValueObject) v.getTypedValue()).getObjectId() != 0L);
+                    return ((v.getTypedValue() instanceof ValueObject)) && (((ValueObject) v.getTypedValue()).getObjectId() != 0L);
                 }
             });
         }
@@ -146,8 +142,7 @@ public class DbgVariablesView
             return this.targetFrame;
         }
         IDebuggerThread t = ((IDebuggerUnit) getUnit()).getDefaultThread();
-        if ((t != null) &&
-                (t.getStatus() == DebuggerThreadStatus.PAUSED)) {
+        if ((t != null) && (t.getStatus() == DebuggerThreadStatus.PAUSED)) {
             List<? extends IDebuggerThreadStackFrame> frames = t.getFrames();
             if ((frames != null) && (!frames.isEmpty())) {
                 return (IDebuggerThreadStackFrame) frames.get(0);
@@ -322,9 +317,7 @@ public class DbgVariablesView
                 if (img != null) {
                     cell.setImage(img);
                 }
-            } else if ((index == 2) &&
-                    ((elt instanceof IDebuggerVariable)) &&
-                    ((((IDebuggerVariable) elt).getTypedValue() instanceof ValueRaw))) {
+            } else if ((index == 2) && ((elt instanceof IDebuggerVariable)) && ((((IDebuggerVariable) elt).getTypedValue() instanceof ValueRaw))) {
                 cell.setFont(DbgVariablesView.this.context.getFontManager().getCodeFont());
             }
             super.update(cell);
@@ -433,8 +426,7 @@ public class DbgVariablesView
             } else if (this.index == 2) {
                 String visuType = (String) value;
                 DbgVariablesView.logger.i("visuType= %s", new Object[]{visuType});
-                if ((!Strings.isBlank(visuType)) &&
-                        (v.setTypeHint(visuType))) {
+                if ((!Strings.isBlank(visuType)) && (v.setTypeHint(visuType))) {
                     this.columnVviewer.refresh();
                 }
             }

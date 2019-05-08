@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 import com.pnfsoftware.jeb.util.base.Assert;
@@ -11,8 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class ConstraintSolver
-        implements Cloneable {
+public class ConstraintSolver implements Cloneable {
     private static final ILogger logger = GlobalLog.getLogger(ConstraintSolver.class);
     boolean solved;
     int[] varsmin;
@@ -238,8 +236,7 @@ public class ConstraintSolver
                     return false;
                 }
                 minval1 -= v;
-                if (minval1 <= 0)
-                    return true;
+                if (minval1 <= 0) return true;
             }
         }
         return false;

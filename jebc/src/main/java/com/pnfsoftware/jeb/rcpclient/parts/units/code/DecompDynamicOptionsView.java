@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -23,8 +22,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class DecompDynamicOptionsView
-        extends Composite {
+public class DecompDynamicOptionsView extends Composite {
     INativeSourceUnit src;
     String address;
     FilteredTableView ft;

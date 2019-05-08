@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -92,8 +91,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-public class CodeHierarchyView
-        extends AbstractUnitFragment<ICodeUnit> {
+public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
     private static final ILogger logger = GlobalLog.getLogger(CodeHierarchyView.class);
     private boolean extraDetails;
     private Tree tree;
@@ -137,8 +135,7 @@ public class CodeHierarchyView
         FilteredTreeViewer ftv = this.pt.getTreeViewer();
         ftv.addFilteredTextListener(new Listener() {
             public void handleEvent(Event event) {
-                if (((event.data instanceof Integer)) &&
-                        (((Integer) event.data).intValue() == -1)) {
+                if (((event.data instanceof Integer)) && (((Integer) event.data).intValue() == -1)) {
                     String msg = "Too many results: The tree was not fully expanded.";
                     CodeHierarchyView.logger.warn(msg, new Object[0]);
                     UI.infoOptional(CodeHierarchyView.this.getViewer().getTree().getShell(), null, msg, "dlgCodeHierFilterTooManyResults");
@@ -242,13 +239,11 @@ public class CodeHierarchyView
     }
 
     private int getBucketLimit() {
-        return
-                this.context.getPropertyManager().getInteger(this.extraDetails ? ".ui.tree.BucketFlatThreshold" : ".ui.tree.BucketTreeThreshold");
+        return this.context.getPropertyManager().getInteger(this.extraDetails ? ".ui.tree.BucketFlatThreshold" : ".ui.tree.BucketTreeThreshold");
     }
 
     private int getBucketMaxElements() {
-        return
-                this.context.getPropertyManager().getInteger(this.extraDetails ? ".ui.tree.BucketFlatMaxElements" : ".ui.tree.BucketTreeMaxElements");
+        return this.context.getPropertyManager().getInteger(this.extraDetails ? ".ui.tree.BucketFlatMaxElements" : ".ui.tree.BucketTreeMaxElements");
     }
 
     private boolean usesExplicitDefaultPackage() {
@@ -280,8 +275,7 @@ public class CodeHierarchyView
             this.root = ((ICodeNode[]) (ICodeNode[]) newInput)[0];
             this.eventListener = new IEventListener() {
                 public void onEvent(IEvent e) {
-                    if ((J.isUnitEvent(e)) &&
-                            (!CodeHierarchyView.this.autoRefreshDisabled)) {
+                    if ((J.isUnitEvent(e)) && (!CodeHierarchyView.this.autoRefreshDisabled)) {
                         CodeHierarchyView.this.refresher.request();
                     }
                 }
@@ -399,8 +393,7 @@ public class CodeHierarchyView
         List<ICodeNode> filterOutEmptyPackages(List<? extends ICodeNode> list) {
             List<ICodeNode> list2 = new ArrayList();
             for (ICodeNode node : list) {
-                if ((!(node.getObject() instanceof ICodePackage)) || (isNonEmptyPackageNode(node)) ||
-                        (!CodeNodeUtil.cannotBe(node, 16))) {
+                if ((!(node.getObject() instanceof ICodePackage)) || (isNonEmptyPackageNode(node)) || (!CodeNodeUtil.cannotBe(node, 16))) {
                     list2.add(node);
                 }
             }
@@ -675,8 +668,7 @@ public class CodeHierarchyView
                         i++;
                     }
                 } else {
-                    ArrayLogicalGroup logicalGroup = buildLogicalGroup(r, parentElement, index, size, labelRule
-                            .generateGroupName());
+                    ArrayLogicalGroup logicalGroup = buildLogicalGroup(r, parentElement, index, size, labelRule.generateGroupName());
                     map.put(Integer.valueOf(index), logicalGroup);
                     labelRule.saveValidLabel(logicalGroup, rule.format(startExpression));
                 }
@@ -730,8 +722,7 @@ public class CodeHierarchyView
         }
 
         public boolean canDrag(Object data) {
-            if (((data instanceof IArrayGroup)) &&
-                    (((IArrayGroup) data).isSingle())) {
+            if (((data instanceof IArrayGroup)) && (((IArrayGroup) data).isSingle())) {
                 data = ((IArrayGroup) data).getFirstElement();
             }
             if ((data instanceof ICodeNode)) {
@@ -813,8 +804,7 @@ public class CodeHierarchyView
 
         public String getDragData() {
             Object elt = CodeHierarchyView.this.getSelectedElement();
-            if (((elt instanceof IArrayGroup)) &&
-                    (((IArrayGroup) elt).isSingle())) {
+            if (((elt instanceof IArrayGroup)) && (((IArrayGroup) elt).isSingle())) {
                 elt = ((IArrayGroup) elt).getFirstElement();
             }
             if ((elt instanceof ICodeNode)) {
@@ -858,8 +848,7 @@ public class CodeHierarchyView
             Image img = null;
             AssetManagerOverlay overlay = null;
             Object o = cell.getElement();
-            if (((o instanceof IArrayGroup)) &&
-                    (((IArrayGroup) o).isSingle())) {
+            if (((o instanceof IArrayGroup)) && (((IArrayGroup) o).isSingle())) {
                 o = ((IArrayGroup) o).getFirstElement();
             }
             if ((o instanceof ICodeNode)) {
@@ -980,8 +969,7 @@ public class CodeHierarchyView
         }
 
         public String getArrayGroupStringAt(IArrayGroup element, int key) {
-            if (((element instanceof ArrayLogicalGroup)) &&
-                    (key == 0)) {
+            if (((element instanceof ArrayLogicalGroup)) && (key == 0)) {
                 return ((ArrayLogicalGroup) element).getGroupName();
             }
             if (element.isSingle()) {
@@ -994,9 +982,7 @@ public class CodeHierarchyView
                     if ((o instanceof Object[])) {
                         return ((Object[]) (Object[]) o)[0] + " .. " + Strings.safe(((Object[]) (Object[]) o)[1]);
                     }
-                } else if ((key == 1) &&
-                        ((o instanceof Object[])) && ((CodeHierarchyView.this.viewer.getTree().getSortColumn() == null) ||
-                        (CodeHierarchyView.this.viewer.getTree().getSortColumn().getText().equals("Address")))) {
+                } else if ((key == 1) && ((o instanceof Object[])) && ((CodeHierarchyView.this.viewer.getTree().getSortColumn() == null) || (CodeHierarchyView.this.viewer.getTree().getSortColumn().getText().equals("Address")))) {
                     StringBuilder stb = new StringBuilder();
                     formatLongHex(stb, (Long) ((Object[]) (Object[]) o)[0]);
                     stb.append(" .. ");
@@ -1021,8 +1007,7 @@ public class CodeHierarchyView
 
     private AbstractFilteredFilter getAbstractFilter() {
         ViewerFilter[] filters = this.viewer.getFilters();
-        if ((filters != null) && (filters.length > 0) &&
-                ((filters[0] instanceof AbstractFilteredFilter))) {
+        if ((filters != null) && (filters.length > 0) && ((filters[0] instanceof AbstractFilteredFilter))) {
             return (AbstractFilteredFilter) filters[0];
         }
         return null;
@@ -1055,8 +1040,7 @@ public class CodeHierarchyView
             return null;
         }
         Object elt = ((TreeSelection) selection).getFirstElement();
-        if (((elt instanceof IArrayGroup)) &&
-                (((IArrayGroup) elt).isSingle())) {
+        if (((elt instanceof IArrayGroup)) && (((IArrayGroup) elt).isSingle())) {
             elt = ((IArrayGroup) elt).getFirstElement();
         }
         return elt;
@@ -1130,9 +1114,7 @@ public class CodeHierarchyView
             if (autoExpand) {
                 List<ICodeNode> pathNode = new ArrayList();
                 getPathNode(node, this.contentProvider.getRoot(), pathNode, true);
-                if ((usesExplicitDefaultPackage()) && (!this.extraDetails) &&
-                        (!(((ICodeNode) pathNode.get(0)).getObject() instanceof ICodePackage)) &&
-                        (this.contentProvider.defaultPackage != null)) {
+                if ((usesExplicitDefaultPackage()) && (!this.extraDetails) && (!(((ICodeNode) pathNode.get(0)).getObject() instanceof ICodePackage)) && (this.contentProvider.defaultPackage != null)) {
                     pathNode.add(0, this.contentProvider.defaultPackage);
                 }
                 try {
@@ -1161,8 +1143,7 @@ public class CodeHierarchyView
                         AbstractFilteredFilter filter = getAbstractFilter();
                         String msg = null;
                         if ((filter != null) && (filter.isFiltered())) {
-                            msg = Strings.f("The item %s can not be focused.\nMaybe it is hidden by current filter?", new Object[]{node
-                                    .getLabel()});
+                            msg = Strings.f("The item %s can not be focused.\nMaybe it is hidden by current filter?", new Object[]{node.getLabel()});
                         } else {
                             msg = Strings.f("The item  %s can not be focused.", new Object[]{node.getLabel()});
                             this.context.getErrorHandler().processThrowableSilent(new JebRuntimeException(msg));
@@ -1211,8 +1192,7 @@ public class CodeHierarchyView
             return item;
         }
         IArrayGroup match = (IArrayGroup) arrayPath.get(i);
-        if ((arrayPath.size() == 1) &&
-                (item.getData() == match)) {
+        if ((arrayPath.size() == 1) && (item.getData() == match)) {
             return item;
         }
         for (TreeItem t : item.getItems()) {
@@ -1232,8 +1212,7 @@ public class CodeHierarchyView
                 if (t.getData() == node) {
                     return t;
                 }
-                if (((t.getData() instanceof IArrayGroup)) &&
-                        (getIntermediatePathArrayGroup(node, (IArrayGroup) t.getData(), arrayPath))) {
+                if (((t.getData() instanceof IArrayGroup)) && (getIntermediatePathArrayGroup(node, (IArrayGroup) t.getData(), arrayPath))) {
                     arrayPath.add(0, (IArrayGroup) t.getData());
                     return t;
                 }
@@ -1252,8 +1231,7 @@ public class CodeHierarchyView
                 if (o == node) {
                     return true;
                 }
-                if (((o instanceof IArrayGroup)) &&
-                        (getIntermediatePathArrayGroup(node, (IArrayGroup) o, arrayPath))) {
+                if (((o instanceof IArrayGroup)) && (getIntermediatePathArrayGroup(node, (IArrayGroup) o, arrayPath))) {
                     arrayPath.add(0, (IArrayGroup) o);
                     return true;
                 }
@@ -1283,8 +1261,7 @@ public class CodeHierarchyView
                 path.add(0, o);
                 return true;
             }
-        } else if (((o instanceof IArrayGroup)) &&
-                (getPathArrayGroup(node, (IArrayGroup) o, path))) {
+        } else if (((o instanceof IArrayGroup)) && (getPathArrayGroup(node, (IArrayGroup) o, path))) {
             path.add(0, o);
             return true;
         }

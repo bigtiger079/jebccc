@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.util.regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SimplePatternMatcher
-        implements IPatternMatcher {
+public class SimplePatternMatcher implements IPatternMatcher {
     private IValueProvider valueProvider;
 
     public SimplePatternMatcher(IValueProvider valueProvider) {

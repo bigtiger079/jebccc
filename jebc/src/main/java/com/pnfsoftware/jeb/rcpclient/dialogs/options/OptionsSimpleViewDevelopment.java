@@ -16,8 +16,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-public class OptionsSimpleViewDevelopment
-        extends Composite {
+public class OptionsSimpleViewDevelopment extends Composite {
     protected static final String CLIENT = "Client";
     protected static final String ENGINES = "Engines";
     protected static final String PROJECT_SPECIFIC = "Project-specific";
@@ -36,11 +35,8 @@ public class OptionsSimpleViewDevelopment
         initSimpleViewElementListener("Engines");
         Group dev = createGroup(ph, S.s(271));
         createBooleanOption(dev, S.s(272), S.s(816), "Client", "DevelopmentMode");
-        EditableList cp = createClasspathOption(dev, S.s(646), "Engines",
-                Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
-        EditableList cn = createClassnameOption(dev, S.s(645), "Engines",
-                Licensing.canUseCoreAPI() ? "DevPluginClassnames" : null, ",",
-                Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
+        EditableList cp = createClasspathOption(dev, S.s(646), "Engines", Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
+        EditableList cn = createClassnameOption(dev, S.s(645), "Engines", Licensing.canUseCoreAPI() ? "DevPluginClassnames" : null, ",", Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
         if (!Licensing.canUseCoreAPI()) {
             cp.setEnabled(false);
             cn.setEnabled(false);
@@ -63,18 +59,15 @@ public class OptionsSimpleViewDevelopment
     }
 
     private EditableList createClasspathOption(Composite parent, String label, String propertyManagerKey, String propertyKey, String separator) {
-        return
-                new OptionsSimpleViewClasspath(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator).create(parent, label);
+        return new OptionsSimpleViewClasspath(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator).create(parent, label);
     }
 
     private EditableList createClassnameOption(Composite parent, String label, String propertyManagerKey, String propertyKey, String separator, String classPathProperty, String classPathSeparator) {
-        return
-                new OptionsSimpleViewClassname(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator, classPathProperty, classPathSeparator).create(parent, label);
+        return new OptionsSimpleViewClassname(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator, classPathProperty, classPathSeparator).create(parent, label);
     }
 
     private Button createBooleanOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return
-                new OptionsBooleanViewer(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
+        return new OptionsBooleanViewer(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
     }
 }
 

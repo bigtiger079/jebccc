@@ -2,8 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
 import java.util.List;
 
-public abstract interface IMFolder
-        extends IMPanelElement {
+public abstract interface IMFolder extends IMPanelElement {
     public abstract int getPartsCount();
 
     public abstract List<? extends IMPart> getParts();

@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.NativeTypeChooserDialog;
 
-public class StructEditorActionSelectType
-        extends StructEditorAction {
+public class StructEditorActionSelectType extends StructEditorAction {
     public StructEditorActionSelectType(NativeTypeEditorView v) {
         super("Select Type", v);
         this.keyCode = 116;

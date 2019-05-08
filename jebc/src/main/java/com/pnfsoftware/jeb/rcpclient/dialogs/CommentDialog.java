@@ -11,8 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class CommentDialog
-        extends JebDialog {
+public class CommentDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(CommentDialog.class);
     private StyledText widgetComment;
     private String input;

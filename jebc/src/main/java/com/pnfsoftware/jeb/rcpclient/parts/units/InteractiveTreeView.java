@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -34,8 +33,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 
-public class InteractiveTreeView
-        extends AbstractUnitFragment<IUnit> {
+public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTreeView.class);
     private ITreeDocument idoc;
     private InteractiveTreeViewer iviewer;
@@ -66,8 +64,7 @@ public class InteractiveTreeView
                         location = iunit.addressToLocation(address);
                     }
                 }
-                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"),
-                        Strings.safe(address, "?"), Strings.safe(location, "?")});
+                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?")});
                 context.getStatusIndicator().setText(statusText);
             }
         });
@@ -177,8 +174,7 @@ public class InteractiveTreeView
         for (INode root : nodes) {
             if ((root instanceof IActionableItem)) {
                 IActionableItem actionableRoot = (IActionableItem) root;
-                if ((actionableRoot.getItemId() == itemId) &&
-                        (isMaster(actionableRoot))) {
+                if ((actionableRoot.getItemId() == itemId) && (isMaster(actionableRoot))) {
                     return this.iviewer.setPosition(new NodeCoordinates(Arrays.asList(new Integer[]{Integer.valueOf(index)})), true);
                 }
             }

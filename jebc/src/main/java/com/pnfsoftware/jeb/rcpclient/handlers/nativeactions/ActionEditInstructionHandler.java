@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.items.INativeItem;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.EditInstructionDialog;
 import org.eclipse.swt.SWT;
 
-public class ActionEditInstructionHandler
-        extends NativeCodeBaseHandler {
+public class ActionEditInstructionHandler extends NativeCodeBaseHandler {
     public ActionEditInstructionHandler() {
         super("editInstruction", "Edit Instruction...", SWT.MOD1 | 0x45);
     }

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -13,8 +12,7 @@ import java.util.List;
 
 import org.eclipse.swt.SWT;
 
-public class WindowFocusHierarchyHandler
-        extends JebBaseHandler {
+public class WindowFocusHierarchyHandler extends JebBaseHandler {
     public WindowFocusHierarchyHandler() {
         super("showCurrentCodeHierarchy", "Show Current Code Hierarchy View", null, null);
         setAccelerator(SWT.MOD1 | 0x34);

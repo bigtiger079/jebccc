@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ActionDefineStringHandler
-        extends NativeCodeBaseHandler {
+public class ActionDefineStringHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionDefineStringHandler.class);
 
     public ActionDefineStringHandler() {

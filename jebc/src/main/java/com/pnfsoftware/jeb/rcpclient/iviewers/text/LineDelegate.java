@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.IActionableTextItem;
@@ -14,8 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LineDelegate
-        implements ILine {
+public class LineDelegate implements ILine {
     private static final ILogger logger = GlobalLog.getLogger(LineDelegate.class);
     private ILine line;
     private CharSequence text;

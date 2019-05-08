@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -41,8 +40,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
-public class FileExportDecompiledCodeHandler
-        extends JebBaseHandler {
+public class FileExportDecompiledCodeHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileExportDecompiledCodeHandler.class);
     private static ProgressMonitorHideableDialog progressBar = null;
 
@@ -157,9 +155,7 @@ public class FileExportDecompiledCodeHandler
             pman.setRedraw(codeUnit, false);
             try {
                 progressBar.run(true, true, runnable);
-                UI.info(this.shell, "Export successful", "Decompiled files can be found in " + dlg
-                        .getOutputDirectory() + (dlg
-                        .isMergeFiles() ? File.separator + dlg.getOutputFile() : ""));
+                UI.info(this.shell, "Export successful", "Decompiled files can be found in " + dlg.getOutputDirectory() + (dlg.isMergeFiles() ? File.separator + dlg.getOutputFile() : ""));
             } catch (InterruptedException e) {
                 logger.warn(e.getMessage(), new Object[0]);
                 return;
@@ -183,8 +179,7 @@ public class FileExportDecompiledCodeHandler
         String address = unitPart.getActiveAddress();
         if (address != null) {
             for (T c : fileExport.getItems()) {
-                if ((fileExport.canProcess(c)) &&
-                        (fileExport.isAtAddress(c, address))) {
+                if ((fileExport.canProcess(c)) && (fileExport.isAtAddress(c, address))) {
                     filter = fileExport.getFullName(c);
                     break;
                 }

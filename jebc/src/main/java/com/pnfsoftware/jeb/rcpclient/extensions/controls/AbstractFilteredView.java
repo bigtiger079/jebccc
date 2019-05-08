@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -10,8 +9,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractFilteredView<T extends Composite>
-        extends Composite {
+public abstract class AbstractFilteredView<T extends Composite> extends Composite {
     private Composite container;
     private FilterText filterText;
     private String previousFilterText;
@@ -70,8 +68,7 @@ public abstract class AbstractFilteredView<T extends Composite>
         });
         this.mainElement.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                if (((e.keyCode == 16777217) && (filterOnTop) && (AbstractFilteredView.this.getSelectionIndex() == 0)) || ((e.keyCode == 16777218) && (!filterOnTop) &&
-                        (AbstractFilteredView.this.getSelectionIndex() == AbstractFilteredView.this.getItemCount() - 1))) {
+                if (((e.keyCode == 16777217) && (filterOnTop) && (AbstractFilteredView.this.getSelectionIndex() == 0)) || ((e.keyCode == 16777218) && (!filterOnTop) && (AbstractFilteredView.this.getSelectionIndex() == AbstractFilteredView.this.getItemCount() - 1))) {
                     if (AbstractFilteredView.this.filterText.isVisible()) {
                         AbstractFilteredView.this.filterText.setFocus();
                         e.doit = false;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -42,9 +41,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class DbgStackView
-        extends AbstractUnitFragment<IDebuggerUnit>
-        implements IContextMenu {
+public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgStackView.class);
     private InfiniTableView view;
     private InfiniTableViewer viewer;
@@ -123,8 +120,7 @@ public class DbgStackView
         }
     }
 
-    static class StackItemsProvider
-            extends AbstractInfiniTableSectionProvider {
+    static class StackItemsProvider extends AbstractInfiniTableSectionProvider {
         IEventListener listener;
         IDebuggerUnit dbg;
         int asize;
@@ -164,8 +160,7 @@ public class DbgStackView
 
         public Object[] get(Object inputElement, long id, int cnt) {
             IDebuggerUnit unit = (IDebuggerUnit) inputElement;
-            if ((unit.isAttached()) && (unit.getDefaultThread() != null) &&
-                    (unit.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
+            if ((unit.isAttached()) && (unit.getDefaultThread() != null) && (unit.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
                 IVirtualMemory vm = unit.getMemory();
                 if (vm != null) {
                     this.asize = (vm.getSpaceBits() / 8);
@@ -226,8 +221,7 @@ public class DbgStackView
                 String symbol = dlg.open();
                 if (symbol != null) {
                     long memoryAddress = ((IDebuggerUnit) this.unit).convertSymbolicAddressToMemoryToAddress(symbol, null);
-                    if ((memoryAddress != 0L) &&
-                            (this.provider.asize > 0)) {
+                    if ((memoryAddress != 0L) && (this.provider.asize > 0)) {
                         long id = memoryAddress / this.provider.asize;
                         this.viewer.setTopId(id, true);
                     }

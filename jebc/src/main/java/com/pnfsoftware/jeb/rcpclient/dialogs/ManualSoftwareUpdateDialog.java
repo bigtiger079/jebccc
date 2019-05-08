@@ -15,8 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ManualSoftwareUpdateDialog
-        extends JebDialog {
+public class ManualSoftwareUpdateDialog extends JebDialog {
     private static final String strNoUpdateFile = "<No update file selected>";
     private boolean success;
     private String _filename;

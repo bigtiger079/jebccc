@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -31,9 +30,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class DbgBreakpointsView
-        extends AbstractFilteredTableView<IDebuggerUnit, IDebuggerBreakpoint>
-        implements IContextMenu {
+public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit, IDebuggerBreakpoint> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgBreakpointsView.class);
 
     public DbgBreakpointsView(Composite parent, int style, RcpClientContext context, IDebuggerUnit unit) {
@@ -86,8 +83,7 @@ public class DbgBreakpointsView
         return (TableViewer) getViewer().getViewer();
     }
 
-    static class BreakpointProvider
-            implements IFilteredTableContentProvider {
+    static class BreakpointProvider implements IFilteredTableContentProvider {
         IEventListener listener;
         IDebuggerUnit dbg;
 

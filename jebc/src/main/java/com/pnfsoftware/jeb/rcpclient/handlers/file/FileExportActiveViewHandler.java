@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -21,8 +20,7 @@ import java.io.IOException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.FileDialog;
 
-public class FileExportActiveViewHandler
-        extends JebBaseHandler {
+public class FileExportActiveViewHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileExportActiveViewHandler.class);
     private static ProgressMonitorHideableDialog progressBar = null;
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.operations;
 
 import com.pnfsoftware.jeb.rcpclient.Assets;
@@ -11,8 +10,7 @@ import java.io.InputStream;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.ImageData;
 
-public abstract class JebAction
-        extends ActionEx {
+public abstract class JebAction extends ActionEx {
     protected boolean isContextual = true;
     protected int keyCode;
     protected int keyModifier;

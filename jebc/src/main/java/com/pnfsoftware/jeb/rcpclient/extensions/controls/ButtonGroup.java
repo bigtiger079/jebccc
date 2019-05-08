@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -13,8 +12,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class ButtonGroup
-        extends Composite {
+public class ButtonGroup extends Composite {
     private Composite buttons;
     private List<Button> buttonList = new ArrayList();
 

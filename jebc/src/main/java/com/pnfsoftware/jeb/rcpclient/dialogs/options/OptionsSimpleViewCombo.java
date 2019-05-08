@@ -8,8 +8,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class OptionsSimpleViewCombo
-        extends AbstractOptionsSimpleWidget {
+public class OptionsSimpleViewCombo extends AbstractOptionsSimpleWidget {
     public OptionsSimpleViewCombo(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey) {
         super(changes, listener, propertyKey);
     }

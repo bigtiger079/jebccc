@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.tab;
 
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;

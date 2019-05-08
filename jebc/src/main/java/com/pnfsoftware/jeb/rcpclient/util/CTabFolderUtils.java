@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import org.eclipse.swt.custom.CTabFolder;

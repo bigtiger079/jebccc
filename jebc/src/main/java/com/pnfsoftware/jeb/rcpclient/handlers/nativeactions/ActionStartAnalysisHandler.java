@@ -1,10 +1,8 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 
-public class ActionStartAnalysisHandler
-        extends NativeCodeBaseHandler {
+public class ActionStartAnalysisHandler extends NativeCodeBaseHandler {
     public ActionStartAnalysisHandler() {
         super("startAnalysis", "Start or resume an analysis", 0);
     }

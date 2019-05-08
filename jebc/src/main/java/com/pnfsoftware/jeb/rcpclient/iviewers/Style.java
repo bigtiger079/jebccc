@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers;
 
 import com.pnfsoftware.jeb.client.S;

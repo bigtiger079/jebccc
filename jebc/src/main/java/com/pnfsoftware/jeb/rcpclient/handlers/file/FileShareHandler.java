@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.jebio.JebIoUtil;
@@ -28,8 +27,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class FileShareHandler
-        extends JebBaseHandler {
+public class FileShareHandler extends JebBaseHandler {
     public FileShareHandler() {
         super("share", "Share", "Share a sample with the JEB community", "eclipse/internal_browser.png");
     }

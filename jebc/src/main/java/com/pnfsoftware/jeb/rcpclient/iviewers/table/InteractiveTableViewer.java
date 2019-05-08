@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.table;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -36,8 +35,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-public class InteractiveTableViewer
-        implements IOperable, IContextMenu {
+public class InteractiveTableViewer implements IOperable, IContextMenu {
     private static final int columnMaxWidth = 250;
     private ITableDocument idoc;
     private IEventListener idocListener;

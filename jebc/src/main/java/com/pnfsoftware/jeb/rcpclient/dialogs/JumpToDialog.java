@@ -15,8 +15,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class JumpToDialog
-        extends JebDialog {
+public class JumpToDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(JumpToDialog.class);
     private TextHistory textHistory;
     private HistoryAssistedTextField text;

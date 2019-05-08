@@ -10,8 +10,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class NativeTypeEditorDialog
-        extends JebDialog {
+public class NativeTypeEditorDialog extends JebDialog {
     INativeCodeUnit<?> unit;
     IStructureType initialType;
     FontManager fontman;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -55,9 +54,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-public class DbgThreadsView
-        extends AbstractUnitFragment<IDebuggerUnit>
-        implements IContextMenu {
+public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgThreadsView.class);
     private PatternTreeView ftv;
     private FilteredTreeViewer viewer;

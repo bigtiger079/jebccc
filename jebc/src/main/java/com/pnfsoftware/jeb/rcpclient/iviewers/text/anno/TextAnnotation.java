@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text.anno;
 
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
-public class TextAnnotation
-        extends Annotation {
+public class TextAnnotation extends Annotation {
     public static final String BASETYPE = "com.pnfsoftware.jeb.rcpclient.textAnno";
     protected ICoordinates coordinates;
     protected int layer;

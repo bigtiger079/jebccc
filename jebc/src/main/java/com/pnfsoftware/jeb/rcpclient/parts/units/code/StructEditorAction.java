@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.rcpclient.operations.JebAction;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class StructEditorAction
-        extends JebAction {
+public abstract class StructEditorAction extends JebAction {
     protected NativeTypeEditorView v;
 
     public StructEditorAction(String name, NativeTypeEditorView v) {

@@ -21,8 +21,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class OptionsDialog
-        extends JebDialog {
+public class OptionsDialog extends JebDialog {
     private static final String GENERAL = S.s(361);
     private static final String DEV = S.s(271);
     public static final String CLIENT = "Client";

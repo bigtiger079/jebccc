@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -49,9 +48,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-public class Graph
-        extends AbstractGraph
-        implements IZoomable {
+public class Graph extends AbstractGraph implements IZoomable {
     private static final ILogger logger = GlobalLog.getLogger(Graph.class);
     static final int FLAG_NODE_NO_HANDLES = 1;
     static final int FLAG_NODE_NO_CONTENTS = 2;
@@ -86,8 +83,7 @@ public class Graph
     private static final double nodeMarginRight = 10.0D;
     private boolean debugging = false;
     private boolean dbgDoNotDisplayNodesGrid = false;
-    private Color[] dbgNodeColors = {SwtRegistry.getInstance().getColor(14737408),
-            SwtRegistry.getInstance().getColor(57568)};
+    private Color[] dbgNodeColors = {SwtRegistry.getInstance().getColor(14737408), SwtRegistry.getInstance().getColor(57568)};
     private long lastRedrawExectime;
     static final int REDRAW_CAUSE_OTHER = 0;
     static final int REDRAW_CAUSE_DRAG = 1;
@@ -1006,8 +1002,7 @@ public class Graph
     boolean optCheckAvoidVerticalLineOverlapWithNodes(int x, int y0, int y1) {
         for (GraphNode node : this.nodes) {
             Rectangle r = node.getBounds();
-            if ((r.x < x) && (r.x + r.width > x) &&
-                    (y0 < r.y) && (y1 > r.y + r.height)) {
+            if ((r.x < x) && (r.x + r.width > x) && (y0 < r.y) && (y1 > r.y + r.height)) {
                 return true;
             }
         }
@@ -1018,8 +1013,7 @@ public class Graph
         List<Rectangle> tba = new ArrayList();
         for (GraphNode node : this.nodes) {
             Rectangle r = node.getBounds();
-            if ((r.x < x) && (r.x + r.width > x) &&
-                    (y0 < r.y) && (y1 > r.y + r.height)) {
+            if ((r.x < x) && (r.x + r.width > x) && (y0 < r.y) && (y1 > r.y + r.height)) {
                 tba.add(r);
             }
         }
@@ -1116,8 +1110,7 @@ public class Graph
             for (int y0 = y - toleranceY; y0 <= y + toleranceY; y0++) {
                 if ((x0 != x) || (y0 != y)) {
                     id = getActiveLineGroupId(x0, y0);
-                    if (id >= 0)
-                        return id;
+                    if (id >= 0) return id;
                 }
             }
         }

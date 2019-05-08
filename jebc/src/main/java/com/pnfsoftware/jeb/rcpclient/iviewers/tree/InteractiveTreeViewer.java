@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.tree;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -39,8 +38,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-public class InteractiveTreeViewer
-        implements IOperable, IContextMenu {
+public class InteractiveTreeViewer implements IOperable, IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTreeViewer.class);
     private static final int columnMaxWidth = 250;
     private ITreeDocument idoc;
@@ -183,8 +181,7 @@ public class InteractiveTreeViewer
             } else {
                 items = parentItem.getItems();
             }
-            while ((i < items.length) &&
-                    (items[i] != item)) {
+            while ((i < items.length) && (items[i] != item)) {
                 i++;
             }
             if (i >= items.length) {

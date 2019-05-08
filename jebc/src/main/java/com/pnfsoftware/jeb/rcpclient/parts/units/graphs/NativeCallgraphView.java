@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;

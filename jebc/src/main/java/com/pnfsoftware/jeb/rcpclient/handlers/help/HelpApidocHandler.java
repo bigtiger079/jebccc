@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.help;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
 
-public class HelpApidocHandler
-        extends JebBaseHandler {
+public class HelpApidocHandler extends JebBaseHandler {
     public HelpApidocHandler() {
         super(null, S.s(461), null, null);
     }

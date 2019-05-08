@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.rcpclient.IWidgetManager;
@@ -18,10 +17,7 @@ public class ShellWrapper {
     private Rectangle recordedBounds;
 
     public static enum BoundsRestorationType {
-        NONE,
-        POSITION,
-        SIZE,
-        SIZE_AND_POSITION;
+        NONE, POSITION, SIZE, SIZE_AND_POSITION;
 
         private BoundsRestorationType() {
         }

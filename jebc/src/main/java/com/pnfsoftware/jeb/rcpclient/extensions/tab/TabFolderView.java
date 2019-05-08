@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.tab;
 
 import com.pnfsoftware.jeb.rcpclient.parts.ILazyView;
@@ -24,9 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 
-public class TabFolderView
-        extends Composite
-        implements CTabFolder2Listener {
+public class TabFolderView extends Composite implements CTabFolder2Listener {
     private static final ILogger logger = GlobalLog.getLogger(TabFolderView.class);
     private static final String LAZY_INITIALIZED = "initialized";
     private CTabFolder folder;

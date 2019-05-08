@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.tree;
 
 import com.pnfsoftware.jeb.core.output.tree.INode;
@@ -9,9 +8,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 
-public class LabelProvider
-        extends StyledCellLabelProvider
-        implements IValueProvider {
+public class LabelProvider extends StyledCellLabelProvider implements IValueProvider {
     private InteractiveTreeViewer viewer;
 
     public LabelProvider(InteractiveTreeViewer viewer) {

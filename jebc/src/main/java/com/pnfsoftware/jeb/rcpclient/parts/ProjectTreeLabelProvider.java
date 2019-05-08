@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.google.common.net.MediaType;
@@ -24,9 +23,7 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-public class ProjectTreeLabelProvider
-        extends StyledCellLabelProvider
-        implements IValueProvider {
+public class ProjectTreeLabelProvider extends StyledCellLabelProvider implements IValueProvider {
     public static final int FGCOLOR_UNIT_REPARSED = 160;
     public static final int BGCOLOR_DEBUGGER_ATTACHED = 10223003;
     public static final int BGCOLOR_UNIT_UNPROCESSED = 14079682;
@@ -95,8 +92,7 @@ public class ProjectTreeLabelProvider
         if (!unit.isProcessed()) {
             return UIAssetManager.getInstance().getColor(14079682);
         }
-        if (((unit instanceof IDebuggerUnit)) &&
-                (((IDebuggerUnit) unit).isAttached())) {
+        if (((unit instanceof IDebuggerUnit)) && (((IDebuggerUnit) unit).isAttached())) {
             return UIAssetManager.getInstance().getColor(10223003);
         }
         return null;

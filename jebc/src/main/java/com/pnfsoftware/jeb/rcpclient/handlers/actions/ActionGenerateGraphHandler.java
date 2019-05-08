@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -19,8 +18,7 @@ import com.pnfsoftware.jeb.rcpclient.parts.units.graphs.AbstractLocalGraphView;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ActionGenerateGraphHandler
-        extends JebBaseHandler {
+public class ActionGenerateGraphHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionGenerateGraphHandler.class);
 
     public ActionGenerateGraphHandler() {

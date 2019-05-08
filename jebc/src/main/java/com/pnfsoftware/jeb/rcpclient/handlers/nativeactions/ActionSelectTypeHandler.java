@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.NativeTypeChooserDialog;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ActionSelectTypeHandler
-        extends NativeCodeBaseHandler {
+public class ActionSelectTypeHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionSelectTypeHandler.class);
 
     public ActionSelectTypeHandler() {

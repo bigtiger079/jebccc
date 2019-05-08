@@ -11,8 +11,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class AdaptivePopupDialog
-        extends JebDialog {
+public class AdaptivePopupDialog extends JebDialog {
     public static final int TYPE_INFORMATION = 1;
     public static final int TYPE_QUESTION = 2;
     private int type;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
@@ -20,8 +19,7 @@ import java.util.concurrent.Callable;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-public class DebuggerAttachHandler
-        extends DebuggerBaseHandler {
+public class DebuggerAttachHandler extends DebuggerBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(DebuggerAttachHandler.class);
 
     public DebuggerAttachHandler() {

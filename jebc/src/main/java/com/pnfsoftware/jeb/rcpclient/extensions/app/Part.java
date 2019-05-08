@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMElement;
@@ -21,8 +20,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class Part
-        implements IMPart {
+public class Part implements IMPart {
     private static final ILogger logger = GlobalLog.getLogger(Part.class);
     private static int internalPartCreationCount = 0;
     int internalPartId;

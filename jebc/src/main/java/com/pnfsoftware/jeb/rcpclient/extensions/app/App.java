@@ -196,8 +196,7 @@ public class App {
     }
 
     public boolean onApplicationException(Exception e) {
-        String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{
-                Throwables.formatStacktraceShort(e)});
+        String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{Throwables.formatStacktraceShort(e)});
         MessageDialog.openError(null, "Error", msg);
         return true;
     }

@@ -24,8 +24,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class JebIoSignupDialog
-        extends TitleAreaDialog {
+public class JebIoSignupDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoSignupDialog.class);
     RcpClientContext context;
     String emailHint;

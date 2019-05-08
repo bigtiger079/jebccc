@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text.anno;
 
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -13,8 +12,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 
-public class StandardAnnotationAccess
-        implements IAnnotationAccess, IAnnotationAccessExtension, IAnnotationAccessExtension2 {
+public class StandardAnnotationAccess implements IAnnotationAccess, IAnnotationAccessExtension, IAnnotationAccessExtension2 {
     public Object getType(Annotation annotation) {
         return annotation.getType();
     }

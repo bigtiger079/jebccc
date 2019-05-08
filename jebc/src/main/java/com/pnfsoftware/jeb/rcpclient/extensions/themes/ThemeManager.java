@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.themes;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.FilterText;
@@ -152,8 +151,7 @@ public class ThemeManager {
                 ctl.setForeground(this.activeTheme.cForeground);
             }
         }
-        if (((r & 0x2) == 0) &&
-                ((ctl instanceof Composite))) {
+        if (((r & 0x2) == 0) && ((ctl instanceof Composite))) {
             for (Control c : ((Composite) ctl).getChildren()) {
                 processControls(c);
             }

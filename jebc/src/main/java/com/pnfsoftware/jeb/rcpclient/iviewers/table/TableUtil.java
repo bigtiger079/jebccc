@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.table;
 
 import com.pnfsoftware.jeb.core.output.table.ICell;

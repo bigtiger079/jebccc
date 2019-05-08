@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.exceptions.UnitLockedException;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ActionDefineDataHandler
-        extends NativeCodeBaseHandler {
+public class ActionDefineDataHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionDefineDataHandler.class);
 
     public ActionDefineDataHandler() {

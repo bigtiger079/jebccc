@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -17,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 
-public abstract class StackEditorAction
-        extends JebAction {
+public abstract class StackEditorAction extends JebAction {
     protected StackEditorView v;
 
     public StackEditorAction(String name, StackEditorView v) {

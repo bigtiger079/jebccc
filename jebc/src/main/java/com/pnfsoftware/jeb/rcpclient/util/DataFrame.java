@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.util.format.Strings;

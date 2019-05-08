@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.core.IRuntimeProject;
@@ -19,8 +18,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class NotificationWarningContribution
-        extends StatusLineContributionItem {
+public class NotificationWarningContribution extends StatusLineContributionItem {
     private static final ILogger logger = GlobalLog.getLogger(NotificationWarningContribution.class);
     public static final String ID = "contribUnitNotificationWarning";
     private RcpClientContext context;

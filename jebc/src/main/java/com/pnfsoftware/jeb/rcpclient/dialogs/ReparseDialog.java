@@ -33,8 +33,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ReparseDialog
-        extends JebDialog {
+public class ReparseDialog extends JebDialog {
     public static class Information {
         private IUnit unit;
         private String subUnitName;
@@ -237,8 +236,7 @@ public class ReparseDialog
                     widgetOk.setEnabled(true);
                     ReparseDialog.this.shell.setDefaultButton(widgetOk);
                 }
-                String s = String.format("%s (v%s)", new Object[]{Strings.safe2(pi.getDescription(), String.format("(%s)", new Object[]{S.s(595)})),
-                        Strings.safe2(pi.getVersion(), "?")});
+                String s = String.format("%s (v%s)", new Object[]{Strings.safe2(pi.getDescription(), String.format("(%s)", new Object[]{S.s(595)})), Strings.safe2(pi.getVersion(), "?")});
                 widgetPinfo.setText(s);
             }
         });

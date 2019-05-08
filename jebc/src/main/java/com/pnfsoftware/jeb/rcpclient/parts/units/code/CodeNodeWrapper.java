@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.output.tree.ICodeNode;
@@ -12,8 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CodeNodeWrapper
-        implements Comparable<CodeNodeWrapper> {
+public class CodeNodeWrapper implements Comparable<CodeNodeWrapper> {
     private ICodeNode node;
     private ICodeItem item;
     private String name;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -9,8 +8,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
-public class FileSaveAsHandler
-        extends JebBaseHandler {
+public class FileSaveAsHandler extends JebBaseHandler {
     public FileSaveAsHandler() {
         super(null, S.s(557), "Save the current project to a JDB2 database", null);
         setAccelerator(SWT.MOD1 | SWT.MOD2 | 0x53);

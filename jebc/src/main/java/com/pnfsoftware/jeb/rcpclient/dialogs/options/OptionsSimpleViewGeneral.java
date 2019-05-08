@@ -26,8 +26,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-public class OptionsSimpleViewGeneral
-        extends Composite {
+public class OptionsSimpleViewGeneral extends Composite {
     protected static final String CLIENT = "Client";
     protected static final String ENGINES = "Engines";
     protected static final String PROJECT_SPECIFIC = "Project-specific";
@@ -46,8 +45,7 @@ public class OptionsSimpleViewGeneral
         initSimpleViewElementListener("Project-specific");
         if (optionsChanges.get("Engines") != null) {
             Group plugin = createGroup(ph, S.s(639));
-            DirectorySelectorView plug = createDirectoryOption(plugin, S.s(647), null, "Engines",
-                    Licensing.canUseCoreAPI() ? "PluginsFolder" : null);
+            DirectorySelectorView plug = createDirectoryOption(plugin, S.s(647), null, "Engines", Licensing.canUseCoreAPI() ? "PluginsFolder" : null);
             if (!Licensing.canUseCoreAPI()) {
                 plug.setEnabled(false);
             }
@@ -87,13 +85,11 @@ public class OptionsSimpleViewGeneral
     }
 
     private DirectorySelectorView createDirectoryOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return
-                new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createDirectory(parent, label, toolTip);
+        return new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createDirectory(parent, label, toolTip);
     }
 
     private Text createTextOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey, int tokenPosition) {
-        return
-                new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip, tokenPosition);
+        return new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip, tokenPosition);
     }
 
     private void initProxyOptions(String propertyManagerKey, String propertyKey) {
@@ -154,13 +150,11 @@ public class OptionsSimpleViewGeneral
     }
 
     private Control createComboBox(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey, int tokenPosition, String[] options) {
-        return
-                new OptionsSimpleViewCombo(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createComboBox(parent, label, toolTip, tokenPosition, options);
+        return new OptionsSimpleViewCombo(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createComboBox(parent, label, toolTip, tokenPosition, options);
     }
 
     private Button createBooleanOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return
-                new OptionsBooleanViewer(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
+        return new OptionsBooleanViewer(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
     }
 
     private void addVerifyListenerIntOnly(Text text) {

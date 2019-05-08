@@ -14,8 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class RenameItemDialog
-        extends JebDialog {
+public class RenameItemDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(RenameItemDialog.class);
     private TextHistory textHistory;
     private HistoryAssistedTextField text;

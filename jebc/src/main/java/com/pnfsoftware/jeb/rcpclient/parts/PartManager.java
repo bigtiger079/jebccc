@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.client.S;
@@ -44,8 +43,7 @@ import java.util.Map;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
-public class PartManager
-        implements IViewManager {
+public class PartManager implements IViewManager {
     private static final ILogger logger = GlobalLog.getLogger(PartManager.class);
 
     public static class PropertyProvider {
@@ -473,8 +471,7 @@ public class PartManager
     public List<IMPart> create(IUnit unit, boolean tryActivationFirst) {
         boolean tryInPlace = false;
         if (tryActivationFirst) {
-            if ((((unit instanceof ISourceUnit)) || ((unit instanceof IXmlUnit))) &&
-                    (this.propertyProvider != null)) {
+            if ((((unit instanceof ISourceUnit)) || ((unit instanceof IXmlUnit))) && (this.propertyProvider != null)) {
                 tryInPlace = this.propertyProvider.getTryInPlace();
             }
         }
@@ -622,8 +619,7 @@ public class PartManager
         List<IMPart> candidates = new ArrayList();
         for (IMPart part : getUnitParts()) {
             UnitPartManager object = getUnitPartManager(part);
-            if ((object != null) && (object.getUnit() != null) &&
-                    (Strings.equals(targetUnitType, object.getUnit().getFormatType()))) {
+            if ((object != null) && (object.getUnit() != null) && (Strings.equals(targetUnitType, object.getUnit().getFormatType()))) {
                 candidates.add(part);
             }
         }

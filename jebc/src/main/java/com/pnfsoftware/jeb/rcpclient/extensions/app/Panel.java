@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMElement;
@@ -23,9 +22,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Sash;
 
-public class Panel
-        extends Composite
-        implements IMPanel {
+public class Panel extends Composite implements IMPanel {
     private static final ILogger logger = GlobalLog.getLogger(Panel.class);
     private static int internalPanelCreationCount = 0;
     int internalPanelId;
@@ -198,8 +195,7 @@ public class Panel
         return String.format("Panel@%d", new Object[]{Integer.valueOf(this.internalPanelId)});
     }
 
-    public static class SashSelectionFilter
-            implements Listener {
+    public static class SashSelectionFilter implements Listener {
         int maxSizeAllowed;
 
         public SashSelectionFilter(int maxSizeAllowed) {

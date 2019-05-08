@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.codeobject;
 
 import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.core.output.table.IVisualCell;
 import com.pnfsoftware.jeb.core.units.codeobject.ICodeObjectUnit;
 import com.pnfsoftware.jeb.core.units.codeobject.ILoaderInformation;
 
-public class CodeLoaderCellItem
-        implements IVisualCell {
+public class CodeLoaderCellItem implements IVisualCell {
     private ICodeObjectUnit unit;
     private String name;
     private long offset;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.codeobject;
 
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -20,8 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
-public class CodeLoaderInfoView
-        extends AbstractDataFrameView<ICodeObjectUnit> {
+public class CodeLoaderInfoView extends AbstractDataFrameView<ICodeObjectUnit> {
     private DataFrameView dfv;
 
     public CodeLoaderInfoView(Composite parent, int style, RcpClientContext context, ICodeObjectUnit unit) {

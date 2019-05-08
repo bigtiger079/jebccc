@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.OperationHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 
-public class EditCopyHandler
-        extends OperationHandler {
+public class EditCopyHandler extends OperationHandler {
     public EditCopyHandler() {
         super(Operation.COPY, null, S.s(470), "", "eclipse/copy_edit.png");
         setAccelerator(SWT.MOD1 | 0x43);

@@ -14,8 +14,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class MoveToPackageDialog
-        extends JebDialog {
+public class MoveToPackageDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(MoveToPackageDialog.class);
     private TextHistory textHistory;
     private HistoryAssistedTextField text;

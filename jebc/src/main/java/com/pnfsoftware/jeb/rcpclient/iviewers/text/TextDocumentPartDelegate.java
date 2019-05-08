@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.IAnchor;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextDocumentPartDelegate
-        implements ITextDocumentPart {
+public class TextDocumentPartDelegate implements ITextDocumentPart {
     private ITextDocumentPart part;
     private List<ILine> lines;
 

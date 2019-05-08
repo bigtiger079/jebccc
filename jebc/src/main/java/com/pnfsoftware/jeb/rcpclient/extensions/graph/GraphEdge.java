@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -15,8 +14,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 
-public class GraphEdge
-        implements IZoomable {
+public class GraphEdge implements IZoomable {
     private static final ILogger logger = GlobalLog.getLogger(GraphEdge.class);
     protected int edgeId;
     protected Graph graph;

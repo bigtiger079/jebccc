@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerTargetInformation;
@@ -156,8 +155,7 @@ public class DbgTypedValueUtil {
             return null;
         }
         try {
-            if (((value instanceof ValueRaw)) &&
-                    (newValue.startsWith("b'"))) {
+            if (((value instanceof ValueRaw)) && (newValue.startsWith("b'"))) {
                 return AbstractValuePrimitive.parseValue(type, newValue.substring(2));
             }
             return AbstractValuePrimitive.parseValue(type, newValue);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -38,8 +37,7 @@ import java.util.Map;
 
 import org.eclipse.swt.widgets.Composite;
 
-public class DalvikCodeGraphView
-        extends AbstractControlFlowGraphView<IDexUnit> {
+public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> {
     private static final ILogger logger = GlobalLog.getLogger(DalvikCodeGraphView.class);
     private IDexDisassemblyDocument disasDoc;
     private IDexMethod currentMethod;
@@ -128,8 +126,7 @@ public class DalvikCodeGraphView
     protected ITextDocument getTextForBlock(final BasicBlock<IInstruction> b) {
         return new AbstractTextPartAsDocumentProxy(this.disasDoc) {
             protected ITextDocumentPart getPartAsDocument() {
-                return ((IDexDisassemblyDocument) getFullDocument()).getItemDisassembly(new InstructionCoordinates(
-                        DalvikCodeGraphView.this.currentMethod.getIndex(), (int) b.getFirstAddress()));
+                return ((IDexDisassemblyDocument) getFullDocument()).getItemDisassembly(new InstructionCoordinates(DalvikCodeGraphView.this.currentMethod.getIndex(), (int) b.getFirstAddress()));
             }
         };
     }

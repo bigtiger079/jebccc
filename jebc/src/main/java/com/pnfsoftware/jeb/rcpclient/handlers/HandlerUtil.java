@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers;
 
 import com.pnfsoftware.jeb.client.S;
@@ -59,8 +58,7 @@ public class HandlerUtil {
             return true;
         }
         if (unit.getStatus() != null) {
-            String msg = String.format("Processing of unit \"%s\" (%s) was attempted and failed.\n\nWould you like to try again?", new Object[]{unit
-                    .getName(), unit.getFormatType()});
+            String msg = String.format("Processing of unit \"%s\" (%s) was attempted and failed.\n\nWould you like to try again?", new Object[]{unit.getName(), unit.getFormatType()});
             MessageBox mb = new MessageBox(shell, 200);
             mb.setText(S.s(304));
             mb.setMessage(msg);

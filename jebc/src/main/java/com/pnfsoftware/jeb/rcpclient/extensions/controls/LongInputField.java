@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -7,9 +6,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class LongInputField
-        extends Composite
-        implements ITextControl {
+public class LongInputField extends Composite implements ITextControl {
     private Text textbox;
 
     public LongInputField(Composite parent, String name, String value) {

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.SWT;
 
-public class WindowToggleStatusHandler
-        extends JebBaseHandler {
+public class WindowToggleStatusHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(WindowToggleToolbarHandler.class);
 
     public WindowToggleStatusHandler() {

@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 
-public class DebuggerSuspendThreadHandler
-        extends DebuggerBaseHandler {
+public class DebuggerSuspendThreadHandler extends DebuggerBaseHandler {
     public DebuggerSuspendThreadHandler() {
         super("dbgSuspendThread", S.s(576), null, null, 0);
     }

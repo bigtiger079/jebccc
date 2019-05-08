@@ -15,8 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 
-public class CustomerActionDialog
-        extends JebDialog {
+public class CustomerActionDialog extends JebDialog {
     private static final String surveySimpleURL = "pnfsoftware.com/survey";
     public static final String surveyURL = "https://www.pnfsoftware.com/survey";
     private Color cWhite = UIAssetManager.getInstance().getColor(255, 255, 255);

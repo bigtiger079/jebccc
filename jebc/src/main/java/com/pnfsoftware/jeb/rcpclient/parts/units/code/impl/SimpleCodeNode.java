@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code.impl;
 
 import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.core.units.code.ICodeItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleCodeNode
-        implements ICodeNode {
+public class SimpleCodeNode implements ICodeNode {
     private ICodeItem item;
     private ICodeNode parent = null;
     private List<? extends ICodeNode> children = new ArrayList();

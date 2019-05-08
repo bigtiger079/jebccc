@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
@@ -9,8 +8,7 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.SignaturePackageCreationDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.SignaturePackageSetupInformation;
 
-public class ActionCreateSignaturePackageHandler
-        extends NativeCodeBaseHandler {
+public class ActionCreateSignaturePackageHandler extends NativeCodeBaseHandler {
     public ActionCreateSignaturePackageHandler() {
         super("createSignaturePackage", "Create Signature Package...", 0);
     }
@@ -28,8 +26,7 @@ public class ActionCreateSignaturePackageHandler
         if (info == null) {
             return;
         }
-        nsdbManager.createUserPackage(pbcu.getProcessor().getType(), info.getName(), info.getDescription(), info
-                .getAuthor());
+        nsdbManager.createUserPackage(pbcu.getProcessor().getType(), info.getName(), info.getDescription(), info.getAuthor());
     }
 }
 

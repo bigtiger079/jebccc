@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -46,8 +45,7 @@ public class UI {
     }
 
     public static void initialize() {
-        if ((display != null) &&
-                (Display.getCurrent() != display)) {
+        if ((display != null) && (Display.getCurrent() != display)) {
             throw new IllegalStateException("The UI class was already initialized on another UI thread");
         }
         display = Display.getCurrent();
@@ -69,8 +67,7 @@ public class UI {
                         if (event.keyCode == SWT.MOD3) {
                             i = 2;
                         } else {
-                            if (event.keyCode == SWT.MOD4)
-                                i = 3;
+                            if (event.keyCode == SWT.MOD4) i = 3;
                             else {
                                 return;
                             }

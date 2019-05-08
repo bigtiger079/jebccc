@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.binding;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -98,8 +97,7 @@ public class KeyAcceleratorManager {
                         }
                     }
                     Control ctl = (Control) event.widget;
-                    if ((h.checkExecutionContext(ctl)) &&
-                            (h.canExecute())) {
+                    if ((h.checkExecutionContext(ctl)) && (h.canExecute())) {
                         UIExecutor.sync(this.display, h);
                         return true;
                     }
@@ -121,15 +119,12 @@ public class KeyAcceleratorManager {
             ActionEx h0 = (ActionEx) this.keyToHandlers.get(Integer.valueOf(keycode));
             if (h0 != null) {
                 if (h0 != handler) {
-                    logger.error("The accelerator %s is already used by handler %s (handler %s cannot steal it)", new Object[]{
-                            KeyStroke.getInstance(keycode & 0xFEFF0000, keycode & 0x100FFFF).toString(), h0
-                            .getClass().getSimpleName(), handler.getClass().getSimpleName()});
+                    logger.error("The accelerator %s is already used by handler %s (handler %s cannot steal it)", new Object[]{KeyStroke.getInstance(keycode & 0xFEFF0000, keycode & 0x100FFFF).toString(), h0.getClass().getSimpleName(), handler.getClass().getSimpleName()});
                     if (Licensing.isDebugBuild()) {
                         throw new RuntimeException("Keyboard shortcut conflict must be resolved in debug mode");
                     }
                 }
-            } else
-                this.keyToHandlers.put(Integer.valueOf(keycode), handler);
+            } else this.keyToHandlers.put(Integer.valueOf(keycode), handler);
         }
     }
 

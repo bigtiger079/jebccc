@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.S;
@@ -90,10 +89,8 @@ public class CocoaUIEnhancer {
         Class<?> nsapplicationCls = classForName("org.eclipse.swt.internal.cocoa.NSApplication");
         object = invoke(osCls, "objc_lookUpClass", new Object[]{"SWTApplicationDelegate"});
         long cls = convertToLong(object);
-        invoke(osCls, "class_addMethod", new Object[]{wrapPointer(cls), wrapPointer(sel_preferencesMenuItemSelected_),
-                wrapPointer(proc3), "@:@"});
-        invoke(osCls, "class_addMethod", new Object[]{
-                wrapPointer(cls), wrapPointer(sel_aboutMenuItemSelected_), wrapPointer(proc3), "@:@"});
+        invoke(osCls, "class_addMethod", new Object[]{wrapPointer(cls), wrapPointer(sel_preferencesMenuItemSelected_), wrapPointer(proc3), "@:@"});
+        invoke(osCls, "class_addMethod", new Object[]{wrapPointer(cls), wrapPointer(sel_aboutMenuItemSelected_), wrapPointer(proc3), "@:@"});
         Object sharedApplication = invoke(nsapplicationCls, "sharedApplication");
         Object mainMenu = invoke(sharedApplication, "mainMenu");
         Object mainMenuItem = invoke(nsmenuCls, mainMenu, "itemAtIndex", new Object[]{wrapPointer(0L)});
@@ -108,8 +105,7 @@ public class CocoaUIEnhancer {
             Object nsStr = invoke(nsstringCls, "stringWith", new Object[]{S.s(675) + " " + this.appName});
             invoke(nsmenuitemCls, quitMenuItem, "setTitle", new Object[]{nsStr});
         }
-        Object prefMenuItem = invoke(nsmenuCls, appMenu, "itemAtIndex", new Object[]{
-                wrapPointer(2L)});
+        Object prefMenuItem = invoke(nsmenuCls, appMenu, "itemAtIndex", new Object[]{wrapPointer(2L)});
         invoke(nsmenuitemCls, prefMenuItem, "setEnabled", new Object[]{Boolean.valueOf(true)});
         invoke(nsmenuitemCls, prefMenuItem, "setAction", new Object[]{wrapPointer(sel_preferencesMenuItemSelected_)});
         invoke(nsmenuitemCls, aboutMenuItem, "setAction", new Object[]{wrapPointer(sel_aboutMenuItemSelected_)});
@@ -157,8 +153,7 @@ public class CocoaUIEnhancer {
                     signature[i] = Byte.TYPE;
                 } else if (thisClass == Boolean.class) {
                     signature[i] = Boolean.TYPE;
-                } else
-                    signature[i] = thisClass;
+                } else signature[i] = thisClass;
             }
             Method method = clazz.getMethod(methodName, signature);
             return method.invoke(target, args);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -13,8 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UIState
-        extends EventSource {
+public class UIState extends EventSource {
     private Map<String, Boolean> breakpoints = new HashMap();
     private Map<String, Integer> temporaryBreakpoints = new HashMap();
     private IDebuggerThread selectedThread;

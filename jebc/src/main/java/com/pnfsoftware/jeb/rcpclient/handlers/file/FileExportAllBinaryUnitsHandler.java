@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -26,8 +25,7 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.DirectoryDialog;
 
-public class FileExportAllBinaryUnitsHandler
-        extends JebBaseHandler {
+public class FileExportAllBinaryUnitsHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileExportAllBinaryUnitsHandler.class);
 
     public FileExportAllBinaryUnitsHandler() {

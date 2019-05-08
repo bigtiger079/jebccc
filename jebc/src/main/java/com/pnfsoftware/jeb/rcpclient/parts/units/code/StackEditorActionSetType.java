@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -11,8 +10,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
-public class StackEditorActionSetType
-        extends StackEditorAction {
+public class StackEditorActionSetType extends StackEditorAction {
     public StackEditorActionSetType(StackEditorView v) {
         super("Set Type", v);
         this.keyCode = 121;
@@ -58,8 +56,7 @@ public class StackEditorActionSetType
         }
         INativeDataItem item = routine.getData().getStackframeManager().defineItem(e.offset, newItemType);
         if (item == null) {
-            UI.error(String.format("A item of type \"%s\" could not be created at offset %Xh", new Object[]{newItemType
-                    .getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("A item of type \"%s\" could not be created at offset %Xh", new Object[]{newItemType.getName(true), Integer.valueOf(e.offset)}));
             return false;
         }
         item.setName(e.name);

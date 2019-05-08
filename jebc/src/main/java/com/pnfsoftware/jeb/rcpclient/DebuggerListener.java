@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.core.events.ClientNotification;
@@ -160,8 +159,7 @@ public class DebuggerListener {
                                         if ((ua != null) && (ua.getUnit() == target)) {
                                             String addr = ua.getAddress();
                                             validAddresses.add(addr);
-                                            if ((!uiState.isBreakpoint(addr)) ||
-                                                    (uiState.isBreakpointEnabled(addr) != bp.isEnabled())) {
+                                            if ((!uiState.isBreakpoint(addr)) || (uiState.isBreakpointEnabled(addr) != bp.isEnabled())) {
                                                 uiState.setBreakpoint(addr, bp.isEnabled());
                                             }
                                         }
@@ -189,8 +187,7 @@ public class DebuggerListener {
                             }
                             if ((targetUnit instanceof ICodeUnit)) {
                                 uiState = DebuggerListener.this.context.getUIState(targetUnit);
-                                if ((uiState.isTemporaryBreakpoint(targetAddress)) &&
-                                        (uiState.removeTemporaryBreakpoint(targetAddress))) {
+                                if ((uiState.isTemporaryBreakpoint(targetAddress)) && (uiState.removeTemporaryBreakpoint(targetAddress))) {
                                     bp = DebuggerListener.this.dbg.getBreakpoint(targetAddress, (ICodeUnit) targetUnit);
                                     if (bp != null) {
                                         DebuggerListener.this.dbg.clearBreakpoint(bp);

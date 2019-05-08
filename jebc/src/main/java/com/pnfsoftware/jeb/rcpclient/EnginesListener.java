@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
@@ -35,8 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class EnginesListener
-        implements IEventListener {
+public class EnginesListener implements IEventListener {
     private static final ILogger logger = GlobalLog.getLogger(EnginesListener.class);
     private static EnginesListener instance;
     private RcpClientContext context;
@@ -89,8 +87,7 @@ public class EnginesListener
                         int interpreterIndex = mi.registerInterpreter((ICommandInterpreter) interpreters.get(0));
                         if (interpreterIndex >= 0) {
                             EnginesListener.this.interpreterIds.put(unit, Integer.valueOf(interpreterIndex));
-                            EnginesListener.logger.info("A command interpreter for unit \"%s\" was registered to the console view\nSwitch to it by issuing the \"use %d\" command", new Object[]{unit
-                                    .getName(), Integer.valueOf(interpreterIndex)});
+                            EnginesListener.logger.info("A command interpreter for unit \"%s\" was registered to the console view\nSwitch to it by issuing the \"use %d\" command", new Object[]{unit.getName(), Integer.valueOf(interpreterIndex)});
                         }
                     }
                 }

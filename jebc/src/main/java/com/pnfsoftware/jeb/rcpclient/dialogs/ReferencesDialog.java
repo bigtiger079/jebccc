@@ -13,8 +13,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class ReferencesDialog
-        extends DataFrameDialog {
+public class ReferencesDialog extends DataFrameDialog {
     private static final ILogger logger = GlobalLog.getLogger(ReferencesDialog.class);
 
     public ReferencesDialog(Shell parent, String caption, List<String> addresses, List<String> details, IUnit unit) {
@@ -23,8 +22,7 @@ public class ReferencesDialog
             logger.i("The list of addresses is null", new Object[0]);
             addresses = new ArrayList();
         }
-        if ((details != null) && (details.size() != addresses.size()))
-            throw new IllegalArgumentException();
+        if ((details != null) && (details.size() != addresses.size())) throw new IllegalArgumentException();
         IInteractiveUnit iunit;
         DataFrame df;
         int i;

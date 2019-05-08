@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.output.text.ITextDocument;
@@ -14,8 +13,7 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.widgets.Composite;
 
-public class StaticCodeGraphView
-        extends AbstractControlFlowGraphView<IUnit> {
+public class StaticCodeGraphView extends AbstractControlFlowGraphView<IUnit> {
     private static final ILogger logger = GlobalLog.getLogger(StaticCodeGraphView.class);
     private CFG<?> cfg;
 

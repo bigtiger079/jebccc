@@ -16,16 +16,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ExportDecompiledCodeDialog
-        extends JebDialog {
+public class ExportDecompiledCodeDialog extends JebDialog {
     private Text text;
     private ExportStatus exportStatus;
 
     public static enum State {
-        ALL,
-        FILTER,
-        DECOMPILED,
-        CURRENT;
+        ALL, FILTER, DECOMPILED, CURRENT;
 
         private State() {
         }

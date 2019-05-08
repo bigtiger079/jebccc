@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -52,8 +51,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 
-public class InteractiveTextView
-        extends AbstractInteractiveTextView {
+public class InteractiveTextView extends AbstractInteractiveTextView {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTextView.class);
     private List<ILocationListener> locationListeners = new ArrayList();
     private UnitTextAnnotator textAnnotator;
@@ -338,8 +336,7 @@ public class InteractiveTextView
         for (int lineIndex = _line; lineIndex < lines.size(); lineIndex++) {
             ILine line = (ILine) lines.get(lineIndex);
             for (ITextItem item : line.getItems()) {
-                if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && (
-                        (lineIndex != _line) || (item.getOffset() > _column))) {
+                if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && ((lineIndex != _line) || (item.getOffset() > _column))) {
                     if (pos0 != null) {
                         getViewManager().recordGlobalPosition(pos0);
                     }
@@ -371,8 +368,7 @@ public class InteractiveTextView
         for (int lineIndex = _line; lineIndex >= 0; lineIndex--) {
             ILine line = (ILine) lines.get(lineIndex);
             for (ITextItem item : line.getItems()) {
-                if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && (
-                        (lineIndex != _line) || (item.getOffset() + item.getLength() <= _column))) {
+                if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && ((lineIndex != _line) || (item.getOffset() + item.getLength() <= _column))) {
                     if (pos0 != null) {
                         getViewManager().recordGlobalPosition(pos0);
                     }
@@ -393,8 +389,7 @@ public class InteractiveTextView
             lineIndex = 0;
             for (ILine line : this.iviewer.getCurrentDocumentPart().getLines()) {
                 for (ITextItem item0 : line.getItems()) {
-                    if (((item0 instanceof IActionableItem)) &&
-                            (((IActionableItem) item0).getItemId() == itemId)) {
+                    if (((item0 instanceof IActionableItem)) && (((IActionableItem) item0).getItemId() == itemId)) {
                         Coordinates coord = new Coordinates(anchorId, lineIndex, item0.getOffset());
                         r.add(coord);
                     }

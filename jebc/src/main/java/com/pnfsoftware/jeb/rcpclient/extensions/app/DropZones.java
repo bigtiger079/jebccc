@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
 class DropZones {
-//    private static final ILogger logger = ;
+    //    private static final ILogger logger = ;
     Display display;
     Control topLevelContainer;
     boolean includeDockingAreas;

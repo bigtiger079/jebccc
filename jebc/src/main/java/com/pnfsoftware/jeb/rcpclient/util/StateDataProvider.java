@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.util.format.IAsciiable;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StateDataProvider
-        implements IPersistenceProvider, IAsciiable {
+public class StateDataProvider implements IPersistenceProvider, IAsciiable {
     private Map<String, String> map = new HashMap();
 
     public StateDataProvider() {

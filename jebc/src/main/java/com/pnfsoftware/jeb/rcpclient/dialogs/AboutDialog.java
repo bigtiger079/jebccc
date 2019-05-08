@@ -22,8 +22,7 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class AboutDialog
-        extends JebDialog {
+public class AboutDialog extends JebDialog {
     static final String[] app_thirdpartylist = {"Android Framework Resources (Apache License 2.0)", "ANTLR4 (The BSD License)", "Apache Commons (Apache License 2.0)", "APKTool (Apache License 2.0)", "AOSP 'dx' package (Apache License 2.0)", "Eclipse Platform (Eclipse Public License)", "Google Guava (Apache License 2.0)", "JSON-Simple (Apache License 2.0)", "Jsoup (MIT License)", "Jython (Python Software Foundation License 2.0)", "LZ4 for Java (Apache License 2.0)", "Objenesis (Apache License 2.0)", "Okhttp, Okio (Apache License 2.0)", "SnakeYAML (Apache License 2.0)", "SQLite (Apache License 2.0)"};
     private AbstractClientContext context;
     private Color cWhite = UIAssetManager.getInstance().getColor(255, 255, 255);

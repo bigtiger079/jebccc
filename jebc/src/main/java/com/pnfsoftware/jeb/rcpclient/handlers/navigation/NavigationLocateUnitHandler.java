@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.navigation;
 
 import com.pnfsoftware.jeb.client.S;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.ProjectExplorerPartManager;
 
-public class NavigationLocateUnitHandler
-        extends JebBaseHandler {
+public class NavigationLocateUnitHandler extends JebBaseHandler {
     public NavigationLocateUnitHandler() {
         super("locateUnit", S.s(516), "Locate the currently active unit view in the project explorer view", "eclipse/synced.png");
     }

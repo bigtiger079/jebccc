@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.fast;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
@@ -34,8 +33,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-public class XYGraph
-        extends AbstractGraph {
+public class XYGraph extends AbstractGraph {
     private static final ILogger logger = GlobalLog.getLogger(XYGraph.class);
     public static final double DEFAULT_ZOOM_LEVEL_IN = 0.8D;
     public static final double DEFAULT_ZOOM_LEVEL_OUT = 1.2D;
@@ -190,8 +188,7 @@ public class XYGraph
                         } catch (InterruptedException e) {
                             return;
                         }
-                        if ((XYGraph.this.activeNodeAnimationEnabled) && (
-                                (!XYGraph.this.activePoints.isEmpty()) || (!XYGraph.this.activeLines.isEmpty()))) {
+                        if ((XYGraph.this.activeNodeAnimationEnabled) && ((!XYGraph.this.activePoints.isEmpty()) || (!XYGraph.this.activeLines.isEmpty()))) {
                             try {
                                 if (!XYGraph.this.getDisplay().isDisposed()) {
                                     XYGraph.this.getDisplay().syncExec(new Runnable() {

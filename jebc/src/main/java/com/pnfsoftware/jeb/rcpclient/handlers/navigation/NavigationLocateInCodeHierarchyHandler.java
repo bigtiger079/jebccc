@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.navigation;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.units.code.CodeHierarchyView;
 import org.eclipse.swt.SWT;
 
-public class NavigationLocateInCodeHierarchyHandler
-        extends JebBaseHandler {
+public class NavigationLocateInCodeHierarchyHandler extends JebBaseHandler {
     public NavigationLocateInCodeHierarchyHandler() {
         super("locateInCodeHierarchy", "Locate in Code Hierarchy", null, "eclipse/synced.png");
         setAccelerator(SWT.MOD1 | 0x47);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers;
 
 import com.pnfsoftware.jeb.client.S;
@@ -25,9 +24,7 @@ import java.util.Map.Entry;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
-public class StyleManager
-        extends EventSource
-        implements IThemeChangeListener, IAsciiable {
+public class StyleManager extends EventSource implements IThemeChangeListener, IAsciiable {
     private static final ILogger logger = GlobalLog.getLogger(StyleManager.class);
     private static Display display;
     private static UIAssetManager aman = UIAssetManager.getInstance();
@@ -466,14 +463,11 @@ public class StyleManager
         for (Map.Entry<String, ColorScheme> e : this.schemes.entrySet()) {
             ColorScheme themeStyles = (ColorScheme) e.getValue();
             StringBuilder sb = new StringBuilder();
-            sb.append(
-                    String.format("CURRENT_LINE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveLineColor)}));
+            sb.append(String.format("CURRENT_LINE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveLineColor)}));
             sb.append(String.format("DEFAULT_FONT_COLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultFontColor)}));
-            sb.append(
-                    String.format("DEFAULT_ACTIVE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveBgcolor)}));
+            sb.append(String.format("DEFAULT_ACTIVE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveBgcolor)}));
             for (ItemClassIdentifiers t : ItemClassIdentifiers.values()) {
-                sb.append(
-                        String.format("%s=%s;%s|", new Object[]{t, getNormalStyle(themeStyles, t), getActiveStyle(themeStyles, t)}));
+                sb.append(String.format("%s=%s;%s|", new Object[]{t, getNormalStyle(themeStyles, t), getActiveStyle(themeStyles, t)}));
             }
             map.put(e.getKey(), sb.toString());
         }

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.api.IUnitFragment;
@@ -38,9 +37,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class ReferencedMethodsView
-        extends AbstractFilteredTableView<INativeCodeUnit<?>, INativeMethodItem>
-        implements ILazyView {
+public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCodeUnit<?>, INativeMethodItem> implements ILazyView {
     private static final ILogger logger = GlobalLog.getLogger(ReferencedMethodsView.class);
 
     public ReferencedMethodsView(Composite parent, int flags, RcpClientContext context, INativeCodeUnit<?> unit, IRcpUnitView unitView) {

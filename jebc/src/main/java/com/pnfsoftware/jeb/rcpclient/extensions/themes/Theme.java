@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.themes;
 
 import org.eclipse.swt.graphics.Color;

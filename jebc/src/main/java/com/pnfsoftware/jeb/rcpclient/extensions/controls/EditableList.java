@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -20,8 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
-public class EditableList
-        extends Composite {
+public class EditableList extends Composite {
     private Label l;
     private Table table;
     private Composite buttons;
@@ -106,8 +104,7 @@ public class EditableList
         this.table.setSelection(selected);
     }
 
-    public static class SimpleCheckable
-            implements EditableList.ICheckable {
+    public static class SimpleCheckable implements EditableList.ICheckable {
         private String text;
         private boolean checked;
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
@@ -381,8 +380,7 @@ public class AllHandlers {
         return true;
     }
 
-    public static void dumpTemplateShortcutsFile(String basedir)
-            throws IOException {
+    public static void dumpTemplateShortcutsFile(String basedir) throws IOException {
         StringBuilder sb = new StringBuilder("#------------------------------------------------------------------------------\n# JEB Custom Keyboard Shortcuts\n#------------------------------------------------------------------------------\n\n# 1) Rename or copy this file to jeb-shortcuts.cfg\n# 2) Uncomment and add your own keyboard shortcuts for the actions for which you'd like to override the default shortcuts\n\n# Example: by default, Jump is mapped to the 'G' key; the following line (minus the # character) can be used to remap the action to CTRL+J:\n#jump=Ctrl+J\n\n# *** CUSTOMIZABLE HANDLERS ***\n\n");
         for (JebBaseHandler h : getInstance().getAll()) {
             String id = h.getId();

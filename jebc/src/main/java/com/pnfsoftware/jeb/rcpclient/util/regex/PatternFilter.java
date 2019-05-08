@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util.regex;
 
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -9,8 +8,7 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PatternFilter
-        implements IPattern {
+public class PatternFilter implements IPattern {
     private Pattern mainRegexPattern;
     private IPatternMatcher patternMatcher;
     private String[] titleColumns;
@@ -41,14 +39,11 @@ public class PatternFilter
                         do {
                             int searchFrom = endIndex == -1 ? filterByColumn + columnTitle.length() + 2 : endIndex + 1;
                             endIndex = pattern.indexOf("\"", searchFrom);
-                        }
-                        while ((endIndex != -1) && (pattern.charAt(endIndex - 1) == '\\'));
+                        } while ((endIndex != -1) && (pattern.charAt(endIndex - 1) == '\\'));
                         if (endIndex != -1) {
                             String intermediatePattern = pattern.substring(filterByColumn + columnTitle.length() + 2, endIndex);
                             pattern = pattern.substring(0, filterByColumn).trim() + " " + pattern.substring(endIndex + 1).trim();
-                            this.patternByColumn.put(
-                                    Integer.valueOf(i),
-                                    Pattern.compile(intermediatePattern, 114));
+                            this.patternByColumn.put(Integer.valueOf(i), Pattern.compile(intermediatePattern, 114));
                         }
                     }
                 }

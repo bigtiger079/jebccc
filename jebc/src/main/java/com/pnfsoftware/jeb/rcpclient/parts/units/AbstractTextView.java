@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -16,8 +15,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public abstract class AbstractTextView<T extends IUnit>
-        extends AbstractUnitFragment<T> {
+public abstract class AbstractTextView<T extends IUnit> extends AbstractUnitFragment<T> {
     private TextViewer viewer;
     private StyledTextFindImpl findimpl;
     private GraphicalTextFinder<SimpleTextFindResults> finder;

@@ -17,8 +17,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class SoftwareUpdateDialog
-        extends JebDialog {
+public class SoftwareUpdateDialog extends JebDialog {
     private RcpClientContext context;
     private boolean expiredLicense;
 

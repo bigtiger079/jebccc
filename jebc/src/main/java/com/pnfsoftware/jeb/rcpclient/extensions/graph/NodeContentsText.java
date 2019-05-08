@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -14,9 +13,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Caret;
 import org.eclipse.swt.widgets.Composite;
 
-public class NodeContentsText
-        extends Composite
-        implements IGraphNodeContents {
+public class NodeContentsText extends Composite implements IGraphNodeContents {
     private static final ILogger logger = GlobalLog.getLogger(NodeContentsText.class);
     private static final int minFontHeight = 1;
     private static final int maxFontHeight = 80;

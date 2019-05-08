@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.search;
 
 import com.pnfsoftware.jeb.client.S;

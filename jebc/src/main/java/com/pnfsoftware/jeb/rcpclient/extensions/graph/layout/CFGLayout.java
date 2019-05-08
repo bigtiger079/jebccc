@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
@@ -12,8 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-class CFGLayout<T extends IInstruction>
-        implements ICFGLayout<T> {
+class CFGLayout<T extends IInstruction> implements ICFGLayout<T> {
     private static final ILogger logger = GlobalLog.getLogger(CFGLayout.class);
     private boolean disregardIrregularFlows;
     private CFG<T> cfg;
@@ -76,8 +74,7 @@ class CFGLayout<T extends IInstruction>
             bB = (BasicBlock) dstlist.get(1);
             if ((!this.processed.contains(Long.valueOf(bA.getFirstAddress()))) && (!this.processed.contains(Long.valueOf(bB.getFirstAddress())))) {
                 List<BasicBlock<T>> d_bA = getDests(bA);
-                if ((d_bA.size() == 1) && (d_bA.equals(getDests(bB))) &&
-                        (!this.processed.contains(Long.valueOf(((BasicBlock) d_bA.get(0)).getFirstAddress())))) {
+                if ((d_bA.size() == 1) && (d_bA.equals(getDests(bB))) && (!this.processed.contains(Long.valueOf(((BasicBlock) d_bA.get(0)).getFirstAddress())))) {
                     this.skipDstProc.add(Long.valueOf(bB.getFirstAddress()));
                     this.diamondExits.add(Long.valueOf(((BasicBlock) d_bA.get(0)).getFirstAddress()));
                 }

@@ -1,10 +1,8 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.fast;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.IGraphNode;
 
-public class P
-        implements IGraphNode {
+public class P implements IGraphNode {
     Integer id;
     double x;
     double y;
@@ -101,15 +99,11 @@ public class P
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         P other = (P) obj;
-        if ((this.id == null) || (other.id == null))
-            return false;
+        if ((this.id == null) || (other.id == null)) return false;
         return this.id.equals(other.id);
     }
 

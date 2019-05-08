@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.ui;
 
 import com.pnfsoftware.jeb.rcpclient.dialogs.JebDialog;
@@ -22,8 +21,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class TaskMonitorDialog
-        extends JebDialog {
+public class TaskMonitorDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(TaskMonitorDialog.class);
     private String[] labels = {"Please wait...", ""};
     private Label[] wLabels = new Label[this.labels.length];

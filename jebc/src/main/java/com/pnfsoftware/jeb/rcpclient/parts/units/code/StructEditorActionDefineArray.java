@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.IArrayType;
@@ -10,8 +9,7 @@ import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 
-public class StructEditorActionDefineArray
-        extends StructEditorAction {
+public class StructEditorActionDefineArray extends StructEditorAction {
     public StructEditorActionDefineArray(NativeTypeEditorView v) {
         super("Array", v);
         this.keyCode = 97;

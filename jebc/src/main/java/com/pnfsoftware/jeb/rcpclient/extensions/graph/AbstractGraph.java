@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
@@ -21,9 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-public abstract class AbstractGraph
-        extends Canvas
-        implements IGraph {
+public abstract class AbstractGraph extends Canvas implements IGraph {
     private static final ILogger logger = GlobalLog.getLogger(AbstractGraph.class);
     protected static final int DEFAULT_MOUSE_WHEEL_MULTIPLIER = 15;
     private boolean kbModifier1Pressed;

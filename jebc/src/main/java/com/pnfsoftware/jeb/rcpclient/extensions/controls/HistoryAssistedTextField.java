@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -35,8 +34,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class HistoryAssistedTextField
-        extends Composite {
+public class HistoryAssistedTextField extends Composite {
     private static final ILogger logger = GlobalLog.getLogger(HistoryAssistedTextField.class);
     private Text text;
     private ContentProposalAdapter cpa;

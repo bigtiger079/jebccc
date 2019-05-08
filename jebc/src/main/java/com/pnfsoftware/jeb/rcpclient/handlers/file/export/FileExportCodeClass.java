@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file.export;
 
 import com.pnfsoftware.jeb.core.units.code.ICodeClass;
@@ -10,8 +9,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class FileExportCodeClass
-        implements IFileExport<ICodeClass> {
+public class FileExportCodeClass implements IFileExport<ICodeClass> {
     private List<? extends ICodeClass> allClasses;
 
     public FileExportCodeClass(List<? extends ICodeClass> allClasses) {

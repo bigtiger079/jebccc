@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import org.eclipse.swt.events.DisposeEvent;
@@ -12,8 +11,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
-public class GraphPreview<G extends AbstractGraph>
-        extends Canvas {
+public class GraphPreview<G extends AbstractGraph> extends Canvas {
     G graph;
     GraphChangeListener graphListener;
     Rectangle activeArea;

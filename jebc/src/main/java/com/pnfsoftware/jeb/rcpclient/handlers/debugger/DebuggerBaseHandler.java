@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.core.IUnitCreator;
@@ -25,8 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public abstract class DebuggerBaseHandler
-        extends JebBaseHandler {
+public abstract class DebuggerBaseHandler extends JebBaseHandler {
     public DebuggerBaseHandler(String id, String name, String tooltip, String icon, int accelerator) {
         super(id, name, 0, null, icon, accelerator);
     }
@@ -79,8 +77,7 @@ public abstract class DebuggerBaseHandler
 
     public boolean canStepOperation(IMPart part) {
         IDebuggerUnit dbg = getCurrentDebugger(part);
-        if ((dbg != null) && (dbg.isAttached()) && (dbg.hasDefaultThread()) &&
-                (dbg.canPerformOperation(DebuggerOperationType.UNKNOWN))) {
+        if ((dbg != null) && (dbg.isAttached()) && (dbg.hasDefaultThread()) && (dbg.canPerformOperation(DebuggerOperationType.UNKNOWN))) {
             return dbg.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED;
         }
         return false;
@@ -107,8 +104,7 @@ public abstract class DebuggerBaseHandler
             if ((ftype != null) && (ftype.startsWith("dbug_"))) {
                 for (IUnit candidate : candidates) {
                     boolean success = identifier.canIdentify(null, candidate);
-                    if (success)
-                        return true;
+                    if (success) return true;
                 }
             }
         }
@@ -124,8 +120,7 @@ public abstract class DebuggerBaseHandler
             uiBreakpoints = this.context.getUIState(target).getBreakpoints();
             for (String bpAddress : uiBreakpoints.keySet()) {
                 IDebuggerBreakpoint bp = dbg.setBreakpoint(bpAddress, target);
-                if (bp != null)
-                    bp.setEnabled(((Boolean) uiBreakpoints.get(bpAddress)).booleanValue());
+                if (bp != null) bp.setEnabled(((Boolean) uiBreakpoints.get(bpAddress)).booleanValue());
             }
         }
     }

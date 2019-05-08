@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -10,8 +9,7 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.SWT;
 
-public class ActionEditStackframeHandler
-        extends NativeCodeBaseHandler {
+public class ActionEditStackframeHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionEditStackframeHandler.class);
 
     public ActionEditStackframeHandler() {

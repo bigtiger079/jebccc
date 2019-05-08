@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -44,8 +43,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-public class StackEditorView
-        extends Composite {
+public class StackEditorView extends Composite {
     private static final ILogger logger = GlobalLog.getLogger(StackEditorView.class);
     private Font codefont;
     private INativeCodeUnit<?> unit;
@@ -159,8 +157,7 @@ public class StackEditorView
         }
     }
 
-    class StackItemsProvider
-            extends AbstractInfiniTableSectionProvider {
+    class StackItemsProvider extends AbstractInfiniTableSectionProvider {
         StackItemsProvider() {
         }
 

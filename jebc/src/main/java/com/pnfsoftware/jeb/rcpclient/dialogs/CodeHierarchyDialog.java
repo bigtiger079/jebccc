@@ -14,8 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class CodeHierarchyDialog
-        extends JebDialog {
+public class CodeHierarchyDialog extends JebDialog {
     private RcpClientContext context;
     private ICodeUnit unit;
     private ICodeNode baseNode;
@@ -76,8 +75,7 @@ public class CodeHierarchyDialog
             widget = this.v2;
         }
         ICodeNode node = widget.getSelectedNode();
-        if ((node != null) &&
-                ((node.getObject() instanceof ICodeItem))) {
+        if ((node != null) && ((node.getObject() instanceof ICodeItem))) {
             String address = node.getObject().getAddress();
             this.selectedAddress = address;
         }

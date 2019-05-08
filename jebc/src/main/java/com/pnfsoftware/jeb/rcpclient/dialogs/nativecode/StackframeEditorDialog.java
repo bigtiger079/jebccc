@@ -11,8 +11,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class StackframeEditorDialog
-        extends JebDialog {
+public class StackframeEditorDialog extends JebDialog {
     INativeCodeUnit<?> unit;
     INativeMethodItem initialRoutine;
     FontManager fontman;

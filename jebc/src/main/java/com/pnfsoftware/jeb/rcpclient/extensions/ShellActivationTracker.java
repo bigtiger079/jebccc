@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-public class ShellActivationTracker
-        implements Listener {
+public class ShellActivationTracker implements Listener {
     private static final ILogger logger = GlobalLog.getLogger(ShellActivationTracker.class);
     private Display display;
     private Shell shell;

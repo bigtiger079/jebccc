@@ -25,8 +25,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-public class StyleOptionsDialog
-        extends JebDialog {
+public class StyleOptionsDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(StyleOptionsDialog.class);
     private Boolean modified = Boolean.FALSE;
     private ThemeManager themeManager;

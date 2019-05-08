@@ -1,8 +1,6 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup;
 
-public class ArrayLogicalGroup
-        extends ArrayGroup {
+public class ArrayLogicalGroup extends ArrayGroup {
     private String groupName;
     boolean packaged = false;
 

@@ -1,13 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 
-public class Checkbox
-        extends Composite
-        implements ITextControl {
+public class Checkbox extends Composite implements ITextControl {
     private Button btn;
 
     public Checkbox(Composite parent, String name, boolean selected) {

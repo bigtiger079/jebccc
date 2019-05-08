@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 
-public class StackEditorActionDefineArray
-        extends StackEditorAction {
+public class StackEditorActionDefineArray extends StackEditorAction {
     public StackEditorActionDefineArray(StackEditorView v) {
         super("Array", v);
         this.keyCode = 97;

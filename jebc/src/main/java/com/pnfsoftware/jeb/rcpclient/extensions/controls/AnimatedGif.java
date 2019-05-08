@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import java.io.InputStream;
@@ -12,8 +11,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-public class AnimatedGif
-        extends Canvas {
+public class AnimatedGif extends Canvas {
     private final ImageLoader loader = new ImageLoader();
     private Display display;
     private int img;

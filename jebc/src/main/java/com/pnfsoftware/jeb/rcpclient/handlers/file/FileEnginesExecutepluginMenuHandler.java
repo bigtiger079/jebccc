@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.IEnginesContext;
@@ -12,8 +11,7 @@ import java.util.List;
 
 import org.eclipse.jface.action.IMenuManager;
 
-public class FileEnginesExecutepluginMenuHandler
-        extends AbstractDynamicMenuHandler {
+public class FileEnginesExecutepluginMenuHandler extends AbstractDynamicMenuHandler {
     public void menuAboutToShow(IMenuManager manager) {
         if (!canExecute()) {
             return;

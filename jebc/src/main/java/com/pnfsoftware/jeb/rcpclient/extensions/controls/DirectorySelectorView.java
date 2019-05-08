@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.client.S;
@@ -9,9 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class DirectorySelectorView
-        extends Composite
-        implements ITextControl {
+public class DirectorySelectorView extends Composite implements ITextControl {
     private Label l;
     private Text textbox;
     private Button browse;

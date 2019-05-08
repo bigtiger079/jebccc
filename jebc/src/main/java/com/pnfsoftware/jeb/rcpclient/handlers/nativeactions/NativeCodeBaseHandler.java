@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.events.J;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import org.eclipse.swt.widgets.Shell;
 
-public abstract class NativeCodeBaseHandler
-        extends JebBaseHandler {
+public abstract class NativeCodeBaseHandler extends JebBaseHandler {
     public NativeCodeBaseHandler(String id, String name, int accelerator) {
         super(id, name, 0, null, null, accelerator);
     }

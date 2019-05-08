@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -24,8 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-public abstract class AbstractFilteredViewer<T extends Composite, V extends ColumnViewer>
-        extends Viewer {
+public abstract class AbstractFilteredViewer<T extends Composite, V extends ColumnViewer> extends Viewer {
     private AbstractFilteredView<T> widget;
     private V viewer;
     AbstractFilteredFilter filter;

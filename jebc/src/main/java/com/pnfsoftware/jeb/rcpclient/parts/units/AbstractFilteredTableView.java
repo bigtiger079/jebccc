@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -22,8 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-public abstract class AbstractFilteredTableView<T extends IUnit, V>
-        extends AbstractInteractiveTableView<T, V> {
+public abstract class AbstractFilteredTableView<T extends IUnit, V> extends AbstractInteractiveTableView<T, V> {
     private FilteredTableView filteredView;
     private FilteredTableViewer filteredViewer;
     private ContextMenu menu;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
@@ -15,8 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 @Deprecated
-class CFGLayoutExp1<T extends IInstruction>
-        implements ICFGLayout<T> {
+class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
     private static final ILogger logger = GlobalLog.getLogger(CFGLayoutExp1.class);
     CFG<T> cfg;
     Spreadsheet<BasicBlock<T>> grid;

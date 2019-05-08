@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.util.format.IAsciiable;
@@ -9,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TextHistory
-        implements IAsciiable, Serializable {
+public class TextHistory implements IAsciiable, Serializable {
     private static final long serialVersionUID = 1L;
     private static final int defaultMaxEntries = 100;
     private int maxcnt;

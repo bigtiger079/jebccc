@@ -32,8 +32,7 @@ public class KeyShortcutsManager {
                 logger.error("Action \"%s\" is already defined", new Object[]{actionId});
             }
             if (this.rmap.containsKey(Integer.valueOf(keycode))) {
-                logger.error("Action \"%s\" is attempting to use a key reserved by action \"%s\"", new Object[]{actionId, this.rmap
-                        .get(Integer.valueOf(keycode))});
+                logger.error("Action \"%s\" is attempting to use a key reserved by action \"%s\"", new Object[]{actionId, this.rmap.get(Integer.valueOf(keycode))});
             }
             this.map.put(actionId, Integer.valueOf(keycode));
             this.rmap.put(Integer.valueOf(keycode), actionId);

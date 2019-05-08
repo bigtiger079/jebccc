@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -17,8 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-public class InfiniTableView
-        extends Composite {
+public class InfiniTableView extends Composite {
     private static final ILogger logger = GlobalLog.getLogger(InfiniTableView.class);
     private Table table;
     private IOutOfRangeHelper oorHandler;

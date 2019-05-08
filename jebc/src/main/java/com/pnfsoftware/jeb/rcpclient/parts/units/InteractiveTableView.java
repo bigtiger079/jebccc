@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -36,8 +35,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 
-public class InteractiveTableView
-        extends AbstractInteractiveTableView<IUnit, ITableRow> {
+public class InteractiveTableView extends AbstractInteractiveTableView<IUnit, ITableRow> {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTableView.class);
     private ITableDocument idoc;
     private InteractiveTableViewer iviewer;
@@ -68,8 +66,7 @@ public class InteractiveTableView
                         location = iunit.addressToLocation(address);
                     }
                 }
-                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"),
-                        Strings.safe(address, "?"), Strings.safe(location, "?")});
+                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?")});
                 context.getStatusIndicator().setText(statusText);
             }
         });

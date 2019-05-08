@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -10,8 +9,7 @@ import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class OperationHandler
-        extends JebBaseHandler {
+public class OperationHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(OperationHandler.class);
     private Operation op;
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.IItem;
@@ -14,8 +13,7 @@ import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractDataFrameView<T extends IUnit>
-        extends AbstractInteractiveTableView<T, DataFrame.Row> {
+public abstract class AbstractDataFrameView<T extends IUnit> extends AbstractInteractiveTableView<T, DataFrame.Row> {
     private DataFrame df;
     private DataFrameView dfv;
 

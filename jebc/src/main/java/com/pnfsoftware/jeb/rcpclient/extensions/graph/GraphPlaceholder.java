@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
@@ -19,8 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-public abstract class GraphPlaceholder<G extends AbstractGraph>
-        extends Composite {
+public abstract class GraphPlaceholder<G extends AbstractGraph> extends Composite {
     G graph;
     GraphPreview<G> preview;
     ToolBar toolbar;

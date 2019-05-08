@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -21,8 +20,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class BinaryDataView
-        extends AbstractUnitFragment<IUnit> {
+public class BinaryDataView extends AbstractUnitFragment<IUnit> {
     private static final ILogger logger = GlobalLog.getLogger(BinaryDataView.class);
     private InteractiveTextView text;
     private PrimitiveDisplayView helper;

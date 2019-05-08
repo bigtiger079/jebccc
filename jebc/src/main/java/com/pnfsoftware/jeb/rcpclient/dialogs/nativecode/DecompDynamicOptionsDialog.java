@@ -11,8 +11,7 @@ import java.util.Map;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class DecompDynamicOptionsDialog
-        extends JebDialog {
+public class DecompDynamicOptionsDialog extends JebDialog {
     INativeSourceUnit src;
     String address;
     DecompDynamicOptionsView v;

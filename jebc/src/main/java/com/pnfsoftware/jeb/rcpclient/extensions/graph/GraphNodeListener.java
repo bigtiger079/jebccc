@@ -2,8 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import java.util.EventListener;
 
-public abstract interface GraphNodeListener
-        extends EventListener {
+public abstract interface GraphNodeListener extends EventListener {
     public abstract void onNodeMouseEnter(GraphNode paramGraphNode);
 
     public abstract void onNodeMouseExit(GraphNode paramGraphNode);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -11,8 +10,7 @@ import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 
-public class StaticCodeTextDocument
-        extends StaticTextDocument {
+public class StaticCodeTextDocument extends StaticTextDocument {
     private BasicBlock<IInstruction> b;
     private String methodName;
 

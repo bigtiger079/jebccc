@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.client.Licensing;
@@ -136,8 +135,7 @@ public class UIExecutor {
     private static String getCaller() {
         StackTraceElement[] stack = Thread.currentThread().getStackTrace();
         for (int i = 1; i < stack.length; i++) {
-            if ((!stack[i].getClassName().startsWith(UIExecutor.class.getName())) &&
-                    (!stack[i].getClassName().contains(".Abstract"))) {
+            if ((!stack[i].getClassName().startsWith(UIExecutor.class.getName())) && (!stack[i].getClassName().contains(".Abstract"))) {
                 return stack[i].getClassName();
             }
         }
@@ -155,10 +153,8 @@ public class UIExecutor {
                 return -Integer.compare(o1.getValue(), o2.getValue());
             }
         });
-        sb.append(String.format("=> %d sync executed (currently executing: %d)\n", synccnt.get(),
-                executingSyncCnt.get()));
-        sb.append(String.format("=> %d/%d async executed (wait times: avg=%dms best=%dms worst=%dms)\n", asynccntExec,
-                asynccnt.get(), asyncAvgWaitTime, asyncBestWaitTime, asyncWorstWaitTime));
+        sb.append(String.format("=> %d sync executed (currently executing: %d)\n", synccnt.get(), executingSyncCnt.get()));
+        sb.append(String.format("=> %d/%d async executed (wait times: avg=%dms best=%dms worst=%dms)\n", asynccntExec, asynccnt.get(), asyncAvgWaitTime, asyncBestWaitTime, asyncWorstWaitTime));
         sb.append("Top callers:\n");
         int i = 0;
         for (Map.Entry<String, Integer> e : list) {

@@ -17,8 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ProjectPropertiesDialog
-        extends JebDialog {
+public class ProjectPropertiesDialog extends JebDialog {
     private IRuntimeProject project;
     private Text widgetName;
     private StyledText widgetNotes;

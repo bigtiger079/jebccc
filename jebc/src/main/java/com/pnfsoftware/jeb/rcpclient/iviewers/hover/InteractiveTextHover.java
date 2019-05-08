@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.hover;
 
 import com.pnfsoftware.jeb.rcpclient.iviewers.hover.extend.IHoverableWidget;
@@ -19,8 +18,7 @@ import org.eclipse.swt.SWTError;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Shell;
 
-public class InteractiveTextHover
-        implements ITextHover, ITextHoverExtension, ITextHoverExtension2 {
+public class InteractiveTextHover implements ITextHover, ITextHoverExtension, ITextHoverExtension2 {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTextHover.class);
     IHoverableWidget iHoverable;
     IHoverableProvider iHoverableProvider;

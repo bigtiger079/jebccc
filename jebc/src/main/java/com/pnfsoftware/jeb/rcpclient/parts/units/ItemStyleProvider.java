@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -26,8 +25,7 @@ import java.util.Set;
 
 import org.eclipse.swt.graphics.Color;
 
-public class ItemStyleProvider
-        implements IStyleProvider {
+public class ItemStyleProvider implements IStyleProvider {
     private static final ILogger logger = GlobalLog.getLogger(ItemStyleProvider.class);
     private StyleManager styleman;
     private IItem activeItem;
@@ -65,8 +63,7 @@ public class ItemStyleProvider
                     ItemStyleProvider.logger.debug("On-caret Item: %s", new Object[]{e.item});
                     ItemStyleProvider.this.activeItem = e.item;
                     if ((ItemStyleProvider.this.activeItem instanceof IActionableTextItem)) {
-                        Set<IActionableItem> similarItems = ItemStyleProvider.this.findSimilarActionableItems(iviewer,
-                                (IActionableTextItem) ItemStyleProvider.this.activeItem);
+                        Set<IActionableItem> similarItems = ItemStyleProvider.this.findSimilarActionableItems(iviewer, (IActionableTextItem) ItemStyleProvider.this.activeItem);
                         ItemStyleProvider.this.relatedItems.addAll(similarItems);
                     }
                 } else if (e.type == 0) {
@@ -95,8 +92,7 @@ public class ItemStyleProvider
         if (targetId != 0L) {
             for (ILine line : iviewer.getCurrentDocumentPart().getLines()) {
                 for (IItem item : line.getItems()) {
-                    if (((item instanceof IActionableItem)) &&
-                            (((IActionableItem) item).getItemId() == targetId)) {
+                    if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == targetId)) {
                         r.add((IActionableItem) item);
                     }
                 }

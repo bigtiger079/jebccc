@@ -7,8 +7,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class InputDialog
-        extends JebDialog {
+public class InputDialog extends JebDialog {
     private Text text;
     private String message;
     private boolean confirmed;

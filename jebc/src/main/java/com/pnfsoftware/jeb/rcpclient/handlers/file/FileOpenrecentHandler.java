@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-public class FileOpenrecentHandler
-        extends JebBaseHandler {
+public class FileOpenrecentHandler extends JebBaseHandler {
     String path;
 
     public FileOpenrecentHandler() {

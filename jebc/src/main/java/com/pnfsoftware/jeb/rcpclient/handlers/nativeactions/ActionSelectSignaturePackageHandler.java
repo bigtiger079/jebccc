@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -19,8 +18,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 
 import java.util.List;
 
-public class ActionSelectSignaturePackageHandler
-        extends NativeCodeBaseHandler {
+public class ActionSelectSignaturePackageHandler extends NativeCodeBaseHandler {
     public ActionSelectSignaturePackageHandler() {
         super("selectSignaturePackage", "Select Signature Package...", 0);
     }

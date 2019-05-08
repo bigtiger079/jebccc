@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -30,8 +29,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractInteractiveTextView
-        extends AbstractUnitFragment<IUnit> {
+public abstract class AbstractInteractiveTextView extends AbstractUnitFragment<IUnit> {
     private static final ILogger logger = GlobalLog.getLogger(AbstractInteractiveTextView.class);
     protected ITextDocument idoc;
     protected ITextDocumentViewer iviewer;
@@ -138,8 +136,7 @@ public abstract class AbstractInteractiveTextView
         if ((getUnit() instanceof IAddressableUnit)) {
             IAddressableUnit iunit = (IAddressableUnit) getUnit();
             String address = iunit.getAddressOfItem(targetItemId);
-            if ((address != null) && (!address.equals(getActiveAddress())) &&
-                    (setActiveAddress(address, null, true))) {
+            if ((address != null) && (!address.equals(getActiveAddress())) && (setActiveAddress(address, null, true))) {
                 logger.debug("Item to address conversion was successful, jumping to %s", new Object[]{address});
                 return true;
             }
@@ -162,8 +159,7 @@ public abstract class AbstractInteractiveTextView
             lineIndex = 0;
             for (ILine line : part.getLines()) {
                 for (ITextItem item0 : line.getItems()) {
-                    if (((item0 instanceof IActionableItem)) &&
-                            (((IActionableItem) item0).getItemId() == itemId)) {
+                    if (((item0 instanceof IActionableItem)) && (((IActionableItem) item0).getItemId() == itemId)) {
                         int flags = ((IActionableItem) item0).getItemFlags();
                         if ((flags & 0x1) != 0) {
                             Coordinates coord = new Coordinates(anchorId, lineIndex, item0.getOffset());

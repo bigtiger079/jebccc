@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers;
 
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -24,8 +23,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public abstract class JebBaseHandler
-        extends JebAction {
+public abstract class JebBaseHandler extends JebAction {
     private static final ILogger logger = GlobalLog.getLogger(JebBaseHandler.class);
     protected RcpClientContext context;
     protected Shell shell;
@@ -110,8 +108,7 @@ public abstract class JebBaseHandler
 
     public boolean isDisableHandlers(IMPart part) {
         Control ctl = this.context.getDisplay().getFocusControl();
-        if ((((ctl instanceof Text)) && (((Text) ctl).getEditable())) || (((ctl instanceof StyledText)) &&
-                (((StyledText) ctl).getEditable()))) {
+        if ((((ctl instanceof Text)) && (((Text) ctl).getEditable())) || (((ctl instanceof StyledText)) && (((StyledText) ctl).getEditable()))) {
             return true;
         }
         if (FilterText.isSelected()) {

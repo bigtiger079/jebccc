@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.core.units.AutocompletionResult;
@@ -15,9 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MultiInterpreter
-        extends EventSource
-        implements ICommandInterpreter {
+public class MultiInterpreter extends EventSource implements ICommandInterpreter {
     public static final int EVENT_INTERPRETER_CHANGE = 0;
     public static final int EVENT_INTERPRETER_CHANGE_IMMEDIATE = 1;
     List<ICommandInterpreter> interpreters = new ArrayList();
@@ -190,8 +187,7 @@ public class MultiInterpreter
     public boolean onFocusChanged(IUnit unit) {
         for (int i = 0; i < this.interpreters.size(); i++) {
             ICommandInterpreter interpreter = (ICommandInterpreter) this.interpreters.get(i);
-            if (((interpreter instanceof IUnitInterpreter)) &&
-                    (((IUnitInterpreter) interpreter).isTarget(unit))) {
+            if (((interpreter instanceof IUnitInterpreter)) && (((IUnitInterpreter) interpreter).isTarget(unit))) {
                 setPrimary(i, true);
                 return true;
             }

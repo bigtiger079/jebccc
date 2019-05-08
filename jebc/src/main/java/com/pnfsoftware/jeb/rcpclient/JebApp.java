@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.AbstractContext;
@@ -11,8 +10,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.widgets.Shell;
 
-public class JebApp
-        extends App {
+public class JebApp extends App {
     String[] args;
     RcpClientContext context;
     public Folder folderWorkspace;

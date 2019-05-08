@@ -18,8 +18,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract interface ITextDocumentViewer
-        extends IOperable, IFindTextImpl<InteractiveTextFindResult>, INavigableViewer {
+public abstract interface ITextDocumentViewer extends IOperable, IFindTextImpl<InteractiveTextFindResult>, INavigableViewer {
     public abstract ITextDocument getDocument();
 
     public abstract void refresh();

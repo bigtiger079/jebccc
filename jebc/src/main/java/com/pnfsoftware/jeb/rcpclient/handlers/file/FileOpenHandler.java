@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
@@ -12,8 +11,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
-public class FileOpenHandler
-        extends JebBaseHandler {
+public class FileOpenHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileOpenHandler.class);
 
     public FileOpenHandler() {

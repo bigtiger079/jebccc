@@ -15,8 +15,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ControllerAddressDialog
-        extends JebDialog {
+public class ControllerAddressDialog extends JebDialog {
     private AbstractClientContext context;
     private boolean success;
     private Text widgetHostname;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.google.common.collect.Iterables;
@@ -24,8 +23,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class DecompiledViewNavigator
-        implements IViewNavigator {
+public class DecompiledViewNavigator implements IViewNavigator {
     private static final ILogger logger = GlobalLog.getLogger(DecompiledViewNavigator.class);
     IAddressableUnit unit;
     RcpClientContext context;

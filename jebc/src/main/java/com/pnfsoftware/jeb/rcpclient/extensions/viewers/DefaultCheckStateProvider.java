@@ -1,10 +1,8 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import org.eclipse.jface.viewers.ICheckStateProvider;
 
-public class DefaultCheckStateProvider
-        implements ICheckStateProvider {
+public class DefaultCheckStateProvider implements ICheckStateProvider {
     private IFilteredTableContentProvider provider;
 
     public DefaultCheckStateProvider(IFilteredTableContentProvider provider) {

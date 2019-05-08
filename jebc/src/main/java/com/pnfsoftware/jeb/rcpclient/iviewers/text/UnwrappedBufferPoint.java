@@ -1,8 +1,6 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
-public class UnwrappedBufferPoint
-        extends BufferPoint {
+public class UnwrappedBufferPoint extends BufferPoint {
     public boolean eol;
 
     public UnwrappedBufferPoint(int columnOffset, int lineIndex, boolean eol) {
@@ -18,15 +16,11 @@ public class UnwrappedBufferPoint
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (!super.equals(obj)) return false;
+        if (getClass() != obj.getClass()) return false;
         UnwrappedBufferPoint other = (UnwrappedBufferPoint) obj;
-        if (this.eol != other.eol)
-            return false;
+        if (this.eol != other.eol) return false;
         return true;
     }
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -22,9 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class DescriptionView
-        extends AbstractTextView<IUnit>
-        implements IContextMenu {
+public class DescriptionView extends AbstractTextView<IUnit> implements IContextMenu {
     private ViewerRefresher refresher;
     private IEventListener unitListener;
 

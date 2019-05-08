@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.model;
 
 import com.pnfsoftware.jeb.util.format.Strings;

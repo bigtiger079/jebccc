@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.client.api.OperationRequest;
@@ -38,9 +37,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractLocalGraphView<T extends IUnit>
-        extends AbstractUnitFragment<T>
-        implements IGraphController {
+public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUnitFragment<T> implements IGraphController {
     private static final ILogger logger = GlobalLog.getLogger(AbstractLocalGraphView.class);
     protected GraphPlaceholder<Graph> gp;
     private boolean inUse;
@@ -281,8 +278,7 @@ public abstract class AbstractLocalGraphView<T extends IUnit>
     public void onNodeBreakoutAttempt(IGraphNodeContents nodeContents, int direction) {
     }
 
-    private class FindTextInGraphImpl
-            implements IFindTextImpl<InteractiveTextFindResult> {
+    private class FindTextInGraphImpl implements IFindTextImpl<InteractiveTextFindResult> {
         final int startIndex;
         int index;
         GraphNode currentNode;

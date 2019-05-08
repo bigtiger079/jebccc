@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 import com.pnfsoftware.jeb.util.base.Assert;

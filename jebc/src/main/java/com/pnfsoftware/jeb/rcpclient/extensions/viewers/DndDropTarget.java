@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -8,8 +7,7 @@ import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
 
-public class DndDropTarget
-        extends ViewerDropAdapter {
+public class DndDropTarget extends ViewerDropAdapter {
     private static final ILogger logger = GlobalLog.getLogger(DndDropTarget.class);
     private IDndProvider dndProvider;
     private DndDragSource dragSource;

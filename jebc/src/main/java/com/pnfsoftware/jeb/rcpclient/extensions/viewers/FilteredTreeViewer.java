@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.AbstractFilteredView;
@@ -25,8 +24,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-public class FilteredTreeViewer
-        extends AbstractFilteredViewer<Tree, TreeViewer> {
+public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer> {
     Object[] expandedElements;
     private boolean expandAfterFilter;
     private static final int EXPAND_LIMIT = 2000;
@@ -183,8 +181,7 @@ public class FilteredTreeViewer
         ((TreeViewer) getViewer()).expandToLevel(elementOrTreePath, level);
     }
 
-    public class RegexViewerFilter
-            extends AbstractFilteredFilter {
+    public class RegexViewerFilter extends AbstractFilteredFilter {
         private Set<Object> parentMatches = Collections.newSetFromMap(new WeakHashMap());
 
         public RegexViewerFilter(StructuredViewer viewer) {

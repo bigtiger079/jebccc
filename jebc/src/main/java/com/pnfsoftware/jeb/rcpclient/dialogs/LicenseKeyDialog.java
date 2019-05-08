@@ -17,8 +17,7 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class LicenseKeyDialog
-        extends JebDialog {
+public class LicenseKeyDialog extends JebDialog {
     private String licdata;
     private String lickey;
 

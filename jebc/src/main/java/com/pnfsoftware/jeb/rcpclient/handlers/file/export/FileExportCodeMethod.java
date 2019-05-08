@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file.export;
 
 import com.pnfsoftware.jeb.core.units.code.ICodeMethod;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileExportCodeMethod
-        implements IFileExport<ICodeMethod> {
+public class FileExportCodeMethod implements IFileExport<ICodeMethod> {
     private List<? extends ICodeMethod> allMethods;
 
     public FileExportCodeMethod(List<? extends ICodeMethod> allMethods) {

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
-public class DebuggerTerminateHandler
-        extends DebuggerBaseHandler {
+public class DebuggerTerminateHandler extends DebuggerBaseHandler {
     public DebuggerTerminateHandler() {
         super("dbgTerminate", S.s(577), null, "eclipse/terminate_co.png", 0);
     }

@@ -26,8 +26,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ReparseOptionsDialog
-        extends JebDialog {
+public class ReparseOptionsDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ReparseOptionsDialog.class);
     private IUnit unit;
     private List<Text> widgetDatas = new ArrayList();

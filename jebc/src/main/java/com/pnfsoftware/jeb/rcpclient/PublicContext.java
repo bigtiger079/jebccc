@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.api.ButtonGroupType;
@@ -22,8 +21,7 @@ import java.util.concurrent.Callable;
 
 import org.eclipse.swt.widgets.MessageBox;
 
-public class PublicContext
-        implements IGraphicalClientContext {
+public class PublicContext implements IGraphicalClientContext {
     private static final ILogger logger = GlobalLog.getLogger(PublicContext.class);
     RcpClientContext ctx;
 
@@ -136,8 +134,7 @@ public class PublicContext
             UnitPartManager unitPart = upm.getUnitPartManager(part);
             if (unitPart != null) {
                 IUnit unit = unitPart.getUnit();
-                if ((unit != null) && (
-                        (targetUnit == null) || (targetUnit == unit))) {
+                if ((unit != null) && ((targetUnit == null) || (targetUnit == unit))) {
                     r.add(unitPart);
                 }
             }

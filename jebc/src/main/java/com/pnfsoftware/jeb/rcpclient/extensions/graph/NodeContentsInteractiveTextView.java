@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -54,9 +53,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 
-public class NodeContentsInteractiveTextView
-        extends AbstractInteractiveTextView
-        implements IGraphNodeContents {
+public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView implements IGraphNodeContents {
     private static final ILogger logger = GlobalLog.getLogger(NodeContentsInteractiveTextView.class);
     private StyledText w;
     private ItemStyleProvider2 styleProvider;

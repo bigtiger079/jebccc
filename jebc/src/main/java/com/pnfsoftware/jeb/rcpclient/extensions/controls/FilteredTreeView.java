@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
-public class FilteredTreeView
-        extends AbstractFilteredView<Tree> {
+public class FilteredTreeView extends AbstractFilteredView<Tree> {
     public FilteredTreeView(Composite parent, int style, String[] columnNames) {
         this(parent, style, columnNames, null);
     }
@@ -57,8 +55,7 @@ public class FilteredTreeView
                 }
                 currentIndex.increment();
                 boolean found = getIndexOfItem(item.getItems(), toFind, currentIndex);
-                if (found)
-                    return found;
+                if (found) return found;
             }
         }
         return false;
@@ -85,8 +82,7 @@ public class FilteredTreeView
     }
 
     private static boolean isBlankItem(TreeItem item) {
-        return ((item.getItems() == null) || (item.getItems().length == 0)) && (item.getData() == null) &&
-                (item.getText().isEmpty());
+        return ((item.getItems() == null) || (item.getItems().length == 0)) && (item.getData() == null) && (item.getText().isEmpty());
     }
 }
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -24,9 +23,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public abstract class AbstractUnitFragment<T extends IUnit>
-        extends Composite
-        implements IRcpUnitFragment {
+public abstract class AbstractUnitFragment<T extends IUnit> extends Composite implements IRcpUnitFragment {
     private static final ILogger logger = GlobalLog.getLogger(AbstractUnitFragment.class);
     public static final int DEFAULT_PRIORITY = 100;
     protected T unit;

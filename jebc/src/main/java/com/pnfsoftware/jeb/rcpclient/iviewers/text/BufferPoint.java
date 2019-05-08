@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 public class BufferPoint {
@@ -19,17 +18,12 @@ public class BufferPoint {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         BufferPoint other = (BufferPoint) obj;
-        if (this.columnOffset != other.columnOffset)
-            return false;
-        if (this.lineIndex != other.lineIndex)
-            return false;
+        if (this.columnOffset != other.columnOffset) return false;
+        if (this.lineIndex != other.lineIndex) return false;
         return true;
     }
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
 import com.pnfsoftware.jeb.client.S;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 
-public class WindowResetUIStateHandler
-        extends JebBaseHandler {
+public class WindowResetUIStateHandler extends JebBaseHandler {
     public WindowResetUIStateHandler() {
         super(null, S.s(548), null, null);
     }

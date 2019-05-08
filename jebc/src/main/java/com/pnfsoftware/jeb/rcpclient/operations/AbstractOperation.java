@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.operations;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -12,8 +11,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.ImageData;
 
-public abstract class AbstractOperation
-        extends Action {
+public abstract class AbstractOperation extends Action {
     private IOperable object;
 
     public AbstractOperation(IOperable object, String text) {

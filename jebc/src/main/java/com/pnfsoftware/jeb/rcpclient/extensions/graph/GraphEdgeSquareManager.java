@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -13,8 +12,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Control;
 
-public class GraphEdgeSquareManager
-        extends GraphEdgeManager {
+public class GraphEdgeSquareManager extends GraphEdgeManager {
     private static final ILogger logger = GlobalLog.getLogger(GraphEdgeSquareManager.class);
     private int SPACING_MIN = 20;
     private int MARGIN_MIN = 10;
@@ -105,8 +103,7 @@ public class GraphEdgeSquareManager
                     boolean xOverlap = ((b_x0 <= a.x) && (b_x1 > a.x)) || ((b_x0 <= a_x1) && (b_x1 > a_x1)) || ((b_x0 >= a.x) && (b_x1 <= a_x1));
                     if ((b_y0 - a_y1 >= this.SPACING_MIN) || ((b_y0 - a_y1 >= 0) && (xOverlap))) {
                         dirs[i] = 0;
-                        if ((this.minimizeBlockCrossover) &&
-                                (this.graph.optCheckAvoidVerticalLineOverlapWithNodes(a_xcenter, a_y1, b_y0))) {
+                        if ((this.minimizeBlockCrossover) && (this.graph.optCheckAvoidVerticalLineOverlapWithNodes(a_xcenter, a_y1, b_y0))) {
                             dirs[i] = 10;
                         }
                     } else if (b_x0 > a_x1 + 2 * this.MARGIN_MIN) {

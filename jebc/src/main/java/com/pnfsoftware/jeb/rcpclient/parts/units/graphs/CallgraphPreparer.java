@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.fast.L;
@@ -14,8 +13,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-class CallgraphPreparer
-        implements Runnable {
+class CallgraphPreparer implements Runnable {
     private ICallgraphBuilder callgraphBuilder;
     Digraph model;
     List<P> points;

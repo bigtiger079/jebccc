@@ -24,8 +24,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class ListParsersDialog
-        extends JebDialog {
+public class ListParsersDialog extends JebDialog {
     private Object input;
 
     public ListParsersDialog(Shell parent) {

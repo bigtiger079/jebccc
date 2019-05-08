@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -8,8 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
 import java.util.concurrent.Callable;
 
-public class ActionStopAnalysisHandler
-        extends NativeCodeBaseHandler {
+public class ActionStopAnalysisHandler extends NativeCodeBaseHandler {
     public ActionStopAnalysisHandler() {
         super("stopAnalysis", "Interrupt the analysis", 0);
     }

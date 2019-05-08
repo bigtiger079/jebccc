@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
 
 import java.util.List;
 
-public class FileEnginesPluginsHandler
-        extends JebBaseHandler {
+public class FileEnginesPluginsHandler extends JebBaseHandler {
     public FileEnginesPluginsHandler() {
         super(null, "Plugins...", null, null);
     }

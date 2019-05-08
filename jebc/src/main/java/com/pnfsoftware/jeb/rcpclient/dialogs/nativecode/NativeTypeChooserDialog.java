@@ -13,8 +13,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class NativeTypeChooserDialog
-        extends JebDialog {
+public class NativeTypeChooserDialog extends JebDialog {
     private INativeCodeUnit<?> unit;
     private NativeTypesView v;
     private INativeType selectedType;

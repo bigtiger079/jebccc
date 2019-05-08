@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import org.eclipse.swt.graphics.FontMetrics;
@@ -9,9 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class InputField
-        extends Composite
-        implements ITextControl {
+public class InputField extends Composite implements ITextControl {
     private Text textbox;
 
     public InputField(Composite parent, String name, String initialValue, int wantedLength) {

@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 
-public class DebuggerPauseHandler
-        extends DebuggerBaseHandler {
+public class DebuggerPauseHandler extends DebuggerBaseHandler {
     public DebuggerPauseHandler() {
         super("dbgPause", S.s(538), null, "eclipse/suspend_co.png", 0);
     }

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.output.text.ITextDocument;
@@ -38,8 +37,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class AbstractControlFlowGraphView<T extends IUnit>
-        extends AbstractLocalGraphView<T> {
+public abstract class AbstractControlFlowGraphView<T extends IUnit> extends AbstractLocalGraphView<T> {
     private static final ILogger logger = GlobalLog.getLogger(AbstractControlFlowGraphView.class);
     protected static Color cGreen = UIAssetManager.getInstance().getColor(ColorsGradient.get("green"));
     protected static Color cRed = UIAssetManager.getInstance().getColor(ColorsGradient.get("red 3"));
@@ -83,8 +81,7 @@ public abstract class AbstractControlFlowGraphView<T extends IUnit>
             ITextDocument fragment = getTextForBlock(b);
             this.contentsFactory.create(node, fragment);
             node.acknowledgeContents(false);
-            Cell localCell = grid1.writeCell(cell.getRow(), cell.getColumn(), cell.getHorizontalSpan(), cell
-                    .getVerticalSpan(), node);
+            Cell localCell = grid1.writeCell(cell.getRow(), cell.getColumn(), cell.getHorizontalSpan(), cell.getVerticalSpan(), node);
         }
         g.registerNodesGrid(grid1);
         notifyContentsCreated();

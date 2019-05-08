@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -40,9 +39,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class DbgCodeView
-        extends AbstractUnitFragment<IDebuggerUnit>
-        implements IContextMenu {
+public class DbgCodeView extends AbstractUnitFragment<IDebuggerUnit> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgCodeView.class);
     private ITextDocumentViewer viewer;
     private DbgCodeDocument document;
@@ -78,9 +75,7 @@ public class DbgCodeView
                     if (e.keyCode == 119) {
                         DbgCodeView.this.document.switchViewType();
                         DbgCodeView.this.viewer.refresh();
-                    } else if ((DbgCodeView.this.document.getViewType() == DbgCodeDocument.ViewType.CODE) &&
-                            (DbgCodeView.this.dbg.isAttached()) && (DbgCodeView.this.dbg.getDefaultThread() != null) &&
-                            (DbgCodeView.this.dbg.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
+                    } else if ((DbgCodeView.this.document.getViewType() == DbgCodeDocument.ViewType.CODE) && (DbgCodeView.this.dbg.isAttached()) && (DbgCodeView.this.dbg.getDefaultThread() != null) && (DbgCodeView.this.dbg.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
                         ICoordinates coords = DbgCodeView.this.viewer.getCaretCoordinates();
                         if (coords == null) {
                             return;
@@ -90,8 +85,7 @@ public class DbgCodeView
                             if (DbgCodeView.this.document.hasInsnAt(coords.getAnchorId())) {
                                 return;
                             }
-                            long newAnchorId = DbgCodeView.this.document.getInsnAddressAt(coords.getAnchorId(), coords
-                                    .getColumnOffset());
+                            long newAnchorId = DbgCodeView.this.document.getInsnAddressAt(coords.getAnchorId(), coords.getColumnOffset());
                             boolean changed = DbgCodeView.this.document.forceInsnAt(newAnchorId, parseMode);
                             if (changed) {
                                 if (!DbgCodeView.this.document.hasInsnAt(coords.getAnchorId())) {
@@ -143,24 +137,19 @@ public class DbgCodeView
                             case 64:
                                 return 32;
                         }
-                        throw new RuntimeException(Strings.f("Invalid default mode %d for processor %s", new Object[]{Integer.valueOf(defaultMode),
-                                DbgCodeView.this.dbg.getTargetInformation().getProcessorType()}));
+                        throw new RuntimeException(Strings.f("Invalid default mode %d for processor %s", new Object[]{Integer.valueOf(defaultMode), DbgCodeView.this.dbg.getTargetInformation().getProcessorType()}));
                 }
                 return -1;
             }
         });
         this.listener = new IEventListener() {
             public void onEvent(IEvent e) {
-                if ((!DbgCodeView.this.viewer.getTextWidget().isDisposed()) && (DbgCodeView.this.dbg != null) &&
-                        (e.getSource() == DbgCodeView.this.dbg)) {
+                if ((!DbgCodeView.this.viewer.getTextWidget().isDisposed()) && (DbgCodeView.this.dbg != null) && (e.getSource() == DbgCodeView.this.dbg)) {
                     UIExecutor.async(DbgCodeView.this.viewer.getTextWidget(), new UIRunnable() {
                         public void runi() {
-                            if ((DbgCodeView.this.dbg != null) &&
-                                    (!DbgCodeView.this.viewer.isDisposed())) {
+                            if ((DbgCodeView.this.dbg != null) && (!DbgCodeView.this.viewer.isDisposed())) {
                                 DbgCodeView.this.viewer.refresh();
-                                if ((DbgCodeView.this.dbg.isAttached()) &&
-                                        (DbgCodeView.this.dbg.getDefaultThread() != null) &&
-                                        (DbgCodeView.this.dbg.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
+                                if ((DbgCodeView.this.dbg.isAttached()) && (DbgCodeView.this.dbg.getDefaultThread() != null) && (DbgCodeView.this.dbg.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
                                     String location = DbgCodeView.this.dbg.getDefaultThread().getLocation();
                                     DbgCodeView.this.viewer.setCaretCoordinates(new Coordinates(Conversion.stringToLong(location)), null, false);
                                 }

@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-public class FileScriptsExecutelastHandler
-        extends JebBaseHandler {
+public class FileScriptsExecutelastHandler extends JebBaseHandler {
     public FileScriptsExecutelastHandler() {
         super("runLastScript", S.s(553), 0, null, null, 16777227);
     }

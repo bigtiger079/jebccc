@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.binding;
 
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -11,9 +10,7 @@ import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 
-public abstract class ActionEx
-        extends Action
-        implements Runnable {
+public abstract class ActionEx extends Action implements Runnable {
     private static KeyShortcutsManager ksm;
     boolean hasCustomShortcut;
 
@@ -47,8 +44,7 @@ public abstract class ActionEx
         int keycode;
         if (ksm != null) {
             keycode = ksm.getShortcutKeycode(getId());
-            if ((keycode != 0) &&
-                    (addExtraAccelerator(keycode))) {
+            if ((keycode != 0) && (addExtraAccelerator(keycode))) {
                 this.hasCustomShortcut = true;
             }
         }

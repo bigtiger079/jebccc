@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.client.S;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class DirectorySelectionListener
-        extends SelectionAdapter {
+public class DirectorySelectionListener extends SelectionAdapter {
     Shell parent;
     Text text;
 

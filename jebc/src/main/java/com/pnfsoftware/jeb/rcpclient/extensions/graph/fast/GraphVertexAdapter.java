@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.fast;
 
-public class GraphVertexAdapter
-        implements IGraphVertexListener {
+public class GraphVertexAdapter implements IGraphVertexListener {
     public void onVertexHoverIn(XYGraph graph, P p) {
     }
 

@@ -2,8 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.ui;
 
 import com.pnfsoftware.jeb.util.base.IProgressCallback;
 
-public abstract interface ITaskProgressMonitor
-        extends IProgressCallback {
+public abstract interface ITaskProgressMonitor extends IProgressCallback {
     public abstract void setTaskName(String paramString);
 
     public abstract void setSubtaskName(String paramString);

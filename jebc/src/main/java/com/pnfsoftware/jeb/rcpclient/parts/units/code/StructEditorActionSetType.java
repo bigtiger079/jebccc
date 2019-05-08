@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
-public class StructEditorActionSetType
-        extends StructEditorAction {
+public class StructEditorActionSetType extends StructEditorAction {
     public StructEditorActionSetType(NativeTypeEditorView v) {
         super("Set Type", v);
         this.keyCode = 121;
@@ -58,8 +56,7 @@ public class StructEditorActionSetType
             return false;
         }
         if (structType.getTypeManager().addStructureField(structType, e.name, newFieldType, e.offset) == null) {
-            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", new Object[]{newFieldType
-                    .getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", new Object[]{newFieldType.getName(true), Integer.valueOf(e.offset)}));
             return false;
         }
         return true;

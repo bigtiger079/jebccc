@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.client.S;
@@ -18,9 +17,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Text;
 
-public class FilterText
-        extends Composite
-        implements IFilterText {
+public class FilterText extends Composite implements IFilterText {
     private Boolean status;
     private Text filterText;
     private Color fgColor;

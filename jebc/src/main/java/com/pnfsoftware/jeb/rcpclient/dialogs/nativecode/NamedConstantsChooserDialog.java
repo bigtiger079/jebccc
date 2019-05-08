@@ -12,8 +12,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class NamedConstantsChooserDialog
-        extends JebDialog {
+public class NamedConstantsChooserDialog extends JebDialog {
     private INativeCodeUnit<?> unit;
     private NamedConstantsView v;
     private Object sourceValue;

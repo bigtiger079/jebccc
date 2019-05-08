@@ -4,8 +4,7 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class ProgressMonitorHideableDialog
-        extends ProgressMonitorDialog {
+public class ProgressMonitorHideableDialog extends ProgressMonitorDialog {
     public ProgressMonitorHideableDialog(Shell parent) {
         super(parent);
     }

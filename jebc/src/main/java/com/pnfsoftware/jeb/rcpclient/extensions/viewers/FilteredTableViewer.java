@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.AbstractFilteredView;
@@ -15,8 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-public class FilteredTableViewer
-        extends AbstractFilteredViewer<Table, TableViewer> {
+public class FilteredTableViewer extends AbstractFilteredViewer<Table, TableViewer> {
     public FilteredTableViewer(FilteredTableView widget) {
         super(widget);
         this.comparator = new FilteredViewerComparator(Strings.getDefaultComparator(), this);
@@ -81,8 +79,7 @@ public class FilteredTableViewer
         ((CheckboxTableViewer) getViewer()).setCheckStateProvider(provider);
     }
 
-    class Filter
-            extends AbstractFilteredFilter {
+    class Filter extends AbstractFilteredFilter {
         public Filter(StructuredViewer viewer) {
             super(viewer);
         }

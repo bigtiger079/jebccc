@@ -41,8 +41,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
-public class DbgAttachDialog
-        extends JebDialog {
+public class DbgAttachDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DbgAttachDialog.class);
     private IGraphicalTaskExecutor taskExecutor;
     private IDebuggerUnit dbg;

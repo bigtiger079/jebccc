@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.table;
 
 import com.pnfsoftware.jeb.core.output.table.ICell;
@@ -12,8 +11,7 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.Viewer;
 
-class ContentProvider
-        implements IFilteredTableContentProvider {
+class ContentProvider implements IFilteredTableContentProvider {
     private static final ILogger logger = GlobalLog.getLogger(ContentProvider.class);
     ITableDocumentPart input;
 

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-class NativeImageReparseExtraOptionsDialog
-        extends TextDialog {
+class NativeImageReparseExtraOptionsDialog extends TextDialog {
     Button widgetEndianness;
     boolean bigEndian;
 

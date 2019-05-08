@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.IFindTextResult;
 
-public class InteractiveTextFindResult
-        implements IFindTextResult {
+public class InteractiveTextFindResult implements IFindTextResult {
     public static InteractiveTextFindResult EOS = new InteractiveTextFindResult(-1);
     private ICoordinates begin;
     private ICoordinates end;

@@ -13,8 +13,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class CreatePackageDialog
-        extends JebDialog {
+public class CreatePackageDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(CreatePackageDialog.class);
     private TextHistory textHistory;
     private HistoryAssistedTextField text;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 
-public class LogDocument
-        extends Document {
+public class LogDocument extends Document {
     private static final ILogger logger = GlobalLog.getLogger(LogDocument.class);
     private int limit;
     private int limitHalf;

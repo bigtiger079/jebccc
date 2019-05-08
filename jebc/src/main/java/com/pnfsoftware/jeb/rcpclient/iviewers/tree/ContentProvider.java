@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.tree;
 
 import com.pnfsoftware.jeb.core.output.tree.INode;
@@ -12,8 +11,7 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.Viewer;
 
-class ContentProvider
-        implements IFilteredTreeContentProvider {
+class ContentProvider implements IFilteredTreeContentProvider {
     private static final ILogger logger = GlobalLog.getLogger(ContentProvider.class);
     ITreeDocument input;
 

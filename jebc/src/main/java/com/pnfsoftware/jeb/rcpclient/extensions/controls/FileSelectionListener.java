@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.client.S;
@@ -11,8 +10,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class FileSelectionListener
-        extends SelectionAdapter {
+public class FileSelectionListener extends SelectionAdapter {
     Shell parent;
     Text text;
     private String[] extensions;

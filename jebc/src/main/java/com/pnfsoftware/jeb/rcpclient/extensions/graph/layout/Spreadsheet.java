@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph.layout;
 
 import com.pnfsoftware.jeb.util.base.Assert;
@@ -54,8 +53,7 @@ public class Spreadsheet<T> {
                     Cell<T> cell = (Cell) cellrow.get(col);
                     if ((cell != null) && (cell.isPartOfMergedCell())) {
                         if ((cell.getRow() != row) || (cell.getColumn() != col)) {
-                            throw new RuntimeException(String.format("Inconsistent cell coordinates: expected (%d,%d), got (%d,%d)", new Object[]{Integer.valueOf(row), Integer.valueOf(col),
-                                    Integer.valueOf(cell.getRow()), Integer.valueOf(cell.getColumn())}));
+                            throw new RuntimeException(String.format("Inconsistent cell coordinates: expected (%d,%d), got (%d,%d)", new Object[]{Integer.valueOf(row), Integer.valueOf(col), Integer.valueOf(cell.getRow()), Integer.valueOf(cell.getColumn())}));
                         }
                         if ((cell.horiMergerDisp > 0) && (cell.horiMergerDisp < 0)) {
                             throw new RuntimeException();
@@ -130,8 +128,7 @@ public class Spreadsheet<T> {
                     if (cell.getObject() != null) {
                         break label112;
                     }
-                    if ((cell.isPartOfMergedCell()) && (
-                            (!includeNullMergers) || (cell.getPrimary(this).getObject() != null))) {
+                    if ((cell.isPartOfMergedCell()) && ((!includeNullMergers) || (cell.getPrimary(this).getObject() != null))) {
                         break label112;
                     }
                 }
@@ -150,8 +147,7 @@ public class Spreadsheet<T> {
                     if (cell.getObject() != null) {
                         break label85;
                     }
-                    if ((cell.isPartOfMergedCell()) && (
-                            (!includeNullMergers) || (cell.getPrimary(this).getObject() != null))) {
+                    if ((cell.isPartOfMergedCell()) && ((!includeNullMergers) || (cell.getPrimary(this).getObject() != null))) {
                         break label85;
                     }
                 }
@@ -337,8 +333,7 @@ public class Spreadsheet<T> {
                 Cell<T> c = getCellInternal(i, j);
                 if (c != null) {
                     Cell<T> master = c.getPrimary(this);
-                    if ((master.getRow() < row) || (master.getNextRow() > row + verticalSpan) || (master.getColumn() < col) ||
-                            (master.getColumn() > col + horizontalSpan)) {
+                    if ((master.getRow() < row) || (master.getNextRow() > row + verticalSpan) || (master.getColumn() < col) || (master.getColumn() > col + horizontalSpan)) {
                         throw new RuntimeException("Merging partially overlaps other merged cells");
                     }
                 }
@@ -549,8 +544,7 @@ public class Spreadsheet<T> {
                             sb.append("x");
                         } else if (cell.horiMergerDisp < 0) {
                             sb.append("=x");
-                            if ((col + 1 > this.lastColumnIndex) || (rowcells.get(col + 1) == null) ||
-                                    (((Cell) rowcells.get(col + 1)).horiMergerDisp >= 0)) {
+                            if ((col + 1 > this.lastColumnIndex) || (rowcells.get(col + 1) == null) || (((Cell) rowcells.get(col + 1)).horiMergerDisp >= 0)) {
                                 sb.append(" ");
                             }
                         } else {

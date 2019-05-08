@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.tree;
 
 import com.pnfsoftware.jeb.core.output.tree.INode;
@@ -12,8 +11,7 @@ import org.eclipse.jface.viewers.ILazyTreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 
-class LazyContentProvider
-        implements ILazyTreeContentProvider {
+class LazyContentProvider implements ILazyTreeContentProvider {
     private static final ILogger logger = GlobalLog.getLogger(LazyContentProvider.class);
     InteractiveTreeViewer iviewer;
     ITreeDocument idoc;

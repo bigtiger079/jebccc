@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
 import com.pnfsoftware.jeb.client.S;
@@ -9,8 +8,7 @@ import java.util.Locale;
 
 import org.eclipse.jface.action.IMenuManager;
 
-public class EditLanguageMenuHandler
-        extends AbstractDynamicMenuHandler {
+public class EditLanguageMenuHandler extends AbstractDynamicMenuHandler {
     public void menuAboutToShow(IMenuManager manager) {
         if (!canExecute()) {
             return;

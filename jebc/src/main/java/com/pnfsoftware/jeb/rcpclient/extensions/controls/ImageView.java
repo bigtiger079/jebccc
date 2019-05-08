@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import java.io.ByteArrayInputStream;
@@ -14,8 +13,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ScrollBar;
 
-public class ImageView
-        extends Composite {
+public class ImageView extends Composite {
     private Canvas canvas;
     private Point origin;
 

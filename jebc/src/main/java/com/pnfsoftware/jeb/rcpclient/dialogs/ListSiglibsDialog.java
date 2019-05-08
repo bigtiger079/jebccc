@@ -26,8 +26,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class ListSiglibsDialog
-        extends JebDialog {
+public class ListSiglibsDialog extends JebDialog {
     private IGraphicalTaskExecutor executor;
     private NativeSignatureDBManager dbman;
     private FilteredTableViewer ftv;
@@ -61,8 +60,7 @@ public class ListSiglibsDialog
         ft.addTableEventListener(p);
         this.ftv.setInput(this.dbman);
         createOkayButton(parent);
-        if (getStandardWidgetManager() != null)
-            getStandardWidgetManager().wrapWidget(ft, "listSiglibs");
+        if (getStandardWidgetManager() != null) getStandardWidgetManager().wrapWidget(ft, "listSiglibs");
     }
 
     class ContentProviderListener implements ITableEventListener, IFilteredTableContentProvider {

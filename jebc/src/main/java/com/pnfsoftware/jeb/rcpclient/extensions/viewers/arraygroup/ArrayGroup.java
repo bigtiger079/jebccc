@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayGroup
-        implements IArrayGroup {
+public class ArrayGroup implements IArrayGroup {
     int firstIndex;
     List<Object> children = new ArrayList();
 

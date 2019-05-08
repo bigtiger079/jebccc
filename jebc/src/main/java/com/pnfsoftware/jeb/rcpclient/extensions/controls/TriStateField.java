@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class TriStateField
-        extends Composite {
+public class TriStateField extends Composite {
     private Combo wlist;
 
     public TriStateField(Composite parent, String name, Boolean initialState, String thirdStateLabel) {

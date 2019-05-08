@@ -1,10 +1,8 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.themes;
 
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 
-public class OrangeTheme
-        extends Theme {
+public class OrangeTheme extends Theme {
     private static final UIAssetManager ui = UIAssetManager.getInstance();
     int normal = 12531212;
     int light = 16345146;

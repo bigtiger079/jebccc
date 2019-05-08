@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.tree;
 
 import org.apache.commons.lang3.StringUtils;
@@ -8,8 +7,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
 public class TreeUtil {
-    public static class SwtTreeFormatter
-            implements TreeUtil.TreeFormatter<TreeItem> {
+    public static class SwtTreeFormatter implements TreeUtil.TreeFormatter<TreeItem> {
         Tree tree;
         TreeColumn[] tcs;
 
@@ -69,8 +67,7 @@ public class TreeUtil {
             for (int j = 0; j < formatter.getPropertySize(); j++) {
                 String name = StringEscapeUtils.escapeXml11(formatter.getPropertyName(item, j));
                 String value = StringEscapeUtils.escapeXml11(formatter.getPropertyValue(item, j));
-                stb.append(StringUtils.leftPad(" ", i * indent)).append("<property name=\"").append(name)
-                        .append("\" value=\"").append(value).append("\"/>\n");
+                stb.append(StringUtils.leftPad(" ", i * indent)).append("<property name=\"").append(name).append("\" value=\"").append(value).append("\"/>\n");
             }
         }
     }

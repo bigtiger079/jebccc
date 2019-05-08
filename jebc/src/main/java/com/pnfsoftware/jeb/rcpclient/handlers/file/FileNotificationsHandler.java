@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
@@ -21,8 +20,7 @@ import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
-public class FileNotificationsHandler
-        extends JebBaseHandler {
+public class FileNotificationsHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(FileNotificationsHandler.class);
 
     public FileNotificationsHandler() {

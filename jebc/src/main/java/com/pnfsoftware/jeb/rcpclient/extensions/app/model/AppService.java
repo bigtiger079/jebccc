@@ -17,8 +17,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public class AppService
-        implements IAppService {
+public class AppService implements IAppService {
     private static final ILogger logger = GlobalLog.getLogger(AppService.class);
     App app;
 
@@ -53,8 +52,7 @@ public class AppService
 
     public <T extends IMElement> void findElementsRecurse(IMElement elt, String id, Class<T> type, Collection<String> tags, int flags, List<T> out) {
         boolean include = true;
-        if ((type != null) &&
-                (!type.isAssignableFrom(elt.getClass()))) {
+        if ((type != null) && (!type.isAssignableFrom(elt.getClass()))) {
             include = false;
         }
         if (include) {

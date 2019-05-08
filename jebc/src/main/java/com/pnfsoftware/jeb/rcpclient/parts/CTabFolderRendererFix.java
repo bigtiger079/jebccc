@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -8,8 +7,7 @@ import org.eclipse.swt.custom.CTabFolderRenderer;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 
-public class CTabFolderRendererFix
-        extends CTabFolderRenderer {
+public class CTabFolderRendererFix extends CTabFolderRenderer {
     private static final ILogger logger = GlobalLog.getLogger(CTabFolderRendererFix.class);
 
     public CTabFolderRendererFix(CTabFolder parent) {

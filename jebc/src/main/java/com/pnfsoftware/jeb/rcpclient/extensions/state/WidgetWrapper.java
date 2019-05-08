@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.state;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;

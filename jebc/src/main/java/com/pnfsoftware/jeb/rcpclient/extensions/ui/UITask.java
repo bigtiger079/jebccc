@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.ui;
 
 import com.pnfsoftware.jeb.util.base.CallableWithProgressCallback;

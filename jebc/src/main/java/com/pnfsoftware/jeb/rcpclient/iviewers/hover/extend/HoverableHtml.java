@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.hover.extend;
 
 public class HoverableHtml {

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
@@ -38,8 +37,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
-public class NativeRoutinesView
-        extends AbstractFilteredTableView<INativeCodeUnit<?>, INativeMethodItem> {
+public class NativeRoutinesView extends AbstractFilteredTableView<INativeCodeUnit<?>, INativeMethodItem> {
     private static final ILogger logger = GlobalLog.getLogger(NativeRoutinesView.class);
     public static final int TYPESOURCE_INUSE = 1;
     public static final int TYPESOURCE_TYPELIBS = 2;
@@ -195,8 +193,7 @@ public class NativeRoutinesView
         }
     }
 
-    static class LabelProvider
-            implements ILabelValueProvider, ITableLabelProvider {
+    static class LabelProvider implements ILabelValueProvider, ITableLabelProvider {
         public void addListener(ILabelProviderListener listener) {
         }
 

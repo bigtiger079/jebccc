@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
@@ -279,8 +278,7 @@ public class NavigationEventManager {
                 atttemptGoOut = 0;
                 if ((e.keyCode == 16777218) && (this.wrappedText.getCaretLine() == this.wrappedText.getBottomIndex())) {
                     atttemptGoOut = 1;
-                } else if ((e.keyCode == 16777217) && (this.wrappedText.getCaretLine() == 0))
-                    atttemptGoOut = -1;
+                } else if ((e.keyCode == 16777217) && (this.wrappedText.getCaretLine() == 0)) atttemptGoOut = -1;
                 boolean leavingViewport;
                 if (e.keyCode == 16777217) {
                     delta = -1;
@@ -378,8 +376,7 @@ public class NavigationEventManager {
     }
 
     private void processCaretPosition(int bufferOffset, boolean positionChanged, int focusChange) {
-        logger.i("processCaretChange: viewer=%d line=%d (posChanged=%b focusChange=%d)", new Object[]{
-                Integer.valueOf(this.text.hashCode()), Integer.valueOf(this.wrappedText.getCaretLine()), Boolean.valueOf(positionChanged), Integer.valueOf(focusChange)});
+        logger.i("processCaretChange: viewer=%d line=%d (posChanged=%b focusChange=%d)", new Object[]{Integer.valueOf(this.text.hashCode()), Integer.valueOf(this.wrappedText.getCaretLine()), Boolean.valueOf(positionChanged), Integer.valueOf(focusChange)});
         if ((!positionChanged) && (focusChange == 0) && (this.itemOnCaret == null)) {
             return;
         }

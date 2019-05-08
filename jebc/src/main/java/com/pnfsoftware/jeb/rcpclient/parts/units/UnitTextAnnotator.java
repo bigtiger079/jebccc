@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
@@ -13,8 +12,7 @@ import com.pnfsoftware.jeb.util.events.IEventListener;
 
 import java.util.Map;
 
-public class UnitTextAnnotator
-        implements IEventListener {
+public class UnitTextAnnotator implements IEventListener {
     UIState uiState;
     ITextDocumentViewer viewer;
 

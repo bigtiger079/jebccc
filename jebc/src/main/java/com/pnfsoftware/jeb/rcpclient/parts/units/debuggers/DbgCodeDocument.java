@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
@@ -32,8 +31,7 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-public class DbgCodeDocument
-        extends AbstractTextDocument {
+public class DbgCodeDocument extends AbstractTextDocument {
     private static final ILogger logger = GlobalLog.getLogger(DbgCodeDocument.class);
     private static final int maxBytesPerLine = 16;
     private IDebuggerUnit unit;
@@ -76,8 +74,7 @@ public class DbgCodeDocument
                         size = (int) (4294967296L - this.firstAddress);
                     }
                 }
-            } else if ((memspace <= 64) &&
-                    (this.firstAddress + size > Long.MAX_VALUE)) {
+            } else if ((memspace <= 64) && (this.firstAddress + size > Long.MAX_VALUE)) {
                 if (this.firstAddress > Long.MAX_VALUE) {
                     size = 0;
                 } else {
@@ -328,8 +325,7 @@ public class DbgCodeDocument
     }
 
     public ITextDocumentPart getDocumentPart(long anchorId, int linesAfter, int linesBefore) {
-        if ((this.unit.isAttached()) && (this.unit.getDefaultThread() != null) &&
-                (this.unit.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
+        if ((this.unit.isAttached()) && (this.unit.getDefaultThread() != null) && (this.unit.getDefaultThread().getStatus() == DebuggerThreadStatus.PAUSED)) {
             IVirtualMemory vm = this.unit.getMemory();
             if (vm != null) {
                 this.chunk.update(anchorId, linesAfter, linesBefore);
@@ -387,19 +383,16 @@ public class DbgCodeDocument
                         } catch (Exception localException1) {
                         }
                     }
-                    SortedMap<Long, IInstruction> subInsns = this.insns.subMap(Long.valueOf(this.chunk.firstAddress),
-                            Long.valueOf(this.chunk.toAbsolute(this.chunk.data.length)));
+                    SortedMap<Long, IInstruction> subInsns = this.insns.subMap(Long.valueOf(this.chunk.firstAddress), Long.valueOf(this.chunk.toAbsolute(this.chunk.data.length)));
                     long notProcessedAddress = this.chunk.firstAddress;
                     for (Map.Entry<Long, IInstruction> insn : subInsns.entrySet()) {
                         if (notProcessedAddress != ((Long) insn.getKey()).longValue()) {
-                            formatMemory(lines, anchors, this.chunk.toRelative(notProcessedAddress), this.chunk
-                                    .toRelative(((Long) insn.getKey()).longValue()));
+                            formatMemory(lines, anchors, this.chunk.toRelative(notProcessedAddress), this.chunk.toRelative(((Long) insn.getKey()).longValue()));
                             lines.add(ILine.EMPTY_LINE);
                         }
                         lines.add(formatInsn((IInstruction) insn.getValue(), ((Long) insn.getKey()).longValue()));
                         anchors.add(new Anchor(((Long) insn.getKey()).longValue(), lines.size() - 1));
-                        if ((((IInstruction) insn.getValue()).getBreakingFlow(((Long) insn.getKey()).longValue()).isBroken()) ||
-                                (((IInstruction) insn.getValue()).getRoutineCall(((Long) insn.getKey()).longValue()).isBroken())) {
+                        if ((((IInstruction) insn.getValue()).getBreakingFlow(((Long) insn.getKey()).longValue()).isBroken()) || (((IInstruction) insn.getValue()).getRoutineCall(((Long) insn.getKey()).longValue()).isBroken())) {
                             lines.add(ILine.EMPTY_LINE);
                         }
                         notProcessedAddress = ((Long) insn.getKey()).longValue() + ((IInstruction) insn.getValue()).getSize();
@@ -432,8 +425,7 @@ public class DbgCodeDocument
                 appendLine(stb, i, bytesToDisplay);
                 i += 16;
             }
-            lines.add(new Line(stb,
-                    Arrays.asList(new TextItem[]{new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS)})));
+            lines.add(new Line(stb, Arrays.asList(new TextItem[]{new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS)})));
             anchors.add(new Anchor(absoluteAddress, lines.size() - 1));
         }
     }
@@ -469,9 +461,7 @@ public class DbgCodeDocument
         String bytecode = Formatter.formatBinaryLineTruncate(insn.getCode(), 0, insn.getSize(), 8);
         stb.append(bytecode).append(' ');
         stb.append(insn.format(Long.valueOf(address)));
-        return new Line(stb.toString(),
-                Arrays.asList(new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS), new TextItem(addressStr
-                        .length(), bytecode.length(), ItemClassIdentifiers.BYTECODE)));
+        return new Line(stb.toString(), Arrays.asList(new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS), new TextItem(addressStr.length(), bytecode.length(), ItemClassIdentifiers.BYTECODE)));
     }
 
     private String formatAddress(long address) {

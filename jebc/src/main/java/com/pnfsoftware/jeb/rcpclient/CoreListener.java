@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.S;
@@ -14,8 +13,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class CoreListener
-        implements IEventListener {
+public class CoreListener implements IEventListener {
     private static final ILogger logger = GlobalLog.getLogger(CoreListener.class);
     private static CoreListener instance;
     private RcpClientContext context;

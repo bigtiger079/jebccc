@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.ui;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -55,13 +54,11 @@ public class Toast {
     }
 
     public static Toast inverted(Composite topLevelContainer, String text) {
-        return
-                new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getBackground()).setBackgroundColor(topLevelContainer.getForeground());
+        return new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getBackground()).setBackgroundColor(topLevelContainer.getForeground());
     }
 
     public static Toast urgent(Composite topLevelContainer, String text) {
-        return
-                new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getDisplay().getSystemColor(3)).setBackgroundColor(topLevelContainer.getDisplay().getSystemColor(7)).setFont(SwtRegistry.getInstance().getFont(topLevelContainer.getFont(), null, Integer.valueOf(1)));
+        return new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getDisplay().getSystemColor(3)).setBackgroundColor(topLevelContainer.getDisplay().getSystemColor(7)).setFont(SwtRegistry.getInstance().getFont(topLevelContainer.getFont(), null, Integer.valueOf(1)));
     }
 
     public Display getDisplay() {

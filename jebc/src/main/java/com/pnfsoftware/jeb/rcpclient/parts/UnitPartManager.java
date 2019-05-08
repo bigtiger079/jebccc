@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.google.common.net.MediaType;
@@ -102,9 +101,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class UnitPartManager
-        extends AbstractPartManager
-        implements IRcpUnitView {
+public class UnitPartManager extends AbstractPartManager implements IRcpUnitView {
     private static final ILogger logger = GlobalLog.getLogger(UnitPartManager.class, Integer.MAX_VALUE);
     private Display display;
     private AbstractRefresher refresher1;
@@ -377,8 +374,7 @@ public class UnitPartManager
                 wrapCustomFragment(dbg, stkView, "memoryCode");
             }
         }
-        if (((this.unit instanceof INativeSourceUnit)) &&
-                (shouldDisplay(StaticCodeGraphView.class))) {
+        if (((this.unit instanceof INativeSourceUnit)) && (shouldDisplay(StaticCodeGraphView.class))) {
             INativeSourceUnit srcUnit = (INativeSourceUnit) this.unit;
             List<INativeDecompilationTarget> targets = srcUnit.getDecompilationTargets();
             if (!targets.isEmpty()) {

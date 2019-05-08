@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
@@ -27,9 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public final class GraphNode
-        extends Composite
-        implements IZoomable, IGraphNode {
+public final class GraphNode extends Composite implements IZoomable, IGraphNode {
     private static final ILogger logger = GlobalLog.getLogger(GraphNode.class);
     int id = -1;
     Graph graph;

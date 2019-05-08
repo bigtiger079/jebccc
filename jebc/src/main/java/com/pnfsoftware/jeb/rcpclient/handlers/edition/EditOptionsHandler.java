@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
 import com.pnfsoftware.jeb.client.S;
@@ -12,8 +11,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 
-public class EditOptionsHandler
-        extends JebBaseHandler {
+public class EditOptionsHandler extends JebBaseHandler {
     public EditOptionsHandler() {
         super(null, S.s(533), "Edit the front-end and back-end options for JEB", "jeb1/icon-options.png");
         setAccelerator(SWT.MOD1 | SWT.MOD2 | SWT.MOD3 | 0x4F);

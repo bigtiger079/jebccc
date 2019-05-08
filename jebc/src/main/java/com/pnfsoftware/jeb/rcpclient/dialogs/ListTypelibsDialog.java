@@ -27,8 +27,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class ListTypelibsDialog
-        extends JebDialog {
+public class ListTypelibsDialog extends JebDialog {
     private IGraphicalTaskExecutor executor;
     private TypeLibraryService tls;
     private FilteredTableViewer ftv;
@@ -62,8 +61,7 @@ public class ListTypelibsDialog
         ft.addTableEventListener(p);
         this.ftv.setInput(this.tls);
         createOkayButton(parent);
-        if (getStandardWidgetManager() != null)
-            getStandardWidgetManager().wrapWidget(ft, "listTypelibs");
+        if (getStandardWidgetManager() != null) getStandardWidgetManager().wrapWidget(ft, "listTypelibs");
     }
 
     class ContentProviderListener implements ITableEventListener, IFilteredTableContentProvider {

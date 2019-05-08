@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.client.S;
@@ -81,9 +80,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
 
-public class ProjectExplorerPartManager
-        extends AbstractPartManager
-        implements IOperable {
+public class ProjectExplorerPartManager extends AbstractPartManager implements IOperable {
     private static final ILogger logger = GlobalLog.getLogger(ProjectExplorerPartManager.class);
     private Composite parent;
     private PatternTreeView pt;
@@ -219,8 +216,7 @@ public class ProjectExplorerPartManager
                             if (context.hasOpenedProject()) {
                                 MessageBox mb = new MessageBox(context.getActiveShell(), 456);
                                 mb.setText(S.s(207));
-                                mb.setMessage(
-                                        S.s(659) + ".\n\nWould you like to create a new project?");
+                                mb.setMessage(S.s(659) + ".\n\nWould you like to create a new project?");
                                 int r = mb.open();
                                 if (r == 64) {
                                     if (!context.loadInputAsProject(parent.getShell(), path)) {

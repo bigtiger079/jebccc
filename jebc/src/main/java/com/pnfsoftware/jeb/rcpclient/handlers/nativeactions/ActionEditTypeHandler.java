@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
@@ -16,8 +15,7 @@ import com.pnfsoftware.jeb.util.collect.Lists;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ActionEditTypeHandler
-        extends NativeCodeBaseHandler {
+public class ActionEditTypeHandler extends NativeCodeBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionEditTypeHandler.class);
 
     public ActionEditTypeHandler() {

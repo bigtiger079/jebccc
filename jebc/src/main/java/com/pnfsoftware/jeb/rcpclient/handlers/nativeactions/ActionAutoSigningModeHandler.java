@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
@@ -11,8 +10,7 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.util.format.Strings;
 
-public class ActionAutoSigningModeHandler
-        extends NativeCodeBaseHandler {
+public class ActionAutoSigningModeHandler extends NativeCodeBaseHandler {
     public ActionAutoSigningModeHandler() {
         super("autoSigningModeHandler", "Turn Procedure Auto-Signing On/Off...", 0);
     }

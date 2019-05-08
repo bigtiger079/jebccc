@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.util.format.IAsciiable;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TextHistoryCollection
-        implements IAsciiable {
+public class TextHistoryCollection implements IAsciiable {
     Map<String, TextHistory> map = new HashMap();
 
     public boolean add(String name, TextHistory history) {

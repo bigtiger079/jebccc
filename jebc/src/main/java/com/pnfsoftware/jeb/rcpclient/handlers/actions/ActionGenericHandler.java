@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
 import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
@@ -19,8 +18,7 @@ import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public abstract class ActionGenericHandler
-        extends JebBaseHandler {
+public abstract class ActionGenericHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionGenericHandler.class);
     private int actionId;
 

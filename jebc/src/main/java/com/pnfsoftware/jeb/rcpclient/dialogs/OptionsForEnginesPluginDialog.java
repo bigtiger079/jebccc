@@ -20,8 +20,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class OptionsForEnginesPluginDialog
-        extends JebDialog {
+public class OptionsForEnginesPluginDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(OptionsForEnginesPluginDialog.class);
     private IEnginesPlugin plugin;
     private List<Text> widgetDatas = new ArrayList();

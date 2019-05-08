@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
@@ -16,8 +15,7 @@ import java.util.List;
 
 import org.eclipse.swt.SWT;
 
-public class DebuggerToggleBreakpointHandler
-        extends DebuggerBaseHandler {
+public class DebuggerToggleBreakpointHandler extends DebuggerBaseHandler {
     public DebuggerToggleBreakpointHandler() {
         super("dbgToggleBreakpoint", S.s(578), null, null, SWT.MOD1 | 0x42);
     }
@@ -33,8 +31,7 @@ public class DebuggerToggleBreakpointHandler
         IRuntimeProject prj = this.context.getOpenedProject();
         List<IDebuggerUnit> debuggers = RuntimeProjectUtil.findUnitsByType(prj, IDebuggerUnit.class, false);
         for (IDebuggerUnit dbg : debuggers) {
-            if ((dbg.getPotentialDebuggees().contains(unit)) &&
-                    (dbg.isAttached())) {
+            if ((dbg.getPotentialDebuggees().contains(unit)) && (dbg.isAttached())) {
                 IDebuggerBreakpoint bp = dbg.getBreakpoint(address, unit);
                 if (bp == null) {
                     dbg.setBreakpoint(address, unit);

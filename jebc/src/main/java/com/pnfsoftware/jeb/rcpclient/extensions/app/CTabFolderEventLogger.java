@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.app;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.custom.CTabFolder2Listener;
 import org.eclipse.swt.custom.CTabFolderEvent;
 
-public class CTabFolderEventLogger
-        implements CTabFolder2Listener {
+public class CTabFolderEventLogger implements CTabFolder2Listener {
     private static final ILogger logger = GlobalLog.getLogger(CTabFolderEventLogger.class);
 
     public void close(CTabFolderEvent event) {

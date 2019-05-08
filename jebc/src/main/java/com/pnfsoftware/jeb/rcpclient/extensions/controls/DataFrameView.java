@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -29,8 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-public class DataFrameView
-        extends FilteredTableView {
+public class DataFrameView extends FilteredTableView {
     private boolean displayIndex;
     private DataFrame df;
     private FilteredTableViewer filteredViewer;
@@ -40,8 +38,7 @@ public class DataFrameView
     private DataFrameLabelProvider labelProvider;
 
     public DataFrameView(Composite parent, DataFrame df, boolean displayIndex) {
-        super(parent, 898,
-                (String[]) df.getColumnLabels().toArray(new String[df.getColumnLabels().size()]), null, displayIndex);
+        super(parent, 898, (String[]) df.getColumnLabels().toArray(new String[df.getColumnLabels().size()]), null, displayIndex);
         this.df = df;
         this.displayIndex = displayIndex;
         String[] titleColumns = (String[]) df.getColumnLabels().toArray(new String[df.getColumnLabels().size()]);
@@ -100,9 +97,7 @@ public class DataFrameView
         this.filteredViewer.applyFilterText();
     }
 
-    class DataFrameLabelProvider
-            extends DefaultCellLabelProvider
-            implements IExportableData {
+    class DataFrameLabelProvider extends DefaultCellLabelProvider implements IExportableData {
         DataFrameLabelProvider(IFilteredTableContentProvider contentProvider) {
             super(contentProvider);
         }

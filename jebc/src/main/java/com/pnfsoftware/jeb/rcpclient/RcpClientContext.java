@@ -266,9 +266,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
-public class RcpClientContext
-        extends AbstractClientContext
-        implements IGraphicalTaskExecutor, IWidgetManager, IMAppContext {
+public class RcpClientContext extends AbstractClientContext implements IGraphicalTaskExecutor, IWidgetManager, IMAppContext {
     public static final ILogger logger = GlobalLog.getLogger(RcpClientContext.class);
     private static String mainShellOriginalTitle;
     public static final String shortcutsFilename = "jeb-shortcuts.cfg";
@@ -278,8 +276,7 @@ public class RcpClientContext
     private Display display;
     private JebApp app;
 
-    private class LogManagerRoutine
-            implements Runnable {
+    private class LogManagerRoutine implements Runnable {
         int logLimit;
         int logLimitHalf;
         String additionString;
@@ -319,8 +316,7 @@ public class RcpClientContext
                     UIExecutor.sync(RcpClientContext.this.display, new UIRunnable() {
                         public void runi() {
                             try {
-                                if ((RcpClientContext.this.getStatusIndicator() != null) &&
-                                        (RcpClientContext.LogManagerRoutine.this.status != null)) {
+                                if ((RcpClientContext.this.getStatusIndicator() != null) && (RcpClientContext.LogManagerRoutine.this.status != null)) {
                                     RcpClientContext.this.getStatusIndicator().setText(1, RcpClientContext.LogManagerRoutine.this.status);
                                 }
                                 if (RcpClientContext.LogManagerRoutine.this.additionString != null) {
@@ -511,8 +507,7 @@ public class RcpClientContext
             getErrorHandler().handle(e);
         } else {
             logger.catchingSilent(e);
-            String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{
-                    Throwables.formatStacktraceShort(e)});
+            String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{Throwables.formatStacktraceShort(e)});
             UI.error(msg);
         }
         return true;
@@ -934,8 +929,7 @@ public class RcpClientContext
         showAvailableDecompilers();
         notifyListeners(new JebClientEvent(JC.InitializationComplete));
         getPartManager().initialize();
-        if ((!isRestartRequired()) && (getPropertyManager().getInteger(".ui.survey.CustomSurvey1Timestamp") == 0) &&
-                (getPropertyManager().getInteger(".RunCount") >= 5)) {
+        if ((!isRestartRequired()) && (getPropertyManager().getInteger(".ui.survey.CustomSurvey1Timestamp") == 0) && (getPropertyManager().getInteger(".RunCount") >= 5)) {
             this.display.timerExec(120000, new Runnable() {
                 public void run() {
                     int ts = (int) (System.currentTimeMillis() / 1000L);
@@ -1155,9 +1149,7 @@ public class RcpClientContext
         if (Licensing.isDemoBuild()) {
             String msg = S.s(255);
             UI.warn(shell, S.s(821), msg);
-            Toast.urgent(shell, "*** Demo has expired ***")
-                    .setFont(UIAssetManager.getInstance().getFont(shell.getFont(), Integer.valueOf(15), Integer.valueOf(1)))
-                    .setDuration(Long.MAX_VALUE).show();
+            Toast.urgent(shell, "*** Demo has expired ***").setFont(UIAssetManager.getInstance().getFont(shell.getFont(), Integer.valueOf(15), Integer.valueOf(1))).setDuration(Long.MAX_VALUE).show();
             return;
         }
         String msg = S.s(759) + "\n\nPress OK to check for or install an update. Press Cancel to continue.";
@@ -1213,8 +1205,7 @@ public class RcpClientContext
             } else if ((ping == 0) && (calledByUser)) {
                 message = expiredLicense ? "It seems there is no available update for your license at this time." : S.s(808);
                 if ((sbi.getFlags() & 0x1) != 0) {
-                    message = String.format("Good news, JEB version %d is available!\n\nThis major update needs to be installed separately. Please check your registered email for download details.", new Object[]{
-                            Integer.valueOf(app_ver.getMajor() + 1)});
+                    message = String.format("Good news, JEB version %d is available!\n\nThis major update needs to be installed separately. Please check your registered email for download details.", new Object[]{Integer.valueOf(app_ver.getMajor() + 1)});
                 }
                 UI.info(message);
             }
@@ -1361,8 +1352,7 @@ public class RcpClientContext
             return false;
         }
         boolean save = false;
-        if ((Licensing.isFullBuild()) &&
-                (hasOpenedProject())) {
+        if ((Licensing.isFullBuild()) && (hasOpenedProject())) {
             MessageBox mb = new MessageBox(shell, 456);
             mb.setText(S.s(207));
             mb.setMessage(S.s(659) + ".\n\n" + S.s(660));
@@ -1416,8 +1406,7 @@ public class RcpClientContext
         if (rp != null) {
             for (IUnit unit : RuntimeProjectUtil.getAllUnits(rp)) {
                 if (unit.getLock().isLocked()) {
-                    String msg = String.format("The unit \"%s\" (and possibly others) is locked, most likely because a background task is executing.\n\nWould you like to proceed?", new Object[]{
-                            UnitUtil.buildFullyQualifiedUnitPath(unit)});
+                    String msg = String.format("The unit \"%s\" (and possibly others) is locked, most likely because a background task is executing.\n\nWould you like to proceed?", new Object[]{UnitUtil.buildFullyQualifiedUnitPath(unit)});
                     return UI.confirm(shell, "Unit locked", msg);
                 }
             }
@@ -1562,8 +1551,7 @@ public class RcpClientContext
         }
         shell.setText(title);
         getStatusIndicator().removeContribution("contribUnitNotificationWarning");
-        if ((getPropertyManager().getBoolean(".ui.ShowWarningNotificationsInStatus")) &&
-                (RuntimeProjectUtil.hasNotification(project, NotificationType.WARNING.getLevel()))) {
+        if ((getPropertyManager().getBoolean(".ui.ShowWarningNotificationsInStatus")) && (RuntimeProjectUtil.hasNotification(project, NotificationType.WARNING.getLevel()))) {
             StatusLineContributionItem contrib = new NotificationWarningContribution(this);
             getStatusIndicator().addContribution(contrib);
         }

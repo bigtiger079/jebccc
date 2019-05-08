@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.events.JC;
@@ -25,8 +24,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class FontManager
-        extends EventSource {
+public class FontManager extends EventSource {
     private static final ILogger logger = GlobalLog.getLogger(FontManager.class);
     private Display display = Display.getCurrent();
     private IPropertyManager propertyManager;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.input.IInput;
@@ -20,8 +19,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-public class UnitImageView
-        extends AbstractUnitFragment<IBinaryUnit> {
+public class UnitImageView extends AbstractUnitFragment<IBinaryUnit> {
     private static final ILogger logger = GlobalLog.getLogger(UnitImageView.class);
     private ImageViewer viewer;
     private IImageDocument doc;
@@ -39,9 +37,7 @@ public class UnitImageView
         return this.viewer;
     }
 
-    static class StaticImageDocument
-            extends EventSource
-            implements IImageDocument {
+    static class StaticImageDocument extends EventSource implements IImageDocument {
         private Image image;
 
         public StaticImageDocument(Display display, IBinaryUnit unit) {

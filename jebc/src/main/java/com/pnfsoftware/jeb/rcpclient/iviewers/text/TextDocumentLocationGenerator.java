@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.input.IInputLocation;
@@ -46,8 +45,7 @@ public class TextDocumentLocationGenerator {
                 }
             }
         }
-        String statusText = String.format("coord: %s | addr: %s%s | loc: %s", new Object[]{Strings.safe(coord, "?"),
-                Strings.safe(address, "?"), address2, Strings.safe(location, "?")});
+        String statusText = String.format("coord: %s | addr: %s%s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), address2, Strings.safe(location, "?")});
         return statusText;
     }
 

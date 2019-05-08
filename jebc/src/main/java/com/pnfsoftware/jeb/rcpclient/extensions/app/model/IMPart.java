@@ -2,8 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
 import java.util.Map;
 
-public abstract interface IMPart
-        extends IMElementWithLabel {
+public abstract interface IMPart extends IMElementWithLabel {
     public abstract IMFolder getParentElement();
 
     public abstract Map<String, Object> getData();

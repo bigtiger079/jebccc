@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.client.api.IOperable;
@@ -33,9 +32,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class LoggerPartManager
-        extends AbstractPartManager
-        implements IOperable, IContextMenu {
+public class LoggerPartManager extends AbstractPartManager implements IOperable, IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(LoggerPartManager.class);
     private SourceViewer viewer;
     private StyledTextFindImpl findimpl;

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 
 import com.pnfsoftware.jeb.core.output.code.coordinates.ICodeCoordinates;
@@ -26,8 +25,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class DalvikCallgraphBuilder
-        implements ICallgraphBuilder {
+public class DalvikCallgraphBuilder implements ICallgraphBuilder {
     private ICodeUnit unit;
     private Digraph model;
     private WeakValueMap<Integer, ICodeMethod> vertexIdToMethodObject;
@@ -46,8 +44,7 @@ public class DalvikCallgraphBuilder
         int edgecnt = 0;
         Map<Integer, ICodeMethod> internal_methods = new TreeMap();
         for (ICodeMethod method : this.unit.getMethods()) {
-            if ((method.isInternal()) &&
-                    (filter(method))) {
+            if ((method.isInternal()) && (filter(method))) {
                 internal_methods.put(Integer.valueOf(method.getIndex()), method);
             }
         }
@@ -205,8 +202,7 @@ public class DalvikCallgraphBuilder
         }
         String pname = sig.substring(1, pos).replace('/', '.');
         boolean proceed;
-        if (((!this.wlFltFull.isEmpty()) || (!this.wlFltStart.isEmpty())) &&
-                (!this.wlFltFull.contains(pname))) {
+        if (((!this.wlFltFull.isEmpty()) || (!this.wlFltStart.isEmpty())) && (!this.wlFltFull.contains(pname))) {
             proceed = false;
             for (String f : this.wlFltStart) {
                 if (pname.startsWith(f)) {

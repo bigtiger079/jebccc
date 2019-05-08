@@ -1,8 +1,6 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
-public class GraphEdgeSquare
-        extends GraphEdge {
+public class GraphEdgeSquare extends GraphEdge {
     GraphEdgeSquare(Graph graph, GraphNode src, GraphNode dst) {
         super(graph, src, dst);
         setAnchors(Anchor.BOTTOM, Anchor.TOP);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.IAnchor;
@@ -132,8 +131,7 @@ public class ScrollBufferManager {
         if (this.wrappedText.getCurrentPart() == null) {
             return;
         }
-        logger.debug("scroll: window(%d) caret(%d) selecting(%b) lockCaretOnBounds(%b) forceFetch(%b)", new Object[]{Integer.valueOf(windowScroll),
-                Integer.valueOf(caretScroll), Boolean.valueOf(selecting), Boolean.valueOf(lockCaretOnBounds), Boolean.valueOf(forceFetch)});
+        logger.debug("scroll: window(%d) caret(%d) selecting(%b) lockCaretOnBounds(%b) forceFetch(%b)", new Object[]{Integer.valueOf(windowScroll), Integer.valueOf(caretScroll), Boolean.valueOf(selecting), Boolean.valueOf(lockCaretOnBounds), Boolean.valueOf(forceFetch)});
         ICoordinates oldTopLine = this.wrappedText.getTopIndexCoordinates();
         VisualSelectionUnwrapped caret = getVisualSelection();
         Integer reqLine = Integer.valueOf(this.wrappedText.getTopIndex() + windowScroll);
@@ -169,8 +167,7 @@ public class ScrollBufferManager {
         }
         if (selecting) {
             WrappedText.SelectionData sel = this.wrappedText.getSelectionData();
-            logger.debug("New Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(),
-                    Integer.valueOf(sel.getSelectionLength())});
+            logger.debug("New Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(), Integer.valueOf(sel.getSelectionLength())});
             if (caretScroll < 0) {
                 this.wrappedText.forceSelectionOffset(0);
             }
@@ -266,8 +263,7 @@ public class ScrollBufferManager {
                 updateData.reqBefore = Math.max(maxLine.before, anchorLineIndex - reqLine);
                 updateData.delta = (reqLine - anchorLineIndex);
             } else if ((reqLine + maxlineCount >= bufferLineCount) && (!this.wrappedText.isAnchorEndDisplayed())) {
-                logger.debug("Requesting more data forward, maxlinecntAfter(%d), bufferLineCount(%d)", new Object[]{Integer.valueOf(maxLine.after),
-                        Integer.valueOf(bufferLineCount)});
+                logger.debug("Requesting more data forward, maxlinecntAfter(%d), bufferLineCount(%d)", new Object[]{Integer.valueOf(maxLine.after), Integer.valueOf(bufferLineCount)});
                 if (a == null) {
                     a = this.wrappedText.getEndVisibleAnchor();
                     if (a == null) {
@@ -349,8 +345,7 @@ public class ScrollBufferManager {
     }
 
     void setCaretViewportPoint(BufferPoint p, boolean moveViewport) {
-        if ((moveViewport) && (this.wrappedText.isCurrentPartLastLineDisplayed()) &&
-                (p.lineIndex > 0)) {
+        if ((moveViewport) && (this.wrappedText.isCurrentPartLastLineDisplayed()) && (p.lineIndex > 0)) {
             moveViewport = false;
         }
         if (moveViewport) {
@@ -385,8 +380,7 @@ public class ScrollBufferManager {
         boolean eol = this.wrappedText.isCaretEol();
         if (this.wrappedText.hasSelection()) {
             WrappedText.SelectionData sel = this.wrappedText.getSelectionData();
-            logger.debug("current Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(),
-                    Integer.valueOf(sel.getSelectionLength())});
+            logger.debug("current Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(), Integer.valueOf(sel.getSelectionLength())});
             return new VisualSelectionUnwrapped(sel.getSelectionStartCoord(), eol, sel.getSelectionLength());
         }
         return new VisualSelectionUnwrapped(this.wrappedText.getCaretCoordinates(), eol);
@@ -398,8 +392,7 @@ public class ScrollBufferManager {
         } else {
             this.wrappedText.setCaretCoordinates(selection.docCoord, selection.eol);
             if ((selection.docCoord != null) && (!selection.docCoord.equals(this.wrappedText.getCaretCoordinates()))) {
-                logger.error("Restore caret failed: caret are not equals %s:%s", new Object[]{selection.docCoord, this.wrappedText
-                        .getCaretCoordinates()});
+                logger.error("Restore caret failed: caret are not equals %s:%s", new Object[]{selection.docCoord, this.wrappedText.getCaretCoordinates()});
             }
         }
     }
@@ -422,8 +415,7 @@ public class ScrollBufferManager {
             if (this.docManager.getCurrentPart() != null) {
                 int lineIndex = TextPartUtil.coordinatesToLineIndex(this.docManager.getCurrentPart(), coord);
                 if (lineIndex < 0) {
-                    if ((TextPartUtil.isAnchorDisplayed(this.docManager.getCurrentPart(), coord.getAnchorId())) &&
-                            (coord.getLineDelta() > 0)) {
+                    if ((TextPartUtil.isAnchorDisplayed(this.docManager.getCurrentPart(), coord.getAnchorId())) && (coord.getLineDelta() > 0)) {
                         lineIndex = this.wrappedText.getLineCount() - 2;
                     }
                 }

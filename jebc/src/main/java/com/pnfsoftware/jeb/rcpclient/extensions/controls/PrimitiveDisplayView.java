@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
@@ -11,8 +10,7 @@ import java.nio.ByteOrder;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
-public class PrimitiveDisplayView
-        extends Composite {
+public class PrimitiveDisplayView extends Composite {
     private static final ILogger logger = GlobalLog.getLogger(PrimitiveDisplayView.class);
     private DataFrame df;
     private DataFrameView dfv;

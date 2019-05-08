@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
@@ -13,8 +12,7 @@ import java.util.Map;
 
 import org.eclipse.swt.SWT;
 
-public class ActionViewCommentsHandler
-        extends JebBaseHandler {
+public class ActionViewCommentsHandler extends JebBaseHandler {
     public ActionViewCommentsHandler() {
         super("queryComments", "View Comments", null, "eclipse/tasks_tsk.png");
         setAccelerator(SWT.MOD1 | 0x2F);

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.navigation;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -12,8 +11,7 @@ import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.units.graphs.AbstractGlobalGraphView;
 
-public class NavigationLocateInGlobalGraphHandler
-        extends JebBaseHandler {
+public class NavigationLocateInGlobalGraphHandler extends JebBaseHandler {
     public NavigationLocateInGlobalGraphHandler() {
         super("locateInGlobalGraph", "Locate in Global Graph", null, "eclipse/synced.png");
     }

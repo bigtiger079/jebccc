@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.ImageView;
@@ -10,8 +9,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 
-public class ImageViewer
-        extends Viewer {
+public class ImageViewer extends Viewer {
     private static final ILogger logger = GlobalLog.getLogger(ImageViewer.class);
     private IImageDocument input;
     private IEventListener inputListener;

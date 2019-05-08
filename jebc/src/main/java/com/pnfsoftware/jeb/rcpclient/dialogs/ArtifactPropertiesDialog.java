@@ -30,8 +30,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ArtifactPropertiesDialog
-        extends JebDialog {
+public class ArtifactPropertiesDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ArtifactPropertiesDialog.class);
     private ILiveArtifact liveArtifact;
     private IArtifact artifact;

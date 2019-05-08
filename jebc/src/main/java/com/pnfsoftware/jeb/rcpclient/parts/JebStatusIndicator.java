@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
@@ -18,8 +17,7 @@ import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-public class JebStatusIndicator
-        implements IStatusIndicator {
+public class JebStatusIndicator implements IStatusIndicator {
     private static final ILogger logger = GlobalLog.getLogger(JebStatusIndicator.class);
     private StatusLineManager statusManager;
     private Display display;

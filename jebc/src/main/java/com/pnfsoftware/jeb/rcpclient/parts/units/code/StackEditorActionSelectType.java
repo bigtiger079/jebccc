@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.NativeTypeChooserDialog;
 
-public class StackEditorActionSelectType
-        extends StackEditorAction {
+public class StackEditorActionSelectType extends StackEditorAction {
     public StackEditorActionSelectType(StackEditorView v) {
         super("Select Type", v);
         this.keyCode = 116;

@@ -1,12 +1,10 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.util.concurrent.AbstractThreadManager;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-public class ThreadManager
-        extends AbstractThreadManager {
+public class ThreadManager extends AbstractThreadManager {
     private static final ILogger logger = GlobalLog.getLogger(ThreadManager.class);
     private RcpErrorHandler err;
 

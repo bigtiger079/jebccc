@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file.export;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -13,8 +12,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
-public class FileExportDecompiledDecompJob
-        implements IRunnableWithProgress {
+public class FileExportDecompiledDecompJob implements IRunnableWithProgress {
     private IFileExport<? extends ICodeItem> fileExport;
     private List<? extends IUnit> sourceUnits;
     private FileExportWriter fileWriter;

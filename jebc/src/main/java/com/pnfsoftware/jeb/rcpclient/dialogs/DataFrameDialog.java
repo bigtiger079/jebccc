@@ -12,8 +12,7 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class DataFrameDialog
-        extends JebDialog {
+public class DataFrameDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DataFrameDialog.class);
     private String msg;
     private boolean displayIndex = false;

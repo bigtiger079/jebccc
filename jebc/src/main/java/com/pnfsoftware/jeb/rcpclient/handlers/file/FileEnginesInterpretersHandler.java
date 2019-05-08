@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.IEnginesContext;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-public class FileEnginesInterpretersHandler
-        extends JebBaseHandler {
+public class FileEnginesInterpretersHandler extends JebBaseHandler {
     public FileEnginesInterpretersHandler() {
         super(null, "Interpreters...", null, null);
     }

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.IOutOfRangeHelper;
@@ -15,8 +14,7 @@ import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Table;
 
-public class InfiniTableViewer
-        extends Viewer {
+public class InfiniTableViewer extends Viewer {
     private static final ILogger logger = GlobalLog.getLogger(InfiniTableViewer.class);
     private InfiniTableView ctl;
     private Table table;

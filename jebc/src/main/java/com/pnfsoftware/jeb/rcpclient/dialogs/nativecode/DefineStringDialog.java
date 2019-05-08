@@ -22,8 +22,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class DefineStringDialog
-        extends JebDialog {
+public class DefineStringDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(DefineStringDialog.class);
     private long address;
     private INativeCodeUnit<?> unit;

@@ -1,10 +1,8 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.themes;
 
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 
-public class DarkTheme
-        extends Theme {
+public class DarkTheme extends Theme {
     private static final UIAssetManager ui = UIAssetManager.getInstance();
     int normal = 3622479;
     int light = 6451579;

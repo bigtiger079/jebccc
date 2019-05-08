@@ -29,8 +29,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
-public class OptionsSimpleViewClassname
-        extends OptionsSimpleViewList {
+public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
     private static final ILogger logger = GlobalLog.getLogger(OptionsSimpleViewClassname.class);
     private static final String MESSAGE_TITLE = "Classname";
     private static final String MESSAGE_VERIFY_TITLE = "Verify classname";

@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.util.io.IO;
@@ -72,8 +71,7 @@ public final class Assets {
         return in;
     }
 
-    public static byte[] readAsset(String filename)
-            throws IOException {
+    public static byte[] readAsset(String filename) throws IOException {
         InputStream in = getAsset(filename);
         if (in == null) {
             throw new IOException("UI asset not found: " + filename);

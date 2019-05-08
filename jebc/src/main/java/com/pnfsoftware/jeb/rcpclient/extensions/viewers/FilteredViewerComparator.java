@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import java.util.Comparator;
@@ -6,8 +5,7 @@ import java.util.Comparator;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 
-public class FilteredViewerComparator
-        extends ViewerComparator {
+public class FilteredViewerComparator extends ViewerComparator {
     AbstractFilteredViewer<?, ?> v;
     int propertyIndex;
     int direction;

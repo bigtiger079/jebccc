@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.IEnginesContext;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ListSiglibsDialog;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
-public class FileEnginesSiglibsHandler
-        extends JebBaseHandler {
+public class FileEnginesSiglibsHandler extends JebBaseHandler {
     public FileEnginesSiglibsHandler() {
         super(null, "Signature Libraries...", null, null);
     }

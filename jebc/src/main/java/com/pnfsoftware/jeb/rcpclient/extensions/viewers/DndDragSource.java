@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 
-public class DndDragSource
-        implements DragSourceListener {
+public class DndDragSource implements DragSourceListener {
     private static final ILogger logger = GlobalLog.getLogger(DndDragSource.class);
     private IDndProvider dndProvider;
     String dragData = null;

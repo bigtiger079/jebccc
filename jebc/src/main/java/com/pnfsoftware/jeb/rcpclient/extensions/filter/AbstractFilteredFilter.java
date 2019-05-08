@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.extensions.filter;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredContentProvider;
@@ -6,8 +5,7 @@ import com.pnfsoftware.jeb.rcpclient.util.regex.IPattern;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
-public abstract class AbstractFilteredFilter
-        extends ViewerFilter {
+public abstract class AbstractFilteredFilter extends ViewerFilter {
     protected String simplePattern;
     protected IPattern regexPattern;
     private StructuredViewer viewer;

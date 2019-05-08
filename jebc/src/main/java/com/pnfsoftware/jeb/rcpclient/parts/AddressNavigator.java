@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -84,8 +83,7 @@ public class AddressNavigator {
             UnitPartManager object = pman.getUnitPartManager(part);
             if (object != null) {
                 IRcpUnitFragment fragment = object.getActiveFragment();
-                if ((fragment != null) && (fragment != this.nav) && (object.getUnit() != this.managedUnit) &&
-                        (fragment.getFocusPriority() != 0)) {
+                if ((fragment != null) && (fragment != this.nav) && (object.getUnit() != this.managedUnit) && (fragment.getFocusPriority() != 0)) {
                     if (isValidAddress(fragment, address)) {
                         add(toFocus, new Couple(part, fragment));
                     }
@@ -113,8 +111,7 @@ public class AddressNavigator {
                 for (localIterator2 = fragments.iterator(); localIterator2.hasNext(); ) {
                     fragment = (IRcpUnitFragment) localIterator2.next();
                     if ((fragment != null) && (fragment != this.nav) && (fragment != activeFragment) && (fragment.getFocusPriority() != 0)) {
-                        if (isValidAddress(fragment, address))
-                            add(toFocus, new Couple(part, fragment));
+                        if (isValidAddress(fragment, address)) add(toFocus, new Couple(part, fragment));
                     }
                 }
             }
@@ -137,15 +134,13 @@ public class AddressNavigator {
             UnitPartManager object = pman.getUnitPartManager(part);
             if (object != null) {
                 selectedFragment = object.getActiveFragment();
-                if ((selectedFragment != null) && (selectedFragment != this.nav) &&
-                        (isValidAddress(selectedFragment, address))) {
+                if ((selectedFragment != null) && (selectedFragment != this.nav) && (isValidAddress(selectedFragment, address))) {
                     add(toFocus, new Couple(part, selectedFragment));
                 }
                 List<IRcpUnitFragment> fragments = getFragmentsDefaultFirst(object);
                 for (IRcpUnitFragment fra : fragments)
                     if ((fra != null) && (fra != this.nav) && (fra != selectedFragment) && (fra.getFocusPriority() != 0)) {
-                        if (isValidAddress(fra, address))
-                            add(toFocus, new Couple(part, fra));
+                        if (isValidAddress(fra, address)) add(toFocus, new Couple(part, fra));
                     }
             }
         }

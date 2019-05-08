@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.iviewers.table;
 
 import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
@@ -16,9 +15,7 @@ import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Color;
 
-class ColLabelProvider
-        extends CellLabelProvider
-        implements IValueProvider {
+class ColLabelProvider extends CellLabelProvider implements IValueProvider {
     private InteractiveTableViewer viewer;
 
     public ColLabelProvider(InteractiveTableViewer viewer) {

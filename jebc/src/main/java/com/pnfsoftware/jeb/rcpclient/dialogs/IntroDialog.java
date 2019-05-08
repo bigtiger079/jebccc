@@ -8,8 +8,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-public class IntroDialog
-        extends JebDialog {
+public class IntroDialog extends JebDialog {
     public IntroDialog(Shell parent) {
         super(parent, "An introduction to JEB", true, true);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.NONE;

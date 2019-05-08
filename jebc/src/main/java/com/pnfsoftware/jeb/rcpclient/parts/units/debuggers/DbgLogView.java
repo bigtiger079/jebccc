@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -20,8 +19,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-public class DbgLogView
-        extends AbstractTextView<IUnit> {
+public class DbgLogView extends AbstractTextView<IUnit> {
     public DbgLogView(Composite parent, int flags, RcpClientContext context, IDebuggerUnit unit) {
         super(parent, flags, context, unit);
         setLayout(new FillLayout());

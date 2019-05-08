@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
@@ -29,8 +28,7 @@ import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Display;
 
-public class TextHoverableProvider
-        implements IHoverableProvider {
+public class TextHoverableProvider implements IHoverableProvider {
     private static final ILogger logger = GlobalLog.getLogger(TextHoverableProvider.class);
     private Display display;
     private RcpClientContext context;

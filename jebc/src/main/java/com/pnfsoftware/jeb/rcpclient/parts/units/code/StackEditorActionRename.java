@@ -1,11 +1,9 @@
-
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 
-public class StackEditorActionRename
-        extends StackEditorAction {
+public class StackEditorActionRename extends StackEditorAction {
     public StackEditorActionRename(StackEditorView v) {
         super("Rename", v);
         this.keyCode = 110;

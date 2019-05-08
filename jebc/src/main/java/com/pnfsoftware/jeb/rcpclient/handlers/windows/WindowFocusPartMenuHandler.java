@@ -1,4 +1,3 @@
-
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
@@ -7,8 +6,7 @@ import com.pnfsoftware.jeb.rcpclient.handlers.AbstractDynamicMenuHandler;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import org.eclipse.jface.action.IMenuManager;
 
-public class WindowFocusPartMenuHandler
-        extends AbstractDynamicMenuHandler {
+public class WindowFocusPartMenuHandler extends AbstractDynamicMenuHandler {
     public void menuAboutToShow(IMenuManager manager) {
         if (!canExecute()) {
             return;
