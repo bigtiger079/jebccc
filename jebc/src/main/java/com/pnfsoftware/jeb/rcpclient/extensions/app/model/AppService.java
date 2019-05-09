@@ -68,13 +68,12 @@ public class AppService implements IAppService {
     }
 
     public IMDock createDock(boolean onTop, Rectangle initialBounds) {
-        IMDock dock2 = this.app.getDock().createAdditionalDock(onTop, 16, initialBounds);
-        return dock2;
+        return this.app.getDock().createAdditionalDock(onTop, 16, initialBounds);
     }
 
     public IMPart createPart(IMFolder folder, IMPartManager partManager) {
         if (folder == null) {
-            folder = (IMFolder) this.app.getDock().getFolders().get(0);
+            folder = this.app.getDock().getFolders().get(0);
         }
         IMPart part = folder.addPart();
         if (partManager != null) {

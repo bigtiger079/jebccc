@@ -61,7 +61,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     public InteractiveTextView(Composite parent, int style, RcpClientContext context, IUnit unit, IRcpUnitView unitView, ITextDocument idoc) {
         super(parent, style, unit, unitView, context, idoc);
-        DbgUtils.getStackTrace();
+        logger.info("InteractiveTextView: \r%s", DbgUtils.getStackTrace());
         setLayout(new FillLayout());
         int flags = 0;
         if (!(unit instanceof ISourceUnit)) {
@@ -116,21 +116,21 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     private void onPositionChanged(ICoordinates coord) {
         //TODO: mouse position
-        logger.info("onPositionChanged: " + coord.getLineDelta() +"  " + coord.getColumnOffset() +"  "+coord.getAnchorId() );
-        String activeItemAsText = getActiveItemAsText();
-        if (activeItemAsText != null) {
-            logger.info("activeItemAsText: " + activeItemAsText);
-            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 1);
-            ILine lineAt = TextPartUtil.getLineAt(documentPart, coord);
-            if (lineAt != null) {
-                ITextItem item = TextPartUtil.getItemAt(lineAt, coord.getColumnOffset());
-                if (item != null) {
-                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
-                    logger.info("Test line At: " + s);
-                }
-            }
-
-        }
+//        logger.info("onPositionChanged: " + coord.getLineDelta() +"  " + coord.getColumnOffset() +"  "+coord.getAnchorId() );
+//        String activeItemAsText = getActiveItemAsText();
+//        if (activeItemAsText != null) {
+//            logger.info("activeItemAsText: " + activeItemAsText);
+//            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 1);
+//            ILine lineAt = TextPartUtil.getLineAt(documentPart, coord);
+//            if (lineAt != null) {
+//                ITextItem item = TextPartUtil.getItemAt(lineAt, coord.getColumnOffset());
+//                if (item != null) {
+//                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
+//                    logger.info("Test line At: " + s);
+//                }
+//            }
+//
+//        }
         this.context.refreshHandlersStates();
         TextDocumentLocationGenerator locationGenerator = new TextDocumentLocationGenerator(this.unit, this.iviewer);
         String address = locationGenerator.getAddress(coord);
@@ -177,7 +177,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     public String getActiveItemAsText() {
         ICoordinates coords = getCurrentCoordinates();
         if ((getActiveItem() != null) && (coords != null)) {
-            logger.info("getCurrentCoordinates: " +  coords.getLineDelta() + "  " + coords.getColumnOffset() +"  " + coords.getAnchorId());
+//            logger.info("getCurrentCoordinates: " +  coords.getLineDelta() + "  " + coords.getColumnOffset() +"  " + coords.getAnchorId());
             ILine line = TextPartUtil.getLineAt(this.iviewer.getCurrentDocumentPart(), coords);
             if (line != null) {
                 ITextItem item = TextPartUtil.getItemAt(line, coords.getColumnOffset());
@@ -341,7 +341,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
             return false;
         }
         long _id = _item.getItemId();
-        logger.debug("Searching for next item in current part: %s", new Object[]{_item});
+        logger.debug("Searching for next item in current part: %s", _item);
         GlobalPosition pos0 = getViewManager() == null ? null : getViewManager().getCurrentGlobalPosition();
         ITextDocumentPart part = this.iviewer.getCurrentDocumentPart();
         long anchorId = TextPartUtil.getFirstAnchorId(part);
@@ -353,7 +353,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
         int _column = _coord.getColumnOffset();
         List<? extends ILine> lines = part.getLines();
         for (int lineIndex = _line; lineIndex < lines.size(); lineIndex++) {
-            ILine line = (ILine) lines.get(lineIndex);
+            ILine line = lines.get(lineIndex);
             for (ITextItem item : line.getItems()) {
                 if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && ((lineIndex != _line) || (item.getOffset() > _column))) {
                     if (pos0 != null) {
@@ -364,7 +364,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
                 }
             }
         }
-        logger.debug("Next item in current part was not found", new Object[0]);
+        logger.debug("Next item in current part was not found");
         return false;
     }
 
@@ -373,7 +373,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
             return false;
         }
         long _id = _item.getItemId();
-        logger.debug("Searching for previous item in current part: %s", new Object[]{_item});
+        logger.debug("Searching for previous item in current part: %s", _item);
         GlobalPosition pos0 = getViewManager() == null ? null : getViewManager().getCurrentGlobalPosition();
         ITextDocumentPart part = this.iviewer.getCurrentDocumentPart();
         long anchorId = TextPartUtil.getFirstAnchorId(part);
@@ -385,7 +385,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
         int _column = _coord.getColumnOffset();
         List<? extends ILine> lines = part.getLines();
         for (int lineIndex = _line; lineIndex >= 0; lineIndex--) {
-            ILine line = (ILine) lines.get(lineIndex);
+            ILine line = lines.get(lineIndex);
             for (ITextItem item : line.getItems()) {
                 if (((item instanceof IActionableItem)) && (((IActionableItem) item).getItemId() == _id) && ((lineIndex != _line) || (item.getOffset() + item.getLength() <= _column))) {
                     if (pos0 != null) {
@@ -396,7 +396,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
                 }
             }
         }
-        logger.debug("Previous item in current part was not found", new Object[0]);
+        logger.debug("Previous item in current part was not found");
         return false;
     }
 
@@ -424,7 +424,6 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     }
 
     public void setMenu(Menu menu) {
-        logger.error("onSetMenuuuuuuuuu");
         super.setMenu(menu);
         this.iviewer.getTextWidget().setMenu(menu);
     }

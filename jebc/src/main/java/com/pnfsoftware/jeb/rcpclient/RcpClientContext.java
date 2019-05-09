@@ -227,13 +227,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -420,7 +414,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 if ((cursorCtrl != null) && (cursorCtrl != focusControl)) {
                     IMPart part = PartUtil.getPart(cursorCtrl);
                     if (part != null) {
-                        RcpClientContext.logger.i("Focus forced in %s", new Object[]{part});
+                        RcpClientContext.logger.i("Focus forced in %s", part);
                         cursorCtrl.forceFocus();
                     }
                 }
@@ -880,7 +874,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                         }
                     });
                     if (i++ % 10 == 0) {
-                        RcpClientContext.logger.status("", new Object[0]);
+                        RcpClientContext.logger.status("");
                     }
                     try {
                         Thread.sleep(1000L);
@@ -894,7 +888,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             start();
         } catch (JebException e) {
             String f = "The following error occurred while JEB was initializing:\n\n\"%s\"\n\nPlease update your settings or contact support, and restart JEB. The program will now terminate.";
-            UI.error(String.format(f, new Object[]{e.getMessage()}));
+            UI.error(String.format(f, e.getMessage()));
             terminate();
         }
         String taskname = "Initializing JEB engines...";
@@ -1426,13 +1420,13 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         if ((strategy == 0) && (this.preferQuickSave == null)) {
             if (shouldOfferQuickSave(rp)) {
                 String msg = String.format("This project appears to be very large. Performing a regular \"full save\" may take time and consume a large amount of memory.\n\nWould you like to perform a \"quick save\" instead?", new Object[0]);
-                this.preferQuickSave = Boolean.valueOf(UI.question(shell, "Persisting a Large Project", msg));
-                rp.setPersistenceStrategy(this.preferQuickSave.booleanValue() ? 2 : 1);
+                this.preferQuickSave = UI.question(shell, "Persisting a Large Project", msg);
+                rp.setPersistenceStrategy(this.preferQuickSave ? 2 : 1);
             } else {
-                this.preferQuickSave = Boolean.valueOf(false);
+                this.preferQuickSave = Boolean.FALSE;
             }
         }
-        long t0 = System.currentTimeMillis();
+        long currentTimeMillis = System.currentTimeMillis();
         boolean r = executeTask(S.s(661) + "...", new Runnable() {
             public void run() {
                 try {
@@ -1443,7 +1437,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 }
             }
         });
-        int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
+        int duration = (int) ((System.currentTimeMillis() - currentTimeMillis) / 1000L);
         getTelemetry().record("projectSave", "duration", "" + duration);
         return r;
     }
@@ -1478,35 +1472,35 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         } catch (IOException e) {
             path = new File(path).getAbsolutePath();
         }
-        logger.i("Processing file: %s...", new Object[]{path});
-        if ((path == null) || (!IO.isFile(path)) || (!this.basicChecksPassed)) {
-            logger.warn("Invalid input or input is not a file: \"%s\"", new Object[]{path});
+        logger.i("Processing file: %s...", path);
+        if (!IO.isFile(path) || !this.basicChecksPassed) {
+            logger.warn("Invalid input or input is not a file: \"%s\"", path);
             return false;
         }
         if (!new File(path).canRead()) {
-            logger.warn("Input file cannot be read: \"%s\"", new Object[]{path});
+            logger.warn("Input file cannot be read: \"%s\"", path);
             return false;
         }
         if (!attemptCloseOpenedProject(shell)) {
-            logger.warn("The existing project could not be closed", new Object[0]);
+            logger.warn("The existing project could not be closed");
             return false;
         }
-        IRuntimeProject project = null;
-        boolean newProject = false;
+        IRuntimeProject project;
+        boolean newProject;
         if (IO.getFirstIntLE(path) == 843203658) {
-            logger.info("Opening an existing project (%s)", new Object[]{path});
+            logger.info("Opening an existing project (%s)", path);
             this.lastReloadedProjectPath = path;
             long t0 = System.currentTimeMillis();
             project = loadProject(shell, path);
             if (project == null) {
-                logger.warn("Invalid project file", new Object[0]);
+                logger.warn("Invalid project file");
                 return false;
             }
             int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
             getTelemetry().record("projectLoad", "duration", "" + duration, "filesize", "" + new File(path).length());
             newProject = false;
         } else {
-            logger.info("Creating a new project (primary file: %s)", new Object[]{path});
+            logger.info("Creating a new project (primary file: %s)", path);
             String projectPath = buildProjectPath(path);
             int lastIndex = findLatestProjectDatabase(projectPath);
             if (lastIndex >= 1) {
@@ -1533,7 +1527,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             long t0 = System.currentTimeMillis();
             project = loadProject(shell, projectPath);
             if (project == null) {
-                logger.warn("Invalid project file", new Object[0]);
+                logger.warn("Invalid project file");
                 return false;
             }
             int duration = (int) ((System.currentTimeMillis() - t0) / 1000L);
@@ -1545,9 +1539,9 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         String title = mainShellOriginalTitle;
         String key = project.getKey();
         if ((newProject) || (Strings.equals(path, key))) {
-            title = String.format("%s - %s", new Object[]{mainShellOriginalTitle, path});
+            title = String.format("%s - %s", mainShellOriginalTitle, path);
         } else {
-            title = String.format("%s - %s (key: %s)", new Object[]{mainShellOriginalTitle, path, key});
+            title = String.format("%s - %s (key: %s)", mainShellOriginalTitle, path, key);
         }
         shell.setText(title);
         getStatusIndicator().removeContribution("contribUnitNotificationWarning");
@@ -1576,7 +1570,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         File dir = IO.getParentFile2(projectFile);
         FileFilter fileFilter = new WildcardFileFilter(projectFile.getName() + ".*", IOCase.INSENSITIVE);
         int lastIndex = 0;
-        for (File f : dir.listFiles(fileFilter)) {
+        for (File f : Objects.requireNonNull(dir.listFiles(fileFilter))) {
             int pos = f.getName().lastIndexOf(".");
             try {
                 if (pos >= 0) {
@@ -1650,7 +1644,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             throw new RuntimeException("It seems the shell or display is being shut down; the task cannot be executed.");
         }
         try {
-            return (T) UI.getTaskManager().create(shell, taskName, callable, 0L);
+            return  UI.getTaskManager().create(shell, taskName, callable, 0L);
         } catch (InterruptedException localInterruptedException) {
         } catch (InvocationTargetException e) {
             processTaskException(e.getTargetException(), errorOnCancel);
@@ -1712,7 +1706,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         if (e == null) {
             return;
         }
-        logger.i(Throwables.formatStacktrace(e), new Object[0]);
+        logger.i(Throwables.formatStacktrace(e));
         if ((!(e instanceof InterruptionException)) || (errorOnCancel)) {
             UI.error(null, S.s(768), formatTaskException(e));
             getErrorHandler().processThrowableVerbose(e);
@@ -1731,7 +1725,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             } else if ((e0 instanceof SerializationException)) {
                 String classname = ((SerializationException) e0).getClassName();
                 if (classname != null) {
-                    msg = msg + String.format("\n\nSerialization error related to type: %s\n", new Object[]{classname});
+                    msg = msg + String.format("\n\nSerialization error related to type: %s\n", classname);
                 }
             }
         }
@@ -1741,11 +1735,11 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public boolean setupController() {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The controller setup dialog cannot be displayed", new Object[0]);
+            logger.warn("The controller setup dialog cannot be displayed");
             return false;
         }
         ControllerAddressDialog dlg = new ControllerAddressDialog(shell, this);
-        return dlg.open().booleanValue();
+        return dlg.open();
     }
 
     public void notifyFloatingClient(final ControllerNotification notification) {
@@ -1784,17 +1778,17 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 } else if (code == 1L) {
                     MessageBox mbox = new MessageBox(shell, 66);
                     mbox.setText(S.s(821));
-                    mbox.setMessage(String.format("%s.\n%s.", new Object[]{S.s(217), S.s(652)}));
+                    mbox.setMessage(String.format("%s.\n%s.", S.s(217), S.s(652)));
                     mbox.open();
                 } else if (code == 2L) {
                     MessageBox mbox = new MessageBox(shell, 66);
                     mbox.setText(S.s(821));
-                    mbox.setMessage(String.format("%s.\n%s.", new Object[]{S.s(218), S.s(652)}));
+                    mbox.setMessage(String.format("%s.\n%s.", S.s(218), S.s(652)));
                     mbox.open();
                 } else if (code == 3L) {
                     MessageBox mbox = new MessageBox(shell, 66);
                     mbox.setText(S.s(821));
-                    mbox.setMessage(String.format("%s.\n%s.", new Object[]{S.s(216), S.s(652)}));
+                    mbox.setMessage(String.format("%s.\n%s.", S.s(216), S.s(652)));
                     mbox.open();
                 }
             }
@@ -2022,7 +2016,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     }
 
     public void setAssociatedData(Object objectKey, Object valueKey, Object valueData) {
-        Map<Object, Object> map = (Map) this.assoData.get(objectKey);
+        Map map = this.assoData.get(objectKey);
         if (map == null) {
             map = new WeakHashMap();
             this.assoData.put(objectKey, map);
@@ -2031,7 +2025,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     }
 
     public Object getAssociatedData(Object objectKey, Object valueKey) {
-        Map<Object, Object> map = (Map) this.assoData.get(objectKey);
+        Map map = this.assoData.get(objectKey);
         if (map == null) {
             return null;
         }
@@ -2080,7 +2074,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         try {
             String libDir = getPropertyManager().getString(".ScriptsFolder");
             if (libDir == null) {
-                logger.error("The .ScriptsFolder property yielded a null result", new Object[0]);
+                logger.error("The .ScriptsFolder property yielded a null result");
                 return false;
             }
             ScriptLoader sl = new ScriptLoader(path, libDir);
@@ -2090,26 +2084,26 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             if (isDevelopmentMode()) {
                 logger.catching(e);
             }
-            logger.error("Script preparation error: %s", new Object[]{e.getMessage()});
+            logger.error("Script preparation error: %s", e.getMessage());
             return false;
         } catch (ScriptInitializationException e) {
             if (isDevelopmentMode()) {
                 logger.catching(e);
             }
-            logger.error("Script initialization error: %s", new Object[]{e.getMessage()});
+            logger.error("Script initialization error: %s", e.getMessage());
             return false;
         } catch (ScriptExecutionException e) {
             if (isDevelopmentMode()) {
                 logger.catching(e);
             }
-            logger.error("Script execution error: %s", new Object[]{e.getMessage()});
+            logger.error("Script execution error: %s", e.getMessage());
             return false;
         } catch (ScriptException e) {
-            logger.error("An exception was thrown when executing the script:", new Object[0]);
+            logger.error("An exception was thrown when executing the script:");
             if (isDevelopmentMode()) {
                 logger.catching(e);
             } else {
-                logger.error(Throwables.formatStacktraceShort(e), new Object[0]);
+                logger.error(Throwables.formatStacktraceShort(e));
             }
             if (e.getCause() != null) {
                 getErrorHandler().processThrowableSilent(e.getCause());
@@ -2162,7 +2156,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public boolean getShouldShowDialog(String widgetName) {
         String encodedState = getDialogPersistenceDataProvider().load(widgetName);
         Map<String, String> state = Strings.decodeMap(encodedState);
-        boolean doNotShow = BooleanUtils.toBoolean((String) state.get("doNotShow"));
+        boolean doNotShow = BooleanUtils.toBoolean(state.get("doNotShow"));
         return !doNotShow;
     }
 

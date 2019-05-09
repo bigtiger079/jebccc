@@ -5,28 +5,28 @@ import java.util.List;
 
 import org.eclipse.swt.graphics.Rectangle;
 
-public abstract interface IAppService {
-    public abstract IMDock createDock();
+public interface IAppService {
+    IMDock createDock();
 
-    public abstract IMDock createDock(boolean paramBoolean, Rectangle paramRectangle);
+    IMDock createDock(boolean paramBoolean, Rectangle paramRectangle);
 
-    public abstract IMPart createPart(IMFolder paramIMFolder, IMPartManager paramIMPartManager);
+    IMPart createPart(IMFolder paramIMFolder, IMPartManager paramIMPartManager);
 
-    public abstract void hidePart(IMPart paramIMPart);
+    void hidePart(IMPart paramIMPart);
 
-    public abstract void unhidePart(IMPart paramIMPart);
+    void unhidePart(IMPart paramIMPart);
 
-    public abstract void clearPart(IMPart paramIMPart);
+    void clearPart(IMPart paramIMPart);
 
-    public abstract boolean isPartVisible(IMPart paramIMPart);
+    boolean isPartVisible(IMPart paramIMPart);
 
-    public abstract IMPart getActivePart();
+    IMPart getActivePart();
 
-    public abstract Collection<IMPart> getParts();
+    Collection<IMPart> getParts();
 
-    public abstract void activate(IMPart paramIMPart);
+    void activate(IMPart paramIMPart);
 
-    public abstract void activate(IMPart paramIMPart, boolean paramBoolean);
+    void activate(IMPart paramIMPart, boolean paramBoolean);
 
-    public abstract <T extends IMElement> List<T> findElements(IMElement paramIMElement, String paramString, Class<T> paramClass, Collection<String> paramCollection, int paramInt);
+    <T extends IMElement> List<T> findElements(IMElement paramIMElement, String paramString, Class<T> paramClass, Collection<String> paramCollection, int paramInt);
 }

@@ -59,7 +59,7 @@ public class PartManager implements IViewManager {
     }
 
     private static int unitPartId = 1;
-    private static Map<String, String> bestStackIdByType = new HashMap();
+    private static Map<String, String> bestStackIdByType = new HashMap<>();
     public static final int FLAG_PARTS_VISIBLE = 1;
     public static final int FLAG_PARTS_NON_VISIBLE = 2;
     public static final int FLAG_PARTS_ALL = 3;
@@ -105,7 +105,7 @@ public class PartManager implements IViewManager {
 
     private IMPart createProjectExplorerPart() {
         IMPart part = this.appService.createPart(this.app.folderProject, new ProjectExplorerPartManager(this.context));
-        part.setElementId("jeb3.rcpclient.part.projectTree");
+        part.setElementId(idProjectExplorerPart);
         part.setLabel(S.s(765));
         part.setIcon(UIAssetManager.getInstance().getImage("eclipse/hierarchy_co.png"));
         this.appService.activate(part);
@@ -114,7 +114,7 @@ public class PartManager implements IViewManager {
 
     private IMPart createLoggerPart() {
         IMPart part = this.appService.createPart(this.app.folderConsoles, new LoggerPartManager(this.context));
-        part.setElementId("jeb3.rcpclient.part.logger");
+        part.setElementId(idLoggerPart);
         part.setLabel(S.s(764));
         part.setIcon(UIAssetManager.getInstance().getImage("eclipse/console_view.png"));
         this.appService.activate(part);
@@ -123,7 +123,7 @@ public class PartManager implements IViewManager {
 
     private IMPart createTerminalPart() {
         IMPart part = this.appService.createPart(this.app.folderConsoles, new TerminalPartManager(this.context));
-        part.setElementId("jeb3.rcpclient.part.terminal");
+        part.setElementId(idTerminalPart);
         part.setLabel("Terminal");
         part.setIcon(UIAssetManager.getInstance().getImage("eclipse/writeout_co.png"));
         this.appService.activate(part);
@@ -184,36 +184,36 @@ public class PartManager implements IViewManager {
     }
 
     private void recordParent(IMPart part) {
-        String parentId0 = (String) part.getData().get("parentId0");
-        String parentId1 = (String) part.getData().get("parentId1");
-        Object parent = part.getParentElement();
-        if ((parent instanceof IMFolder)) {
-            String parentId = ((IMFolder) parent).getElementId();
+        String parentId0 = (String) part.getData().get(dataParentId0);
+        String parentId1 = (String) part.getData().get(dataParentId1);
+        IMFolder parent = part.getParentElement();
+        if ((parent != null)) {
+            String parentId = parent.getElementId();
             parentId1 = parentId0;
             parentId0 = parentId;
             if ((parentId0 == null) || (!parentId0.equals(parentId1))) {
                 IUnit unit = getUnitForPart(part);
                 if (unit != null) {
-                    List<String> fragmentList = (List) part.getData().get("fragmentList");
+                    List fragmentList = (List) part.getData().get(dataFragmentList);
                     bestStackIdByType.put(buildStackIdKey(unit.getFormatType(), fragmentList), parentId);
                 }
             }
         }
-        part.getData().put("parentId0", parentId0);
-        part.getData().put("parentId1", parentId1);
+        part.getData().put(dataParentId0, parentId0);
+        part.getData().put(dataParentId1, parentId1);
     }
 
     private void recordFocusTime(IMPart part) {
         long ts = System.currentTimeMillis();
-        part.getData().put("focusTimestamp", Long.valueOf(ts));
+        part.getData().put(dataFocusTimestamp, ts);
     }
 
     private long getFocusTimestamp(IMPart part) {
-        Object val = part.getData().get("focusTimestamp");
+        Object val = part.getData().get(dataFocusTimestamp);
         if (!(val instanceof Long)) {
             return 0L;
         }
-        return ((Long) val).longValue();
+        return (Long) val;
     }
 
     public IMPart getMostRecentlyFocused(List<IMPart> parts) {
@@ -281,7 +281,7 @@ public class PartManager implements IViewManager {
         if (parts.isEmpty()) {
             return false;
         }
-        this.appService.activate((IMPart) parts.get(0), focus);
+        this.appService.activate(parts.get(0), focus);
         return true;
     }
 
@@ -292,7 +292,7 @@ public class PartManager implements IViewManager {
     }
 
     public void closePart(IMPart part) {
-        logger.i("Closing part: %s", new Object[]{part.getLabel()});
+        logger.i("Closing part: %s", part.getLabel());
         this.appService.hidePart(part);
     }
 
@@ -313,7 +313,7 @@ public class PartManager implements IViewManager {
     }
 
     private String getUnitPartType(IMPart part) {
-        String unitType = (String) part.getData().get("unitFormatType");
+        String unitType = (String) part.getData().get(pdataUnitFormatType);
         UnitPartManager object = getUnitPartManager(part);
         if (object != null) {
             IUnit unit = object.getUnit();
@@ -331,10 +331,10 @@ public class PartManager implements IViewManager {
         }
         IUnit unit = object.getUnit();
         if (unit != null) {
-            part.getData().put("unitFormatType", unit.getFormatType());
+            part.getData().put(pdataUnitFormatType, unit.getFormatType());
             recordFragments(part);
         } else if (resetIfUnbound) {
-            part.getData().remove("fragmentClasses");
+            part.getData().remove(pdataFragmentClasses);
         }
         return true;
     }
@@ -348,16 +348,16 @@ public class PartManager implements IViewManager {
         for (IRcpUnitFragment fragment : object.getFragments()) {
             cnames.add(fragment.getClass().getName());
         }
-        part.getData().put("fragmentClasses", Strings.join(",", cnames));
+        part.getData().put(pdataFragmentClasses, Strings.join(",", cnames));
         return true;
     }
 
     private void cleanUnitPart(IMPart part) {
-        part.getData().remove("unit");
-        part.getData().remove("unitPartId");
-        part.getData().remove("originatorUnitPartId");
-        part.getData().remove("fragmentList");
-        part.getData().remove("fragmentBlacklist");
+        part.getData().remove(dataUnit);
+        part.getData().remove(dataUnitPartId);
+        part.getData().remove(dataOriginatorUnitPartId);
+        part.getData().remove(dataFragmentList);
+        part.getData().remove(dataFragmentBlacklist);
         this.appService.clearPart(part);
         UnitPartManager pman = getUnitPartManager(part);
         if (pman != null) {
@@ -415,7 +415,9 @@ public class PartManager implements IViewManager {
 
     private IMPart createUnitPart(IUnit unit, List<String> fragmentList, List<String> fragmentBlacklist) {
         IMFolder folder = findBestFolder(unit, fragmentList, fragmentBlacklist);
+        //TODO: create UnitPart
         IMPart part = this.appService.createPart(folder, new UnitPartManager(this.context));
+        logger.info("CreateUnitPart: %s", part.getClass().getName());
         prepareUnitPart(part, unit, fragmentList, fragmentBlacklist);
         return part;
     }
@@ -423,12 +425,12 @@ public class PartManager implements IViewManager {
     private void prepareUnitPart(IMPart part, IUnit unit, List<String> fragmentList, List<String> fragmentBlacklist) {
         part.setLabel(unit.getName());
         part.setTooltip("Hold and drag to move this tab elsewhere");
-        part.getData().put("unit", unit);
-        part.getData().put("unitPartId", Integer.valueOf(unitPartId));
+        part.getData().put(dataUnit, unit);
+        part.getData().put(dataUnitPartId, unitPartId);
         unitPartId += 1;
-        part.getData().put("originatorUnitPartId", Integer.valueOf(0));
-        part.getData().put("fragmentList", fragmentList);
-        part.getData().put("fragmentBlacklist", fragmentBlacklist);
+        part.getData().put(dataOriginatorUnitPartId, 0);
+        part.getData().put(dataFragmentList, fragmentList);
+        part.getData().put(dataFragmentBlacklist, fragmentBlacklist);
         part.setHideable(true);
         part.setCloseOnHide(true);
         String iconURI = UnitPartManager.getIconForUnit(unit);
@@ -438,11 +440,11 @@ public class PartManager implements IViewManager {
     }
 
     private void setStickyPart(IMPart part, boolean sticky) {
-        part.getData().put("stickyPart", Boolean.valueOf(sticky));
+        part.getData().put(dataStickyPart, Boolean.valueOf(sticky));
     }
 
     private boolean isStickyPart(IMPart part) {
-        Boolean o = (Boolean) part.getData().get("stickyPart");
+        Boolean o = (Boolean) part.getData().get(dataStickyPart);
         return o == null ? false : o.booleanValue();
     }
 
@@ -491,7 +493,7 @@ public class PartManager implements IViewManager {
                 restoreMissingParts(unit, parts);
                 part = getMostRecentlyFocused(parts);
                 if (part == null) {
-                    part = (IMPart) parts.get(0);
+                    part = parts.get(0);
                 }
                 this.appService.activate(part, true);
                 return parts;
@@ -536,13 +538,13 @@ public class PartManager implements IViewManager {
     private List<IMPart> createCodeUnitParts(IUnit unit, boolean createHierarchy, boolean createGraphs, boolean createMain) {
         List<IMPart> parts = new ArrayList<>();
         if (createHierarchy) {
-            parts.add(createInternal(unit, createFragmentList(new Class[]{CodeHierarchyView.class}), null, false));
+            parts.add(createInternal(unit, createFragmentList(CodeHierarchyView.class), null, false));
         }
         if (createGraphs) {
-            parts.add(createInternal(unit, createFragmentList(new Class[]{AbstractGlobalGraphView.class}), null, false));
+            parts.add(createInternal(unit, createFragmentList(AbstractGlobalGraphView.class), null, false));
         }
         if (createMain) {
-            parts.add(createInternal(unit, null, createFragmentList(new Class[]{CodeHierarchyView.class, AbstractGlobalGraphView.class}), false));
+            parts.add(createInternal(unit, null, createFragmentList(CodeHierarchyView.class, AbstractGlobalGraphView.class), false));
         }
         return parts;
     }
@@ -574,12 +576,12 @@ public class PartManager implements IViewManager {
             boolean createMain = true;
             for (Iterator localIterator = parts.iterator(); localIterator.hasNext(); ) {
                 part = (IMPart) localIterator.next();
-                if (part.getData().get("fragmentList") != null) {
-                    List<String> fragmentList = (List) part.getData().get("fragmentList");
+                if (part.getData().get(dataFragmentList) != null) {
+                    List<String> fragmentList = (List) part.getData().get(dataFragmentList);
                     if (fragmentList.contains(CodeHierarchyView.class.getName())) {
                         createHierarchy = false;
                     }
-                } else if (part.getData().get("fragmentBlacklist") != null) {
+                } else if (part.getData().get(dataFragmentBlacklist) != null) {
                     createMain = false;
                 }
             }
@@ -589,8 +591,8 @@ public class PartManager implements IViewManager {
             boolean createVarView = true;
             boolean createMain = true;
             for (IMPart p : parts) {
-                if (p.getData().get("fragmentList") != null) {
-                    List<String> fragmentList = (List) p.getData().get("fragmentList");
+                if (p.getData().get(dataFragmentList) != null) {
+                    List<String> fragmentList = (List) p.getData().get(dataFragmentList);
                     if (!fragmentList.isEmpty()) {
                         if (((String) fragmentList.get(0)).equals(DbgBreakpointsView.class.getName())) {
                             createBpView = false;
@@ -598,7 +600,7 @@ public class PartManager implements IViewManager {
                             createVarView = false;
                         }
                     }
-                } else if (p.getData().get("fragmentBlacklist") != null) {
+                } else if (p.getData().get(dataFragmentBlacklist) != null) {
                     createMain = false;
                 }
             }
@@ -747,16 +749,16 @@ public class PartManager implements IViewManager {
     }
 
     public int getPartId(IMPart part) {
-        return Conversion.toInt(part.getData().get("unitPartId"));
+        return Conversion.toInt(part.getData().get(dataUnitPartId));
     }
 
     public int getOriginatorPartId(IMPart part) {
-        return Conversion.toInt(part.getData().get("originatorUnitPartId"));
+        return Conversion.toInt(part.getData().get(dataOriginatorUnitPartId));
     }
 
     public void setOriginator(IMPart target, IMPart origin) {
         int id = getPartId(origin);
-        target.getData().put("originatorUnitPartId", Integer.valueOf(id));
+        target.getData().put(dataOriginatorUnitPartId, Integer.valueOf(id));
     }
 
     public IMPart selectWithOriginator(List<IMPart> potentialOrigins, IMPart formerTarget) {

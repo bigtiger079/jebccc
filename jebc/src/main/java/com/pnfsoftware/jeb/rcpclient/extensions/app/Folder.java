@@ -454,7 +454,7 @@ public class Folder extends Composite implements IMFolder {
             }
             return;
         }
-        if ((action >= 1) && (part.isHidden())) {
+        if (part.isHidden()) {
             CTabItem tab = new CTabItem(this.folderWidget, this.defaultTabStyle, index);
             part.restoreInto(tab);
             if (notify) {

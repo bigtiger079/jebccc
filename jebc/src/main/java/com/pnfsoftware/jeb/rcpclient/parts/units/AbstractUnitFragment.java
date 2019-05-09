@@ -39,10 +39,10 @@ public abstract class AbstractUnitFragment<T extends IUnit> extends Composite im
     private boolean defaultFragment;
     private int priority;
 
-    public static enum FragmentType {
+    public enum FragmentType {
         TEXT, TABLE, TREE, IMAGE, BINARY, UNKNOWN;
 
-        private FragmentType() {
+        FragmentType() {
         }
     }
 
@@ -90,7 +90,6 @@ public abstract class AbstractUnitFragment<T extends IUnit> extends Composite im
         });
         this.primaryWidget.addMouseListener(new MouseAdapter() {
             public void mouseUp(MouseEvent e) {
-                logger.error("mouseUp");
                 Operation op = null;
                 if (e.button == 4) {
                     op = Operation.NAVIGATE_BACKWARD;

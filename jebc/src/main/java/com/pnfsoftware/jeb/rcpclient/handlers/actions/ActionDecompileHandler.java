@@ -1,17 +1,13 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IUnitCreator;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.util.DecompilerHelper;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
-import com.pnfsoftware.jeb.rcpclient.IViewManager;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.HandlerUtil;
@@ -24,7 +20,6 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,9 +43,7 @@ public class ActionDecompileHandler extends JebBaseHandler {
         }
         if ((object instanceof UnitPartManager)) {
             String address = ((UnitPartManager) object).getActiveAddress(AddressConversionPrecision.COARSE);
-            if (address != null) {
-                return true;
-            }
+            return address != null;
         }
         return false;
     }
@@ -77,7 +70,7 @@ public class ActionDecompileHandler extends JebBaseHandler {
             return;
         }
         IDecompilerUnit decompiler = DecompilerHelper.getDecompiler(unit);
-        if ((decompiler == null) && ((!(unit.getParent() instanceof IUnit)) || (!((IUnit) unit.getParent()).getName().equals("decompiler")))) {
+        if ((decompiler == null) && ((!(unit.getParent() instanceof IUnit)) || (!unit.getParent().getName().equals("decompiler")))) {
             StringBuilder msg = new StringBuilder("Your build does not provide decompilation support for this type of code.\n\nThe decompilers available with your license type are:\n");
             msg.append(Strings.join(", ", DecompilerHelper.getAvailableDecompilerNames(this.context.getEnginesContext())));
             if (!UI.popupOptional(this.shell, 0, "Decompiler not available", msg.toString(), "dlgDecompilerNotAvailable")) {
@@ -85,14 +78,14 @@ public class ActionDecompileHandler extends JebBaseHandler {
             }
             return;
         }
-        logger.i("decompiler= %s", decompiler);
-        PartManager pman = this.context.getPartManager();
-        IMPart targetPart = null;
-        GlobalPosition pos0 = this.context.getViewManager().getCurrentGlobalPosition();
+        logger.info("decompiler= %s", decompiler);
+        PartManager partManager = this.context.getPartManager();
+        IMPart targetPart;
+        GlobalPosition globalPosition = this.context.getViewManager().getCurrentGlobalPosition();
         if (decompiler != null) {
-            IUnit c;
+            IUnit iUnit;
             try {
-                c = decompiler.getDecompiledUnit(address);
+                iUnit = decompiler.getDecompiledUnit(address);
             } catch (ClassCastException e) {
                 MessageDialog.openError(this.shell, S.s(304), "It seems that your JDB2 database contains inconsistencies, which makes it incompatible with this version of JEB.\n\nWe apologize for this inconvenience.");
                 if (this.context.isDevelopmentMode()) {
@@ -100,53 +93,53 @@ public class ActionDecompileHandler extends JebBaseHandler {
                 }
                 return;
             }
-            if (c == null) {
+            if (iUnit == null) {
                 logger.info("Decompiling at %s", address);
-                c = HandlerUtil.decompileAsync(this.shell, this.context, decompiler, address);
-                if (c == null) {
+                iUnit = HandlerUtil.decompileAsync(this.shell, this.context, decompiler, address);
+                if (iUnit == null) {
                     return;
                 }
             }
-            List<UnitPartManager> targetParts = pman.getPartManagersForUnit(c);
+            List<UnitPartManager> targetParts = partManager.getPartManagersForUnit(iUnit);
             if (targetParts.isEmpty()) {
-                targetPart = (IMPart) pman.create(c, true).get(0);
-                pman.setOriginator(targetPart, this.part);
+                targetPart = partManager.create(iUnit, true).get(0);
+                partManager.setOriginator(targetPart, this.part);
             } else {
-                targetPart = pman.getFirstPartForUnit(c);
-                pman.setOriginator(targetPart, this.part);
-                pman.focus(targetPart);
+                targetPart = partManager.getFirstPartForUnit(iUnit);
+                partManager.setOriginator(targetPart, this.part);
+                partManager.focus(targetPart);
             }
         } else {
             IUnitCreator parent = unit.getParent();
             if (!(parent instanceof IUnit)) {
                 return;
             }
-            parent = ((IUnit) parent).getParent();
+            parent = parent.getParent();
             if (!(parent instanceof IUnit)) {
                 return;
             }
             IUnit disassembler = (IUnit) parent;
-            List<IMPart> potentialOriginParts = pman.getPartsForUnit(disassembler);
+            List<IMPart> potentialOriginParts = partManager.getPartsForUnit(disassembler);
             if (potentialOriginParts.isEmpty()) {
-                targetPart = (IMPart) pman.create(disassembler, true).get(0);
+                targetPart = partManager.create(disassembler, true).get(0);
             } else {
-                targetPart = findFirstPartWithTextFragment(pman, potentialOriginParts);
+                targetPart = findFirstPartWithTextFragment(partManager, potentialOriginParts);
                 if (targetPart != null) {
-                    pman.setOriginator(targetPart, this.part);
-                    pman.focus(targetPart);
+                    partManager.setOriginator(targetPart, this.part);
+                    partManager.focus(targetPart);
                 } else {
-                    targetPart = (IMPart) pman.create(disassembler, false).get(0);
+                    targetPart = partManager.create(disassembler, false).get(0);
                 }
             }
         }
         if (targetPart != null) {
-            UnitPartManager p = pman.getUnitPartManager(targetPart);
+            UnitPartManager p = partManager.getUnitPartManager(targetPart);
             if (p != null) {
                 p.setActiveAddress(address, null, false);
             }
         }
-        if (pos0 != null) {
-            this.context.getViewManager().recordGlobalPosition(pos0);
+        if (globalPosition != null) {
+            this.context.getViewManager().recordGlobalPosition(globalPosition);
         }
     }
 

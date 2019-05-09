@@ -47,7 +47,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.extensions.binding.ActionEx;
 import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabContextMenuManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabFolderView;
-import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabFolderView.Entry;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
 import com.pnfsoftware.jeb.rcpclient.parts.units.BinaryDataView;
 import com.pnfsoftware.jeb.rcpclient.parts.units.DescriptionView;
@@ -77,18 +76,15 @@ import com.pnfsoftware.jeb.rcpclient.parts.units.graphs.NativeCallgraphView;
 import com.pnfsoftware.jeb.rcpclient.parts.units.graphs.NativeCodeGraphView;
 import com.pnfsoftware.jeb.rcpclient.parts.units.graphs.StaticCodeGraphView;
 import com.pnfsoftware.jeb.rcpclient.util.Extensions;
-import com.pnfsoftware.jeb.util.collect.ItemHistory;
 import com.pnfsoftware.jeb.util.events.IEvent;
 import com.pnfsoftware.jeb.util.events.IEventListener;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -100,6 +96,9 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+
+import static com.pnfsoftware.jeb.rcpclient.parts.PartManager.dataFragmentList;
+import static com.pnfsoftware.jeb.rcpclient.parts.PartManager.dataUnit;
 
 public class UnitPartManager extends AbstractPartManager implements IRcpUnitView {
     private static final ILogger logger = GlobalLog.getLogger(UnitPartManager.class, Integer.MAX_VALUE);
@@ -129,7 +128,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public void createView(Composite parent, IMPart part) {
-        logger.i("Constructing unit part... part=%s", new Object[]{part});
+        logger.info("Constructing unit part... part=%s", part);
         this.parent = parent;
         this.part = part;
         this.display = parent.getDisplay();
@@ -157,7 +156,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                         if (selectedItem == null) {
                             return;
                         }
-                        UnitPartManager.logger.i("Pulling out the fragment (tab) into its own part (view)", new Object[0]);
+                        UnitPartManager.logger.i("Pulling out the fragment (tab) into its own part (view)");
                         Control fragment = selectedItem.getControl();
                         UnitPartManager.this.tabman.removeEntry(fragment);
                         UnitPartManager.this.context.getPartManager().createSingle(UnitPartManager.this.unit, fragment.getClass());
@@ -169,9 +168,9 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public void setup() {
-        this.unit = ((IUnit) this.part.getData().get("unit"));
-        this.fragmentList = ((List) this.part.getData().get("fragmentList"));
-        this.fragmentBlacklist = ((List) this.part.getData().get("fragmentBlacklist"));
+        this.unit = ((IUnit) this.part.getData().get(dataUnit));
+        this.fragmentList = (List<String>) this.part.getData().get(dataFragmentList);
+        this.fragmentBlacklist = ((List<String>) this.part.getData().get(fragmentBlacklist));
         if (this.unit == null) {
             return;
         }
@@ -399,35 +398,28 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     private Control addUnitDocuments(CTabFolder folder) {
         Control focusedControl = null;
         List<Long> currentPresIds = new ArrayList<>();
-        IUnitDocumentPresentation pres;
-        for (Iterator localIterator = this.unitFormatter.getPresentations().iterator(); localIterator.hasNext(); ) {
-            pres = (IUnitDocumentPresentation) localIterator.next();
+        for (IUnitDocumentPresentation pres : this.unitFormatter.getPresentations()) {
             if (pres.getId() != 0L) {
-                currentPresIds.add(Long.valueOf(pres.getId()));
+                currentPresIds.add(pres.getId());
             }
         }
         Object uiPresIds = new ArrayList<>();
-        Iterator<Control> iterator = this.tabman.getControls().iterator();
-        while (iterator.hasNext()) {
-            Control ctl = (Control) iterator.next();
+        for (Control ctl : this.tabman.getControls()) {
             Long presId = (Long) ctl.getData("presentationId");
             if ((presId != null) && (presId != 0L)) {
                 ((List) uiPresIds).add(presId);
             }
         }
         List<Long> tbrPresIds = new ArrayList<>();
-        Iterator iter = ((List) uiPresIds).iterator();
-        while (iter.hasNext()) {
-            long presId = (Long) iter.next();
+        for (Object o : ((List) uiPresIds)) {
+            long presId = (Long) o;
             if (!currentPresIds.contains(presId)) {
                 tbrPresIds.add(presId);
             }
         }
-        Iterator<IUnitDocumentPresentation> iterator1 = this.unitFormatter.getPresentations().iterator();
-        while (iterator1.hasNext()) {
-            pres = (IUnitDocumentPresentation) iterator1.next();
+        for (IUnitDocumentPresentation pres : this.unitFormatter.getPresentations()) {
             long presId = pres.getId();
-            if ((presId == 0L) || (!((List) uiPresIds).contains(Long.valueOf(presId)))) {
+            if ((presId == 0L) || (!((List) uiPresIds).contains(presId))) {
                 String label = pres.getLabel();
                 IGenericDocument doc = pres.getDocument();
                 if (((doc instanceof HexDumpDocument)) && (shouldDisplay(InteractiveTextView.class))) {
@@ -657,6 +649,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public boolean setActiveAddress(String address, Object extra, boolean record) {
+        logger.info("setActiveAddress: %s", address);
         Control ctl = this.tabman.getCurrentEntryControl();
         if ((ctl instanceof AbstractUnitFragment)) {
             return ((IRcpUnitFragment) ctl).setActiveAddress(address, extra, record);
