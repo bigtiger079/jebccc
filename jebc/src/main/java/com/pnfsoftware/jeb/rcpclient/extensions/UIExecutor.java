@@ -22,7 +22,7 @@ public class UIExecutor {
     private static final Object alock = new Object();
     private static AtomicInteger asynccnt = new AtomicInteger();
     private static int asynccntExec;
-    private static Map<String, Integer> asyncCallers = Collections.synchronizedMap(new HashMap());
+    private static final Map<String, Integer> asyncCallers = Collections.synchronizedMap(new HashMap<>());
     private static long asyncBestWaitTime = Long.MAX_VALUE;
     private static long asyncWorstWaitTime = 0L;
     private static long asyncAvgWaitTime;
@@ -148,8 +148,8 @@ public class UIExecutor {
         synchronized (asyncCallers) {
             list = new ArrayList<>(asyncCallers.entrySet());
         }
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+        list.sort(new Comparator<Entry<String, Integer>>() {
+            public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2) {
                 return -Integer.compare(o1.getValue(), o2.getValue());
             }
         });
@@ -161,7 +161,7 @@ public class UIExecutor {
             if (i >= 10) {
                 break;
             }
-            sb.append(String.format("- %4d %s\n", new Object[]{e.getValue(), e.getKey()}));
+            sb.append(String.format("- %4d %s\n", e.getValue(), e.getKey()));
             i++;
         }
         return sb.toString().trim();

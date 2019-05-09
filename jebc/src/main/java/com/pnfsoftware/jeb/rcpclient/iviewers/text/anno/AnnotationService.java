@@ -35,7 +35,7 @@ public class AnnotationService {
         return UIAssetManager.getInstance().getColor(rgb);
     }
 
-    public Map<String, AnnotationFactory> map = new HashMap();
+    public Map<String, AnnotationFactory> map = new HashMap<>();
 
     public AnnotationFactory create(String type, Image image, Color hlColor) {
         AnnotationFactory f = (AnnotationFactory) this.map.get(type);

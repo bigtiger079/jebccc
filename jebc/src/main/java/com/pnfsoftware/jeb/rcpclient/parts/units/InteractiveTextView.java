@@ -33,6 +33,7 @@ import com.pnfsoftware.jeb.rcpclient.iviewers.text.InteractiveTextViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.TextDocumentLocationGenerator;
 import com.pnfsoftware.jeb.rcpclient.parts.IViewNavigator;
 import com.pnfsoftware.jeb.rcpclient.parts.UIState;
+import com.pnfsoftware.jeb.rcpclient.util.DbgUtils;
 import com.pnfsoftware.jeb.rcpclient.util.TextHistory;
 import com.pnfsoftware.jeb.util.base.Assert;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -60,6 +61,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     public InteractiveTextView(Composite parent, int style, RcpClientContext context, IUnit unit, IRcpUnitView unitView, ITextDocument idoc) {
         super(parent, style, unit, unitView, context, idoc);
+        DbgUtils.getStackTrace();
         setLayout(new FillLayout());
         int flags = 0;
         if (!(unit instanceof ISourceUnit)) {
@@ -95,7 +97,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
         });
         this.iviewer.refreshStyles();
         this.iviewer.setHoverText(new TextHoverableProvider(context, unit, this.iviewer));
-        addStandardContextMenu(new int[0]);
+        addStandardContextMenu();
         addDisposeListener(new DisposeListener() {
             public void widgetDisposed(DisposeEvent e) {
                 InteractiveTextView.this.iviewer.dispose();

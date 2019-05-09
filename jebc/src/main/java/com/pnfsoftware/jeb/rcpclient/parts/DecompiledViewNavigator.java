@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.parts;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.pnfsoftware.jeb.core.output.IActionableItem;
 import com.pnfsoftware.jeb.core.units.IAddressableUnit;
@@ -10,7 +9,6 @@ import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.util.DecompilerHelper;
 import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.HandlerUtil;
@@ -18,8 +16,8 @@ import com.pnfsoftware.jeb.rcpclient.parts.units.InteractiveTextView;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.swt.widgets.Shell;
 
@@ -55,7 +53,7 @@ public class DecompiledViewNavigator implements IViewNavigator {
         if ((address == null) || (viewManager == null)) {
             return false;
         }
-        PartManager pman = (PartManager) viewManager;
+        PartManager partManager = (PartManager) viewManager;
         IDecompilerUnit decompiler = DecompilerHelper.getRelatedDecompiler(this.unit);
         if (decompiler == null) {
             return false;
@@ -67,40 +65,40 @@ public class DecompiledViewNavigator implements IViewNavigator {
         if (!code.isValidAddress(address)) {
             return false;
         }
-        IUnit c = decompiler.getDecompiledUnit(address);
-        if (c == null) {
+        IUnit unit = decompiler.getDecompiledUnit(address);
+        if (unit == null) {
             Shell shell = UI.getShellTracker().get();
-            c = HandlerUtil.decompileAsync(shell, this.context, decompiler, address);
-            if (c == null) {
-                c = code;
+            unit = HandlerUtil.decompileAsync(shell, this.context, decompiler, address);
+            if (unit == null) {
+                unit = code;
             }
         }
-        IMPart targetPart = null;
-        List<IMPart> potentialOriginParts = pman.getPartsForUnit(c);
+        IMPart targetPart;
+        List<IMPart> potentialOriginParts = partManager.getPartsForUnit(unit);
         if (potentialOriginParts.isEmpty()) {
-            targetPart = (IMPart) pman.create(c, true).get(0);
-            pman.setOriginator(targetPart, this.currentPart);
+            targetPart = partManager.create(unit, true).get(0);
+            partManager.setOriginator(targetPart, this.currentPart);
         } else {
-            targetPart = pman.selectWithOriginatorDeep(potentialOriginParts, this.currentPart);
+            targetPart = partManager.selectWithOriginatorDeep(potentialOriginParts, this.currentPart);
             if (targetPart != null) {
-                pman.focus(targetPart);
+                partManager.focus(targetPart);
             } else {
-                targetPart = findFirstPartWithTextFragment(pman, potentialOriginParts);
+                targetPart = findFirstPartWithTextFragment(partManager, potentialOriginParts);
                 if (targetPart != null) {
-                    pman.setOriginator(targetPart, this.currentPart);
-                    pman.focus(targetPart);
+                    partManager.setOriginator(targetPart, this.currentPart);
+                    partManager.focus(targetPart);
                 } else {
-                    targetPart = (IMPart) pman.create(c, false).get(0);
-                    pman.setOriginator(targetPart, this.currentPart);
+                    targetPart = partManager.create(unit, false).get(0);
+                    partManager.setOriginator(targetPart, this.currentPart);
                 }
             }
         }
         if (targetPart == null) {
             return false;
         }
-        UnitPartManager p = pman.getUnitPartManager(targetPart);
-        if ((p != null) && (p.getUnit() != this.unit)) {
-            return p.setActiveAddress(address, null, record);
+        UnitPartManager unitPartManager = partManager.getUnitPartManager(targetPart);
+        if ((unitPartManager != null) && (unitPartManager.getUnit() != this.unit)) {
+            return unitPartManager.setActiveAddress(address, null, record);
         }
         return true;
     }
@@ -108,7 +106,7 @@ public class DecompiledViewNavigator implements IViewNavigator {
     private IMPart findFirstPartWithTextFragment(PartManager pman, List<IMPart> parts) {
         for (IMPart part : parts) {
             UnitPartManager p = pman.getUnitPartManager(part);
-            if (!Lists.newArrayList(Iterables.filter(p.getFragments(), InteractiveTextView.class)).isEmpty()) {
+            if (!Lists.newArrayList(p.getFragments().stream().filter((InteractiveTextView.class)::isInstance).collect(Collectors.toList())).isEmpty()) {
                 return part;
             }
         }
