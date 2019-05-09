@@ -109,7 +109,7 @@ public abstract class AbstractGraph extends Canvas implements IGraph {
         return this.keyboardControls;
     }
 
-    private List<GraphChangeListener> graphChangeListeners = new ArrayList();
+    private List<GraphChangeListener> graphChangeListeners = new ArrayList<>();
 
     public void addGraphChangeListener(GraphChangeListener listener) {
         this.graphChangeListeners.add(listener);
@@ -125,7 +125,7 @@ public abstract class AbstractGraph extends Canvas implements IGraph {
         }
     }
 
-    private List<GraphMode> modes = new ArrayList();
+    private List<GraphMode> modes = new ArrayList<>();
     private GraphMode currentMode;
 
     public List<GraphMode> getSupportedModes() {

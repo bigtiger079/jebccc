@@ -79,7 +79,7 @@ public class Panel extends Composite implements IMPanel {
     }
 
     public List<Part> getParts() {
-        List<Part> parts = new ArrayList();
+        List<Part> parts = new ArrayList<>();
         getParts(parts);
         return parts;
     }
@@ -137,7 +137,7 @@ public class Panel extends Composite implements IMPanel {
     }
 
     public List<IMPanelElement> getChildrenElements() {
-        List<IMPanelElement> list = new ArrayList(2);
+        List<IMPanelElement> list = new ArrayList<>(2);
         for (Control elt : getElements()) {
             list.add((IMPanelElement) elt);
         }

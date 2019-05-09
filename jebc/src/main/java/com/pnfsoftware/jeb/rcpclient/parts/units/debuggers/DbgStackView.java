@@ -180,7 +180,7 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
             byte[] data = new byte[size];
             int readsize = unit.readMemory(address, size, data, 0);
             DbgStackView.logger.i("Stack @%Xh, read %Xh bytes", new Object[]{Long.valueOf(address), Integer.valueOf(readsize)});
-            List<DbgStackView.StackEntry> r = new ArrayList();
+            List<DbgStackView.StackEntry> r = new ArrayList<>();
             for (int i = 0; i < cnt; i++) {
                 DbgStackView.StackEntry e = new DbgStackView.StackEntry();
                 e.address = (address + i * this.asize);

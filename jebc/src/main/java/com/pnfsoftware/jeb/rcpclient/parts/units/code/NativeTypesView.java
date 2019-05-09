@@ -150,7 +150,7 @@ public class NativeTypesView extends AbstractFilteredTableView<INativeCodeUnit<?
         }
 
         public Object[] getElements(Object inputElement) {
-            List<INativeType> entries = new ArrayList();
+            List<INativeType> entries = new ArrayList<>();
             INativeType t;
             Iterator localIterator1;
             if ((this.typesource & 0x1) != 0)

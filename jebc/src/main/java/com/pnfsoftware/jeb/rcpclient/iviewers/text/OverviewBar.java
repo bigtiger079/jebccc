@@ -54,7 +54,7 @@ public class OverviewBar extends Canvas {
     private IMetadataManager metadataManager;
     private boolean vertical;
     private int lastKnownBarSize;
-    private List<int[]> arrays = new ArrayList();
+    private List<int[]> arrays = new ArrayList<>();
     private boolean mouseButtonDown;
     private int mousePosition;
     private boolean moving;

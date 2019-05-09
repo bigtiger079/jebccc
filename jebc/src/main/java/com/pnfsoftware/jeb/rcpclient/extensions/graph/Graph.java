@@ -56,8 +56,8 @@ public class Graph extends AbstractGraph implements IZoomable {
     private boolean mouseControls = true;
     private boolean kbModifier1Pressed;
     private GraphStyleData styleData = GraphStyleData.buildDefault();
-    private List<GraphNode> nodes = new ArrayList();
-    private List<GraphEdge> edges = new ArrayList();
+    private List<GraphNode> nodes = new ArrayList<>();
+    private List<GraphEdge> edges = new ArrayList<>();
     private Spreadsheet<GraphNode> grid;
     private Point lastMouseCursor = new Point(-1, -1);
     private Point lastMouseCursorDown = new Point(-1, -1);
@@ -818,7 +818,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         int h = Math.max(3, (int) (b.height * yRatio));
         gc.setBackground(styles.cCanvas);
         gc.fillRectangle(x, y, w, h);
-        List<PreviewNode> pnodes = new ArrayList();
+        List<PreviewNode> pnodes = new ArrayList<>();
         Map<GraphNode, PreviewNode> pnodemap = new IdentityHashMap();
         for (GraphNode node : this.nodes) {
             b = node.getBounds();
@@ -891,7 +891,7 @@ public class Graph extends AbstractGraph implements IZoomable {
 
     List<GraphNode> getOutNodes(GraphNode node) {
         verifyNode(node);
-        List<GraphNode> r = new ArrayList();
+        List<GraphNode> r = new ArrayList<>();
         for (GraphEdge e : this.edges) {
             if (e.src == node) {
                 r.add(e.dst);
@@ -913,7 +913,7 @@ public class Graph extends AbstractGraph implements IZoomable {
 
     List<GraphNode> getInNodes(GraphNode targetNode) {
         verifyNode(targetNode);
-        List<GraphNode> r = new ArrayList();
+        List<GraphNode> r = new ArrayList<>();
         for (GraphEdge e : this.edges) {
             if (e.dst == targetNode) {
                 r.add(e.src);
@@ -1010,7 +1010,7 @@ public class Graph extends AbstractGraph implements IZoomable {
     }
 
     int[] optAvoidVerticalLineOverlapWithNodes(int x, int y0, int y1, int margin) {
-        List<Rectangle> tba = new ArrayList();
+        List<Rectangle> tba = new ArrayList<>();
         for (GraphNode node : this.nodes) {
             Rectangle r = node.getBounds();
             if ((r.x < x) && (r.x + r.width > x) && (y0 < r.y) && (y1 > r.y + r.height)) {
@@ -1117,7 +1117,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         return -1;
     }
 
-    private List<GraphEdgeListener> graphEdgeListeners = new ArrayList();
+    private List<GraphEdgeListener> graphEdgeListeners = new ArrayList<>();
 
     public void addGraphEdgeListener(GraphEdgeListener listener) {
         this.graphEdgeListeners.add(listener);
@@ -1139,7 +1139,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         }
     }
 
-    private List<GraphNodeListener> graphNodeListeners = new ArrayList();
+    private List<GraphNodeListener> graphNodeListeners = new ArrayList<>();
 
     public void addGraphNodeListener(GraphNodeListener listener) {
         this.graphNodeListeners.add(listener);

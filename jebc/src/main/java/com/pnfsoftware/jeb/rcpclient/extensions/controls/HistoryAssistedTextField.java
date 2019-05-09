@@ -106,7 +106,7 @@ public class HistoryAssistedTextField extends Composite {
             if (HistoryAssistedTextField.this.text.getSelectionCount() != contents.length()) {
                 template = contents;
             }
-            List<IContentProposal> r = new ArrayList();
+            List<IContentProposal> r = new ArrayList<>();
             for (String s : this.hist.getAll()) {
                 if (s.contains(template)) {
                     ContentProposal proposal = new ContentProposal(s, s, null, s.length());

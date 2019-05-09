@@ -55,7 +55,7 @@ public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCod
         if (methods.size() == 1) {
             index = 0;
         } else if (methods.size() >= 2) {
-            List<String> addresses = new ArrayList();
+            List<String> addresses = new ArrayList<>();
             for (INativeMethodItem method : methods) {
                 addresses.add(method.getAddress());
             }

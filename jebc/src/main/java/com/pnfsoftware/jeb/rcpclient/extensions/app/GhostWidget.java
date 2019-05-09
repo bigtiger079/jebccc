@@ -24,10 +24,10 @@ class GhostWidget {
     Display display;
     Control topLevelContainer;
     Rectangle topRectangle;
-    List<Couple<Control, PaintListener>> paintListeners = new ArrayList();
+    List<Couple<Control, PaintListener>> paintListeners = new ArrayList<>();
     int posDeltaX;
     int posDeltaY;
-    List<DropZone> dropzones = new ArrayList();
+    List<DropZone> dropzones = new ArrayList<>();
 
     public GhostWidget(Control topLevelContainer, Display display) {
         if ((topLevelContainer != null) && (display != null) && (topLevelContainer.getDisplay() != display)) {

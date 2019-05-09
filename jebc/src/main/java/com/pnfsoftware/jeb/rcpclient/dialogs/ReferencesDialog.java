@@ -20,7 +20,7 @@ public class ReferencesDialog extends DataFrameDialog {
         super(parent, caption, true, "referencesDialog");
         if (addresses == null) {
             logger.i("The list of addresses is null");
-            addresses = new ArrayList();
+            addresses = new ArrayList<>();
         }
         if ((details != null) && (details.size() != addresses.size())) throw new IllegalArgumentException();
         IInteractiveUnit iunit;

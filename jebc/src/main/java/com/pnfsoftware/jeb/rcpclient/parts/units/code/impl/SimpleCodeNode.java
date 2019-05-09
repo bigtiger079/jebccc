@@ -10,7 +10,7 @@ import java.util.List;
 public class SimpleCodeNode implements ICodeNode {
     private ICodeItem item;
     private ICodeNode parent = null;
-    private List<? extends ICodeNode> children = new ArrayList();
+    private List<? extends ICodeNode> children = new ArrayList<>();
     private boolean expanded;
 
     public SimpleCodeNode(ICodeItem item, ICodeNode parent, List<? extends ICodeNode> children, boolean expanded) {

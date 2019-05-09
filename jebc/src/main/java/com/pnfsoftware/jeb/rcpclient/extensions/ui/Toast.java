@@ -31,7 +31,7 @@ public class Toast {
     private int state;
     private Display display;
     private Composite topLevelContainer;
-    private List<Couple<Control, PaintListener>> paintListeners = new ArrayList();
+    private List<Couple<Control, PaintListener>> paintListeners = new ArrayList<>();
     private Point toastSize;
     private Rectangle toastRectangle;
     private int position;

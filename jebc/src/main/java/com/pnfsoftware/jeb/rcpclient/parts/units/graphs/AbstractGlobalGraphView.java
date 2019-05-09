@@ -166,7 +166,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             for (P p : visiblePoints) {
                 visibleVertexIds.add(Integer.valueOf(p.getId()));
             }
-            List<L> r = new ArrayList();
+            List<L> r = new ArrayList<>();
             for (L edge : edges) {
                 int srcId = edge.getSrcId();
                 int dstId = edge.getDstId();
@@ -472,7 +472,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
     }
 
     private List<P> selectPointsInBounds(Collection<P> points, R bounds) {
-        List<P> r = new ArrayList();
+        List<P> r = new ArrayList<>();
         for (P p : points) {
             if (bounds.contains(p)) {
                 r.add(p);

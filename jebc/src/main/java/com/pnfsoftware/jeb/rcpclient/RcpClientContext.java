@@ -524,7 +524,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 logger.catching(e);
             }
         }
-        this.logBuffer = Collections.synchronizedList(new ArrayList());
+        this.logBuffer = Collections.synchronizedList(new ArrayList<>());
         GlobalLog.addDestinationBuffer(this.logBuffer);
         this.logStatusSink = new LogStatusSink();
         GlobalLog.addStatusSink(this.logStatusSink);
@@ -1233,7 +1233,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 }
             }
             String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
-            ArrayList<String> command = new ArrayList();
+            ArrayList<String> command = new ArrayList<>();
             command.add(javaBin);
             command.add("-jar");
             command.add(getAppDirectory() + File.separator + "jebi.jar");

@@ -96,7 +96,7 @@ public class OptionsTreeView extends PatternTreeView {
 
     public static class TreeContentProvider implements IFilteredTreeContentProvider {
         IPropertyManager pm;
-        List<OptionsTreeView.PropertyLine> propertyLines = new ArrayList();
+        List<OptionsTreeView.PropertyLine> propertyLines = new ArrayList<>();
 
         public void dispose() {
         }
@@ -131,7 +131,7 @@ public class OptionsTreeView extends PatternTreeView {
         }
 
         private Object[] enumerate(IPropertyManager pm, IPropertyDefinitionManager pdm) {
-            List<Object> r = new ArrayList();
+            List<Object> r = new ArrayList<>();
             for (IPropertyDefinition definition : pdm.getDefinitions())
                 if (!definition.isInternal()) {
                     OptionsTreeView.PropertyLine line = new OptionsTreeView.PropertyLine();

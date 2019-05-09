@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Text;
 public class ReparseOptionsDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ReparseOptionsDialog.class);
     private IUnit unit;
-    private List<Text> widgetDatas = new ArrayList();
+    private List<Text> widgetDatas = new ArrayList<>();
     private Map<String, Object> options;
 
     public ReparseOptionsDialog(Shell parent, IUnit unit) {

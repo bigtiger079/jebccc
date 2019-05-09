@@ -89,7 +89,7 @@ public class UIState extends EventSource {
         return this.selectedThread;
     }
 
-    List<AbstractDebuggerBreakpoint> breakpoints2 = new ArrayList();
+    List<AbstractDebuggerBreakpoint> breakpoints2 = new ArrayList<>();
 
     public void copyFrom(IDebuggerUnit unit) {
     }

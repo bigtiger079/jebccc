@@ -139,11 +139,11 @@ public class PartManager implements IViewManager {
     }
 
     public List<IMPart> getAllParts() {
-        return new ArrayList(this.appService.findElements(null, null, IMPart.class, null, 0));
+        return new ArrayList<>(this.appService.findElements(null, null, IMPart.class, null, 0));
     }
 
     public List<IMPart> getUnitParts() {
-        List<IMPart> list = new ArrayList();
+        List<IMPart> list = new ArrayList<>();
         for (IMPart part : this.appService.findElements(null, null, IMPart.class, null, 0)) {
             if ((part.getManager() instanceof UnitPartManager)) {
                 list.add(part);
@@ -344,7 +344,7 @@ public class PartManager implements IViewManager {
         if (object == null) {
             return false;
         }
-        List<String> cnames = new ArrayList();
+        List<String> cnames = new ArrayList<>();
         for (IRcpUnitFragment fragment : object.getFragments()) {
             cnames.add(fragment.getClass().getName());
         }
@@ -448,10 +448,10 @@ public class PartManager implements IViewManager {
 
     private IMPart createInternal(IUnit unit, List<String> fragmentList, List<String> fragmentBlacklist, boolean activate) {
         if (fragmentList != null) {
-            fragmentList = new ArrayList(fragmentList);
+            fragmentList = new ArrayList<>(fragmentList);
         }
         if (fragmentBlacklist != null) {
-            fragmentBlacklist = new ArrayList(fragmentBlacklist);
+            fragmentBlacklist = new ArrayList<>(fragmentBlacklist);
         }
         IMPart part = createUnitPart(unit, fragmentList, fragmentBlacklist);
         if (activate) {
@@ -508,7 +508,7 @@ public class PartManager implements IViewManager {
                 }
             }
         }
-        List<IMPart> parts = new ArrayList();
+        List<IMPart> parts = new ArrayList<>();
         if (reusedPart != null) {
             prepareUnitPart(reusedPart, unit, null, null);
             this.appService.activate(reusedPart, true);
@@ -534,7 +534,7 @@ public class PartManager implements IViewManager {
     }
 
     private List<IMPart> createCodeUnitParts(IUnit unit, boolean createHierarchy, boolean createGraphs, boolean createMain) {
-        List<IMPart> parts = new ArrayList();
+        List<IMPart> parts = new ArrayList<>();
         if (createHierarchy) {
             parts.add(createInternal(unit, createFragmentList(new Class[]{CodeHierarchyView.class}), null, false));
         }
@@ -548,7 +548,7 @@ public class PartManager implements IViewManager {
     }
 
     private List<IMPart> createDebuggerUnitParts(IUnit unit, boolean createBpView, boolean createVarView, boolean createMain) {
-        List<IMPart> parts = new ArrayList();
+        List<IMPart> parts = new ArrayList<>();
         if (createBpView) {
             parts.add(createInternal(unit, createFragmentList(new Class[]{DbgBreakpointsView.class}), null, false));
         }
@@ -566,7 +566,7 @@ public class PartManager implements IViewManager {
     }
 
     private List<IMPart> restoreMissingParts(IUnit unit, List<IMPart> parts) {
-        List<IMPart> newParts = new ArrayList();
+        List<IMPart> newParts = new ArrayList<>();
         IMPart part;
         boolean createBpView;
         if ((unit instanceof ICodeUnit)) {
@@ -616,7 +616,7 @@ public class PartManager implements IViewManager {
 
     private List<IMPart> getLivePartsForUnitType(IUnit targetUnit) {
         String targetUnitType = targetUnit.getFormatType();
-        List<IMPart> candidates = new ArrayList();
+        List<IMPart> candidates = new ArrayList<>();
         for (IMPart part : getUnitParts()) {
             UnitPartManager object = getUnitPartManager(part);
             if ((object != null) && (object.getUnit() != null) && (Strings.equals(targetUnitType, object.getUnit().getFormatType()))) {
@@ -627,7 +627,7 @@ public class PartManager implements IViewManager {
     }
 
     private List<String> createFragmentList(Class<?>... classes) {
-        List<String> r = new ArrayList();
+        List<String> r = new ArrayList<>();
         for (Class<?> c : classes) {
             r.add(c.getName());
         }
@@ -654,7 +654,7 @@ public class PartManager implements IViewManager {
     }
 
     public List<IMPart> getPartsForUnitFamily(IUnit base, int flags) {
-        List<IUnit> family = new ArrayList();
+        List<IUnit> family = new ArrayList<>();
         buildFamily(base, family);
         List<IMPart> r = getPartsForUnits(family, flags);
         return r;
@@ -668,7 +668,7 @@ public class PartManager implements IViewManager {
     }
 
     private List<IMPart> getPartsForUnits(List<IUnit> units, int flags) {
-        List<IMPart> r = new ArrayList();
+        List<IMPart> r = new ArrayList<>();
         for (IMPart part : getUnitParts()) {
             boolean visible = this.appService.isPartVisible(part);
             if ((flags == 3) || ((flags == 1) && (visible)) || ((flags == 2) && (!visible))) {
@@ -685,7 +685,7 @@ public class PartManager implements IViewManager {
     }
 
     public List<IMPart> getPartsForUnit(IUnit unit, int flags) {
-        List<IUnit> units = new ArrayList();
+        List<IUnit> units = new ArrayList<>();
         units.add(unit);
         return getPartsForUnits(units, flags);
     }
@@ -709,7 +709,7 @@ public class PartManager implements IViewManager {
     }
 
     public List<UnitPartManager> getPartManagersForUnit(IUnit unit, int flags) {
-        List<UnitPartManager> r = new ArrayList();
+        List<UnitPartManager> r = new ArrayList<>();
         for (IMPart part : getUnitParts()) {
             UnitPartManager object = (UnitPartManager) part.getManager();
             if ((object != null) && (object.getUnit() == unit)) {
@@ -764,7 +764,7 @@ public class PartManager implements IViewManager {
     }
 
     public IMPart selectWithOriginatorDeep(List<IMPart> potentialOrigins, IMPart formerTarget) {
-        List<IMPart> visited = new ArrayList();
+        List<IMPart> visited = new ArrayList<>();
         return selectWithOriginatorRecurse(potentialOrigins, formerTarget, visited);
     }
 
@@ -821,7 +821,7 @@ public class PartManager implements IViewManager {
     }
 
     public boolean setRedraw(IUnit unit, boolean redraw) {
-        List<AbstractUnitFragment<?>> fragmentsDisabled = new ArrayList();
+        List<AbstractUnitFragment<?>> fragmentsDisabled = new ArrayList<>();
         try {
             List<IMPart> parts = getPartsForUnit(unit);
             for (IMPart p : parts) {

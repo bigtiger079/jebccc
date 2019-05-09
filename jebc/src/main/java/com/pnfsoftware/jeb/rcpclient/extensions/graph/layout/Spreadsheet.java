@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Spreadsheet<T> {
     private static final ILogger logger = GlobalLog.getLogger(Spreadsheet.class);
-    List<List<Cell<T>>> grid = new ArrayList();
+    List<List<Cell<T>>> grid = new ArrayList<>();
     int lastRowIndex;
     int lastColumnIndex;
 
@@ -220,7 +220,7 @@ public class Spreadsheet<T> {
         }
         List<Cell<T>> cells = (List) this.grid.get(row);
         if (cells == null) {
-            cells = new ArrayList();
+            cells = new ArrayList<>();
             this.grid.set(row, cells);
         }
         if (row > this.lastRowIndex) {
@@ -464,7 +464,7 @@ public class Spreadsheet<T> {
     }
 
     public List<Cell<T>> getRealCells() {
-        List<Cell<T>> r = new ArrayList();
+        List<Cell<T>> r = new ArrayList<>();
         for (int row = 0; row < this.grid.size(); row++) {
             getRealCellsOnRow(row, r);
         }
@@ -472,7 +472,7 @@ public class Spreadsheet<T> {
     }
 
     public List<Cell<T>> getRealCellsOnRow(int row) {
-        List<Cell<T>> r = new ArrayList();
+        List<Cell<T>> r = new ArrayList<>();
         getRealCellsOnRow(row, r);
         return r;
     }

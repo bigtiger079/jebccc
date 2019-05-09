@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ArrayGroup implements IArrayGroup {
     int firstIndex;
-    List<Object> children = new ArrayList();
+    List<Object> children = new ArrayList<>();
 
     public ArrayGroup(int firstIndex) {
         this.firstIndex = firstIndex;

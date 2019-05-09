@@ -47,12 +47,12 @@ public class Folder extends Composite implements IMFolder {
     boolean insideDock;
     boolean closeOnEmpty;
     private CTabFolder folderWidget;
-    List<IFolderListener> folderListeners = new ArrayList();
+    List<IFolderListener> folderListeners = new ArrayList<>();
     GhostWidget g;
     CTabItem draggedTab;
     CTabItem previouslySelectedTab;
     CTabItem selectedTab;
-    List<Part> parts = new ArrayList();
+    List<Part> parts = new ArrayList<>();
     public static final int HIDDEN = 0;
     public static final int VISIBLE = 1;
     public static final int SHOWN = 2;

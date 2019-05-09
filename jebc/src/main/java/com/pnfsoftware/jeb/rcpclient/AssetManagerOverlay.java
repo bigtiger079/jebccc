@@ -9,8 +9,8 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 
 public class AssetManagerOverlay {
-    private List<Image> images = new ArrayList();
-    private List<Point> positions = new ArrayList();
+    private List<Image> images = new ArrayList<>();
+    private List<Point> positions = new ArrayList<>();
     private String id = "";
     private boolean built = false;
 
@@ -36,7 +36,7 @@ public class AssetManagerOverlay {
 
     public Image build(Image image) {
         this.built = true;
-        List<OverlayImage> overlays = new ArrayList();
+        List<OverlayImage> overlays = new ArrayList<>();
         for (int i = 0; i < this.images.size(); i++) {
             overlays.add(new OverlayImage((Image) this.images.get(i), (Point) this.positions.get(i)));
         }

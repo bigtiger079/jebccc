@@ -89,7 +89,7 @@ public class ReparseDialog extends JebDialog {
             throw new NullPointerException();
         }
         this.unit = unit;
-        this.unitIdentifiers = new ArrayList(RuntimeProjectUtil.findProject(unit).getProcessor().getUnitIdentifiers());
+        this.unitIdentifiers = new ArrayList<>(RuntimeProjectUtil.findProject(unit).getProcessor().getUnitIdentifiers());
         Collections.sort(this.unitIdentifiers, new Comparator<IUnitIdentifier>() {
             public int compare(IUnitIdentifier o1, IUnitIdentifier o2) {
                 return o1.getFormatType().compareTo(o2.getFormatType());

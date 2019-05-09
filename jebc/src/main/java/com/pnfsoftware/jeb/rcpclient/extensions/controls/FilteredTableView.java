@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
 
 public class FilteredTableView extends AbstractFilteredView<Table> {
-    private List<ITableEventListener> listeners = new ArrayList();
+    private List<ITableEventListener> listeners = new ArrayList<>();
 
     public FilteredTableView(Composite parent, int style, String[] columnNames) {
         this(parent, style, columnNames, null, false);

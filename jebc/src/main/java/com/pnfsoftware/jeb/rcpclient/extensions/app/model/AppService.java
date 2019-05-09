@@ -35,7 +35,7 @@ public class AppService implements IAppService {
         if ((tags != null) && (!tags.isEmpty())) {
             throw new RuntimeException("Not supported yet");
         }
-        List<T> out = new ArrayList();
+        List<T> out = new ArrayList<>();
         if (root == null) {
             for (Shell s : this.app.getDisplay().getShells()) {
                 for (Control c : s.getChildren()) {
@@ -130,7 +130,7 @@ public class AppService implements IAppService {
     }
 
     public Collection<IMPart> getParts() {
-        List<IMPart> r = new ArrayList();
+        List<IMPart> r = new ArrayList<>();
         for (Dock dock : Dock.findDocks(this.app.getDisplay())) {
             for (Folder folder : dock.getFolders()) {
                 for (Part part : folder.getParts()) {

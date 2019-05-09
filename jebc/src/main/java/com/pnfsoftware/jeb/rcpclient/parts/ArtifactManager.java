@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Tree;
 
 public class ArtifactManager implements IArtifactManager {
     private static final ILogger logger = GlobalLog.getLogger(ArtifactManager.class);
-    private static final List<IUnit> EMPTY = new ArrayList();
+    private static final List<IUnit> EMPTY = new ArrayList<>();
     private static ArtifactManager instance;
 
     public static ArtifactManager getInstance() {
@@ -46,7 +46,7 @@ public class ArtifactManager implements IArtifactManager {
         }
         IUnit unit0 = artifact.getUnits().get(0);
         if ((unit0 instanceof ICodeObjectUnit)) {
-            ArrayList<IUnit> arrayList = new ArrayList();
+            ArrayList<IUnit> arrayList = new ArrayList<>();
             arrayList.add(unit0);
             return arrayList;
         }
@@ -54,7 +54,7 @@ public class ArtifactManager implements IArtifactManager {
             case "apk":
             case "ar":
             case "zip":
-                List<IUnit> expanded = new ArrayList();
+                List<IUnit> expanded = new ArrayList<>();
                 expanded.add(unit0);
                 return expanded;
         }

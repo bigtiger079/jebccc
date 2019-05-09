@@ -51,7 +51,7 @@ public class AnnotationService {
     }
 
     public List<AnnotationFactory> getFactories() {
-        return new ArrayList(this.map.values());
+        return new ArrayList<>(this.map.values());
     }
 }
 

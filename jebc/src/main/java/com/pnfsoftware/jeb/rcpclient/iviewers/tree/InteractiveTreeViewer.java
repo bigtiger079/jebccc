@@ -53,7 +53,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
         this.idoc = idoc;
         List<String> columnLabels = idoc.getColumnLabels();
         if (columnLabels == null) {
-            columnLabels = new ArrayList();
+            columnLabels = new ArrayList<>();
         }
         String[] columnNames = (String[]) columnLabels.toArray(new String[columnLabels.size()]);
         LabelProvider labelProvider = new LabelProvider(this);
@@ -170,7 +170,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
         if (node == null) {
             return null;
         }
-        List<Integer> seq = new ArrayList();
+        List<Integer> seq = new ArrayList<>();
         TreeItem item = this.pt.getTree().getSelection()[0];
         while (item != null) {
             TreeItem parentItem = item.getParentItem();

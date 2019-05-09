@@ -225,7 +225,7 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
 
         private List<Integer> getExpandedTreeItems() {
             TreeItem[] treeItems = DbgThreadsView.this.ftv.getTree().getItems();
-            List<Integer> expanded = new ArrayList();
+            List<Integer> expanded = new ArrayList<>();
             if (treeItems != null) {
                 for (int i = 0; i < treeItems.length; i++) {
                     TreeItem item = treeItems[i];

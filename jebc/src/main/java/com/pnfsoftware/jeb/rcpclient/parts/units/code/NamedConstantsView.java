@@ -95,7 +95,7 @@ public class NamedConstantsView extends AbstractFilteredTableView<INativeCodeUni
         }
 
         public Object[] getElements(Object inputElement) {
-            List<CodeConstant> entries = new ArrayList();
+            List<CodeConstant> entries = new ArrayList<>();
             TypeLibraryService tlsvc = this.pbcu.getTypeLibraryService();
             for (ITypeLibrary tlib : tlsvc.getLoadedTypeLibraries()) {
                 entries.addAll(tlib.getConstantManager().getNamedConstantsByValue(this.sourceValue));

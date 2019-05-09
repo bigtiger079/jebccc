@@ -93,7 +93,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
     private CompositeRuler leftRuler;
     private OverviewBar overviewBar;
     private AnnotationModelEx annoModel;
-    private List<TextAnnotation> annotations = new ArrayList();
+    private List<TextAnnotation> annotations = new ArrayList<>();
     private AnnotationPainter annoPainter;
     private boolean documentBeingChanged;
     private FindTextOptions findOptions;

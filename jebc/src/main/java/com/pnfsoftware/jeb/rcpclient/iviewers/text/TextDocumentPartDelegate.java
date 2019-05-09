@@ -13,7 +13,7 @@ public class TextDocumentPartDelegate implements ITextDocumentPart {
 
     public TextDocumentPartDelegate(ITextDocumentPart part, int maxCharsPerLine, int charsEndLine) {
         this.part = part;
-        this.lines = new ArrayList(part.getLines());
+        this.lines = new ArrayList<>(part.getLines());
         for (int i = 0; i < this.lines.size(); i++) {
             ILine line = (ILine) this.lines.get(i);
             if (line.getText().length() > maxCharsPerLine) {

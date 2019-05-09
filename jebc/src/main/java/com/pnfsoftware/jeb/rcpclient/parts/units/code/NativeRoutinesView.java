@@ -148,7 +148,7 @@ public class NativeRoutinesView extends AbstractFilteredTableView<INativeCodeUni
         }
 
         public Object[] getElements(Object inputElement) {
-            List<INativeMethodItem> entries = new ArrayList();
+            List<INativeMethodItem> entries = new ArrayList<>();
             Iterator localIterator1;
             INativeMethodItem m;
             if ((this.typesource & 0x1) != 0)

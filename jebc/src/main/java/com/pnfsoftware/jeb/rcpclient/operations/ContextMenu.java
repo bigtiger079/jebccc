@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Menu;
 
 public class ContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(ContextMenu.class);
-    final List<IContextMenu> contextMenus = new ArrayList();
+    final List<IContextMenu> contextMenus = new ArrayList<>();
     private MenuManager menuManager;
     private Menu menu;
 

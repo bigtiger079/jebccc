@@ -62,12 +62,12 @@ public class DbgAttachDialog extends JebDialog {
         public IDebuggerUnitIdentifier ident;
     }
 
-    private List<IDebuggerUnitIdentifier> idents = new ArrayList();
-    private List<IDebuggerUnitIdentifier> identifiers = new ArrayList();
-    private List<IDebuggerMachineInformation> machines = new ArrayList();
+    private List<IDebuggerUnitIdentifier> idents = new ArrayList<>();
+    private List<IDebuggerUnitIdentifier> identifiers = new ArrayList<>();
+    private List<IDebuggerMachineInformation> machines = new ArrayList<>();
     private DataFrame dfMachines;
     private DataFrameView dfvMachines;
-    private List<? extends IDebuggerProcessInformation> processes = new ArrayList();
+    private List<? extends IDebuggerProcessInformation> processes = new ArrayList<>();
     private DataFrame dfProcesses;
     private DataFrameView dfvProcesses;
     private Button btnRemoteTarget;

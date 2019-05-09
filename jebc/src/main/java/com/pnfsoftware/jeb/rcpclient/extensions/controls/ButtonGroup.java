@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class ButtonGroup extends Composite {
     private Composite buttons;
-    private List<Button> buttonList = new ArrayList();
+    private List<Button> buttonList = new ArrayList<>();
 
     protected ButtonGroup(Composite parent, int style, GridData gridData) {
         super(parent, style);

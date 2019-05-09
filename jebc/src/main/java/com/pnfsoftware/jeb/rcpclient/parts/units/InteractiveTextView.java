@@ -53,7 +53,7 @@ import org.eclipse.swt.widgets.Menu;
 
 public class InteractiveTextView extends AbstractInteractiveTextView {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTextView.class);
-    private List<ILocationListener> locationListeners = new ArrayList();
+    private List<ILocationListener> locationListeners = new ArrayList<>();
     private UnitTextAnnotator textAnnotator;
     private ItemStyleProvider tsa;
     private GraphicalTextFinder<InteractiveTextFindResult> finder;
@@ -399,7 +399,7 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
     }
 
     public List<ICoordinates> collectItemCoordinates(long itemId) {
-        List<ICoordinates> r = new ArrayList();
+        List<ICoordinates> r = new ArrayList<>();
         long anchorId = TextPartUtil.getFirstAnchorId(this.iviewer.getCurrentDocumentPart());
         int lineIndex;
         if (anchorId >= 0L) {

@@ -33,7 +33,7 @@ public class SoundManager implements LineListener {
     final int channels = 1;
     final boolean signed = true;
     final boolean bigEndian = true;
-    List<IStateChangedListener> listeners = new ArrayList();
+    List<IStateChangedListener> listeners = new ArrayList<>();
     int state = 0;
     ByteArrayOutputStream datastream = new ByteArrayOutputStream();
     Thread captureThread = null;

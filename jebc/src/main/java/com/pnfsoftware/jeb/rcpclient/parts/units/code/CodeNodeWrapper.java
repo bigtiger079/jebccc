@@ -17,7 +17,7 @@ public class CodeNodeWrapper implements Comparable<CodeNodeWrapper> {
     private String name;
 
     static List<CodeNodeWrapper> wrapNodes(Collection<? extends ICodeNode> nodes) {
-        List<CodeNodeWrapper> r = new ArrayList(nodes.size());
+        List<CodeNodeWrapper> r = new ArrayList<>(nodes.size());
         for (ICodeNode node : nodes) {
             r.add(new CodeNodeWrapper(node));
         }
@@ -25,7 +25,7 @@ public class CodeNodeWrapper implements Comparable<CodeNodeWrapper> {
     }
 
     static List<ICodeNode> unwrapNodes(Collection<CodeNodeWrapper> wnodes) {
-        List<ICodeNode> r = new ArrayList(wnodes.size());
+        List<ICodeNode> r = new ArrayList<>(wnodes.size());
         for (CodeNodeWrapper wnode : wnodes) {
             r.add(wnode.node);
         }

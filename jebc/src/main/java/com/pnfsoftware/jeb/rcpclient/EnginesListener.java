@@ -114,7 +114,7 @@ public class EnginesListener implements IEventListener {
                     ItemHistory<GlobalPosition> history = EnginesListener.this.context.getPartManager().getGlobalPositionHistory();
                     List<GlobalPosition> globalPositionList = history.getList();
                     if (!globalPositionList.isEmpty()) {
-                        List<GlobalPosition> toRemove = new ArrayList();
+                        List<GlobalPosition> toRemove = new ArrayList<>();
                         for (GlobalPosition pos : globalPositionList) {
                             if (pos.getUnit() == unit) {
                                 toRemove.add(pos);

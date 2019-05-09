@@ -73,7 +73,7 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
     }
 
     private void addSymbolAsRow(DataFrame df, ISymbolInformation s) {
-        List<Object> row = new ArrayList();
+        List<Object> row = new ArrayList<>();
         row.add(formatSymbolType(s.getType()));
         row.add(formatSymbolFlags(s.getFlags()));
         row.add(s.getName());

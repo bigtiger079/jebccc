@@ -161,7 +161,7 @@ public class GraphicalActionExecutor {
                     long itemId = info.getItemId();
                     List<ICoordinates> coords = ((InteractiveTextView) fragment).collectItemCoordinates(itemId);
                     if (!coords.isEmpty()) {
-                        List<String> addresses = new ArrayList();
+                        List<String> addresses = new ArrayList<>();
                         for (ICoordinates coord : coords) {
                             addresses.add(String.format("Text @ %d:%d", 1 + coord.getLineDelta(), 1 + coord.getColumnOffset()));
                         }

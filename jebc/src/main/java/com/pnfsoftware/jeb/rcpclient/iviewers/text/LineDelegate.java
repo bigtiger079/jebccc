@@ -17,7 +17,7 @@ public class LineDelegate implements ILine {
     private static final ILogger logger = GlobalLog.getLogger(LineDelegate.class);
     private ILine line;
     private CharSequence text;
-    List<ITextItem> items = new ArrayList();
+    List<ITextItem> items = new ArrayList<>();
 
     public LineDelegate(ILine line, int maxCharsPerLine, int charsEndLine) {
         this.line = line;

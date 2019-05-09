@@ -39,12 +39,12 @@ public class XYGraph extends AbstractGraph {
     public static final double DEFAULT_ZOOM_LEVEL_OUT = 1.2D;
     private static final long DEFAULT_ACTIVE_VERTEX_ANIMATION_PERIOD_MS = 600L;
     private static final long DEFAULT_DRAG_ANIMATION_PERIOD_MS = 50L;
-    private List<IGraphVertexListener> vertexListeners = new ArrayList();
-    private List<IGraphBoundsListener> boundsListeners = new ArrayList();
+    private List<IGraphVertexListener> vertexListeners = new ArrayList<>();
+    private List<IGraphBoundsListener> boundsListeners = new ArrayList<>();
     private Thread aniThread;
     private boolean directed;
     private Map<Integer, P> pointmap = new HashMap();
-    private List<L> lines = new ArrayList();
+    private List<L> lines = new ArrayList<>();
     private P selectedVertex;
     private P hoveredVertex;
     private Collection<P> visiblePoints = new HashSet();
@@ -803,7 +803,7 @@ public class XYGraph extends AbstractGraph {
         int h = Math.max(3, (int) (b.height * yRatio));
         gc.setBackground(styles.cCanvas);
         gc.fillRectangle(x, y, w, h);
-        List<Point> activePts = new ArrayList();
+        List<Point> activePts = new ArrayList<>();
         for (Map.Entry<Integer, Point> entry : getVertexViewportCoordinates().entrySet()) {
             int id = ((Integer) entry.getKey()).intValue();
             Point pt = (Point) entry.getValue();

@@ -68,7 +68,7 @@ public class CommunityDetector {
             ebOrder = g.computeEdgeBetweenness();
             E e = g.getEdge(((Integer) ebOrder.get(0)).intValue());
             double bestScore = e.ebscore.doubleValue();
-            List<E> tbr = new ArrayList();
+            List<E> tbr = new ArrayList<>();
             tbr.add(e);
             int cnt;
             for (cnt = 1; cnt < g.getEdgeCount(); cnt++) {
@@ -87,7 +87,7 @@ public class CommunityDetector {
             }
         }
         logger.i("-> %d sub-graphs", new Object[]{Integer.valueOf(subgraphs.size())});
-        node.children = new ArrayList(subgraphs.size());
+        node.children = new ArrayList<>(subgraphs.size());
         for (Digraph subgraph : subgraphs) {
             Node subnode = new Node();
             node.children.add(subnode);
@@ -98,7 +98,7 @@ public class CommunityDetector {
     }
 
     private Node performIter(Digraph inputGraph, int subgraphCountThreshold) {
-        List<Digraph> q = new ArrayList();
+        List<Digraph> q = new ArrayList<>();
         q.add(inputGraph);
         IdentityHashMap<Digraph, Node> map = new IdentityHashMap();
         Node inputNode = new Node(inputGraph);
@@ -120,7 +120,7 @@ public class CommunityDetector {
                     ebOrder = g.computeEdgeBetweenness();
                     E e = g.getEdge(((Integer) ebOrder.get(0)).intValue());
                     double bestScore = e.ebscore.doubleValue();
-                    List<E> tbr = new ArrayList();
+                    List<E> tbr = new ArrayList<>();
                     tbr.add(e);
                     int cnt;
                     for (cnt = 1; cnt < g.getEdgeCount(); cnt++) {
@@ -139,7 +139,7 @@ public class CommunityDetector {
                     }
                 }
                 logger.i("-> %d sub-graphs", new Object[]{Integer.valueOf(subgraphs.size())});
-                node.children = new ArrayList(subgraphs.size());
+                node.children = new ArrayList<>(subgraphs.size());
                 for (Digraph subgraph : subgraphs) {
                     Node subnode = new Node(subgraph);
                     node.children.add(subnode);
@@ -162,7 +162,7 @@ public class CommunityDetector {
     }
 
     public List<P> layout(Node root, double gridX, double gridY, double gridW, double gridH) {
-        List<P> points = new ArrayList();
+        List<P> points = new ArrayList<>();
         layoutInternal(root, gridX, gridY, gridW, gridH, points);
         return points;
     }

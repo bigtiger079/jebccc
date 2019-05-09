@@ -135,7 +135,7 @@ public class TextDialog extends JebDialog {
     }
 
     protected void createButtons(Composite parent) {
-        List<int[]> avails = new ArrayList();
+        List<int[]> avails = new ArrayList<>();
         if (this.labelOk != null) {
             avails.add(new int[]{32, this.labelOk.intValue() == -1 ? 'ɝ' : this.labelOk.intValue()});
         }

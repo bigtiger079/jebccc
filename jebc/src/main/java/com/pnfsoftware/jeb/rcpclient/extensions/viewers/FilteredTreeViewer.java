@@ -102,7 +102,7 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
         if ((items == null) || (items.length == 0)) {
             return opened;
         }
-        List<TreeItem> toExpand = new ArrayList();
+        List<TreeItem> toExpand = new ArrayList<>();
         for (TreeItem item : items) {
             if (getProvider().hasChildren(item.getData())) {
                 boolean childMatch = isOneChildMatchFilter(item.getData());

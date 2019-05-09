@@ -145,7 +145,7 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
             insn = (IDalvikInstruction) localIterator.next();
             insnmap.put(Long.valueOf(insn.getOffset()), insn);
         }
-        Object irrdata = new ArrayList();
+        Object irrdata = new ArrayList<>();
         for (com.pnfsoftware.jeb.core.units.code.android.controlflow.IrregularFlowData o : cfg0.generateIrregularFlowDataObjects()) {
             ((List) irrdata).add(new com.pnfsoftware.jeb.core.units.code.asm.cfg.IrregularFlowData(o.getFirstAddress(), o.getLastAddress(), o.getTargetAddress()));
         }

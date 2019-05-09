@@ -128,7 +128,7 @@ public class PublicContext implements IGraphicalClientContext {
     }
 
     public List<UnitPartManager> getViews(IUnit targetUnit) {
-        List<UnitPartManager> r = new ArrayList();
+        List<UnitPartManager> r = new ArrayList<>();
         PartManager upm = this.ctx.getPartManager();
         for (IMPart part : upm.getUnitParts()) {
             UnitPartManager unitPart = upm.getUnitPartManager(part);

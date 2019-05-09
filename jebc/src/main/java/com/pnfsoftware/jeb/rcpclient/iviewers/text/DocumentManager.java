@@ -31,10 +31,10 @@ public class DocumentManager {
     private int hintMaxCharsPerLine = -1;
     private int maxDeltaForWSP = 10;
     private String wrapIndentString = "        ";
-    private List<int[]> wrappedData = new ArrayList();
+    private List<int[]> wrappedData = new ArrayList<>();
     private Map<Integer, List<Integer>> wrapIndexes = new HashMap();
     private String docText;
-    private List<RenderedItem> renderedItems = new ArrayList();
+    private List<RenderedItem> renderedItems = new ArrayList<>();
 
     public DocumentManager(ITextDocument doc) {
         this(doc, false);
@@ -281,7 +281,7 @@ public class DocumentManager {
     private void addIndex(int key, int index) {
         List<Integer> indexes = (List) this.wrapIndexes.get(Integer.valueOf(key));
         if (indexes == null) {
-            indexes = new ArrayList();
+            indexes = new ArrayList<>();
             this.wrapIndexes.put(Integer.valueOf(key), indexes);
         }
         indexes.add(Integer.valueOf(index));

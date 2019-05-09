@@ -129,7 +129,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
                 this.performanceOptimizer = true;
                 onFirstOptimization(r);
             }
-            List<IArrayGroup> groups = new ArrayList();
+            List<IArrayGroup> groups = new ArrayList<>();
             Map<Integer, ArrayLogicalGroup> logicalGroups = getLogicalGroups(r, parentElement);
             int logicalGroupSize = getLogicalGroupSize(logicalGroups);
             if (r.size() <= this.limit) {
@@ -187,7 +187,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
 
     private List<Integer> getSmallestGroups(List<IArrayGroup> groups) {
         int minSize = -1;
-        List<Integer> subGroups = new ArrayList();
+        List<Integer> subGroups = new ArrayList<>();
         for (int i = 1; i < groups.size(); i++) {
             IArrayGroup g = (IArrayGroup) groups.get(i);
             if (!(g instanceof ArrayLogicalGroup)) {
@@ -222,7 +222,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
             return r.toArray();
         }
         if (r.size() > this.limit) {
-            List<IArrayGroup> groups = new ArrayList();
+            List<IArrayGroup> groups = new ArrayList<>();
             ArrayGroup currentGroup = null;
             for (int i = 0; i < r.size(); i++) {
                 if ((currentGroup == null) || (currentGroup.size() >= this.groupLimit)) {

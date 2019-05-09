@@ -195,7 +195,7 @@ public class FileExportDecompiledCodeHandler extends JebBaseHandler {
     }
 
     private static String getFullPath(ICodeNode p) {
-        List<String> packages = new ArrayList();
+        List<String> packages = new ArrayList<>();
         while (p != null) {
             if (p.getLabel() != null) {
                 packages.add(0, p.getLabel());

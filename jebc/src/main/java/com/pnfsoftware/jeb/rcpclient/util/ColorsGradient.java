@@ -574,7 +574,7 @@ public class ColorsGradient {
         colors.put("gray 1", Integer.valueOf(197379));
     }
 
-    private static List<Integer> rgbvalues = new ArrayList(colors.values());
+    private static List<Integer> rgbvalues = new ArrayList<>(colors.values());
 
     private static int get(String colorName, boolean loose) {
         if (colorName == null) {

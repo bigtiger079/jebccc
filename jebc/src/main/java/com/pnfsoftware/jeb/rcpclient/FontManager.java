@@ -132,7 +132,7 @@ public class FontManager extends EventSource {
         }
         if (newCodeFont == null) {
             OSType ostype = OSType.determine();
-            List<String> preferredNames = new ArrayList();
+            List<String> preferredNames = new ArrayList<>();
             if (ostype.isWindows()) {
                 preferredNames.add("Consolas");
             } else if (ostype.isMac()) {

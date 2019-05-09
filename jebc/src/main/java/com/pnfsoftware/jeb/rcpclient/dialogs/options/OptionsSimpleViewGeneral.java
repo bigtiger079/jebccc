@@ -32,7 +32,7 @@ public class OptionsSimpleViewGeneral extends Composite {
     protected static final String PROJECT_SPECIFIC = "Project-specific";
     private Map<String, OptionsSimpleListener> listeners = new HashMap();
     private final OptionsChanges optionsChanges;
-    private List<Control> proxySubEntries = new ArrayList();
+    private List<Control> proxySubEntries = new ArrayList<>();
 
     public OptionsSimpleViewGeneral(Composite parent, OptionsChanges optionsChanges) {
         super(parent, 0);

@@ -398,7 +398,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
 
     private Control addUnitDocuments(CTabFolder folder) {
         Control focusedControl = null;
-        List<Long> currentPresIds = new ArrayList();
+        List<Long> currentPresIds = new ArrayList<>();
         IUnitDocumentPresentation pres;
         for (Iterator localIterator = this.unitFormatter.getPresentations().iterator(); localIterator.hasNext(); ) {
             pres = (IUnitDocumentPresentation) localIterator.next();
@@ -406,7 +406,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                 currentPresIds.add(Long.valueOf(pres.getId()));
             }
         }
-        Object uiPresIds = new ArrayList();
+        Object uiPresIds = new ArrayList<>();
         Iterator<Control> iterator = this.tabman.getControls().iterator();
         while (iterator.hasNext()) {
             Control ctl = (Control) iterator.next();
@@ -415,7 +415,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                 ((List) uiPresIds).add(presId);
             }
         }
-        List<Long> tbrPresIds = new ArrayList();
+        List<Long> tbrPresIds = new ArrayList<>();
         Iterator iter = ((List) uiPresIds).iterator();
         while (iter.hasNext()) {
             long presId = (Long) iter.next();
@@ -468,7 +468,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                 }
             }
         }
-        List<Control> tbrControls = new ArrayList();
+        List<Control> tbrControls = new ArrayList<>();
         for (Control ctl : this.tabman.getControls()) {
             Long presId = (Long) ctl.getData("presentationId");
             if ((presId != null) && (tbrPresIds.contains(presId))) {
@@ -590,7 +590,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public List<AbstractUnitFragment<?>> getPreviouslyActiveFragments() {
-        List<AbstractUnitFragment<?>> r = new ArrayList();
+        List<AbstractUnitFragment<?>> r = new ArrayList<>();
         for (CTabItem tab : this.tabman.getPreviouslyFocusedTabs()) {
             Control ctl = tab.getControl();
             if ((ctl instanceof AbstractUnitFragment)) {
@@ -601,7 +601,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public List<IRcpUnitFragment> getFragments() {
-        List<IRcpUnitFragment> r = new ArrayList();
+        List<IRcpUnitFragment> r = new ArrayList<>();
         for (Control ctl : this.tabman.getControls()) {
             if ((ctl instanceof AbstractUnitFragment)) {
                 r.add((IRcpUnitFragment) ctl);

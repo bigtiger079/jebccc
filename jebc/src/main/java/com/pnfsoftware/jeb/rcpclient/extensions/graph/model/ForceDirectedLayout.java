@@ -41,7 +41,7 @@ public class ForceDirectedLayout {
     public ForceDirectedLayout(Digraph g, int itercount, double width, double height, P[] coords) {
         this.vertexcnt = g.getVertexCount();
         Set<Couple<Integer, Integer>> set = new HashSet();
-        this.uedges = new ArrayList();
+        this.uedges = new ArrayList<>();
         for (E e : g.getEdges()) {
             int a = e.src.index;
             int b = e.dst.index;

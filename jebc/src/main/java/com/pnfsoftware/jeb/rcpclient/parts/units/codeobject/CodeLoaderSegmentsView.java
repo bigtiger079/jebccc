@@ -50,10 +50,10 @@ public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUni
             list = ((ICodeObjectUnit) this.unit).getSections();
         }
         if (list == null) {
-            list = new ArrayList();
+            list = new ArrayList<>();
         }
         for (ISegmentInformation s : list) {
-            List<Object> row = new ArrayList();
+            List<Object> row = new ArrayList<>();
             row.add(s.getName());
             row.add(formatSegmentFlags(s.getFlags()));
             row.add(Long.valueOf(s.getOffsetInFile()));

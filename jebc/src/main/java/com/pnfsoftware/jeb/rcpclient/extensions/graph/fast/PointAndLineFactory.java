@@ -9,8 +9,8 @@ public class PointAndLineFactory {
     private List<L> lines;
 
     public PointAndLineFactory() {
-        this.points = new ArrayList();
-        this.lines = new ArrayList();
+        this.points = new ArrayList<>();
+        this.lines = new ArrayList<>();
     }
 
     public List<P> getPoints() {

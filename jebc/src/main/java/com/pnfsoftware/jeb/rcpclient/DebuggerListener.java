@@ -151,7 +151,7 @@ public class DebuggerListener {
                             if (realBreakpoints != null) {
                                 for (IUnit target : DebuggerListener.this.dbg.getPotentialDebuggees()) {
                                     uiState = DebuggerListener.this.context.getUIState(target);
-                                    List<String> validAddresses = new ArrayList();
+                                    List<String> validAddresses = new ArrayList<>();
                                     for (Iterator localIterator = realBreakpoints.iterator(); localIterator.hasNext(); ) {
                                         bp = (IDebuggerBreakpoint) localIterator.next();
                                         String dbgAddress = bp.getAddress();
@@ -164,7 +164,7 @@ public class DebuggerListener {
                                             }
                                         }
                                     }
-                                    List<String> invalidAddresses = new ArrayList();
+                                    List<String> invalidAddresses = new ArrayList<>();
                                     for (String address : uiState.getBreakpoints().keySet()) {
                                         if (!validAddresses.contains(address)) {
                                             ((List) invalidAddresses).add(address);

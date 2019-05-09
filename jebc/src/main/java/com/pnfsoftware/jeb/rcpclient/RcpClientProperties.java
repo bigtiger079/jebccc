@@ -55,7 +55,7 @@ public class RcpClientProperties {
 
     List<String> parseRecentlyOpenedFiles(String s) {
         if (s == null) {
-            return new ArrayList();
+            return new ArrayList<>();
         }
         return Strings.decodeList(s);
     }
@@ -76,7 +76,7 @@ public class RcpClientProperties {
 
     List<String> parseRecentlyExecutedScripts(String s) {
         if (s == null) {
-            return new ArrayList();
+            return new ArrayList<>();
         }
         return Strings.decodeList(s);
     }

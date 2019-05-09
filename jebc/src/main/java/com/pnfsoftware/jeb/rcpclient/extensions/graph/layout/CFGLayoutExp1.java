@@ -36,7 +36,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
         long addr = ((Long) this.blockmap.keySet().iterator().next()).longValue();
         BasicBlock<T> b = (BasicBlock) this.blockmap.remove(Long.valueOf(addr));
         Cell<BasicBlock<T>> cell0 = this.grid.writeCell(0, 0, b);
-        List<Cell<BasicBlock<T>>> parents = new ArrayList();
+        List<Cell<BasicBlock<T>>> parents = new ArrayList<>();
         parents.add(cell0);
         addChildren(parents);
         improveLayoutMultiPass();
@@ -108,7 +108,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
 
     private void addChildren(List<Cell<BasicBlock<T>>> parents) {
         while (!parents.isEmpty()) {
-            List<Cell<BasicBlock<T>>> nextParents = new ArrayList();
+            List<Cell<BasicBlock<T>>> nextParents = new ArrayList<>();
             for (Cell<BasicBlock<T>> parent : parents) {
                 int srcRow = parent.getCoordinates().getRow();
                 int srcCol = parent.getCoordinates().getColumn();
@@ -130,7 +130,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
     }
 
     private List<Cell<BasicBlock<T>>> getDestinationCells(BasicBlock<T> src) {
-        List<Cell<BasicBlock<T>>> r = new ArrayList();
+        List<Cell<BasicBlock<T>>> r = new ArrayList<>();
         for (BasicBlock<T> dst : src.getOutputBlocks()) {
             Cell<BasicBlock<T>> cell = this.grid.getCellByObject(dst);
             Assert.a(cell != null, "Cannot find cell for block: " + dst);

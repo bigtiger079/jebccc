@@ -168,9 +168,9 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         this.viewer.setExpandedState(baseNode, true);
         if (!disableInitialExpansion) {
             int expandedCount = 0;
-            List<ICodeNode> currentNodes = new ArrayList(baseNode.getChildren());
+            List<ICodeNode> currentNodes = new ArrayList<>(baseNode.getChildren());
             for (; ; ) {
-                List<ICodeNode> nextNodes = new ArrayList();
+                List<ICodeNode> nextNodes = new ArrayList<>();
                 for (ICodeNode node : currentNodes) {
                     int expansion = node.getInitialExpansion();
                     if (expansion >= 1) {
@@ -322,11 +322,11 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         }
 
         public List<?> getChildren2(Object element) {
-            List<? extends ICodeNode> li = new ArrayList();
+            List<? extends ICodeNode> li = new ArrayList<>();
             if ((element instanceof ICodeNode)) {
                 if ((CodeHierarchyView.this.usesExplicitDefaultPackage()) && (!CodeHierarchyView.this.extraDetails) && (element == this.root)) {
                     li = CodeNodeUtil.getChildren((ICodeNode) element, 32768, this.excludedFlags);
-                    List<ICodeNode> li2 = new ArrayList(li);
+                    List<ICodeNode> li2 = new ArrayList<>(li);
                     if (this.defaultPackage == null) {
                         this.defaultPackage = new SimpleCodeNode(new SimpleCodePackage("(default package)", ""), this.root, CodeNodeUtil.getChildren((ICodeNode) element, this.includedFlags, 32768), true);
                     }
@@ -343,7 +343,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             if (li.size() > getLimit()) {
                 AbstractFilteredFilter filter = CodeHierarchyView.this.getAbstractFilter();
                 if ((filter != null) && (filter.isFiltered())) {
-                    List<ICodeNode> li2 = new ArrayList();
+                    List<ICodeNode> li2 = new ArrayList<>();
                     for (ICodeNode o : li) {
                         if ((filter.isElementMatch(o)) || (isChildMatch(filter, o))) {
                             li2.add(o);
@@ -391,7 +391,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         }
 
         List<ICodeNode> filterOutEmptyPackages(List<? extends ICodeNode> list) {
-            List<ICodeNode> list2 = new ArrayList();
+            List<ICodeNode> list2 = new ArrayList<>();
             for (ICodeNode node : list) {
                 if ((!(node.getObject() instanceof ICodePackage)) || (isNonEmptyPackageNode(node)) || (!CodeNodeUtil.cannotBe(node, 16))) {
                     list2.add(node);
@@ -568,7 +568,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             private void saveValidLabel(ArrayLogicalGroup logicalGroup, String label) {
                 List<ArrayLogicalGroup> gr = (List) this.groupByName.get(label);
                 if (gr == null) {
-                    gr = new ArrayList();
+                    gr = new ArrayList<>();
                     this.groupByName.put(label, gr);
                 }
                 gr.add(logicalGroup);
@@ -1102,17 +1102,17 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
 
     public void focusOnNode(ICodeNode node) {
         ISelection selection = new StructuredSelection(node);
-        List<Object> path = new ArrayList();
+        List<Object> path = new ArrayList<>();
         path.add(((ICodeUnit) this.unit).getHierarchy().getRoot());
         path.add(node);
         selection = new TreeSelection(new TreePath(path.toArray()));
         this.viewer.reveal(node);
         this.viewer.setSelection(selection);
         if (getSelectedElement() == null) {
-            path = new ArrayList();
+            path = new ArrayList<>();
             boolean autoExpand = true;
             if (autoExpand) {
-                List<ICodeNode> pathNode = new ArrayList();
+                List<ICodeNode> pathNode = new ArrayList<>();
                 getPathNode(node, this.contentProvider.getRoot(), pathNode, true);
                 if ((usesExplicitDefaultPackage()) && (!this.extraDetails) && (!(((ICodeNode) pathNode.get(0)).getObject() instanceof ICodePackage)) && (this.contentProvider.defaultPackage != null)) {
                     pathNode.add(0, this.contentProvider.defaultPackage);
@@ -1121,7 +1121,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                     this.viewer.getTree().setRedraw(false);
                     TreeItem[] items = this.viewer.getTree().getItems();
                     for (ICodeNode o : pathNode) {
-                        List<IArrayGroup> arrayPath = new ArrayList();
+                        List<IArrayGroup> arrayPath = new ArrayList<>();
                         TreeItem item = getIntermediateNodes(o, items, arrayPath);
                         for (IArrayGroup a : arrayPath) {
                             this.viewer.setExpandedState(a, true);

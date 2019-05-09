@@ -157,7 +157,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
     }
 
     private URLClassLoader buildClassLoader(String[] paths) {
-        List<URL> urls = new ArrayList();
+        List<URL> urls = new ArrayList<>();
         for (String pathelt : paths) {
             try {
                 urls.add(new File(pathelt.trim()).toURI().toURL());
@@ -179,7 +179,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
         }
 
         public List<EditableList.ICheckable> getCheckableList(EditableList table, String value) {
-            List<EditableList.ICheckable> result = new ArrayList();
+            List<EditableList.ICheckable> result = new ArrayList<>();
             List<DevPluginClassname> classnames = this.cp.parseDevPluginClassnames(value);
             for (DevPluginClassname cl : classnames) {
                 result.add(new OptionsSimpleViewClassname.CheckableDevPluginClassname(cl));

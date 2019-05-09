@@ -14,8 +14,8 @@ public class ConstraintSolver implements Cloneable {
     private static final ILogger logger = GlobalLog.getLogger(ConstraintSolver.class);
     boolean solved;
     int[] varsmin;
-    List<Constraint> constraints = new ArrayList();
-    List<Constraint> constraints0 = new ArrayList();
+    List<Constraint> constraints = new ArrayList<>();
+    List<Constraint> constraints0 = new ArrayList<>();
     private int strategy = 3;
 
     static class Constraint {
@@ -93,7 +93,7 @@ public class ConstraintSolver implements Cloneable {
     public ConstraintSolver clone() {
         ConstraintSolver r = new ConstraintSolver();
         r.varsmin = ((int[]) this.varsmin.clone());
-        r.constraints = new ArrayList(this.constraints.size());
+        r.constraints = new ArrayList<>(this.constraints.size());
         for (Constraint c : this.constraints) {
             r.constraints.add(new Constraint((boolean[]) c.vector.clone(), c.minval));
         }

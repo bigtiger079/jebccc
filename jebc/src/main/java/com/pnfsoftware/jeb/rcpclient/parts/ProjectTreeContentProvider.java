@@ -78,7 +78,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
                                                 useAManager = true;
                                             }
                                             IArtifactManager amanager = ArtifactManager.getInstance();
-                                            List<Object> expanded = new ArrayList();
+                                            List<Object> expanded = new ArrayList<>();
                                             expanded.add(((ILiveArtifact) object).getRuntimeProject());
                                             expanded.add(object);
                                             if (useAManager) {

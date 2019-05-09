@@ -35,7 +35,7 @@ public class WidgetActionWrapper implements IContextMenu {
         }
     }
 
-    private List<Action> menuActions = new ArrayList();
+    private List<Action> menuActions = new ArrayList<>();
 
     public WidgetActionWrapper(Control ctl) {
         this.ctl = ctl;

@@ -166,7 +166,7 @@ public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
             return false;
         }
         List<? extends INode> roots = this.iviewer.getInfiniDocument().getRoots();
-        return followItem(item.getItemId(), roots, new ArrayList());
+        return followItem(item.getItemId(), roots, new ArrayList<>());
     }
 
     private boolean followItem(long itemId, List<? extends INode> nodes, List<Integer> coordinates) {
@@ -178,7 +178,7 @@ public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
                     return this.iviewer.setPosition(new NodeCoordinates(Arrays.asList(new Integer[]{Integer.valueOf(index)})), true);
                 }
             }
-            List<Integer> children = new ArrayList(coordinates);
+            List<Integer> children = new ArrayList<>(coordinates);
             children.add(Integer.valueOf(index));
             boolean followChild = followItem(itemId, root.getChildren(), children);
             if (followChild) {

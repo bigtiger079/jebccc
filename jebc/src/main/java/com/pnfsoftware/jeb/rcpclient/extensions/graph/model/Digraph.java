@@ -17,11 +17,11 @@ public class Digraph {
     private static final ILogger logger = GlobalLog.getLogger(Digraph.class);
     private boolean done;
     private MultiList<E> edgefrommap = new MultiList();
-    private List<E> edges = new ArrayList();
+    private List<E> edges = new ArrayList<>();
     private MultiList<E> edgetomap = new MultiList();
     private List<Set<Integer>> reachabilityIndices;
     private TreeMap<Integer, V> vertexmap = new TreeMap();
-    private List<V> vertices = new ArrayList();
+    private List<V> vertices = new ArrayList<>();
 
     /*  JADX ERROR: Method load error
         jadx.core.utils.exceptions.DecodeException: Load method exception: Unknown instruction: 'invoke-custom' in method: com.pnfsoftware.jeb.rcpclient.extensions.graph.model.Digraph.addEdge(int, int, java.lang.Double):com.pnfsoftware.jeb.rcpclient.extensions.graph.model.E, dex:
@@ -133,7 +133,7 @@ public class Digraph {
     }
 
     public List<V> copyOfVertices() {
-        List<V> r = new ArrayList(getVertexCount());
+        List<V> r = new ArrayList<>(getVertexCount());
         for (V v : this.vertices) {
             r.add(v.clone());
         }
@@ -141,7 +141,7 @@ public class Digraph {
     }
 
     public List<E> copyOfEdges() {
-        List<E> r = new ArrayList(getEdgeCount());
+        List<E> r = new ArrayList<>(getEdgeCount());
         for (E e : this.edges) {
             r.add(e.clone());
         }
@@ -346,13 +346,13 @@ public class Digraph {
         }
         int[] vPathCounts = new int[getVertexCount()];
         vPathCounts[startNodeIndex] = 1;
-        List<List<E>> levels = new ArrayList();
+        List<List<E>> levels = new ArrayList<>();
         Set<Integer> seen = new HashSet();
-        List<Integer> startIndexes = new ArrayList();
+        List<Integer> startIndexes = new ArrayList<>();
         startIndexes.add(Integer.valueOf(startNodeIndex));
         Set<Integer> nextStartIndexes = new HashSet();
         while (!startIndexes.isEmpty()) {
-            level = new ArrayList();
+            level = new ArrayList<>();
             for (Integer intValue : startIndexes) {
                 int srcIndex = intValue.intValue();
                 for (E edge : getEdgesFrom(srcIndex)) {
@@ -368,7 +368,7 @@ public class Digraph {
                 levels.add(level);
             }
             seen.addAll(nextStartIndexes);
-            List<Integer> arrayList = new ArrayList(nextStartIndexes);
+            List<Integer> arrayList = new ArrayList<>(nextStartIndexes);
             nextStartIndexes.clear();
             if (Thread.interrupted()) {
                 throw new InterruptionException();
@@ -379,7 +379,7 @@ public class Digraph {
             for (int j = 0; j < level.size(); j++) {
                 E e0 = (E) level.get(j);
                 if (e0.score == null) {
-                    List<E> coll = new ArrayList();
+                    List<E> coll = new ArrayList<>();
                     coll.add(e0);
                     V dst = e0.dst;
                     for (int k = j + 1; k < level.size(); k++) {
@@ -443,7 +443,7 @@ public class Digraph {
     }
 
     public List<Digraph> getWeaklyConnectedComponents() {
-        List<Digraph> gcomponents = new ArrayList();
+        List<Digraph> gcomponents = new ArrayList<>();
         Set<Integer> left = new HashSet(getVertexCount());
         for (int i = 0; i < getVertexCount(); i++) {
             left.add(Integer.valueOf(i));
@@ -501,10 +501,10 @@ public class Digraph {
 
     private void computeTransitiveClosure() {
         int cnt = getVertexCount();
-        this.reachabilityIndices = new ArrayList(cnt);
+        this.reachabilityIndices = new ArrayList<>(cnt);
         for (int i = 0; i < cnt; i++) {
             Set<Integer> seen = new HashSet();
-            List<Integer> startIndices = new ArrayList();
+            List<Integer> startIndices = new ArrayList<>();
             Set<Integer> nextStartIndexes = new HashSet();
             startIndices.add(Integer.valueOf(i));
             while (!startIndices.isEmpty()) {
@@ -517,7 +517,7 @@ public class Digraph {
                     }
                 }
                 seen.addAll(nextStartIndexes);
-                startIndices = new ArrayList(nextStartIndexes);
+                startIndices = new ArrayList<>(nextStartIndexes);
                 nextStartIndexes.clear();
             }
             this.reachabilityIndices.add(seen);

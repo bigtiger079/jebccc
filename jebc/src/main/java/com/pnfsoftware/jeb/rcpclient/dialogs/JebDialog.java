@@ -242,7 +242,7 @@ public abstract class JebDialog extends Dialog {
     }
 
     protected Composite createButtons(Composite parent, int buttonStyles, int defaultButton) {
-        List<int[]> avails = new ArrayList();
+        List<int[]> avails = new ArrayList<>();
         for (int[] button : defaultAvailableButtons) {
             int buttonMask = button[0];
             if ((buttonStyles & buttonMask) != 0) {

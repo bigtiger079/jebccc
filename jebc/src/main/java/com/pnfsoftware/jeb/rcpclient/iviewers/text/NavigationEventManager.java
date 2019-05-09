@@ -32,9 +32,9 @@ public class NavigationEventManager {
     public static final int defaultPageLineSize = 5;
     public static final int defaultPageMultiplier = 3;
     private static final int MAXLINE = 21474836;
-    private List<IItemListener> itemListeners = new ArrayList();
-    private List<IPositionListener> positionListeners = new ArrayList();
-    private List<VerifyKeyListener> unhandledVerifyKeyListeners = new ArrayList();
+    private List<IItemListener> itemListeners = new ArrayList<>();
+    private List<IPositionListener> positionListeners = new ArrayList<>();
+    private List<VerifyKeyListener> unhandledVerifyKeyListeners = new ArrayList<>();
     private ITextItem itemOnCaret;
     private boolean documentBeingResized;
     private ITextDocumentViewer textViewer;

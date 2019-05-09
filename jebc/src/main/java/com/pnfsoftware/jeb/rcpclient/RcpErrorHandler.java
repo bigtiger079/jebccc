@@ -42,7 +42,7 @@ public class RcpErrorHandler {
     public static final int STD_FAILSAFE__MAX_REPORT_COUNT_PER_SLIDING_WINDOW = 5;
     private long failsafeSlidingWindowDurationMs = 60000L;
     private int failsafeMaxReportCountPerSlidingWindow = 5;
-    private List<Long> errorTimestamps = new ArrayList();
+    private List<Long> errorTimestamps = new ArrayList<>();
     private RcpClientContext ctx;
 
     public RcpErrorHandler(RcpClientContext ctx) {
@@ -131,8 +131,8 @@ public class RcpErrorHandler {
         String prjReloaded = "unknown";
         String prjSha256 = "";
         Long prjFilesize = Long.valueOf(-1L);
-        List<String> artSha256List = new ArrayList();
-        List<Long> artFilesizeList = new ArrayList();
+        List<String> artSha256List = new ArrayList<>();
+        List<Long> artFilesizeList = new ArrayList<>();
         IRuntimeProject prj = this.ctx.getOpenedProject();
         IInput input;
         if (prj != null) {

@@ -22,7 +22,7 @@ public abstract class ActionEx extends Action implements Runnable {
         return ksm;
     }
 
-    List<Integer> acclist = new ArrayList();
+    List<Integer> acclist = new ArrayList<>();
     String text;
     String text0;
 

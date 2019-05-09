@@ -129,7 +129,7 @@ public class KeyAcceleratorManager {
     }
 
     public void unregisterHandler(ActionEx handler) {
-        List<Integer> tbd = new ArrayList();
+        List<Integer> tbd = new ArrayList<>();
         for (Map.Entry<Integer, ActionEx> e : this.keyToHandlers.entrySet()) {
             if (e.getValue() == handler) {
                 tbd.add(e.getKey());

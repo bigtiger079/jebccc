@@ -153,7 +153,7 @@ public class AddressNavigator {
         int priority = ((IRcpUnitFragment) couple.getSecond()).getFocusPriority();
         List<Couple<IMPart, IRcpUnitFragment>> list = (List) toFocus.get(Integer.valueOf(priority));
         if (list == null) {
-            list = new ArrayList();
+            list = new ArrayList<>();
             toFocus.put(Integer.valueOf(priority), list);
         }
         list.add(couple);

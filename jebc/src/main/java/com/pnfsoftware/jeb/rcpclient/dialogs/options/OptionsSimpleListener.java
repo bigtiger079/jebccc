@@ -62,7 +62,7 @@ public class OptionsSimpleListener implements Listener {
     protected void addElement(String propertyKey, Control c) {
         List<Control> controls = (List) this.elements.get(propertyKey);
         if (controls == null) {
-            controls = new ArrayList();
+            controls = new ArrayList<>();
             this.elements.put(propertyKey, controls);
         }
         controls.add(c);

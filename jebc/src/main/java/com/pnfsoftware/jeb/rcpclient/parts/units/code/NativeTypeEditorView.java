@@ -293,7 +293,7 @@ public class NativeTypeEditorView extends Composite {
         private Object[] readFields(long id, int cnt) {
             Assert.a((id >= 0L) && (cnt >= 0));
             long id1 = id + cnt;
-            List<ItemEntry> r = new ArrayList();
+            List<ItemEntry> r = new ArrayList<>();
             List<? extends IStructureTypeField> fields = NativeTypeEditorView.this.type.getFieldsWithGaps();
             int i = 0;
             long currentId = 0L;

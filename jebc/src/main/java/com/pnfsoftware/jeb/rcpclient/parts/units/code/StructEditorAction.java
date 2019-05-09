@@ -34,7 +34,7 @@ public abstract class StructEditorAction extends JebAction {
     }
 
     static List<IStructureTypeField> collectFieldsToBeUndefined(IStructureType type, int startOffset, int wantedSize) {
-        List<IStructureTypeField> r = new ArrayList();
+        List<IStructureTypeField> r = new ArrayList<>();
         int offset = startOffset;
         IStructureTypeField f = type.getFieldOver(offset);
         if (f != null) {

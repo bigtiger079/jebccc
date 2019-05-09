@@ -49,7 +49,7 @@ public class JebInformationControl extends AbstractInformationControl implements
     private IHoverableProvider iHoverableProvider;
     private GenericHistory<Object> history = new GenericHistory();
     private JebLocationListener jebLocationListener;
-    private List<File> temporaryFiles = new ArrayList();
+    private List<File> temporaryFiles = new ArrayList<>();
 
     public JebInformationControl(Shell parent, boolean isResizeable, IHoverableWidget hoverable) {
         super(parent, isResizeable);

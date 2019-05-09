@@ -25,7 +25,7 @@ public class ActionViewCommentsHandler extends JebBaseHandler {
 
     public void execute() {
         IInteractiveUnit unit = (IInteractiveUnit) getActiveUnit(this.part);
-        List<String> addresses = new ArrayList(unit.getComments().keySet());
+        List<String> addresses = new ArrayList<>(unit.getComments().keySet());
         ReferencesDialog dlg = new ReferencesDialog(this.shell, "Comments", addresses, null, unit);
         int index = dlg.open().intValue();
         if (index >= 0) {

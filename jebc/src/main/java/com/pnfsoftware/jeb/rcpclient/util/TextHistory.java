@@ -29,7 +29,7 @@ public class TextHistory implements IAsciiable, Serializable {
             throw new IllegalArgumentException();
         }
         this.maxcnt = maxcnt;
-        this.history = new ArrayList(maxcnt);
+        this.history = new ArrayList<>(maxcnt);
         this.ptr = 0;
         if (init == null) {
             return;
@@ -39,7 +39,7 @@ public class TextHistory implements IAsciiable, Serializable {
                 this.history.add(init.get(i));
             }
         } else {
-            this.history = new ArrayList(init);
+            this.history = new ArrayList<>(init);
         }
         this.ptr = (this.history.size() % maxcnt);
     }
@@ -107,12 +107,12 @@ public class TextHistory implements IAsciiable, Serializable {
 
     public List<String> getAll() {
         if (this.history.size() < this.maxcnt) {
-            return new ArrayList(this.history);
+            return new ArrayList<>(this.history);
         }
         if (this.history.size() != this.maxcnt) {
             throw new RuntimeException();
         }
-        List<String> r = new ArrayList();
+        List<String> r = new ArrayList<>();
         for (int i = this.ptr; i < this.maxcnt; i++) {
             r.add(this.history.get(i));
         }
@@ -133,7 +133,7 @@ public class TextHistory implements IAsciiable, Serializable {
         if (this.history.size() < cnt) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        List<String> r = new ArrayList();
+        List<String> r = new ArrayList<>();
         for (int i = decrement(this.ptr); cnt > 0; cnt--) {
             r.add(0, this.history.get(i));
             i = decrement(i);

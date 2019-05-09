@@ -198,7 +198,7 @@ public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCode
         }
 
         public Object[] getElements(Object inputElement) {
-            List<INativeMethodItem> list = new ArrayList();
+            List<INativeMethodItem> list = new ArrayList<>();
             for (INativeMethodItem m : this.codeunit.getMethods()) {
                 if (m.getData() == null) {
                     list.add(m);

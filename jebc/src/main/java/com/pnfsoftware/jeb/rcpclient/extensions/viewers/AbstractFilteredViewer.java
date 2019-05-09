@@ -32,7 +32,7 @@ public abstract class AbstractFilteredViewer<T extends Composite, V extends Colu
     private boolean displayFilteredRowCount;
     private IPattern filterPatternFactory = new SimplePattern("");
     private IFilterText filterText;
-    private List<Listener> filterDoneListeners = new ArrayList();
+    private List<Listener> filterDoneListeners = new ArrayList<>();
 
     public AbstractFilteredViewer(AbstractFilteredView<T> widget) {
         this.widget = widget;

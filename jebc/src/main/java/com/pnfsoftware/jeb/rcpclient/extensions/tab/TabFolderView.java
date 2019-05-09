@@ -53,11 +53,11 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
         }
     }
 
-    private List<ITabFolderListener> listeners = new ArrayList();
-    private List<Entry> entries = new ArrayList();
+    private List<ITabFolderListener> listeners = new ArrayList<>();
+    private List<Entry> entries = new ArrayList<>();
     private boolean addSpaces;
     private boolean lazyInit;
-    private List<Entry> entriesByFocusOrder = new ArrayList();
+    private List<Entry> entriesByFocusOrder = new ArrayList<>();
     private boolean clearing;
 
     public TabFolderView(Composite parent, int flags, boolean addSpaces, boolean lazyInit) {
@@ -119,7 +119,7 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
     }
 
     public List<Control> getControls() {
-        List<Control> r = new ArrayList();
+        List<Control> r = new ArrayList<>();
         for (Entry entry : this.entries) {
             r.add(entry.control);
         }
@@ -392,7 +392,7 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
     }
 
     public List<CTabItem> getPreviouslyFocusedTabs() {
-        List<CTabItem> li = new ArrayList(this.entriesByFocusOrder.size());
+        List<CTabItem> li = new ArrayList<>(this.entriesByFocusOrder.size());
         for (Entry e : this.entriesByFocusOrder) {
             li.add(e.tab);
         }

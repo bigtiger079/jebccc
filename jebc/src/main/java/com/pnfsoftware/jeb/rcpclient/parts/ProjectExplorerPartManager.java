@@ -172,7 +172,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
             selection = new TreeSelection(new TreePath(new Object[]{project, artifact}));
         } else if ((node instanceof IUnit)) {
             IUnit unit = (IUnit) node;
-            Object path = new ArrayList();
+            Object path = new ArrayList<>();
             for (; ; ) {
                 ((List) path).add(0, unit);
                 if (!(unit.getParent() instanceof IUnit)) {

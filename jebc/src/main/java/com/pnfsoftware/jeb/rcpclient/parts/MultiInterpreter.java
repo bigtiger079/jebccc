@@ -17,10 +17,10 @@ import java.util.List;
 public class MultiInterpreter extends EventSource implements ICommandInterpreter {
     public static final int EVENT_INTERPRETER_CHANGE = 0;
     public static final int EVENT_INTERPRETER_CHANGE_IMMEDIATE = 1;
-    List<ICommandInterpreter> interpreters = new ArrayList();
+    List<ICommandInterpreter> interpreters = new ArrayList<>();
     private ItemHistory<String> history = new ItemHistory(false);
     int primary = -1;
-    private List<String> autocompleteTokens;
+    private ArrayList autocompleteTokens;
 
     public int registerInterpreter(ICommandInterpreter inter) {
         if (inter == null) {
@@ -210,9 +210,9 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
             dot = true;
         }
         if (this.autocompleteTokens == null) {
-            this.autocompleteTokens = new ArrayList(Arrays.asList(new String[]{"help", "list", "use", "exit"}));
+            this.autocompleteTokens = new ArrayList<>(Arrays.asList("help", "list", "use", "exit"));
         }
-        List<String> coms = new ArrayList(Arrays.asList(command.split(" ")));
+        List<String> coms = new ArrayList<>(Arrays.asList(command.split(" ")));
         if (command.endsWith(" ")) {
             coms.add("");
         }
@@ -223,7 +223,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
             return new AutocompletionResult(AutocompletionResult.filterStartsWith(command, this.autocompleteTokens), lastSeparator);
         }
         if (((String) coms.get(0)).equals("use")) {
-            List<String> tokens = new ArrayList();
+            List<String> tokens = new ArrayList<>();
             for (int i = 0; i < this.interpreters.size(); i++) {
                 tokens.add(String.valueOf(i));
             }

@@ -31,7 +31,7 @@ public class ItemStyleProvider2 implements IStyleProvider {
     private StyleManager styleman;
     private IItem activeItem;
     private Set<IActionableItem> relatedItems = new HashSet();
-    private List<ITextDocumentViewer> viewers = new ArrayList();
+    private List<ITextDocumentViewer> viewers = new ArrayList<>();
 
     public ItemStyleProvider2(StyleManager styleman) {
         this.styleman = styleman;

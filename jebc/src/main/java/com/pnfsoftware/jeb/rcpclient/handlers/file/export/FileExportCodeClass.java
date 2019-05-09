@@ -25,7 +25,7 @@ public class FileExportCodeClass implements IFileExport<ICodeClass> {
     }
 
     public List<String> getPath(ICodeClass c) {
-        List<String> packages = new ArrayList();
+        List<String> packages = new ArrayList<>();
         ICodePackage p = c.getPackage();
         while (p != null) {
             if (p.getName(true) != null) {

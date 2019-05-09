@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 public class TableUtil {
     public static String buildCsv(ITableDocumentPart part, Table table) {
-        List<CharSequence> lines = new ArrayList();
+        List<CharSequence> lines = new ArrayList<>();
         buildHeader(lines, table);
         for (ITableRow line : part.getRows()) {
             StringBuilder csvLine = new StringBuilder();
@@ -32,7 +32,7 @@ public class TableUtil {
     }
 
     public static String buildCsv(Table table) {
-        List<CharSequence> lines = new ArrayList();
+        List<CharSequence> lines = new ArrayList<>();
         buildHeader(lines, table);
         StringBuilder csvLine = new StringBuilder();
         TableColumn[] columns = table.getColumns();

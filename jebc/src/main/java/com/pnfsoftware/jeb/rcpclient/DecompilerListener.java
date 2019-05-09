@@ -53,7 +53,7 @@ public class DecompilerListener {
     }
 
     public static synchronized List<DecompilerListener> getAll() {
-        return new ArrayList(map.values());
+        return new ArrayList<>(map.values());
     }
 
     private IDecompilerUnit decomp;
@@ -128,7 +128,7 @@ public class DecompilerListener {
 
     public List<ISourceUnit> pullResetUnits() {
         synchronized (this.resetMap) {
-            List<ISourceUnit> r = new ArrayList(this.resetMap.keySet());
+            List<ISourceUnit> r = new ArrayList<>(this.resetMap.keySet());
             this.resetMap.clear();
             return r;
         }

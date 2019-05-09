@@ -26,6 +26,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 
@@ -67,12 +68,12 @@ public class ActionDecompileHandler extends JebBaseHandler {
         IUnit unit = unitPart.getUnit();
         IRcpUnitFragment activeFragment = unitPart.getActiveFragment();
         if (activeFragment == null) {
-            logger.i("No active view", new Object[0]);
+            logger.i("No active view");
             return;
         }
         String address = activeFragment.getActiveAddress();
         if (address == null) {
-            logger.info("Cannot determine where to decompile", new Object[0]);
+            logger.info("Cannot determine where to decompile");
             return;
         }
         IDecompilerUnit decompiler = DecompilerHelper.getDecompiler(unit);
@@ -80,11 +81,11 @@ public class ActionDecompileHandler extends JebBaseHandler {
             StringBuilder msg = new StringBuilder("Your build does not provide decompilation support for this type of code.\n\nThe decompilers available with your license type are:\n");
             msg.append(Strings.join(", ", DecompilerHelper.getAvailableDecompilerNames(this.context.getEnginesContext())));
             if (!UI.popupOptional(this.shell, 0, "Decompiler not available", msg.toString(), "dlgDecompilerNotAvailable")) {
-                logger.warn("No decompiler available", new Object[0]);
+                logger.warn("No decompiler available");
             }
             return;
         }
-        logger.i("decompiler= %s", new Object[]{decompiler});
+        logger.i("decompiler= %s", decompiler);
         PartManager pman = this.context.getPartManager();
         IMPart targetPart = null;
         GlobalPosition pos0 = this.context.getViewManager().getCurrentGlobalPosition();
@@ -100,7 +101,7 @@ public class ActionDecompileHandler extends JebBaseHandler {
                 return;
             }
             if (c == null) {
-                logger.info("Decompiling at %s", new Object[]{address});
+                logger.info("Decompiling at %s", address);
                 c = HandlerUtil.decompileAsync(this.shell, this.context, decompiler, address);
                 if (c == null) {
                     return;
@@ -152,7 +153,7 @@ public class ActionDecompileHandler extends JebBaseHandler {
     private IMPart findFirstPartWithTextFragment(PartManager pman, List<IMPart> parts) {
         for (IMPart part : parts) {
             UnitPartManager p = pman.getUnitPartManager(part);
-            if (!Lists.newArrayList(Iterables.filter(p.getFragments(), InteractiveTextView.class)).isEmpty()) {
+            if (!Lists.newArrayList(p.getFragments().stream().filter((InteractiveTextView.class)::isInstance).collect(Collectors.toList())).isEmpty()) {
                 return part;
             }
         }

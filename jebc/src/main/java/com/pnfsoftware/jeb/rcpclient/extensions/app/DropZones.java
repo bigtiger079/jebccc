@@ -21,7 +21,7 @@ class DropZones {
     boolean includeSelfDockingAreas;
     CTabItem srcTab;
     CTabFolder srcFolder;
-    List<DropZone> dropzones = new ArrayList();
+    List<DropZone> dropzones = new ArrayList<>();
 
     public DropZones(Control topLevelContainer, CTabItem srcTab, boolean includeDockingAreas, boolean includeSelfDockingAreas) {
         this.display = topLevelContainer.getDisplay();

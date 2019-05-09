@@ -20,7 +20,7 @@ public class OptionsChanges {
     public static class Changes {
         IPropertyManager pm;
         Map<String, Object> changeList = new HashMap();
-        List<Listener> listeners = new ArrayList();
+        List<Listener> listeners = new ArrayList<>();
 
         public Changes(IPropertyManager pm) {
             this.pm = pm;

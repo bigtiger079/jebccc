@@ -36,7 +36,7 @@ public class Dock extends Composite implements IMDock {
     Dock masterDock;
     private Panel mainPanel;
     private Folder initialFolder;
-    private List<IDockListener> dockListeners = new ArrayList();
+    private List<IDockListener> dockListeners = new ArrayList<>();
 
     public Dock(Shell parentShell, boolean onEmptyCloseFolder) {
         this(parentShell, onEmptyCloseFolder, null);
@@ -103,7 +103,7 @@ public class Dock extends Composite implements IMDock {
     }
 
     public List<Folder> getFolders() {
-        List<Folder> folders = new ArrayList();
+        List<Folder> folders = new ArrayList<>();
         collectFolders(getMainPanel(), folders);
         return folders;
     }
@@ -195,7 +195,7 @@ public class Dock extends Composite implements IMDock {
     }
 
     public static List<Dock> findDocks(Display display) {
-        List<Dock> docks = new ArrayList();
+        List<Dock> docks = new ArrayList<>();
         for (Shell shell : display.getShells()) {
             for (Control ctl : shell.getChildren()) {
                 if ((ctl instanceof Dock)) {

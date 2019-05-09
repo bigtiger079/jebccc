@@ -144,9 +144,9 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
     }
 
     private Set<String> wlFltFull = new HashSet();
-    private List<String> wlFltStart = new ArrayList();
+    private List<String> wlFltStart = new ArrayList<>();
     private Set<String> blFltFull = new HashSet();
-    private List<String> blFltStart = new ArrayList();
+    private List<String> blFltStart = new ArrayList<>();
 
     public String getFilter() {
         return this.rawfilter;

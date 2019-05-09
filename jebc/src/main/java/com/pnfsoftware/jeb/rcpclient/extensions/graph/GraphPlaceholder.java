@@ -159,7 +159,7 @@ public abstract class GraphPlaceholder<G extends AbstractGraph> extends Composit
     }
 
     public void addModesBoxToToolbar() {
-        List<String> modenames = new ArrayList();
+        List<String> modenames = new ArrayList<>();
         for (GraphMode mode : this.graph.getSupportedModes()) {
             modenames.add(mode.getName());
         }

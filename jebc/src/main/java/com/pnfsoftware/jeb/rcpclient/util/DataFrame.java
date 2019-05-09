@@ -38,7 +38,7 @@ public class DataFrame {
 
     private DataFrame(List<String> labels) {
         this.labels = labels;
-        this.rows = new ArrayList();
+        this.rows = new ArrayList<>();
     }
 
     public DataFrame(String... labels) {

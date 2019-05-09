@@ -22,7 +22,7 @@ public class FileExportCodeMethod implements IFileExport<ICodeMethod> {
     }
 
     public List<String> getPath(ICodeMethod item) {
-        return new ArrayList();
+        return new ArrayList<>();
     }
 
     public String getFullName(ICodeMethod c) {

@@ -34,7 +34,7 @@ class CallgraphPreparer implements Runnable {
     }
 
     private List<L> generateLinesForEdges(Digraph g) {
-        List<L> lines = new ArrayList();
+        List<L> lines = new ArrayList<>();
         for (E e : g.getEdges()) {
             lines.add(new L(e.getSrc().getId(), e.getDst().getId()));
         }

@@ -188,7 +188,7 @@ public class StackEditorView extends Composite {
             INativeMethodDataItem routineData = routine.getData();
             IMemoryModel stk = routineData.getStackframeModel();
             int indexZero = -1;
-            List<INativeContinuousItem> list = new ArrayList();
+            List<INativeContinuousItem> list = new ArrayList<>();
             Set<Long> slackset = new HashSet();
             long a;
             if (!stk.isEmpty()) {
@@ -207,7 +207,7 @@ public class StackEditorView extends Composite {
                 }
                 INativeContinuousItem slot = (INativeContinuousItem) list.get(0);
                 long first = Math.max(0L, ((Long) slot.getEnd()).longValue() + cnt * 1);
-                List<INativeContinuousItem> tmplist = new ArrayList();
+                List<INativeContinuousItem> tmplist = new ArrayList<>();
                 for (a = first - 1L; a >= ((Long) slot.getEnd()).longValue(); a -= 1L) {
                     tmplist.add(createGapItem(stk, a, 1));
                     slackset.add(Long.valueOf(a));
@@ -236,7 +236,7 @@ public class StackEditorView extends Composite {
                 }
                 indexZero = (int) -id;
             }
-            List<ItemEntry> r = new ArrayList();
+            List<ItemEntry> r = new ArrayList<>();
             int i0 = (int) (id + indexZero);
             for (int i = i0; i < i0 + cnt; i++) {
                 INativeContinuousItem item = (INativeContinuousItem) list.get(i);

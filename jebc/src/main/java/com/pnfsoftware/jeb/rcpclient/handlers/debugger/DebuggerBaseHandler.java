@@ -88,7 +88,7 @@ public abstract class DebuggerBaseHandler extends JebBaseHandler {
         if (unit == null) {
             return false;
         }
-        List<IUnit> candidates = new ArrayList();
+        List<IUnit> candidates = new ArrayList<>();
         candidates.add(unit);
         for (int i = 0; i < 3; i++) {
             IUnit last = (IUnit) candidates.get(candidates.size() - 1);

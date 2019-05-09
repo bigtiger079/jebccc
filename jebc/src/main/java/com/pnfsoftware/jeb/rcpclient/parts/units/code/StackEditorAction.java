@@ -50,7 +50,7 @@ public abstract class StackEditorAction extends JebAction {
 
     static List<INativeContinuousItem> collectItemsToBeUndefined(INativeMethodItem routine, int startOffset, int wantedSize) {
         IMemoryModel model = routine.getData().getStackframeModel();
-        return new ArrayList(model.getItemsInRange(startOffset, true, startOffset + wantedSize, true).values());
+        return new ArrayList<>(model.getItemsInRange(startOffset, true, startOffset + wantedSize, true).values());
     }
 
     protected boolean undefineItems(List<INativeContinuousItem> items) {

@@ -22,7 +22,7 @@ public class JebStatusIndicator implements IStatusIndicator {
     private StatusLineManager statusManager;
     private Display display;
     private String text0;
-    private List<StatusLineContributionItem> contribs = new ArrayList();
+    private List<StatusLineContributionItem> contribs = new ArrayList<>();
 
     public JebStatusIndicator(StatusLineManager statusManager) {
         this.statusManager = statusManager;

@@ -207,7 +207,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
             return true;
         }
         if (usePC) {
-            List<Long> toRemove = new ArrayList();
+            List<Long> toRemove = new ArrayList<>();
             for (Map.Entry<Long, IInstruction> insnEntry : collisions.entrySet()) {
                 if (BooleanUtils.toBoolean((Boolean) this.pcInsns.get(insnEntry.getKey()))) {
                     toRemove.clear();
@@ -234,7 +234,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
         }
         int relativeAddress;
         SortedMap<Long, IInstruction> subInsns = this.insns.subMap(Long.valueOf(this.chunk.toAbsolute(0)), Long.valueOf(this.chunk.toAbsolute(size)));
-        List<Long> toRemove = new ArrayList();
+        List<Long> toRemove = new ArrayList<>();
         for (Map.Entry<Long, IInstruction> insnEntry : subInsns.entrySet()) {
             relativeAddress = this.chunk.toRelative(((Long) insnEntry.getKey()).longValue());
             if (memoryChanged(((IInstruction) insnEntry.getValue()).getCode(), relativeAddress))
@@ -332,8 +332,8 @@ public class DbgCodeDocument extends AbstractTextDocument {
                 if (this.chunk.read == -1) {
                     return TextDocumentPart.EMPTY;
                 }
-                List<ILine> lines = new ArrayList();
-                List<IAnchor> anchors = new ArrayList();
+                List<ILine> lines = new ArrayList<>();
+                List<IAnchor> anchors = new ArrayList<>();
                 if (this.viewType == ViewType.CODE) {
                     IProcessor<? extends IInstruction> proc = this.unit.getProcessor();
                     IDebuggerThread thread = this.unit.getDefaultThread();

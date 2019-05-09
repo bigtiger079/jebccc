@@ -39,7 +39,7 @@ public class VirtualArrayGroup implements IArrayGroup {
     }
 
     public List<Object> getChildren() {
-        List<Object> list = new ArrayList();
+        List<Object> list = new ArrayList<>();
         list.add(this.element);
         return list;
     }

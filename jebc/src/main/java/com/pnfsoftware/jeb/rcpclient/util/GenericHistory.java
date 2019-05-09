@@ -12,12 +12,12 @@ public class GenericHistory<T> {
     }
 
     public GenericHistory(List<T> init) {
-        this.history = new ArrayList();
+        this.history = new ArrayList<>();
         this.ptr = 0;
         if (init == null) {
             return;
         }
-        this.history = new ArrayList(init);
+        this.history = new ArrayList<>(init);
         this.ptr = this.history.size();
     }
 
@@ -55,7 +55,7 @@ public class GenericHistory<T> {
     }
 
     public List<T> getAll() {
-        return new ArrayList(this.history);
+        return new ArrayList<>(this.history);
     }
 
     public T getLast() {

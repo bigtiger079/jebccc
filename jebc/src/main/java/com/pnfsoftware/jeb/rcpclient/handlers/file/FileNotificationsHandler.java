@@ -49,7 +49,7 @@ public class FileNotificationsHandler extends JebBaseHandler {
             dlg.setFocus();
             return;
         }
-        List<Couple<IUnit, IUnitNotification>> elements = new ArrayList();
+        List<Couple<IUnit, IUnitNotification>> elements = new ArrayList<>();
         Iterator localIterator1 = RuntimeProjectUtil.getAllUnits(prj).iterator();
         IUnit unit;
         while (localIterator1.hasNext()) {

@@ -32,7 +32,7 @@ public class ThemeManager {
     Listener filter;
     LinkedHashMap<String, Theme> themes = new LinkedHashMap();
     Theme activeTheme;
-    List<IThemeChangeListener> listeners = new ArrayList();
+    List<IThemeChangeListener> listeners = new ArrayList<>();
     WeakIdentityHashMap<Widget, Integer> seen = new WeakIdentityHashMap();
     boolean firstSet;
 
@@ -79,7 +79,7 @@ public class ThemeManager {
     }
 
     public boolean setNextTheme() {
-        List<String> ids = new ArrayList(this.themes.keySet());
+        List<String> ids = new ArrayList<>(this.themes.keySet());
         if (ids.size() <= 1) {
             return false;
         }
