@@ -3,6 +3,8 @@ package com.pnfsoftware.jeb.rcpclient.parts.units;
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.api.Operation;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
+import com.pnfsoftware.jeb.core.actions.ActionContext;
+import com.pnfsoftware.jeb.core.actions.ActionRenameData;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.output.IActionableItem;
 import com.pnfsoftware.jeb.core.output.IItem;
@@ -13,6 +15,8 @@ import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.output.text.ITextItem;
 import com.pnfsoftware.jeb.core.output.text.TextPartUtil;
 import com.pnfsoftware.jeb.core.output.text.impl.Coordinates;
+import com.pnfsoftware.jeb.core.output.text.impl.TextItem;
+import com.pnfsoftware.jeb.core.units.IAddressableUnit;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IMetadataManager;
 import com.pnfsoftware.jeb.core.units.IUnit;
@@ -131,6 +135,41 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 //            }
 //
 //        }
+        if (getUnit().getFormatType().equals("java")) {
+            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 0);
+            List<? extends ILine> lines = documentPart.getLines();
+            for (ILine line : lines) {
+                List<? extends ITextItem> items = line.getItems();
+                if (items != null && !items.isEmpty()) {
+                    for (ITextItem item : items) {
+                        if (item instanceof TextItem) {
+                            long itemId = ((TextItem) item).getItemId();
+                            String s = line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
+                            logger.info("itemText: %s, itemId: %d", s, itemId);
+                            if (s.equals("arg1") && itemId != 0) {
+                                String addressOfItem = ((IAddressableUnit) getUnit()).getAddressOfItem(itemId);
+                                ActionContext info = new ActionContext((IInteractiveUnit) unit, 2, itemId, addressOfItem);
+                                ActionRenameData data = new ActionRenameData();
+                                data.setNewName("newArg");
+                                info.getUnit().executeAction(info, data);
+                            }
+                        } else {
+                            logger.info("itemText: %s, type: %d", line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString(), item.getClass().getName());
+                        }
+                    }
+                }
+            }
+//            logger.info("DocumentPart lines: %d", documentPart.getLines().size());
+//            Coordinates coordinates = new Coordinates(0, 0, 0);
+//            ILine lineAt = TextPartUtil.getLineAt(documentPart, coordinates);
+//            if (lineAt != null) {
+//                ITextItem item = TextPartUtil.getItemAt(lineAt, coordinates.getColumnOffset());
+//                if (item != null) {
+//                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
+//                    logger.info("Test line At: " + s);
+//                }
+//            }
+        }
         this.context.refreshHandlersStates();
         TextDocumentLocationGenerator locationGenerator = new TextDocumentLocationGenerator(this.unit, this.iviewer);
         String address = locationGenerator.getAddress(coord);

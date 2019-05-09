@@ -9,7 +9,7 @@ public class CTabFolderEventLogger implements CTabFolder2Listener {
     private static final ILogger logger = GlobalLog.getLogger(CTabFolderEventLogger.class);
 
     public void close(CTabFolderEvent event) {
-        logger.i("Close: %s", new Object[]{event});
+        logger.info("Close: %s", new Object[]{event});
     }
 
     public void minimize(CTabFolderEvent event) {

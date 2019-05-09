@@ -44,7 +44,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
     }
 
     public void inputChanged(final Viewer viewer, Object oldInput, Object newInput) {
-        logger.i("Input changed from %s to %s", new Object[]{oldInput, newInput});
+        logger.info("Input changed from %s to %s", new Object[]{oldInput, newInput});
         if (this.listener != null) {
             if (oldInput != this.engctx) {
                 throw new RuntimeException();
@@ -61,7 +61,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
             final Viewer viewer2 = viewer;
             this.listener = new AggregatorDispatcher(10000, 500) {
                 public void onMultipleEvents(final List<IEvent> events) {
-                    ProjectTreeContentProvider.logger.i("Event received: %s", new Object[]{events});
+                    ProjectTreeContentProvider.logger.info("Event received: %s", new Object[]{events});
                     if (!display.isDisposed()) {
                         UIExecutor.async(display, new UIRunnable() {
                             public void runi() {
@@ -84,7 +84,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
                                             if (useAManager) {
                                                 expanded.addAll(amanager.getExpandedUnits((ILiveArtifact) object));
                                             }
-                                            ProjectTreeContentProvider.logger.i("  newly expanded (%d): %s", new Object[]{Integer.valueOf(expanded.size()), expanded});
+                                            ProjectTreeContentProvider.logger.info("  newly expanded (%d): %s", new Object[]{Integer.valueOf(expanded.size()), expanded});
                                             expanded.addAll(0, Arrays.asList(treeViewer.getExpandedElements()));
                                             treeViewer.setExpandedElements(expanded.toArray());
                                             if (useAManager) {

@@ -156,7 +156,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                         if (selectedItem == null) {
                             return;
                         }
-                        UnitPartManager.logger.i("Pulling out the fragment (tab) into its own part (view)");
+                        UnitPartManager.logger.info("Pulling out the fragment (tab) into its own part (view)");
                         Control fragment = selectedItem.getControl();
                         UnitPartManager.this.tabman.removeEntry(fragment);
                         UnitPartManager.this.context.getPartManager().createSingle(UnitPartManager.this.unit, fragment.getClass());
@@ -175,13 +175,13 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
             return;
         }
         if (!this.unit.isProcessed()) {
-            String message = String.format("%s.\n\n%s", new Object[]{S.s(790), S.s(662)});
+            String message = String.format("%s.\n\n%s", S.s(790), S.s(662));
             boolean r = MessageDialog.openQuestion(this.parent.getShell(), S.s(821), message);
             if (!r) {
                 return;
             }
         }
-        logger.i("Building a part for unit: %s", new Object[]{this.unit});
+        logger.info("Building a part for unit: %s", this.unit);
         CTabFolder folder = this.tabman.getContainer();
         this.unit.addListener(this.unitListener = new IEventListener() {
             public void onEvent(IEvent e) {

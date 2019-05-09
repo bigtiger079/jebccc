@@ -21,7 +21,7 @@ public class InternalPrintModelHandler extends JebBaseHandler {
     }
 
     public void execute() {
-        logger.i(this.context.getApp().getDock().formatStructure(), new Object[0]);
+        logger.info(this.context.getApp().getDock().formatStructure(), new Object[0]);
     }
 }
 

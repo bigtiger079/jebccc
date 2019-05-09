@@ -58,7 +58,7 @@ public class GraphicalActionExecutor {
     }
 
     public boolean execute(ActionUIContext uictx, Object value) {
-        logger.i("Executing: %s", new Object[]{uictx});
+        logger.info("Executing: %s", uictx);
         ActionContext info = uictx.getActionContext();
         switch (info.getActionId()) {
             case 2: {

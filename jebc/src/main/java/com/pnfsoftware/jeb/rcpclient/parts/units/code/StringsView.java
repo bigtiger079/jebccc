@@ -128,7 +128,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
         if (address != null) {
             for (IUnitFragment fragment : this.unitView.getFragments()) {
                 if ((fragment instanceof InteractiveTextView)) {
-                    logger.i("Jumping to address: %s", new Object[]{address});
+                    logger.info("Jumping to address: %s", new Object[]{address});
                     if (((InteractiveTextView) fragment).isValidActiveAddress(address, null)) {
                         this.unitView.setActiveFragment(fragment);
                         boolean found = this.unitView.setActiveAddress(address, null, false);
@@ -190,7 +190,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
                 this.refresher = new ViewerRefresher(viewer.getControl().getDisplay(), viewer) {
                     protected void performRefresh() {
                         if ((StringsView.ContentProvider.this.codeunit instanceof INativeCodeUnit)) {
-                            StringsView.logger.i("Refreshing strings...", new Object[0]);
+                            StringsView.logger.info("Refreshing strings...", new Object[0]);
                             super.performRefresh();
                         }
                     }

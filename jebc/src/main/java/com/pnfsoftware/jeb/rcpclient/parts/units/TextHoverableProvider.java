@@ -117,7 +117,7 @@ public class TextHoverableProvider implements IHoverableProvider {
             }
             this.item = this.interactiveTextViewer.getItemAt(this.region.getOffset());
             String r = Strings.toString(this.item);
-            TextHoverableProvider.logger.i(r, new Object[0]);
+            TextHoverableProvider.logger.info(r, new Object[0]);
         }
 
         public ITextItem getItem() {

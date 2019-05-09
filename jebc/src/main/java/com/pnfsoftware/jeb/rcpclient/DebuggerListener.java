@@ -205,7 +205,7 @@ public class DebuggerListener {
                             for (UnitPartManager o : pman.getPartManagersForUnit(targetUnit)) {
                                 IRcpUnitFragment fragment = o.getActiveFragment();
                                 if (fragment != null) {
-                                    DebuggerListener.logger.i("Setting active address: %s", new Object[]{targetAddress});
+                                    DebuggerListener.logger.info("Setting active address: %s", new Object[]{targetAddress});
                                     if (fragment.setActiveAddress(targetAddress)) {
                                         o.setFocus();
                                         focusedCount++;

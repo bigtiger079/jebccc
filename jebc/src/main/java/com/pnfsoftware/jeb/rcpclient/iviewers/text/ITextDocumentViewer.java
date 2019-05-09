@@ -18,66 +18,64 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract interface ITextDocumentViewer extends IOperable, IFindTextImpl<InteractiveTextFindResult>, INavigableViewer {
-    public abstract ITextDocument getDocument();
+public interface ITextDocumentViewer extends IOperable, IFindTextImpl<InteractiveTextFindResult>, INavigableViewer {
+    ITextDocument getDocument();
 
-    public abstract void refresh();
+    void refresh();
 
-    public abstract Composite getWidget();
+    Composite getWidget();
 
-    public abstract Point computeIdealSize();
+    Point computeIdealSize();
 
-    public abstract StyledText getTextWidget();
+    StyledText getTextWidget();
 
-    public abstract ICoordinates getCaretCoordinates();
+    ICoordinates getCaretCoordinates();
 
-    public abstract boolean setCaretCoordinates(ICoordinates paramICoordinates, BufferPoint paramBufferPoint, boolean paramBoolean);
+    boolean setCaretCoordinates(ICoordinates paramICoordinates, BufferPoint paramBufferPoint, boolean paramBoolean);
 
-    public abstract BufferPoint getCaretViewportPoint();
+    BufferPoint getCaretViewportPoint();
 
-    public abstract ITextItem getItemAt(int paramInt);
+    ITextItem getItemAt(int paramInt);
 
-    public abstract List<ITextItem> getCurrentItems();
+    List<ITextItem> getCurrentItems();
 
-    public abstract ITextDocumentPart getCurrentDocumentPart();
+    ITextDocumentPart getCurrentDocumentPart();
 
-    public abstract Font getFont();
+    Font getFont();
 
-    public abstract void setFont(Font paramFont);
+    void setFont(Font paramFont);
 
-    public abstract void refreshStyles();
+    void refreshStyles();
 
-    public abstract void activateCurrentLine(boolean paramBoolean);
+    void activateCurrentLine(boolean paramBoolean);
 
-    public abstract void setStyleAdapter(IStyleProvider paramIStyleProvider);
+    void setStyleAdapter(IStyleProvider paramIStyleProvider);
 
-    public abstract IStyleProvider getStyleAdapter();
+    IStyleProvider getStyleAdapter();
 
-    public abstract void registerAnnotation(TextAnnotation paramTextAnnotation);
+    void registerAnnotation(TextAnnotation paramTextAnnotation);
 
-    public abstract void unregisterAnnotations();
+    void unregisterAnnotations();
 
-    public abstract void initialize(boolean paramBoolean);
+    void initialize(boolean paramBoolean);
 
-    public abstract void addItemListener(IItemListener paramIItemListener);
+    void addItemListener(IItemListener paramIItemListener);
 
-    public abstract void removeItemListener(IItemListener paramIItemListener);
+    void removeItemListener(IItemListener paramIItemListener);
 
-    public abstract void addPositionListener(IPositionListener paramIPositionListener);
+    void addPositionListener(IPositionListener paramIPositionListener);
 
-    public abstract void removePositionListener(IPositionListener paramIPositionListener);
+    void removePositionListener(IPositionListener paramIPositionListener);
 
-    public abstract void addUnhandkedVerifyKeyListener(VerifyKeyListener paramVerifyKeyListener);
+    void addUnhandkedVerifyKeyListener(VerifyKeyListener paramVerifyKeyListener);
 
-    public abstract void removeUnhandledVerifyKeyListener(VerifyKeyListener paramVerifyKeyListener);
+    void removeUnhandledVerifyKeyListener(VerifyKeyListener paramVerifyKeyListener);
 
-    public abstract void setHoverText(IHoverableProvider paramIHoverableProvider);
+    void setHoverText(IHoverableProvider paramIHoverableProvider);
 
-    public abstract void dispose();
+    void dispose();
 
-    public abstract boolean isDisposed();
+    boolean isDisposed();
 
-    public abstract void resetSelection();
+    void resetSelection();
 }
-
-

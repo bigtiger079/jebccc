@@ -414,7 +414,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 if ((cursorCtrl != null) && (cursorCtrl != focusControl)) {
                     IMPart part = PartUtil.getPart(cursorCtrl);
                     if (part != null) {
-                        RcpClientContext.logger.i("Focus forced in %s", part);
+                        RcpClientContext.logger.info("Focus forced in %s", part);
                         cursorCtrl.forceFocus();
                     }
                 }

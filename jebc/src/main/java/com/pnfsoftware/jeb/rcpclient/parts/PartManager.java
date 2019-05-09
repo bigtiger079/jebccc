@@ -308,7 +308,7 @@ public class PartManager implements IViewManager {
         cleanUnitPart(part);
         String label = type + "<Unbound>";
         part.setLabel(label);
-        String hint = !type.isEmpty() ? String.format("This unbound part is a placeholder for a view of type \"%s\"", new Object[]{type}) : "This unbound part is a placeholder for any view";
+        String hint = !type.isEmpty() ? String.format("This unbound part is a placeholder for a view of type \"%s\"", type) : "This unbound part is a placeholder for any view";
         part.setTooltip(hint);
     }
 
@@ -393,7 +393,7 @@ public class PartManager implements IViewManager {
             }
         } else if ((unit instanceof IDebuggerUnit)) {
             IDebuggerUnit dbg = (IDebuggerUnit) unit;
-            folder = (Folder) this.dbgFolders.get(dbg);
+            folder = this.dbgFolders.get(dbg);
             if ((folder == null) || (folder.isDisposed())) {
                 if ((this.folderDebuggers == null) || (this.folderDebuggers.isDisposed())) {
                     this.folderDebuggers = this.app.getDock().splitFolder(this.app.folderWorkspace, -4, 40);
@@ -440,12 +440,12 @@ public class PartManager implements IViewManager {
     }
 
     private void setStickyPart(IMPart part, boolean sticky) {
-        part.getData().put(dataStickyPart, Boolean.valueOf(sticky));
+        part.getData().put(dataStickyPart, sticky);
     }
 
     private boolean isStickyPart(IMPart part) {
         Boolean o = (Boolean) part.getData().get(dataStickyPart);
-        return o == null ? false : o.booleanValue();
+        return o == null ? false : o;
     }
 
     private IMPart createInternal(IUnit unit, List<String> fragmentList, List<String> fragmentBlacklist, boolean activate) {
@@ -552,13 +552,13 @@ public class PartManager implements IViewManager {
     private List<IMPart> createDebuggerUnitParts(IUnit unit, boolean createBpView, boolean createVarView, boolean createMain) {
         List<IMPart> parts = new ArrayList<>();
         if (createBpView) {
-            parts.add(createInternal(unit, createFragmentList(new Class[]{DbgBreakpointsView.class}), null, false));
+            parts.add(createInternal(unit, createFragmentList(DbgBreakpointsView.class), null, false));
         }
         if (createVarView) {
-            parts.add(createInternal(unit, createFragmentList(new Class[]{DbgVariablesView.class}), null, false));
+            parts.add(createInternal(unit, createFragmentList(DbgVariablesView.class), null, false));
         }
         if (createMain) {
-            parts.add(createInternal(unit, null, createFragmentList(new Class[]{DbgBreakpointsView.class, DbgVariablesView.class}), false));
+            parts.add(createInternal(unit, null, createFragmentList(DbgBreakpointsView.class, DbgVariablesView.class), false));
         }
         return parts;
     }
@@ -594,9 +594,9 @@ public class PartManager implements IViewManager {
                 if (p.getData().get(dataFragmentList) != null) {
                     List<String> fragmentList = (List) p.getData().get(dataFragmentList);
                     if (!fragmentList.isEmpty()) {
-                        if (((String) fragmentList.get(0)).equals(DbgBreakpointsView.class.getName())) {
+                        if (fragmentList.get(0).equals(DbgBreakpointsView.class.getName())) {
                             createBpView = false;
-                        } else if (((String) fragmentList.get(0)).equals(DbgVariablesView.class.getName())) {
+                        } else if (fragmentList.get(0).equals(DbgVariablesView.class.getName())) {
                             createVarView = false;
                         }
                     }

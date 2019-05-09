@@ -310,7 +310,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                 if (info == null) {
                     return false;
                 }
-                logger.i("info= %s", new Object[]{info});
+                logger.info("info= %s", new Object[]{info});
                 IInput subinput = null;
                 if ((unit instanceof IBinaryUnit)) {
                     IInput input = ((IBinaryUnit) unit).getInput();
@@ -391,7 +391,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                 if (filepath == null) {
                     return false;
                 }
-                logger.i("%s: %s", new Object[]{S.s(340), filepath});
+                logger.info("%s: %s", new Object[]{S.s(340), filepath});
                 byte[] data;
                 try {
                     InputStream in = input.getStream();
