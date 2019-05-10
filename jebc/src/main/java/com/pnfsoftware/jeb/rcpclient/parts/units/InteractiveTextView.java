@@ -21,6 +21,7 @@ import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IMetadataManager;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
+import com.pnfsoftware.jeb.core.units.code.java.IJavaSourceUnit;
 import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
 import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
@@ -120,55 +121,30 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     private void onPositionChanged(ICoordinates coord) {
         //TODO: mouse position
-//        logger.info("onPositionChanged: " + coord.getLineDelta() +"  " + coord.getColumnOffset() +"  "+coord.getAnchorId() );
-//        String activeItemAsText = getActiveItemAsText();
-//        if (activeItemAsText != null) {
-//            logger.info("activeItemAsText: " + activeItemAsText);
-//            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 1);
-//            ILine lineAt = TextPartUtil.getLineAt(documentPart, coord);
-//            if (lineAt != null) {
-//                ITextItem item = TextPartUtil.getItemAt(lineAt, coord.getColumnOffset());
-//                if (item != null) {
-//                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
-//                    logger.info("Test line At: " + s);
-//                }
-//            }
-//
-//        }
         if (getUnit().getFormatType().equals("java")) {
             ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 0);
             List<? extends ILine> lines = documentPart.getLines();
+            int index = 0;
             for (ILine line : lines) {
+                TextItem lastItem=null;
                 List<? extends ITextItem> items = line.getItems();
                 if (items != null && !items.isEmpty()) {
+                    logger.info("line: %s", line.getText());
                     for (ITextItem item : items) {
                         if (item instanceof TextItem) {
                             long itemId = ((TextItem) item).getItemId();
                             String s = line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
-                            logger.info("itemText: %s, itemId: %d", s, itemId);
-                            if (s.equals("arg1") && itemId != 0) {
-                                String addressOfItem = ((IAddressableUnit) getUnit()).getAddressOfItem(itemId);
-                                ActionContext info = new ActionContext((IInteractiveUnit) unit, 2, itemId, addressOfItem);
-                                ActionRenameData data = new ActionRenameData();
-                                data.setNewName("newArg");
-                                info.getUnit().executeAction(info, data);
+                            if (s.matches("arg(\\d){1,2}") && itemId != 0 && lastItem != null && lastItem.getLine() == item.getLine()) {
+                                logger.info("find urgly method arg:  %s in line: %d, offset %d, type: %s", s, index, item.getOffset(), lastItem.getText());
                             }
+                            lastItem = (TextItem) item;
                         } else {
                             logger.info("itemText: %s, type: %d", line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString(), item.getClass().getName());
                         }
                     }
                 }
+                index++;
             }
-//            logger.info("DocumentPart lines: %d", documentPart.getLines().size());
-//            Coordinates coordinates = new Coordinates(0, 0, 0);
-//            ILine lineAt = TextPartUtil.getLineAt(documentPart, coordinates);
-//            if (lineAt != null) {
-//                ITextItem item = TextPartUtil.getItemAt(lineAt, coordinates.getColumnOffset());
-//                if (item != null) {
-//                    String s = lineAt.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
-//                    logger.info("Test line At: " + s);
-//                }
-//            }
         }
         this.context.refreshHandlersStates();
         TextDocumentLocationGenerator locationGenerator = new TextDocumentLocationGenerator(this.unit, this.iviewer);

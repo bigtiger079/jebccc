@@ -7,8 +7,6 @@ import com.pnfsoftware.jeb.util.events.IEventListener;
 import com.pnfsoftware.jeb.util.events.IEventSource;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-import net.sf.cglib.proxy.Enhancer;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +15,6 @@ public class JEBExtern extends AbstractEnginesPlugin {
 
     @Override
     public void execute(IEnginesContext iEnginesContext, Map<String, String> map) {
-
     }
 
     @Override
@@ -47,8 +44,6 @@ public class JEBExtern extends AbstractEnginesPlugin {
 
         logger.info("systemClass Loader: ");
         classLoader(ClassLoader.getSystemClassLoader());
-
-
     }
 
     private static void classLoader(ClassLoader classLoader) {
