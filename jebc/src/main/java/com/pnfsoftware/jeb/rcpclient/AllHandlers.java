@@ -239,6 +239,7 @@ public class AllHandlers {
         add(new InternalLoadModelHandler());
         add(new InternalSaveModelHandler());
 
+        add(new ActionFormatterHandler());
         add(new ActionGenerateHookHandler());
     }
 
@@ -321,6 +322,7 @@ public class AllHandlers {
             mgr.add(new ActionMoveToPackageHandler());
             mgr.add(new ActionTypeHierarchyHandler());
             mgr.add(new ActionOverridesHandler());
+            mgr.add(new ActionFormatterHandler());
             mgr.add(new ActionGenerateHookHandler());
         } else if (group == GRP_NATIVE_ACTIONS) {
             mgr.add(new ActionDefineDataHandler());

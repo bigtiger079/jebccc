@@ -68,7 +68,6 @@ public class Launcher {
                 var13.stop();
             }
         }
-        SW.info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
     }
 
     static {

@@ -3,8 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.parts.units;
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.api.Operation;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
-import com.pnfsoftware.jeb.core.actions.ActionContext;
-import com.pnfsoftware.jeb.core.actions.ActionRenameData;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.output.IActionableItem;
 import com.pnfsoftware.jeb.core.output.IItem;
@@ -15,16 +13,11 @@ import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.output.text.ITextItem;
 import com.pnfsoftware.jeb.core.output.text.TextPartUtil;
 import com.pnfsoftware.jeb.core.output.text.impl.Coordinates;
-import com.pnfsoftware.jeb.core.output.text.impl.TextItem;
-import com.pnfsoftware.jeb.core.units.IAddressableUnit;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IMetadataManager;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
-import com.pnfsoftware.jeb.core.units.code.java.IJavaSourceUnit;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
-import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
 import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.FindTextDialog;
@@ -36,9 +29,7 @@ import com.pnfsoftware.jeb.rcpclient.iviewers.text.ITextDocumentViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.InteractiveTextFindResult;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.InteractiveTextViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.TextDocumentLocationGenerator;
-import com.pnfsoftware.jeb.rcpclient.parts.IViewNavigator;
 import com.pnfsoftware.jeb.rcpclient.parts.UIState;
-import com.pnfsoftware.jeb.rcpclient.util.DbgUtils;
 import com.pnfsoftware.jeb.rcpclient.util.TextHistory;
 import com.pnfsoftware.jeb.util.base.Assert;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -48,7 +39,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.MouseAdapter;
@@ -66,7 +56,6 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     public InteractiveTextView(Composite parent, int style, RcpClientContext context, IUnit unit, IRcpUnitView unitView, ITextDocument idoc) {
         super(parent, style, unit, unitView, context, idoc);
-        logger.info("InteractiveTextView: \r%s", DbgUtils.getStackTrace());
         setLayout(new FillLayout());
         int flags = 0;
         if (!(unit instanceof ISourceUnit)) {
@@ -121,31 +110,6 @@ public class InteractiveTextView extends AbstractInteractiveTextView {
 
     private void onPositionChanged(ICoordinates coord) {
         //TODO: mouse position
-        if (getUnit().getFormatType().equals("java")) {
-            ITextDocumentPart documentPart = iviewer.getDocument().getDocumentPart(0, 0, 0);
-            List<? extends ILine> lines = documentPart.getLines();
-            int index = 0;
-            for (ILine line : lines) {
-                TextItem lastItem=null;
-                List<? extends ITextItem> items = line.getItems();
-                if (items != null && !items.isEmpty()) {
-                    logger.info("line: %s", line.getText());
-                    for (ITextItem item : items) {
-                        if (item instanceof TextItem) {
-                            long itemId = ((TextItem) item).getItemId();
-                            String s = line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
-                            if (s.matches("arg(\\d){1,2}") && itemId != 0 && lastItem != null && lastItem.getLine() == item.getLine()) {
-                                logger.info("find urgly method arg:  %s in line: %d, offset %d, type: %s", s, index, item.getOffset(), lastItem.getText());
-                            }
-                            lastItem = (TextItem) item;
-                        } else {
-                            logger.info("itemText: %s, type: %d", line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString(), item.getClass().getName());
-                        }
-                    }
-                }
-                index++;
-            }
-        }
         this.context.refreshHandlersStates();
         TextDocumentLocationGenerator locationGenerator = new TextDocumentLocationGenerator(this.unit, this.iviewer);
         String address = locationGenerator.getAddress(coord);

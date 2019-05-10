@@ -15,17 +15,6 @@ public class Launcher {
         JebApp app = new JebApp(args);
         app.build();
         app.run();
-        logger.info("Ha Ha Ha!!! I am start up");
-        File file = new File("E:/test.txt");
-        try {
-            FileOutputStream outputStream = new FileOutputStream(file);
-            outputStream.write("Ha Ha Ha!!! I am start up".getBytes());
-            outputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
 
