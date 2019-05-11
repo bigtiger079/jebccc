@@ -16,10 +16,14 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ActionFormatterHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionFormatterHandler.class);
+    private static String[] BASE_TYPES = {"byte", "short", "char", "int", "long", "float", "double", "boolean"};
+    private static String[] BASE_ARR_TYPES = {"byte[]", "short[]", "char[]", "int[]", "long[]", "float[]", "double[]", "boolean[]"};
+
     public ActionFormatterHandler(){
         super("formatter", "Formatter", 0, "Formatter Java source", "eclipse/all_sc_obj.png", 32);
     }
@@ -57,6 +61,9 @@ public class ActionFormatterHandler extends JebBaseHandler {
                             String s = line.getText().subSequence(item.getOffset(), item.getOffsetEnd()).toString();
                             if (s.matches("arg(\\d){1,2}") && itemId != 0 && lastItem != null) {
                                 logger.info("find urgly method arg:  %s in line: %d, offset %d, type: %s", s, index, item.getOffset(), lastItem.getText());
+                                if (isBaseType(lastItem.getText())) {
+
+                                }
                             }
                             lastItem = (TextItem) item;
                         }
@@ -65,6 +72,10 @@ public class ActionFormatterHandler extends JebBaseHandler {
                 index++;
             }
         }
+    }
+
+    private static boolean isBaseType(String type) {
+        return Arrays.asList(BASE_TYPES).contains(type);
     }
 
     public IUnit getUnit() {

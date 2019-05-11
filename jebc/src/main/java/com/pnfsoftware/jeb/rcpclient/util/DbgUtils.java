@@ -56,10 +56,12 @@ public class DbgUtils {
             if (split.length > 0) {
                 for (String s : split) {
                     String[] p = s.trim().split("\\s+");
-                    if (p.length != 2) {
+                    if (p.length > 2) {
                         logger.error("ERROR: on parse args [%s] of method %s ", s, methodName);
                     }
-                    params.add(Pair.of(p[0], p[1]));
+                    if (p.length ==2) {
+                        params.add(Pair.of(p[0], p[1]));
+                    }
                 }
             }
             return Pair.of(methodName, params);
