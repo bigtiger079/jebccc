@@ -11,6 +11,7 @@ import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.jebio.JebIoLoginDialog;
+import com.pnfsoftware.jeb.rcpclient.dialogs.jebio.JebIoMessages;
 import com.pnfsoftware.jeb.rcpclient.dialogs.jebio.JebIoShareDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
@@ -45,7 +46,7 @@ public class FileShareHandler extends JebBaseHandler {
         boolean loginDone = false;
         UserCredentials creds = JebIoUtil.retrieveCredentials(context);
         if (!creds.lookValid()) {
-            UI.info(shell, String.format("Welcome to %s!", new Object[]{"JEB Malware Sharing Network"}), "The JEB Malware Sharing Network is an optional service available to all JEB users.\n\nCreate your account to have the opportunity to anonymously share malware samples and files, at your own discretion.\n\nParticipants will receive samples that other users have been sharing. The samples you will receive are determined algorithmically based on the quantity and quality of your contributions.\n\nContinue to log in or sign up. (This service is optional and disabled by default.)");
+            UI.info(shell, String.format("Welcome to %s!", JebIoMessages.MsnName), JebIoMessages.msgIntro);
             JebIoLoginDialog dlg = new JebIoLoginDialog(shell, context);
             if (dlg.open() == 1) {
                 return;

@@ -24,9 +24,9 @@ public class UITaskManager {
 
     public <T> T create(Shell shell, String caption, Callable<T> callable, long popupDelayMs) throws InvocationTargetException, InterruptedException {
         TaskMonitorDialog dlg = new TaskMonitorDialog(shell, popupDelayMs);
-        UITask<T> job = new UITask(this.execsvc, caption, callable);
+        UITask<T> job = new UITask<>(this.execsvc, caption, callable);
         dlg.run(job);
-        return (T) job.getResult();
+        return job.getResult();
     }
 }
 

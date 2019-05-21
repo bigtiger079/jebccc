@@ -26,15 +26,15 @@ import org.eclipse.swt.widgets.Text;
 
 public class JebIoSignupDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoSignupDialog.class);
-    RcpClientContext context;
-    String emailHint;
-    Text txtEmail;
-    Text txtPassword;
-    Text txtPassword2;
-    Button btnSignup;
-    String email;
-    String password;
-    String apikey;
+    private RcpClientContext context;
+    private String emailHint;
+    private Text txtEmail;
+    private Text txtPassword;
+    private Text txtPassword2;
+    private Button btnSignup;
+    private String email;
+    private String password;
+    private String apikey;
 
     public JebIoSignupDialog(Shell shell, RcpClientContext context, String emailHint) {
         super(shell);
@@ -61,7 +61,7 @@ public class JebIoSignupDialog extends TitleAreaDialog {
 
     protected Control createDialogArea(Composite parent) {
         getShell().setText("Sign up");
-        setTitle("JEB Malware Sharing Network");
+        setTitle(JebIoMessages.MsnName);
         setMessage("Fill out the following form to create a new account", 1);
         Composite area = (Composite) super.createDialogArea(parent);
         Composite container = new Composite(area, 0);
@@ -128,7 +128,7 @@ public class JebIoSignupDialog extends TitleAreaDialog {
             return;
         }
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), null);
-        JebIoObjectUser user = (JebIoObjectUser) this.context.executeNetworkTask(new Callable() {
+        JebIoObjectUser user = this.context.executeNetworkTask(new Callable<JebIoObjectUser>() {
             public JebIoObjectUser call() throws Exception {
                 try {
                     return helper.createUser(JebIoSignupDialog.this.email, JebIoSignupDialog.this.password);
@@ -146,7 +146,7 @@ public class JebIoSignupDialog extends TitleAreaDialog {
             return;
         }
         this.apikey = user.getApikey();
-        String msg = String.format("Your account was created.\n\nA confirmation email was sent to %s", new Object[]{this.email});
+        String msg = String.format("Your account was created.\n\nA confirmation email was sent to %s", this.email);
         UI.info(getShell(), "Congratulations!", msg);
         setReturnCode(0);
         close();

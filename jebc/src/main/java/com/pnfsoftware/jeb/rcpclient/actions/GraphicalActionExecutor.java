@@ -151,7 +151,7 @@ public class GraphicalActionExecutor {
                     ReferencesDialog dlg = new ReferencesDialog(this.shell, caption, data.getAddresses(), data.getDetails(), info.getUnit());
                     int index = dlg.open();
                     if (index >= 0) {
-                        String address = (String) data.getAddresses().get(index);
+                        String address = data.getAddresses().get(index);
                         gotoAddress(this.context, info.getUnit(), address);
                     }
                     return info.getUnit().executeAction(info, data);
@@ -168,7 +168,7 @@ public class GraphicalActionExecutor {
                         ReferencesDialog dlg = new ReferencesDialog(this.shell, S.s(47), addresses, null, info.getUnit());
                         int index = dlg.open();
                         if (index >= 0) {
-                            ICoordinates coord = (ICoordinates) coords.get(index);
+                            ICoordinates coord = coords.get(index);
                             ((InteractiveTextView) fragment).setCaretCoordinates(coord);
                         }
                     }
@@ -199,9 +199,9 @@ public class GraphicalActionExecutor {
                 ActionOverridesData data = new ActionOverridesData();
                 if (info.getUnit().prepareExecution(info, data)) {
                     ReferencesDialog dlg = new ReferencesDialog(this.shell, S.s(534), data.getAddresses(), null, info.getUnit());
-                    int index = dlg.open().intValue();
+                    int index = dlg.open();
                     if (index >= 0) {
-                        String address = (String) data.getAddresses().get(index);
+                        String address = data.getAddresses().get(index);
                         gotoAddress(this.context, info.getUnit(), address);
                     }
                     return info.getUnit().executeAction(info, data);
@@ -247,7 +247,7 @@ public class GraphicalActionExecutor {
             case 8:
             case 9:
             default:
-                logger.debug("The action (%d) is not supported by this client", new Object[]{Integer.valueOf(info.getActionId())});
+                logger.debug("The action (%d) is not supported by this client", info.getActionId());
         }
         return false;
     }

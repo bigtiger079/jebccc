@@ -60,12 +60,12 @@ public class UITask<T> {
         }
         ThreadEx<T> t;
         if (this.runnable != null) {
-            t = new ThreadEx(this.runnable);
+            t = new ThreadEx<>(this.runnable);
         } else {
-            t = new ThreadEx(this.callable);
+            t = new ThreadEx<>(this.callable);
         }
         t.start();
-        for (; ; ) {
+        while(true) {
             try {
                 if (this.runnable != null) {
                     t.get(this.checkTimeoutMs);

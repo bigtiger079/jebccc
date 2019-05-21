@@ -1381,7 +1381,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     }
 
     private IRuntimeProject loadProject(Shell shell, final String path) {
-        IRuntimeProject r = (IRuntimeProject) executeTask(S.s(445) + "...", new CallableWithProgressCallback() {
+        return executeTask(S.s(445) + "...", new CallableWithProgressCallback<IRuntimeProject>() {
             public IRuntimeProject call() {
                 try {
                     IRuntimeProject prj = RcpClientContext.this.getEnginesContext().loadProject(path, this.callback);
@@ -1392,7 +1392,6 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 }
             }
         });
-        return r;
     }
 
     private boolean dlgCheckLockedUnits(Shell shell) {
@@ -1635,7 +1634,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     }
 
     public <T> T executeTask(String taskName, Callable<T> callable) {
-        return (T) executeTask(taskName, false, callable);
+        return executeTask(taskName, false, callable);
     }
 
     public <T> T executeTask(String taskName, boolean errorOnCancel, Callable<T> callable) {

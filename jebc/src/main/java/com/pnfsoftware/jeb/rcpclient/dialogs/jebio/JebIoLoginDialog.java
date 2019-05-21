@@ -37,14 +37,14 @@ import org.eclipse.swt.widgets.Text;
 public class JebIoLoginDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoLoginDialog.class);
     private static final int SIGNUP_ID = 1025;
-    RcpClientContext context;
-    UserCredentials previousCredentials;
-    Text txtEmail;
-    Text txtPassword;
-    Text textApikey;
-    Button btnVerify;
+    private RcpClientContext context;
+    private UserCredentials previousCredentials;
+    private Text txtEmail;
+    private Text txtPassword;
+    private Text textApikey;
+    private Button btnVerify;
     Button btnSignup;
-    boolean verified;
+    private boolean verified;
 
     public JebIoLoginDialog(Shell shell, RcpClientContext context) {
         super(shell);
@@ -70,7 +70,7 @@ public class JebIoLoginDialog extends TitleAreaDialog {
 
     protected Control createDialogArea(Composite parent) {
         getShell().setText("Login");
-        setTitle("JEB Malware Sharing Network");
+        setTitle(JebIoMessages.MsnName);
         if (!JebIoUtil.retrieveCredentials(this.context).lookValid()) {
             setMessage("Click the \"Create an Account\" button to get started, or log in using your credentials.", 2);
         } else {
@@ -187,11 +187,11 @@ public class JebIoLoginDialog extends TitleAreaDialog {
                     int sharecount = user.getSharecount();
                     String lastsharets = user.getLastsharets();
                     int receivecount = user.getReceivecount();
-                    sb.append(String.format("Your score: %s\n\n", new Object[]{score == 0 ? "N/A" : Integer.toString(score)}));
+                    sb.append(String.format("Your score: %s\n\n", score == 0 ? "N/A" : Integer.toString(score)));
                     if (sharecount == 0) {
                         sb.append("You haven't shared any sample yet!\n\n");
                     } else {
-                        sb.append(String.format("You have shared a total of %d %s.\nYour last contribution was made on %s.\n\n", new Object[]{Integer.valueOf(sharecount), PluralFormatter.countS(Integer.valueOf(sharecount), "sample"), lastsharets}));
+                        sb.append(String.format("You have shared a total of %d %s.\nYour last contribution was made on %s.\n\n", sharecount, PluralFormatter.countS(sharecount, "sample"), lastsharets));
                     }
                     if (receivecount == 0) {
                         if (sharecount == 0) {
@@ -200,7 +200,7 @@ public class JebIoLoginDialog extends TitleAreaDialog {
                             sb.append("You haven't received samples yet.");
                         }
                     } else {
-                        sb.append(String.format("You have received a total of %d %s in exchange for your contribution.", new Object[]{Integer.valueOf(receivecount), PluralFormatter.countS(Integer.valueOf(receivecount), "sample")}));
+                        sb.append(String.format("You have received a total of %d %s in exchange for your contribution.", receivecount, PluralFormatter.countS(receivecount, "sample")));
                     }
                     UI.log(level, JebIoLoginDialog.this.getShell(), "My Profile", sb.toString());
                 }
@@ -233,7 +233,7 @@ public class JebIoLoginDialog extends TitleAreaDialog {
 
     JebIoObjectUser getUser(String email, String password) {
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), new UserCredentials(email, password, ""));
-        JebIoObjectUser user = (JebIoObjectUser) this.context.executeNetworkTask(new Callable() {
+        JebIoObjectUser user = this.context.executeNetworkTask(new Callable<JebIoObjectUser>() {
             public JebIoObjectUser call() throws Exception {
                 try {
                     return helper.getUser();

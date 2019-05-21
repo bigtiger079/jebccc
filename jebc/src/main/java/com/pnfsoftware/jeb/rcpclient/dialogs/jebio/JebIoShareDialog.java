@@ -35,13 +35,13 @@ import org.eclipse.swt.widgets.Text;
 public class JebIoShareDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(JebIoShareDialog.class);
     private static final int SETTINGS_ID = 1025;
-    RcpClientContext context;
-    IArtifact artifact;
-    String sha256;
-    Text txtHash;
-    Text txtName;
-    Text txtComments;
-    Combo wDetermination;
+    private RcpClientContext context;
+    private IArtifact artifact;
+    private String sha256;
+    private Text txtHash;
+    private Text txtName;
+    private Text txtComments;
+    private Combo wDetermination;
 
     public JebIoShareDialog(Shell shell, RcpClientContext context, IArtifact artifact) {
         super(shell);
@@ -103,7 +103,7 @@ public class JebIoShareDialog extends TitleAreaDialog {
 
     protected void createButtonsForButtonBar(Composite parent) {
         parent.setLayoutData(new GridData(4, 16777216, true, false));
-        createButton(parent, 1025, "Settings", false);
+        createButton(parent, SETTINGS_ID, "Settings", false);
         Label spacer = new Label(parent, 0);
         spacer.setLayoutData(new GridData(4, 16777216, true, false));
         GridLayout layout = (GridLayout) parent.getLayout();
@@ -114,7 +114,7 @@ public class JebIoShareDialog extends TitleAreaDialog {
     }
 
     protected void buttonPressed(int buttonId) {
-        if (buttonId == 1025) {
+        if (buttonId == SETTINGS_ID) {
             JebIoLoginDialog dlg = new JebIoLoginDialog(getShell(), this.context);
             dlg.open();
         } else {
@@ -197,10 +197,10 @@ public class JebIoShareDialog extends TitleAreaDialog {
         final String _comments = this.txtComments.getText();
         final SampleDetermination _det = det;
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), creds);
-        Integer retcode = (Integer) this.context.executeNetworkTask(new Callable() {
+        Integer retcode = this.context.executeNetworkTask(new Callable<Integer>() {
             public Integer call() throws Exception {
                 try {
-                    return Integer.valueOf(helper.shareFile(_f, _name, _comments, _det, false));
+                    return helper.shareFile(_f, _name, _comments, _det, false);
                 } catch (IOException e) {
                     UI.error("An error occurred.\n\nException: " + e.getMessage());
                 }
@@ -210,14 +210,14 @@ public class JebIoShareDialog extends TitleAreaDialog {
         if (retcode == null) {
             return;
         }
-        if (retcode.intValue() < 0) {
+        if (retcode < 0) {
             UI.error("The sample was not successfully shared. Are your credentials valid?\n\nResponse code: " + retcode);
             return;
         }
         try {
             JebIoObjectUser user = helper.getUser();
             long sharecount = user.getSharecount();
-            UI.info(String.format("Thank you!\n\nYou have shared a total of %d %s.", new Object[]{Long.valueOf(sharecount), PluralFormatter.countS(Long.valueOf(sharecount), "sample")}));
+            UI.info(String.format("Thank you!\n\nYou have shared a total of %d %s.", sharecount, PluralFormatter.countS(sharecount, "sample")));
         } catch (Exception e) {
             UI.info("Thank you!");
         }
@@ -231,7 +231,7 @@ public class JebIoShareDialog extends TitleAreaDialog {
             return null;
         }
         final JebIoApiHelper helper = new JebIoApiHelper(context.getNetworkUtility(), creds);
-        return (JebIoObjectFile) context.executeNetworkTask(new Callable() {
+        return context.executeNetworkTask(new Callable<JebIoObjectFile>() {
             public JebIoObjectFile call() throws Exception {
                 try {
                     return helper.getFile(sha256);

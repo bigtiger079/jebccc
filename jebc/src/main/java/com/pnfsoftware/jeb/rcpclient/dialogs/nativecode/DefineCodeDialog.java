@@ -61,7 +61,7 @@ public class DefineCodeDialog extends JebDialog {
         new Label(parent, 0).setText(S.s(52) + ": ");
         this.widgetAddress = new Text(parent, 2052);
         this.widgetAddress.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 16));
-        this.widgetAddress.setText(String.format("%Xh", new Object[]{Long.valueOf(this.address)}));
+        this.widgetAddress.setText(String.format("%Xh", this.address));
         this.widgetAddress.selectAll();
         this.widgetAddress.setFocus();
         Group g1 = new Group(parent, 0);

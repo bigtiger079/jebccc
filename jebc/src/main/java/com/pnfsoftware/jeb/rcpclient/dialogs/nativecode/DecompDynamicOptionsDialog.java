@@ -12,10 +12,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
 public class DecompDynamicOptionsDialog extends JebDialog {
-    INativeSourceUnit src;
-    String address;
-    DecompDynamicOptionsView v;
-    boolean success;
+    private INativeSourceUnit src;
+    private String address;
+    private DecompDynamicOptionsView v;
+    private boolean success;
 
     public DecompDynamicOptionsDialog(Shell parent, INativeSourceUnit src, String address) {
         super(parent, "Decompiler Dynamic Options", true, true);
@@ -30,11 +30,11 @@ public class DecompDynamicOptionsDialog extends JebDialog {
         super.open();
         if ((this.success) && (!this.v.getChanges().isEmpty())) {
             for (Map.Entry<IOptimizerInfo, Boolean> e : this.v.getChanges().entrySet()) {
-                ((IOptimizerInfo) e.getKey()).setEnabled(((Boolean) e.getValue()).booleanValue());
+                e.getKey().setEnabled(e.getValue());
             }
-            return Boolean.valueOf(true);
+            return Boolean.TRUE;
         }
-        return Boolean.valueOf(false);
+        return Boolean.FALSE;
     }
 
     protected void createContents(Composite parent) {

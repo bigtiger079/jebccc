@@ -62,7 +62,7 @@ public class DefineStringDialog extends JebDialog {
         new Label(grp, 0).setText(S.s(52) + ": ");
         this.widgetAddress = new Text(grp, 2052);
         this.widgetAddress.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 16));
-        this.widgetAddress.setText(String.format("%Xh", new Object[]{Long.valueOf(this.address)}));
+        this.widgetAddress.setText(String.format("%Xh", this.address));
         this.widgetAddress.selectAll();
         this.widgetAddress.setFocus();
         new Label(grp, 0).setText("String type: ");
@@ -82,7 +82,7 @@ public class DefineStringDialog extends JebDialog {
         new Label(grp, 0).setText("Max chars: ");
         this.widgetMaxCount = new Text(grp, 2052);
         this.widgetMaxCount.setLayoutData(UIUtil.createGridDataForText(this.widgetAddress, 8));
-        this.widgetMaxCount.setText(String.format("%X", new Object[]{Long.valueOf(this.address)}));
+        this.widgetMaxCount.setText(String.format("%X", this.address));
         this.widgetMaxCount.setText("");
         this.widgetMaxCount.selectAll();
         createOkayCancelButtons(parent);
@@ -119,13 +119,13 @@ public class DefineStringDialog extends JebDialog {
             info = "Invalid address";
         } else {
             if (this.unit == null) {
-                info = String.format("No native unit was provided, cannot retrieve information about location %Xh.", new Object[]{Long.valueOf(a)});
+                info = String.format("No native unit was provided, cannot retrieve information about location %Xh.", a);
             } else {
                 INativeItem item = this.unit.getNativeItemOver(a);
                 if (item != null) {
-                    info = String.format("Beware, an item already occupies address %Xh.", new Object[]{Long.valueOf(a)});
+                    info = String.format("Beware, an item already occupies address %Xh.", a);
                 } else {
-                    info = String.format("Will attempt to define string at address %Xh", new Object[]{Long.valueOf(a)});
+                    info = String.format("Will attempt to define string at address %Xh", a);
                 }
             }
         }

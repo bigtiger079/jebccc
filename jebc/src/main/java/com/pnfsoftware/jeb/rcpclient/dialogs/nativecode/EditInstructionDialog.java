@@ -32,14 +32,14 @@ public class EditInstructionDialog extends JebDialog {
     private long address;
     private INativeCodeUnit<?> unit;
     private boolean confirmed;
-    INativeInstructionItem ii;
-    Text widgetAddress;
-    Text widgetLabel;
-    Text widgetBytes;
-    Text widgetDisas;
-    Text widgetHintSPDelta;
-    Text widgetHintProto;
-    Text widgetDynTarget;
+    private INativeInstructionItem ii;
+    private Text widgetAddress;
+    private Text widgetLabel;
+    private Text widgetBytes;
+    private Text widgetDisas;
+    private Text widgetHintSPDelta;
+    private Text widgetHintProto;
+    private Text widgetDynTarget;
     private static final String KEY_DYNTARGET = "dynTargetItem";
 
     public EditInstructionDialog(Shell parent, long address, INativeCodeUnit<?> unit) {
@@ -51,7 +51,7 @@ public class EditInstructionDialog extends JebDialog {
 
     public Boolean open() {
         super.open();
-        return Boolean.valueOf(this.confirmed);
+        return this.confirmed;
     }
 
     protected void createContents(final Composite parent) {
@@ -112,7 +112,7 @@ public class EditInstructionDialog extends JebDialog {
         this.widgetAddress.setText(Strings.safe(this.ii.getAddress()));
         this.widgetLabel.setText(Strings.safe(this.ii.getLabel()));
         this.widgetBytes.setText(Formatter.formatBinaryLine(this.ii.getInstruction().getCode()));
-        this.widgetDisas.setText(this.ii.getInstruction().format(Long.valueOf(this.ii.getMemoryAddress())));
+        this.widgetDisas.setText(this.ii.getInstruction().format(this.ii.getMemoryAddress()));
         InstructionHints hints = this.ii.getHints(false);
         if (hints != null) {
             this.widgetHintSPDelta.setText(Strings.safe(hints.getStackPointerDelta()));
@@ -136,7 +136,7 @@ public class EditInstructionDialog extends JebDialog {
         } else {
             this.widgetDynTarget.setText(routine.getName(true));
         }
-        this.widgetDynTarget.setData("dynTargetItem", routine);
+        this.widgetDynTarget.setData(KEY_DYNTARGET, routine);
     }
 
     protected void onConfirm() {
@@ -149,7 +149,7 @@ public class EditInstructionDialog extends JebDialog {
         } else {
             try {
                 int spdelta = Integer.parseInt(text);
-                this.ii.getHints(true).setStackPointerDelta(Integer.valueOf(spdelta));
+                this.ii.getHints(true).setStackPointerDelta(spdelta);
             } catch (NumberFormatException e) {
                 UI.error("Cannot parse integer value for SP delta");
                 return;
@@ -169,7 +169,7 @@ public class EditInstructionDialog extends JebDialog {
                 return;
             }
         }
-        INativeMethodItem routine = (INativeMethodItem) this.widgetDynTarget.getData("dynTargetItem");
+        INativeMethodItem routine = (INativeMethodItem) this.widgetDynTarget.getData(KEY_DYNTARGET);
         if (routine == null) {
             IBranchTarget current = getCurrentlyStoredResolvedTarget();
             if (current != null) {

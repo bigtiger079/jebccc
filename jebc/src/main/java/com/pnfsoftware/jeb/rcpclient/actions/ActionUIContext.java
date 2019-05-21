@@ -21,6 +21,6 @@ public class ActionUIContext {
     }
 
     public String toString() {
-        return String.format("%s{%s}", new Object[]{getActionContext(), getFragment()});
+        return String.format("%s{%s}", getActionContext(), getFragment());
     }
 }
