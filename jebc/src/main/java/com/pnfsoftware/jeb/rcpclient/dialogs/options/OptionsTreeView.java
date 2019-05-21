@@ -67,7 +67,7 @@ public class OptionsTreeView extends PatternTreeView {
                     if (prop.fqname.substring(1).equals(data[0])) {
                         prop.value = data[1];
                         prop.display = Objects.toString(data[1]);
-                        ((TreeViewer) viewer.getViewer()).update(prop, null);
+                        viewer.getViewer().update(prop, null);
                     }
                 }
             }
@@ -76,7 +76,7 @@ public class OptionsTreeView extends PatternTreeView {
         tree.setHeaderVisible(true);
         tree.setLinesVisible(true);
         TreeColumn[] cols = tree.getColumns();
-        TreeViewerColumn tcv = new TreeViewerColumn((TreeViewer) viewer.getViewer(), cols[3]);
+        TreeViewerColumn tcv = new TreeViewerColumn(viewer.getViewer(), cols[3]);
         tcv.setEditingSupport(editingSupport);
         viewer.setContentProvider(contentProvider);
         viewer.setLabelProvider(labelProvider);
@@ -156,7 +156,7 @@ public class OptionsTreeView extends PatternTreeView {
                     r.add(line);
                     this.propertyLines.add(line);
                 }
-            Collections.sort(r, new Comparator() {
+            Collections.sort(r, new Comparator<Object>() {
                 public int compare(Object o1, Object o2) {
                     return ((OptionsTreeView.PropertyLine) o1).definition.getName().compareTo(((OptionsTreeView.PropertyLine) o2).definition.getName());
                 }
@@ -276,10 +276,10 @@ public class OptionsTreeView extends PatternTreeView {
         protected void setValue(Object element, Object value) {
             OptionsTreeView.PropertyLine line = (OptionsTreeView.PropertyLine) element;
             if (!line.definition.getType().validate(value)) {
-                OptionsTreeView.logger.i("Illegal value for property", new Object[0]);
+                OptionsTreeView.logger.i("Illegal value for property");
                 return;
             }
-            OptionsTreeView.logger.i("Property %s is being updated", new Object[]{line.fqname});
+            OptionsTreeView.logger.i("Property %s is being updated", line.fqname);
             line.value = value;
             line.display = value.toString();
             this.viewer.update(element, null);

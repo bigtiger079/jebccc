@@ -65,7 +65,7 @@ public class ReparseOptionsDialog extends JebDialog {
         buttons.setLayout(new RowLayout(256));
         Button btn_ok = UIUtil.createPushbox(buttons, S.s(605), new SelectionAdapter() {
             public void widgetSelected(SelectionEvent event) {
-                ReparseOptionsDialog.this.options = new HashMap();
+                ReparseOptionsDialog.this.options = new HashMap<>();
                 for (Text widgetData : ReparseOptionsDialog.this.widgetDatas) {
                     ReparseOptionsDialog.this.options.put((String) widgetData.getData("optionName"), widgetData.getText());
                 }

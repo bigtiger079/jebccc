@@ -55,7 +55,7 @@ public class OptionsForEnginesPluginDialog extends JebDialog {
                     label.setText(desc);
                     label.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
                 } else if (name.isEmpty()) {
-                    logger.warn("Invalid property definition (empty)", new Object[0]);
+                    logger.warn("Invalid property definition (empty)");
                 } else {
                     new Label(g, 0).setText(desc);
                     Text widgetData = new Text(g, 2052);
@@ -70,7 +70,7 @@ public class OptionsForEnginesPluginDialog extends JebDialog {
     }
 
     protected void onConfirm() {
-        this.options = new HashMap();
+        this.options = new HashMap<>();
         for (Text widgetData : this.widgetDatas) {
             this.options.put((String) widgetData.getData("optionName"), widgetData.getText());
         }

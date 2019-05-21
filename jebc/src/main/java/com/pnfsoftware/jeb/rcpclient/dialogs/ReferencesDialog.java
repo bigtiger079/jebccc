@@ -56,7 +56,7 @@ public class ReferencesDialog extends DataFrameDialog {
                     }
 
                 } else {
-                    extra = (String) details.get(i);
+                    extra = details.get(i);
                 }
                 df.addRow(address, label, extra);
                 i++;

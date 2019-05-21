@@ -30,14 +30,14 @@ import org.eclipse.swt.widgets.Text;
 
 public class ProxyConfigDialog extends JebDialog {
     private static final ILogger logger = GlobalLog.getLogger(ProxyConfigDialog.class);
-    NetProxyInfo proxyinfo;
-    NetProxyInfo proxyinfo2;
-    IGraphicalTaskExecutor executor;
-    Combo widgetType;
-    Text widgetHostname;
-    Text widgetPort;
-    Text widgetUsername;
-    Text widgetPassword;
+    private NetProxyInfo proxyinfo;
+    private NetProxyInfo proxyinfo2;
+    private IGraphicalTaskExecutor executor;
+    private Combo widgetType;
+    private Text widgetHostname;
+    private Text widgetPort;
+    private Text widgetUsername;
+    private Text widgetPassword;
 
     public ProxyConfigDialog(Shell parent, NetProxyInfo proxyinfo, IGraphicalTaskExecutor executor) {
         super(parent, S.s(668), true, true);
@@ -123,7 +123,7 @@ public class ProxyConfigDialog extends JebDialog {
             UI.error("Illegal proxy type");
             return null;
         }
-        String proxyType = (String) NetProxyInfo.getProxyTypes().get(index);
+        String proxyType = NetProxyInfo.getProxyTypes().get(index);
         String hostname = this.widgetHostname.getText();
         if (Strings.isBlank(hostname)) {
             UI.error("Illegal hostname");
@@ -156,7 +156,7 @@ public class ProxyConfigDialog extends JebDialog {
             }
         };
         if (this.executor == null) {
-            logger.info("Verifying connectivity, please wait...", new Object[0]);
+            logger.info("Verifying connectivity, please wait...");
             BusyIndicator.showWhile(Display.getCurrent(), task);
         } else {
             this.executor.executeTaskWithPopupDelay(500, "Verifying connectivity...", false, task);

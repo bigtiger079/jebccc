@@ -75,9 +75,8 @@ public class CodeHierarchyDialog extends JebDialog {
             widget = this.v2;
         }
         ICodeNode node = widget.getSelectedNode();
-        if ((node != null) && ((node.getObject() instanceof ICodeItem))) {
-            String address = node.getObject().getAddress();
-            this.selectedAddress = address;
+        if ((node != null) && ((node.getObject() != null))) {
+            this.selectedAddress = node.getObject().getAddress();
         }
     }
 }

@@ -56,7 +56,7 @@ public class DbgAttachDialog extends JebDialog {
         }
 
         public String toString() {
-            return String.format("info=%s,ident=%s", new Object[]{this.info, this.ident});
+            return String.format("info=%s,ident=%s", this.info, this.ident);
         }
 
         public IDebuggerUnitIdentifier ident;
@@ -117,15 +117,6 @@ public class DbgAttachDialog extends JebDialog {
                             }
                         }
                     }
-//                    for (ta = DbgAttachDialog.this.idents.iterator(); ta.hasNext(); ) {
-//                        ident = (IDebuggerUnitIdentifier) ta.next();
-//                        ta = ident.getTargetEnumerator();
-//                        if (ta != null)
-//                            for (IDebuggerMachineInformation machine : ta.listMachines()) {
-//                                DbgAttachDialog.this.identifiers.add(ident);
-//                                DbgAttachDialog.this.machines.add(machine);
-//                            }
-//                    }
                 }
             }
         };
@@ -151,7 +142,7 @@ public class DbgAttachDialog extends JebDialog {
 
     void prepareMachineList() {
         if (this.dfMachines == null) {
-            this.dfMachines = new DataFrame(new String[]{S.s(591), S.s(447), S.s(351), S.s(387)});
+            this.dfMachines = new DataFrame(S.s(591), S.s(447), S.s(351), S.s(387));
         } else {
             this.dfMachines.clear();
         }
@@ -164,13 +155,13 @@ public class DbgAttachDialog extends JebDialog {
             } else {
                 ff = ff + "Offline";
             }
-            this.dfMachines.addRow(new Object[]{machine.getName(), machine.getLocation(), ff, machine.getInformation()});
+            this.dfMachines.addRow(machine.getName(), machine.getLocation(), ff, machine.getInformation());
         }
     }
 
     String prepareProcessList(IDebuggerMachineInformation machine) {
         if (this.dfProcesses == null) {
-            this.dfProcesses = new DataFrame(new String[]{S.s(376), S.s(591), S.s(351)});
+            this.dfProcesses = new DataFrame(S.s(376), S.s(591), S.s(351));
         } else {
             this.dfProcesses.clear();
         }
@@ -183,7 +174,7 @@ public class DbgAttachDialog extends JebDialog {
                 if ((flags & 0x1) != 0) {
                     ff = ff + "D";
                 }
-                this.dfProcesses.addRow(new Object[]{Long.valueOf(process.getId()), process.getName(), ff});
+                this.dfProcesses.addRow(process.getId(), process.getName(), ff);
             }
         }
         IUnit unit = this.target;
@@ -215,7 +206,7 @@ public class DbgAttachDialog extends JebDialog {
 
     void refreshProcessList() {
         int index = this.dfvMachines.getSelectedRow();
-        String suggFilter = prepareProcessList((index < 0) || (index >= this.machines.size()) ? null : (IDebuggerMachineInformation) this.machines.get(index));
+        String suggFilter = prepareProcessList((index < 0) || (index >= this.machines.size()) ? null : this.machines.get(index));
         this.dfvProcesses.refresh();
         tryAutoSelectProcess(suggFilter);
     }
@@ -233,12 +224,12 @@ public class DbgAttachDialog extends JebDialog {
         c.setLayoutData(UIUtil.createGridDataSpanHorizontally(3, true, true));
         c.setLayout(new GridLayout(1, false));
         prepareMachineList();
-        IDebuggerMachineInformation machine = this.machines.isEmpty() ? null : (IDebuggerMachineInformation) this.machines.get(0);
+        IDebuggerMachineInformation machine = this.machines.isEmpty() ? null : this.machines.get(0);
         String suggestedFilter = prepareProcessList(machine);
         Group g0 = new Group(c, 0);
         g0.setLayoutData(UIUtil.createGridDataFillHorizontally());
         g0.setLayout(new GridLayout(1, false));
-        g0.setText(String.format("%s / %s", new Object[]{S.s(449), S.s(273)}));
+        g0.setText(String.format("%s / %s", S.s(449), S.s(273)));
         this.dfvMachines = new DataFrameView(g0, this.dfMachines, true);
         this.dfvMachines.addExtraEntriesToContextMenu();
         this.dfvMachines.setLayoutData(UIUtil.createGridDataFillHorizontally());
@@ -260,7 +251,7 @@ public class DbgAttachDialog extends JebDialog {
         this.dfvMachines.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 int index = DbgAttachDialog.this.dfvMachines.getSelectedRow();
-                DbgAttachDialog.logger.i("Selected: %d", new Object[]{Integer.valueOf(index)});
+                DbgAttachDialog.logger.i("Selected: %d", index);
                 DbgAttachDialog.this.refreshProcessList();
             }
         });
@@ -355,11 +346,11 @@ public class DbgAttachDialog extends JebDialog {
         if (!isRemote) {
             int index = this.dfvMachines.getSelectedRow();
             if ((index >= 0) && (index < this.machines.size())) {
-                IDebuggerMachineInformation machine = (IDebuggerMachineInformation) this.machines.get(index);
-                IDebuggerUnitIdentifier ident = (IDebuggerUnitIdentifier) this.identifiers.get(index);
+                IDebuggerMachineInformation machine = this.machines.get(index);
+                IDebuggerUnitIdentifier ident = this.identifiers.get(index);
                 index = this.dfvProcesses.getSelectedRow();
                 if ((index >= 0) && (index < this.processes.size())) {
-                    IDebuggerProcessInformation process = (IDebuggerProcessInformation) this.processes.get(index);
+                    IDebuggerProcessInformation process = this.processes.get(index);
                     this.result = new DbgAttachInfo(DebuggerSetupInformation.create(machine, process), ident);
                 }
             }

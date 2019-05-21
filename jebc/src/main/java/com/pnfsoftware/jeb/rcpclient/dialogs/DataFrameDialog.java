@@ -42,7 +42,7 @@ public class DataFrameDialog extends JebDialog {
             throw new IllegalStateException("The dataframe model was not set");
         }
         super.open();
-        return Integer.valueOf(this.selectedIndex);
+        return this.selectedIndex;
     }
 
     public void createContents(Composite parent) {

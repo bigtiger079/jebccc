@@ -66,15 +66,15 @@ public class LicenseKeyAutoDialog extends JebDialog {
                 }
             }
         });
-        String hello = String.format(S.s(364), new Object[]{Licensing.user_name});
-        String message = String.format("%s. %s.\n\n", new Object[]{hello, S.s(636)});
+        String hello = String.format(S.s(364), Licensing.user_name);
+        String message = String.format("%s. %s.\n\n", hello, S.s(636));
         Label labelInfo = new Label(parent, 64);
         labelInfo.setText(message);
         labelInfo.setLayoutData(UIUtil.createGridDataFillHorizontally());
         new Label(parent, 0).setText(S.s(423) + ": ");
         this.textKeyname = new Text(parent, 2052);
         this.textKeyname.setLayoutData(UIUtil.createGridDataFillHorizontally());
-        this.textKeyname.setText(String.format("%s on %s", new Object[]{SystemInformation.username, SystemInformation.compname}));
+        this.textKeyname.setText(String.format("%s on %s", SystemInformation.username, SystemInformation.compname));
         this.textKeyname.selectAll();
         this.textKeyname.setFocus();
         new Label(parent, 0).setText(S.s(436) + ": ");
@@ -91,14 +91,14 @@ public class LicenseKeyAutoDialog extends JebDialog {
                     return;
                 }
                 String keyname = LicenseKeyAutoDialog.this.textKeyname.getText();
-                final String urlparams = String.format("licdata=%s&keyname=%s", new Object[]{Strings.urlencodeUTF8(LicenseKeyAutoDialog.this.licdata), Strings.urlencodeUTF8(keyname)});
+                final String urlparams = String.format("licdata=%s&keyname=%s", Strings.urlencodeUTF8(LicenseKeyAutoDialog.this.licdata), Strings.urlencodeUTF8(keyname));
                 btn.setText(S.s(638) + "...");
                 BusyIndicator.showWhile(event.display, new Runnable() {
                     public void run() {
                         String[] urlbases = {"https://www.pnfsoftware.com/jps/genkey", "https://lise.pnfsoftware.com/jps/genkey"};
                         for (String urlbase : urlbases) {
                             try {
-                                String url = String.format("%s?%s", new Object[]{urlbase, urlparams});
+                                String url = String.format("%s?%s", urlbase, urlparams);
                                 byte[] data = LicenseKeyAutoDialog.this.net.queryBinary(url);
                                 String str = new String(data, Charset.forName("US-ASCII")).trim();
                                 if (LicenseKeyAutoDialog.looksLikeLicenseKey(str)) {
@@ -109,12 +109,12 @@ public class LicenseKeyAutoDialog extends JebDialog {
                                 LicenseKeyAutoDialog.logger.catchingSilent(e);
                             }
                         }
-                        LicenseKeyAutoDialog.logger.error("Server did not respond with a license key", new Object[0]);
+                        LicenseKeyAutoDialog.logger.error("Server did not respond with a license key");
                     }
                 });
                 if (LicenseKeyAutoDialog.this.lickey != null) {
                     LicenseKeyAutoDialog.this.onLicenseKeyChange(false);
-                    String msg = String.format("%s.\n\n%s.", new Object[]{S.s(438), S.s(637)});
+                    String msg = String.format("%s.\n\n%s.", S.s(438), S.s(637));
                     MessageDialog.openInformation(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 } else {
                     btn.setText(S.s(362));
@@ -130,7 +130,7 @@ public class LicenseKeyAutoDialog extends JebDialog {
                 LicenseKeyAutoDialog.this.lickey = dlg2.open();
                 if (LicenseKeyAutoDialog.this.lickey != null) {
                     LicenseKeyAutoDialog.this.onLicenseKeyChange(true);
-                    String msg = String.format("%s.\n\n%s.", new Object[]{S.s(770), S.s(637)});
+                    String msg = String.format("%s.\n\n%s.", S.s(770), S.s(637));
                     MessageDialog.openInformation(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 }
             }

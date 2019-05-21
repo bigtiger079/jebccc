@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.Shell;
 
 public class NativeTypeEditorDialog extends JebDialog {
     INativeCodeUnit<?> unit;
-    IStructureType initialType;
-    FontManager fontman;
+    private IStructureType initialType;
+    private FontManager fontman;
 
     public NativeTypeEditorDialog(Shell parent, INativeCodeUnit<?> unit, IStructureType initialType, FontManager fontman) {
         super(parent, "Type Editor", true, true);

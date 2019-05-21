@@ -57,7 +57,7 @@ public class OptionsSimpleViewClasspath extends OptionsSimpleViewList {
 
     private void onEdit(EditableList list) {
         TableItem[] indices = list.getSelection();
-        if ((indices == null) || (indices.length == 0) || (indices.length > 1)) {
+        if ((indices == null) || indices.length != 1) {
             return;
         }
         String intialValue = indices[0].getText();

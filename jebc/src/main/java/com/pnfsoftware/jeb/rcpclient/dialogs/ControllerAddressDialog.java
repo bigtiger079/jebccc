@@ -33,13 +33,13 @@ public class ControllerAddressDialog extends JebDialog {
 
     public Boolean open() {
         super.open();
-        return Boolean.valueOf(this.success);
+        return this.success;
     }
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent, 2);
         Label label = new Label(parent, 64);
-        label.setText(String.format("%s. %s.", new Object[]{S.s(223), S.s(225)}));
+        label.setText(String.format("%s. %s.", S.s(223), S.s(225)));
         label.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         Group g0 = UIUtil.createGroupGrid(parent, "Controller", 2, 2);
         Label l = new Label(g0, 64);
@@ -85,7 +85,7 @@ public class ControllerAddressDialog extends JebDialog {
         if (this.proxyinfo != null) {
             this.context.setProxyString(this.proxyinfo.toString());
         }
-        this.success = Boolean.TRUE.booleanValue();
+        this.success = true;
         super.onConfirm();
     }
 }

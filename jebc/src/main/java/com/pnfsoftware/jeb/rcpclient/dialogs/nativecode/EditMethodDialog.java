@@ -74,17 +74,17 @@ public class EditMethodDialog extends JebDialog {
             new Label(grp1, 0).setText("Entry-point: ");
             this.widgetAddress = new Text(grp1, 2052);
             this.widgetAddress.setLayoutData(UIUtil.createGridDataFillHorizontally());
-            this.widgetAddress.setText(String.format("%Xh", new Object[]{Long.valueOf(methodData.getMemoryAddress())}));
+            this.widgetAddress.setText(String.format("%Xh", methodData.getMemoryAddress()));
             this.widgetAddress.setEditable(false);
             new Label(grp1, 0).setText("Begin: ");
             this.widgetAddressEnd = new Text(grp1, 2052);
             this.widgetAddressEnd.setLayoutData(UIUtil.createGridDataFillHorizontally());
-            this.widgetAddressEnd.setText(String.format("%Xh", new Object[]{Long.valueOf(methodData.getCFG().getFirstAddress())}));
+            this.widgetAddressEnd.setText(String.format("%Xh", methodData.getCFG().getFirstAddress()));
             this.widgetAddressEnd.setEditable(false);
             new Label(grp1, 0).setText("End: ");
             this.widgetAddressEnd = new Text(grp1, 2052);
             this.widgetAddressEnd.setLayoutData(UIUtil.createGridDataFillHorizontally());
-            this.widgetAddressEnd.setText(String.format("%Xh", new Object[]{Long.valueOf(methodData.getCFG().getEndAddress())}));
+            this.widgetAddressEnd.setText(String.format("%Xh", methodData.getCFG().getEndAddress()));
             this.widgetAddressEnd.setEditable(false);
             buildItemAttributesWidget(grp1, methodData);
         }
@@ -96,7 +96,7 @@ public class EditMethodDialog extends JebDialog {
     protected void onConfirm() {
         this.info = new MethodSetupInformation();
         String s = this.wRoutineDataSPDeltaOnReturn.getText();
-        this.info.routineDataSPDeltaOnReturn = (s.isEmpty() ? null : Integer.valueOf(Conversion.stringToInt(s)));
+        this.info.routineDataSPDeltaOnReturn = (s.isEmpty() ? null : Conversion.stringToInt(s));
         this.info.routineNonReturning = this.wRoutineNonReturning.getState();
         this.confirmed = true;
         super.onConfirm();

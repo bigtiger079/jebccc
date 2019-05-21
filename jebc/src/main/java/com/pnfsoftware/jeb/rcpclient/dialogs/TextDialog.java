@@ -37,8 +37,8 @@ public class TextDialog extends JebDialog {
         this.editable = true;
         this.selected = false;
         this.initialText = initialText;
-        this.labelOk = Integer.valueOf(605);
-        this.labelCancel = Integer.valueOf(105);
+        this.labelOk = 605;
+        this.labelCancel = 105;
     }
 
     public void setFont(Font font) {
@@ -137,12 +137,12 @@ public class TextDialog extends JebDialog {
     protected void createButtons(Composite parent) {
         List<int[]> avails = new ArrayList<>();
         if (this.labelOk != null) {
-            avails.add(new int[]{32, this.labelOk.intValue() == -1 ? 'ɝ' : this.labelOk.intValue()});
+            avails.add(new int[]{32, this.labelOk == -1 ? 'ɝ' : this.labelOk});
         }
         if (this.labelCancel != null) {
-            avails.add(new int[]{256, this.labelCancel.intValue() == -1 ? 105 : this.labelCancel.intValue()});
+            avails.add(new int[]{256, this.labelCancel == -1 ? 105 : this.labelCancel});
         }
-        createButtons(parent, 0, (int[][]) avails.toArray(new int[avails.size()][]), 32);
+        createButtons(parent, 0, avails.toArray(new int[avails.size()][]), 32);
     }
 
     protected void onConfirm() {

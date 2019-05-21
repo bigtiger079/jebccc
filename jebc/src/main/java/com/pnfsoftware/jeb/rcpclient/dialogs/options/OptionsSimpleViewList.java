@@ -78,7 +78,7 @@ public class OptionsSimpleViewList extends AbstractOptionsSimpleWidget {
         List<String> result = new ArrayList<>();
         List<Integer> toRemove = asList(toRemoveArray);
         for (int sourceIndex = 0; sourceIndex < items.length; sourceIndex++) {
-            if (!toRemove.contains(Integer.valueOf(sourceIndex))) {
+            if (!toRemove.contains(sourceIndex)) {
                 result.add(items[sourceIndex]);
             }
         }
@@ -88,7 +88,7 @@ public class OptionsSimpleViewList extends AbstractOptionsSimpleWidget {
     private List<Integer> asList(int[] array) {
         List<Integer> result = new ArrayList<>();
         for (int v : array) {
-            result.add(Integer.valueOf(v));
+            result.add(v);
         }
         return result;
     }

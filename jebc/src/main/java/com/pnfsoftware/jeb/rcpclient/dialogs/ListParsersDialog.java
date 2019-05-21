@@ -103,7 +103,7 @@ public class ListParsersDialog extends JebDialog {
                     author = pi.getAuthor();
                     version = pi.getVersion().toString();
                 }
-                return new Object[]{p.getFormatType(), Double.valueOf(p.getPriority()), name, description, version, author};
+                return new Object[]{p.getFormatType(), p.getPriority(), name, description, version, author};
             }
             return ArrayUtil.NO_OBJECT;
         }

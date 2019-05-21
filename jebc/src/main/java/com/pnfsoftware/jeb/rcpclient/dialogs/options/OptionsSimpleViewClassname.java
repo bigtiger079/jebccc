@@ -65,7 +65,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
                     }
                     List<DevPluginClassname> classnames = cp.parseDevPluginClassnames((String) OptionsSimpleViewClassname.this.getProperty());
                     if ((selected < 0) || (selected >= table.getItemCount())) {
-                        OptionsSimpleViewClassname.logger.error("The change was not recorded!", new Object[0]);
+                        OptionsSimpleViewClassname.logger.error("The change was not recorded!");
                         return;
                     }
                     DevPluginClassname classname = (DevPluginClassname) classnames.get(selected);
@@ -78,7 +78,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
         }
         list.addButton("Add...", new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
-                InputDialog id = new InputDialog(list.getShell(), "Classname", "Enter the classname:", "", null);
+                InputDialog id = new InputDialog(list.getShell(), MESSAGE_TITLE, "Enter the classname:", "", null);
                 int result = id.open();
                 if ((result == 0) && (!Strings.isBlank(id.getValue()))) {
                     OptionsSimpleViewClassname.this.addClassname(cp, id.getValue());
@@ -95,7 +95,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
         list.addButton("Verify", new SelectionAdapter() {
             public void widgetSelected(SelectionEvent se) {
                 TableItem[] indices = list.getSelection();
-                if ((indices == null) || (indices.length == 0) || (indices.length > 1)) {
+                if ((indices == null) || indices.length != 1) {
                     return;
                 }
                 String cname = indices[0].getText();
@@ -112,11 +112,11 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
 
     private void onEdit(EditableList list, CoreProperties cp) {
         TableItem[] indices = list.getSelection();
-        if ((indices == null) || (indices.length == 0) || (indices.length > 1)) {
+        if ((indices == null) || indices.length != 1) {
             return;
         }
         String intialValue = indices[0].getText();
-        InputDialog id = new InputDialog(list.getShell(), "Classname", "Edit the classname:", intialValue, null);
+        InputDialog id = new InputDialog(list.getShell(), MESSAGE_TITLE, "Edit the classname:", intialValue, null);
         int result = id.open();
         if ((result == 0) && (!Strings.isBlank(id.getValue()))) {
             updateClassname(cp, list.getSelectionIndices()[0], id.getValue());
@@ -133,16 +133,16 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
 
     private void updateClassname(CoreProperties cp, int position, String value) {
         List<DevPluginClassname> classnames = cp.parseDevPluginClassnames((String) getProperty());
-        DevPluginClassname old = (DevPluginClassname) classnames.remove(position);
+        DevPluginClassname old = classnames.remove(position);
         classnames.add(position, new DevPluginClassname(value, old.isEnabled()));
         this.changes.addChange(this.propertyKey, cp.buildDevPluginClassnames(classnames));
     }
 
     private void displayVerifyClassname(String classname, Shell shell) {
         if (verifyClassname(classname)) {
-            MessageDialog.openInformation(shell, "Verify classname", "Classname was found in specified classpath");
+            MessageDialog.openInformation(shell, MESSAGE_VERIFY_TITLE, "Classname was found in specified classpath");
         } else {
-            MessageDialog.openError(shell, "Verify classname", "Classname can not be found in specified classpath");
+            MessageDialog.openError(shell, MESSAGE_VERIFY_TITLE, "Classname can not be found in specified classpath");
         }
     }
 
@@ -164,7 +164,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
             } catch (MalformedURLException e) {
             }
         }
-        return new URLClassLoader((URL[]) urls.toArray(new URL[urls.size()]), getClass().getClassLoader());
+        return new URLClassLoader(urls.toArray(new URL[0]), getClass().getClassLoader());
     }
 
     protected int getTableStyle() {

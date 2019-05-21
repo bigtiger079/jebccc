@@ -47,7 +47,7 @@ public class SignaturePackageCreationDialog extends JebDialog {
         }
         NativeSignatureDBManager nsdbManager = this.unit.getSignatureManager();
         if (nsdbManager.getUserCreatedPackageFolder() == null) {
-            UI.error(String.format("Folder for user-created signatures has not been set. Please create the folder 'siglibs%s%s' in your JEB client folder (and re-start the client).", new Object[]{File.separator, "custom"}));
+            UI.error(String.format("Folder for user-created signatures has not been set. Please create the folder 'siglibs%s%s' in your JEB client folder (and re-start the client).", File.separator, "custom"));
             return;
         }
         File packageFile = new File(nsdbManager.getUserCreatedPackageFolder() + File.separator + this.packageName.getText() + ".siglib");
@@ -83,7 +83,7 @@ public class SignaturePackageCreationDialog extends JebDialog {
         packageProcMode.setText(this.unit.getProcessor().getType().toString());
         packageProcMode.setEditable(false);
         UIUtil.setStandardLayout(parent, 1);
-        new Label(parent, 0).setText(String.format("Note: package will be created under 'siglibs%s%s' in JEB client folder", new Object[]{File.separator, "custom"}));
+        new Label(parent, 0).setText(String.format("Note: package will be created under 'siglibs%s%s' in JEB client folder", File.separator, "custom"));
         createOkayCancelButtons(parent);
     }
 }

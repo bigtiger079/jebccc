@@ -28,7 +28,7 @@ public class AboutDialog extends JebDialog {
     private Color cWhite = UIAssetManager.getInstance().getColor(255, 255, 255);
 
     public AboutDialog(Shell parent, AbstractClientContext context) {
-        super(parent, String.format(S.s(2), new Object[]{"JEB"}), true, true);
+        super(parent, String.format(S.s(2), "JEB"), true, true);
         this.scrolledContainer = true;
         this.context = context;
     }
@@ -64,19 +64,19 @@ public class AboutDialog extends JebDialog {
         Link t0 = new Link(c0, 64);
         t0.setLayoutData(UIUtil.createGridDataFillHorizontally());
         t0.setBackground(this.cWhite);
-        t0.setText(String.format("<a href=\"%s\">%s</a>", new Object[]{"https://www.pnfsoftware.com", "PNF Software, Inc."}));
+        t0.setText(String.format("<a href=\"%s\">%s</a>", "https://www.pnfsoftware.com", "PNF Software, Inc."));
         t0.addSelectionListener(l_visitLink);
         if ((Licensing.isFloatingBuild()) && (this.context != null)) {
             Link t01 = new Link(c0, 64);
             t01.setBackground(this.cWhite);
-            String url = String.format("http://%s:%d", new Object[]{this.context.getControllerInterface(), Integer.valueOf(this.context.getControllerPort())});
-            t01.setText(String.format("<a href=\"%s\">%s</a>", new Object[]{url, "Visit your Floating Controller Web Portal"}));
+            String url = String.format("http://%s:%d", this.context.getControllerInterface(), this.context.getControllerPort());
+            t01.setText(String.format("<a href=\"%s\">%s</a>", url, "Visit your Floating Controller Web Portal"));
             t01.addSelectionListener(l_visitLink);
         }
         Label t1 = new Label(c0, 64);
         t1.setLayoutData(UIUtil.createGridDataFillHorizontally());
         t1.setBackground(this.cWhite);
-        t1.setText(String.format("\n%s - %s\n%s © %s\n\n", new Object[]{"JEB", "Interactive Decompilation for Software Analysis", "PNF Software, Inc.", "2015-2018"}));
+        t1.setText(String.format("\n%s - %s\n%s © %s\n\n", "JEB", "Interactive Decompilation for Software Analysis", "PNF Software, Inc.", "2015-2018"));
         final Text t2 = new Text(c0, 2114);
         t2.setEditable(false);
         StringBuilder sb = new StringBuilder();
@@ -84,7 +84,7 @@ public class AboutDialog extends JebDialog {
         if (this.context != null) {
             String licenseKey = this.context.getPropertyManager().getString(".LicenseKey");
             if ((licenseKey != null) && (!licenseKey.isEmpty())) {
-                sb.append(String.format("%s: %s", new Object[]{S.s(436), licenseKey}));
+                sb.append(String.format("%s: %s", S.s(436), licenseKey));
             }
         }
         final String text = sb.toString();
@@ -104,10 +104,10 @@ public class AboutDialog extends JebDialog {
         Label t3 = new Label(c0, 64);
         t3.setLayoutData(UIUtil.createGridDataFillHorizontally());
         t3.setBackground(this.cWhite);
-        t3.setText(String.format("\n%s.\n", new Object[]{S.s(775)}));
+        t3.setText(String.format("\n%s.\n", S.s(775)));
         StringBuilder tplText = new StringBuilder();
         for (String thirdparty : app_thirdpartylist) {
-            tplText.append(String.format("- %s\n", new Object[]{thirdparty}));
+            tplText.append(String.format("- %s\n", thirdparty));
         }
         Text t31 = UIUtil.createTextboxInGrid(c0, 2562, 0, 4);
         t31.setEditable(false);
@@ -118,7 +118,7 @@ public class AboutDialog extends JebDialog {
         t4.setText("\n" + AbstractClientContext.formatMemoryUsage());
         Link t41 = new Link(c0, 64);
         t41.setBackground(this.cWhite);
-        t41.setText(String.format("<a href=\"%s\">%s</a>", new Object[]{"https://www.pnfsoftware.com/jeb/faqmem", S.s(382)}));
+        t41.setText(String.format("<a href=\"%s\">%s</a>", "https://www.pnfsoftware.com/jeb/faqmem", S.s(382)));
         t41.addSelectionListener(l_visitLink);
         Label t5 = new Label(c0, 64);
         t3.setBackground(this.cWhite);

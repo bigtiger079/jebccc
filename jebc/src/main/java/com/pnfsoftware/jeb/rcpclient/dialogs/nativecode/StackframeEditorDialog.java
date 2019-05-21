@@ -13,11 +13,11 @@ import org.eclipse.swt.widgets.Shell;
 
 public class StackframeEditorDialog extends JebDialog {
     INativeCodeUnit<?> unit;
-    INativeMethodItem initialRoutine;
-    FontManager fontman;
+    private INativeMethodItem initialRoutine;
+    private FontManager fontman;
 
     public StackframeEditorDialog(Shell parent, INativeCodeUnit<?> unit, INativeMethodItem initialRoutine, FontManager fontman) {
-        super(parent, String.format("Edit stackframe of method \"%s\"", new Object[]{initialRoutine.getName(true)}), true, true);
+        super(parent, String.format("Edit stackframe of method \"%s\"", initialRoutine.getName(true)), true, true);
         this.boundsRestorationType = ShellWrapper.BoundsRestorationType.SIZE_AND_POSITION;
         this.unit = unit;
         this.initialRoutine = initialRoutine;

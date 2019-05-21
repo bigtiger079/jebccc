@@ -16,7 +16,7 @@ public class OptionsSimpleViewText extends AbstractOptionsSimpleWidget {
 
     public Text create(Composite parent, String label, String toolTip, int tokenPosition) {
         Text text = buildText(parent, label, getToken(tokenPosition), toolTip);
-        text.setData("TOKENIZE_NUMBER", Integer.valueOf(tokenPosition));
+        text.setData("TOKENIZE_NUMBER", tokenPosition);
         syncText(text, tokenPosition);
         return text;
     }
@@ -68,7 +68,7 @@ public class OptionsSimpleViewText extends AbstractOptionsSimpleWidget {
         Object tokenPositionObj = t.getData("TOKENIZE_NUMBER");
         String newValue = data[1].toString();
         if (tokenPositionObj != null) {
-            int tokenPosition = ((Integer) tokenPositionObj).intValue();
+            int tokenPosition = (Integer) tokenPositionObj;
             newValue = getToken(newValue, tokenPosition);
         }
         t.setText(newValue);

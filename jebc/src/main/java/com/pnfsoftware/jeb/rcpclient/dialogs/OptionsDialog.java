@@ -27,7 +27,7 @@ public class OptionsDialog extends JebDialog {
     public static final String CLIENT = "Client";
     public static final String ENGINES = "Engines";
     public static final String PROJECT_SPECIFIC = "Project-specific";
-    private static final String[] advancedTabs = {"Client", "Engines", "Project-specific"};
+    private static final String[] advancedTabs = {"Client", "Engines",PROJECT_SPECIFIC};
     private static final String[] simpleTabs = {GENERAL, DEV};
     private RcpClientProperties clientProperties;
     private IPropertyManager clientPM;

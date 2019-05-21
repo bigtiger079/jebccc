@@ -25,7 +25,7 @@ public class AbstractOptionsSimpleWidget {
         if (property == null) {
             return "";
         }
-        String[] tokens = property.split("\\|", -1);
+        String[] tokens = property.split(DEFAULT_TOKENIZER, -1);
         if (tokenPosition >= tokens.length) {
             return "";
         }
@@ -42,7 +42,7 @@ public class AbstractOptionsSimpleWidget {
         if (currentValue == null) {
             currentValue = "";
         }
-        String[] tokens = currentValue.split("\\|", -1);
+        String[] tokens = currentValue.split(DEFAULT_TOKENIZER, -1);
         String[] newTokens;
         if (tokenPosition >= tokens.length) {
             newTokens = new String[tokenPosition + 1];
@@ -51,7 +51,7 @@ public class AbstractOptionsSimpleWidget {
         }
         System.arraycopy(tokens, 0, newTokens, 0, tokens.length);
         newTokens[tokenPosition] = newText;
-        return StringUtils.join(newTokens, "|");
+        return StringUtils.join(newTokens, DEFAULT_RETOKENIZER);
     }
 
     protected void addSimpleViewElements(Control c) {

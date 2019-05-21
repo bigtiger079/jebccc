@@ -46,7 +46,7 @@ public class CustomerActionDialog extends JebDialog {
         c0.setBackground(white);
         SelectionListener l_visitWebsite = new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
-                BrowserUtil.openInBrowser("https://www.pnfsoftware.com/survey");
+                BrowserUtil.openInBrowser(surveyURL);
             }
         };
         String text = "Dear User,\n\nWe are conducting a satisfaction survey and would love to hear from you.\nThe survey contains 7 questions and will take just a minute of your time.\n\nThank you in advance from your participation! (If you decide to take this survey\nlater, the web link can also be found in the About box of the Help menu.)\n\n";
@@ -55,7 +55,7 @@ public class CustomerActionDialog extends JebDialog {
         t1.setText(text);
         Link t0 = new Link(c0, 0);
         t0.setBackground(white);
-        t0.setText(String.format("<a href=\"%s\">Take the Survey</a> (Will navigate to %s)\n\n", new Object[]{"https://www.pnfsoftware.com/survey", "pnfsoftware.com/survey"}));
+        t0.setText(String.format("<a href=\"%s\">Take the Survey</a> (Will navigate to %s)\n\n", surveyURL, surveySimpleURL));
         t0.addSelectionListener(l_visitWebsite);
         Composite buttons = createOkayButton(parent);
         buttons.setBackground(this.cWhite);

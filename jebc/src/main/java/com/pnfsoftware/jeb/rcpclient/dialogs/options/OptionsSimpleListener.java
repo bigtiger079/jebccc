@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 public class OptionsSimpleListener implements Listener {
-    private Map<String, List<Control>> elements = new HashMap();
-    private Map<Control, List<Control>> enabledOnCheckBoxItems = new HashMap();
+    private Map<String, List<Control>> elements = new HashMap<>();
+    private Map<Control, List<Control>> enabledOnCheckBoxItems = new HashMap<>();
 
     public void handleEvent(Event event) {
         Object[] data = (Object[]) event.data;
@@ -31,19 +31,17 @@ public class OptionsSimpleListener implements Listener {
                         } else if ((c instanceof Button)) {
                             Boolean selected = null;
                             if ((data[1] instanceof Boolean)) {
-                                selected = Boolean.valueOf(BooleanUtils.toBoolean((Boolean) data[1]));
-                            } else if (data[1] != null) {
-                                selected = Boolean.valueOf(!Strings.isBlank(data[1].toString()));
+                                selected = BooleanUtils.toBoolean((Boolean) data[1]);
+                            } else {
+                                selected = !Strings.isBlank(data[1].toString());
                             }
-                            List<Control> subEntries = (List) this.enabledOnCheckBoxItems.get(c);
+                            List<Control> subEntries = this.enabledOnCheckBoxItems.get(c);
                             if ((subEntries != null) && (!subEntries.isEmpty())) {
                                 for (Control child : subEntries) {
                                     child.setEnabled(BooleanUtils.toBoolean(selected));
                                 }
                             }
-                            if (selected != null) {
-                                ((Button) c).setSelection(selected.booleanValue());
-                            }
+                            ((Button) c).setSelection(selected);
                         } else if ((c instanceof Combo)) {
                             OptionsSimpleViewCombo.refresh((Combo) c, data);
                         } else if ((c instanceof EditableList)) {
@@ -60,7 +58,7 @@ public class OptionsSimpleListener implements Listener {
     }
 
     protected void addElement(String propertyKey, Control c) {
-        List<Control> controls = (List) this.elements.get(propertyKey);
+        List<Control> controls = this.elements.get(propertyKey);
         if (controls == null) {
             controls = new ArrayList<>();
             this.elements.put(propertyKey, controls);

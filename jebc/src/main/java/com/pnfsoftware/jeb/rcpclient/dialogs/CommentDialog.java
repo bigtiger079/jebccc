@@ -17,7 +17,7 @@ public class CommentDialog extends JebDialog {
     private String input;
     private String address;
     private String comment;
-    String description;
+    private String description;
 
     public CommentDialog(Shell parent, String address) {
         super(parent, S.s(203), true, true);
@@ -40,7 +40,7 @@ public class CommentDialog extends JebDialog {
 
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
-        new Label(parent, 0).setText(String.format("Comment at address: %s", new Object[]{this.address}));
+        new Label(parent, 0).setText(String.format("Comment at address: %s", this.address));
         this.widgetComment = new StyledText(parent, 2818);
         this.widgetComment.setAlwaysShowScrollBars(false);
         if (this.comment != null) {

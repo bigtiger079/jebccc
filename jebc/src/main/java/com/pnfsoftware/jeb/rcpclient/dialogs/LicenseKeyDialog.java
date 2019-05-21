@@ -35,9 +35,9 @@ public class LicenseKeyDialog extends JebDialog {
     public void createContents(Composite parent) {
         UIUtil.setStandardLayout(parent);
         String url = "https://www.pnfsoftware.com/genlk";
-        String message = String.format(S.s(736), new Object[]{Licensing.user_name, "https://www.pnfsoftware.com/genlk"});
+        String message = String.format(S.s(736), Licensing.user_name, "https://www.pnfsoftware.com/genlk");
         message = message.replace('\n', ' ').trim();
-        String clickableUrl = String.format("<a href=\"%s\">%s</a>", new Object[]{"https://www.pnfsoftware.com/genlk", "https://www.pnfsoftware.com/genlk"});
+        String clickableUrl = String.format("<a href=\"%s\">%s</a>", "https://www.pnfsoftware.com/genlk", "https://www.pnfsoftware.com/genlk");
         message = message.replace("https://www.pnfsoftware.com/genlk", clickableUrl);
         Link t0 = new Link(parent, 64);
         t0.setText(message);
@@ -45,7 +45,7 @@ public class LicenseKeyDialog extends JebDialog {
         ((GridData) t0.getLayoutData()).minimumWidth = 100;
         t0.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
-                String url2 = String.format("%s?licdata=%s", new Object[]{"https://www.pnfsoftware.com/genlk", LicenseKeyDialog.this.licdata});
+                String url2 = String.format("%s?licdata=%s", "https://www.pnfsoftware.com/genlk", LicenseKeyDialog.this.licdata);
                 BrowserUtil.openInBrowser(url2);
             }
         });

@@ -21,16 +21,16 @@ public class AllNotificationsDialog extends DataFrameDialog {
 
     public AllNotificationsDialog(Shell parent, List<Couple<IUnit, IUnitNotification>> elements) {
         super(parent, S.s(602), false, "allNotificationsDialog");
-        DataFrame df = new DataFrame(new String[]{S.s(785), S.s(779), S.s(268), S.s(52), S.s(424)});
+        DataFrame df = new DataFrame(S.s(785), S.s(779), S.s(268), S.s(52), S.s(424));
         for (Couple<IUnit, IUnitNotification> elt : elements) {
-            IUnit unit = (IUnit) elt.getFirst();
-            IUnitNotification not = (IUnitNotification) elt.getSecond();
+            IUnit unit = elt.getFirst();
+            IUnitNotification not = elt.getSecond();
             String path = UnitUtil.buildFullyQualifiedUnitPath(unit);
             String addr = not.getAddress();
             if ((unit instanceof IAddressableUnit)) {
-                df.addRow(new Object[]{path, not.getType(), not.getDescription(), addr, addr == null ? "" : ((IAddressableUnit) unit).getAddressLabel(addr)});
+                df.addRow(path, not.getType(), not.getDescription(), addr, addr == null ? "" : ((IAddressableUnit) unit).getAddressLabel(addr));
             } else {
-                df.addRow(new Object[]{path, not.getType(), not.getDescription(), addr, ""});
+                df.addRow(path, not.getType(), not.getDescription(), addr, "");
             }
         }
         setDataFrame(df);

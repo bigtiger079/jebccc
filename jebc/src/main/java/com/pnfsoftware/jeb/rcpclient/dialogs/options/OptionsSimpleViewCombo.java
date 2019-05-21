@@ -15,7 +15,7 @@ public class OptionsSimpleViewCombo extends AbstractOptionsSimpleWidget {
 
     public Combo createComboBox(Composite parent, String label, String toolTip, final int tokenPosition, String[] options) {
         Combo combo = buildComboBox(parent, label, getToken(tokenPosition), toolTip, options);
-        combo.setData("TOKENIZE_NUMBER", Integer.valueOf(tokenPosition));
+        combo.setData("TOKENIZE_NUMBER", tokenPosition);
         combo.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 Combo source = (Combo) e.getSource();
@@ -64,7 +64,7 @@ public class OptionsSimpleViewCombo extends AbstractOptionsSimpleWidget {
         Object tokenPositionObj = t.getData("TOKENIZE_NUMBER");
         String newValue = data[1].toString();
         if (tokenPositionObj != null) {
-            int tokenPosition = ((Integer) tokenPositionObj).intValue();
+            int tokenPosition = (Integer) tokenPositionObj;
             newValue = getToken(newValue, tokenPosition);
         }
         selectComboValue(t, newValue);

@@ -25,7 +25,7 @@ public class AdaptivePopupDialog extends JebDialog {
         this.scrolledContainer = true;
         setMessage(message);
         setVisualBounds(30, -1, 15, -1);
-        if ((type != 1) && (type != 2)) {
+        if ((type != TYPE_INFORMATION) && (type != TYPE_QUESTION)) {
             throw new IllegalArgumentException("Invalid dialog type");
         }
         this.type = type;
@@ -37,14 +37,14 @@ public class AdaptivePopupDialog extends JebDialog {
 
     public Integer open() {
         super.open();
-        return Integer.valueOf(this.retval);
+        return this.retval;
     }
 
     private void setPreferredShellIcon() {
         Image icon = null;
-        if (this.type == 1) {
+        if (this.type == TYPE_INFORMATION) {
             icon = Display.getCurrent().getSystemImage(2);
-        } else if (this.type == 2) {
+        } else if (this.type == TYPE_QUESTION) {
             icon = Display.getCurrent().getSystemImage(4);
         }
         if (icon != null) {
@@ -65,9 +65,9 @@ public class AdaptivePopupDialog extends JebDialog {
         } else {
             this.btnDoNotShow.setEnabled(false);
         }
-        if (this.type == 1) {
+        if (this.type == TYPE_INFORMATION) {
             createButtons(parent, 32, 32);
-        } else if (this.type == 2) {
+        } else if (this.type == TYPE_QUESTION) {
             createButtons(parent, 192, 64);
         }
     }

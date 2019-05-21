@@ -18,7 +18,7 @@ public class CreatePackageDialog extends JebDialog {
     private TextHistory textHistory;
     private HistoryAssistedTextField text;
     private String input;
-    String description;
+    private String description;
     private String initialValue;
     protected Button btn_ok;
 

@@ -116,7 +116,7 @@ public class ReparseDialog extends JebDialog {
         if ((index < 0) || (index >= this.unitIdentifiers.size())) {
             return null;
         }
-        return ((IUnitIdentifier) this.unitIdentifiers.get(index)).getFormatType();
+        return this.unitIdentifiers.get(index).getFormatType();
     }
 
     private boolean isNullInput() {
@@ -124,7 +124,7 @@ public class ReparseDialog extends JebDialog {
     }
 
     private void setOffset(long offset) {
-        this.widgetOffset.setText(String.format("%d", new Object[]{Long.valueOf(offset)}));
+        this.widgetOffset.setText(String.format("%d", offset));
     }
 
     private long getOffset() {
@@ -135,7 +135,7 @@ public class ReparseDialog extends JebDialog {
     }
 
     private void setSize(long size) {
-        this.widgetSize.setText(String.format("%d", new Object[]{Long.valueOf(size)}));
+        this.widgetSize.setText(String.format("%d", size));
     }
 
     public long getSize() {
@@ -147,7 +147,7 @@ public class ReparseDialog extends JebDialog {
 
     private void updateEnd() {
         long end = getOffset() + getSize();
-        this.widgetEnd.setText(String.format("%d", new Object[]{Long.valueOf(end)}));
+        this.widgetEnd.setText(String.format("%d", end));
     }
 
     protected void createContents(Composite parent) {
@@ -183,11 +183,11 @@ public class ReparseDialog extends JebDialog {
         new Label(parent, 0).setText(S.s(741) + ": ");
         this.widgetSize = new Text(parent, 2052);
         this.widgetSize.setLayoutData(UIUtil.createGridDataFillHorizontally());
-        this.widgetSize.setText(String.format("%d", new Object[]{Long.valueOf(this.maxsize)}));
-        new Label(parent, 0).setText(String.format("(%s: )", new Object[]{S.s(289)}));
+        this.widgetSize.setText(String.format("%d", this.maxsize));
+        new Label(parent, 0).setText(String.format("(%s: )", S.s(289)));
         this.widgetEnd = new Text(parent, 2052);
         this.widgetEnd.setLayoutData(UIUtil.createGridDataFillHorizontally());
-        this.widgetEnd.setText(String.format("%d", new Object[]{Long.valueOf(this.maxsize)}));
+        this.widgetEnd.setText(String.format("%d", this.maxsize));
         createOkayCancelButtons(parent);
         final Button widgetOk = getButtonByStyle(32);
         widgetOk.setEnabled(false);
@@ -236,7 +236,7 @@ public class ReparseDialog extends JebDialog {
                     widgetOk.setEnabled(true);
                     ReparseDialog.this.shell.setDefaultButton(widgetOk);
                 }
-                String s = String.format("%s (v%s)", new Object[]{Strings.safe2(pi.getDescription(), String.format("(%s)", new Object[]{S.s(595)})), Strings.safe2(pi.getVersion(), "?")});
+                String s = String.format("%s (v%s)", Strings.safe2(pi.getDescription(), String.format("(%s)", S.s(595))), Strings.safe2(pi.getVersion(), "?"));
                 widgetPinfo.setText(s);
             }
         });

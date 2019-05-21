@@ -79,7 +79,7 @@ public class ListTypelibsDialog extends JebDialog {
 
         public Object[] getElements(Object inputElement) {
             List<TypeLibraryEntry> r = this.tls0.getAvailables();
-            TypeLibraryEntry[] a = (TypeLibraryEntry[]) r.toArray(new TypeLibraryEntry[r.size()]);
+            TypeLibraryEntry[] a = (TypeLibraryEntry[]) r.toArray(new TypeLibraryEntry[0]);
             Arrays.sort(a);
             return a;
         }

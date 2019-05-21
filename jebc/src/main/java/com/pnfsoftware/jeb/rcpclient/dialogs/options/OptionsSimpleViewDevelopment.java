@@ -22,7 +22,7 @@ public class OptionsSimpleViewDevelopment extends Composite {
     protected static final String PROJECT_SPECIFIC = "Project-specific";
     private static final String PROPERTY_CLASSPATH = "DevPluginClasspath";
     private static final String PROPERTY_CLASSNAMES = "DevPluginClassnames";
-    private Map<String, OptionsSimpleListener> listeners = new HashMap();
+    private Map<String, OptionsSimpleListener> listeners = new HashMap<>();
     private final OptionsChanges optionsChanges;
 
     public OptionsSimpleViewDevelopment(Composite parent, OptionsChanges optionsChanges) {
@@ -31,12 +31,12 @@ public class OptionsSimpleViewDevelopment extends Composite {
         Composite ph = new Composite(this, 0);
         ph.setLayout(new GridLayout(1, false));
         this.optionsChanges = optionsChanges;
-        initSimpleViewElementListener("Client");
-        initSimpleViewElementListener("Engines");
+        initSimpleViewElementListener(CLIENT);
+        initSimpleViewElementListener(ENGINES);
         Group dev = createGroup(ph, S.s(271));
-        createBooleanOption(dev, S.s(272), S.s(816), "Client", "DevelopmentMode");
-        EditableList cp = createClasspathOption(dev, S.s(646), "Engines", Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
-        EditableList cn = createClassnameOption(dev, S.s(645), "Engines", Licensing.canUseCoreAPI() ? "DevPluginClassnames" : null, ",", Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
+        createBooleanOption(dev, S.s(272), S.s(816), CLIENT, "DevelopmentMode");
+        EditableList cp = createClasspathOption(dev, S.s(646), ENGINES, Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
+        EditableList cn = createClassnameOption(dev, S.s(645), ENGINES, Licensing.canUseCoreAPI() ? "DevPluginClassnames" : null, ",", Licensing.canUseCoreAPI() ? "DevPluginClasspath" : null, "\\" + File.pathSeparator);
         if (!Licensing.canUseCoreAPI()) {
             cp.setEnabled(false);
             cn.setEnabled(false);
@@ -59,15 +59,15 @@ public class OptionsSimpleViewDevelopment extends Composite {
     }
 
     private EditableList createClasspathOption(Composite parent, String label, String propertyManagerKey, String propertyKey, String separator) {
-        return new OptionsSimpleViewClasspath(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator).create(parent, label);
+        return new OptionsSimpleViewClasspath(this.optionsChanges.get(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey, separator).create(parent, label);
     }
 
     private EditableList createClassnameOption(Composite parent, String label, String propertyManagerKey, String propertyKey, String separator, String classPathProperty, String classPathSeparator) {
-        return new OptionsSimpleViewClassname(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, separator, classPathProperty, classPathSeparator).create(parent, label);
+        return new OptionsSimpleViewClassname(this.optionsChanges.get(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey, separator, classPathProperty, classPathSeparator).create(parent, label);
     }
 
     private Button createBooleanOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return new OptionsBooleanViewer(this.optionsChanges.get(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
+        return new OptionsBooleanViewer(this.optionsChanges.get(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
     }
 }
 

@@ -13,6 +13,6 @@ public class MethodSetupInformation {
     }
 
     public String toString() {
-        return String.format("routineNonReturning=%s,routineDataSPDeltaOnReturn=%s", new Object[]{this.routineNonReturning, this.routineDataSPDeltaOnReturn});
+        return String.format("routineNonReturning=%s,routineDataSPDeltaOnReturn=%s", this.routineNonReturning, this.routineDataSPDeltaOnReturn);
     }
 }

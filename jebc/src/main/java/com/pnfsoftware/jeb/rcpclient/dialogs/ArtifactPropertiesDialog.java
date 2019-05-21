@@ -56,7 +56,7 @@ public class ArtifactPropertiesDialog extends JebDialog {
             FileInput fileInput = (FileInput) input;
             File f = fileInput.getFile();
             if (f == null) {
-                String msg = String.format("It appears the input file artifact does not exist.\n\nWould you like to update the artifact path?", new Object[0]);
+                String msg = String.format("It appears the input file artifact does not exist.\n\nWould you like to update the artifact path?");
                 if (MessageDialog.openQuestion(this.shell, "Invalid input artifact", msg)) {
                     FileDialog dlg2 = new FileDialog(this.shell, 4096);
                     dlg2.setText("Artifact Path");
@@ -124,9 +124,9 @@ public class ArtifactPropertiesDialog extends JebDialog {
         new Label(parent, 0).setText(inputSize + " bytes");
         Text widgetData = new Text(parent, 2058);
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("MD5       %s\n", new Object[]{hashMd5}));
-        sb.append(String.format("SHA-1     %s\n", new Object[]{hashSha1}));
-        sb.append(String.format("SHA-256   %s", new Object[]{hashSha256}));
+        sb.append(String.format("MD5       %s\n", hashMd5));
+        sb.append(String.format("SHA-1     %s\n", hashSha1));
+        sb.append(String.format("SHA-256   %s", hashSha256));
         widgetData.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
         widgetData.setText(sb.toString());
         widgetData.setFont(JFaceResources.getTextFont());

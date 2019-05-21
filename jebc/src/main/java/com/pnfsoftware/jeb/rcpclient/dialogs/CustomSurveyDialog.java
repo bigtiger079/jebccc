@@ -24,8 +24,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class CustomSurveyDialog extends TitleAreaDialog {
     private static final ILogger logger = GlobalLog.getLogger(CustomSurveyDialog.class);
-    RcpClientContext context;
-    Text txtSuggestion;
+    private RcpClientContext context;
+    private Text txtSuggestion;
 
     public CustomSurveyDialog(Shell shell, RcpClientContext context) {
         super(shell);
@@ -65,7 +65,7 @@ public class CustomSurveyDialog extends TitleAreaDialog {
             this.txtSuggestion.setFocus();
             return;
         }
-        String r = (String) this.context.executeNetworkTask(new Callable() {
+        String r = this.context.executeNetworkTask(new Callable<String>() {
             public String call() throws Exception {
                 try {
                     String url = "https://www.pnfsoftware.com/submitsurvey?survey=productSurvey1&licenseid=" + Licensing.license_id;
@@ -78,7 +78,7 @@ public class CustomSurveyDialog extends TitleAreaDialog {
                 return null;
             }
         });
-        logger.i("Server response: %s", new Object[]{r});
+        logger.i("Server response: %s", r);
         UI.info("Thank you!");
         setReturnCode(0);
         close();

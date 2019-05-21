@@ -30,7 +30,7 @@ public class OptionsSimpleViewGeneral extends Composite {
     protected static final String CLIENT = "Client";
     protected static final String ENGINES = "Engines";
     protected static final String PROJECT_SPECIFIC = "Project-specific";
-    private Map<String, OptionsSimpleListener> listeners = new HashMap();
+    private Map<String, OptionsSimpleListener> listeners = new HashMap<>();
     private final OptionsChanges optionsChanges;
     private List<Control> proxySubEntries = new ArrayList<>();
 
@@ -40,33 +40,33 @@ public class OptionsSimpleViewGeneral extends Composite {
         Composite ph = new Composite(this, 0);
         ph.setLayout(new GridLayout(1, false));
         this.optionsChanges = optionsChanges;
-        initSimpleViewElementListener("Client");
-        initSimpleViewElementListener("Engines");
-        initSimpleViewElementListener("Project-specific");
-        if (optionsChanges.get("Engines") != null) {
+        initSimpleViewElementListener(CLIENT);
+        initSimpleViewElementListener(ENGINES);
+        initSimpleViewElementListener(PROJECT_SPECIFIC);
+        if (optionsChanges.get(ENGINES) != null) {
             Group plugin = createGroup(ph, S.s(639));
-            DirectorySelectorView plug = createDirectoryOption(plugin, S.s(647), null, "Engines", Licensing.canUseCoreAPI() ? "PluginsFolder" : null);
+            DirectorySelectorView plug = createDirectoryOption(plugin, S.s(647), null, ENGINES, Licensing.canUseCoreAPI() ? "PluginsFolder" : null);
             if (!Licensing.canUseCoreAPI()) {
                 plug.setEnabled(false);
             }
         }
         Group update = createGroup(ph, S.s(796));
-        createBooleanOption(update, S.s(798), null, "Client", "CheckUpdates");
+        createBooleanOption(update, S.s(798), null, CLIENT, "CheckUpdates");
         Group proxy = createGroup(update, S.s(668));
-        Button proxyButton = createProxyOption(proxy, S.s(669), null, "Client", "NetworkProxy");
-        this.proxySubEntries.add(createComboBox(proxy, S.s(672), null, "Client", "NetworkProxy", 0, new String[]{"http", "socks"}));
-        this.proxySubEntries.add(createTextOption(proxy, S.s(670), null, "Client", "NetworkProxy", 1));
-        Text portText = createTextOption(proxy, S.s(671), null, "Client", "NetworkProxy", 2);
+        Button proxyButton = createProxyOption(proxy, S.s(669), null, CLIENT, "NetworkProxy");
+        this.proxySubEntries.add(createComboBox(proxy, S.s(672), null, CLIENT, "NetworkProxy", 0, new String[]{"http", "socks"}));
+        this.proxySubEntries.add(createTextOption(proxy, S.s(670), null, CLIENT, "NetworkProxy", 1));
+        Text portText = createTextOption(proxy, S.s(671), null, CLIENT, "NetworkProxy", 2);
         this.proxySubEntries.add(portText);
         Group proxyAuth = createGroup(proxy, "Authentication");
         proxyAuth.setLayoutData(UIUtil.createGridDataSpanHorizontally(2, true, false));
-        Text userText = createTextOption(proxyAuth, S.s(811), null, "Client", "NetworkProxy", 3);
+        Text userText = createTextOption(proxyAuth, S.s(811), null, CLIENT, "NetworkProxy", 3);
         this.proxySubEntries.add(userText);
-        Text passwordText = createTextOption(proxyAuth, S.s(631), null, "Client", "NetworkProxy", 4);
+        Text passwordText = createTextOption(proxyAuth, S.s(631), null, CLIENT, "NetworkProxy", 4);
         this.proxySubEntries.add(passwordText);
         addVerifyListenerIntOnly(portText);
-        ((OptionsSimpleListener) this.listeners.get("Client")).addEnabledOnCheckbox(proxyButton, this.proxySubEntries);
-        initProxyOptions("Client", "NetworkProxy");
+        ((OptionsSimpleListener) this.listeners.get(CLIENT)).addEnabledOnCheckbox(proxyButton, this.proxySubEntries);
+        initProxyOptions(CLIENT, "NetworkProxy");
     }
 
     private Group createGroup(Composite parent, String label) {
@@ -105,7 +105,7 @@ public class OptionsSimpleViewGeneral extends Composite {
             public void widgetSelected(SelectionEvent e) {
                 OptionsChanges.Changes c = OptionsSimpleViewGeneral.this.getChanges(propertyManagerKey);
                 boolean newValue = ((Button) e.getSource()).getSelection();
-                Object newValueObj = Boolean.valueOf(newValue);
+                Object newValueObj;
                 Composite parentButton = ((Button) e.getSource()).getParent();
                 Object previousData;
                 if (newValue) {
@@ -150,11 +150,11 @@ public class OptionsSimpleViewGeneral extends Composite {
     }
 
     private Control createComboBox(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey, int tokenPosition, String[] options) {
-        return new OptionsSimpleViewCombo(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createComboBox(parent, label, toolTip, tokenPosition, options);
+        return new OptionsSimpleViewCombo(getChanges(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey).createComboBox(parent, label, toolTip, tokenPosition, options);
     }
 
     private Button createBooleanOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return new OptionsBooleanViewer(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
+        return new OptionsBooleanViewer(getChanges(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip);
     }
 
     private void addVerifyListenerIntOnly(Text text) {

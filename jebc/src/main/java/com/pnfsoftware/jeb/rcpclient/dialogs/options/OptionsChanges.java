@@ -15,11 +15,11 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 public class OptionsChanges {
-    private Map<String, Changes> changes = new HashMap();
+    private Map<String, Changes> changes = new HashMap<>();
 
     public static class Changes {
         IPropertyManager pm;
-        Map<String, Object> changeList = new HashMap();
+        Map<String, Object> changeList = new HashMap<>();
         List<Listener> listeners = new ArrayList<>();
 
         public Changes(IPropertyManager pm) {
@@ -64,12 +64,12 @@ public class OptionsChanges {
 
         public void applyChanges() {
             for (Map.Entry<String, Object> e : this.changeList.entrySet()) {
-                this.pm.setValue((String) e.getKey(), e.getValue(), false);
+                this.pm.setValue(e.getKey(), e.getValue(), false);
             }
         }
 
         public Boolean getBoolean(String name) {
-            return Boolean.valueOf(this.pm.getBoolean(name));
+            return this.pm.getBoolean(name);
         }
 
         public String getString(String name) {
@@ -98,14 +98,14 @@ public class OptionsChanges {
     }
 
     public void addChange(String propertyManagerName, String key, Object value) {
-        Changes c = (Changes) this.changes.get(propertyManagerName);
+        Changes c = this.changes.get(propertyManagerName);
         if (c != null) {
             c.addChange(key, value);
         }
     }
 
     public void removeChange(String propertyManagerKey, String key, Object value) {
-        Changes c = (Changes) this.changes.get(propertyManagerKey);
+        Changes c = this.changes.get(propertyManagerKey);
         if (c != null) {
             c.removeChange(key, value);
         }
@@ -117,7 +117,7 @@ public class OptionsChanges {
                 c.applyChanges();
                 if (tele != null) {
                     for (Map.Entry<String, Object> e : c.getChanges().entrySet()) {
-                        String key = (String) e.getKey();
+                        String key = e.getKey();
                         Object value = e.getValue();
                         if ((key != null) && (value != null)) {
                             tele.record("optionChange", "name", key, "value", Strings.toString(value));
@@ -129,7 +129,7 @@ public class OptionsChanges {
     }
 
     public Changes get(String key) {
-        return (Changes) this.changes.get(key);
+        return this.changes.get(key);
     }
 }
 
