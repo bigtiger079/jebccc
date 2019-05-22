@@ -2,18 +2,18 @@ package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
 import org.eclipse.swt.graphics.Image;
 
-public abstract interface IMElementWithLabel extends IMElement {
-    public abstract String getLabel();
+public interface IMElementWithLabel extends IMElement {
+    String getLabel();
 
-    public abstract void setLabel(String paramString);
+    void setLabel(String paramString);
 
-    public abstract String getTooltip();
+    String getTooltip();
 
-    public abstract void setTooltip(String paramString);
+    void setTooltip(String paramString);
 
-    public abstract Image getIcon();
+    Image getIcon();
 
-    public abstract void setIcon(Image paramImage);
+    void setIcon(Image paramImage);
 }
 
 

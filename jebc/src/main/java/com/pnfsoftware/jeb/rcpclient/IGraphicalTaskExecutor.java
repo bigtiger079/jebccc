@@ -2,7 +2,7 @@ package com.pnfsoftware.jeb.rcpclient;
 
 import java.util.concurrent.Callable;
 
-public abstract interface IGraphicalTaskExecutor {
+public interface IGraphicalTaskExecutor {
     public abstract <T> T executeTask(String paramString, Callable<T> paramCallable);
 
     public abstract <T> T executeTask(String paramString, boolean paramBoolean, Callable<T> paramCallable);

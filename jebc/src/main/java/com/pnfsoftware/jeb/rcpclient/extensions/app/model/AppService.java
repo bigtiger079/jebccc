@@ -120,7 +120,7 @@ public class AppService implements IAppService {
     }
 
     public boolean isPartVisible(IMPart part) {
-        return !((Part) part).isHidden();
+        return !part.isHidden();
     }
 
     public IMPart getActivePart() {
@@ -132,9 +132,7 @@ public class AppService implements IAppService {
         List<IMPart> r = new ArrayList<>();
         for (Dock dock : Dock.findDocks(this.app.getDisplay())) {
             for (Folder folder : dock.getFolders()) {
-                for (Part part : folder.getParts()) {
-                    r.add(part);
-                }
+                r.addAll(folder.getParts());
             }
         }
         return r;

@@ -1,6 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient;
 
-public abstract interface IGlobalPositionManager {
+public interface IGlobalPositionManager {
     public abstract GlobalPosition getCurrentGlobalPosition();
 }
 

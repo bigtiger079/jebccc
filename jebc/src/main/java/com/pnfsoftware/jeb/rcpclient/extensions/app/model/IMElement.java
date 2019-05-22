@@ -2,14 +2,14 @@ package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
 import java.util.List;
 
-public abstract interface IMElement {
-    public abstract String getElementId();
+public interface IMElement {
+    String getElementId();
 
-    public abstract void setElementId(String paramString);
+    void setElementId(String paramString);
 
-    public abstract IMElement getParentElement();
+    IMElement getParentElement();
 
-    public abstract List<? extends IMElement> getChildrenElements();
+    List<? extends IMElement> getChildrenElements();
 }
 
 

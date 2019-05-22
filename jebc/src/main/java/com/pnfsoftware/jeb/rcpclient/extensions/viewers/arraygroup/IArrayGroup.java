@@ -2,7 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup;
 
 import java.util.List;
 
-public abstract interface IArrayGroup {
+public interface IArrayGroup {
     public abstract int getFirstElementIndex();
 
     public abstract int getLastElementIndex();

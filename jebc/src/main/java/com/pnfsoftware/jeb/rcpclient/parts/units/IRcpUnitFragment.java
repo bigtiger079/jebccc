@@ -7,7 +7,7 @@ import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.parts.IViewNavigator;
 import org.eclipse.swt.widgets.Control;
 
-public abstract interface IRcpUnitFragment extends IOperable, IUnitFragment {
+public interface IRcpUnitFragment extends IOperable, IUnitFragment {
     public abstract void setViewNavigatorHelper(IViewNavigator paramIViewNavigator);
 
     public abstract IViewNavigator getViewNavigatorHelper();

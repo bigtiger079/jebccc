@@ -1,4 +1,4 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
-public abstract interface IMApp extends IMElement {
+public interface IMApp extends IMElement {
 }

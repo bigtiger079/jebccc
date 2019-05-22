@@ -2,7 +2,7 @@ package com.pnfsoftware.jeb.rcpclient;
 
 import org.eclipse.jface.action.StatusLineContributionItem;
 
-public abstract interface IStatusIndicator {
+public interface IStatusIndicator {
     public abstract StatusLineContributionItem getContribution(String paramString);
 
     public abstract boolean hasContribution(String paramString);

@@ -4,7 +4,7 @@ import com.pnfsoftware.jeb.core.output.IItem;
 import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
 import org.eclipse.swt.graphics.Color;
 
-public abstract interface IStyleProvider {
+public interface IStyleProvider {
     public abstract Style getStyle(ItemClassIdentifiers paramItemClassIdentifiers, boolean paramBoolean);
 
     public abstract Style getStyle(IItem paramIItem);

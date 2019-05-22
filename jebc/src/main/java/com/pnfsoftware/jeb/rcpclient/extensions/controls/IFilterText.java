@@ -3,7 +3,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyListener;
 
-public abstract interface IFilterText {
+public interface IFilterText {
     public abstract void addFocusListener(FocusListener paramFocusListener);
 
     public abstract void addKeyListener(KeyListener paramKeyListener);

@@ -4,7 +4,7 @@ import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 
 import java.util.List;
 
-public abstract interface IFileExport<T> {
+public interface IFileExport<T> {
     public abstract List<? extends T> getItems();
 
     public abstract boolean canProcess(T paramT);

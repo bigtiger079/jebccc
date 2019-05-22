@@ -1,6 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts;
 
-public abstract interface ILazyView {
+public interface ILazyView {
     public abstract void lazyInitialization();
 }
 

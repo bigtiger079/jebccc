@@ -2,7 +2,7 @@ package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import java.util.List;
 
-public abstract interface IGraph {
+public interface IGraph {
     public abstract void refreshGraph();
 
     public abstract List<GraphMode> getSupportedModes();

@@ -1,6 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
-public abstract interface IDndProvider {
+public interface IDndProvider {
     public abstract boolean canDrag(Object paramObject);
 
     public abstract boolean canDrop(String paramString, Object paramObject, int paramInt);

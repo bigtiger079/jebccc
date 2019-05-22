@@ -1,15 +1,15 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.app.model;
 
-public abstract interface IMPanel extends IMPanelElement {
-    public abstract IMPanelElement getFirstElement();
+public interface IMPanel extends IMPanelElement {
+    IMPanelElement getFirstElement();
 
-    public abstract IMPanelElement getSecondElement();
+    IMPanelElement getSecondElement();
 
-    public abstract boolean isVertical();
+    boolean isVertical();
 
-    public abstract int getSplitRatio();
+    int getSplitRatio();
 
-    public abstract boolean setSplitRatio(int paramInt);
+    boolean setSplitRatio(int paramInt);
 }
 
 

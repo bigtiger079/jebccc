@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.TreeViewer;
 
-public abstract interface IArtifactManager {
+public interface IArtifactManager {
     public abstract List<IUnit> getExpandedUnits(ILiveArtifact paramILiveArtifact);
 
     public abstract void processLiveArtifact(RcpClientContext paramRcpClientContext, PartManager paramPartManager, ILiveArtifact paramILiveArtifact, TreeViewer paramTreeViewer);
