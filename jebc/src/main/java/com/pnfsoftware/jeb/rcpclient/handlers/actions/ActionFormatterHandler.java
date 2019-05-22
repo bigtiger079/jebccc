@@ -1,5 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.SimpleName;
 import com.pnfsoftware.jeb.core.output.text.ILine;
 import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.output.text.ITextItem;
@@ -18,6 +22,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ActionFormatterHandler extends JebBaseHandler {
     private static final ILogger logger = GlobalLog.getLogger(ActionFormatterHandler.class);
@@ -39,6 +44,18 @@ public class ActionFormatterHandler extends JebBaseHandler {
     public void execute() {
         if (getUnit().getFormatType().equals("java")) {
             InteractiveTextView fragment = (InteractiveTextView) ((UnitPartManager) part.getManager()).getActiveFragment();
+            String source = new String(fragment.export());
+            CompilationUnit compilationUnit = StaticJavaParser.parse(source);
+            compilationUnit.findAll(MethodDeclaration.class).stream().forEach(new Consumer<MethodDeclaration>() {
+                @Override
+                public void accept(MethodDeclaration methodDeclaration) {
+                    SimpleName name = methodDeclaration.getName();
+                    logger.info(name.asString());
+                    if (methodDeclaration.getParameters().size() > 0) {
+                        logger.info(methodDeclaration.getParameters().get(0).getName().asString());
+                    }
+                }
+            });
             ITextDocumentPart documentPart = fragment.getDocument().getDocumentPart(0, 0, 0);
             List<? extends ILine> lines = documentPart.getLines();
             int index = 0;
@@ -63,6 +80,10 @@ public class ActionFormatterHandler extends JebBaseHandler {
                                 logger.info("find urgly method arg:  %s in line: %d, offset %d, type: %s", s, index, item.getOffset(), lastItem.getText());
                                 if (isBaseType(lastItem.getText())) {
 
+                                } else if (isBaseArrayType(lastItem.getText())) {
+
+                                } else {
+
                                 }
                             }
                             lastItem = (TextItem) item;
@@ -75,7 +96,11 @@ public class ActionFormatterHandler extends JebBaseHandler {
     }
 
     private static boolean isBaseType(String type) {
-        return Arrays.asList(BASE_TYPES).contains(type);
+        return Arrays.asList(BASE_TYPES).contains(type.toLowerCase());
+    }
+
+    private static boolean isBaseArrayType(String type) {
+        return Arrays.asList(BASE_ARR_TYPES).contains(type.toLowerCase());
     }
 
     public IUnit getUnit() {
