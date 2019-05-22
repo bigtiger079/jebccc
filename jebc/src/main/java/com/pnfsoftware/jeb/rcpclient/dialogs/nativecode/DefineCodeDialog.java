@@ -117,13 +117,13 @@ public class DefineCodeDialog extends JebDialog {
             info = "Invalid address";
         } else {
             if (this.unit == null) {
-                info = String.format("No native unit was provided, cannot retrieve information about location %Xh.", new Object[]{Long.valueOf(a)});
+                info = String.format("No native unit was provided, cannot retrieve information about location %Xh.", a);
             } else {
                 INativeItem item = this.unit.getNativeItemOver(a);
                 if (item != null) {
-                    info = String.format("Beware, an item already occupies address %Xh.", new Object[]{Long.valueOf(a)});
+                    info = String.format("Beware, an item already occupies address %Xh.", a);
                 } else {
-                    info = String.format("Will attempt to disassemble code at address %Xh", new Object[]{Long.valueOf(a)});
+                    info = String.format("Will attempt to disassemble code at address %Xh", a);
                 }
             }
         }

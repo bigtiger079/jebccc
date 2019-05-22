@@ -14,7 +14,6 @@ import java.util.List;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.StatusLineContributionItem;
 import org.eclipse.jface.action.StatusLineManager;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
 public class JebStatusIndicator implements IStatusIndicator {
@@ -82,7 +81,7 @@ public class JebStatusIndicator implements IStatusIndicator {
     public void clearAdditionalContributions() {
         int cnt = 0;
         while (this.contribs.size() > 3) {
-            this.statusManager.remove((IContributionItem) this.contribs.remove(3));
+            this.statusManager.remove(this.contribs.remove(3));
             cnt++;
         }
         if (cnt > 0) {
@@ -91,14 +90,14 @@ public class JebStatusIndicator implements IStatusIndicator {
     }
 
     public StatusIndicatorData save() {
-        return new StatusIndicatorData(new String[]{getText()});
+        return new StatusIndicatorData(getText());
     }
 
     public boolean restore(StatusIndicatorData data) {
         if (data.getElements().isEmpty()) {
             return false;
         }
-        setText((String) data.getElements().get(0));
+        setText(data.getElements().get(0));
         return true;
     }
 
@@ -125,7 +124,7 @@ public class JebStatusIndicator implements IStatusIndicator {
                     JebStatusIndicator.this.text0 = s2;
                     JebStatusIndicator.this.statusManager.setMessage(s2);
                 } else {
-                    ((StatusLineContributionItem) JebStatusIndicator.this.contribs.get(index - 1)).setText(s2);
+                    JebStatusIndicator.this.contribs.get(index - 1).setText(s2);
                 }
             }
         });
@@ -138,7 +137,7 @@ public class JebStatusIndicator implements IStatusIndicator {
         if (index == 0) {
             return this.text0;
         }
-        return ((StatusLineContributionItem) this.contribs.get(index - 1)).getText();
+        return this.contribs.get(index - 1).getText();
     }
 }
 

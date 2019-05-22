@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.options;
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.EditableList;
-import com.pnfsoftware.jeb.rcpclient.extensions.controls.EditableList.ICheckable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ public class OptionsSimpleViewList extends AbstractOptionsSimpleWidget {
                 result.add(items[sourceIndex]);
             }
         }
-        return (String[]) result.toArray(new String[result.size()]);
+        return result.toArray(new String[result.size()]);
     }
 
     private List<Integer> asList(int[] array) {
@@ -102,8 +101,8 @@ public class OptionsSimpleViewList extends AbstractOptionsSimpleWidget {
         }
     }
 
-    public static abstract interface ICheckableProvider {
-        public abstract List<EditableList.ICheckable> getCheckableList(EditableList paramEditableList, String paramString);
+    public interface ICheckableProvider {
+        List<EditableList.ICheckable> getCheckableList(EditableList paramEditableList, String paramString);
     }
 }
 

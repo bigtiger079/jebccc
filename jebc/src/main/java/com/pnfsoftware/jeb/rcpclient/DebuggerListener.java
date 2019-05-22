@@ -40,7 +40,7 @@ public class DebuggerListener {
     private int clientCount;
 
     public static synchronized DebuggerListener listenTo(IDebuggerUnit dbg, RcpClientContext context) {
-        DebuggerListener listener = (DebuggerListener) map.get(dbg);
+        DebuggerListener listener = map.get(dbg);
         if (listener == null) {
             listener = new DebuggerListener(dbg, context);
             map.put(dbg, listener);
@@ -50,7 +50,7 @@ public class DebuggerListener {
     }
 
     public static synchronized boolean stopListening(IDebuggerUnit dbg) {
-        DebuggerListener listener = (DebuggerListener) map.get(dbg);
+        DebuggerListener listener = map.get(dbg);
         if (listener == null) {
             return false;
         }
@@ -63,7 +63,7 @@ public class DebuggerListener {
     }
 
     public static synchronized DebuggerListener get(IDebuggerUnit dbg) {
-        return (DebuggerListener) map.get(dbg);
+        return map.get(dbg);
     }
 
     private IDebuggerUnit dbg;
@@ -106,9 +106,9 @@ public class DebuggerListener {
         }
         UIExecutor.async(UI.getDisplay(), new UIRunnable() {
             public void runi() {
-                String addition = String.format("%s", new Object[]{e.getType()});
+                String addition = String.format("%s", e.getType());
                 if (e.getData() != null) {
-                    addition = addition + String.format(" / %s", new Object[]{e.getData()});
+                    addition = addition + String.format(" / %s", e.getData());
                 }
                 addition = addition + "\n";
                 DebuggerListener.this.eventLog.append(addition);
@@ -135,9 +135,8 @@ public class DebuggerListener {
                     IUnit unit;
                     if (e.getType() == J.DbgRun) {
                         if ((DebuggerListener.this.dbg instanceof IDebuggerUnit)) {
-                            Iterator<? extends ICodeUnit> iterator = DebuggerListener.this.dbg.getPotentialDebuggees().iterator();
-                            while (iterator.hasNext()) {
-                                unit = (IUnit) iterator.next();
+                            for (ICodeUnit iCodeUnit : DebuggerListener.this.dbg.getPotentialDebuggees()) {
+                                unit = (IUnit) iCodeUnit;
                                 DebuggerListener.this.context.getUIState(unit).setProgramCounter(null);
                             }
                         }
@@ -152,8 +151,8 @@ public class DebuggerListener {
                                 for (IUnit target : DebuggerListener.this.dbg.getPotentialDebuggees()) {
                                     uiState = DebuggerListener.this.context.getUIState(target);
                                     List<String> validAddresses = new ArrayList<>();
-                                    for (Iterator localIterator = realBreakpoints.iterator(); localIterator.hasNext(); ) {
-                                        bp = (IDebuggerBreakpoint) localIterator.next();
+                                    for (IDebuggerBreakpoint realBreakpoint : realBreakpoints) {
+                                        bp = realBreakpoint;
                                         String dbgAddress = bp.getAddress();
                                         ua = DebuggerListener.this.dbg.convertToUnitAddress(dbgAddress);
                                         if ((ua != null) && (ua.getUnit() == target)) {
@@ -167,7 +166,7 @@ public class DebuggerListener {
                                     List<String> invalidAddresses = new ArrayList<>();
                                     for (String address : uiState.getBreakpoints().keySet()) {
                                         if (!validAddresses.contains(address)) {
-                                            ((List) invalidAddresses).add(address);
+                                            invalidAddresses.add(address);
                                         }
                                     }
                                     for (String address : invalidAddresses) {
@@ -181,7 +180,7 @@ public class DebuggerListener {
                             IUnit targetUnit = ua == null ? null : ua.getUnit();
                             String targetAddress = ua == null ? null : ua.getAddress();
                             if ((targetUnit == null) || (targetAddress == null)) {
-                                DebuggerListener.logger.debug("Target unit/address associated with the debuggee event cannot be determined", new Object[0]);
+                                DebuggerListener.logger.debug("Target unit/address associated with the debuggee event cannot be determined");
                                 DebuggerListener.this.context.refreshHandlersStates();
                                 return;
                             }
@@ -205,7 +204,7 @@ public class DebuggerListener {
                             for (UnitPartManager o : pman.getPartManagersForUnit(targetUnit)) {
                                 IRcpUnitFragment fragment = o.getActiveFragment();
                                 if (fragment != null) {
-                                    DebuggerListener.logger.info("Setting active address: %s", new Object[]{targetAddress});
+                                    DebuggerListener.logger.info("Setting active address: %s", targetAddress);
                                     if (fragment.setActiveAddress(targetAddress)) {
                                         o.setFocus();
                                         focusedCount++;

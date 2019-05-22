@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.code.ICodeItem;
 import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpErrorHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.file.FileExportWriter;
 import com.pnfsoftware.jeb.util.concurrent.DaemonExecutors;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -17,13 +16,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -60,7 +57,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnable
                 }
             }
         }
-        logger.info("%d decompiled Code Item(s) will be saved", new Object[]{Integer.valueOf(totalItems)});
+        logger.info("%d decompiled Code Item(s) will be saved", totalItems);
         monitor.beginTask("Exporting decompiled code", totalItems);
         ExecutorService pool = createExecutor();
         Map<String, Future<Boolean>> futures = new HashMap();
@@ -108,8 +105,8 @@ public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnable
 
     private ExecutorService rebuildPool(ExecutorService pool, Map<String, Future<Boolean>> futures) throws InvocationTargetException {
         for (Map.Entry<String, Future<Boolean>> f : futures.entrySet()) {
-            if (!((Future) f.getValue()).isDone()) {
-                logger.error("Method %s can not be decompiled", new Object[]{f.getKey()});
+            if (!f.getValue().isDone()) {
+                logger.error("Method %s can not be decompiled", f.getKey());
             }
         }
         pool.shutdownNow();
@@ -118,8 +115,8 @@ public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnable
         } catch (InterruptedException localInterruptedException1) {
         }
         for (Map.Entry<String, Future<Boolean>> f : futures.entrySet()) {
-            if (!((Future) f.getValue()).isDone()) {
-                JebRuntimeException e = new JebRuntimeException(Strings.f("Export decompiled has been stopped because method %s takes too long.\nDecompilation is still pending.", new Object[]{f.getKey()}));
+            if (!f.getValue().isDone()) {
+                JebRuntimeException e = new JebRuntimeException(Strings.f("Export decompiled has been stopped because method %s takes too long.\nDecompilation is still pending.", f.getKey()));
                 this.context.getErrorHandler().processThrowableSilent(e);
                 throw new InvocationTargetException(e, e.getMessage());
             }
@@ -143,7 +140,7 @@ public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnable
     public boolean canLaunchNewJob(ExecutorService pool, Map<String, Future<Boolean>> futures) {
         int i = 0;
         for (Map.Entry<String, Future<Boolean>> f : futures.entrySet()) {
-            if (!((Future) f.getValue()).isDone()) {
+            if (!f.getValue().isDone()) {
                 i++;
             }
         }
@@ -193,37 +190,37 @@ public class FileExportDecompileAllJob<T extends ICodeItem> implements IRunnable
 
         public Boolean call() {
             long t0 = System.currentTimeMillis();
-            FileExportDecompileAllJob.logger.debug("Decompile %s", new Object[]{this.fullNameWithPackage});
+            FileExportDecompileAllJob.logger.debug("Decompile %s", this.fullNameWithPackage);
             this.monitor.subTask("Decompiling " + this.fullNameWithPackage);
             ISourceUnit fileSourceUnit = null;
             try {
                 fileSourceUnit = FileExportDecompileAllJob.this.decompiler.decompile(this.item.getAddress());
                 if (fileSourceUnit == null) {
-                    FileExportDecompileAllJob.logger.warn("Unable to decompile %s", new Object[]{this.fullNameWithPackage});
-                    return Boolean.valueOf(false);
+                    FileExportDecompileAllJob.logger.warn("Unable to decompile %s", this.fullNameWithPackage);
+                    return Boolean.FALSE;
                 }
             } catch (Exception e) {
-                FileExportDecompileAllJob.logger.error("An error occurred: cannot decompile %s", new Object[]{this.fullNameWithPackage});
+                FileExportDecompileAllJob.logger.error("An error occurred: cannot decompile %s", this.fullNameWithPackage);
                 FileExportDecompileAllJob.logger.catchingSilent(e);
-                return Boolean.valueOf(false);
+                return Boolean.FALSE;
             }
             long t1 = System.currentTimeMillis();
-            FileExportDecompileAllJob.logger.debug("Decompiled %s in %d ms", new Object[]{this.fullNameWithPackage, Long.valueOf(t1 - t0)});
+            FileExportDecompileAllJob.logger.debug("Decompiled %s in %d ms", this.fullNameWithPackage, t1 - t0);
             this.monitor.subTask("Saving " + this.fullNameWithPackage);
             List<String> packages = FileExportDecompileAllJob.this.fileExport.getPath(this.item);
             try {
                 FileExportDecompileAllJob.this.fileWriter.writeFile(fileSourceUnit, packages, this.item.getName(true));
             } catch (IOException e) {
-                FileExportDecompileAllJob.logger.error("An IO error occurred: cannot write %s", new Object[]{this.fullNameWithPackage});
+                FileExportDecompileAllJob.logger.error("An IO error occurred: cannot write %s", this.fullNameWithPackage);
                 FileExportDecompileAllJob.logger.catchingSilent(e);
-                return Boolean.valueOf(false);
+                return Boolean.FALSE;
             }
             long t2 = System.currentTimeMillis();
-            FileExportDecompileAllJob.logger.debug("Wrote %s in %d ms", new Object[]{this.fullNameWithPackage, Long.valueOf(t2 - t1)});
+            FileExportDecompileAllJob.logger.debug("Wrote %s in %d ms", this.fullNameWithPackage, t2 - t1);
             synchronized (FileExportDecompileAllJob.this) {
                 this.monitor.worked(1);
             }
-            return Boolean.valueOf(true);
+            return Boolean.TRUE;
         }
     }
 }

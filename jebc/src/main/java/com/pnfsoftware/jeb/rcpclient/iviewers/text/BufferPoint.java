@@ -23,12 +23,11 @@ public class BufferPoint {
         if (getClass() != obj.getClass()) return false;
         BufferPoint other = (BufferPoint) obj;
         if (this.columnOffset != other.columnOffset) return false;
-        if (this.lineIndex != other.lineIndex) return false;
-        return true;
+        return this.lineIndex == other.lineIndex;
     }
 
     public String toString() {
-        return String.format("(%d,%d)", new Object[]{Integer.valueOf(this.lineIndex), Integer.valueOf(this.columnOffset)});
+        return String.format("(%d,%d)", this.lineIndex, this.columnOffset);
     }
 }
 

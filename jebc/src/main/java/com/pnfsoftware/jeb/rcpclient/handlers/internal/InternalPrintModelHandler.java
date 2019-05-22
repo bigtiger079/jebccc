@@ -1,8 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.internal;
 
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.App;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.Dock;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
@@ -21,7 +18,7 @@ public class InternalPrintModelHandler extends JebBaseHandler {
     }
 
     public void execute() {
-        logger.info(this.context.getApp().getDock().formatStructure(), new Object[0]);
+        logger.info(this.context.getApp().getDock().formatStructure());
     }
 }
 

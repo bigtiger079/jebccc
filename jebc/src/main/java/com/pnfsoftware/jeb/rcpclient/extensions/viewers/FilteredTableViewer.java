@@ -18,7 +18,7 @@ public class FilteredTableViewer extends AbstractFilteredViewer<Table, TableView
     public FilteredTableViewer(FilteredTableView widget) {
         super(widget);
         this.comparator = new FilteredViewerComparator(Strings.getDefaultComparator(), this);
-        ((TableViewer) getViewer()).setComparator(this.comparator);
+        getViewer().setComparator(this.comparator);
         int colIndex = 0;
         for (TableColumn col : widget.getTable().getColumns()) {
             col.addSelectionListener(new ColumnSelectionListener(colIndex, col));
@@ -27,10 +27,10 @@ public class FilteredTableViewer extends AbstractFilteredViewer<Table, TableView
     }
 
     protected TableViewer buildViewer(AbstractFilteredView<Table> widget) {
-        if ((((Table) widget.getElement()).getStyle() & 0x20) == 0) {
-            return new TableViewer((Table) widget.getElement());
+        if ((widget.getElement().getStyle() & 0x20) == 0) {
+            return new TableViewer(widget.getElement());
         }
-        return new CheckboxTableViewer((Table) widget.getElement());
+        return new CheckboxTableViewer(widget.getElement());
     }
 
     protected AbstractFilteredFilter buildFilter(TableViewer viewer) {
@@ -50,8 +50,8 @@ public class FilteredTableViewer extends AbstractFilteredViewer<Table, TableView
             if (FilteredTableViewer.this.comparator != null) {
                 FilteredTableViewer.this.comparator.setColumn(this.columnIndex);
                 int dir = FilteredTableViewer.this.comparator.getDirection();
-                ((Table) FilteredTableViewer.this.getWidget().getElement()).setSortDirection(dir);
-                ((Table) FilteredTableViewer.this.getWidget().getElement()).setSortColumn(this.column);
+                FilteredTableViewer.this.getWidget().getElement().setSortDirection(dir);
+                FilteredTableViewer.this.getWidget().getElement().setSortColumn(this.column);
                 FilteredTableViewer.this.refresh();
             }
         }

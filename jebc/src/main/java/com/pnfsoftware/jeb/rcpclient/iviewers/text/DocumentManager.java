@@ -90,13 +90,11 @@ public class DocumentManager {
     }
 
     public ITextDocumentPart getPart(long anchorId, int linesAfter) {
-        ITextDocumentPart newDocPart = this.doc.getDocumentPart(anchorId, linesAfter);
-        return newDocPart;
+        return this.doc.getDocumentPart(anchorId, linesAfter);
     }
 
     public ITextDocumentPart getPart(long anchorId, int linesAfter, int linesBefore) {
-        ITextDocumentPart newDocPart = this.doc.getDocumentPart(anchorId, linesAfter, linesBefore);
-        return newDocPart;
+        return this.doc.getDocumentPart(anchorId, linesAfter, linesBefore);
     }
 
     public IAnchor getAnchorById(long anchorId) {
@@ -110,7 +108,7 @@ public class DocumentManager {
         if ((wrappedLineIndex < 0) || (wrappedLineIndex >= this.wrappedData.size())) {
             return -1;
         }
-        return ((int[]) this.wrappedData.get(wrappedLineIndex))[0];
+        return this.wrappedData.get(wrappedLineIndex)[0];
     }
 
     public UnwrappedBufferPoint unwrap(BufferPoint p) {
@@ -118,7 +116,7 @@ public class DocumentManager {
         if ((wrappedLineIndex < 0) || (wrappedLineIndex >= this.wrappedData.size())) {
             return null;
         }
-        int[] data = (int[]) this.wrappedData.get(wrappedLineIndex);
+        int[] data = this.wrappedData.get(wrappedLineIndex);
         int lineIndex = data[0];
         int wrappedColumnOffset = p.columnOffset;
         boolean eol = wrappedColumnOffset == data[2];
@@ -144,18 +142,18 @@ public class DocumentManager {
         int lineIndex = p.lineIndex;
         int columnOffset = p.columnOffset;
         boolean eol = p.eol;
-        List<Integer> indexes = (List) this.wrapIndexes.get(Integer.valueOf(p.lineIndex));
+        List<Integer> indexes = this.wrapIndexes.get(p.lineIndex);
         if ((indexes == null) || (indexes.isEmpty())) {
             return null;
         }
-        int i = ((Integer) indexes.get(0)).intValue();
-        int[] data = (int[]) this.wrappedData.get(i);
+        int i = (Integer) indexes.get(0);
+        int[] data = this.wrappedData.get(i);
         if ((isEmptyLine(indexes)) || (indexes.size() == 1) || (columnOffset < data[2]) || ((eol) && (columnOffset == data[2]))) {
             return new BufferPoint(columnOffset, i);
         }
         for (int j = 1; j < indexes.size(); j++) {
-            i = ((Integer) indexes.get(j)).intValue();
-            data = (int[]) this.wrappedData.get(i);
+            i = (Integer) indexes.get(j);
+            data = this.wrappedData.get(i);
             if (data[0] != lineIndex) {
                 break;
             }
@@ -167,8 +165,8 @@ public class DocumentManager {
     }
 
     private boolean isEmptyLine(List<Integer> indexes) {
-        int i = ((Integer) indexes.get(0)).intValue();
-        int[] data = (int[]) this.wrappedData.get(i);
+        int i = (Integer) indexes.get(0);
+        int[] data = this.wrappedData.get(i);
         return (indexes.size() == 1) && (data.length == 3);
     }
 
@@ -190,7 +188,7 @@ public class DocumentManager {
         this.wrapIndexes.clear();
         boolean appendTrailingEol = false;
         if (this.displayEolAtEod) {
-            IAnchor lastAnchor = (IAnchor) this.docPart.getAnchors().get(this.docPart.getAnchors().size() - 1);
+            IAnchor lastAnchor = this.docPart.getAnchors().get(this.docPart.getAnchors().size() - 1);
             appendTrailingEol = lastAnchor.getIdentifier() >= getAnchorEnd() - 1L;
         }
         return buildText(this.docPart.getLines(), appendTrailingEol);
@@ -203,7 +201,7 @@ public class DocumentManager {
     private String buildText(List<? extends ILine> lines, boolean appendTrailingEol) {
         StringBuilder sb = new StringBuilder();
         for (int index = 0; index < lines.size(); index++) {
-            ILine line = (ILine) lines.get(index);
+            ILine line = lines.get(index);
             CharSequence text = line.getText();
             String currentWrapIndentString = this.wrapIndentString;
             int currentWrapIndentSize = -1;
@@ -233,10 +231,10 @@ public class DocumentManager {
                         int nextItemThreshold = -1;
                         List<? extends ITextItem> items = line.getItems();
                         for (int i = 0; i < items.size(); i++) {
-                            ITextItem item = (ITextItem) items.get(i);
+                            ITextItem item = items.get(i);
                             if ((pos2 >= item.getOffset()) && (pos2 < item.getOffset() + item.getLength())) {
                                 itemThreshold = item.getOffset() + item.getLength();
-                                nextItemThreshold = i + 1 < items.size() ? ((ITextItem) items.get(i + 1)).getOffset() : -1;
+                                nextItemThreshold = i + 1 < items.size() ? items.get(i + 1).getOffset() : -1;
                                 pos2 = findWhiteSpace(text, itemThreshold, nextItemThreshold);
                                 if (pos2 < 0) {
                                     pos2 = itemThreshold;
@@ -279,12 +277,12 @@ public class DocumentManager {
     }
 
     private void addIndex(int key, int index) {
-        List<Integer> indexes = (List) this.wrapIndexes.get(Integer.valueOf(key));
+        List<Integer> indexes = this.wrapIndexes.get(key);
         if (indexes == null) {
             indexes = new ArrayList<>();
-            this.wrapIndexes.put(Integer.valueOf(key), indexes);
+            this.wrapIndexes.put(key, indexes);
         }
-        indexes.add(Integer.valueOf(index));
+        indexes.add(index);
     }
 
     private int findWhiteSpace(CharSequence text, int pos) {

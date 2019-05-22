@@ -4,9 +4,6 @@ import com.pnfsoftware.jeb.core.output.tree.INode;
 import com.pnfsoftware.jeb.core.output.tree.ITreeDocument;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-
-import java.util.List;
-
 import org.eclipse.jface.viewers.ILazyTreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -30,25 +27,25 @@ class LazyContentProvider implements ILazyTreeContentProvider {
     }
 
     public Object getParent(Object e) {
-        logger.debug("getParent() e=%s", new Object[]{e});
+        logger.debug("getParent() e=%s", e);
         return null;
     }
 
     public void updateElement(Object e, int index) {
-        logger.debug("updateElement() e=%s index=%d", new Object[]{e, Integer.valueOf(index)});
+        logger.debug("updateElement() e=%s index=%d", e, index);
         if ((e instanceof ITreeDocument)) {
-            INode element = (INode) ((ITreeDocument) e).getRoots().get(index);
+            INode element = ((ITreeDocument) e).getRoots().get(index);
             this.viewer.replace(e, index, element);
             this.viewer.setChildCount(element, element.getChildren().size());
         } else if ((e instanceof INode)) {
-            INode element = (INode) ((INode) e).getChildren().get(index);
+            INode element = ((INode) e).getChildren().get(index);
             this.viewer.replace(e, index, element);
             this.viewer.setChildCount(element, element.getChildren().size());
         }
     }
 
     public void updateChildCount(Object e, int currentChildCount) {
-        logger.debug("updateChildCount() e=%s currentChildCount=%d", new Object[]{e, Integer.valueOf(currentChildCount)});
+        logger.debug("updateChildCount() e=%s currentChildCount=%d", e, currentChildCount);
         if ((e instanceof ITreeDocument)) {
             int cnt = ((ITreeDocument) e).getRoots().size();
             if (cnt != currentChildCount) {

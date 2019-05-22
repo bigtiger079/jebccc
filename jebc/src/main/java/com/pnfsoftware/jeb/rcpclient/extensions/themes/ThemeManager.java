@@ -84,12 +84,12 @@ public class ThemeManager {
             return false;
         }
         if (this.activeTheme == null) {
-            return setActiveTheme((String) ids.get(1));
+            return setActiveTheme(ids.get(1));
         }
         for (int i = 1; i < ids.size(); i++) {
-            String id = (String) ids.get(i);
+            String id = ids.get(i);
             if (id.equals(this.activeTheme.getId())) {
-                String nextId = (String) ids.get((i + 1) % ids.size());
+                String nextId = ids.get((i + 1) % ids.size());
                 return setActiveTheme(nextId);
             }
         }
@@ -101,7 +101,7 @@ public class ThemeManager {
         if ((themeId == null) || (themeId.equals("theme.standard"))) {
             wantedTheme = null;
         } else {
-            wantedTheme = (Theme) this.themes.get(themeId);
+            wantedTheme = this.themes.get(themeId);
             if (wantedTheme == null) {
                 return false;
             }
@@ -131,7 +131,7 @@ public class ThemeManager {
         if (this.seen.get(w) != null) {
             return;
         }
-        this.seen.put(w, Integer.valueOf(0));
+        this.seen.put(w, 0);
         if (!(w instanceof Control)) {
             return;
         }
@@ -141,7 +141,7 @@ public class ThemeManager {
             if (ctl.getData("storedOriginalColors") == null) {
                 ctl.setData("cBackground", ctl.getBackground());
                 ctl.setData("cForeground", ctl.getForeground());
-                ctl.setData("storedOriginalColors", Boolean.valueOf(true));
+                ctl.setData("storedOriginalColors", Boolean.TRUE);
             }
             if (this.activeTheme == null) {
                 ctl.setBackground((Color) ctl.getData("cBackground"));
@@ -169,7 +169,7 @@ public class ThemeManager {
             if (ctl.getData("storedOriginalColors") == null) {
                 ctl.setData("cBackgroundSelectedTab", c.getSelectionBackground());
                 ctl.setData("cForegroundSelectedTab", c.getSelectionForeground());
-                ctl.setData("storedOriginalColors", Boolean.valueOf(true));
+                ctl.setData("storedOriginalColors", Boolean.TRUE);
             }
             if (this.activeTheme == null) {
                 c.setSelectionBackground((Color) ctl.getData("cBackgroundSelectedTab"));
@@ -185,7 +185,7 @@ public class ThemeManager {
             if (ctl.getData("storedOriginalColors") == null) {
                 ctl.setData("cBackgroundTableHeader", c.getHeaderBackground());
                 ctl.setData("cForegroundTableHeader", c.getHeaderForeground());
-                ctl.setData("storedOriginalColors", Boolean.valueOf(true));
+                ctl.setData("storedOriginalColors", Boolean.TRUE);
             }
             if (this.activeTheme == null) {
                 c.setHeaderBackground((Color) ctl.getData("cBackgroundTableHeader"));
@@ -201,7 +201,7 @@ public class ThemeManager {
             if (ctl.getData("storedOriginalColors") == null) {
                 ctl.setData("cBackgroundTableHeader", c.getHeaderBackground());
                 ctl.setData("cForegroundTableHeader", c.getHeaderForeground());
-                ctl.setData("storedOriginalColors", Boolean.valueOf(true));
+                ctl.setData("storedOriginalColors", Boolean.TRUE);
             }
             if (this.activeTheme == null) {
                 c.setHeaderBackground((Color) ctl.getData("cBackgroundTableHeader"));
@@ -216,7 +216,7 @@ public class ThemeManager {
             if (ctl.getData("storedOriginalColors") == null) {
                 ctl.setData("cBackgroundFilter", ctl.getBackground());
                 ctl.setData("cForegroundFilter", ctl.getForeground());
-                ctl.setData("storedOriginalColors", Boolean.valueOf(true));
+                ctl.setData("storedOriginalColors", Boolean.TRUE);
             }
             if (this.activeTheme == null) {
                 ctl.setBackground((Color) ctl.getData("cBackgroundFilter"));

@@ -1,9 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
-import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IStackframeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeDataItem;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
@@ -39,7 +36,7 @@ public class StackEditorActionSetType extends StackEditorAction {
         ITypeManager typeman = this.v.getInputUnit().getTypeManager();
         INativeType itemType = typeman.getType(fieldSig);
         if (itemType == null) {
-            UI.error(String.format("The type \"%s\" was not found", new Object[]{fieldSig}));
+            UI.error(String.format("The type \"%s\" was not found", fieldSig));
             return;
         }
         if (setItemType(e, this.v.getInputRoutine(), itemType)) {
@@ -56,7 +53,7 @@ public class StackEditorActionSetType extends StackEditorAction {
         }
         INativeDataItem item = routine.getData().getStackframeManager().defineItem(e.offset, newItemType);
         if (item == null) {
-            UI.error(String.format("A item of type \"%s\" could not be created at offset %Xh", new Object[]{newItemType.getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("A item of type \"%s\" could not be created at offset %Xh", newItemType.getName(true), e.offset));
             return false;
         }
         item.setName(e.name);

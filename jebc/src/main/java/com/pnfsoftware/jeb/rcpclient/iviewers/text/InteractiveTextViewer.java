@@ -18,7 +18,6 @@ import com.pnfsoftware.jeb.core.units.IMetadataManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.AbstractRefresher;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.FindTextOptions;
-import com.pnfsoftware.jeb.rcpclient.extensions.ui.UITaskManager;
 import com.pnfsoftware.jeb.rcpclient.iviewers.IStyleProvider;
 import com.pnfsoftware.jeb.rcpclient.iviewers.Style;
 import com.pnfsoftware.jeb.rcpclient.iviewers.hover.IHoverableProvider;
@@ -57,8 +56,6 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.TextPresentation;
 import org.eclipse.jface.text.source.AnnotationPainter;
-import org.eclipse.jface.text.source.AnnotationPainter.BoxStrategy;
-import org.eclipse.jface.text.source.AnnotationPainter.HighlightingStrategy;
 import org.eclipse.jface.text.source.CompositeRuler;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
@@ -73,7 +70,6 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Listener;
@@ -188,10 +184,10 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         this.viewer.addTextInputListener(new ITextInputListener() {
             public void inputDocumentChanged(IDocument oldInput, IDocument newInput) {
                 if (newInput == null) {
-                    InteractiveTextViewer.logger.debug("inputDocumentChanged: newinput is null", new Object[0]);
+                    InteractiveTextViewer.logger.debug("inputDocumentChanged: newinput is null");
                     return;
                 }
-                InteractiveTextViewer.logger.debug("inputDocumentChanged: linecount=%s", new Object[]{Integer.valueOf(newInput.getNumberOfLines())});
+                InteractiveTextViewer.logger.debug("inputDocumentChanged: linecount=%s", newInput.getNumberOfLines());
                 InteractiveTextViewer.this.documentBeingChanged = false;
             }
 
@@ -328,7 +324,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         if (lineIndex >= lines.size()) {
             return null;
         }
-        return TextPartUtil.getItemAt((ILine) lines.get(lineIndex), columnOffset);
+        return TextPartUtil.getItemAt(lines.get(lineIndex), columnOffset);
     }
 
     public List<ITextItem> getCurrentItems() {
@@ -347,7 +343,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         if (lineIndex >= lines.size()) {
             return null;
         }
-        return (ILine) lines.get(lineIndex);
+        return lines.get(lineIndex);
     }
 
     private void onUnitChange() {
@@ -423,7 +419,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         int caretBeforeItem = -1;
         int caretPosition = caretCoords.getColumnOffset();
         for (int i = 0; i < items.size(); i++) {
-            ITextItem item = (ITextItem) items.get(i);
+            ITextItem item = items.get(i);
             if (caretPosition < item.getOffset()) {
                 caretBeforeItem = i;
                 break;
@@ -435,10 +431,10 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         }
         if (caretInItem != -1) {
             if (caretInItem >= newItems.size()) {
-                caretPosition = ((ITextItem) items.get(caretInItem)).getOffset();
+                caretPosition = items.get(caretInItem).getOffset();
             } else {
-                ITextItem item = (ITextItem) newItems.get(caretInItem);
-                caretPosition += item.getOffset() - ((ITextItem) items.get(caretInItem)).getOffset();
+                ITextItem item = newItems.get(caretInItem);
+                caretPosition += item.getOffset() - items.get(caretInItem).getOffset();
                 if (caretPosition >= item.getOffset() + item.getLength()) {
                     caretPosition = item.getOffset() + item.getLength() - 1;
                 }
@@ -446,13 +442,13 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         } else if (items.size() == newItems.size()) {
             if (caretBeforeItem == -1) {
                 if (items.size() != 0) {
-                    ITextItem item = (ITextItem) newItems.get(newItems.size() - 1);
-                    ITextItem oldItem = (ITextItem) items.get(items.size() - 1);
+                    ITextItem item = newItems.get(newItems.size() - 1);
+                    ITextItem oldItem = items.get(items.size() - 1);
                     caretPosition = caretPosition + (item.getOffset() + item.getLength() - (oldItem.getOffset() + oldItem.getLength()));
                 }
             } else if (caretBeforeItem != 0) {
-                ITextItem item = (ITextItem) newItems.get(caretBeforeItem - 1);
-                ITextItem oldItem = (ITextItem) items.get(caretBeforeItem - 1);
+                ITextItem item = newItems.get(caretBeforeItem - 1);
+                ITextItem oldItem = items.get(caretBeforeItem - 1);
                 caretPosition += item.getOffset() + item.getLength() - (oldItem.getOffset() + oldItem.getLength());
             }
         }
@@ -527,9 +523,9 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         long t0 = System.currentTimeMillis();
         ITextDocumentPart newPart = this.docManager.getPart(anchorId, linesAfter, linesBefore);
         long t1 = System.currentTimeMillis();
-        logger.debug("Part at anchor %d retrieved in %dms", new Object[]{Long.valueOf(anchorId), Long.valueOf(t1 - t0)});
+        logger.debug("Part at anchor %d retrieved in %dms", anchorId, t1 - t0);
         if ((newPart == null) || (newPart.getAnchors() == null) || (newPart.getAnchors().isEmpty())) {
-            logger.debug("Invalid part", new Object[0]);
+            logger.debug("Invalid part");
             if (this.docManager.getCurrentPart() == null) {
                 throw new RuntimeException("No text part can be fetched, bad document output generation.");
             }
@@ -537,7 +533,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         }
         if ((this.charactersWrap < 0) && (this.maxCharsPerLine >= 10) && (this.maxCharsPerLine - this.charsEndLine > 5)) {
             for (int i = 0; i < newPart.getLines().size(); i++) {
-                ILine line = (ILine) newPart.getLines().get(i);
+                ILine line = newPart.getLines().get(i);
                 if (line.getText().length() > this.maxCharsPerLine) {
                     newPart = new TextDocumentPartDelegate(newPart, this.maxCharsPerLine, this.charsEndLine);
                     break;
@@ -556,7 +552,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         this.viewer.changeTextPresentation(pres, true);
         reapplyAnnotations();
         long t2 = System.currentTimeMillis();
-        logger.debug("updateDocument took %dms", new Object[]{Long.valueOf(t2 - t0)});
+        logger.debug("updateDocument took %dms", t2 - t0);
         return true;
     }
 
@@ -573,14 +569,14 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
             ITextItem item = renderedItem.item;
             Style style = this.styleAdapter.getStyle(item);
             if (style != null) if (item.getLength() <= 0) {
-                logger.error("Trying to apply a void style at offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
+                logger.error("Trying to apply a void style at offset %d", renderedItem.offset);
             } else if (item.getOffset() < 0) {
-                logger.error("Trying to apply a style at negative offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
+                logger.error("Trying to apply a style at negative offset %d", renderedItem.offset);
             } else {
                 int length = item.getLength();
                 if (renderedItem.offset + length > doc.getLength()) {
                     if (renderedItem.offset > doc.getLength()) {
-                        logger.error("Trying to apply a style at item not in document at offset %d", new Object[]{Integer.valueOf(renderedItem.offset)});
+                        logger.error("Trying to apply a style at item not in document at offset %d", renderedItem.offset);
                     } else {
                         length = doc.getLength() - renderedItem.offset;
                     }
@@ -722,14 +718,14 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
             return null;
         }
         boolean wrappedAround = false;
-        logger.debug(S.s(715), new Object[]{options.getSearchString()});
+        logger.debug(S.s(715), options.getSearchString());
         int searchStringLength = options.getSearchString().length();
         Pattern p = null;
         if (options.isRegularExpression()) {
             try {
                 p = Pattern.compile(options.getSearchString(), options.isCaseSensitive() ? 0 : 2);
             } catch (IllegalArgumentException e) {
-                logger.error("Invalid regex, will consider it a standard string: %s", new Object[]{e});
+                logger.error("Invalid regex, will consider it a standard string: %s", e);
             }
         }
         for (; ; ) {
@@ -751,7 +747,7 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
                     long firstAnchorId = TextPartUtil.getFirstAnchorId(part);
                     long nextAnchorId = TextPartUtil.getNextAnchorId(part);
                     if ((anchorId < firstAnchorId) || (anchorId >= nextAnchorId)) {
-                        logger.i("Requested anchor out of current part: %Xh not in [%Xh, %Xh)", new Object[]{Long.valueOf(anchorId), Long.valueOf(firstAnchorId), Long.valueOf(nextAnchorId)});
+                        logger.i("Requested anchor out of current part: %Xh not in [%Xh, %Xh)", anchorId, firstAnchorId, nextAnchorId);
                         part = null;
                     }
                 }
@@ -762,15 +758,15 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
                 if (anchor == null) {
                     anchor = TextPartUtil.getApproximateAnchorById(part, anchorId, 1);
                     if (anchor == null) {
-                        logger.i("Error on part request @ %Xh (end: %Xh)", new Object[]{Long.valueOf(anchorId), Long.valueOf(this.docManager.getAnchorEnd())});
+                        logger.i("Error on part request @ %Xh (end: %Xh)", anchorId, this.docManager.getAnchorEnd());
                         break;
                     }
                 }
-                logger.i("Searching part @ %Xh (got %Xh)", new Object[]{Long.valueOf(anchorId), Long.valueOf(anchor.getIdentifier())});
+                logger.i("Searching part @ %Xh (got %Xh)", anchorId, anchor.getIdentifier());
                 int index = anchor.getLineIndex() + lineDelta;
                 List<? extends ILine> lines = part.getLines();
                 for (; index < lines.size(); index++) {
-                    String lineText = ((ILine) lines.get(index)).getText().toString();
+                    String lineText = lines.get(index).getText().toString();
                     if (!lineText.isEmpty()) {
                         if (p != null) {
                             Matcher m = p.matcher(lineText);
@@ -826,12 +822,12 @@ public class InteractiveTextViewer implements IOperable, INavigableViewer, IText
         }
         if (r.isEndOfSearch()) {
             Display.getCurrent().beep();
-            logger.warn("End of search", new Object[0]);
+            logger.warn("End of search");
             return;
         }
         if (r.isWrappedAround()) {
             Display.getCurrent().beep();
-            logger.warn("Search wrapped around", new Object[0]);
+            logger.warn("Search wrapped around");
         }
         setCaretCoordinates(r.getBegin(), null, false);
         int pos = this.wrappedText.getCaretOffset();

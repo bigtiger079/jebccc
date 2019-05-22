@@ -3,17 +3,17 @@ package com.pnfsoftware.jeb.rcpclient.extensions.app;
 import java.util.EventListener;
 
 public interface IFolderListener extends EventListener {
-    public abstract void partSelected(Part paramPart);
+    void partSelected(Part paramPart);
 
-    public abstract void partAdded(Part paramPart);
+    void partAdded(Part paramPart);
 
-    public abstract void partHidden(Part paramPart);
+    void partHidden(Part paramPart);
 
-    public abstract void partVisible(Part paramPart);
+    void partVisible(Part paramPart);
 
-    public abstract void partRemoved(Part paramPart);
+    void partRemoved(Part paramPart);
 
-    public abstract void partMoved(Folder paramFolder, Part paramPart);
+    void partMoved(Folder paramFolder, Part paramPart);
 }
 
 

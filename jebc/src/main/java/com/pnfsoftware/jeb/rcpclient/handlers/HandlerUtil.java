@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IUnitCreator;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
@@ -9,7 +8,6 @@ import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.TargetProperties;
-import com.pnfsoftware.jeb.core.units.code.asm.decompiler.TargetProperties.Builder;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.core.util.DebuggerHelper;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
@@ -58,7 +56,7 @@ public class HandlerUtil {
             return true;
         }
         if (unit.getStatus() != null) {
-            String msg = String.format("Processing of unit \"%s\" (%s) was attempted and failed.\n\nWould you like to try again?", new Object[]{unit.getName(), unit.getFormatType()});
+            String msg = String.format("Processing of unit \"%s\" (%s) was attempted and failed.\n\nWould you like to try again?", unit.getName(), unit.getFormatType());
             MessageBox mb = new MessageBox(shell, 200);
             mb.setText(S.s(304));
             mb.setMessage(msg);
@@ -69,25 +67,23 @@ public class HandlerUtil {
         }
         Boolean success;
         if (!async) {
-            success = Boolean.valueOf(unit.process());
+            success = unit.process();
         } else {
-            String taskName = String.format("Processing: %s...", new Object[]{unit.getName()});
+            String taskName = String.format("Processing: %s...", unit.getName());
             success = (Boolean) context.executeTask(taskName, new Callable() {
                 public Boolean call() {
                     return unit.process();
                 }
             });
         }
-        if ((success == null) || (!success.booleanValue())) {
+        if ((success == null) || (!success)) {
             String msg = String.format("%s. %s:\n\"%s\"\n\n", S.s(789), S.s(748), unit.getStatus());
             msg = msg + String.format("%s (%s)", S.s(662), S.s(603));
             MessageBox mb = new MessageBox(shell, 200);
             mb.setText(S.s(304));
             mb.setMessage(msg);
             int r = mb.open();
-            if (r != 64) {
-                return false;
-            }
+            return r == 64;
         }
         return true;
     }
@@ -98,7 +94,7 @@ public class HandlerUtil {
         }
         context.getTelemetry().record("handlerDecompile", "decompilerUnitType", decompiler.getFormatType());
         String taskName = String.format("%s: %s...", S.s(246), address);
-        ISourceUnit r = (ISourceUnit) context.executeTaskWithPopupDelay(1000, taskName, false, new Callable() {
+        return (ISourceUnit) context.executeTaskWithPopupDelay(1000, taskName, false, new Callable() {
             public ISourceUnit call() {
                 if ((decompiler instanceof INativeDecompilerUnit)) {
                     TargetProperties properties = TargetProperties.create().setDiscardable(Boolean.valueOf(false)).build();
@@ -107,6 +103,5 @@ public class HandlerUtil {
                 return decompiler.decompile(address);
             }
         });
-        return r;
     }
 }

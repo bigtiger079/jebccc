@@ -7,7 +7,6 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.FilterText;
 import com.pnfsoftware.jeb.rcpclient.operations.JebAction;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
 import com.pnfsoftware.jeb.rcpclient.parts.units.InteractiveTableView;
@@ -19,7 +18,6 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 

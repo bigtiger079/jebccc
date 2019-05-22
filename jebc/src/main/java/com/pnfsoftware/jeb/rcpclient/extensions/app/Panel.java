@@ -13,7 +13,6 @@ import java.util.List;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -147,7 +146,7 @@ public class Panel extends Composite implements IMPanel {
     public IMPanelElement getFirstElement() {
         List<IMPanelElement> list = getChildrenElements();
         if (list.size() >= 1) {
-            return (IMPanelElement) list.get(0);
+            return list.get(0);
         }
         return null;
     }
@@ -155,7 +154,7 @@ public class Panel extends Composite implements IMPanel {
     public IMPanelElement getSecondElement() {
         List<IMPanelElement> list = getChildrenElements();
         if (list.size() >= 2) {
-            return (IMPanelElement) list.get(1);
+            return list.get(1);
         }
         return null;
     }
@@ -192,7 +191,7 @@ public class Panel extends Composite implements IMPanel {
     }
 
     public String toString() {
-        return String.format("Panel@%d", new Object[]{Integer.valueOf(this.internalPanelId)});
+        return String.format("Panel@%d", this.internalPanelId);
     }
 
     public static class SashSelectionFilter implements Listener {

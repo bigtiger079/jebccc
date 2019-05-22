@@ -38,9 +38,9 @@ public class E {
 
     public String toString() {
         if (this.weight == null) {
-            return String.format("%d>%d", new Object[]{Integer.valueOf(this.src.id), Integer.valueOf(this.dst.id)});
+            return String.format("%d>%d", this.src.id, this.dst.id);
         }
-        return String.format("%d>%d(%f)", new Object[]{Integer.valueOf(this.src.id), Integer.valueOf(this.dst.id), this.weight});
+        return String.format("%d>%d(%f)", this.src.id, this.dst.id, this.weight);
     }
 }
 

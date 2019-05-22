@@ -18,7 +18,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 
 public class WrappedText {
     private static final ILogger logger = GlobalLog.getLogger(WrappedText.class);
@@ -262,12 +261,12 @@ public class WrappedText {
 
     public int getMaxVisibleLineCount() {
         if (this.maxVisibleLineCount == null) {
-            this.maxVisibleLineCount = Integer.valueOf(this.text.getClientArea().height / this.text.getLineHeight());
-            if (this.maxVisibleLineCount.intValue() == 0) {
-                this.maxVisibleLineCount = Integer.valueOf(100);
+            this.maxVisibleLineCount = this.text.getClientArea().height / this.text.getLineHeight();
+            if (this.maxVisibleLineCount == 0) {
+                this.maxVisibleLineCount = 100;
             }
         }
-        return this.maxVisibleLineCount.intValue();
+        return this.maxVisibleLineCount;
     }
 
     public int getWrappedLineCount() {
@@ -326,8 +325,8 @@ public class WrappedText {
     public boolean isAnchorEnd(IAnchor anchor) {
         long anchorEnd = this.docManager.getAnchorEnd();
         List<? extends IAnchor> anchorsDisplayed = this.docManager.getCurrentPart().getAnchors();
-        if (((IAnchor) anchorsDisplayed.get(anchorsDisplayed.size() - 1)).getIdentifier() == anchorEnd) {
-            return ((IAnchor) anchorsDisplayed.get(anchorsDisplayed.size() - 2)).getIdentifier() == anchor.getIdentifier();
+        if (anchorsDisplayed.get(anchorsDisplayed.size() - 1).getIdentifier() == anchorEnd) {
+            return anchorsDisplayed.get(anchorsDisplayed.size() - 2).getIdentifier() == anchor.getIdentifier();
         }
         if (anchorsDisplayed.contains(anchor)) {
             return false;
@@ -344,7 +343,7 @@ public class WrappedText {
         if (cnt == 0) {
             return false;
         }
-        IAnchor a = (IAnchor) part.getAnchors().get(cnt - 1);
+        IAnchor a = part.getAnchors().get(cnt - 1);
         return a.getIdentifier() == this.docManager.getAnchorEnd();
     }
 

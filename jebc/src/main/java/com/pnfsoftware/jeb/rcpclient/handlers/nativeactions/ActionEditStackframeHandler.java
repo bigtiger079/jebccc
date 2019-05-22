@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.StackframeEditorDialog;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;

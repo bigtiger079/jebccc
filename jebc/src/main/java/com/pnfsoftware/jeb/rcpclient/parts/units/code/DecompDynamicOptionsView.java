@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.IBasicInformation;
-import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeSourceUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.IOptimizerInfo;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -86,11 +84,11 @@ public class DecompDynamicOptionsView extends Composite {
         public boolean isChecked(Object row) {
             if ((row instanceof IOptimizerInfo)) {
                 IOptimizerInfo e = (IOptimizerInfo) row;
-                Boolean value = (Boolean) DecompDynamicOptionsView.this.changes.get(e);
+                Boolean value = DecompDynamicOptionsView.this.changes.get(e);
                 if (value == null) {
                     return e.isEnabled();
                 }
-                return value.booleanValue();
+                return value;
             }
             return false;
         }
@@ -100,7 +98,7 @@ public class DecompDynamicOptionsView extends Composite {
                 IOptimizerInfo e = (IOptimizerInfo) row;
                 boolean original = e.isEnabled();
                 if (original != isChecked) {
-                    DecompDynamicOptionsView.this.changes.put(e, Boolean.valueOf(isChecked));
+                    DecompDynamicOptionsView.this.changes.put(e, isChecked);
                 } else {
                     DecompDynamicOptionsView.this.changes.remove(e);
                 }

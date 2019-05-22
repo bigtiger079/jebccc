@@ -11,10 +11,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Text;
 
 public class OptionsSimpleViewClasspath extends OptionsSimpleViewList {
     public OptionsSimpleViewClasspath(OptionsChanges.Changes changes, OptionsSimpleListener listener, String propertyKey, String separator) {

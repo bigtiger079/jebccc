@@ -17,7 +17,7 @@ public class FilteredTreeView extends AbstractFilteredView<Tree> {
     }
 
     public Tree getTree() {
-        return (Tree) getElement();
+        return getElement();
     }
 
     protected Tree buildElement(Composite parent, int style) {
@@ -36,11 +36,11 @@ public class FilteredTreeView extends AbstractFilteredView<Tree> {
     }
 
     public int getSelectionIndex() {
-        if (((Tree) getElement()).getSelectionCount() == 0) {
+        if (getElement().getSelectionCount() == 0) {
             return -1;
         }
         MutableInt counter = new MutableInt(0);
-        boolean found = getIndexOfItem(((Tree) getElement()).getItems(), ((Tree) getElement()).getSelection()[0], counter);
+        boolean found = getIndexOfItem(getElement().getItems(), getElement().getSelection()[0], counter);
         if (found) {
             return counter.intValue();
         }
@@ -65,7 +65,7 @@ public class FilteredTreeView extends AbstractFilteredView<Tree> {
     }
 
     public int getItemCount() {
-        return getItemCount(((Tree) getElement()).getItems());
+        return getItemCount(getElement().getItems());
     }
 
     private int getItemCount(TreeItem[] items) {

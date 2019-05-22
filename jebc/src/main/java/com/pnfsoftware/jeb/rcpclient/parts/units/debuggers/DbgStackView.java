@@ -4,11 +4,9 @@ import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.units.code.asm.memory.IVirtualMemory;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.DebuggerUtil;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueRaw;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JumpToDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
@@ -39,7 +37,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgStackView.class);
@@ -90,26 +87,26 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
             DbgStackView.StackEntry e = (DbgStackView.StackEntry) element;
             switch (key) {
                 case 0:
-                    return DbgTypedValueUtil.formatAddress(e.address, (IDebuggerUnit) DbgStackView.this.unit);
+                    return DbgTypedValueUtil.formatAddress(e.address, DbgStackView.this.unit);
                 case 1:
                     if (e.bytes != null) {
-                        return DbgTypedValueUtil.formatValue(new ValueRaw(e.bytes), 0, (IDebuggerUnit) DbgStackView.this.unit);
+                        return DbgTypedValueUtil.formatValue(new ValueRaw(e.bytes), 0, DbgStackView.this.unit);
                     }
                     return null;
                 case 2:
                     if (e.bytes != null) {
-                        long ptr = DbgTypedValueUtil.bytesToAddress(e.bytes, (IDebuggerUnit) DbgStackView.this.unit);
+                        long ptr = DbgTypedValueUtil.bytesToAddress(e.bytes, DbgStackView.this.unit);
                         if (ptr != 0L) {
-                            String extra = (String) this.cacheExtra.get(Long.valueOf(ptr));
+                            String extra = this.cacheExtra.get(ptr);
                             if (extra == null) {
-                                byte[] mem = DebuggerUtil.readMemoryStringSafe((IDebuggerUnit) DbgStackView.this.unit, ptr, 256);
+                                byte[] mem = DebuggerUtil.readMemoryStringSafe(DbgStackView.this.unit, ptr, 256);
                                 if (mem == null) {
                                     extra = "";
                                 } else {
                                     int asciiLength = Strings.getAsciiLength(mem);
                                     extra = Strings.decodeASCII(mem, 0, asciiLength);
                                 }
-                                this.cacheExtra.put(Long.valueOf(ptr), extra);
+                                this.cacheExtra.put(ptr, extra);
                             }
                             return extra;
                         }
@@ -155,7 +152,7 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
 
         public Object[] getRowElements(Object row) {
             DbgStackView.StackEntry e = (DbgStackView.StackEntry) row;
-            return new Object[]{Long.valueOf(e.address), e.bytes};
+            return new Object[]{e.address, e.bytes};
         }
 
         public Object[] get(Object inputElement, long id, int cnt) {
@@ -179,7 +176,7 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
             int size = cnt * this.asize;
             byte[] data = new byte[size];
             int readsize = unit.readMemory(address, size, data, 0);
-            DbgStackView.logger.i("Stack @%Xh, read %Xh bytes", new Object[]{Long.valueOf(address), Integer.valueOf(readsize)});
+            DbgStackView.logger.i("Stack @%Xh, read %Xh bytes", address, readsize);
             List<DbgStackView.StackEntry> r = new ArrayList<>();
             for (int i = 0; i < cnt; i++) {
                 DbgStackView.StackEntry e = new DbgStackView.StackEntry();
@@ -203,7 +200,7 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
 
     public String getActiveAddress(AddressConversionPrecision precision) {
         StackEntry e = getSelectedRow();
-        return e == null ? null : String.format("%Xh", new Object[]{Long.valueOf(e.address)});
+        return e == null ? null : String.format("%Xh", e.address);
     }
 
     public boolean verifyOperation(OperationRequest req) {
@@ -220,7 +217,7 @@ public class DbgStackView extends AbstractUnitFragment<IDebuggerUnit> implements
                 JumpToDialog dlg = new JumpToDialog(getShell(), RcpClientContext.getStandardAddressHistory(this.context));
                 String symbol = dlg.open();
                 if (symbol != null) {
-                    long memoryAddress = ((IDebuggerUnit) this.unit).convertSymbolicAddressToMemoryToAddress(symbol, null);
+                    long memoryAddress = this.unit.convertSymbolicAddressToMemoryToAddress(symbol, null);
                     if ((memoryAddress != 0L) && (this.provider.asize > 0)) {
                         long id = memoryAddress / this.provider.asize;
                         this.viewer.setTopId(id, true);

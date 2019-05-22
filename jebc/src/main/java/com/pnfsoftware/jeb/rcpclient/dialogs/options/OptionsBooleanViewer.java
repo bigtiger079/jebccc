@@ -16,7 +16,7 @@ public class OptionsBooleanViewer extends AbstractOptionsSimpleWidget {
         Button b = UIUtil.createCheckbox(parent, label, new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 boolean newValue = ((Button) e.getSource()).getSelection();
-                OptionsBooleanViewer.this.changes.addChange(OptionsBooleanViewer.this.propertyKey, Boolean.valueOf(newValue));
+                OptionsBooleanViewer.this.changes.addChange(OptionsBooleanViewer.this.propertyKey, newValue);
             }
         });
         b.setSelection(BooleanUtils.toBoolean(this.changes.getBoolean(this.propertyKey)));

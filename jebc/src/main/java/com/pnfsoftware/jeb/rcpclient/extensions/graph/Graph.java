@@ -118,7 +118,7 @@ public class Graph extends AbstractGraph implements IZoomable {
                         int x1 = xBases[cell.getNextColumn()];
                         int y0 = yBases[cell.getRow()];
                         int y1 = yBases[cell.getNextRow()];
-                        e.gc.setBackground(SwtRegistry.getInstance().getColor(((Integer) colors.next()).intValue()));
+                        e.gc.setBackground(SwtRegistry.getInstance().getColor((Integer) colors.next()));
                         e.gc.fillRectangle(x0, y0, x1 - x0, y1 - y0);
                         icol = 1 - icol;
                     }
@@ -134,12 +134,12 @@ public class Graph extends AbstractGraph implements IZoomable {
                 Graph.this.lastMouseCursorDown.x = e.x;
                 Graph.this.lastMouseCursorDown.y = e.y;
                 if (Graph.this.activeEdgeId != -1) {
-                    Graph.logger.error("Mouse click on Edge: %d", new Object[]{Integer.valueOf(Graph.this.activeEdgeId)});
-                    GraphNode target = Graph.this.isPrimaryModifierKeyPressed() ? ((GraphEdge) Graph.this.edges.get(Graph.this.activeEdgeId)).src : ((GraphEdge) Graph.this.edges.get(Graph.this.activeEdgeId)).dst;
+                    Graph.logger.error("Mouse click on Edge: %d", Graph.this.activeEdgeId);
+                    GraphNode target = Graph.this.isPrimaryModifierKeyPressed() ? Graph.this.edges.get(Graph.this.activeEdgeId).src : Graph.this.edges.get(Graph.this.activeEdgeId).dst;
                     Graph.this.centerGraph(target, 16777216, 16777216, true);
                     Graph.this.setActiveNode(target, false);
                 } else if (Graph.this.hoverNode != null) {
-                    Graph.logger.error("Mouse click on Node: %s", new Object[]{Graph.this.activeNode});
+                    Graph.logger.error("Mouse click on Node: %s", Graph.this.activeNode);
                 } else {
                     Graph.this.dragging = true;
                     Graph.this.draggingX = e.x;
@@ -163,7 +163,7 @@ public class Graph extends AbstractGraph implements IZoomable {
                 if (e.button != 1) {
                     return;
                 }
-                Graph.logger.i("DBLCLK: active edge: " + Graph.this.activeEdgeId, new Object[0]);
+                Graph.logger.i("DBLCLK: active edge: " + Graph.this.activeEdgeId);
             }
         });
         addMouseMoveListener(new MouseMoveListener() {
@@ -307,11 +307,11 @@ public class Graph extends AbstractGraph implements IZoomable {
         if (edgeId >= 0) {
             if (this.activeEdgeId != edgeId) {
                 if (this.activeEdgeId >= 0) {
-                    GraphEdge edge = (GraphEdge) this.edges.get(this.activeEdgeId);
+                    GraphEdge edge = this.edges.get(this.activeEdgeId);
                     edge.setState(0);
                     notifyEdgeMouseExit(edge);
                 }
-                GraphEdge edge = (GraphEdge) this.edges.get(edgeId);
+                GraphEdge edge = this.edges.get(edgeId);
                 edge.setState(1);
                 this.activeEdgeId = edgeId;
                 if (!this.activeEdgeColoringEnabled) {
@@ -320,7 +320,7 @@ public class Graph extends AbstractGraph implements IZoomable {
                 notifyEdgeMouseEnter(edge);
             }
         } else if (this.activeEdgeId >= 0) {
-            GraphEdge edge = (GraphEdge) this.edges.get(this.activeEdgeId);
+            GraphEdge edge = this.edges.get(this.activeEdgeId);
             edge.setState(0);
             this.activeEdgeId = -1;
             if (!this.activeEdgeColoringEnabled) {
@@ -339,7 +339,7 @@ public class Graph extends AbstractGraph implements IZoomable {
     }
 
     public GraphNode getNode(int index) {
-        return (GraphNode) this.nodes.get(index);
+        return this.nodes.get(index);
     }
 
     public List<GraphNode> getNodes() {
@@ -384,10 +384,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         right0 += b.width;
         top0 -= b.height;
         bottom0 += b.height;
-        if ((left1 > left0) && (right1 < right0) && (top1 > top0) && (bottom1 < bottom0)) {
-            return true;
-        }
-        return false;
+        return (left1 > left0) && (right1 < right0) && (top1 > top0) && (bottom1 < bottom0);
     }
 
     public void showNode(GraphNode node, boolean wantFullyVisible) {
@@ -404,7 +401,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         if (this.activeEdgeId < 0) {
             return null;
         }
-        return (GraphEdge) this.edges.get(this.activeEdgeId);
+        return this.edges.get(this.activeEdgeId);
     }
 
     public void setActiveEdge(GraphEdge edge) {
@@ -460,7 +457,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         if ((nodeIndex < 0) || (nodeIndex >= this.nodes.size())) {
             return;
         }
-        centerGraph((GraphNode) this.nodes.get(nodeIndex));
+        centerGraph(this.nodes.get(nodeIndex));
     }
 
     public void centerGraph(GraphNode node) {
@@ -469,7 +466,7 @@ public class Graph extends AbstractGraph implements IZoomable {
 
     public void centerGraph(GraphNode node, int nodeAnchorFlags, int clientAnchorFlags, boolean progressive) {
         verifyNode(node);
-        logger.debug("Centering on node: %s", new Object[]{node});
+        logger.debug("Centering on node: %s", node);
         Rectangle bounds = node.getBounds();
         Rectangle client = getClientArea();
         int x0 = bounds.x + bounds.width / 2;
@@ -621,8 +618,7 @@ public class Graph extends AbstractGraph implements IZoomable {
             this.redrawCause = 0;
             this.redrawObject = null;
         }
-        long exectime = System.currentTimeMillis() - t0;
-        this.lastRedrawExectime = exectime;
+        this.lastRedrawExectime = System.currentTimeMillis() - t0;
         determineActiveEdge(null);
         notifyGraphChange();
     }
@@ -681,7 +677,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         for (Cell<GraphNode> cell : cells) {
             seenRows[cell.getRow()] = true;
             seenCols[cell.getColumn()] = true;
-            GraphNode node = (GraphNode) cell.getObject();
+            GraphNode node = cell.getObject();
             Point nodesize = node.computeSize(-1, -1);
             node.setSize(nodesize);
             int incnt = 2 + Math.max(0, node.getNodeInputEdgeCount() - 2);
@@ -694,18 +690,18 @@ public class Graph extends AbstractGraph implements IZoomable {
             ysolver.add(new Vector(rowcnt).onRange(y, yspan).get(), (int) (nodesize.y + 10.0D * incnt + 10.0D * outcnt));
         }
         this.xConstraints = xsolver.solve();
-        logger.i("x-constraints= %s", new Object[]{Arrays.toString(this.xConstraints)});
+        logger.i("x-constraints= %s", Arrays.toString(this.xConstraints));
         this.yConstraints = ysolver.solve();
-        logger.i("y-constraints= %s", new Object[]{Arrays.toString(this.yConstraints)});
+        logger.i("y-constraints= %s", Arrays.toString(this.yConstraints));
         int[] xBases = buildCoordsFromSizes(this.virtualOrigin.x, this.xConstraints);
         int[] yBases = buildCoordsFromSizes(this.virtualOrigin.y, this.yConstraints);
         int[] xNodes = new int[cells.size()];
         int[] yNodes = new int[cells.size()];
         int i = 0;
         for (Cell<GraphNode> cell : cells) {
-            GraphNode node = (GraphNode) cell.getObject();
+            GraphNode node = cell.getObject();
             Point psize = node.getSize();
-            logger.i("- node size: %s", new Object[]{psize});
+            logger.i("- node size: %s", psize);
             int x0 = xBases[cell.getColumn()];
             int x1 = xBases[cell.getNextColumn()];
             int y0 = yBases[cell.getRow()];
@@ -719,7 +715,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         }
         i = 0;
         for (Cell<GraphNode> cell : cells) {
-            GraphNode node = (GraphNode) cell.getObject();
+            GraphNode node = cell.getObject();
             registerNode(node, false);
             node.setLocation(xNodes[i], yNodes[i]);
             i++;
@@ -837,8 +833,8 @@ public class Graph extends AbstractGraph implements IZoomable {
             gc.setLineStyle(1);
             gc.setForeground(styles.cEdge);
             for (GraphEdge edge : this.edges) {
-                PreviewNode src = (PreviewNode) pnodemap.get(edge.src);
-                PreviewNode dst = (PreviewNode) pnodemap.get(edge.dst);
+                PreviewNode src = pnodemap.get(edge.src);
+                PreviewNode dst = pnodemap.get(edge.dst);
                 Point p1 = UIUtil.getRectangleCenter(src.r);
                 Point p2 = UIUtil.getRectangleCenter(dst.r);
                 gc.drawLine(p1.x, p1.y, p2.x, p2.y);
@@ -944,14 +940,14 @@ public class Graph extends AbstractGraph implements IZoomable {
             x0 = tmp;
         }
         for (; ; ) {
-            ISegmentMap<Integer, IntegerSegment> m = (ISegmentMap) this.horzLineCache.get(Integer.valueOf(yReq));
+            ISegmentMap<Integer, IntegerSegment> m = this.horzLineCache.get(yReq);
             if (m == null) {
                 m = new SegmentMap();
-                this.horzLineCache.put(Integer.valueOf(yReq), m);
+                this.horzLineCache.put(yReq, m);
                 m.add(new IntegerSegment(x0, x1 - x0 + 1));
                 return yReq;
             }
-            if (m.isEmptyRange(Integer.valueOf(x0), Integer.valueOf(x1 + 1))) {
+            if (m.isEmptyRange(x0, x1 + 1)) {
                 m.add(new IntegerSegment(x0, x1 - x0 + 1));
                 return yReq;
             }
@@ -963,7 +959,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         if (x0 == x1) {
             return;
         }
-        ((ISegmentMap) this.horzLineCache.get(Integer.valueOf(y))).remove(Integer.valueOf(Math.min(x0, x1)));
+        ((ISegmentMap) this.horzLineCache.get(y)).remove(Math.min(x0, x1));
     }
 
     int requestVerticalLine(int y0, int y1, int xReq, int adjustStep) {
@@ -977,14 +973,14 @@ public class Graph extends AbstractGraph implements IZoomable {
             y0 = tmp;
         }
         for (; ; ) {
-            ISegmentMap<Integer, IntegerSegment> m = (ISegmentMap) this.vertLineCache.get(Integer.valueOf(xReq));
+            ISegmentMap<Integer, IntegerSegment> m = this.vertLineCache.get(xReq);
             if (m == null) {
                 m = new SegmentMap();
-                this.vertLineCache.put(Integer.valueOf(xReq), m);
+                this.vertLineCache.put(xReq, m);
                 m.add(new IntegerSegment(y0, y1 - y0 + 1));
                 return xReq;
             }
-            if (m.isEmptyRange(Integer.valueOf(y0), Integer.valueOf(y1 + 1))) {
+            if (m.isEmptyRange(y0, y1 + 1)) {
                 m.add(new IntegerSegment(y0, y1 - y0 + 1));
                 return xReq;
             }
@@ -996,7 +992,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         if (y0 == y1) {
             return;
         }
-        ((ISegmentMap) this.vertLineCache.get(Integer.valueOf(x))).remove(Integer.valueOf(Math.min(y0, y1)));
+        ((ISegmentMap) this.vertLineCache.get(x)).remove(Math.min(y0, y1));
     }
 
     boolean optCheckAvoidVerticalLineOverlapWithNodes(int x, int y0, int y1) {
@@ -1049,7 +1045,7 @@ public class Graph extends AbstractGraph implements IZoomable {
         }
 
         public String toString() {
-            return String.format("%d:[%d-%d)", new Object[]{Integer.valueOf(this.groupId), getBegin(), getEnd()});
+            return String.format("%d:[%d-%d)", this.groupId, getBegin(), getEnd());
         }
     }
 
@@ -1061,39 +1057,39 @@ public class Graph extends AbstractGraph implements IZoomable {
         if (x0 == x1) {
             return;
         }
-        IMultiSegmentMap<Integer, ActiveLine> map = (IMultiSegmentMap) this.activeHoriLineCache.get(Integer.valueOf(y));
+        IMultiSegmentMap<Integer, ActiveLine> map = this.activeHoriLineCache.get(y);
         if (map == null) {
             map = new MultiSegmentMap();
-            this.activeHoriLineCache.put(Integer.valueOf(y), map);
+            this.activeHoriLineCache.put(y, map);
         }
-        ActiveLine line = (ActiveLine) map.add(new ActiveLine(groupId, Math.min(x0, x1), Math.abs(x1 - x0)));
-        this.linesByGroup.put(Integer.valueOf(groupId), line);
+        ActiveLine line = map.add(new ActiveLine(groupId, Math.min(x0, x1), Math.abs(x1 - x0)));
+        this.linesByGroup.put(groupId, line);
     }
 
     void registerActiveVerticalLine(int y0, int y1, int x, int groupId) {
         if (y0 == y1) {
             return;
         }
-        IMultiSegmentMap<Integer, ActiveLine> map = (IMultiSegmentMap) this.activeVertLineCache.get(Integer.valueOf(x));
+        IMultiSegmentMap<Integer, ActiveLine> map = this.activeVertLineCache.get(x);
         if (map == null) {
             map = new MultiSegmentMap();
-            this.activeVertLineCache.put(Integer.valueOf(x), map);
+            this.activeVertLineCache.put(x, map);
         }
-        ActiveLine line = (ActiveLine) map.add(new ActiveLine(groupId, Math.min(y0, y1), Math.abs(y1 - y0)));
-        this.linesByGroup.put(Integer.valueOf(groupId), line);
+        ActiveLine line = map.add(new ActiveLine(groupId, Math.min(y0, y1), Math.abs(y1 - y0)));
+        this.linesByGroup.put(groupId, line);
     }
 
     int getActiveLineGroupId(int x, int y) {
-        IMultiSegmentMap<Integer, ActiveLine> map = (IMultiSegmentMap) this.activeHoriLineCache.get(Integer.valueOf(y));
+        IMultiSegmentMap<Integer, ActiveLine> map = this.activeHoriLineCache.get(y);
         if (map != null) {
-            ActiveLine line = (ActiveLine) map.getFirstSegmentContaining(Integer.valueOf(x));
+            ActiveLine line = map.getFirstSegmentContaining(x);
             if (line != null) {
                 return line.groupId;
             }
         }
-        map = (IMultiSegmentMap) this.activeVertLineCache.get(Integer.valueOf(x));
+        map = this.activeVertLineCache.get(x);
         if (map != null) {
-            ActiveLine line = (ActiveLine) map.getFirstSegmentContaining(Integer.valueOf(y));
+            ActiveLine line = map.getFirstSegmentContaining(y);
             if (line != null) {
                 return line.groupId;
             }
@@ -1198,10 +1194,10 @@ public class Graph extends AbstractGraph implements IZoomable {
 
     public String formatDebugInfo() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("redrawExectime: %s\n", new Object[]{Long.valueOf(this.lastRedrawExectime)}));
-        sb.append(String.format("mouseCursor: %s\n", new Object[]{this.lastMouseCursor}));
-        sb.append(String.format("horzLineCache: %s\n", new Object[]{this.horzLineCache}));
-        sb.append(String.format("vertLineCache: %s", new Object[]{this.vertLineCache}));
+        sb.append(String.format("redrawExectime: %s\n", this.lastRedrawExectime));
+        sb.append(String.format("mouseCursor: %s\n", this.lastMouseCursor));
+        sb.append(String.format("horzLineCache: %s\n", this.horzLineCache));
+        sb.append(String.format("vertLineCache: %s", this.vertLineCache));
         return sb.toString();
     }
 

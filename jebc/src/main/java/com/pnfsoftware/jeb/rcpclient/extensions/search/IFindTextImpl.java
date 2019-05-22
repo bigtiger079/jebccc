@@ -1,19 +1,19 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.search;
 
 public interface IFindTextImpl<FindTextResult extends IFindTextResult> {
-    public abstract boolean supportReverseSearch();
+    boolean supportReverseSearch();
 
-    public abstract void resetFindTextOptions();
+    void resetFindTextOptions();
 
-    public abstract void setFindTextOptions(FindTextOptions paramFindTextOptions);
+    void setFindTextOptions(FindTextOptions paramFindTextOptions);
 
-    public abstract FindTextOptions getFindTextOptions(boolean paramBoolean);
+    FindTextOptions getFindTextOptions(boolean paramBoolean);
 
-    public abstract FindTextResult findText(FindTextOptions paramFindTextOptions);
+    FindTextResult findText(FindTextOptions paramFindTextOptions);
 
-    public abstract void processFindResult(FindTextResult paramFindTextResult);
+    void processFindResult(FindTextResult paramFindTextResult);
 
-    public abstract void clearFindResult();
+    void clearFindResult();
 }
 
 

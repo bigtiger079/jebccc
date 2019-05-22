@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
@@ -13,9 +12,6 @@ import com.pnfsoftware.jeb.util.encoding.Conversion;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-
-import java.util.Map;
-
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;

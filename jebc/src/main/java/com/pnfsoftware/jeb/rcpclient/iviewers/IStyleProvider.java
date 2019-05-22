@@ -5,11 +5,11 @@ import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
 import org.eclipse.swt.graphics.Color;
 
 public interface IStyleProvider {
-    public abstract Style getStyle(ItemClassIdentifiers paramItemClassIdentifiers, boolean paramBoolean);
+    Style getStyle(ItemClassIdentifiers paramItemClassIdentifiers, boolean paramBoolean);
 
-    public abstract Style getStyle(IItem paramIItem);
+    Style getStyle(IItem paramIItem);
 
-    public abstract Color getOnCaretBackgroundColor();
+    Color getOnCaretBackgroundColor();
 }
 
 

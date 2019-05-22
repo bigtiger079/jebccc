@@ -42,9 +42,7 @@ public abstract class NativeCodeBaseHandler extends JebBaseHandler {
             if ((memAddr == -1L) || (!canExecuteAt(pbcu, memAddr))) {
                 return false;
             }
-            if ((needExistingMethod) && (pbcu.getInternalMethod(memAddr, false) == null)) {
-                return false;
-            }
+            return (!needExistingMethod) || (pbcu.getInternalMethod(memAddr, false) != null);
         }
         return true;
     }

@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.swt.graphics.Rectangle;
 
@@ -34,9 +33,9 @@ public class WidgetBoundsManager {
                 int w = Integer.parseInt(v[2]);
                 int h = Integer.parseInt(v[3]);
                 Rectangle r = new Rectangle(x, y, w, h);
-                this.map.put(Integer.valueOf(id), r);
+                this.map.put(id, r);
             } catch (Exception e) {
-                logger.debug("Invalid shell bounds entry: \"%s\"", new Object[]{elt});
+                logger.debug("Invalid shell bounds entry: \"%s\"", elt);
                 errcnt++;
             }
         }
@@ -46,27 +45,27 @@ public class WidgetBoundsManager {
     public String encode() {
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        for (Iterator localIterator = this.map.keySet().iterator(); localIterator.hasNext(); ) {
-            int widgetId = ((Integer) localIterator.next()).intValue();
+        for (Integer integer : this.map.keySet()) {
+            int widgetId = integer;
             if (i >= 1) {
                 sb.append("|");
             }
-            Rectangle r = (Rectangle) this.map.get(Integer.valueOf(widgetId));
-            sb.append(String.format("%d=%d,%d,%d,%d", new Object[]{Integer.valueOf(widgetId), Integer.valueOf(r.x), Integer.valueOf(r.y), Integer.valueOf(r.width), Integer.valueOf(r.height)}));
+            Rectangle r = this.map.get(widgetId);
+            sb.append(String.format("%d=%d,%d,%d,%d", widgetId, r.x, r.y, r.width, r.height));
             i++;
         }
         return sb.toString();
     }
 
     public Rectangle getRecordedBounds(int widgetId) {
-        return (Rectangle) this.map.get(Integer.valueOf(widgetId));
+        return this.map.get(widgetId);
     }
 
     public void setRecordedBounds(int widgetId, Rectangle bounds) {
         if (bounds == null) {
-            this.map.remove(Integer.valueOf(widgetId));
+            this.map.remove(widgetId);
         } else {
-            this.map.put(Integer.valueOf(widgetId), bounds);
+            this.map.put(widgetId, bounds);
         }
     }
 

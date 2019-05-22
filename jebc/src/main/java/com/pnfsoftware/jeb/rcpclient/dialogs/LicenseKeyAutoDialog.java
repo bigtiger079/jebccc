@@ -118,7 +118,7 @@ public class LicenseKeyAutoDialog extends JebDialog {
                     MessageDialog.openInformation(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 } else {
                     btn.setText(S.s(362));
-                    String msg = String.format("%s. Potential reasons for failure include:\n\n- This machine could be offline or blocking connections to pnfsoftware.com: Automatic Key Generation requires an active Internet connection. If that is the case, you may try Manual Key Generation.\n- You may have reached the maximum number of keys that can be generated for this license: If you need to generate new keys or deprecate old ones, email licensing@pnfsoftware.com.", new Object[]{S.s(439)});
+                    String msg = String.format("%s. Potential reasons for failure include:\n\n- This machine could be offline or blocking connections to pnfsoftware.com: Automatic Key Generation requires an active Internet connection. If that is the case, you may try Manual Key Generation.\n- You may have reached the maximum number of keys that can be generated for this license: If you need to generate new keys or deprecate old ones, email licensing@pnfsoftware.com.", S.s(439));
                     MessageDialog.openError(LicenseKeyAutoDialog.this.shell, "JEB", msg);
                 }
             }

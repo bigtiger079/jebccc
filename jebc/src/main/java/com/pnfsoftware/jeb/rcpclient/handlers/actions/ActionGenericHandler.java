@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.actions.ActionContext;
 import com.pnfsoftware.jeb.core.actions.Actions;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
@@ -8,7 +7,6 @@ import com.pnfsoftware.jeb.core.output.IActionableItem;
 import com.pnfsoftware.jeb.core.output.IItem;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.actions.ActionUIContext;
 import com.pnfsoftware.jeb.rcpclient.actions.GraphicalActionExecutor;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
@@ -56,7 +54,7 @@ public abstract class ActionGenericHandler extends JebBaseHandler {
                 if ((unit0 instanceof IInteractiveUnit)) {
                     IInteractiveUnit unit = (IInteractiveUnit) unit0;
                     IItem item = ((UnitPartManager) object).getActiveItem();
-                    long itemId = (item != null) && ((item instanceof IActionableItem)) ? ((IActionableItem) item).getItemId() : 0L;
+                    long itemId = ((item instanceof IActionableItem)) ? ((IActionableItem) item).getItemId() : 0L;
                     String address = ((UnitPartManager) object).getActiveAddress(AddressConversionPrecision.COARSE);
                     ActionContext info = new ActionContext(unit, this.actionId, itemId, address);
                     if (unit.canExecuteAction(info)) {

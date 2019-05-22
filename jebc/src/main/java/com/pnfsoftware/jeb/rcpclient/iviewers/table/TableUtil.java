@@ -21,7 +21,7 @@ public class TableUtil {
             StringBuilder csvLine = new StringBuilder();
             List<? extends ICell> cells = line.getCells();
             for (int i = 0; i < cells.size(); i++) {
-                csvLine.append(StringEscapeUtils.escapeCsv(((ICell) cells.get(i)).getLabel()));
+                csvLine.append(StringEscapeUtils.escapeCsv(cells.get(i).getLabel()));
                 if (i != cells.size() - 1) {
                     appendSeparator(csvLine);
                 }
@@ -37,10 +37,10 @@ public class TableUtil {
         StringBuilder csvLine = new StringBuilder();
         TableColumn[] columns = table.getColumns();
         TableItem[] items = table.getItems();
-        for (int i = 0; i < items.length; i++) {
+        for (TableItem item : items) {
             csvLine = new StringBuilder();
             for (int j = 0; j < columns.length; j++) {
-                csvLine.append(StringEscapeUtils.escapeCsv(items[i].getText(j)));
+                csvLine.append(StringEscapeUtils.escapeCsv(item.getText(j)));
                 if (j != columns.length - 1) {
                     appendSeparator(csvLine);
                 }

@@ -40,7 +40,7 @@ public class UITask<T> {
     }
 
     public T getResult() {
-        return (T) this.result;
+        return this.result;
     }
 
     public void run(final ITaskProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
@@ -72,8 +72,6 @@ public class UITask<T> {
                 } else {
                     this.result = t.get(this.checkTimeoutMs);
                 }
-            } catch (InterruptedException e) {
-                throw e;
             } catch (ExecutionException e) {
                 throw new InvocationTargetException(e.getCause());
             } catch (TimeoutException localTimeoutException) {

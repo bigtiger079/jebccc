@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.extensions;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
 public class ViewerRefresher extends AbstractRefresher {

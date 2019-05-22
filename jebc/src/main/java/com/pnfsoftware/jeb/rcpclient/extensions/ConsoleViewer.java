@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.core.units.AutocompletionResult;
 import com.pnfsoftware.jeb.core.units.ExecutionResult;
 import com.pnfsoftware.jeb.core.units.ICommandInterpreter;
 import com.pnfsoftware.jeb.rcpclient.dialogs.FindTextDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.search.FindTextOptions;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.GraphicalTextFinder;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.SimpleTextFindResults;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.StyledTextFindImpl;
@@ -27,7 +26,6 @@ import org.eclipse.swt.custom.VerifyKeyListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -63,7 +61,7 @@ public class ConsoleViewer extends Viewer implements IOperable {
             public void verifyKey(VerifyEvent e) {
                 int key = e.keyCode;
                 int mask = e.stateMask;
-                ConsoleViewer.logger.i("key=%Xh mask=%Xh", new Object[]{Integer.valueOf(key), Integer.valueOf(e.stateMask)});
+                ConsoleViewer.logger.i("key=%Xh mask=%Xh", key, e.stateMask);
                 if ((mask == 0) && ((key & SWT.MODIFIER_MASK) != 0)) {
                     return;
                 }
@@ -82,7 +80,7 @@ public class ConsoleViewer extends Viewer implements IOperable {
                         String s = UIUtil.getTextFromClipboard();
                         if ((s != null) && (s.length() > 0)) {
                             s = Strings.splitLines(s)[0];
-                            ConsoleViewer.logger.i("Pasting: %s", new Object[]{s});
+                            ConsoleViewer.logger.i("Pasting: %s", s);
                             ConsoleViewer.this.replaceSelection(s);
                         }
                         ConsoleViewer.this.showInputLine();
@@ -114,9 +112,9 @@ public class ConsoleViewer extends Viewer implements IOperable {
                     ConsoleViewer.this.previousKeyWasTab.set(false);
                 }
                 if ((key == 16777217) || (key == 16777218)) {
-                    String s = key == 16777217 ? (String) ConsoleViewer.this.getHistory().getPrevious() : (String) ConsoleViewer.this.getHistory().getNext();
+                    String s = key == 16777217 ? ConsoleViewer.this.getHistory().getPrevious() : ConsoleViewer.this.getHistory().getNext();
                     if (ConsoleViewer.this.getCurrentUserInput().equals(s)) {
-                        s = key == 16777217 ? (String) ConsoleViewer.this.getHistory().getPrevious() : (String) ConsoleViewer.this.getHistory().getNext();
+                        s = key == 16777217 ? ConsoleViewer.this.getHistory().getPrevious() : ConsoleViewer.this.getHistory().getNext();
                     } else if ((key == 16777218) && (s == null)) {
                         s = "";
                     }
@@ -154,7 +152,7 @@ public class ConsoleViewer extends Viewer implements IOperable {
                     e.doit = false;
                 } else if ((key == 13) || (key == 16777296)) {
                     String userInput = ConsoleViewer.this.getCurrentUserInput();
-                    ConsoleViewer.logger.i("User requested execution of command: \"%s\"", new Object[]{userInput});
+                    ConsoleViewer.logger.i("User requested execution of command: \"%s\"", userInput);
                     if ((ConsoleViewer.this.allowEmptyCommands) || (!userInput.trim().isEmpty())) {
                         ConsoleViewer.this.executeCommand(userInput);
                     }
@@ -275,13 +273,13 @@ public class ConsoleViewer extends Viewer implements IOperable {
             ExecutionResult result = this.interpreter.executeCommand(command);
             String msg = "\r";
             if (result.getCode() != 0) {
-                msg = msg + String.format("%d: ", new Object[]{Integer.valueOf(result.getCode())});
+                msg = msg + String.format("%d: ", result.getCode());
                 if (!Strings.isBlank(result.getMessage())) {
                     msg = msg + Strings.rtrim(result.getMessage());
                 } else {
                     msg = msg + "An error occurred";
                 }
-                msg = msg + String.format(" (\"%s\")", new Object[]{command});
+                msg = msg + String.format(" (\"%s\")", command);
                 msg = msg + "\r";
             } else if (result.getMessage() != null) {
                 msg = msg + Strings.rtrim(result.getMessage());
@@ -315,7 +313,7 @@ public class ConsoleViewer extends Viewer implements IOperable {
                     msg.append('\r');
                     currentLine = 0;
                 }
-                msg.append(String.format("%-" + maxSize + "s", new Object[]{tok}));
+                msg.append(String.format("%-" + maxSize + "s", tok));
                 currentLine += maxSize;
             }
             msg.append('\r');
@@ -330,7 +328,7 @@ public class ConsoleViewer extends Viewer implements IOperable {
             }
         } else {
             int from = userInput.lastIndexOf(auto.getLastSeparator()) + 1;
-            String autocompl = (String) auto.getAutocompletes().get(0);
+            String autocompl = auto.getAutocompletes().get(0);
             int fromAuto = userInput.length() - from;
             appendText(autocompl.substring(fromAuto));
         }
@@ -339,9 +337,9 @@ public class ConsoleViewer extends Viewer implements IOperable {
     }
 
     private String getCommon(List<String> autocompletes) {
-        String reference = (String) autocompletes.get(0);
+        String reference = autocompletes.get(0);
         for (int i = 1; i < autocompletes.size(); i++) {
-            String comparison = (String) autocompletes.get(i);
+            String comparison = autocompletes.get(i);
             int commonLength = getCommonLength(reference, comparison);
             if (reference.length() > commonLength) {
                 reference = reference.substring(0, commonLength);

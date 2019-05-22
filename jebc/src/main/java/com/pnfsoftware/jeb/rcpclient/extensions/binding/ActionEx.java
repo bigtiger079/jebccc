@@ -76,16 +76,16 @@ public abstract class ActionEx extends Action implements Runnable {
             return false;
         }
         int mod = keycode & SWT.MODIFIER_MASK;
-        int key = keycode & (SWT.MODIFIER_MASK ^ 0xFFFFFFFF);
+        int key = keycode & (~SWT.MODIFIER_MASK);
         keycode = mod | Character.toLowerCase(key);
-        if (this.acclist.contains(Integer.valueOf(keycode))) {
+        if (this.acclist.contains(keycode)) {
             return false;
         }
         if (this.acclist.isEmpty()) {
             String s = KeyStroke.getInstance(mod, Character.toUpperCase(key)).toString();
             setText(this.text0 + "\t" + refineAcceleratorString(s));
         }
-        this.acclist.add(Integer.valueOf(keycode));
+        this.acclist.add(keycode);
         return true;
     }
 
@@ -94,18 +94,18 @@ public abstract class ActionEx extends Action implements Runnable {
         StringBuilder sb = new StringBuilder();
         boolean upper = true;
         for (int i = 0; i < s.length(); i++) {
-            Character c = Character.valueOf(s.charAt(i));
-            if (c.charValue() == '_') {
-                c = Character.valueOf(' ');
+            Character c = s.charAt(i);
+            if (c == '_') {
+                c = ' ';
                 upper = true;
-            } else if (c.charValue() == '+') {
+            } else if (c == '+') {
                 c = null;
                 upper = true;
             } else if (upper) {
-                c = Character.valueOf(Character.toUpperCase(c.charValue()));
+                c = Character.toUpperCase(c);
                 upper = false;
             } else {
-                c = Character.valueOf(Character.toLowerCase(c.charValue()));
+                c = Character.toLowerCase(c);
             }
             if (c != null) {
                 sb.append(c);

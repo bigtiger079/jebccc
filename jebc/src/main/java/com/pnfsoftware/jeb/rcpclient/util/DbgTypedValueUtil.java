@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.util;
 
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerTargetInformation;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.ITypedValue;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.AbstractValueComposite;
@@ -13,10 +12,8 @@ import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueFloat;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueObject;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueRaw;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueString;
-import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
 import com.pnfsoftware.jeb.util.format.Formatter;
 import com.pnfsoftware.jeb.util.format.Strings;
-import com.pnfsoftware.jeb.util.io.Endianness;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -25,9 +22,9 @@ import java.nio.charset.Charset;
 public class DbgTypedValueUtil {
     public static String formatAddress(long address, IDebuggerUnit unit) {
         if (unit.getTargetInformation().getProcessorType().is64Bit()) {
-            return Strings.f("%08X'%08X", new Object[]{Integer.valueOf((int) (address >> 32)), Integer.valueOf((int) address)});
+            return Strings.f("%08X'%08X", (int) (address >> 32), (int) address);
         }
-        return Strings.f("%08X", new Object[]{Integer.valueOf((int) address)});
+        return Strings.f("%08X", (int) address);
     }
 
     public static long bytesToAddress(byte[] data, IDebuggerUnit unit) {
@@ -47,20 +44,20 @@ public class DbgTypedValueUtil {
         if (((value instanceof ValueDouble)) || ((value instanceof ValueFloat))) {
             if (index == 0) {
                 Number v = ((AbstractValueNumber) value).getValue();
-                return Strings.f("%f", new Object[]{Double.valueOf(v.doubleValue())});
+                return Strings.f("%f", v.doubleValue());
             }
         } else if ((value instanceof AbstractValueNumber)) {
             Number v = ((AbstractValueNumber) value).getValue();
             if (index == 0) {
-                return Strings.f("%d", new Object[]{Long.valueOf(v.longValue())});
+                return Strings.f("%d", v.longValue());
             }
             if (index == 1) {
-                return Strings.f("%Xh", new Object[]{Long.valueOf(v.longValue())});
+                return Strings.f("%Xh", v.longValue());
             }
         } else if ((value instanceof ValueString)) {
             if (index == 0) {
                 String v = ((ValueString) value).getValue();
-                return Strings.f("%s", new Object[]{v});
+                return Strings.f("%s", v);
             }
         } else if ((value instanceof ValueObject)) {
             if (index == 0) {
@@ -68,7 +65,7 @@ public class DbgTypedValueUtil {
                 if (objectId == 0L) {
                     return "null";
                 }
-                return Strings.f("id=%d", new Object[]{Long.valueOf(objectId)});
+                return Strings.f("id=%d", objectId);
             }
         } else if ((value instanceof ValueArray)) {
             if (index == 0) {
@@ -76,7 +73,7 @@ public class DbgTypedValueUtil {
                 if (objectId == 0L) {
                     return "null";
                 }
-                return Strings.f("id=%d", new Object[]{Long.valueOf(objectId)});
+                return Strings.f("id=%d", objectId);
             }
         } else if ((value instanceof ValueRaw)) {
             byte[] v = ((ValueRaw) value).getValue();
@@ -85,25 +82,25 @@ public class DbgTypedValueUtil {
             switch (v.length) {
                 case 1:
                     if (index == 0) {
-                        return Strings.f("%02Xh", new Object[]{Byte.valueOf(b.get())});
+                        return Strings.f("%02Xh", b.get());
                     }
                     break;
                 case 2:
                     if (index == 0) {
-                        return Strings.f("%04Xh", new Object[]{Short.valueOf(b.getShort())});
+                        return Strings.f("%04Xh", b.getShort());
                     }
                     break;
                 case 4:
                     if (index == 0) {
-                        return Strings.f("%08Xh", new Object[]{Integer.valueOf(b.getInt())});
+                        return Strings.f("%08Xh", b.getInt());
                     }
                     if (index == 1) {
-                        return getMemory(unit, b.getInt() & 0xFFFFFFFF, 4);
+                        return getMemory(unit, b.getInt(), 4);
                     }
                     break;
                 case 8:
                     if (index == 0) {
-                        return Strings.f("%016Xh", new Object[]{Long.valueOf(b.getLong())});
+                        return Strings.f("%016Xh", b.getLong());
                     }
                     if (index == 1) {
                         return getMemory(unit, b.getLong(), 8);
@@ -115,7 +112,7 @@ public class DbgTypedValueUtil {
                 case 7:
                 default:
                     if (index == 0) {
-                        return Strings.f("b'%s", new Object[]{Formatter.byteArrayToHexString(v)});
+                        return Strings.f("b'%s", Formatter.byteArrayToHexString(v));
                     }
                     break;
             }
@@ -133,9 +130,9 @@ public class DbgTypedValueUtil {
         int asciiLength = Strings.getAsciiLength(mem);
         if (asciiLength < size) {
             if (mem.length >= size) {
-                return Strings.f("%sh", new Object[]{Formatter.byteArrayToHexString(mem, 0, size)});
+                return Strings.f("%sh", Formatter.byteArrayToHexString(mem, 0, size));
             }
-            return Strings.f("b'%s", new Object[]{Formatter.byteArrayToHexString(mem)});
+            return Strings.f("b'%s", Formatter.byteArrayToHexString(mem));
         }
         return new String(mem, 0, asciiLength, Charset.defaultCharset());
     }

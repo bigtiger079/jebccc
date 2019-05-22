@@ -4,9 +4,7 @@ import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignatureDBManager;
 import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageEntry;
 import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageMetadata;
-import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
 import com.pnfsoftware.jeb.rcpclient.IGraphicalTaskExecutor;
-import com.pnfsoftware.jeb.rcpclient.IWidgetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -17,10 +15,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.DefaultCheckStateProvide
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTableViewer;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTableContentProvider;
 import com.pnfsoftware.jeb.util.collect.ArrayUtil;
-
-import java.io.File;
-import java.util.List;
-
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;

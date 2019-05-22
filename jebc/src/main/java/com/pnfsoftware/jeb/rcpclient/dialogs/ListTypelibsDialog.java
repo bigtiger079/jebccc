@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.TypeLibraryEntry;
 import com.pnfsoftware.jeb.core.units.code.asm.type.TypeLibraryMetadata;
 import com.pnfsoftware.jeb.core.units.code.asm.type.TypeLibraryService;
 import com.pnfsoftware.jeb.rcpclient.IGraphicalTaskExecutor;
-import com.pnfsoftware.jeb.rcpclient.IWidgetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
@@ -18,7 +17,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTableContentPro
 import com.pnfsoftware.jeb.util.collect.ArrayUtil;
 import com.pnfsoftware.jeb.util.format.Strings;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -79,7 +77,7 @@ public class ListTypelibsDialog extends JebDialog {
 
         public Object[] getElements(Object inputElement) {
             List<TypeLibraryEntry> r = this.tls0.getAvailables();
-            TypeLibraryEntry[] a = (TypeLibraryEntry[]) r.toArray(new TypeLibraryEntry[0]);
+            TypeLibraryEntry[] a = r.toArray(new TypeLibraryEntry[0]);
             Arrays.sort(a);
             return a;
         }

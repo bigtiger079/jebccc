@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.core.exceptions.DebuggerException;
 import com.pnfsoftware.jeb.core.exceptions.JebException;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThreadStackFrame;
@@ -17,7 +16,6 @@ import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueFloat;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueObject;
 import com.pnfsoftware.jeb.core.units.code.debug.impl.ValueRaw;
 import com.pnfsoftware.jeb.rcpclient.AssetManagerOverlay;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
@@ -26,11 +24,9 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.PatternTreeView;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.AbstractArrayGroupFilteredTreeContentProvider;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTreeViewer;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredViewerComparator;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
-import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment.FragmentType;
 import com.pnfsoftware.jeb.rcpclient.util.DbgTypedValueUtil;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IPatternMatcher;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IValueProvider;
@@ -61,7 +57,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
@@ -84,11 +79,11 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
         tree.setHeaderVisible(true);
         tree.setLinesVisible(true);
         TreeColumn[] cols = tree.getColumns();
-        TreeViewerColumn tcv1 = new TreeViewerColumn((TreeViewer) this.viewer.getViewer(), cols[1]);
+        TreeViewerColumn tcv1 = new TreeViewerColumn(this.viewer.getViewer(), cols[1]);
         tcv1.setEditingSupport(new ValueEditingSupport(this.viewer.getViewer(), 2));
-        TreeViewerColumn tcv2 = new TreeViewerColumn((TreeViewer) this.viewer.getViewer(), cols[2]);
+        TreeViewerColumn tcv2 = new TreeViewerColumn(this.viewer.getViewer(), cols[2]);
         tcv2.setEditingSupport(new ValueEditingSupport(this.viewer.getViewer(), 0));
-        TreeViewerColumn tcv3 = new TreeViewerColumn((TreeViewer) this.viewer.getViewer(), cols[3]);
+        TreeViewerColumn tcv3 = new TreeViewerColumn(this.viewer.getViewer(), cols[3]);
         tcv3.setEditingSupport(new ValueEditingSupport(this.viewer.getViewer(), 1));
         this.viewer.setContentProvider(new TreeContentProvider());
         this.viewer.setLabelProvider(labelProvider);
@@ -108,15 +103,15 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
                 public void run() {
                     if ((v.getTypedValue() instanceof ValueObject)) {
                         try {
-                            IDebuggerThread t = ((IDebuggerUnit) DbgVariablesView.this.getUnit()).getDefaultThread();
+                            IDebuggerThread t = DbgVariablesView.this.getUnit().getDefaultThread();
                             if (t != null) {
                                 long threadId = t.getId();
                                 ITypedValue result = ((ValueObject) v.getTypedValue()).invoke("toString", threadId, null);
                                 if (result != null) {
-                                    DbgVariablesView.logger.info(result.toString(), new Object[0]);
+                                    DbgVariablesView.logger.info(result.toString());
                                 }
                             } else {
-                                DbgVariablesView.logger.error("Can not call toString: no default thread", new Object[0]);
+                                DbgVariablesView.logger.error("Can not call toString: no default thread");
                             }
                         } catch (JebException e) {
                             DbgVariablesView.logger.catching(e);
@@ -141,11 +136,11 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
         if (this.targetFrame != null) {
             return this.targetFrame;
         }
-        IDebuggerThread t = ((IDebuggerUnit) getUnit()).getDefaultThread();
+        IDebuggerThread t = getUnit().getDefaultThread();
         if ((t != null) && (t.getStatus() == DebuggerThreadStatus.PAUSED)) {
             List<? extends IDebuggerThreadStackFrame> frames = t.getFrames();
             if ((frames != null) && (!frames.isEmpty())) {
-                return (IDebuggerThreadStackFrame) frames.get(0);
+                return frames.get(0);
             }
         }
         return null;
@@ -171,7 +166,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
     private String formatValue(ITypedValue value) {
         String s = null;
         if ((value instanceof AbstractValueComposite)) {
-            s = ((AbstractValueComposite) value).format();
+            s = value.format();
         } else {
             s = value.toString();
         }
@@ -200,7 +195,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
             }
             this.listener = new IEventListener() {
                 public void onEvent(IEvent e) {
-                    DbgVariablesView.logger.i("Event: %s", new Object[]{e});
+                    DbgVariablesView.logger.i("Event: %s", e);
                     if ((DbgVariablesView.TreeContentProvider.this.dbg != null) && (e.getSource() == DbgVariablesView.TreeContentProvider.this.dbg)) {
                         UIExecutor.async(viewer.getControl(), new UIRunnable() {
                             public void runi() {
@@ -217,7 +212,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
 
         public Object[] getElements(Object inputElement) {
             try {
-                if (((IDebuggerUnit) DbgVariablesView.this.unit).isAttached()) {
+                if (DbgVariablesView.this.unit.isAttached()) {
                     IDebuggerThreadStackFrame frame = DbgVariablesView.this.getTargetFrame();
                     if (frame != null) {
                         List<? extends IDebuggerVariable> variables = frame.getVariables();
@@ -358,7 +353,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
 
     private String formatCell(ITypedValue value, int index) {
         if ((index == 0) || (index == 1)) {
-            return DbgTypedValueUtil.formatValue(value, index, (IDebuggerUnit) this.unit);
+            return DbgTypedValueUtil.formatValue(value, index, this.unit);
         }
         return "";
     }
@@ -425,7 +420,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
                 }
             } else if (this.index == 2) {
                 String visuType = (String) value;
-                DbgVariablesView.logger.i("visuType= %s", new Object[]{visuType});
+                DbgVariablesView.logger.i("visuType= %s", visuType);
                 if ((!Strings.isBlank(visuType)) && (v.setTypeHint(visuType))) {
                     this.columnVviewer.refresh();
                 }
@@ -436,7 +431,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
             if (newValue == null) {
                 return null;
             }
-            if (DbgTypedValueUtil.equals(value, newValue, (IDebuggerUnit) DbgVariablesView.this.unit)) {
+            if (DbgTypedValueUtil.equals(value, newValue, DbgVariablesView.this.unit)) {
                 return null;
             }
             ITypedValue typedValue = DbgTypedValueUtil.buildValue(value, newValue);
@@ -444,7 +439,7 @@ public class DbgVariablesView extends AbstractUnitFragment<IDebuggerUnit> implem
                 return null;
             }
             if (typedValue == null) {
-                DbgVariablesView.logger.i("Illegal value for IDebuggerVariable '%s'", new Object[]{newValue});
+                DbgVariablesView.logger.i("Illegal value for IDebuggerVariable '%s'", newValue);
             }
             return typedValue;
         }

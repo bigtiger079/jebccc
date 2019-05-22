@@ -59,7 +59,7 @@ class ColLabelProvider extends CellLabelProvider implements IValueProvider {
         if (colIndex >= cells.size()) {
             return null;
         }
-        return (ICell) cells.get(colIndex);
+        return cells.get(colIndex);
     }
 
     public Style getStyle(Object element, int colIndex) {

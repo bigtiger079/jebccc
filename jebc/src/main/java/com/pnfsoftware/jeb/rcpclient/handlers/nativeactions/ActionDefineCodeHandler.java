@@ -21,7 +21,7 @@ public class ActionDefineCodeHandler extends NativeCodeBaseHandler {
         long a = getActiveMemoryAddress(this.part, pbcu);
         CodeSetupInformation info = new CodeSetupInformation(a, 0, 1);
         if (!ActionEditCodeHandler.disassemble(this.shell, pbcu, info)) {
-            logger.error("Failed to define code at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to define code at address %Xh", a);
         }
         postExecute(this.shell);
     }

@@ -155,7 +155,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
         }
 
         private int lambda$determineVisibleVertices$0(P a, P b) {
-            return -Double.compare(AbstractGlobalGraphView.this.model.getVertex(a.getId()).weight.doubleValue(), AbstractGlobalGraphView.this.model.getVertex(b.getId()).weight.doubleValue());
+            return -Double.compare(AbstractGlobalGraphView.this.model.getVertex(a.getId()).weight, AbstractGlobalGraphView.this.model.getVertex(b.getId()).weight);
         }
 
         public Collection<L> determineVisibleEdges(Collection<P> visiblePoints, Collection<L> edges) {
@@ -164,13 +164,13 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             }
             Set<Integer> visibleVertexIds = new HashSet();
             for (P p : visiblePoints) {
-                visibleVertexIds.add(Integer.valueOf(p.getId()));
+                visibleVertexIds.add(p.getId());
             }
             List<L> r = new ArrayList<>();
             for (L edge : edges) {
                 int srcId = edge.getSrcId();
                 int dstId = edge.getDstId();
-                if (visibleVertexIds.contains(Integer.valueOf(srcId)) || visibleVertexIds.contains(Integer.valueOf(dstId))) {
+                if (visibleVertexIds.contains(srcId) || visibleVertexIds.contains(dstId)) {
                     r.add(edge);
                 }
             }
@@ -178,7 +178,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
         }
 
         public void drawVertex(GC gc, P p, Point pt) {
-            double w = AbstractGlobalGraphView.this.model.getVertex(p.getId()).getWeight().doubleValue();
+            double w = AbstractGlobalGraphView.this.model.getVertex(p.getId()).getWeight();
             int r = Math.min(192, (int) ((1.0d - w) * 255.0d));
             gc.setBackground(UIAssetManager.getInstance().getColor(255, r, r));
             int pr = ((int) (28.0d * w)) + 10;
@@ -198,21 +198,13 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             P pt = getHoveredPoint();
             if (pt != null) {
                 id = pt.getId();
-                if (id == l.getSrcId() || id == l.getDstId()) {
-                    highlight = true;
-                } else {
-                    highlight = false;
-                }
+                highlight = id == l.getSrcId() || id == l.getDstId();
             }
             if (!highlight) {
                 pt = getSelectedPoint();
                 if (pt != null) {
                     id = pt.getId();
-                    if (id == l.getSrcId() || id == l.getDstId()) {
-                        highlight = true;
-                    } else {
-                        highlight = false;
-                    }
+                    highlight = id == l.getSrcId() || id == l.getDstId();
                 }
             }
             if (highlight) {
@@ -258,14 +250,14 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
         btnLockView.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
                 AbstractGlobalGraphView.this.propLockView = ((Button) e.widget).getSelection();
-                AbstractGlobalGraphView.this.context.getPropertyManager().setBoolean("graphs.LockView", Boolean.valueOf(AbstractGlobalGraphView.this.propLockView));
+                AbstractGlobalGraphView.this.context.getPropertyManager().setBoolean("graphs.LockView", AbstractGlobalGraphView.this.propLockView);
             }
         });
         btnLockView.setToolTipText("Lock the graph view, that is, do not attempt to sync the graph with the current position in the disassembly listing. Synchronization can be done manually using the " + UI.MOD1 + "+G keyboard shortcut.");
         Button btnKeepDocked = this.gp.addCheckbox("Keep Docked", this.context.getPropertyManager().getBoolean("graphs.KeepInMainDock", false));
         btnKeepDocked.addSelectionListener(new SelectionAdapter() {
             public void widgetSelected(SelectionEvent e) {
-                AbstractGlobalGraphView.this.context.getPropertyManager().setBoolean("graphs.KeepInMainDock", Boolean.valueOf(((Button) e.widget).getSelection()));
+                AbstractGlobalGraphView.this.context.getPropertyManager().setBoolean("graphs.KeepInMainDock", ((Button) e.widget).getSelection());
             }
         });
         btnKeepDocked.setToolTipText("Keep the global graphs in the main dock instead of a separate window. Will take effect when processing the next file.");
@@ -283,7 +275,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
     }
 
     public CallgraphComposite getGraph() {
-        return (CallgraphComposite) this.gp.getGraph();
+        return this.gp.getGraph();
     }
 
     public boolean setFocus() {
@@ -291,7 +283,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
     }
 
     public String getActiveAddress(AddressConversionPrecision precision) {
-        P sel = ((CallgraphComposite) this.gp.getGraph()).getSelectedPoint();
+        P sel = this.gp.getGraph().getSelectedPoint();
         if (sel == null) {
             return null;
         }
@@ -309,11 +301,11 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
                 return false;
             }
             CallgraphComposite g = getGraph();
-            g.centerGraph(vertexId.intValue(), 0, true);
-            if (!g.isVertexVisible(vertexId.intValue())) {
+            g.centerGraph(vertexId, 0, true);
+            if (!g.isVertexVisible(vertexId)) {
                 for (int i = 0; i < 20; i++) {
                     g.zoomGraph(1);
-                    if (g.isVertexVisible(vertexId.intValue())) {
+                    if (g.isVertexVisible(vertexId)) {
                         break;
                     }
                 }
@@ -322,7 +314,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             g.refreshGraph();
             return true;
         } catch (Exception e) {
-            logger.error("Cannot set active address in callgraph: %s", new Object[]{address});
+            logger.error("Cannot set active address in callgraph: %s", address);
             this.context.getErrorHandler().processThrowable(e, false, false, false, "Requested address: " + address, null, this.unit);
             return false;
         }
@@ -350,7 +342,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
         }
         switch (AnonymousClass10.$SwitchMap$com$pnfsoftware$jeb$client$api$Operation[req.getOperation().ordinal()]) {
             case 1:
-                ((CallgraphComposite) this.gp.getGraph()).reset();
+                this.gp.getGraph().reset();
                 prepare();
                 return true;
             case 3:
@@ -382,7 +374,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
             if (this.model != null && this.points != null && this.lines != null) {
                 if (this.textLocationListener == null) {
                     for (UnitPartManager pman : this.context.getPartManager().getPartManagersForUnit(this.unit)) {
-                        InteractiveTextView view = (InteractiveTextView) pman.getFragmentByType(InteractiveTextView.class);
+                        InteractiveTextView view = pman.getFragmentByType(InteractiveTextView.class);
                         if (view != null) {
                             this.textView = view;
                             break;
@@ -405,7 +397,7 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
                                     try {
                                         Thread.sleep(1000);
                                         if (!(AbstractGlobalGraphView.this.disasAddress == null || AbstractGlobalGraphView.this.disasAddressUpdateTs == 0)) {
-                                            AbstractGlobalGraphView.logger.i("Will attempt to setAddress: %s", new Object[]{AbstractGlobalGraphView.this.disasAddress});
+                                            AbstractGlobalGraphView.logger.i("Will attempt to setAddress: %s", AbstractGlobalGraphView.this.disasAddress);
                                             if (AbstractGlobalGraphView.this.disasAddress != null && System.currentTimeMillis() - AbstractGlobalGraphView.this.disasAddressUpdateTs > 1000) {
                                                 try {
                                                     AbstractGlobalGraphView.this.getDisplay().syncExec(new Runnable() {
@@ -429,10 +421,10 @@ public abstract class AbstractGlobalGraphView<T extends IUnit> extends AbstractU
                         });
                     }
                 }
-                CallgraphComposite gg = (CallgraphComposite) this.gp.getGraph();
+                CallgraphComposite gg = this.gp.getGraph();
                 gg.addGraphVertexListener(new GraphVertexAdapter() {
                     public void onVertexClicked(XYGraph gg, P p) {
-                        AbstractGlobalGraphView.logger.info("Node: %s", new Object[]{AbstractGlobalGraphView.this.model.getVertex(p.getId()).getLabel()});
+                        AbstractGlobalGraphView.logger.info("Node: %s", AbstractGlobalGraphView.this.model.getVertex(p.getId()).getLabel());
                     }
 
                     public void onVertexDoubleClicked(XYGraph graph, P p) {

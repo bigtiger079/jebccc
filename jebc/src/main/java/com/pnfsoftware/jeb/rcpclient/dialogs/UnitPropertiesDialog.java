@@ -9,7 +9,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.custom.StyledText;

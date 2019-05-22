@@ -31,7 +31,7 @@ public class CocoaUIEnhancer {
         }
 
         public int actionProc(int id, int sel, int arg0) {
-            return (int) actionProc(id, sel, arg0);
+            return actionProc(id, sel, arg0);
         }
 
         public long actionProc(long id, long sel, long arg0) {
@@ -77,7 +77,7 @@ public class CocoaUIEnhancer {
             sel_aboutMenuItemSelected_ = registerName(osCls, "aboutMenuItemSelected:");
         }
         proc3Args = new Callback(callbackObject, "actionProc", 3);
-        Method getAddress = Callback.class.getMethod("getAddress", new Class[0]);
+        Method getAddress = Callback.class.getMethod("getAddress");
         Object object = getAddress.invoke(proc3Args, (Object[]) null);
         long proc3 = convertToLong(object);
         if (proc3 == 0L) {
@@ -106,12 +106,12 @@ public class CocoaUIEnhancer {
             invoke(nsmenuitemCls, quitMenuItem, "setTitle", new Object[]{nsStr});
         }
         Object prefMenuItem = invoke(nsmenuCls, appMenu, "itemAtIndex", new Object[]{wrapPointer(2L)});
-        invoke(nsmenuitemCls, prefMenuItem, "setEnabled", new Object[]{Boolean.valueOf(true)});
+        invoke(nsmenuitemCls, prefMenuItem, "setEnabled", new Object[]{Boolean.TRUE});
         invoke(nsmenuitemCls, prefMenuItem, "setAction", new Object[]{wrapPointer(sel_preferencesMenuItemSelected_)});
         invoke(nsmenuitemCls, aboutMenuItem, "setAction", new Object[]{wrapPointer(sel_aboutMenuItemSelected_)});
     }
 
-    private long registerName(Class<?> osCls, String name) throws Exception {
+    private long registerName(Class<?> osCls, String name) {
         Object object = invoke(osCls, "sel_registerName", new Object[]{name});
         return convertToLong(object);
     }
@@ -123,7 +123,7 @@ public class CocoaUIEnhancer {
         }
         if ((object instanceof Long)) {
             Long l = (Long) object;
-            return l.longValue();
+            return l;
         }
         return 0L;
     }
@@ -131,9 +131,9 @@ public class CocoaUIEnhancer {
     private static Object wrapPointer(long value) {
         Class<?> PTR_CLASS = C.PTR_SIZEOF == 8 ? Long.TYPE : Integer.TYPE;
         if (PTR_CLASS == Long.TYPE) {
-            return new Long(value);
+            return value;
         }
-        return new Integer((int) value);
+        return (int) value;
     }
 
     private static Object invoke(Class<?> clazz, String methodName, Object[] args) {
@@ -184,7 +184,7 @@ public class CocoaUIEnhancer {
     }
 
     private Object invoke(Object obj, String methodName) {
-        return invoke(obj, methodName, (Class[]) null, (Object[]) null);
+        return invoke(obj, methodName, null, (Object[]) null);
     }
 
     private Object invoke(Object obj, String methodName, Class<?>[] paramTypes, Object... arguments) {

@@ -14,7 +14,6 @@ import com.pnfsoftware.jeb.util.net.NetProxyInfo;
 import java.io.IOException;
 import java.net.Proxy;
 import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.swt.custom.BusyIndicator;

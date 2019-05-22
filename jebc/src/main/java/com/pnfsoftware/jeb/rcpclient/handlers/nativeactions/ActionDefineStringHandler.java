@@ -19,7 +19,7 @@ public class ActionDefineStringHandler extends NativeCodeBaseHandler {
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
         long a = getActiveMemoryAddress(this.part, pbcu);
         if (!pbcu.setStringAt(a, -1L, null, -1, -1)) {
-            logger.error("Failed to define string at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to define string at address %Xh", a);
         }
         postExecute(this.shell);
     }

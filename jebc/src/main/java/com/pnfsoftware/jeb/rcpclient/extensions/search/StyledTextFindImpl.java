@@ -82,12 +82,12 @@ public class StyledTextFindImpl implements IFindTextImpl<SimpleTextFindResults> 
         }
         if (r.isEndOfSearch()) {
             Display.getCurrent().beep();
-            logger.warn("End of search", new Object[0]);
+            logger.warn("End of search");
             return;
         }
         if (r.isWrappedAround()) {
             Display.getCurrent().beep();
-            logger.warn("Search wrapped around", new Object[0]);
+            logger.warn("Search wrapped around");
         }
         if (!this.findOptions.isReverseSearch()) {
             this.widget.setSelection(r.getIndexBegin(), r.getIndexEnd());

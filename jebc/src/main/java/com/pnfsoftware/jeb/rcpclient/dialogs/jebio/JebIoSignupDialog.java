@@ -129,7 +129,7 @@ public class JebIoSignupDialog extends TitleAreaDialog {
         }
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), null);
         JebIoObjectUser user = this.context.executeNetworkTask(new Callable<JebIoObjectUser>() {
-            public JebIoObjectUser call() throws Exception {
+            public JebIoObjectUser call() {
                 try {
                     return helper.createUser(JebIoSignupDialog.this.email, JebIoSignupDialog.this.password);
                 } catch (IOException e) {

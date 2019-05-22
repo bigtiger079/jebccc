@@ -14,7 +14,6 @@ import com.pnfsoftware.jeb.core.actions.ActionReplaceData;
 import com.pnfsoftware.jeb.core.actions.ActionTypeHierarchyData;
 import com.pnfsoftware.jeb.core.actions.ActionXrefsData;
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
-import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
@@ -268,8 +267,8 @@ public class GraphicalActionExecutor {
         }
         UnitPartManager object;
         IRcpUnitFragment activeFragment;
-        for (Iterator localIterator1 = objects.iterator(); localIterator1.hasNext(); ) {
-            object = (UnitPartManager) localIterator1.next();
+        for (UnitPartManager object1 : objects) {
+            object = object1;
             activeFragment = object.getActiveFragment();
             if ((activeFragment != null) && (activeFragment.setActiveAddress(selectedAddress, null, true))) {
                 cnt++;

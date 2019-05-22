@@ -9,9 +9,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeColumn;
 
 public class WidgetWrapper {
     private static final ILogger logger = GlobalLog.getLogger(WidgetWrapper.class);
@@ -27,7 +25,7 @@ public class WidgetWrapper {
     public boolean wrap(Control ctl) {
         int id = UIUtil.getWidgetId(ctl);
         if (id == 0) {
-            logger.debug("The widget '%s' has a null id and cannot be wrapped", new Object[]{ctl});
+            logger.debug("The widget '%s' has a null id and cannot be wrapped", ctl);
             return false;
         }
         wrapInternal("" + id, ctl);
@@ -71,7 +69,7 @@ public class WidgetWrapper {
     }
 
     void restore(String fqn, IColumnWidgetManager t) {
-        logger.i("Restoring state for widget %s", new Object[]{fqn});
+        logger.i("Restoring state for widget %s", fqn);
         String encodedData = this.pp.load(fqn);
         if (encodedData != null) {
             try {
@@ -93,13 +91,13 @@ public class WidgetWrapper {
                     }
                 }
             } catch (IllegalArgumentException e) {
-                logger.trace("Invalid widget persistence data: %s", new Object[]{e});
+                logger.trace("Invalid widget persistence data: %s", e);
             }
         }
     }
 
     void record(String fqn, IColumnWidgetManager t) {
-        logger.i("Recording state for widget %s", new Object[]{fqn});
+        logger.i("Recording state for widget %s", fqn);
         int count = t.getCount();
         if (count >= 1) {
             StringBuilder sb = new StringBuilder();
@@ -110,23 +108,23 @@ public class WidgetWrapper {
                 }
                 int index = order[i];
                 int w = t.getWidth(index);
-                sb.append(String.format("%d:%d", new Object[]{Integer.valueOf(index), Integer.valueOf(w)}));
+                sb.append(String.format("%d:%d", index, w));
             }
             String encodedState = sb.toString();
             this.pp.save(fqn, encodedState);
         }
     }
 
-    static abstract interface IColumnWidgetManager {
-        public abstract int getCount();
+    interface IColumnWidgetManager {
+        int getCount();
 
-        public abstract int[] getOrder();
+        int[] getOrder();
 
-        public abstract void setOrder(int[] paramArrayOfInt);
+        void setOrder(int[] paramArrayOfInt);
 
-        public abstract int getWidth(int paramInt);
+        int getWidth(int paramInt);
 
-        public abstract void setWidth(int paramInt1, int paramInt2);
+        void setWidth(int paramInt1, int paramInt2);
     }
 
     static class TableColumnManager implements WidgetWrapper.IColumnWidgetManager {

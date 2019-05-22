@@ -40,7 +40,7 @@ public class ActionDefineDataHandler extends NativeCodeBaseHandler {
             }
         }
         if (!typeSet) {
-            logger.error("Failed to define data at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to define data at address %Xh", a);
         }
         postExecute(this.shell);
     }

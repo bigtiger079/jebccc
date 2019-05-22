@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.widgets.Tree;
 
 public class ArtifactManager implements IArtifactManager {
     private static final ILogger logger = GlobalLog.getLogger(ArtifactManager.class);
@@ -34,7 +33,7 @@ public class ArtifactManager implements IArtifactManager {
     private String getType(ILiveArtifact artifact) {
         List<IUnit> artifactUnits = artifact.getUnits();
         if ((artifactUnits != null) && (artifactUnits.size() == 1)) {
-            return ((IUnit) artifactUnits.get(0)).getFormatType();
+            return artifactUnits.get(0).getFormatType();
         }
         return null;
     }
@@ -66,7 +65,7 @@ public class ArtifactManager implements IArtifactManager {
         if (type == null) {
             return;
         }
-        IUnit unit0 = (IUnit) artifact.getUnits().get(0);
+        IUnit unit0 = artifact.getUnits().get(0);
         if ((unit0 instanceof ICodeObjectUnit)) {
             ICodeUnit child = UnitUtil.findChild(unit0, null, ICodeUnit.class, false, 0);
             if (child != null) {
@@ -103,7 +102,7 @@ public class ArtifactManager implements IArtifactManager {
         pman.create(unit, true);
     }
 
-    private List<String> directOpening = Arrays.asList(new String[]{"dex", "xml"});
+    private List<String> directOpening = Arrays.asList("dex", "xml");
 
     protected boolean isDirectOpeningFile(String type) {
         return this.directOpening.contains(type);

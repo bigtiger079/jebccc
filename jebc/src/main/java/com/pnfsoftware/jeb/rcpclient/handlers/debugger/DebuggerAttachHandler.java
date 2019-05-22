@@ -1,13 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.core.units.IUnitProcessor;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.DbgAttachDialog;
-import com.pnfsoftware.jeb.rcpclient.dialogs.DbgAttachDialog.DbgAttachInfo;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.handlers.HandlerUtil;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
@@ -54,8 +50,8 @@ public class DebuggerAttachHandler extends DebuggerBaseHandler {
             return;
         }
         boolean success = BooleanUtils.toBoolean((Boolean) this.context.executeTask("Attaching to target...", new Callable() {
-            public Boolean call() throws Exception {
-                return Boolean.valueOf(dbg.attach(result.info));
+            public Boolean call() {
+                return dbg.attach(result.info);
             }
         }));
         if (!success) {

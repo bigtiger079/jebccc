@@ -72,14 +72,14 @@ public class TreeUtil {
         }
     }
 
-    public static abstract interface TreeFormatter<T> {
-        public abstract T[] getChildren(T paramT);
+    public interface TreeFormatter<T> {
+        T[] getChildren(T paramT);
 
-        public abstract int getPropertySize();
+        int getPropertySize();
 
-        public abstract String getPropertyName(T paramT, int paramInt);
+        String getPropertyName(T paramT, int paramInt);
 
-        public abstract String getPropertyValue(T paramT, int paramInt);
+        String getPropertyValue(T paramT, int paramInt);
     }
 }
 

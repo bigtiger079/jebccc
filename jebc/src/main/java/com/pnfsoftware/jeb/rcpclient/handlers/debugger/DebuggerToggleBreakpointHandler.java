@@ -6,8 +6,6 @@ import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerBreakpoint;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.parts.UIState;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 

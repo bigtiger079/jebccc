@@ -81,7 +81,7 @@ public class ContextMenuFilter implements IContextMenu {
             if ((this.filterLabels[i] != null) && (this.valueProvider.getStringAt(element, i) != null)) {
                 boolean displayPrefix = true;
                 if ((this.displayPrefixes != null) && (i < this.displayPrefixes.length)) {
-                    displayPrefix = this.displayPrefixes[i].booleanValue();
+                    displayPrefix = this.displayPrefixes[i];
                 }
                 menuMgr.add(new FilterAction(this.filterLabels[i], i, displayPrefix));
             }

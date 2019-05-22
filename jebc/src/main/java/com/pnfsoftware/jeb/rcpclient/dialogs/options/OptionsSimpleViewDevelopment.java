@@ -7,7 +7,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.controls.EditableList;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.swt.layout.FillLayout;

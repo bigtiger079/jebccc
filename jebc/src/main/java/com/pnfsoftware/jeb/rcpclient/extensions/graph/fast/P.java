@@ -22,7 +22,7 @@ public class P implements IGraphNode {
     }
 
     public int getId() {
-        return this.id == null ? -1 : this.id.intValue();
+        return this.id == null ? -1 : this.id;
     }
 
     public void reset() {
@@ -109,9 +109,9 @@ public class P implements IGraphNode {
 
     public String toString() {
         if (this.id == null) {
-            return String.format("(%f,%f)", new Object[]{Double.valueOf(this.x), Double.valueOf(this.y)});
+            return String.format("(%f,%f)", this.x, this.y);
         }
-        return String.format("%d:(%f,%f)", new Object[]{this.id, Double.valueOf(this.x), Double.valueOf(this.y)});
+        return String.format("%d:(%f,%f)", this.id, this.x, this.y);
     }
 }
 

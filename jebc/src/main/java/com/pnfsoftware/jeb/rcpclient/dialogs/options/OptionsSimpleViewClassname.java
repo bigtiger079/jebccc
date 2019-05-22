@@ -3,14 +3,12 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.options;
 import com.pnfsoftware.jeb.core.properties.impl.CoreProperties;
 import com.pnfsoftware.jeb.core.properties.impl.DevPluginClassname;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.EditableList;
-import com.pnfsoftware.jeb.rcpclient.extensions.controls.EditableList.ICheckable;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -68,7 +66,7 @@ public class OptionsSimpleViewClassname extends OptionsSimpleViewList {
                         OptionsSimpleViewClassname.logger.error("The change was not recorded!");
                         return;
                     }
-                    DevPluginClassname classname = (DevPluginClassname) classnames.get(selected);
+                    DevPluginClassname classname = classnames.get(selected);
                     DevPluginClassname newClassname = new DevPluginClassname(classname.getClassname(), !classname.isEnabled());
                     classnames.remove(selected);
                     classnames.add(selected, newClassname);

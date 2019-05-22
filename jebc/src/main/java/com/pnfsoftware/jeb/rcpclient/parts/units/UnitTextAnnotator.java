@@ -1,16 +1,12 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
-import com.pnfsoftware.jeb.core.output.text.ITextDocument;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.ITextDocumentViewer;
-import com.pnfsoftware.jeb.rcpclient.iviewers.text.anno.AnnotationFactory;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.anno.AnnotationService;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.anno.TextAnnotation;
 import com.pnfsoftware.jeb.rcpclient.parts.UIState;
 import com.pnfsoftware.jeb.util.events.IEvent;
 import com.pnfsoftware.jeb.util.events.IEventListener;
-
-import java.util.Map;
 
 public class UnitTextAnnotator implements IEventListener {
     UIState uiState;

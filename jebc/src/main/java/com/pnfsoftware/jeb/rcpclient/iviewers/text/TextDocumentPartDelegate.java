@@ -15,7 +15,7 @@ public class TextDocumentPartDelegate implements ITextDocumentPart {
         this.part = part;
         this.lines = new ArrayList<>(part.getLines());
         for (int i = 0; i < this.lines.size(); i++) {
-            ILine line = (ILine) this.lines.get(i);
+            ILine line = this.lines.get(i);
             if (line.getText().length() > maxCharsPerLine) {
                 this.lines.remove(i);
                 this.lines.add(i, new LineDelegate(line, maxCharsPerLine, charsEndLine));

@@ -4,15 +4,15 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Control;
 
 public interface IWidgetManager {
-    public abstract void setShouldShowDialog(String paramString, boolean paramBoolean);
+    void setShouldShowDialog(String paramString, boolean paramBoolean);
 
-    public abstract boolean getShouldShowDialog(String paramString);
+    boolean getShouldShowDialog(String paramString);
 
-    public abstract void setRecordedBounds(int paramInt, Rectangle paramRectangle);
+    void setRecordedBounds(int paramInt, Rectangle paramRectangle);
 
-    public abstract Rectangle getRecordedBounds(int paramInt);
+    Rectangle getRecordedBounds(int paramInt);
 
-    public abstract void wrapWidget(Control paramControl, String paramString);
+    void wrapWidget(Control paramControl, String paramString);
 }
 
 

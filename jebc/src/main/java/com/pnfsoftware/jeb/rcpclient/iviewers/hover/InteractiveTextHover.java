@@ -57,7 +57,7 @@ public class InteractiveTextHover implements ITextHover, ITextHoverExtension, IT
                     return jic;
                 } catch (SWTError e) {
                     String advice = OSType.determine().isWindows() ? "Is a WebKit browser installed (Chrome for example)?" : "Is libwebkitgtk-1.0-0 package installed?";
-                    InteractiveTextHover.logger.warn("HoverWidget can not be loaded due to %s. %s", new Object[]{e.getMessage(), advice});
+                    InteractiveTextHover.logger.warn("HoverWidget can not be loaded due to %s. %s", e.getMessage(), advice);
                 }
                 return new DefaultInformationControl(parent, false);
             }

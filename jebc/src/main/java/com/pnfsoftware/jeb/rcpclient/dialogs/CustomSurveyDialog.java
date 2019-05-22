@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-import com.pnfsoftware.jeb.util.net.Net;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -66,7 +65,7 @@ public class CustomSurveyDialog extends TitleAreaDialog {
             return;
         }
         String r = this.context.executeNetworkTask(new Callable<String>() {
-            public String call() throws Exception {
+            public String call() {
                 try {
                     String url = "https://www.pnfsoftware.com/submitsurvey?survey=productSurvey1&licenseid=" + Licensing.license_id;
                     Map<String, String> params = new HashMap();

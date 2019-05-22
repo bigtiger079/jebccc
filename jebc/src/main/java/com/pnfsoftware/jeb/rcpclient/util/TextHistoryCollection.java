@@ -18,7 +18,7 @@ public class TextHistoryCollection implements IAsciiable {
     }
 
     public TextHistory get(String name) {
-        TextHistory r = (TextHistory) this.map.get(name);
+        TextHistory r = this.map.get(name);
         if (r == null) {
             r = new TextHistory();
             this.map.put(name, r);
@@ -34,7 +34,7 @@ public class TextHistoryCollection implements IAsciiable {
         StringBuilder sb = new StringBuilder();
         sb.append("map=");
         for (String name : this.map.keySet()) {
-            TextHistory history = (TextHistory) this.map.get(name);
+            TextHistory history = this.map.get(name);
             if (history != null) {
                 sb.append(Strings.urlencodeUTF8(name) + ":" + Strings.urlencodeUTF8(history.encode()) + ",");
             }

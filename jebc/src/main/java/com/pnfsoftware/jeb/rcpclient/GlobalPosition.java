@@ -19,7 +19,7 @@ public class GlobalPosition {
     }
 
     public IUnit getUnit() {
-        return (IUnit) this.unitRef.get();
+        return this.unitRef.get();
     }
 
     public int getPartId() {
@@ -35,7 +35,7 @@ public class GlobalPosition {
     }
 
     public String toString() {
-        return String.format("%s @ %s", new Object[]{this.unitRef.get(), this.position});
+        return String.format("%s @ %s", this.unitRef.get(), this.position);
     }
 }
 

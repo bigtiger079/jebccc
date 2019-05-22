@@ -12,7 +12,6 @@ import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.jface.fieldassist.ContentProposal;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;
 import org.eclipse.jface.fieldassist.ControlDecoration;
-import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.jface.fieldassist.IContentProposal;
 import org.eclipse.jface.fieldassist.IContentProposalProvider;
@@ -113,7 +112,7 @@ public class HistoryAssistedTextField extends Composite {
                     r.add(0, proposal);
                 }
             }
-            return (IContentProposal[]) r.toArray(new IContentProposal[r.size()]);
+            return r.toArray(new IContentProposal[0]);
         }
     }
 

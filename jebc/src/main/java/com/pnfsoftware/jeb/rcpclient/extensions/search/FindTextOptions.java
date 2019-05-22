@@ -67,7 +67,7 @@ public class FindTextOptions {
     }
 
     public String toString() {
-        return String.format("\"%s\"", new Object[]{this.searchString});
+        return String.format("\"%s\"", this.searchString);
     }
 }
 

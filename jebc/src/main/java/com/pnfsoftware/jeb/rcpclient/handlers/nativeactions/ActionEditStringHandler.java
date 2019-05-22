@@ -28,7 +28,7 @@ public class ActionEditStringHandler extends NativeCodeBaseHandler {
             return;
         }
         if (!pbcu.setStringAt(info.address, info.addressMax, info.stringType, info.minChars, info.maxChars)) {
-            logger.error("Failed to define string at address %Xh", new Object[]{Long.valueOf(info.address)});
+            logger.error("Failed to define string at address %Xh", info.address);
         }
         postExecute(this.shell);
     }

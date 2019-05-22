@@ -35,7 +35,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.ToolBar;
 
 public class JebInformationControl extends AbstractInformationControl implements IInformationControlExtension2, DisposeListener {
     private static final ILogger logger = GlobalLog.getLogger(JebInformationControl.class);

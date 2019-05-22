@@ -3,11 +3,11 @@ package com.pnfsoftware.jeb.rcpclient.parts.units.graphs;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.model.Digraph;
 
 public interface ICallgraphBuilder {
-    public abstract Digraph buildModel();
+    Digraph buildModel();
 
-    public abstract String getAddressForVertexId(int paramInt);
+    String getAddressForVertexId(int paramInt);
 
-    public abstract Integer getVertexIdForAddress(String paramString);
+    Integer getVertexIdForAddress(String paramString);
 }
 
 

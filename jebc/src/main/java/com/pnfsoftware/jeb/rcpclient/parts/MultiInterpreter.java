@@ -38,7 +38,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
         if ((index < 0) || (index >= this.interpreters.size())) {
             return;
         }
-        unregisterInterpreter((ICommandInterpreter) this.interpreters.get(index));
+        unregisterInterpreter(this.interpreters.get(index));
     }
 
     public void unregisterInterpreter(ICommandInterpreter inter) {
@@ -88,11 +88,11 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
             if (cnt == 0) {
                 sb.append("No interpreter is available at the moment.");
             } else {
-                sb.append(String.format("%d interpreter%s available", new Object[]{Integer.valueOf(cnt), cnt >= 2 ? "s" : ""}));
+                sb.append(String.format("%d interpreter%s available", cnt, cnt >= 2 ? "s" : ""));
                 i = 0;
                 for (ICommandInterpreter inter : this.interpreters) {
                     if (inter != null) {
-                        sb.append(String.format("\n- %d: %s", new Object[]{Integer.valueOf(i), inter.getName()}));
+                        sb.append(String.format("\n- %d: %s", i, inter.getName()));
                     }
                     i++;
                 }
@@ -142,7 +142,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
         if (index < 0) {
             return null;
         }
-        return (ICommandInterpreter) this.interpreters.get(index);
+        return this.interpreters.get(index);
     }
 
     void setPrimary(int index) {
@@ -164,7 +164,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
         if ((this.primary < 0) || (this.primary >= this.interpreters.size())) {
             return null;
         }
-        return (ICommandInterpreter) this.interpreters.get(this.primary);
+        return this.interpreters.get(this.primary);
     }
 
     int getInterpreterCount() {
@@ -186,7 +186,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
 
     public boolean onFocusChanged(IUnit unit) {
         for (int i = 0; i < this.interpreters.size(); i++) {
-            ICommandInterpreter interpreter = (ICommandInterpreter) this.interpreters.get(i);
+            ICommandInterpreter interpreter = this.interpreters.get(i);
             if (((interpreter instanceof IUnitInterpreter)) && (((IUnitInterpreter) interpreter).isTarget(unit))) {
                 setPrimary(i, true);
                 return true;
@@ -222,7 +222,7 @@ public class MultiInterpreter extends EventSource implements ICommandInterpreter
         if (coms.size() <= 1) {
             return new AutocompletionResult(AutocompletionResult.filterStartsWith(command, this.autocompleteTokens), lastSeparator);
         }
-        if (((String) coms.get(0)).equals("use")) {
+        if (coms.get(0).equals("use")) {
             List<String> tokens = new ArrayList<>();
             for (int i = 0; i < this.interpreters.size(); i++) {
                 tokens.add(String.valueOf(i));

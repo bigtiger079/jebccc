@@ -8,7 +8,6 @@ import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.swt.SWT;
 
@@ -27,9 +26,9 @@ public class ActionViewCommentsHandler extends JebBaseHandler {
         IInteractiveUnit unit = (IInteractiveUnit) getActiveUnit(this.part);
         List<String> addresses = new ArrayList<>(unit.getComments().keySet());
         ReferencesDialog dlg = new ReferencesDialog(this.shell, "Comments", addresses, null, unit);
-        int index = dlg.open().intValue();
+        int index = dlg.open();
         if (index >= 0) {
-            String address = (String) addresses.get(index);
+            String address = addresses.get(index);
             GraphicalActionExecutor.gotoAddress(this.context, unit, address);
         }
     }

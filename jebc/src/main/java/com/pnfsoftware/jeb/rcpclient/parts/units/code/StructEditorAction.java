@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureTypeField;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.dialogs.AdaptivePopupDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.operations.JebAction;
 
@@ -75,9 +74,9 @@ public abstract class StructEditorAction extends JebAction {
     static boolean offerClearFields(IStructureType type, int offset, int size) {
         List<IStructureTypeField> r = collectFieldsToBeUndefined(type, offset, size);
         if (r.size() > 1) {
-            String msg = String.format("This action will undefine %d fields. Proceed?", new Object[]{Integer.valueOf(r.size() - 1)});
+            String msg = String.format("This action will undefine %d fields. Proceed?", r.size() - 1);
             AdaptivePopupDialog dlg2 = new AdaptivePopupDialog(UI.getShellTracker().get(), 2, S.s(207), msg, null);
-            if (dlg2.open().intValue() == 0) {
+            if (dlg2.open() == 0) {
                 return false;
             }
         }

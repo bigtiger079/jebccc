@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
@@ -143,7 +142,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
         dst.themeManager = this.themeManager;
         dst.schemes = new HashMap(this.schemes.size());
         for (Map.Entry<String, ColorScheme> e : this.schemes.entrySet()) {
-            dst.schemes.put(e.getKey(), new ColorScheme((ColorScheme) e.getValue()));
+            dst.schemes.put(e.getKey(), new ColorScheme(e.getValue()));
         }
         return dst;
     }
@@ -152,7 +151,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
         this.themeManager = styleman.themeManager;
         this.schemes = new HashMap(styleman.schemes.size());
         for (Map.Entry<String, ColorScheme> e : styleman.schemes.entrySet()) {
-            this.schemes.put(e.getKey(), new ColorScheme((ColorScheme) e.getValue()));
+            this.schemes.put(e.getKey(), new ColorScheme(e.getValue()));
         }
         if (notify) {
             onStyleChanged();
@@ -188,11 +187,11 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
     }
 
     public List<String> getSchemeNames() {
-        return Arrays.asList(new String[]{"default", "dark"});
+        return Arrays.asList("default", "dark");
     }
 
     private ColorScheme getScheme(String name) {
-        ColorScheme themeStyles = (ColorScheme) this.schemes.get(name);
+        ColorScheme themeStyles = this.schemes.get(name);
         if (themeStyles == null) {
             themeStyles = new ColorScheme();
             this.schemes.put(name, themeStyles);
@@ -376,7 +375,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
     }
 
     public Style getNormalStyle(ColorScheme scheme, ItemClassIdentifiers classId) {
-        Style r = (Style) scheme.styles.get(classId);
+        Style r = scheme.styles.get(classId);
         if (r == null) {
             r = scheme.defstyle;
         }
@@ -384,7 +383,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
     }
 
     public Style getActiveStyle(ColorScheme scheme, ItemClassIdentifiers classId) {
-        Style r = (Style) scheme.astyles.get(classId);
+        Style r = scheme.astyles.get(classId);
         if (r == null) {
             r = scheme.defastyle;
         }
@@ -410,7 +409,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
     private void decode(String s) {
         Map<String, String> map = Strings.decodeMap(s);
         for (String themeName : map.keySet()) {
-            String themeStylesData = (String) map.get(themeName);
+            String themeStylesData = map.get(themeName);
             ColorScheme r = decodeScheme(themeStylesData);
             this.schemes.put(themeName, r);
         }
@@ -421,7 +420,7 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
         for (String item : s.split("\\|")) {
             String[] tmp = item.split("=");
             if (tmp.length != 2) {
-                logger.warn("%s: %s", new Object[]{S.s(403), Formatter.escapeString(item, true)});
+                logger.warn("%s: %s", S.s(403), Formatter.escapeString(item, true));
             } else if (tmp[0].equals("CURRENT_LINE_BGCOLOR")) {
                 themeStyles.defaultActiveLineColor = Style.parseColor(display, tmp[1]);
             } else if (tmp[0].equals("DEFAULT_FONT_COLOR")) {
@@ -433,24 +432,24 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
                 try {
                     t = ItemClassIdentifiers.valueOf(tmp[0]);
                 } catch (Exception e) {
-                    logger.warn("%s: %s", new Object[]{S.s(404), Formatter.escapeString(tmp[0], true)});
+                    logger.warn("%s: %s", S.s(404), Formatter.escapeString(tmp[0], true));
                     continue;
                 }
                 String[] data = tmp[1].split(";");
                 if (data.length != 2) {
-                    logger.warn("%s: %s", new Object[]{S.s(403), Formatter.escapeString(tmp[1], true)});
+                    logger.warn("%s: %s", S.s(403), Formatter.escapeString(tmp[1], true));
                 } else {
                     themeStyles.styles.put(t, new Style(this, data[0]));
                     themeStyles.astyles.put(t, new Style(this, data[1]));
                 }
             }
         }
-        themeStyles.defstyle = ((Style) themeStyles.styles.get(ItemClassIdentifiers.DEFAULT));
+        themeStyles.defstyle = themeStyles.styles.get(ItemClassIdentifiers.DEFAULT);
         if (themeStyles.defstyle == null) {
             themeStyles.defstyle = new Style(this, display.getSystemColor(2));
             themeStyles.styles.put(ItemClassIdentifiers.DEFAULT, themeStyles.defstyle);
         }
-        themeStyles.defastyle = ((Style) themeStyles.astyles.get(ItemClassIdentifiers.DEFAULT));
+        themeStyles.defastyle = themeStyles.astyles.get(ItemClassIdentifiers.DEFAULT);
         if (themeStyles.defastyle == null) {
             themeStyles.defastyle = new Style(this, display.getSystemColor(2));
             themeStyles.astyles.put(ItemClassIdentifiers.DEFAULT, themeStyles.defastyle);
@@ -461,13 +460,13 @@ public class StyleManager extends EventSource implements IThemeChangeListener, I
     public String encode() {
         Map<String, String> map = new LinkedHashMap();
         for (Map.Entry<String, ColorScheme> e : this.schemes.entrySet()) {
-            ColorScheme themeStyles = (ColorScheme) e.getValue();
+            ColorScheme themeStyles = e.getValue();
             StringBuilder sb = new StringBuilder();
-            sb.append(String.format("CURRENT_LINE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveLineColor)}));
-            sb.append(String.format("DEFAULT_FONT_COLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultFontColor)}));
-            sb.append(String.format("DEFAULT_ACTIVE_BGCOLOR=%s|", new Object[]{Style.colorToString(themeStyles.defaultActiveBgcolor)}));
+            sb.append(String.format("CURRENT_LINE_BGCOLOR=%s|", Style.colorToString(themeStyles.defaultActiveLineColor)));
+            sb.append(String.format("DEFAULT_FONT_COLOR=%s|", Style.colorToString(themeStyles.defaultFontColor)));
+            sb.append(String.format("DEFAULT_ACTIVE_BGCOLOR=%s|", Style.colorToString(themeStyles.defaultActiveBgcolor)));
             for (ItemClassIdentifiers t : ItemClassIdentifiers.values()) {
-                sb.append(String.format("%s=%s;%s|", new Object[]{t, getNormalStyle(themeStyles, t), getActiveStyle(themeStyles, t)}));
+                sb.append(String.format("%s=%s;%s|", t, getNormalStyle(themeStyles, t), getActiveStyle(themeStyles, t)));
             }
             map.put(e.getKey(), sb.toString());
         }

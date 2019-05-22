@@ -20,7 +20,7 @@ public class RcpClientProperties {
     }
 
     public boolean allowInternalCommands() {
-        return (Licensing.isDebugBuild()) || (BooleanUtils.toBoolean(Boolean.valueOf(this.pm.getBoolean(".ui.AllowInternalCommands"))));
+        return (Licensing.isDebugBuild()) || (BooleanUtils.toBoolean(this.pm.getBoolean(".ui.AllowInternalCommands")));
     }
 
     public int getLoggerMaxLength() {
@@ -130,7 +130,7 @@ public class RcpClientProperties {
     }
 
     public void setProjectUnitSync(boolean enabled) {
-        this.pm.setBoolean(".ui.ProjectUnitSync", Boolean.valueOf(enabled));
+        this.pm.setBoolean(".ui.ProjectUnitSync", enabled);
     }
 
     public boolean getConsolePartSync() {
@@ -138,7 +138,7 @@ public class RcpClientProperties {
     }
 
     public void setConsolePartSync(boolean enabled) {
-        this.pm.setBoolean(".ui.ConsolePartSync", Boolean.valueOf(enabled));
+        this.pm.setBoolean(".ui.ConsolePartSync", enabled);
     }
 
     public boolean getDoNotReplaceViews() {
@@ -146,7 +146,7 @@ public class RcpClientProperties {
     }
 
     public void setDoNotReplaceViews(boolean enabled) {
-        this.pm.setBoolean(".ui.DoNotReplaceViews", Boolean.valueOf(enabled));
+        this.pm.setBoolean(".ui.DoNotReplaceViews", enabled);
     }
 
     public boolean getOptionsDialogAdvancedMode() {
@@ -154,7 +154,7 @@ public class RcpClientProperties {
     }
 
     public void setOptionsDialogAdvancedMode(boolean enabled) {
-        this.pm.setBoolean(".ui.OptionsDialogAdvancedMode", Boolean.valueOf(enabled));
+        this.pm.setBoolean(".ui.OptionsDialogAdvancedMode", enabled);
     }
 
     public boolean shouldAutoOpenDefaultUnit() {

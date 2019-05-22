@@ -41,7 +41,7 @@ public class CoreListener implements IEventListener {
             if (Strings.isBlank(message)) {
                 message = "Unknown status message";
             }
-            String text = String.format("%s:\n\n%s", new Object[]{S.s(309), message});
+            String text = String.format("%s:\n\n%s", S.s(309), message);
             UI.error(text);
         } else if (type == J.Notification) {
             if (!(e.getData() instanceof ClientNotification)) {

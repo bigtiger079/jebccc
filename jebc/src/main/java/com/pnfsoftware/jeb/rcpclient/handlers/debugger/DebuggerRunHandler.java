@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 
 public class DebuggerRunHandler extends DebuggerBaseHandler {
     public DebuggerRunHandler() {

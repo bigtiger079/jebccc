@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.type.CodeConstant;
-import com.pnfsoftware.jeb.core.units.code.asm.type.CodeConstantManager;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeLibrary;
 import com.pnfsoftware.jeb.core.units.code.asm.type.TypeLibraryService;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
@@ -28,7 +27,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 public class NamedConstantsView extends AbstractFilteredTableView<INativeCodeUnit<?>, CodeConstant> {
     private static final ILogger logger = GlobalLog.getLogger(NativeTypesView.class);

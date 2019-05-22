@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 import com.pnfsoftware.jeb.core.input.IInputLocation;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
-import com.pnfsoftware.jeb.core.output.text.ITextDocument;
 import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.output.text.impl.HexDumpDocument;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
@@ -41,12 +40,11 @@ public class TextDocumentLocationGenerator {
             if (a != -1L) {
                 String ss = pbcu.getSymbolicStringAddress(a, 2);
                 if (ss != null) {
-                    address2 = String.format(" (%s)", new Object[]{ss});
+                    address2 = String.format(" (%s)", ss);
                 }
             }
         }
-        String statusText = String.format("coord: %s | addr: %s%s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), address2, Strings.safe(location, "?")});
-        return statusText;
+        return String.format("coord: %s | addr: %s%s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), address2, Strings.safe(location, "?")});
     }
 
     public String getAddress(ICoordinates coord) {

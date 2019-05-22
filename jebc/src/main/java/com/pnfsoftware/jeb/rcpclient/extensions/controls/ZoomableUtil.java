@@ -12,13 +12,7 @@ public abstract class ZoomableUtil {
     }
 
     public static int sanitizeZoom(int zoom) {
-        if (zoom < 0) {
-            return -1;
-        }
-        if (zoom > 0) {
-            return 1;
-        }
-        return 0;
+        return Integer.compare(zoom, 0);
     }
 }
 

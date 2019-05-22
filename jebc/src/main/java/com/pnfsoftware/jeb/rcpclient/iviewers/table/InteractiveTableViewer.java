@@ -56,7 +56,7 @@ public class InteractiveTableViewer implements IOperable, IContextMenu {
         if (columnLabels.isEmpty()) {
             throw new RuntimeException("The table contains 0 column");
         }
-        String[] columnNames = (String[]) columnLabels.toArray(new String[columnLabels.size()]);
+        String[] columnNames = columnLabels.toArray(new String[columnLabels.size()]);
         this.provider = new ContentProvider();
         this.labelProvider = new ColLabelProvider(this);
         IPatternMatcher patternMatcher = new TablePatternMatcher(this.provider, this.labelProvider);
@@ -168,7 +168,7 @@ public class InteractiveTableViewer implements IOperable, IContextMenu {
         if ((rowIndex < 0) || (rowIndex >= this.idoc.getRowCount())) {
             return false;
         }
-        ITableRow row = (ITableRow) this.idoc.getTable().getRows().get(rowIndex);
+        ITableRow row = this.idoc.getTable().getRows().get(rowIndex);
         this.viewer.setSelection(new StructuredSelection(row), true);
         return true;
     }

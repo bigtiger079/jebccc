@@ -23,7 +23,7 @@ public class InputField extends Composite implements ITextControl {
             try {
                 gc.setFont(this.textbox.getFont());
                 FontMetrics fm = gc.getFontMetrics();
-                GridData data = new GridData(wantedLength * fm.getAverageCharWidth(), 1 * fm.getHeight());
+                GridData data = new GridData(wantedLength * fm.getAverageCharWidth(), fm.getHeight());
                 this.textbox.setLayoutData(data);
             } finally {
                 gc.dispose();

@@ -29,7 +29,7 @@ public abstract class Theme {
     }
 
     public String toString() {
-        return String.format("Theme{%s}", new Object[]{this.id});
+        return String.format("Theme{%s}", this.id);
     }
 }
 

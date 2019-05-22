@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeInstructionItem;
-import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
 import com.pnfsoftware.jeb.core.units.code.asm.processor.ProcessorException;
 import com.pnfsoftware.jeb.rcpclient.dialogs.AdaptivePopupDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.CodeSetupInformation;
@@ -38,7 +37,7 @@ public class ActionEditCodeHandler extends NativeCodeBaseHandler {
             return;
         }
         if (!disassemble(this.shell, pbcu, info)) {
-            logger.error("Failed to define code at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to define code at address %Xh", a);
         }
         postExecute(this.shell);
     }
@@ -67,7 +66,7 @@ public class ActionEditCodeHandler extends NativeCodeBaseHandler {
                 }
                 if (override) {
                     AdaptivePopupDialog dlg = new AdaptivePopupDialog(shell, 2, S.s(207), "Undefine existing items to create an instruction item?", null);
-                    if (dlg.open().intValue() == 1) {
+                    if (dlg.open() == 1) {
                         r = pbcu.setCodeAt(address, info.getProcessorMode(), true);
                     }
                 }
@@ -76,8 +75,8 @@ public class ActionEditCodeHandler extends NativeCodeBaseHandler {
                 break;
             }
             INativeContinuousItem item = pbcu.getNativeItemAt(address);
-            if ((item == null) || (!(item instanceof INativeInstructionItem))) {
-                logger.error("Expected an instruction item at address %Xh, instead got: %s", new Object[]{Long.valueOf(address), item});
+            if ((!(item instanceof INativeInstructionItem))) {
+                logger.error("Expected an instruction item at address %Xh, instead got: %s", address, item);
                 break;
             }
             address += item.getMemorySize();

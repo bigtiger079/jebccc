@@ -234,7 +234,7 @@ public class JebIoLoginDialog extends TitleAreaDialog {
     JebIoObjectUser getUser(String email, String password) {
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), new UserCredentials(email, password, ""));
         JebIoObjectUser user = this.context.executeNetworkTask(new Callable<JebIoObjectUser>() {
-            public JebIoObjectUser call() throws Exception {
+            public JebIoObjectUser call() {
                 try {
                     return helper.getUser();
                 } catch (IOException e) {

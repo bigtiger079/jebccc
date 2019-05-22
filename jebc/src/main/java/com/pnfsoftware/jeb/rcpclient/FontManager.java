@@ -143,7 +143,7 @@ public class FontManager extends EventSource {
             }
             for (String preferredName : preferredNames) {
                 if (fontmap.containsKey(preferredName)) {
-                    FontData fd = (FontData) fontmap.get(preferredName);
+                    FontData fd = fontmap.get(preferredName);
                     fd.setHeight(8);
                     newCodeFont = new Font(this.display, fd);
                     break;

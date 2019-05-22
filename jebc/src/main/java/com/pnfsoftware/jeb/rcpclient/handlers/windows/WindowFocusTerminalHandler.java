@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import org.eclipse.swt.SWT;
 
 public class WindowFocusTerminalHandler extends JebBaseHandler {

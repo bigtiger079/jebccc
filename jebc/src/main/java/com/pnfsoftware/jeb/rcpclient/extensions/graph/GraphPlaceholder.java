@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -172,7 +171,7 @@ public abstract class GraphPlaceholder<G extends AbstractGraph> extends Composit
                 if ((index < 0) || (index >= GraphPlaceholder.this.graph.getSupportedModes().size())) {
                     return;
                 }
-                GraphPlaceholder.this.graph.setMode((GraphMode) GraphPlaceholder.this.graph.getSupportedModes().get(index));
+                GraphPlaceholder.this.graph.setMode(GraphPlaceholder.this.graph.getSupportedModes().get(index));
             }
         });
     }

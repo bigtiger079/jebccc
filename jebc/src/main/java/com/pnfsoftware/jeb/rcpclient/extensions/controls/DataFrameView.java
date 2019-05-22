@@ -12,20 +12,15 @@ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.TablePatternMatcher;
 import com.pnfsoftware.jeb.rcpclient.iviewers.table.TableUtil;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
-import com.pnfsoftware.jeb.rcpclient.util.DataFrame.Row;
 import com.pnfsoftware.jeb.rcpclient.util.regex.ILabelValueProvider;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IPatternMatcher;
 import com.pnfsoftware.jeb.rcpclient.util.regex.PatternFilter;
 import com.pnfsoftware.jeb.util.base.Assert;
-
-import java.util.List;
-
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
 public class DataFrameView extends FilteredTableView {
@@ -38,10 +33,10 @@ public class DataFrameView extends FilteredTableView {
     private DataFrameLabelProvider labelProvider;
 
     public DataFrameView(Composite parent, DataFrame df, boolean displayIndex) {
-        super(parent, 898, (String[]) df.getColumnLabels().toArray(new String[df.getColumnLabels().size()]), null, displayIndex);
+        super(parent, 898, df.getColumnLabels().toArray(new String[0]), null, displayIndex);
         this.df = df;
         this.displayIndex = displayIndex;
-        String[] titleColumns = (String[]) df.getColumnLabels().toArray(new String[df.getColumnLabels().size()]);
+        String[] titleColumns = df.getColumnLabels().toArray(new String[0]);
         this.provider = new DataFrameContentProvider();
         this.labelProvider = new DataFrameLabelProvider(this.provider);
         IPatternMatcher patternMatcher = new TablePatternMatcher(this.provider, this.labelProvider);
@@ -148,7 +143,7 @@ public class DataFrameView extends FilteredTableView {
             Object[] rowElements = r.elements.toArray();
             if (DataFrameView.this.displayIndex) {
                 Object[] rowElementsWithIndex = new Object[rowElements.length + 1];
-                rowElementsWithIndex[0] = Integer.valueOf(r.index);
+                rowElementsWithIndex[0] = r.index;
                 System.arraycopy(rowElements, 0, rowElementsWithIndex, 1, rowElements.length);
                 return rowElementsWithIndex;
             }

@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.IEnginesPlugin;
 import com.pnfsoftware.jeb.core.IOptionDefinition;
@@ -49,7 +48,7 @@ public class FileEnginesExecutepluginHandler extends JebBaseHandler {
         }
         IPluginInformation pinfo = plugin.getPluginInformation();
         String pname = Strings.safe2(pinfo == null ? null : pinfo.getName(), plugin.getClass().getName());
-        String taskName = String.format("%s: \"%s\"...", new Object[]{S.s(316), pname});
+        String taskName = String.format("%s: \"%s\"...", S.s(316), pname);
         context.getTelemetry().record("handlerExecuteEnginesPlugin");
         context.executeTask(taskName, new Runnable() {
             public void run() {

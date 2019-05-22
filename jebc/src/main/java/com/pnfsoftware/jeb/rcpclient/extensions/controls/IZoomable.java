@@ -1,9 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.controls;
 
 public interface IZoomable {
-    public abstract int getZoomLevel();
+    int getZoomLevel();
 
-    public abstract boolean applyZoom(int paramInt, boolean paramBoolean);
+    boolean applyZoom(int paramInt, boolean paramBoolean);
 }
 
 

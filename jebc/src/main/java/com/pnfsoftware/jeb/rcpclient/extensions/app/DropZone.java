@@ -16,7 +16,7 @@ class DropZone {
     }
 
     public String toString() {
-        return String.format("Target=%s(%d)", new Object[]{this.ctl, Integer.valueOf(this.index)});
+        return String.format("Target=%s(%d)", this.ctl, this.index);
     }
 }
 

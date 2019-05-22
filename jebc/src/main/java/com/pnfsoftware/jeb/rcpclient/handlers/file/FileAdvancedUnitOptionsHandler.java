@@ -27,7 +27,7 @@ public class FileAdvancedUnitOptionsHandler extends JebBaseHandler {
         if ((unit instanceof INativeSourceUnit)) {
             INativeSourceUnit src = (INativeSourceUnit) unit;
             DecompDynamicOptionsDialog dlg = new DecompDynamicOptionsDialog(this.shell, src, address);
-            boolean optionsChanged = dlg.open().booleanValue();
+            boolean optionsChanged = dlg.open();
             if (optionsChanged) {
                 INativeDecompilerUnit<?> decompiler = src.getDecompiler();
                 decompiler.resetDecompilation(address, false);

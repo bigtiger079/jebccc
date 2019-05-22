@@ -38,22 +38,22 @@ public class Spreadsheet<T> {
 
     public void verify() {
         if (this.grid.size() != getRowCount()) {
-            throw new RuntimeException(String.format("Expected %d rows, got %d", new Object[]{Integer.valueOf(getRowCount()), Integer.valueOf(this.grid.size())}));
+            throw new RuntimeException(String.format("Expected %d rows, got %d", getRowCount(), this.grid.size()));
         }
         for (int row = 0; row < getRowCount(); row++) {
-            List<Cell<T>> cellrow = (List) this.grid.get(row);
+            List<Cell<T>> cellrow = this.grid.get(row);
             if ((cellrow != null) && (cellrow.size() != getColumnCount())) {
-                throw new RuntimeException(String.format("Row %d: Expected %d columns, got %d", new Object[]{Integer.valueOf(row), Integer.valueOf(getColumnCount()), Integer.valueOf(cellrow.size())}));
+                throw new RuntimeException(String.format("Row %d: Expected %d columns, got %d", row, getColumnCount(), cellrow.size()));
             }
         }
         for (int row = 0; row < getRowCount(); row++) {
-            List<Cell<T>> cellrow = (List) this.grid.get(row);
+            List<Cell<T>> cellrow = this.grid.get(row);
             if (cellrow != null) {
                 for (int col = 0; col < getColumnCount(); col++) {
-                    Cell<T> cell = (Cell) cellrow.get(col);
+                    Cell<T> cell = cellrow.get(col);
                     if ((cell != null) && (cell.isPartOfMergedCell())) {
                         if ((cell.getRow() != row) || (cell.getColumn() != col)) {
-                            throw new RuntimeException(String.format("Inconsistent cell coordinates: expected (%d,%d), got (%d,%d)", new Object[]{Integer.valueOf(row), Integer.valueOf(col), Integer.valueOf(cell.getRow()), Integer.valueOf(cell.getColumn())}));
+                            throw new RuntimeException(String.format("Inconsistent cell coordinates: expected (%d,%d), got (%d,%d)", row, col, cell.getRow(), cell.getColumn()));
                         }
                         if ((cell.horiMergerDisp > 0) && (cell.horiMergerDisp < 0)) {
                             throw new RuntimeException();
@@ -68,13 +68,13 @@ public class Spreadsheet<T> {
                                     if (i++ != 0) {
                                         Cell<T> slave = getCellInternal(row2, col2);
                                         if (slave == null) {
-                                            throw new RuntimeException(String.format("%d,%d: Expected slave cell, got null", new Object[]{Integer.valueOf(row2), Integer.valueOf(col2)}));
+                                            throw new RuntimeException(String.format("%d,%d: Expected slave cell, got null", row2, col2));
                                         }
                                         if (row2 + slave.vertMergerDisp != row) {
-                                            throw new RuntimeException(String.format("%d,%d: Bad slave vertical displacement", new Object[]{Integer.valueOf(row2), Integer.valueOf(col2)}));
+                                            throw new RuntimeException(String.format("%d,%d: Bad slave vertical displacement", row2, col2));
                                         }
                                         if (col2 + slave.horiMergerDisp != col) {
-                                            throw new RuntimeException(String.format("%d,%d: Bad slave horizontal displacement", new Object[]{Integer.valueOf(row2), Integer.valueOf(col2)}));
+                                            throw new RuntimeException(String.format("%d,%d: Bad slave horizontal displacement", row2, col2));
                                         }
                                     }
                                 }
@@ -84,7 +84,7 @@ public class Spreadsheet<T> {
                             int col2 = col + cell.horiMergerDisp;
                             Cell<T> master = getCellInternal(row2, col2);
                             if ((master == null) || (!master.isPrimary()) || (!master.isPartOfMergedCell())) {
-                                throw new RuntimeException(String.format("%d,%d: slave does not reference a master cell", new Object[]{Integer.valueOf(row), Integer.valueOf(col)}));
+                                throw new RuntimeException(String.format("%d,%d: slave does not reference a master cell", row, col));
                             }
                         }
                     }
@@ -96,10 +96,10 @@ public class Spreadsheet<T> {
     public int clearNullCells(boolean includeNullMergers) {
         int cnt = 0;
         for (int row = 0; row < getRowCount(); row++) {
-            List<Cell<T>> cellrow = (List) this.grid.get(row);
+            List<Cell<T>> cellrow = this.grid.get(row);
             if (cellrow != null) {
                 for (int col = 0; col < getColumnCount(); col++) {
-                    Cell<T> cell = (Cell) cellrow.get(col);
+                    Cell<T> cell = cellrow.get(col);
                     if ((cell != null) && (cell.getObject() == null)) {
                         if ((includeNullMergers) || (!cell.isPartOfMergedCell())) {
                             for (int row2 = row; row2 <= row + cell.vertMergerDisp; row2++)
@@ -118,12 +118,12 @@ public class Spreadsheet<T> {
     public int findNullRow(int rowStart, boolean includeNullMergers) {
         label112:
         for (int row = rowStart; row < getRowCount(); row++) {
-            List<Cell<T>> cellrow = (List) this.grid.get(row);
+            List<Cell<T>> cellrow = this.grid.get(row);
             if (cellrow == null) {
                 return row;
             }
             for (int col = 0; col < getColumnCount(); col++) {
-                Cell<T> cell = (Cell) cellrow.get(col);
+                Cell<T> cell = cellrow.get(col);
                 if (cell != null) {
                     if (cell.getObject() != null) {
                         break label112;
@@ -158,13 +158,13 @@ public class Spreadsheet<T> {
     }
 
     public void removeRow(int row) {
-        List<Cell<T>> cells = (List) this.grid.get(row);
+        List<Cell<T>> cells = this.grid.get(row);
         if (cells == null) {
             this.grid.remove(row);
             return;
         }
         for (int col = 0; col < getColumnCount(); col++) {
-            Cell<T> cell = (Cell) cells.get(col);
+            Cell<T> cell = cells.get(col);
             if (cell == null) {
                 cells.remove(col);
             } else {
@@ -178,9 +178,9 @@ public class Spreadsheet<T> {
 
     public void removeColumn(int col) {
         for (int row = 0; row < getRowCount(); row++) {
-            List<Cell<T>> cells = (List) this.grid.get(row);
+            List<Cell<T>> cells = this.grid.get(row);
             if (cells != null) {
-                Cell<T> cell = (Cell) cells.get(col);
+                Cell<T> cell = cells.get(col);
                 if (cell == null) {
                     cells.remove(col);
                 } else {
@@ -218,7 +218,7 @@ public class Spreadsheet<T> {
         while (row >= this.grid.size()) {
             this.grid.add(null);
         }
-        List<Cell<T>> cells = (List) this.grid.get(row);
+        List<Cell<T>> cells = this.grid.get(row);
         if (cells == null) {
             cells = new ArrayList<>();
             this.grid.set(row, cells);
@@ -229,7 +229,7 @@ public class Spreadsheet<T> {
         while (col >= cells.size()) {
             cells.add(null);
         }
-        Cell<T> cell = (Cell) cells.get(col);
+        Cell<T> cell = cells.get(col);
         if (cell == null) {
             cell = new Cell(row, col);
             cells.set(col, cell);
@@ -247,7 +247,7 @@ public class Spreadsheet<T> {
             cell = mergeCells(row, col, hspan, vspan);
         }
         if ((failOnOverwrite) && (cell.obj != null)) {
-            throw new RuntimeException(String.format("Cell: Cannot overwrite '%s' by '%s'", new Object[]{cell.obj, object}));
+            throw new RuntimeException(String.format("Cell: Cannot overwrite '%s' by '%s'", cell.obj, object));
         }
         cell.obj = object;
         return cell;
@@ -260,14 +260,14 @@ public class Spreadsheet<T> {
         if (row >= this.grid.size()) {
             return null;
         }
-        List<Cell<T>> cells = (List) this.grid.get(row);
+        List<Cell<T>> cells = this.grid.get(row);
         if (cells == null) {
             return null;
         }
         if (col >= cells.size()) {
             return null;
         }
-        return (Cell) cells.get(col);
+        return cells.get(col);
     }
 
     public Cell<T> getCellSmart(int row, int col, boolean adjustCoordinatesForMergedCells) {
@@ -289,7 +289,7 @@ public class Spreadsheet<T> {
                 cell = writeCell(row, col, null);
             }
         } else if (!cell.isPrimary()) {
-            throw new IllegalArgumentException(String.format("The cell at (%d,%d) is not a primary cell", new Object[]{Integer.valueOf(row), Integer.valueOf(col)}));
+            throw new IllegalArgumentException(String.format("The cell at (%d,%d) is not a primary cell", row, col));
         }
         return cell;
     }
@@ -375,9 +375,9 @@ public class Spreadsheet<T> {
             if (cell.horiMergerDisp > 0) {
                 int i = 0;
                 for (int row = targetrow; row <= targetrow + cell.vertMergerDisp; row++) {
-                    cells = (List) this.grid.get(row);
+                    cells = this.grid.get(row);
                     for (int col = targetcol + 1; col <= targetcol + cell.horiMergerDisp; col++) {
-                        Cell<T> cell2 = (Cell) cells.get(col);
+                        Cell<T> cell2 = cells.get(col);
                         if (i++ == 0) {
                             cell.horiMergerDisp -= 1;
                             cell2.vertMergerDisp = cell.vertMergerDisp;
@@ -398,7 +398,7 @@ public class Spreadsheet<T> {
                         int base = 0;
                         if (row != targetrow) {
                             for (int col = targetcol; col >= 0; col--) {
-                                Cell<T> c = (Cell) cellrow.get(col);
+                                Cell<T> c = cellrow.get(col);
                                 if (c == null) {
                                     c = new Cell(row, col);
                                     cellrow.set(col, c);
@@ -419,7 +419,7 @@ public class Spreadsheet<T> {
                         }
                         boolean mergerUpdate = true;
                         for (int col = inscol + 1; col < cellrow.size(); col++) {
-                            Cell<T> c = (Cell) cellrow.get(col);
+                            Cell<T> c = cellrow.get(col);
                             if (c == null) {
                                 c = new Cell(row, col);
                                 cellrow.set(col, c);
@@ -478,10 +478,10 @@ public class Spreadsheet<T> {
     }
 
     private void getRealCellsOnRow(int row, List<Cell<T>> sink) {
-        List<Cell<T>> cells = (List) this.grid.get(row);
+        List<Cell<T>> cells = this.grid.get(row);
         if (cells != null) {
-            for (int col = 0; col < cells.size(); col++) {
-                Cell<T> cell = (Cell) cells.get(col);
+            for (Cell<T> cell1 : cells) {
+                Cell<T> cell = (Cell) cell1;
                 if ((cell != null) && (cell.obj != null) && (cell.horiMergerDisp >= 0) && (cell.vertMergerDisp >= 0)) {
                     sink.add(cell);
                 }
@@ -534,17 +534,17 @@ public class Spreadsheet<T> {
         }
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row <= this.lastRowIndex; row++) {
-            List<Cell<T>> rowcells = (List) this.grid.get(row);
+            List<Cell<T>> rowcells = this.grid.get(row);
             int col = 0;
             if (rowcells != null) {
                 for (; col < rowcells.size(); col++) {
-                    Cell<T> cell = (Cell) rowcells.get(col);
+                    Cell<T> cell = rowcells.get(col);
                     if (cell != null) {
                         if (cell.horiMergerDisp > 0) {
                             sb.append("x");
                         } else if (cell.horiMergerDisp < 0) {
                             sb.append("=x");
-                            if ((col + 1 > this.lastColumnIndex) || (rowcells.get(col + 1) == null) || (((Cell) rowcells.get(col + 1)).horiMergerDisp >= 0)) {
+                            if ((col + 1 > this.lastColumnIndex) || (rowcells.get(col + 1) == null) || (rowcells.get(col + 1).horiMergerDisp >= 0)) {
                                 sb.append(" ");
                             }
                         } else {

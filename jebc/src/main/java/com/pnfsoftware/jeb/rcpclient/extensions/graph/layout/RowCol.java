@@ -31,12 +31,11 @@ public class RowCol {
         if (getClass() != obj.getClass()) return false;
         RowCol other = (RowCol) obj;
         if (this.col != other.col) return false;
-        if (this.row != other.row) return false;
-        return true;
+        return this.row == other.row;
     }
 
     public String toString() {
-        return String.format("[%d,%d]", new Object[]{Integer.valueOf(this.row), Integer.valueOf(this.col)});
+        return String.format("[%d,%d]", this.row, this.col);
     }
 }
 

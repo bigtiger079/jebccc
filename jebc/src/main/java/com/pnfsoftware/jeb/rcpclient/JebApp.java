@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient;
 
 import com.pnfsoftware.jeb.client.AbstractContext;
-import com.pnfsoftware.jeb.core.Version;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.App;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Dock;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Folder;

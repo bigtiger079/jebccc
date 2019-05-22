@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.output.tree.ICodeNode;
-import com.pnfsoftware.jeb.core.units.code.ICodeItem;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;

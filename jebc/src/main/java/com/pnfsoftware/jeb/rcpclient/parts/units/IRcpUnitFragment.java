@@ -8,27 +8,27 @@ import com.pnfsoftware.jeb.rcpclient.parts.IViewNavigator;
 import org.eclipse.swt.widgets.Control;
 
 public interface IRcpUnitFragment extends IOperable, IUnitFragment {
-    public abstract void setViewNavigatorHelper(IViewNavigator paramIViewNavigator);
+    void setViewNavigatorHelper(IViewNavigator paramIViewNavigator);
 
-    public abstract IViewNavigator getViewNavigatorHelper();
+    IViewNavigator getViewNavigatorHelper();
 
-    public abstract Control getFragmentControl();
+    Control getFragmentControl();
 
-    public abstract IStatusIndicator getStatusIndicator();
+    IStatusIndicator getStatusIndicator();
 
-    public abstract IViewManager getViewManager();
+    IViewManager getViewManager();
 
-    public abstract boolean setActiveAddress(String paramString, Object paramObject, boolean paramBoolean);
+    boolean setActiveAddress(String paramString, Object paramObject, boolean paramBoolean);
 
-    public abstract Position getActivePosition();
+    Position getActivePosition();
 
-    public abstract String getComment();
+    String getComment();
 
-    public abstract boolean isDefaultFragment();
+    boolean isDefaultFragment();
 
-    public abstract int getFocusPriority();
+    int getFocusPriority();
 
-    public abstract boolean isValidActiveAddress(String paramString, Object paramObject);
+    boolean isValidActiveAddress(String paramString, Object paramObject);
 }
 
 

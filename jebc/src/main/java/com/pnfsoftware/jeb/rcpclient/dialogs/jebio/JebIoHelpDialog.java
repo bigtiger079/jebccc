@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.jebio;
 
 import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 
 public class JebIoHelpDialog extends MessageDialog {

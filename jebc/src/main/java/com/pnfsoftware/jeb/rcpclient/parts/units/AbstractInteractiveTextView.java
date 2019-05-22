@@ -20,12 +20,9 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JumpToDialog;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.ITextDocumentViewer;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
-import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
-import com.pnfsoftware.jeb.rcpclient.parts.IViewNavigator;
 import com.pnfsoftware.jeb.util.format.TokenExtractor;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 

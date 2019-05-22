@@ -4,14 +4,12 @@ import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
 import com.pnfsoftware.jeb.rcpclient.dialogs.options.OptionsChanges;
-import com.pnfsoftware.jeb.rcpclient.dialogs.options.OptionsChanges.Changes;
 import com.pnfsoftware.jeb.rcpclient.dialogs.options.OptionsSimpleViewDevelopment;
 import com.pnfsoftware.jeb.rcpclient.dialogs.options.OptionsSimpleViewGeneral;
 import com.pnfsoftware.jeb.rcpclient.dialogs.options.OptionsTreeView;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabFolderView;
-import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabFolderView.Entry;
 import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -81,13 +79,13 @@ public class OptionsDialog extends JebDialog {
     public Boolean open() {
         super.open();
         if (!this.saveChanges) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
         OptionsChanges.Changes engChanges = this.changes.get("Engines");
         if (engChanges == null) {
-            return Boolean.valueOf(false);
+            return Boolean.FALSE;
         }
-        return Boolean.valueOf(engChanges.hasChanges());
+        return engChanges.hasChanges();
     }
 
     protected void createContents(Composite parent) {

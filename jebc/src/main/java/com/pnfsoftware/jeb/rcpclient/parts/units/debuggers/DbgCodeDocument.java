@@ -20,14 +20,12 @@ import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerTargetInformation;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerVirtualMemory;
 import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
 import com.pnfsoftware.jeb.util.format.Formatter;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.BooleanUtils;
 
@@ -123,15 +121,15 @@ public class DbgCodeDocument extends AbstractTextDocument {
     }
 
     public void removeInsn(long anchorId) {
-        this.insns.remove(Long.valueOf(anchorId));
+        this.insns.remove(anchorId);
     }
 
     public boolean hasInsnAt(long anchorId) {
-        return this.insns.containsKey(Long.valueOf(anchorId));
+        return this.insns.containsKey(anchorId);
     }
 
     public Long getNextInsnAddress(long anchorId) {
-        return (Long) this.insns.higherKey(Long.valueOf(anchorId));
+        return this.insns.higherKey(anchorId);
     }
 
     public long getInsnAddressAt(long anchorId, int columnOffset) {
@@ -143,7 +141,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
         maxOffset = maxOffset == 0L ? 16L : maxOffset;
         Long nextAddress = getNextInsnAddress(anchorId);
         if (nextAddress != null) {
-            maxOffset = Math.min(nextAddress.longValue() - anchorId, maxOffset);
+            maxOffset = Math.min(nextAddress - anchorId, maxOffset);
         }
         int offset = (columnOffset - addressPrefixLength) / 3;
         if (offset < maxOffset) {
@@ -153,7 +151,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
     }
 
     public IInstruction getInsnAt(long address) {
-        return (IInstruction) this.insns.get(Long.valueOf(address));
+        return this.insns.get(address);
     }
 
     public boolean forceInsnAt(long address) {
@@ -195,8 +193,8 @@ public class DbgCodeDocument extends AbstractTextDocument {
 
     private boolean addInstruction(long address, IInstruction insn, boolean usePC) {
         SortedMap<Long, IInstruction> collisions = this.insns.subMap(address, address + insn.getSize());
-        Long previousInsnAddress = (Long) this.insns.floorKey(address - 1L);
-        if ((previousInsnAddress != null) && (previousInsnAddress + ((IInstruction) this.insns.get(previousInsnAddress)).getSize() > address)) {
+        Long previousInsnAddress = this.insns.floorKey(address - 1L);
+        if ((previousInsnAddress != null) && (previousInsnAddress + this.insns.get(previousInsnAddress).getSize() > address)) {
             collisions = this.insns.subMap(previousInsnAddress, address + insn.getSize());
         }
         if (collisions.isEmpty()) {
@@ -209,7 +207,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
         if (usePC) {
             List<Long> toRemove = new ArrayList<>();
             for (Map.Entry<Long, IInstruction> insnEntry : collisions.entrySet()) {
-                if (BooleanUtils.toBoolean((Boolean) this.pcInsns.get(insnEntry.getKey()))) {
+                if (BooleanUtils.toBoolean(this.pcInsns.get(insnEntry.getKey()))) {
                     toRemove.clear();
                     break;
                 }
@@ -220,8 +218,8 @@ public class DbgCodeDocument extends AbstractTextDocument {
                     this.insns.remove(removed);
                     this.pcInsns.remove(removed);
                 }
-                this.insns.put(Long.valueOf(address), insn);
-                this.pcInsns.put(Long.valueOf(address), Boolean.valueOf(usePC));
+                this.insns.put(address, insn);
+                this.pcInsns.put(address, usePC);
                 return true;
             }
         }
@@ -233,21 +231,21 @@ public class DbgCodeDocument extends AbstractTextDocument {
             return false;
         }
         int relativeAddress;
-        SortedMap<Long, IInstruction> subInsns = this.insns.subMap(Long.valueOf(this.chunk.toAbsolute(0)), Long.valueOf(this.chunk.toAbsolute(size)));
+        SortedMap<Long, IInstruction> subInsns = this.insns.subMap(this.chunk.toAbsolute(0), this.chunk.toAbsolute(size));
         List<Long> toRemove = new ArrayList<>();
         for (Map.Entry<Long, IInstruction> insnEntry : subInsns.entrySet()) {
-            relativeAddress = this.chunk.toRelative(((Long) insnEntry.getKey()).longValue());
-            if (memoryChanged(((IInstruction) insnEntry.getValue()).getCode(), relativeAddress))
+            relativeAddress = this.chunk.toRelative((Long) insnEntry.getKey());
+            if (memoryChanged(insnEntry.getValue().getCode(), relativeAddress))
                 toRemove.add(insnEntry.getKey());
         }
         for (Long removed : toRemove) {
             this.insns.remove(removed);
             this.pcInsns.remove(removed);
         }
-        Object subAdresses = this.unreachableAddresses.subSet(Long.valueOf(this.chunk.toAbsolute(from)), Long.valueOf(this.chunk.toAbsolute(size)));
+        Object subAdresses = this.unreachableAddresses.subSet(this.chunk.toAbsolute(from), this.chunk.toAbsolute(size));
         Set<Long> subAddressesCopy = new TreeSet((SortedSet) subAdresses);
         for (Long addr : subAddressesCopy) {
-            processBlock(proc, this.chunk.toRelative(addr.longValue()), size, usePC);
+            processBlock(proc, this.chunk.toRelative(addr), size, usePC);
         }
         ((SortedSet) subAdresses).clear();
         return processBlock(proc, from, size, usePC);
@@ -259,10 +257,10 @@ public class DbgCodeDocument extends AbstractTextDocument {
         try {
             while (currentAddress < size) {
                 long absoluteAddress = this.chunk.toAbsolute(currentAddress);
-                IInstruction insn = (IInstruction) this.insns.get(Long.valueOf(absoluteAddress));
+                IInstruction insn = this.insns.get(absoluteAddress);
                 if (insn != null) {
-                    if ((usePC) && (!BooleanUtils.toBoolean((Boolean) this.pcInsns.get(Long.valueOf(absoluteAddress))))) {
-                        this.pcInsns.put(Long.valueOf(absoluteAddress), Boolean.valueOf(usePC));
+                    if ((usePC) && (!BooleanUtils.toBoolean(this.pcInsns.get(absoluteAddress)))) {
+                        this.pcInsns.put(absoluteAddress, usePC);
                     } else {
                         return created;
                     }
@@ -301,7 +299,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
                 currentAddress += insn.getSize();
             }
         } catch (ProcessorException | RuntimeException e) {
-            logger.error("Unable to process instruction at %Xh: %s", new Object[]{Long.valueOf(this.chunk.toAbsolute(currentAddress)), e.getMessage()});
+            logger.error("Unable to process instruction at %Xh: %s", this.chunk.toAbsolute(currentAddress), e.getMessage());
         }
         return created;
     }
@@ -316,11 +314,11 @@ public class DbgCodeDocument extends AbstractTextDocument {
     }
 
     private void processUnreachableAddress(long address) {
-        IInstruction insn = (IInstruction) this.insns.get(Long.valueOf(address));
+        IInstruction insn = this.insns.get(address);
         if (insn == null) {
-            this.unreachableAddresses.add(Long.valueOf(address));
-        } else if (!BooleanUtils.toBoolean((Boolean) this.pcInsns.get(Long.valueOf(address)))) {
-            this.pcInsns.put(Long.valueOf(address), Boolean.TRUE);
+            this.unreachableAddresses.add(address);
+        } else if (!BooleanUtils.toBoolean(this.pcInsns.get(address))) {
+            this.pcInsns.put(address, Boolean.TRUE);
         }
     }
 
@@ -345,7 +343,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
                             try {
                                 proc.setMode(procMode);
                             } catch (ProcessorException e) {
-                                logger.warning("Can not set mode %d to processor ARM", new Object[]{Integer.valueOf(procMode)});
+                                logger.warning("Can not set mode %d to processor ARM", procMode);
                             }
                         }
                         updateInstructions(proc, this.chunk.toRelative(registers.getProgramCounter()), this.chunk.read, true);
@@ -353,7 +351,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
                         int relativeAddress = this.chunk.toRelative(registers.getProgramCounter());
                         relativeAddress -= alignment;
                         while (relativeAddress >= 0) {
-                            IInstruction insn = (IInstruction) this.insns.get(Long.valueOf(this.chunk.toAbsolute(relativeAddress)));
+                            IInstruction insn = this.insns.get(this.chunk.toAbsolute(relativeAddress));
                             if (insn != null) {
                                 break;
                             }
@@ -383,21 +381,21 @@ public class DbgCodeDocument extends AbstractTextDocument {
                         } catch (Exception localException1) {
                         }
                     }
-                    SortedMap<Long, IInstruction> subInsns = this.insns.subMap(Long.valueOf(this.chunk.firstAddress), Long.valueOf(this.chunk.toAbsolute(this.chunk.data.length)));
+                    SortedMap<Long, IInstruction> subInsns = this.insns.subMap(this.chunk.firstAddress, this.chunk.toAbsolute(this.chunk.data.length));
                     long notProcessedAddress = this.chunk.firstAddress;
                     for (Map.Entry<Long, IInstruction> insn : subInsns.entrySet()) {
-                        if (notProcessedAddress != ((Long) insn.getKey()).longValue()) {
-                            formatMemory(lines, anchors, this.chunk.toRelative(notProcessedAddress), this.chunk.toRelative(((Long) insn.getKey()).longValue()));
+                        if (notProcessedAddress != (Long) insn.getKey()) {
+                            formatMemory(lines, anchors, this.chunk.toRelative(notProcessedAddress), this.chunk.toRelative((Long) insn.getKey()));
                             lines.add(ILine.EMPTY_LINE);
                         }
-                        lines.add(formatInsn((IInstruction) insn.getValue(), ((Long) insn.getKey()).longValue()));
-                        anchors.add(new Anchor(((Long) insn.getKey()).longValue(), lines.size() - 1));
-                        if ((((IInstruction) insn.getValue()).getBreakingFlow(((Long) insn.getKey()).longValue()).isBroken()) || (((IInstruction) insn.getValue()).getRoutineCall(((Long) insn.getKey()).longValue()).isBroken())) {
+                        lines.add(formatInsn(insn.getValue(), (Long) insn.getKey()));
+                        anchors.add(new Anchor((Long) insn.getKey(), lines.size() - 1));
+                        if ((insn.getValue().getBreakingFlow((Long) insn.getKey()).isBroken()) || (insn.getValue().getRoutineCall((Long) insn.getKey()).isBroken())) {
                             lines.add(ILine.EMPTY_LINE);
                         }
-                        notProcessedAddress = ((Long) insn.getKey()).longValue() + ((IInstruction) insn.getValue()).getSize();
+                        notProcessedAddress = (Long) insn.getKey() + insn.getValue().getSize();
                     }
-                    if ((!lines.isEmpty()) && (((ILine) lines.get(lines.size() - 1)).getText().length() != 0)) {
+                    if ((!lines.isEmpty()) && (lines.get(lines.size() - 1).getText().length() != 0)) {
                         lines.add(ILine.EMPTY_LINE);
                     }
                     formatMemory(lines, anchors, this.chunk.toRelative(notProcessedAddress), this.chunk.data.length);
@@ -425,7 +423,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
                 appendLine(stb, i, bytesToDisplay);
                 i += 16;
             }
-            lines.add(new Line(stb, Arrays.asList(new TextItem[]{new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS)})));
+            lines.add(new Line(stb, Arrays.asList(new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS))));
             anchors.add(new Anchor(absoluteAddress, lines.size() - 1));
         }
     }
@@ -437,7 +435,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
             }
             byte b = this.chunk.data[(from + j)];
             if ((b >= 32) && (b < Byte.MAX_VALUE)) {
-                s.append(String.format("%c", new Object[]{Byte.valueOf(b)}));
+                s.append(String.format("%c", b));
             } else {
                 s.append('.');
             }
@@ -460,7 +458,7 @@ public class DbgCodeDocument extends AbstractTextDocument {
         stb.append(addressStr);
         String bytecode = Formatter.formatBinaryLineTruncate(insn.getCode(), 0, insn.getSize(), 8);
         stb.append(bytecode).append(' ');
-        stb.append(insn.format(Long.valueOf(address)));
+        stb.append(insn.format(address));
         return new Line(stb.toString(), Arrays.asList(new TextItem(0, addressStr.length() - 2, ItemClassIdentifiers.ADDRESS), new TextItem(addressStr.length(), bytecode.length(), ItemClassIdentifiers.BYTECODE)));
     }
 

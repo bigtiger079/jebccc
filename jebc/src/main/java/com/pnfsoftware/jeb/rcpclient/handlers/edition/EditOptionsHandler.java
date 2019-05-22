@@ -1,11 +1,7 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
-import com.pnfsoftware.jeb.core.IEnginesContext;
-import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.properties.IPropertyManager;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.OptionsDialog;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -31,7 +27,7 @@ public class EditOptionsHandler extends JebBaseHandler {
         OptionsDialog dlg = new OptionsDialog(this.shell, this.context.getProperties(), clientPM, corePM, prjPM);
         dlg.setLazyInit(lazyInit);
         dlg.setExpandOnFiltering(expandOnFiltering);
-        if (dlg.open().booleanValue()) {
+        if (dlg.open()) {
             MessageDialog.openWarning(this.shell, S.s(821), "The engines settings were modified.\n\nPlease restart JEB for all changes to take effect.");
         }
     }

@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphPlaceholder;
 import com.pnfsoftware.jeb.rcpclient.parts.units.IRcpUnitView;
 import com.pnfsoftware.jeb.rcpclient.parts.units.StaticCodeTextDocument;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -28,7 +27,7 @@ public class StaticCodeGraphView extends AbstractControlFlowGraphView<IUnit> {
     }
 
     public boolean setActiveAddress(String address, Object extraAddressDetails, boolean recordPosition) {
-        logger.warn("This graph does not support fine-grained addressing and positioning", new Object[0]);
+        logger.warn("This graph does not support fine-grained addressing and positioning");
         return false;
     }
 
@@ -43,7 +42,7 @@ public class StaticCodeGraphView extends AbstractControlFlowGraphView<IUnit> {
             if (i >= 1) {
                 sb.append("\n");
             }
-            sb.append(String.format("%s", new Object[]{insn.format(null)}));
+            sb.append(String.format("%s", insn.format(null)));
             i++;
         }
         String text = sb.toString();

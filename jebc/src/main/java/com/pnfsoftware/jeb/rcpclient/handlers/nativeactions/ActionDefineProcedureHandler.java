@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeInstructionItem;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
@@ -28,11 +27,11 @@ public class ActionDefineProcedureHandler extends NativeCodeBaseHandler {
         }
         int procmode = 0;
         INativeContinuousItem item = pbcu.getNativeItemAt(a);
-        if ((item != null) && ((item instanceof INativeInstructionItem))) {
+        if (((item instanceof INativeInstructionItem))) {
             procmode = ((INativeInstructionItem) item).getInstruction().getProcessorMode();
         }
         if (!pbcu.setRoutineAt(a, procmode)) {
-            UI.error(String.format("Failed to define routine at address %Xh", new Object[]{Long.valueOf(a)}));
+            UI.error(String.format("Failed to define routine at address %Xh", a));
         }
         postExecute(this.shell);
     }

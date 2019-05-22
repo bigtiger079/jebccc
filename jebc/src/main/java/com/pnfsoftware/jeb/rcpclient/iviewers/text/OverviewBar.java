@@ -12,9 +12,7 @@ import com.pnfsoftware.jeb.core.units.IMetadataGroup;
 import com.pnfsoftware.jeb.core.units.IMetadataManager;
 import com.pnfsoftware.jeb.core.units.MetadataGroupType;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
-import com.pnfsoftware.jeb.rcpclient.iviewers.IStyleProvider;
 import com.pnfsoftware.jeb.rcpclient.iviewers.Style;
-import com.pnfsoftware.jeb.rcpclient.iviewers.text.wrapped.WrappedText;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -29,7 +27,6 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.swt.custom.CaretEvent;
 import org.eclipse.swt.custom.CaretListener;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseMoveListener;
@@ -248,7 +245,7 @@ public class OverviewBar extends Canvas {
         switch (grpType) {
             case CLASSID:
                 if (((object instanceof Integer)) && (this.textViewer != null) && (this.textViewer.styleAdapter != null)) {
-                    int id = ((Integer) object).intValue();
+                    int id = (Integer) object;
                     ItemClassIdentifiers classId = ItemClassIdentifiers.getById(id);
                     Style s = this.textViewer.styleAdapter.getStyle(classId, false);
                     if ((s != null) && (s.getColor() != null)) {
@@ -259,7 +256,7 @@ public class OverviewBar extends Canvas {
                 return 6316128;
             case RGB:
                 if ((object instanceof Integer)) {
-                    return ((Integer) object).intValue();
+                    return (Integer) object;
                 }
                 return 6316128;
         }
@@ -383,10 +380,7 @@ public class OverviewBar extends Canvas {
 
     boolean isMovingBottomEOF(int pixel) {
         int pixelMax = this.vertical ? getClientArea().height : getClientArea().width;
-        if ((this.textViewer.getWrappedText().isAnchorEndDisplayed()) && (this.textViewer.getWrappedText().isCurrentPartLastLineDisplayed()) && (pixel > pixelMax)) {
-            return true;
-        }
-        return false;
+        return (this.textViewer.getWrappedText().isAnchorEndDisplayed()) && (this.textViewer.getWrappedText().isCurrentPartLastLineDisplayed()) && (pixel > pixelMax);
     }
 
     ICoordinates pixelToCoord(int pixel, int pixelMax) {
@@ -470,7 +464,7 @@ public class OverviewBar extends Canvas {
 
     void onMouseWheelEvent(MouseEvent e) {
         ICoordinates coord = pixelToCoord(getMousePixelPosition(e));
-        logger.i("wheel @ coord: %s", new Object[]{coord});
+        logger.i("wheel @ coord: %s", coord);
         applyZoom(e.count, coord.getAnchorId());
     }
 
@@ -550,7 +544,7 @@ public class OverviewBar extends Canvas {
         this.barAnchorFirst = _barAnchorFirst;
         this.barAnchorEnd = _barAnchorEnd;
         this.zoomLevelChanged = true;
-        logger.i("Bar range: %Xh - %Xh", new Object[]{Long.valueOf(this.barAnchorFirst), Long.valueOf(this.barAnchorEnd)});
+        logger.i("Bar range: %Xh - %Xh", this.barAnchorFirst, this.barAnchorEnd);
         redraw();
     }
 

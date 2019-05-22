@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.navigation;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
 public class NavigationDoNotReplaceViewsHandler extends JebBaseHandler {

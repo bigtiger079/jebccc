@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.jface.bindings.keys.KeyStroke;
 import org.eclipse.swt.SWT;
@@ -27,10 +26,10 @@ import org.eclipse.swt.widgets.Shell;
 public class KeyAcceleratorManager {
     private static final ILogger logger = GlobalLog.getLogger(KeyAcceleratorManager.class);
     private Display display;
-    private WeakIdentityHashMap<Shell, Integer> shellmap = new WeakIdentityHashMap();
+    private WeakIdentityHashMap<Shell, Integer> shellmap = new WeakIdentityHashMap<>();
     private Listener filter;
     private boolean disregardIncomingTraversalKeyDown;
-    private Map<Integer, ActionEx> keyToHandlers = new HashMap();
+    private Map<Integer, ActionEx> keyToHandlers = new HashMap<>();
 
     public KeyAcceleratorManager(Display display) {
         this.display = display;
@@ -79,15 +78,15 @@ public class KeyAcceleratorManager {
         if (this.shellmap.get(shell) != null) {
             return;
         }
-        this.shellmap.put(shell, Integer.valueOf(0));
+        this.shellmap.put(shell, 0);
     }
 
     private boolean processKey(Event event) {
         if ((event.widget instanceof Control)) {
             if ((event.keyCode & SWT.MODIFIER_MASK) == 0) {
-                ActionEx h = (ActionEx) this.keyToHandlers.get(Integer.valueOf(event.stateMask | event.keyCode));
+                ActionEx h = this.keyToHandlers.get(event.stateMask | event.keyCode);
                 if (h == null) {
-                    h = (ActionEx) this.keyToHandlers.get(Integer.valueOf(event.character));
+                    h = this.keyToHandlers.get((int) event.character);
                 }
                 if (h != null) {
                     if ((h instanceof JebBaseHandler)) {
@@ -114,17 +113,16 @@ public class KeyAcceleratorManager {
     }
 
     public void registerHandler(ActionEx handler) {
-        for (Iterator localIterator = handler.getExtraAccelerators().iterator(); localIterator.hasNext(); ) {
-            int keycode = ((Integer) localIterator.next()).intValue();
-            ActionEx h0 = (ActionEx) this.keyToHandlers.get(Integer.valueOf(keycode));
+        for (Integer keycode : handler.getExtraAccelerators()) {
+            ActionEx h0 = this.keyToHandlers.get(keycode);
             if (h0 != null) {
                 if (h0 != handler) {
-                    logger.error("The accelerator %s is already used by handler %s (handler %s cannot steal it)", new Object[]{KeyStroke.getInstance(keycode & 0xFEFF0000, keycode & 0x100FFFF).toString(), h0.getClass().getSimpleName(), handler.getClass().getSimpleName()});
+                    logger.error("The accelerator %s is already used by handler %s (handler %s cannot steal it)", KeyStroke.getInstance(keycode & 0xFEFF0000, keycode & 0x100FFFF).toString(), h0.getClass().getSimpleName(), handler.getClass().getSimpleName());
                     if (Licensing.isDebugBuild()) {
                         throw new RuntimeException("Keyboard shortcut conflict must be resolved in debug mode");
                     }
                 }
-            } else this.keyToHandlers.put(Integer.valueOf(keycode), handler);
+            } else this.keyToHandlers.put(keycode, handler);
         }
     }
 
@@ -135,17 +133,9 @@ public class KeyAcceleratorManager {
                 tbd.add(e.getKey());
             }
         }
-        Iterator<Integer> iterator = tbd.iterator();
-        while (iterator.hasNext()) {
-            int keycode = iterator.next();
+        for (Integer keycode : tbd) {
             this.keyToHandlers.remove(keycode);
         }
-//        for (??? =tbd.iterator(); ???.hasNext();){
-//            int keycode = ((Integer) ? ??.next()).intValue();
-//
-//            this.keyToHandlers.remove(Integer.valueOf(keycode));
-//
-//        }
     }
 }
 

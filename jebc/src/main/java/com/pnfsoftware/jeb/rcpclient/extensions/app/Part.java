@@ -209,13 +209,13 @@ public class Part implements IMPart {
 
     public Map<String, Object> getData() {
         if (this.data == null) {
-            this.data = new HashMap();
+            this.data = new HashMap<>();
         }
         return this.data;
     }
 
     public String toString() {
-        return String.format("Part@%d[%s]", new Object[]{Integer.valueOf(this.internalPartId), getLabel()});
+        return String.format("Part@%d[%s]", this.internalPartId, getLabel());
     }
 }
 

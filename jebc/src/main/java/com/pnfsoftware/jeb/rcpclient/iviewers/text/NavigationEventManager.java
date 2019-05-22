@@ -165,7 +165,7 @@ public class NavigationEventManager {
     private void handleSelectionEvent(SelectionEvent e) {
         int index = this.wrappedText.getCaretLine();
         if ((index <= 0) || (index >= this.wrappedText.getLineCount() - 1)) {
-            logger.debug("selectionChanged: %s - need to fetch data", new Object[]{e});
+            logger.debug("selectionChanged: %s - need to fetch data", e);
             this.bufferManager.scroll(0, 0, false, true);
         }
     }
@@ -219,7 +219,7 @@ public class NavigationEventManager {
             this.documentBeingResized = true;
             int linecnt1 = this.wrappedText.getFullyVisibleLineCount();
             int linecnt2 = this.wrappedText.getVisibleLineCount();
-            logger.debug("controlResized: max line count=%d, current line count=%d", new Object[]{Integer.valueOf(linecnt1), Integer.valueOf(linecnt2)});
+            logger.debug("controlResized: max line count=%d, current line count=%d", linecnt1, linecnt2);
             this.bufferManager.viewAtBufferLine(this.wrappedText.getTopIndex());
             acknowledgeCaretPositionChange(false, this.wrappedText.getCaretOffset());
         } finally {
@@ -288,12 +288,11 @@ public class NavigationEventManager {
                     leavingViewport = caretLine >= lineLastVisible;
                 }
                 if ((leavingViewport) || (moveViewport)) {
-                    int windowScroll = delta;
                     int caretScroll = delta;
                     if (((moveViewport) && (selecting)) || ((this.wrappedText.hasSelection()) && (!selecting))) {
                         caretScroll = 0;
                     }
-                    this.bufferManager.scroll(windowScroll, caretScroll, selecting, true);
+                    this.bufferManager.scroll(delta, caretScroll, selecting, true);
                     e.doit = false;
                 } else if ((e.stateMask & 0x20000) == 0) {
                     this.bufferManager.moveCaretWithToplineUpdate(delta, selecting);
@@ -350,7 +349,7 @@ public class NavigationEventManager {
             case 262144:
             case 4194304:
                 this.relativePosition = (this.wrappedText.getCaretLine() - this.wrappedText.getTopIndex());
-                logger.i("ControlKey: e=%s", new Object[]{e});
+                logger.i("ControlKey: e=%s", e);
                 break;
             default:
                 for (VerifyKeyListener listener : this.unhandledVerifyKeyListeners) {
@@ -376,16 +375,16 @@ public class NavigationEventManager {
     }
 
     private void processCaretPosition(int bufferOffset, boolean positionChanged, int focusChange) {
-        logger.i("processCaretChange: viewer=%d line=%d (posChanged=%b focusChange=%d)", new Object[]{Integer.valueOf(this.text.hashCode()), Integer.valueOf(this.wrappedText.getCaretLine()), Boolean.valueOf(positionChanged), Integer.valueOf(focusChange)});
+        logger.i("processCaretChange: viewer=%d line=%d (posChanged=%b focusChange=%d)", this.text.hashCode(), this.wrappedText.getCaretLine(), positionChanged, focusChange);
         if ((!positionChanged) && (focusChange == 0) && (this.itemOnCaret == null)) {
             return;
         }
         if ((!positionChanged) && (focusChange == 2)) {
-            logger.i("(positionChanged is false && always focused -> aborting processCaretPosition)", new Object[0]);
+            logger.i("(positionChanged is false && always focused -> aborting processCaretPosition)");
             return;
         }
         if (this.navKeyPressed) {
-            logger.i("(navKeyPressed is true, aborting processCaretPosition)", new Object[0]);
+            logger.i("(navKeyPressed is true, aborting processCaretPosition)");
             this.pendingCaretRefreshBufferOffset = bufferOffset;
             return;
         }
@@ -393,7 +392,7 @@ public class NavigationEventManager {
         if ((positionChanged) || (focusChange >= 0)) {
             itemCurrent = this.textViewer.getItemAt(bufferOffset);
         }
-        logger.i("    itemCurrent=%s (saved=%s)", new Object[]{itemCurrent, this.itemOnCaret});
+        logger.i("    itemCurrent=%s (saved=%s)", itemCurrent, this.itemOnCaret);
         ItemEvent itemEvent;
         if (itemCurrent == null) {
             if (this.itemOnCaret != null) {

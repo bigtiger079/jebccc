@@ -250,7 +250,7 @@ public class AllHandlers {
     }
 
     public JebBaseHandler get(Class<? extends JebBaseHandler> c) {
-        JebBaseHandler h = (JebBaseHandler) this.all.get(c);
+        JebBaseHandler h = this.all.get(c);
         if (h == null) {
             throw new RuntimeException("Unknown handler: " + c.getSimpleName());
         }
@@ -263,7 +263,7 @@ public class AllHandlers {
 
     public <T extends JebBaseHandler> T create(Class<T> cl) {
         try {
-            return cl.getConstructor(new Class[0]).newInstance(new Object[0]);
+            return cl.getConstructor(new Class[0]).newInstance();
         } catch (Exception e) {
             return null;
         }
@@ -371,7 +371,7 @@ public class AllHandlers {
         for (JebBaseHandler h : getInstance().getAll()) {
             String id = h.getId();
             if (!Strings.isBlank(id)) {
-                sb.append(String.format("#%s=\n", new Object[]{id}));
+                sb.append(String.format("#%s=\n", id));
             }
         }
         String s = sb.toString();

@@ -11,10 +11,8 @@ import com.pnfsoftware.jeb.core.output.tree.ITreeDocument;
 import com.pnfsoftware.jeb.core.output.tree.impl.NodeCoordinates;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JumpToDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTreeViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.tree.InteractiveTreeViewer;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -26,12 +24,10 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Tree;
 
 public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTreeView.class);
@@ -64,7 +60,7 @@ public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
                         location = iunit.addressToLocation(address);
                     }
                 }
-                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?")});
+                String statusText = String.format("coord: %s | addr: %s | loc: %s", Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?"));
                 context.getStatusIndicator().setText(statusText);
             }
         });
@@ -154,14 +150,14 @@ public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
                 if (!(item instanceof IActionableItem)) {
                     return false;
                 }
-                logger.debug("Following item: %s", new Object[]{item});
+                logger.debug("Following item: %s", item);
                 return followItem((IActionableItem) item);
         }
         return false;
     }
 
     private boolean followItem(IActionableItem item) {
-        logger.debug("Following item: %s", new Object[]{item});
+        logger.debug("Following item: %s", item);
         if (item == null) {
             return false;
         }
@@ -175,11 +171,11 @@ public class InteractiveTreeView extends AbstractUnitFragment<IUnit> {
             if ((root instanceof IActionableItem)) {
                 IActionableItem actionableRoot = (IActionableItem) root;
                 if ((actionableRoot.getItemId() == itemId) && (isMaster(actionableRoot))) {
-                    return this.iviewer.setPosition(new NodeCoordinates(Arrays.asList(new Integer[]{Integer.valueOf(index)})), true);
+                    return this.iviewer.setPosition(new NodeCoordinates(Arrays.asList(index)), true);
                 }
             }
             List<Integer> children = new ArrayList<>(coordinates);
-            children.add(Integer.valueOf(index));
+            children.add(index);
             boolean followChild = followItem(itemId, root.getChildren(), children);
             if (followChild) {
                 return followChild;

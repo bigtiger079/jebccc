@@ -24,7 +24,7 @@ public class AssetManagerOverlay {
             if (img != null) {
                 this.images.add(img);
                 this.positions.add(position);
-                this.id += String.format("[%s:%d:%d]", new Object[]{filename, Integer.valueOf(position.x), Integer.valueOf(position.y)});
+                this.id += String.format("[%s:%d:%d]", filename, position.x, position.y);
             }
         }
         return this;
@@ -38,7 +38,7 @@ public class AssetManagerOverlay {
         this.built = true;
         List<OverlayImage> overlays = new ArrayList<>();
         for (int i = 0; i < this.images.size(); i++) {
-            overlays.add(new OverlayImage((Image) this.images.get(i), (Point) this.positions.get(i)));
+            overlays.add(new OverlayImage(this.images.get(i), this.positions.get(i)));
         }
         return new OverlayImageDescriptor(image, overlays).createImage();
     }

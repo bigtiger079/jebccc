@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.parts.units;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.core.events.J;
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.ViewerRefresher;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
@@ -13,13 +12,11 @@ import com.pnfsoftware.jeb.util.events.IEventListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.TextViewer;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 public class DescriptionView extends AbstractTextView<IUnit> implements IContextMenu {
     private ViewerRefresher refresher;

@@ -3,21 +3,21 @@ package com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup;
 import java.util.List;
 
 public interface IArrayGroup {
-    public abstract int getFirstElementIndex();
+    int getFirstElementIndex();
 
-    public abstract int getLastElementIndex();
+    int getLastElementIndex();
 
-    public abstract Object getFirstElement();
+    Object getFirstElement();
 
-    public abstract Object getLastElement();
+    Object getLastElement();
 
-    public abstract boolean isSingle();
+    boolean isSingle();
 
-    public abstract List<Object> getChildren();
+    List<Object> getChildren();
 
-    public abstract int size();
+    int size();
 
-    public abstract String getGroupName();
+    String getGroupName();
 }
 
 

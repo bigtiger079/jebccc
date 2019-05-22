@@ -15,13 +15,13 @@ import org.eclipse.swt.widgets.Display;
 
 class DropZones {
     //    private static final ILogger logger = ;
-    Display display;
-    Control topLevelContainer;
-    boolean includeDockingAreas;
-    boolean includeSelfDockingAreas;
-    CTabItem srcTab;
-    CTabFolder srcFolder;
-    List<DropZone> dropzones = new ArrayList<>();
+    private Display display;
+    private Control topLevelContainer;
+    private boolean includeDockingAreas;
+    private boolean includeSelfDockingAreas;
+    private CTabItem srcTab;
+    private CTabFolder srcFolder;
+    private List<DropZone> dropzones = new ArrayList<>();
 
     public DropZones(Control topLevelContainer, CTabItem srcTab, boolean includeDockingAreas, boolean includeSelfDockingAreas) {
         this.display = topLevelContainer.getDisplay();
@@ -58,16 +58,16 @@ class DropZones {
                 dropzone.index = 0;
                 this.dropzones.add(dropzone);
             } else {
-                avoidIndexes = new HashSet();
+                avoidIndexes = new HashSet<>();
                 if (folder == this.srcFolder) {
                     int srcIndex = Arrays.asList(this.srcFolder.getItems()).indexOf(this.srcTab);
                     if (srcIndex >= 0) {
-                        avoidIndexes.add(Integer.valueOf(srcIndex));
-                        avoidIndexes.add(Integer.valueOf(srcIndex + 1));
+                        avoidIndexes.add(srcIndex);
+                        avoidIndexes.add(srcIndex + 1);
                     }
                 }
                 index = 0;
-                if (!avoidIndexes.contains(Integer.valueOf(index))) {
+                if (!avoidIndexes.contains(index)) {
                     r = this.display.map(folder, this.topLevelContainer, new Rectangle(0, 0, 4, folder.getTabHeight()));
                     dropzone = new DropZone(this.topLevelContainer, r);
                     dropzone.ctl = ctl;
@@ -79,7 +79,7 @@ class DropZones {
 //                DropZone dropzone = r.length;
                 for (CTabItem item : folder.getItems()) {
                     //for (DropZone localDropZone1 = 0; localDropZone1 < dropzone; localDropZone1++) {
-                    if (!avoidIndexes.contains(Integer.valueOf(index))) {
+                    if (!avoidIndexes.contains(index)) {
                         Rectangle b = item.getBounds();
                         int x0 = b.x + b.width - 2;
                         int width = 4;

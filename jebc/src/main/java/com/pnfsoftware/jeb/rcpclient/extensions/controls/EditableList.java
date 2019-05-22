@@ -49,7 +49,7 @@ public class EditableList extends Composite {
         });
     }
 
-    Map<Control, Boolean> compositeEnabledOnSelection = new WeakHashMap();
+    Map<Control, Boolean> compositeEnabledOnSelection = new WeakHashMap<>();
 
     public void addButton(String label, SelectionListener listener, boolean enableOnSelection) {
         Button b = UIUtil.createPushbox(this.buttons, label, listener);
@@ -122,10 +122,10 @@ public class EditableList extends Composite {
         }
     }
 
-    public static abstract interface ICheckable {
-        public abstract String getText();
+    public interface ICheckable {
+        String getText();
 
-        public abstract boolean isChecked();
+        boolean isChecked();
     }
 }
 

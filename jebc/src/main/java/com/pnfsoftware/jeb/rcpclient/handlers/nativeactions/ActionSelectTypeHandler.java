@@ -27,7 +27,7 @@ public class ActionSelectTypeHandler extends NativeCodeBaseHandler {
             return;
         }
         if (!pbcu.setDataTypeAt(a, t)) {
-            logger.error("Failed to change type at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to change type at address %Xh", a);
         }
         postExecute(this.shell);
     }

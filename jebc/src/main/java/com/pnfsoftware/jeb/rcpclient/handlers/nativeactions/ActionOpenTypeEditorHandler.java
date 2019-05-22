@@ -10,7 +10,6 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IReferenceType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.TypeUtil;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.NativeTypeEditorDialog;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;

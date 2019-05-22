@@ -12,12 +12,10 @@ import com.pnfsoftware.jeb.core.units.code.IFlowInformation;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.core.units.code.asm.render.INativeDisassemblyDocument;
 import com.pnfsoftware.jeb.core.units.code.asm.render.NativeDisassemblyProperties;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
-import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ReferencesDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.Graph;
@@ -42,11 +40,11 @@ public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCod
     }
 
     public boolean isValidActiveAddress(String address, Object object) {
-        return ((INativeCodeUnit) this.unit).getCanonicalMemoryAddress(address) != -1L;
+        return this.unit.getCanonicalMemoryAddress(address) != -1L;
     }
 
     public boolean setActiveAddress(String address, Object extra, boolean record) {
-        long a = ((INativeCodeUnit) this.unit).getCanonicalMemoryAddress(address);
+        long a = this.unit.getCanonicalMemoryAddress(address);
         if (a == -1L) {
             return false;
         }
@@ -60,14 +58,14 @@ public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCod
                 addresses.add(method.getAddress());
             }
             ReferencesDialog dlg = new ReferencesDialog(getShell(), "Select a routine", addresses, null, this.unit);
-            String msg = String.format("There are more than one routine sharing code at address %s.\nSelect the routine you would like to visualize the CFG of:", new Object[]{address});
+            String msg = String.format("There are more than one routine sharing code at address %s.\nSelect the routine you would like to visualize the CFG of:", address);
             dlg.setMessage(msg);
-            index = dlg.open().intValue();
+            index = dlg.open();
         }
         if ((index < 0) || (index >= methods.size())) {
             return false;
         }
-        INativeMethodItem method = (INativeMethodItem) methods.get(index);
+        INativeMethodItem method = methods.get(index);
         GlobalPosition pos0 = (!record) || (getViewManager() == null) ? null : getViewManager().getCurrentGlobalPosition();
         if (method != this.currentMethod) {
             replaceGraph(method);
@@ -89,7 +87,7 @@ public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCod
     protected boolean doItemFollow() {
         IItem item = getActiveItem();
         if ((item instanceof IActionableItem)) {
-            String address = ((INativeCodeUnit) this.unit).getAddressOfItem(((IActionableItem) item).getItemId());
+            String address = this.unit.getAddressOfItem(((IActionableItem) item).getItemId());
             if (address != null) {
                 return setActiveAddress(address);
             }
@@ -126,17 +124,17 @@ public class NativeCodeGraphView extends AbstractControlFlowGraphView<INativeCod
             int flags = cfg.getFlags() | 0x1 | 0x2;
             cfg = new CFG(cfg.getInstructionsMap(), null, null, cfg.getEntryAddress(), flags);
         }
-        this.disasDoc = ((INativeCodeUnit) this.unit).getDisassemblyDocument();
+        this.disasDoc = this.unit.getDisassemblyDocument();
         NativeDisassemblyProperties propertyOverrides = new NativeDisassemblyProperties();
         IPropertyManager pm = this.context.getPropertyManager();
-        propertyOverrides.setLabelAreaLength(Integer.valueOf(0));
-        propertyOverrides.setShowAddresses(Boolean.valueOf(pm.getBoolean(".ui.text.cfg.ShowAddresses")));
-        propertyOverrides.setShowBytesCount(Integer.valueOf(pm.getInteger(".ui.text.cfg.ShowBytesCount")));
-        propertyOverrides.setRoutineSeparatorLength(Integer.valueOf(0));
-        propertyOverrides.setShowSegmentHeaders(Boolean.valueOf(false));
-        propertyOverrides.setShowSpaceBetweenBlocks(Boolean.valueOf(false));
-        propertyOverrides.setInstructionAreaLength(Integer.valueOf(25));
-        propertyOverrides.setBlockXrefsCount(Integer.valueOf(0));
+        propertyOverrides.setLabelAreaLength(0);
+        propertyOverrides.setShowAddresses(pm.getBoolean(".ui.text.cfg.ShowAddresses"));
+        propertyOverrides.setShowBytesCount(pm.getInteger(".ui.text.cfg.ShowBytesCount"));
+        propertyOverrides.setRoutineSeparatorLength(0);
+        propertyOverrides.setShowSegmentHeaders(Boolean.FALSE);
+        propertyOverrides.setShowSpaceBetweenBlocks(Boolean.FALSE);
+        propertyOverrides.setInstructionAreaLength(25);
+        propertyOverrides.setBlockXrefsCount(0);
         this.disasDoc.setPropertyOverrides(propertyOverrides);
         generateGraphForCFG(cfg);
     }

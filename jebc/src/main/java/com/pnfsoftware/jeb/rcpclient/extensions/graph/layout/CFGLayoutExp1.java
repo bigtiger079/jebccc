@@ -8,10 +8,8 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
 @Deprecated
 class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
@@ -31,10 +29,10 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
         this.grid = new Spreadsheet();
         this.blockmap = new LinkedHashMap();
         for (BasicBlock<T> b : cfg) {
-            this.blockmap.put(Long.valueOf(b.getFirstAddress()), b);
+            this.blockmap.put(b.getFirstAddress(), b);
         }
-        long addr = ((Long) this.blockmap.keySet().iterator().next()).longValue();
-        BasicBlock<T> b = (BasicBlock) this.blockmap.remove(Long.valueOf(addr));
+        long addr = (Long) this.blockmap.keySet().iterator().next();
+        BasicBlock<T> b = this.blockmap.remove(addr);
         Cell<BasicBlock<T>> cell0 = this.grid.writeCell(0, 0, b);
         List<Cell<BasicBlock<T>>> parents = new ArrayList<>();
         parents.add(cell0);
@@ -45,7 +43,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
 
     private int improveLayoutMultiPass() {
         for (Cell<BasicBlock<T>> cell : this.grid.getRealCells()) {
-            logger.i("- Cell %s", new Object[]{cell});
+            logger.i("- Cell %s", cell);
         }
         int ipass = 0;
         int totalChanges = 0;
@@ -56,9 +54,9 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
                 List<Cell<BasicBlock<T>>> rowcells = this.grid.getRealCellsOnRow(row);
                 int cnt = rowcells.size();
                 for (int j = cnt - 1; j >= 0; j--) {
-                    Cell<BasicBlock<T>> cell = (Cell) rowcells.get(j);
+                    Cell<BasicBlock<T>> cell = rowcells.get(j);
                     RowCol srcCoord = cell.getCoordinates();
-                    BasicBlock<T> bb = (BasicBlock) cell.getObject();
+                    BasicBlock<T> bb = cell.getObject();
                     List<Cell<BasicBlock<T>>> dstCells = getDestinationCells(bb);
                     int[] limits = findLimits(dstCells, row + 1);
                     int hspan = limits[1] - limits[0];
@@ -70,7 +68,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
                                 }
                             } else if (hspan != cell.getHorizontalSpan()) {
                                 if (this.grid.isRangeFree(cell.getRow(), cell.getNextColumn(), limits[1])) {
-                                    logger.i("Expanding cell %s, new hspan=%d", new Object[]{cell, Integer.valueOf(hspan)});
+                                    logger.i("Expanding cell %s, new hspan=%d", cell, hspan);
                                     cell = this.grid.mergeCells(cell.getRow(), cell.getColumn(), hspan, 1);
                                     changes++;
                                 }
@@ -83,7 +81,7 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
                 break;
             }
             totalChanges += changes;
-            logger.i("Layouting Pass %d", new Object[]{Integer.valueOf(ipass)});
+            logger.i("Layouting Pass %d", ipass);
         }
         return totalChanges;
     }
@@ -115,8 +113,8 @@ class CFGLayoutExp1<T extends IInstruction> implements ICFGLayout<T> {
                 List<BasicBlock<T>> dstlist = ((BasicBlock) parent.getObject()).getOutputBlocks();
                 for (BasicBlock<T> dst : dstlist) {
                     long addr = dst.getFirstAddress();
-                    if (this.blockmap.containsKey(Long.valueOf(addr))) {
-                        this.blockmap.remove(Long.valueOf(addr));
+                    if (this.blockmap.containsKey(addr)) {
+                        this.blockmap.remove(addr);
                         Cell<BasicBlock<T>> cell = this.grid.createFirstAvailableOnRow(srcRow + 1, srcCol);
                         cell.setObject(dst);
                         nextParents.add(cell);

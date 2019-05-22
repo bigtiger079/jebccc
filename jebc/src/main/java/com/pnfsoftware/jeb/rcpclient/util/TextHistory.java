@@ -126,7 +126,7 @@ public class TextHistory implements IAsciiable, Serializable {
         if (this.history.isEmpty()) {
             throw new ArrayIndexOutOfBoundsException();
         }
-        return (String) this.history.get(decrement(this.ptr));
+        return this.history.get(decrement(this.ptr));
     }
 
     public List<String> getLast(int cnt) {
@@ -143,7 +143,7 @@ public class TextHistory implements IAsciiable, Serializable {
 
     public String encode() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("maxcount=%d", new Object[]{Integer.valueOf(this.maxcnt)}));
+        sb.append(String.format("maxcount=%d", this.maxcnt));
         sb.append("&strings=");
         sb.append(Strings.encodeArray(getAll().toArray()));
         return sb.toString();
@@ -151,7 +151,7 @@ public class TextHistory implements IAsciiable, Serializable {
 
     public static TextHistory decode(String s) {
         try {
-            String[] parts = Strings.parseUrlParameters(s, new String[]{"maxcount", "strings"});
+            String[] parts = Strings.parseUrlParameters(s, "maxcount", "strings");
             int maxcount = Integer.parseInt(parts[0]);
             String[] array = Strings.decodeArray(parts[1]);
             return new TextHistory(maxcount, Arrays.asList(array));

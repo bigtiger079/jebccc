@@ -36,7 +36,7 @@ public class StructEditorActionSetType extends StructEditorAction {
         ITypeManager typeman = structType.getTypeManager();
         INativeType fieldType = typeman.getType(fieldSig);
         if (fieldType == null) {
-            UI.error(String.format("The type \"%s\" was not found", new Object[]{fieldSig}));
+            UI.error(String.format("The type \"%s\" was not found", fieldSig));
             return;
         }
         if (setFieldType(e, structType, fieldType)) {
@@ -56,7 +56,7 @@ public class StructEditorActionSetType extends StructEditorAction {
             return false;
         }
         if (structType.getTypeManager().addStructureField(structType, e.name, newFieldType, e.offset) == null) {
-            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", new Object[]{newFieldType.getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", newFieldType.getName(true), e.offset));
             return false;
         }
         return true;

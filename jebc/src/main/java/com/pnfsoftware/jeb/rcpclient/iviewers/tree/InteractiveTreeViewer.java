@@ -55,7 +55,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
         if (columnLabels == null) {
             columnLabels = new ArrayList<>();
         }
-        String[] columnNames = (String[]) columnLabels.toArray(new String[columnLabels.size()]);
+        String[] columnNames = columnLabels.toArray(new String[columnLabels.size()]);
         LabelProvider labelProvider = new LabelProvider(this);
         IPatternMatcher patternMatcher = new SimplePatternMatcher(labelProvider);
         boolean expandAfterFilter = propertyManager.getBoolean(".ui.ExpandTreeNodesOnFiltering");
@@ -69,7 +69,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
         } else {
             throw new RuntimeException("Unsupported");
         }
-        ((TreeViewer) this.viewer.getViewer()).setUseHashlookup(true);
+        this.viewer.getViewer().setUseHashlookup(true);
         this.viewer.setLabelProvider(labelProvider);
         idoc.addListener(this.idocListener = new IEventListener() {
             public void onEvent(IEvent e) {
@@ -118,7 +118,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
     }
 
     public TreeViewer getViewer() {
-        return (TreeViewer) this.viewer.getViewer();
+        return this.viewer.getViewer();
     }
 
     public Tree getTreeWidget() {
@@ -148,8 +148,8 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
         }
         List<? extends INode> list = this.idoc.getRoots();
         INode node = null;
-        for (Iterator localIterator = seq.iterator(); localIterator.hasNext(); ) {
-            int i = ((Integer) localIterator.next()).intValue();
+        for (Integer aSeq : seq) {
+            int i = aSeq;
             if (list == null) {
                 node = null;
                 break;
@@ -158,7 +158,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
             if ((i < 0) || (i >= list.size())) {
                 return false;
             }
-            node = (INode) list.get(i);
+            node = list.get(i);
             list = node.getChildren();
         }
         this.viewer.setSelection(new StructuredSelection(node), true);
@@ -187,7 +187,7 @@ public class InteractiveTreeViewer implements IOperable, IContextMenu {
             if (i >= items.length) {
                 return null;
             }
-            seq.add(0, Integer.valueOf(i));
+            seq.add(0, i);
             item = parentItem;
         }
         return new NodeCoordinates(seq);

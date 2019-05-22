@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.rcpclient.IWidgetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.util.format.Strings;
 import org.eclipse.swt.graphics.Image;

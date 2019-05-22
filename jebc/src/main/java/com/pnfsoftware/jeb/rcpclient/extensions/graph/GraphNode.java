@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 
 import com.pnfsoftware.jeb.rcpclient.extensions.SwtRegistry;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.IZoomable;
-import com.pnfsoftware.jeb.util.base.Flags;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.events.FocusEvent;
@@ -15,7 +14,6 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
@@ -24,7 +22,6 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 public final class GraphNode extends Composite implements IZoomable, IGraphNode {
     private static final ILogger logger = GlobalLog.getLogger(GraphNode.class);
@@ -168,7 +165,7 @@ public final class GraphNode extends Composite implements IZoomable, IGraphNode 
 
             public void mouseDown(MouseEvent e) {
                 GraphNode.this.graph.bringNodeForward(GraphNode.this);
-                GraphNode.logger.i("(%d,%d)", new Object[]{Integer.valueOf(e.x), Integer.valueOf(e.y)});
+                GraphNode.logger.i("(%d,%d)", e.x, e.y);
                 GraphNode.this.dragging = true;
                 GraphNode.this.draggingX = e.x;
                 GraphNode.this.draggingY = e.y;
@@ -193,7 +190,7 @@ public final class GraphNode extends Composite implements IZoomable, IGraphNode 
 
             public void mouseDown(MouseEvent e) {
                 GraphNode.this.graph.bringNodeForward(GraphNode.this);
-                GraphNode.logger.i("(%d,%d)", new Object[]{Integer.valueOf(e.x), Integer.valueOf(e.y)});
+                GraphNode.logger.i("(%d,%d)", e.x, e.y);
                 GraphNode.this.resizing = true;
                 GraphNode.this.resizingX = e.x;
                 GraphNode.this.resizingY = e.y;
@@ -378,7 +375,7 @@ public final class GraphNode extends Composite implements IZoomable, IGraphNode 
     }
 
     public String toString() {
-        return String.format("Node{%s}", new Object[]{this.name});
+        return String.format("Node{%s}", this.name);
     }
 }
 

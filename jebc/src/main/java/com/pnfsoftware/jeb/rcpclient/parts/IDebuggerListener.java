@@ -4,7 +4,7 @@ import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.util.events.IEvent;
 
 public interface IDebuggerListener {
-    public abstract void onDebuggerEvent(IDebuggerUnit paramIDebuggerUnit, IEvent paramIEvent);
+    void onDebuggerEvent(IDebuggerUnit paramIDebuggerUnit, IEvent paramIEvent);
 }
 
 

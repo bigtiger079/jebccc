@@ -29,7 +29,7 @@ public class ActionUndefineHandler extends NativeCodeBaseHandler {
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
         long a = getActiveMemoryAddress(this.part, pbcu);
         if (!pbcu.undefineItem(a)) {
-            logger.error("Failed to undefine item at address %Xh", new Object[]{Long.valueOf(a)});
+            logger.error("Failed to undefine item at address %Xh", a);
         }
         postExecute(this.shell);
     }

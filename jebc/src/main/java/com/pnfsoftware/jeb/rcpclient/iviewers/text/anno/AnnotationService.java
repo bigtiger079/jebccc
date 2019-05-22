@@ -38,7 +38,7 @@ public class AnnotationService {
     public Map<String, AnnotationFactory> map = new HashMap<>();
 
     public AnnotationFactory create(String type, Image image, Color hlColor) {
-        AnnotationFactory f = (AnnotationFactory) this.map.get(type);
+        AnnotationFactory f = this.map.get(type);
         if (f == null) {
             f = new AnnotationFactory(type, image, hlColor);
             this.map.put(type, f);
@@ -47,7 +47,7 @@ public class AnnotationService {
     }
 
     public AnnotationFactory getFactory(String type) {
-        return (AnnotationFactory) this.map.get(type);
+        return this.map.get(type);
     }
 
     public List<AnnotationFactory> getFactories() {

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -87,11 +86,11 @@ public class UIExecutor {
                 caller = elts[3].toString();
             }
             synchronized (asyncCallers) {
-                Integer cnt = (Integer) asyncCallers.get(caller);
+                Integer cnt = asyncCallers.get(caller);
                 if (cnt == null) {
-                    asyncCallers.put(caller, Integer.valueOf(1));
+                    asyncCallers.put(caller, 1);
                 } else {
-                    asyncCallers.put(caller, Integer.valueOf(cnt.intValue() + 1));
+                    asyncCallers.put(caller, cnt.intValue() + 1);
                 }
             }
         }

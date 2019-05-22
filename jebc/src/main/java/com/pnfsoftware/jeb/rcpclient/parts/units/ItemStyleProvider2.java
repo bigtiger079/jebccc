@@ -91,7 +91,7 @@ public class ItemStyleProvider2 implements IStyleProvider {
         public void notifyItemEvent(ITextDocumentViewer viewer, ItemEvent e) {
             Set<IActionableItem> similarItems;
             if (e.type == 1) {
-                ItemStyleProvider2.logger.debug("On-caret Item: %s", new Object[]{e.item});
+                ItemStyleProvider2.logger.debug("On-caret Item: %s", e.item);
                 ItemStyleProvider2.this.activeItem = e.item;
                 if ((ItemStyleProvider2.this.activeItem instanceof IActionableTextItem)) {
                     similarItems = ItemStyleProvider2.this.findSimilarActionableItems(ItemStyleProvider2.this.viewers, (IActionableTextItem) ItemStyleProvider2.this.activeItem);

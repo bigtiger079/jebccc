@@ -20,20 +20,20 @@ public class DndDragSource implements DragSourceListener {
         if (event.doit) {
             this.dragData = this.dndProvider.getDragData();
             if (this.dragData == null) {
-                logger.i("Invalid Drag %s", new Object[]{data});
+                logger.i("Invalid Drag %s", data);
                 event.doit = false;
             }
         }
-        logger.i("can Drag %b %s", new Object[]{Boolean.valueOf(event.doit), data});
+        logger.i("can Drag %b %s", event.doit, data);
     }
 
     public void dragSetData(DragSourceEvent event) {
         event.data = this.dndProvider.getDragData();
-        logger.i("dragSetData %s", new Object[]{event.data});
+        logger.i("dragSetData %s", event.data);
     }
 
     public void dragFinished(DragSourceEvent event) {
-        logger.i("dragFinished", new Object[0]);
+        logger.i("dragFinished");
     }
 }
 

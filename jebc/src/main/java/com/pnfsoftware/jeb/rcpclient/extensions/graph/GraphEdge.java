@@ -33,8 +33,8 @@ public class GraphEdge implements IZoomable {
         this.src = src;
         this.dst = dst;
         this.edgeId = graph.registerEdge(this);
-        this.colors.put(Integer.valueOf(0), SwtRegistry.getInstance().getColor(4210752));
-        this.colors.put(Integer.valueOf(1), SwtRegistry.getInstance().getColor(16750848));
+        this.colors.put(0, SwtRegistry.getInstance().getColor(4210752));
+        this.colors.put(1, SwtRegistry.getInstance().getColor(16750848));
     }
 
     public Graph getGraph() {
@@ -59,11 +59,11 @@ public class GraphEdge implements IZoomable {
     }
 
     public void setColor(int state, Color color) {
-        this.colors.put(Integer.valueOf(state), color);
+        this.colors.put(state, color);
     }
 
     public Color getColor(int state) {
-        return (Color) this.colors.get(Integer.valueOf(state));
+        return this.colors.get(state);
     }
 
     public void setState(int state) {
@@ -152,23 +152,21 @@ public class GraphEdge implements IZoomable {
         }
         setBackground(gc);
         if ((this.orientation == Orientation.ORIENTED) || (this.orientation == Orientation.ORIENTED_DUAL)) {
-            int x = x1;
-            int y = y1;
             if (x0 == x1) {
                 int deltaX = 3;
                 int deltaY = 6;
                 if (y0 < y1) {
-                    gc.fillPolygon(new int[]{x, y, x - 3, y - 6, x + 3, y - 6});
+                    gc.fillPolygon(new int[]{x1, y1, x1 - 3, y1 - 6, x1 + 3, y1 - 6});
                 } else if (y0 > y1) {
-                    gc.fillPolygon(new int[]{x, y, x - 3, y + 6, x + 3, y + 6});
+                    gc.fillPolygon(new int[]{x1, y1, x1 - 3, y1 + 6, x1 + 3, y1 + 6});
                 }
             } else if (y0 == y1) {
                 int deltaX = 6;
                 int deltaY = 3;
                 if (x0 < x1) {
-                    gc.fillPolygon(new int[]{x, y, x - 6, y - 3, x - 6, y + 3});
+                    gc.fillPolygon(new int[]{x1, y1, x1 - 6, y1 - 3, x1 - 6, y1 + 3});
                 } else if (x0 > x1) {
-                    gc.fillPolygon(new int[]{x, y, x + 6, y - 3, x + 6, y + 3});
+                    gc.fillPolygon(new int[]{x1, y1, x1 + 6, y1 - 3, x1 + 6, y1 + 3});
                 }
             }
         } else if ((this.orientation == Orientation.ORIENTED_BACKWARD) || (this.orientation == Orientation.ORIENTED_DUAL)) {
@@ -177,7 +175,7 @@ public class GraphEdge implements IZoomable {
     }
 
     private Color determineEdgeColor() {
-        return (Color) this.colors.get(Integer.valueOf(this.state));
+        return this.colors.get(this.state);
     }
 
     private void setForeground(GC gc) {
@@ -263,7 +261,7 @@ public class GraphEdge implements IZoomable {
     }
 
     public String toString() {
-        return String.format("Edge{%s->%s}", new Object[]{this.src, this.dst});
+        return String.format("Edge{%s->%s}", this.src, this.dst);
     }
 }
 

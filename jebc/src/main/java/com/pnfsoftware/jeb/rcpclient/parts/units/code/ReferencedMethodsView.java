@@ -34,8 +34,6 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCodeUnit<?>, INativeMethodItem> implements ILazyView {
     private static final ILogger logger = GlobalLog.getLogger(ReferencedMethodsView.class);
@@ -103,12 +101,12 @@ public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCode
         if (address == null) {
             id = m.getItemId();
             if (id != 0L) {
-                ActionContext actionContext = new ActionContext((IInteractiveUnit) this.unit, 4, id, null);
+                ActionContext actionContext = new ActionContext(this.unit, 4, id, null);
                 ActionXrefsData data = new ActionXrefsData();
-                if (((INativeCodeUnit) this.unit).prepareExecution(actionContext, data)) {
+                if (this.unit.prepareExecution(actionContext, data)) {
                     List<String> addresses = data.getAddresses();
                     if ((addresses != null) && (!addresses.isEmpty())) {
-                        address = (String) addresses.get(0);
+                        address = addresses.get(0);
                     }
                 }
             }
@@ -116,7 +114,7 @@ public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCode
         if (address != null) {
             for (IUnitFragment fragment : this.unitView.getFragments()) {
                 if ((fragment instanceof InteractiveTextView)) {
-                    logger.i("Jumping to address: %s", new Object[]{address});
+                    logger.i("Jumping to address: %s", address);
                     if (((InteractiveTextView) fragment).isValidActiveAddress(address, null)) {
                         this.unitView.setActiveFragment(fragment);
                         boolean found = this.unitView.setActiveAddress(address, null, false);
@@ -153,7 +151,7 @@ public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCode
             if (textFragment == null) {
                 return;
             }
-            ActionContext actionContext = new ActionContext((IInteractiveUnit) this.unit, 4, id, null);
+            ActionContext actionContext = new ActionContext(this.unit, 4, id, null);
             ActionUIContext uictx = new ActionUIContext(actionContext, textFragment);
             new GraphicalActionExecutor(getShell(), getContext()).execute(uictx);
         }
@@ -188,7 +186,7 @@ public class ReferencedMethodsView extends AbstractFilteredTableView<INativeCode
             }
             this.listener = new IEventListener() {
                 public void onEvent(IEvent e) {
-                    ReferencedMethodsView.logger.i("Event: %s", new Object[]{e});
+                    ReferencedMethodsView.logger.i("Event: %s", e);
                     if ((ReferencedMethodsView.ContentProvider.this.codeunit != null) && (e.getSource() == ReferencedMethodsView.ContentProvider.this.codeunit)) {
                         ReferencedMethodsView.ContentProvider.this.refresher.request();
                     }

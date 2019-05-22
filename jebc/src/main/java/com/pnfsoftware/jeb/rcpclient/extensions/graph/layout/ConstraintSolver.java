@@ -76,7 +76,7 @@ public class ConstraintSolver implements Cloneable {
         }
 
         public String toString() {
-            return String.format("%s -> %d", new Object[]{Arrays.toString(this.vector), Integer.valueOf(this.minval)});
+            return String.format("%s -> %d", Arrays.toString(this.vector), this.minval);
         }
     }
 
@@ -92,10 +92,10 @@ public class ConstraintSolver implements Cloneable {
 
     public ConstraintSolver clone() {
         ConstraintSolver r = new ConstraintSolver();
-        r.varsmin = ((int[]) this.varsmin.clone());
+        r.varsmin = this.varsmin.clone();
         r.constraints = new ArrayList<>(this.constraints.size());
         for (Constraint c : this.constraints) {
-            r.constraints.add(new Constraint((boolean[]) c.vector.clone(), c.minval));
+            r.constraints.add(new Constraint(c.vector.clone(), c.minval));
         }
         r.solved = this.solved;
         return r;
@@ -135,7 +135,7 @@ public class ConstraintSolver implements Cloneable {
         if (minval == 0) {
             return;
         }
-        logger.i("Adding constraint: %s -> %d", new Object[]{Arrays.toString(vector), Integer.valueOf(minval)});
+        logger.i("Adding constraint: %s -> %d", Arrays.toString(vector), minval);
         if (cnt == 1) {
             int pos = usedPositions[0];
             if (this.varsmin[pos] < minval) {
@@ -176,7 +176,7 @@ public class ConstraintSolver implements Cloneable {
                 int changecnt = 0;
                 int icst = 0;
                 while (icst < this.constraints.size()) {
-                    if (isUselessConstraint((Constraint) this.constraints.get(icst))) {
+                    if (isUselessConstraint(this.constraints.get(icst))) {
                         this.constraints.remove(icst);
                         changecnt++;
                     } else {

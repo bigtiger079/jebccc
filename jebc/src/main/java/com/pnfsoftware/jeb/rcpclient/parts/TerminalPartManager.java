@@ -7,7 +7,6 @@ import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.core.util.DebuggerHelper;
 import com.pnfsoftware.jeb.rcpclient.AllHandlers;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.ConsoleViewer;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
@@ -25,7 +24,6 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 
 public class TerminalPartManager extends AbstractPartManager implements IOperable, IContextMenu {
@@ -44,11 +42,11 @@ public class TerminalPartManager extends AbstractPartManager implements IOperabl
         this.cv.setInterpreter(mi);
         mi.addListener(new IEventListener() {
             public void onEvent(IEvent e) {
-                if (((com.pnfsoftware.jeb.util.events.Event) e).getType().intValue() == 0) {
-                    TerminalPartManager.logger.i("EVENT_INTERPRETER_CHANGE", new Object[0]);
+                if (((com.pnfsoftware.jeb.util.events.Event) e).getType() == 0) {
+                    TerminalPartManager.logger.i("EVENT_INTERPRETER_CHANGE");
                     TerminalPartManager.this.cv.updatePromptAfterCommand(mi.getName() + "> ");
-                } else if (((com.pnfsoftware.jeb.util.events.Event) e).getType().intValue() == 1) {
-                    TerminalPartManager.logger.i("EVENT_INTERPRETER_CHANGE_IMMEDIATE", new Object[0]);
+                } else if (((com.pnfsoftware.jeb.util.events.Event) e).getType() == 1) {
+                    TerminalPartManager.logger.i("EVENT_INTERPRETER_CHANGE_IMMEDIATE");
                     TerminalPartManager.this.cv.updatePrompt(mi.getName() + "> ");
                 }
             }

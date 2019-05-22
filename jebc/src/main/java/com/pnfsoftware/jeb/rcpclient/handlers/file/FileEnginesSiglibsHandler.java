@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.core.IEnginesContext;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ListSiglibsDialog;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 

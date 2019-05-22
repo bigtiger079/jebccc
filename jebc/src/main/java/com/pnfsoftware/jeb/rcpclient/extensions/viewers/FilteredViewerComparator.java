@@ -54,8 +54,8 @@ public class FilteredViewerComparator extends ViewerComparator {
         int i = 0;
         while ((i < 5) && ((o1 instanceof Object[])) && ((o2 instanceof Object[]))) {
             if ((((Object[]) o1).length > 0) && (((Object[]) o2).length > 0)) {
-                o1 = ((Object[]) (Object[]) o1)[0];
-                o2 = ((Object[]) (Object[]) o2)[0];
+                o1 = ((Object[]) o1)[0];
+                o2 = ((Object[]) o2)[0];
             }
             i++;
         }

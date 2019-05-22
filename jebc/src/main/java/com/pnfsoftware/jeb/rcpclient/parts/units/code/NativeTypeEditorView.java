@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureTypeField;
-import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.type.PrettyTypeFormatter;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
@@ -30,13 +29,11 @@ import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
@@ -80,7 +77,7 @@ public class NativeTypeEditorView extends Composite {
         this.btnPreviewDeep = new Button(bar, 32);
         this.btnPreviewDeep.setText("Deep Preview   ");
         this.btnPreviewDeep.setSelection(true);
-        this.btnPreviewDeep.setToolTipText(String.format("Include nested structures (up to %d) in preview", new Object[]{Integer.valueOf(10)}));
+        this.btnPreviewDeep.setToolTipText(String.format("Include nested structures (up to %d) in preview", 10));
         this.btnPreviewDeep.pack();
         item.setWidth(this.btnPreviewDeep.getSize().x);
         item.setControl(this.btnPreviewDeep);
@@ -230,7 +227,7 @@ public class NativeTypeEditorView extends Composite {
         PrettyTypeFormatter f = new PrettyTypeFormatter(type);
         String str = f.format(previewDeep ? 10 : 1, previewOffsets);
         if ((type.getPadding() != 1) || (type.getAlignment() != 0)) {
-            str = String.format("// Size: %d, Padding: %d, Alignment: %d\n%s", new Object[]{Integer.valueOf(type.getSize()), Integer.valueOf(type.getPadding()), Integer.valueOf(type.getAlignment()), str});
+            str = String.format("// Size: %d, Padding: %d, Alignment: %d\n%s", type.getSize(), type.getPadding(), type.getAlignment(), str);
         }
         this.widgetPreview.setText(str);
     }
@@ -256,9 +253,9 @@ public class NativeTypeEditorView extends Composite {
             ItemEntry e = (ItemEntry) element;
             switch (key) {
                 case 0:
-                    return String.format("+%08X", new Object[]{Integer.valueOf(e.offset)});
+                    return String.format("+%08X", e.offset);
                 case 1:
-                    return String.format("%04X", new Object[]{Integer.valueOf(e.size)});
+                    return String.format("%04X", e.size);
                 case 3:
                     if (e.type != null) {
                         return e.type.getSignature(true);
@@ -282,11 +279,11 @@ public class NativeTypeEditorView extends Composite {
 
         public Object[] getRowElements(Object row) {
             ItemEntry e = (ItemEntry) row;
-            return new Object[]{Integer.valueOf(e.offset), Integer.valueOf(e.size), e.name, e.type, e.comment};
+            return new Object[]{e.offset, e.size, e.name, e.type, e.comment};
         }
 
         public Object[] get(Object inputElement, long id, int cnt) {
-            Assert.a(NativeTypeEditorView.this.type == (IStructureType) inputElement);
+            Assert.a(NativeTypeEditorView.this.type == inputElement);
             return readFields(id, cnt);
         }
 
@@ -298,12 +295,12 @@ public class NativeTypeEditorView extends Composite {
             int i = 0;
             long currentId = 0L;
             while ((i < fields.size()) && (id < id1)) {
-                IStructureTypeField elt = (IStructureTypeField) fields.get(i);
+                IStructureTypeField elt = fields.get(i);
                 long nextId = elt.isSynthetic() ? currentId + elt.getSize() : currentId + 1L;
                 if ((id >= currentId) && (id < nextId)) {
                     if (!elt.isSynthetic()) {
                         Assert.a(id == currentId);
-                        r.add(new ItemEntry(elt.getOffset(), elt.getSize(), elt.getName(), elt.getType(), elt.isBitfield() ? String.format("bitfield [%d:%d[", new Object[]{Integer.valueOf(elt.getBitstart()), Integer.valueOf(elt.getBitend())}) : null, false));
+                        r.add(new ItemEntry(elt.getOffset(), elt.getSize(), elt.getName(), elt.getType(), elt.isBitfield() ? String.format("bitfield [%d:%d[", elt.getBitstart(), elt.getBitend()) : null, false));
                         id += 1L;
                     } else {
                         int off = elt.getOffset() + (int) (id - currentId);
@@ -323,7 +320,7 @@ public class NativeTypeEditorView extends Composite {
                 long typeLastId = 0L;
                 i = 0;
                 while (i < fields.size()) {
-                    IStructureTypeField elt = (IStructureTypeField) fields.get(i);
+                    IStructureTypeField elt = fields.get(i);
                     typeLastId += (elt.isSynthetic() ? elt.getSize() : 1L);
                     i++;
                 }

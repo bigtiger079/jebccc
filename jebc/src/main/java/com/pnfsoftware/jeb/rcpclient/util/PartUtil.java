@@ -24,11 +24,11 @@ public class PartUtil {
             return null;
         }
         Folder folder = (Folder) ctl;
-        Control e1 = (Control) stk.pop();
+        Control e1 = stk.pop();
         if (!(e1 instanceof CTabFolder)) {
             throw new RuntimeException();
         }
-        Control e2 = (Control) stk.pop();
+        Control e2 = stk.pop();
         Part part = folder.getPartByControl(e2);
         if (part == null) {
             return null;

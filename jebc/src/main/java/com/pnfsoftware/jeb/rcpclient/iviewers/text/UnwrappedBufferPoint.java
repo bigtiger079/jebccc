@@ -20,12 +20,11 @@ public class UnwrappedBufferPoint extends BufferPoint {
         if (!super.equals(obj)) return false;
         if (getClass() != obj.getClass()) return false;
         UnwrappedBufferPoint other = (UnwrappedBufferPoint) obj;
-        if (this.eol != other.eol) return false;
-        return true;
+        return this.eol == other.eol;
     }
 
     public String toString() {
-        return String.format("unwrapped_%s[eol=%b]", new Object[]{super.toString(), Boolean.valueOf(this.eol)});
+        return String.format("unwrapped_%s[eol=%b]", super.toString(), this.eol);
     }
 }
 

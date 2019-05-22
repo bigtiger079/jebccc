@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.core.output.code.coordinates.MethodCoordinates;
 import com.pnfsoftware.jeb.core.units.code.ICodeClass;
 import com.pnfsoftware.jeb.core.units.code.ICodeItem;
 import com.pnfsoftware.jeb.core.units.code.ICodeMethod;
-import com.pnfsoftware.jeb.core.units.code.ICodeType;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.model.Digraph;
@@ -45,7 +44,7 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
         Map<Integer, ICodeMethod> internal_methods = new TreeMap();
         for (ICodeMethod method : this.unit.getMethods()) {
             if ((method.isInternal()) && (filter(method))) {
-                internal_methods.put(Integer.valueOf(method.getIndex()), method);
+                internal_methods.put(method.getIndex(), method);
             }
         }
         int typeIndex;
@@ -56,20 +55,20 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
                 if (classObject.getMethods() != null) {
                     for (ICodeMethod methodObject : classObject.getMethods()) {
                         methodIndex = methodObject.getIndex();
-                        typeToInternalMethods.put(Integer.valueOf(typeIndex), Integer.valueOf(methodIndex));
-                        methodToType.put(Integer.valueOf(methodIndex), Integer.valueOf(typeIndex));
+                        typeToInternalMethods.put(typeIndex, methodIndex);
+                        methodToType.put(methodIndex, typeIndex);
                         List<? extends IInstruction> instructions = methodObject.getInstructions();
                         if (instructions != null) {
                             for (IInstruction insn : instructions) {
                                 String s = insn.format(null);
                                 int refMethodIndex = extractMethodIndex(s);
-                                if ((refMethodIndex >= 0) && (internal_methods.containsKey(Integer.valueOf(refMethodIndex)))) {
-                                    Set<Integer> set = (Set) methodToMethods.get(Integer.valueOf(methodIndex));
+                                if ((refMethodIndex >= 0) && (internal_methods.containsKey(refMethodIndex))) {
+                                    Set<Integer> set = methodToMethods.get(methodIndex);
                                     if (set == null) {
                                         set = new TreeSet();
-                                        methodToMethods.put(Integer.valueOf(methodIndex), set);
+                                        methodToMethods.put(methodIndex, set);
                                     }
-                                    if (set.add(Integer.valueOf(refMethodIndex))) {
+                                    if (set.add(refMethodIndex)) {
                                         edgecnt++;
                                     }
                                 }
@@ -86,17 +85,16 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
         for (ICodeMethod m : internal_methods.values()) {
             name = m.getClassType().getName(true) + "." + m.getName(true);
             int insncount = m.getInstructions() == null ? 0 : m.getInstructions().size();
-            this.model.v(m.getIndex(), Double.valueOf(insncount), name);
-            this.vertexIdToMethodObject.put(Integer.valueOf(m.getIndex()), m);
-            this.methodObjectToVertexId.put(m, Integer.valueOf(m.getIndex()));
+            this.model.v(m.getIndex(), (double) insncount, name);
+            this.vertexIdToMethodObject.put(m.getIndex(), m);
+            this.methodObjectToVertexId.put(m, m.getIndex());
         }
         Iterator<Integer> iterator = methodToMethods.keySet().iterator();
         int i0;
         while (iterator.hasNext()) {
             i0 = iterator.next();
-            Iterator iterator1 = ((Set) methodToMethods.get(i0)).iterator();
-            while (iterator1.hasNext()) {
-                int i1 = (Integer) iterator1.next();
+            for (Object o : ((Set) methodToMethods.get(i0))) {
+                int i1 = (Integer) o;
                 this.model.e(i0, i1);
             }
         }
@@ -119,7 +117,7 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
     }
 
     public String getAddressForVertexId(int vertexId) {
-        ICodeMethod m = this.vertexIdToMethodObject == null ? null : (ICodeMethod) this.vertexIdToMethodObject.get(Integer.valueOf(vertexId));
+        ICodeMethod m = this.vertexIdToMethodObject == null ? null : this.vertexIdToMethodObject.get(vertexId);
         if (m == null) {
             return null;
         }
@@ -130,17 +128,17 @@ public class DalvikCallgraphBuilder implements ICallgraphBuilder {
         ICodeCoordinates cc = this.unit.getCodeCoordinatesFromAddress(address);
         Integer index = null;
         if ((cc instanceof InstructionCoordinates)) {
-            index = Integer.valueOf(((InstructionCoordinates) cc).getMethodId());
+            index = ((InstructionCoordinates) cc).getMethodId();
         } else if ((cc instanceof MethodCoordinates)) {
-            index = Integer.valueOf(((MethodCoordinates) cc).getMethodId());
+            index = ((MethodCoordinates) cc).getMethodId();
         } else {
             return null;
         }
-        ICodeMethod m = (ICodeMethod) this.unit.getMethods().get(index.intValue());
+        ICodeMethod m = this.unit.getMethods().get(index);
         if (m == null) {
             return null;
         }
-        return (Integer) this.methodObjectToVertexId.get(m);
+        return this.methodObjectToVertexId.get(m);
     }
 
     private Set<String> wlFltFull = new HashSet();

@@ -150,11 +150,11 @@ public class AddressNavigator {
     }
 
     private void add(TreeMap<Integer, List<Couple<IMPart, IRcpUnitFragment>>> toFocus, Couple<IMPart, IRcpUnitFragment> couple) {
-        int priority = ((IRcpUnitFragment) couple.getSecond()).getFocusPriority();
-        List<Couple<IMPart, IRcpUnitFragment>> list = (List) toFocus.get(Integer.valueOf(priority));
+        int priority = couple.getSecond().getFocusPriority();
+        List<Couple<IMPart, IRcpUnitFragment>> list = toFocus.get(priority);
         if (list == null) {
             list = new ArrayList<>();
-            toFocus.put(Integer.valueOf(priority), list);
+            toFocus.put(priority, list);
         }
         list.add(couple);
     }
@@ -186,7 +186,7 @@ public class AddressNavigator {
     private List<IRcpUnitFragment> getFragmentsDefaultFirst(UnitPartManager object) {
         List<IRcpUnitFragment> fragments = object.getFragments();
         for (int i = 0; i < fragments.size(); i++) {
-            if (((IRcpUnitFragment) fragments.get(i)).isDefaultFragment()) {
+            if (fragments.get(i).isDefaultFragment()) {
                 fragments.add(0, fragments.remove(i));
                 break;
             }

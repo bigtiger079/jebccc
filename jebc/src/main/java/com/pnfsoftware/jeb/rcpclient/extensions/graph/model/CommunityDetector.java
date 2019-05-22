@@ -38,7 +38,7 @@ public class CommunityDetector {
             if (this.children != null) {
                 return this.descCount + ":" + this.children.toString();
             }
-            return Integer.toString(this.vertexId.intValue());
+            return Integer.toString(this.vertexId);
         }
     }
 
@@ -54,7 +54,7 @@ public class CommunityDetector {
 
     private int performRecurse(Digraph g, Node node) {
         if (g.getVertexCount() == 1) {
-            node.vertexId = Integer.valueOf(g.getVertexByIndex(0).id);
+            node.vertexId = g.getVertexByIndex(0).id;
             return 1;
         }
         List<Digraph> subgraphs;
@@ -66,27 +66,27 @@ public class CommunityDetector {
                 break;
             }
             ebOrder = g.computeEdgeBetweenness();
-            E e = g.getEdge(((Integer) ebOrder.get(0)).intValue());
-            double bestScore = e.ebscore.doubleValue();
+            E e = g.getEdge((Integer) ebOrder.get(0));
+            double bestScore = e.ebscore;
             List<E> tbr = new ArrayList<>();
             tbr.add(e);
             int cnt;
             for (cnt = 1; cnt < g.getEdgeCount(); cnt++) {
-                e = g.getEdge(((Integer) ebOrder.get(cnt)).intValue());
-                score = e.ebscore.doubleValue();
+                e = g.getEdge((Integer) ebOrder.get(cnt));
+                score = e.ebscore;
                 if (!almostEquals(score, bestScore)) {
                     break;
                 }
                 tbr.add(e);
             }
             if (cnt >= 2) {
-                logger.i("%d edges have the same EB score: %f", new Object[]{Integer.valueOf(cnt), Double.valueOf(bestScore)});
+                logger.i("%d edges have the same EB score: %f", cnt, bestScore);
             }
             for (E edge : tbr) {
                 g.removeEdge(edge);
             }
         }
-        logger.i("-> %d sub-graphs", new Object[]{Integer.valueOf(subgraphs.size())});
+        logger.i("-> %d sub-graphs", subgraphs.size());
         node.children = new ArrayList<>(subgraphs.size());
         for (Digraph subgraph : subgraphs) {
             Node subnode = new Node();
@@ -104,10 +104,10 @@ public class CommunityDetector {
         Node inputNode = new Node(inputGraph);
         map.put(inputGraph, inputNode);
         while ((!q.isEmpty()) && ((subgraphCountThreshold <= 0) || (q.size() < subgraphCountThreshold))) {
-            Digraph g = (Digraph) q.remove(0);
-            Node node = (Node) map.get(g);
+            Digraph g = q.remove(0);
+            Node node = map.get(g);
             if (g.getVertexCount() == 1) {
-                node.vertexId = Integer.valueOf(g.getVertexByIndex(0).id);
+                node.vertexId = g.getVertexByIndex(0).id;
             } else {
                 List<Digraph> subgraphs;
                 List<Integer> ebOrder;
@@ -118,27 +118,27 @@ public class CommunityDetector {
                         break;
                     }
                     ebOrder = g.computeEdgeBetweenness();
-                    E e = g.getEdge(((Integer) ebOrder.get(0)).intValue());
-                    double bestScore = e.ebscore.doubleValue();
+                    E e = g.getEdge((Integer) ebOrder.get(0));
+                    double bestScore = e.ebscore;
                     List<E> tbr = new ArrayList<>();
                     tbr.add(e);
                     int cnt;
                     for (cnt = 1; cnt < g.getEdgeCount(); cnt++) {
-                        e = g.getEdge(((Integer) ebOrder.get(cnt)).intValue());
-                        score = e.ebscore.doubleValue();
+                        e = g.getEdge((Integer) ebOrder.get(cnt));
+                        score = e.ebscore;
                         if (!almostEquals(score, bestScore)) {
                             break;
                         }
                         tbr.add(e);
                     }
                     if (cnt >= 2) {
-                        logger.i("%d edges have the same EB score: %f", new Object[]{Integer.valueOf(cnt), Double.valueOf(bestScore)});
+                        logger.i("%d edges have the same EB score: %f", cnt, bestScore);
                     }
                     for (E edge : tbr) {
                         g.removeEdge(edge);
                     }
                 }
-                logger.i("-> %d sub-graphs", new Object[]{Integer.valueOf(subgraphs.size())});
+                logger.i("-> %d sub-graphs", subgraphs.size());
                 node.children = new ArrayList<>(subgraphs.size());
                 for (Digraph subgraph : subgraphs) {
                     Node subnode = new Node(subgraph);

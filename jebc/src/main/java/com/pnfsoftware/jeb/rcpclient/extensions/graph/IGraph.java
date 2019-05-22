@@ -3,21 +3,21 @@ package com.pnfsoftware.jeb.rcpclient.extensions.graph;
 import java.util.List;
 
 public interface IGraph {
-    public abstract void refreshGraph();
+    void refreshGraph();
 
-    public abstract List<GraphMode> getSupportedModes();
+    List<GraphMode> getSupportedModes();
 
-    public abstract int getVertexCount();
+    int getVertexCount();
 
-    public abstract void centerGraph();
+    void centerGraph();
 
-    public abstract void positionGraph(double paramDouble1, double paramDouble2);
+    void positionGraph(double paramDouble1, double paramDouble2);
 
-    public abstract void dragGraph(int paramInt1, int paramInt2);
+    void dragGraph(int paramInt1, int paramInt2);
 
-    public abstract void dragGraph(int paramInt1, int paramInt2, boolean paramBoolean);
+    void dragGraph(int paramInt1, int paramInt2, boolean paramBoolean);
 
-    public abstract void zoomGraph(int paramInt);
+    void zoomGraph(int paramInt);
 }
 
 

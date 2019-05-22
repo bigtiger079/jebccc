@@ -37,8 +37,6 @@ import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 
 public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeString> implements ILazyView {
     private static final ILogger logger = GlobalLog.getLogger(StringsView.class);
@@ -115,12 +113,12 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
         if (address == null) {
             id = str.getIdentifier();
             if (id != 0L) {
-                ActionContext actionContext = new ActionContext((IInteractiveUnit) this.unit, 4, id, null);
+                ActionContext actionContext = new ActionContext(this.unit, 4, id, null);
                 ActionXrefsData data = new ActionXrefsData();
-                if (((ICodeUnit) this.unit).prepareExecution(actionContext, data)) {
+                if (this.unit.prepareExecution(actionContext, data)) {
                     List<String> addresses = data.getAddresses();
                     if ((addresses != null) && (!addresses.isEmpty())) {
-                        address = (String) addresses.get(0);
+                        address = addresses.get(0);
                     }
                 }
             }
@@ -128,7 +126,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
         if (address != null) {
             for (IUnitFragment fragment : this.unitView.getFragments()) {
                 if ((fragment instanceof InteractiveTextView)) {
-                    logger.info("Jumping to address: %s", new Object[]{address});
+                    logger.info("Jumping to address: %s", address);
                     if (((InteractiveTextView) fragment).isValidActiveAddress(address, null)) {
                         this.unitView.setActiveFragment(fragment);
                         boolean found = this.unitView.setActiveAddress(address, null, false);
@@ -162,7 +160,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
             if (textFragment == null) {
                 return;
             }
-            ActionContext actionContext = new ActionContext((IInteractiveUnit) this.unit, 4, id, null);
+            ActionContext actionContext = new ActionContext(this.unit, 4, id, null);
             ActionUIContext uictx = new ActionUIContext(actionContext, textFragment);
             new GraphicalActionExecutor(getShell(), getContext()).execute(uictx);
         }
@@ -190,7 +188,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
                 this.refresher = new ViewerRefresher(viewer.getControl().getDisplay(), viewer) {
                     protected void performRefresh() {
                         if ((StringsView.ContentProvider.this.codeunit instanceof INativeCodeUnit)) {
-                            StringsView.logger.info("Refreshing strings...", new Object[0]);
+                            StringsView.logger.info("Refreshing strings...");
                             super.performRefresh();
                         }
                     }
@@ -198,7 +196,7 @@ public class StringsView extends AbstractFilteredTableView<ICodeUnit, ICodeStrin
             }
             this.listener = new IEventListener() {
                 public void onEvent(IEvent e) {
-                    StringsView.logger.i("Event: %s", new Object[]{e});
+                    StringsView.logger.i("Event: %s", e);
                     if ((StringsView.ContentProvider.this.codeunit != null) && (e.getSource() == StringsView.ContentProvider.this.codeunit)) {
                         StringsView.ContentProvider.this.refresher.request();
                     }

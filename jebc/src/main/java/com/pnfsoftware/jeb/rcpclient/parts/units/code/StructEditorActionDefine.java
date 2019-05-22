@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
-import com.pnfsoftware.jeb.core.units.code.asm.type.IPrimitiveTypeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IStructureType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
@@ -42,7 +41,7 @@ public class StructEditorActionDefine extends StructEditorAction {
             return;
         }
         if (typeman.addStructureField(type, e.name, fieldType, e.offset) == null) {
-            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", new Object[]{fieldType.getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("A field of type \"%s\" could not be created at offset %Xh", fieldType.getName(true), e.offset));
         } else {
             this.v.refresh();
         }

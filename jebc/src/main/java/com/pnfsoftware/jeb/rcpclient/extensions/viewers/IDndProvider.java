@@ -1,17 +1,17 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 
 public interface IDndProvider {
-    public abstract boolean canDrag(Object paramObject);
+    boolean canDrag(Object paramObject);
 
-    public abstract boolean canDrop(String paramString, Object paramObject, int paramInt);
+    boolean canDrop(String paramString, Object paramObject, int paramInt);
 
-    public abstract boolean performDrop(String paramString, Object paramObject, int paramInt);
+    boolean performDrop(String paramString, Object paramObject, int paramInt);
 
-    public abstract Object getSelectedElements();
+    Object getSelectedElements();
 
-    public abstract String getDragData();
+    String getDragData();
 
-    public abstract boolean shouldExpand(String paramString, Object paramObject);
+    boolean shouldExpand(String paramString, Object paramObject);
 }
 
 

@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.swt.SWTException;
@@ -31,7 +30,6 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 
 public class XYGraph extends AbstractGraph {
     private static final ILogger logger = GlobalLog.getLogger(XYGraph.class);
@@ -92,20 +90,20 @@ public class XYGraph extends AbstractGraph {
                 XYGraph.this.preDrawing(gc);
                 XYGraph.this.preEdgesDrawing(gc);
                 for (L line : XYGraph.this.visibleLines) {
-                    Point a = (Point) m.get(Integer.valueOf(line.getSrcId()));
-                    Point b = (Point) m.get(Integer.valueOf(line.getDstId()));
+                    Point a = m.get(line.getSrcId());
+                    Point b = m.get(line.getDstId());
                     XYGraph.this.drawEdge(gc, line, a, b);
                 }
                 XYGraph.this.postEdgesDrawing(gc);
                 XYGraph.this.preVerticesDrawing(gc);
                 for (P p : XYGraph.this.visiblePoints) {
-                    Point pt = (Point) m.get(Integer.valueOf(p.getId()));
+                    Point pt = m.get(p.getId());
                     XYGraph.this.drawVertex(gc, p, pt);
                 }
                 XYGraph.this.postVerticesDrawing(gc);
                 XYGraph.this.preVertexLabelsDrawing(gc);
                 for (P p : XYGraph.this.visiblePoints) {
-                    Point pt = (Point) m.get(Integer.valueOf(p.getId()));
+                    Point pt = m.get(p.getId());
                     XYGraph.this.drawVertexLabel(gc, p, pt);
                 }
                 XYGraph.this.postVertexLabelsDrawing(gc);
@@ -245,7 +243,7 @@ public class XYGraph extends AbstractGraph {
 
     public boolean isVertexVisible(int vertexId) {
         for (P p : this.visiblePoints) {
-            if (p.id.intValue() == vertexId) {
+            if (p.id == vertexId) {
                 return true;
             }
         }
@@ -300,7 +298,7 @@ public class XYGraph extends AbstractGraph {
     }
 
     public void setSelection(Integer vertexId) {
-        this.selectedVertex = (vertexId == null ? null : (P) this.pointmap.get(vertexId));
+        this.selectedVertex = (vertexId == null ? null : this.pointmap.get(vertexId));
     }
 
     public void setTrackVertexHovering(boolean trackVertexHovering) {
@@ -336,7 +334,7 @@ public class XYGraph extends AbstractGraph {
     }
 
     public boolean isActiveVertex(int id) {
-        return this.activeVertices.contains(Integer.valueOf(id));
+        return this.activeVertices.contains(id);
     }
 
     public void addActivePoint(P p) {
@@ -440,7 +438,7 @@ public class XYGraph extends AbstractGraph {
         }
         this.pointmap.clear();
         for (P p : allpoints) {
-            this.pointmap.put(Integer.valueOf(p.getId()), p);
+            this.pointmap.put(p.getId(), p);
         }
         this.lines.clear();
         this.lines.addAll(alllines);
@@ -462,7 +460,7 @@ public class XYGraph extends AbstractGraph {
     }
 
     public void centerGraph(int vertexId) {
-        P p = (P) this.pointmap.get(Integer.valueOf(vertexId));
+        P p = this.pointmap.get(vertexId);
         Assert.a(p != null, "Vertex id " + vertexId + " does not exist");
         setGraphLocation(p.x - this.gw / 2.0D, p.y - this.gh / 2.0D);
     }
@@ -477,7 +475,7 @@ public class XYGraph extends AbstractGraph {
     }
 
     public void centerGraph(int vertexId, int clientAnchorFlags, boolean progressive) {
-        Point pt = (Point) getVertexViewportCoordinates().get(Integer.valueOf(vertexId));
+        Point pt = getVertexViewportCoordinates().get(vertexId);
         Rectangle client = this.clientArea;
         int x0 = pt.x;
         int y0 = pt.y;
@@ -622,7 +620,7 @@ public class XYGraph extends AbstractGraph {
             this.pointsCoordMap = new HashMap();
             for (P p : this.pointmap.values()) {
                 Point pc = convertCoord(p);
-                this.pointsCoordMap.put(Integer.valueOf(p.getId()), pc);
+                this.pointsCoordMap.put(p.getId(), pc);
             }
         }
         return this.pointsCoordMap;
@@ -805,8 +803,8 @@ public class XYGraph extends AbstractGraph {
         gc.fillRectangle(x, y, w, h);
         List<Point> activePts = new ArrayList<>();
         for (Map.Entry<Integer, Point> entry : getVertexViewportCoordinates().entrySet()) {
-            int id = ((Integer) entry.getKey()).intValue();
-            Point pt = (Point) entry.getValue();
+            int id = (Integer) entry.getKey();
+            Point pt = entry.getValue();
             if (isActiveVertex(id)) {
                 activePts.add(pt);
             } else {

@@ -127,7 +127,7 @@ public class StyleOptionsDialog extends JebDialog {
             Font codefont = this.fontman.getCodeFont();
             if ((codefont != null) && (codefont.getFontData().length >= 1)) {
                 FontData fd = codefont.getFontData()[0];
-                String text = String.format("%s %dpt", new Object[]{fd.getName(), Integer.valueOf(fd.getHeight())});
+                String text = String.format("%s %dpt", fd.getName(), fd.getHeight());
                 if ((fd.getStyle() & 0x1) != 0) {
                     text = text + " " + S.s(99);
                 }

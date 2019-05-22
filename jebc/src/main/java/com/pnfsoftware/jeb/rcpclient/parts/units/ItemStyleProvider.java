@@ -7,7 +7,6 @@ import com.pnfsoftware.jeb.core.output.ItemClassIdentifiers;
 import com.pnfsoftware.jeb.core.output.text.IActionableTextItem;
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
 import com.pnfsoftware.jeb.core.output.text.ILine;
-import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.rcpclient.iviewers.IStyleProvider;
 import com.pnfsoftware.jeb.rcpclient.iviewers.Style;
 import com.pnfsoftware.jeb.rcpclient.iviewers.StyleManager;
@@ -60,7 +59,7 @@ public class ItemStyleProvider implements IStyleProvider {
         iviewer.addItemListener(new IItemListener() {
             public void notifyItemEvent(ITextDocumentViewer viewer, ItemEvent e) {
                 if (e.type == 1) {
-                    ItemStyleProvider.logger.debug("On-caret Item: %s", new Object[]{e.item});
+                    ItemStyleProvider.logger.debug("On-caret Item: %s", e.item);
                     ItemStyleProvider.this.activeItem = e.item;
                     if ((ItemStyleProvider.this.activeItem instanceof IActionableTextItem)) {
                         Set<IActionableItem> similarItems = ItemStyleProvider.this.findSimilarActionableItems(iviewer, (IActionableTextItem) ItemStyleProvider.this.activeItem);

@@ -6,8 +6,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.custom.StyledText;

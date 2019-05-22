@@ -81,7 +81,7 @@ public class FilterText extends Composite implements IFilterText {
             this.filterText.setForeground(this.fgColor);
         } else {
             StyleManager styleman = RcpClientContext.getInstance().getStyleManager();
-            ItemClassIdentifiers styleid = status.booleanValue() ? ItemClassIdentifiers.RESULT_SUCCESS : ItemClassIdentifiers.RESULT_ERROR;
+            ItemClassIdentifiers styleid = status ? ItemClassIdentifiers.RESULT_SUCCESS : ItemClassIdentifiers.RESULT_ERROR;
             Style style = styleman.getNormalStyle(styleid);
             this.filterText.setBackground(style.getBackgroungColor() == null ? this.bgColor : style.getBackgroungColor());
             this.filterText.setForeground(style.getColor() == null ? this.fgColor : style.getColor());
@@ -108,10 +108,7 @@ public class FilterText extends Composite implements IFilterText {
 
     public static boolean isSelected() {
         Control c = Display.getCurrent().getFocusControl();
-        if ((c != null) && ((c.getParent() instanceof FilterText))) {
-            return true;
-        }
-        return false;
+        return (c != null) && ((c.getParent() instanceof FilterText));
     }
 }
 

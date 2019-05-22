@@ -51,7 +51,7 @@ public class ImageViewer extends Viewer {
         this.input = ((IImageDocument) input);
         this.input.addListener(this.inputListener = new IEventListener() {
             public void onEvent(IEvent e) {
-                ImageViewer.logger.i("Event received: %s", new Object[]{e});
+                ImageViewer.logger.i("Event received: %s", e);
                 ImageViewer.this.refresher.request();
             }
         });

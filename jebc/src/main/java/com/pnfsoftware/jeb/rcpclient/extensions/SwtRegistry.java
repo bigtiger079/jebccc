@@ -44,7 +44,7 @@ public class SwtRegistry {
     }
 
     public Color getColor(RGB rgb) {
-        Color color = (Color) this.colors.get(rgb);
+        Color color = this.colors.get(rgb);
         if (color == null) {
             color = new Color(this.display, rgb);
             this.colors.put(rgb, color);
@@ -65,7 +65,7 @@ public class SwtRegistry {
     }
 
     public Font getFont(FontDescriptor desc) {
-        Font font = (Font) this.fonts.get(desc);
+        Font font = this.fonts.get(desc);
         if (font == null) {
             font = desc.createFont(this.display);
             this.fonts.put(desc, font);
@@ -90,10 +90,10 @@ public class SwtRegistry {
     public Font getFont(Font basefont, Integer height, Integer style) {
         FontDescriptor desc = FontDescriptor.createFrom(basefont);
         if (height != null) {
-            desc = desc.setHeight(height.intValue());
+            desc = desc.setHeight(height);
         }
         if (style != null) {
-            desc = desc.setStyle(style.intValue());
+            desc = desc.setStyle(style);
         }
         return getFont(desc);
     }

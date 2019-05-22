@@ -5,13 +5,11 @@ import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.output.IItem;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.codeobject.ICodeObjectUnit;
-import com.pnfsoftware.jeb.core.units.codeobject.ILoaderInformation;
 import com.pnfsoftware.jeb.core.units.codeobject.ISymbolInformation;
 import com.pnfsoftware.jeb.core.units.codeobject.SymbolInformation;
 import com.pnfsoftware.jeb.core.units.codeobject.SymbolType;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.DataFrameView;
-import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractDataFrameView;
 import com.pnfsoftware.jeb.rcpclient.parts.units.IRcpUnitView;
@@ -27,7 +25,6 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit> {
@@ -38,7 +35,7 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
         super(parent, style, co, unitView, context);
         setLayout(new FillLayout());
         this.symbolFlag = symbolFlag;
-        this.dfv = buildSimple(this, new String[]{"Type", "Flags", "Name", "Identifier", "Symbol@", "Address", "Size"});
+        this.dfv = buildSimple(this, "Type", "Flags", "Name", "Identifier", "Symbol@", "Address", "Size");
         this.dfv.getContextMenu().addContextMenu(new IContextMenu() {
             public void fillContextMenu(IMenuManager menuMgr) {
                 CodeLoaderSymbolsView.this.addOperationsToContextMenu(menuMgr);
@@ -61,7 +58,7 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
         df.setRenderedBaseForNumberObjects(16);
         long a;
         if ((this.symbolFlag & 0x2) != 0) {
-            a = ((ICodeObjectUnit) getUnit()).getLoaderInformation().getEntryPoint();
+            a = getUnit().getLoaderInformation().getEntryPoint();
             ISymbolInformation s = new SymbolInformation(SymbolType.PTRFUNCTION, 2, -1L, "start", 0L, a, 0L);
             addSymbolAsRow(df, s);
         }
@@ -77,10 +74,10 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
         row.add(formatSymbolType(s.getType()));
         row.add(formatSymbolFlags(s.getFlags()));
         row.add(s.getName());
-        row.add(Long.valueOf(s.getIdentifier()));
-        row.add(Long.valueOf(s.getRelativeAddress()));
-        row.add(Long.valueOf(s.getSymbolRelativeAddress()));
-        row.add(Long.valueOf(s.getSymbolSize()));
+        row.add(s.getIdentifier());
+        row.add(s.getRelativeAddress());
+        row.add(s.getSymbolRelativeAddress());
+        row.add(s.getSymbolSize());
         df.addRow(row);
     }
 
@@ -119,7 +116,7 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
             flags &= 0xFFFFFFEF;
         }
         if (flags != 0) {
-            sb.append(String.format("(other:%Xh) ", new Object[]{Integer.valueOf(flags)}));
+            sb.append(String.format("(other:%Xh) ", flags));
         }
         if (sb.length() > 0) {
             sb.deleteCharAt(sb.length() - 1);
@@ -130,7 +127,7 @@ public class CodeLoaderSymbolsView extends AbstractDataFrameView<ICodeObjectUnit
     public IItem getActiveItem() {
         TableItem[] sel = this.dfv.getTable().getSelection();
         if ((sel != null) && (sel.length == 1)) {
-            return new CodeLoaderCellItem((ICodeObjectUnit) this.unit, sel[0].getText(2), sel[0].getText(5));
+            return new CodeLoaderCellItem(this.unit, sel[0].getText(2), sel[0].getText(5));
         }
         return null;
     }

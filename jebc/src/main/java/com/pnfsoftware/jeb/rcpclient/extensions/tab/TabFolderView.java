@@ -275,7 +275,7 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
         if ((index < 0) || (index >= this.entries.size())) {
             return false;
         }
-        Entry entry = (Entry) this.entries.get(index);
+        Entry entry = this.entries.get(index);
         showEntry(entry, setFocus);
         return true;
     }
@@ -300,8 +300,7 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
 
     public void showEntry(Entry entry, boolean setFocus) {
         if (entry.tab == null) {
-            CTabItem item = createCTabItem(entry.name, entry.control, null);
-            entry.tab = item;
+            entry.tab = createCTabItem(entry.name, entry.control, null);
         }
         if (setFocus) {
             this.folder.setSelection(entry.tab);
@@ -315,12 +314,12 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
             control.setParent(this.folder);
         }
         if (index == null) {
-            index = Integer.valueOf(this.folder.getItemCount());
+            index = this.folder.getItemCount();
         }
-        if (index.intValue() < 0) {
-            index = Integer.valueOf(index.intValue() + this.folder.getItemCount());
+        if (index < 0) {
+            index = index.intValue() + this.folder.getItemCount();
         }
-        CTabItem item = new CTabItem(this.folder, 0, index.intValue());
+        CTabItem item = new CTabItem(this.folder, 0, index);
         String displayName = name;
         if (this.addSpaces) {
             displayName = "   " + name + "   ";
@@ -349,11 +348,11 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
     }
 
     public Control getEntryControl(int index) {
-        return ((Entry) this.entries.get(index)).control;
+        return this.entries.get(index).control;
     }
 
     public String getEntryName(int index) {
-        return ((Entry) this.entries.get(index)).name;
+        return this.entries.get(index).name;
     }
 
     public List<Entry> getEntries() {
@@ -388,7 +387,7 @@ public class TabFolderView extends Composite implements CTabFolder2Listener {
     }
 
     public CTabItem getMostRecentlyFocusedTab() {
-        return this.entriesByFocusOrder.isEmpty() ? null : ((Entry) this.entriesByFocusOrder.get(0)).tab;
+        return this.entriesByFocusOrder.isEmpty() ? null : this.entriesByFocusOrder.get(0).tab;
     }
 
     public List<CTabItem> getPreviouslyFocusedTabs() {

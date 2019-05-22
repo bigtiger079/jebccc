@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
@@ -41,7 +40,7 @@ public class WindowFocusHierarchyHandler extends JebBaseHandler {
         if (unit != null) {
             for (IMPart part : pman.getPartsForUnit(unit)) {
                 UnitPartManager manager = (UnitPartManager) part.getManager();
-                CodeHierarchyView fragment = (CodeHierarchyView) manager.getFragmentByType(CodeHierarchyView.class);
+                CodeHierarchyView fragment = manager.getFragmentByType(CodeHierarchyView.class);
                 if (fragment != null) {
                     pman.activatePart(part, true);
                     manager.setActiveFragment(fragment);

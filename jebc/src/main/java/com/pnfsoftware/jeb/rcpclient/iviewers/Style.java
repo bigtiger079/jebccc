@@ -27,7 +27,7 @@ public class Style {
     public Style(StyleManager styleman, String s) {
         String[] elts = s.split(",");
         if (elts.length != 4) {
-            logger.warn(String.format("%s: %s", new Object[]{S.s(403), Formatter.escapeString(s, true)}), new Object[0]);
+            logger.warn(String.format("%s: %s", S.s(403), Formatter.escapeString(s, true)));
             return;
         }
         this.styleman = styleman;
@@ -104,14 +104,14 @@ public class Style {
     }
 
     public String toString() {
-        return String.format("%s,%s,%s,%s", new Object[]{colorToString(this.color), colorToString(this.bgcolor), Boolean.valueOf(this.bold), Boolean.valueOf(this.italic)});
+        return String.format("%s,%s,%s,%s", colorToString(this.color), colorToString(this.bgcolor), this.bold, this.italic);
     }
 
     public static String colorToString(Color color) {
         if (color == null) {
             return "-1";
         }
-        return String.format("%02X%02X%02X", new Object[]{Integer.valueOf(color.getRed()), Integer.valueOf(color.getGreen()), Integer.valueOf(color.getBlue())});
+        return String.format("%02X%02X%02X", color.getRed(), color.getGreen(), color.getBlue());
     }
 
     public static Color parseColor(Display display, String s) {
@@ -119,7 +119,7 @@ public class Style {
         try {
             rgb = Integer.parseInt(s, 16);
         } catch (NumberFormatException e) {
-            logger.warn(String.format("%s: %s", new Object[]{S.s(397), Formatter.escapeString(s, true)}), new Object[0]);
+            logger.warn(String.format("%s: %s", S.s(397), Formatter.escapeString(s, true)));
             return null;
         }
         if (rgb < 0) {

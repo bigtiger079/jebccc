@@ -1,8 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
-import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IMemoryModel;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IStackframeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IArrayType;

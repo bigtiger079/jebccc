@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.google.common.net.MediaType;
-import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.IUnitCreator;
@@ -16,7 +15,6 @@ import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.ViewerCell;
@@ -141,7 +139,7 @@ public class ProjectTreeLabelProvider extends StyledCellLabelProvider implements
         if (type != null) {
             for (String t : typeToPath.keySet()) {
                 if (t.equalsIgnoreCase(type)) {
-                    return (String) typeToPath.get(t);
+                    return typeToPath.get(t);
                 }
             }
             if (type.startsWith("dcmp_")) {

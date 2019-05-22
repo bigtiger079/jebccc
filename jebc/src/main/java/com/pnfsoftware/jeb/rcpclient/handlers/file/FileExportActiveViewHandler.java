@@ -2,12 +2,9 @@ package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ProgressMonitorHideableDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
-import com.pnfsoftware.jeb.rcpclient.extensions.tab.TabFolderView;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
 import com.pnfsoftware.jeb.util.io.IO;
@@ -61,7 +58,7 @@ public class FileExportActiveViewHandler extends JebBaseHandler {
         if (filepath == null) {
             return;
         }
-        logger.i("%s: %s", new Object[]{S.s(340), filepath});
+        logger.i("%s: %s", S.s(340), filepath);
         byte[] content = fragment.export();
         if (content != null) {
             try {

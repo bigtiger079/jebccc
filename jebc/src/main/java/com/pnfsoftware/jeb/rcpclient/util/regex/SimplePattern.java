@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.util.regex;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimplePattern implements IPattern {

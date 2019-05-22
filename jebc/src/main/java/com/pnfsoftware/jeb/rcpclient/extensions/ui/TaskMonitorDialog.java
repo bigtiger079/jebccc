@@ -15,7 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -80,7 +79,7 @@ public class TaskMonitorDialog extends JebDialog {
 
         public void progress(long current, long total) {
             if ((total > 0L) && (current >= 0L) && (current <= total)) {
-                String text = String.format("[Progress: %.1f%%]", new Object[]{Double.valueOf(current * 100.0D / total)});
+                String text = String.format("[Progress: %.1f%%]", current * 100.0D / total);
                 updateLabel(1, text);
             }
         }

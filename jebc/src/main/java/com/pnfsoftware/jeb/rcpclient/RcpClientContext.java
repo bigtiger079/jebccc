@@ -13,11 +13,8 @@ import com.pnfsoftware.jeb.client.script.ScriptExecutionException;
 import com.pnfsoftware.jeb.client.script.ScriptInitializationException;
 import com.pnfsoftware.jeb.client.script.ScriptLoader;
 import com.pnfsoftware.jeb.client.script.ScriptPreparationException;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.Artifact;
-import com.pnfsoftware.jeb.core.CoreOptions;
 import com.pnfsoftware.jeb.core.IArtifact;
-import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
@@ -31,7 +28,6 @@ import com.pnfsoftware.jeb.core.exceptions.UnitLockedException;
 import com.pnfsoftware.jeb.core.input.FileInput;
 import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.properties.IPropertyDefinitionManager;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.properties.impl.CommonsConfigurationWrapper;
 import com.pnfsoftware.jeb.core.properties.impl.PropertyDefinitionManager;
 import com.pnfsoftware.jeb.core.properties.impl.PropertyTypeBoolean;
@@ -41,7 +37,6 @@ import com.pnfsoftware.jeb.core.properties.impl.PropertyTypeString;
 import com.pnfsoftware.jeb.core.properties.impl.SimplePropertyManager;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitIdentifier;
-import com.pnfsoftware.jeb.core.units.IUnitLock;
 import com.pnfsoftware.jeb.core.units.NotificationType;
 import com.pnfsoftware.jeb.core.units.UnitUtil;
 import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
@@ -55,7 +50,6 @@ import com.pnfsoftware.jeb.rcpclient.dialogs.SoftwareUpdateDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.AbstractRefresher;
 import com.pnfsoftware.jeb.rcpclient.extensions.MenuUtil;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIRunnable;
@@ -63,7 +57,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.WidgetBoundsManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.App;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Dock;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.Folder;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Panel;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMAppContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
@@ -73,7 +66,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.binding.KeyShortcutsManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.state.WidgetWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.themes.ThemeManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.ui.Toast;
-import com.pnfsoftware.jeb.rcpclient.extensions.ui.UITaskManager;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionCommentHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.actions.ActionConvertHandler;
@@ -197,7 +189,6 @@ import com.pnfsoftware.jeb.rcpclient.operations.JebAction;
 import com.pnfsoftware.jeb.rcpclient.parts.JebStatusIndicator;
 import com.pnfsoftware.jeb.rcpclient.parts.MultiInterpreter;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager.PropertyProvider;
 import com.pnfsoftware.jeb.rcpclient.parts.ProjectExplorerPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.UIState;
 import com.pnfsoftware.jeb.rcpclient.util.BrowserUtil;
@@ -218,7 +209,6 @@ import com.pnfsoftware.jeb.util.io.IO;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import com.pnfsoftware.jeb.util.logging.LogStatusSink;
-import com.pnfsoftware.jeb.util.net.Net;
 import com.pnfsoftware.jeb.util.net.NetProxyInfo;
 
 import java.io.File;
@@ -236,7 +226,6 @@ import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.BuilderParameters;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
-import org.apache.commons.configuration2.builder.fluent.PropertiesBuilderParameters;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.io.IOCase;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
@@ -257,7 +246,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 
 public class RcpClientContext extends AbstractClientContext implements IGraphicalTaskExecutor, IWidgetManager, IMAppContext {
@@ -461,9 +449,8 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             item.update();
         }
         updateContributionsRecursively(this.app.getMenuManager());
-        Iterator<JebBaseHandler> iterator = AllHandlers.getInstance().getAll().iterator();
-        while (iterator.hasNext()) {
-            JebAction action = (JebAction) iterator.next();
+        for (JebBaseHandler jebBaseHandler : AllHandlers.getInstance().getAll()) {
+            JebAction action = (JebAction) jebBaseHandler;
             if (action.isEnabled()) {
                 action.setEnabled(true);
             }
@@ -501,7 +488,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             getErrorHandler().handle(e);
         } else {
             logger.catchingSilent(e);
-            String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{Throwables.formatStacktraceShort(e)});
+            String msg = String.format("The following error was reported on the UI thread:\n\n%s", Throwables.formatStacktraceShort(e));
             UI.error(msg);
         }
         return true;
@@ -537,10 +524,10 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             }
             if (file.canRead()) {
                 Parameters params = new Parameters();
-                FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder(PropertiesConfiguration.class).configure(new BuilderParameters[]{(BuilderParameters) params.properties().setFile(file)});
+                FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder(PropertiesConfiguration.class).configure((BuilderParameters) params.properties().setFile(file));
                 builder.setAutoSave(true);
                 try {
-                    PropertiesConfiguration cfg = (PropertiesConfiguration) builder.getConfiguration();
+                    PropertiesConfiguration cfg = builder.getConfiguration();
                     ActionEx.setKeyboardShortcuts(new KeyShortcutsManager(new SimplePropertyManager(new CommonsConfigurationWrapper(cfg))));
                 } catch (ConfigurationException localConfigurationException) {
                 }
@@ -896,22 +883,22 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             taskname = taskname + " (dev. mode)";
         }
         executeTaskWithPopupDelay(1500, taskname, false, new Callable() {
-            public Boolean call() throws Exception {
+            public Boolean call() {
                 try {
                     RcpClientContext.this.coreOptions.setAllowAsynchronousProcessing(true);
                     RcpClientContext.this.initializeEngines();
-                    return Boolean.valueOf(true);
+                    return Boolean.TRUE;
                 } catch (JebException e) {
                     String f = "The following error occurred while JEB was initializing:\n\n\"%s\"\n\nPlease update your settings or contact support, and restart JEB. The program will now terminate.";
-                    UI.error(String.format(f, new Object[]{e.getMessage()}));
+                    UI.error(String.format(f, e.getMessage()));
                     AbstractContext.terminate();
                 }
-                return Boolean.valueOf(false);
+                return Boolean.FALSE;
             }
         });
-        logger.debug("The JEB engines are initialized", new Object[0]);
+        logger.debug("The JEB engines are initialized");
         if ((getEnginesContext() == null) || (getCoreContext() == null)) {
-            logger.error("The JEB engines were not initialized!", new Object[0]);
+            logger.error("The JEB engines were not initialized!");
             return;
         }
         EnginesListener.initialize(this, getEnginesContext());
@@ -927,7 +914,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             this.display.timerExec(120000, new Runnable() {
                 public void run() {
                     int ts = (int) (System.currentTimeMillis() / 1000L);
-                    RcpClientContext.this.getPropertyManager().setInteger(".ui.survey.CustomSurvey1Timestamp", Integer.valueOf(ts));
+                    RcpClientContext.this.getPropertyManager().setInteger(".ui.survey.CustomSurvey1Timestamp", ts);
                     new CustomSurveyDialog(shell, RcpClientContext.this).open();
                 }
             });
@@ -956,8 +943,8 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public void initialize(String[] argv) {
         super.initialize(argv);
         IPropertyDefinitionManager pdm = new PropertyDefinitionManager("ui", super.getPropertyDefinitionManager());
-        pdm.addDefinition("LoggerMaxLength", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(262144)));
-        pdm.addDefinition("AutoSavePeriod", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(60)));
+        pdm.addDefinition("LoggerMaxLength", PropertyTypeInteger.createPositiveOrZero(262144));
+        pdm.addDefinition("AutoSavePeriod", PropertyTypeInteger.createPositiveOrZero(60));
         pdm.addDefinition("AutoOpenDefaultUnit", PropertyTypeBoolean.create(Boolean.TRUE));
         pdm.addInternalDefinition("Theme", PropertyTypeString.create());
         pdm.addInternalDefinition("CodeFont", PropertyTypeString.create());
@@ -973,40 +960,40 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         pdm.addInternalDefinition("OptionsDialogAdvancedMode", PropertyTypeBoolean.create(Boolean.FALSE));
         pdm.addDefinition("AlwaysLoadFragments", PropertyTypeBoolean.create(Boolean.FALSE));
         pdm.addDefinition("ExpandTreeNodesOnFiltering", PropertyTypeBoolean.create(Boolean.TRUE));
-        pdm.addDefinition("NavigationBarPosition", PropertyTypeInteger.create(0, 4, Integer.valueOf(2)));
-        pdm.addInternalDefinition("NavigationBarThickness", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(0)));
-        pdm.addDefinition("ProjectUnitSync", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdm.addDefinition("ConsolePartSync", PropertyTypeBoolean.create(Boolean.valueOf(true)));
-        pdm.addDefinition("DoNotReplaceViews", PropertyTypeBoolean.create(Boolean.valueOf(true)));
-        pdm.addDefinition("ShowWarningNotificationsInStatus", PropertyTypeBoolean.create(Boolean.valueOf(true)));
+        pdm.addDefinition("NavigationBarPosition", PropertyTypeInteger.create(0, 4, 2));
+        pdm.addInternalDefinition("NavigationBarThickness", PropertyTypeInteger.createPositiveOrZero(0));
+        pdm.addDefinition("ProjectUnitSync", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdm.addDefinition("ConsolePartSync", PropertyTypeBoolean.create(Boolean.TRUE));
+        pdm.addDefinition("DoNotReplaceViews", PropertyTypeBoolean.create(Boolean.TRUE));
+        pdm.addDefinition("ShowWarningNotificationsInStatus", PropertyTypeBoolean.create(Boolean.TRUE));
         pdm.addDefinition("KeyboardShortcutsFile", PropertyTypePath.create("jeb-shortcuts.cfg"));
         IPropertyDefinitionManager pdmState = new PropertyDefinitionManager("state", pdm);
         pdmState.addDefinition("MainShellBounds", PropertyTypeString.create(), "blank= default, -1=maximized, \"x,y,w,h\"=set");
         IPropertyDefinitionManager pdmText = new PropertyDefinitionManager("text", pdm);
-        pdmText.addDefinition("ShowHorizontalScrollbar", PropertyTypeBoolean.create(Boolean.valueOf(true)));
-        pdmText.addDefinition("ShowVerticalScrollbar", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdmText.addDefinition("DisplayEolAtEod", PropertyTypeBoolean.create(Boolean.valueOf(true)));
-        pdmText.addDefinition("CharactersPerLineMax", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(4000)));
-        pdmText.addDefinition("CharactersPerLineAtEnd", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(100)));
-        pdmText.addDefinition("AllowLineWrapping", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdmText.addDefinition("CharactersWrap", PropertyTypeInteger.create(Integer.valueOf(-1)));
-        pdmText.addDefinition("ScrollLineSize", PropertyTypeInteger.create(Integer.valueOf(0)));
-        pdmText.addDefinition("PageLineSize", PropertyTypeInteger.create(Integer.valueOf(0)));
-        pdmText.addDefinition("PageMultiplier", PropertyTypeInteger.create(Integer.valueOf(0)));
-        pdmText.addDefinition("CaretBehaviorViewportStatic", PropertyTypeBoolean.create(Boolean.valueOf(false)));
+        pdmText.addDefinition("ShowHorizontalScrollbar", PropertyTypeBoolean.create(Boolean.TRUE));
+        pdmText.addDefinition("ShowVerticalScrollbar", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdmText.addDefinition("DisplayEolAtEod", PropertyTypeBoolean.create(Boolean.TRUE));
+        pdmText.addDefinition("CharactersPerLineMax", PropertyTypeInteger.createPositiveOrZero(4000));
+        pdmText.addDefinition("CharactersPerLineAtEnd", PropertyTypeInteger.createPositiveOrZero(100));
+        pdmText.addDefinition("AllowLineWrapping", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdmText.addDefinition("CharactersWrap", PropertyTypeInteger.create(-1));
+        pdmText.addDefinition("ScrollLineSize", PropertyTypeInteger.create(0));
+        pdmText.addDefinition("PageLineSize", PropertyTypeInteger.create(0));
+        pdmText.addDefinition("PageMultiplier", PropertyTypeInteger.create(0));
+        pdmText.addDefinition("CaretBehaviorViewportStatic", PropertyTypeBoolean.create(Boolean.FALSE));
         IPropertyDefinitionManager pdmCfg = new PropertyDefinitionManager("cfg", pdmText);
-        pdmCfg.addDefinition("ShowAddresses", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdmCfg.addDefinition("ShowBytesCount", PropertyTypeInteger.create(Integer.valueOf(0)));
+        pdmCfg.addDefinition("ShowAddresses", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdmCfg.addDefinition("ShowBytesCount", PropertyTypeInteger.create(0));
         IPropertyDefinitionManager pdmGraphs = new PropertyDefinitionManager("graphs", pdmText);
-        pdmGraphs.addDefinition("LockView", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdmGraphs.addDefinition("KeepInMainDock", PropertyTypeBoolean.create(Boolean.valueOf(false)));
-        pdmGraphs.addDefinition("AutoGenerate", PropertyTypeBoolean.create(Boolean.valueOf(false)));
+        pdmGraphs.addDefinition("LockView", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdmGraphs.addDefinition("KeepInMainDock", PropertyTypeBoolean.create(Boolean.FALSE));
+        pdmGraphs.addDefinition("AutoGenerate", PropertyTypeBoolean.create(Boolean.FALSE));
         IPropertyDefinitionManager pdmTree = new PropertyDefinitionManager("tree", pdm);
-        pdmTree.addDefinition("BucketFlatThreshold", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(2000)));
-        pdmTree.addDefinition("BucketTreeThreshold", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(200)));
-        pdmTree.addDefinition("BucketFlatMaxElements", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(500)));
-        pdmTree.addDefinition("BucketTreeMaxElements", PropertyTypeInteger.createPositiveOrZero(Integer.valueOf(200)));
-        pdmTree.addDefinition("UseExplicitDefaultPackage", PropertyTypeBoolean.create(Boolean.valueOf(true)));
+        pdmTree.addDefinition("BucketFlatThreshold", PropertyTypeInteger.createPositiveOrZero(2000));
+        pdmTree.addDefinition("BucketTreeThreshold", PropertyTypeInteger.createPositiveOrZero(200));
+        pdmTree.addDefinition("BucketFlatMaxElements", PropertyTypeInteger.createPositiveOrZero(500));
+        pdmTree.addDefinition("BucketTreeMaxElements", PropertyTypeInteger.createPositiveOrZero(200));
+        pdmTree.addDefinition("UseExplicitDefaultPackage", PropertyTypeBoolean.create(Boolean.TRUE));
     }
 
     public void start() throws JebException {
@@ -1027,8 +1014,8 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             }
         }
         if (i >= 1) {
-            sb.insert(0, String.format("Available decompiler%s: ", new Object[]{i >= 2 ? "s" : ""}));
-            logger.status(sb.toString(), new Object[0]);
+            sb.insert(0, String.format("Available decompiler%s: ", i >= 2 ? "s" : ""));
+            logger.status(sb.toString());
         }
     }
 
@@ -1039,7 +1026,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public boolean displayEula(String eula) {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The EULA cannot be displayed.", new Object[0]);
+            logger.warn("The EULA cannot be displayed.");
             return false;
         }
         TextDialog eulabox = new TextDialog(shell, S.s(312), eula, "eulaDialog");
@@ -1047,8 +1034,8 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         eulabox.setColumnCount(80);
         eulabox.setEditable(false);
         eulabox.setSelected(false);
-        eulabox.setOkLabelId(Integer.valueOf(3));
-        eulabox.setCancelLabelId(Integer.valueOf(235));
+        eulabox.setOkLabelId(3);
+        eulabox.setCancelLabelId(235);
         if (eulabox.open() == null) {
             UI.error("The license agreement must be accepted in order to proceed.\n\nJEB will terminate.");
             return false;
@@ -1059,7 +1046,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public void displayDemoInformation(String demoInfo) {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The demo information cannot be displayed.", new Object[0]);
+            logger.warn("The demo information cannot be displayed.");
             return;
         }
         TextDialog v = new TextDialog(shell, S.s(249), demoInfo, "demoInfoDialog");
@@ -1067,7 +1054,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         v.setColumnCount(80);
         v.setEditable(false);
         v.setSelected(false);
-        v.setOkLabelId(Integer.valueOf(201));
+        v.setOkLabelId(201);
         v.setCancelLabelId(null);
         v.open();
     }
@@ -1082,7 +1069,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         v.setColumnCount(90);
         v.setEditable(false);
         v.setSelected(false);
-        v.setOkLabelId(Integer.valueOf(201));
+        v.setOkLabelId(201);
         v.setCancelLabelId(null);
         v.open();
     }
@@ -1090,7 +1077,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public void onUpdatedSoftware(String changelist, Version oldVersion) {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The changelist cannot be displayed.", new Object[0]);
+            logger.warn("The changelist cannot be displayed.");
             return;
         }
         if (changelist != null) {
@@ -1098,11 +1085,11 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 openChangelistDialog(shell, changelist);
             } else if (app_ver.getMajor() == 3) {
                 String welcomeFmt = "Thank you for using this %s version of JEB 3.\n\nThis new version of JEB features:\n- A lighter, faster UI client; it also comes with a Dark theme and customizable keyboard shortcuts\n- Global interactive graphs views, such as the callgraph view\n- Major improvements to our native decompilation pipeline\n- The first release of our Intel x86 and x86-64 interactive decompilers\n- Type libraries for the Android NDK\n- Type libraries for Windows user-mode and kernel-mode binaries, for x86 and ARM (32 and 64 bit)\n- Signature libraries for common Android NDK libraries\n- Signature libraries for Visual Studio compiled programs\n- Many more additions and improvements that we will detail when the full release is available\n\nThank you for reporting bugs to our Support team.";
-                String welcomeMsg = String.format(welcomeFmt, new Object[]{getChannelName().toLowerCase()});
+                String welcomeMsg = String.format(welcomeFmt, getChannelName().toLowerCase());
                 UI.popupOptional(shell, 0, "Welcome", welcomeMsg, "dlgWelcomePreRelease");
             }
         } else {
-            String message = String.format(S.s(347), new Object[]{app_ver.toString()});
+            String message = String.format(S.s(347), app_ver.toString());
             message = message + "\n\n" + S.s(348);
             if (UI.question(shell, S.s(823), message)) {
                 BrowserUtil.openInBrowser("https://www.pnfsoftware.com/jeb/changelist");
@@ -1119,7 +1106,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public String retrieveLicenseKey(String licdata) {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The licensing dialog cannot be displayed.", new Object[0]);
+            logger.warn("The licensing dialog cannot be displayed.");
             return null;
         }
         LicenseKeyAutoDialog dlg = new LicenseKeyAutoDialog(shell, licdata, getNetworkUtility(), this);
@@ -1137,13 +1124,13 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     public void notifySupportExpired() {
         Shell shell = getActiveShell();
         if ((shell == null) || (shell.isDisposed())) {
-            logger.warn("The support expiration dialog cannot be displayed.", new Object[0]);
+            logger.warn("The support expiration dialog cannot be displayed.");
             return;
         }
         if (Licensing.isDemoBuild()) {
             String msg = S.s(255);
             UI.warn(shell, S.s(821), msg);
-            Toast.urgent(shell, "*** Demo has expired ***").setFont(UIAssetManager.getInstance().getFont(shell.getFont(), Integer.valueOf(15), Integer.valueOf(1))).setDuration(Long.MAX_VALUE).show();
+            Toast.urgent(shell, "*** Demo has expired ***").setFont(UIAssetManager.getInstance().getFont(shell.getFont(), 15, 1)).setDuration(Long.MAX_VALUE).show();
             return;
         }
         String msg = S.s(759) + "\n\nPress OK to check for or install an update. Press Cancel to continue.";
@@ -1156,7 +1143,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         return ThreadUtil.start(Licensing.isDebugBuild() ? "Software Updater" : null, new Runnable() {
             public void run() {
                 int periodInHours = 6;
-                for (; ; ) {
+                while (true) {
                     if (!RcpClientContext.this.isRestartRequired()) {
                         if (RcpClientContext.this.shouldCheckUpdates()) {
                             RcpClientContext.this.checkUpdate();
@@ -1184,7 +1171,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             int ping = ping(true, Integer.MAX_VALUE, sbi, progressCallback);
             String message;
             if ((ping == -2) && (calledByUser)) {
-                message = String.format(S.s(94), new Object[]{"software@pnfsoftware.com"});
+                message = String.format(S.s(94), "software@pnfsoftware.com");
                 UI.warn(message);
             } else if (ping == 2) {
                 this.updateCheckState.set(2);
@@ -1199,7 +1186,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             } else if ((ping == 0) && (calledByUser)) {
                 message = expiredLicense ? "It seems there is no available update for your license at this time." : S.s(808);
                 if ((sbi.getFlags() & 0x1) != 0) {
-                    message = String.format("Good news, JEB version %d is available!\n\nThis major update needs to be installed separately. Please check your registered email for download details.", new Object[]{Integer.valueOf(app_ver.getMajor() + 1)});
+                    message = String.format("Good news, JEB version %d is available!\n\nThis major update needs to be installed separately. Please check your registered email for download details.", app_ver.getMajor() + 1);
                 }
                 UI.info(message);
             }
@@ -1223,7 +1210,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 } else if (channel == 2) {
                     channelStr = " (alpha)";
                 } else if (channel >= 3) {
-                    channelStr = String.format(" (channel-%d)", new Object[]{Integer.valueOf(channel)});
+                    channelStr = String.format(" (channel-%d)", channel);
                 }
             }
             String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
@@ -1237,13 +1224,13 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             ProcessBuilder builder = new ProcessBuilder(command);
             builder.directory(new File(getBaseDirectory()));
             try {
-                logger.debug("Executing installer: %s", new Object[]{builder.command()});
-                logger.debug("Using base directory: %s", new Object[]{builder.directory()});
+                logger.debug("Executing installer: %s", builder.command());
+                logger.debug("Using base directory: %s", builder.directory());
                 builder.start();
             } catch (IOException e) {
                 logger.catchingSilent(e);
             }
-            String title = String.format("Software update%s", new Object[]{channelStr});
+            String title = String.format("Software update%s", channelStr);
             String message = "A software update is ready to be installed.\n\nClose JEB instance(s) at your best convenience. The update will be installed next time you start the program.";
             UI.info(shell, title, message);
             nextState = 3;
@@ -1303,7 +1290,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             int duration = (int) (System.currentTimeMillis() / 1000L) - getStartTimestamp();
             getTelemetry().record("sessionClose", "duration", duration + "", "projectCount", this.sessionProjectCount + "");
             if (Licensing.isDebugBuild()) {
-                logger.debug("UI-Executor statistics:\n%s", new Object[]{UIExecutor.format()});
+                logger.debug("UI-Executor statistics:\n%s", UIExecutor.format());
             }
             if (this.clearUIState) {
                 clearWidgetBounds();
@@ -1399,7 +1386,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         if (rp != null) {
             for (IUnit unit : RuntimeProjectUtil.getAllUnits(rp)) {
                 if (unit.getLock().isLocked()) {
-                    String msg = String.format("The unit \"%s\" (and possibly others) is locked, most likely because a background task is executing.\n\nWould you like to proceed?", new Object[]{UnitUtil.buildFullyQualifiedUnitPath(unit)});
+                    String msg = String.format("The unit \"%s\" (and possibly others) is locked, most likely because a background task is executing.\n\nWould you like to proceed?", UnitUtil.buildFullyQualifiedUnitPath(unit));
                     return UI.confirm(shell, "Unit locked", msg);
                 }
             }
@@ -1418,7 +1405,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
         int strategy = rp.getPersistenceStrategy();
         if ((strategy == 0) && (this.preferQuickSave == null)) {
             if (shouldOfferQuickSave(rp)) {
-                String msg = String.format("This project appears to be very large. Performing a regular \"full save\" may take time and consume a large amount of memory.\n\nWould you like to perform a \"quick save\" instead?", new Object[0]);
+                String msg = String.format("This project appears to be very large. Performing a regular \"full save\" may take time and consume a large amount of memory.\n\nWould you like to perform a \"quick save\" instead?");
                 this.preferQuickSave = UI.question(shell, "Persisting a Large Project", msg);
                 rp.setPersistenceStrategy(this.preferQuickSave ? 2 : 1);
             } else {
@@ -1509,19 +1496,16 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
                 if (IO.getFirstIntLE(projectPath) == 843203658) {
                     MessageBox mb = new MessageBox(shell, 194);
                     mb.setText(S.s(207));
-                    mb.setMessage(String.format("Project database \"%s\" matches the file about to be opened.\n\nWould you like to open the existing project?", new Object[]{projectPath}));
+                    mb.setMessage(String.format("Project database \"%s\" matches the file about to be opened.\n\nWould you like to open the existing project?", projectPath));
                     int r = mb.open();
                     if (r == 64) {
                         return loadInputAsProject(shell, projectPath);
                     }
                 }
-                for (; ; ) {
+                do {
                     lastIndex++;
                     projectPath = buildProjectPath(path, lastIndex);
-                    if (!new File(projectPath).exists()) {
-                        break;
-                    }
-                }
+                } while (new File(projectPath).exists());
             }
             long t0 = System.currentTimeMillis();
             project = loadProject(shell, projectPath);
@@ -1672,7 +1656,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
 
     public void executeTaskWithPopupDelay(int delayMs, String taskName, boolean errorOnCancel, final Runnable runnable) {
         executeTaskWithPopupDelay(delayMs, taskName, errorOnCancel, new Callable() {
-            public Void call() throws Exception {
+            public Void call() {
                 runnable.run();
                 return null;
             }
@@ -1685,7 +1669,7 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
             throw new RuntimeException("It seems the shell or display is being shut down; the task cannot be executed.");
         }
         try {
-            return (T) UI.getTaskManager().create(shell, taskName, callable, delayMs);
+            return UI.getTaskManager().create(shell, taskName, callable, delayMs);
         } catch (InterruptedException localInterruptedException) {
         } catch (InvocationTargetException e) {
             processTaskException(e.getTargetException(), errorOnCancel);
@@ -1694,11 +1678,11 @@ public class RcpClientContext extends AbstractClientContext implements IGraphica
     }
 
     public <T> T executeNetworkTask(Callable<T> callable) {
-        return (T) executeTaskWithPopupDelay(2000, "Please wait, a network query is taking longer than expected...", false, callable);
+        return executeTaskWithPopupDelay(2000, "Please wait, a network query is taking longer than expected...", false, callable);
     }
 
     public <T> T executeUsuallyShortTask(Callable<T> callable) {
-        return (T) executeTaskWithPopupDelay(1000, "Please wait, a task is taking longer than expected...", false, callable);
+        return executeTaskWithPopupDelay(1000, "Please wait, a task is taking longer than expected...", false, callable);
     }
 
     private void processTaskException(Throwable e, boolean errorOnCancel) {

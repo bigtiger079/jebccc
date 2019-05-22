@@ -47,9 +47,9 @@ public class ForceDirectedLayout {
             int b = e.dst.index;
             Couple<Integer, Integer> c;
             if (a < b) {
-                c = new Couple(Integer.valueOf(a), Integer.valueOf(b));
+                c = new Couple(a, b);
             } else {
-                c = new Couple(Integer.valueOf(b), Integer.valueOf(a));
+                c = new Couple(b, a);
             }
             if (set.add(c)) {
                 this.uedges.add(e);
@@ -67,7 +67,7 @@ public class ForceDirectedLayout {
             Random prng = new Random(0L);
             coords = new P[this.vertexcnt];
             for (int i = 0; i < this.vertexcnt; i++) {
-                coords[i] = new P(Integer.valueOf(g.getVertexByIndex(i).id), prng.nextDouble() * width, prng.nextDouble() * height);
+                coords[i] = new P(g.getVertexByIndex(i).id, prng.nextDouble() * width, prng.nextDouble() * height);
             }
         }
         for (int i = 0; i < this.vertexcnt; i++) {
@@ -78,7 +78,7 @@ public class ForceDirectedLayout {
         this.coords = coords;
         this.disps = new P[this.vertexcnt];
         for (int i = 0; i < this.vertexcnt; i++) {
-            this.disps[i] = new P(Integer.valueOf(g.getVertexByIndex(i).id), 0.0D, 0.0D);
+            this.disps[i] = new P(g.getVertexByIndex(i).id, 0.0D, 0.0D);
         }
         this.itercount = itercount;
         this.currentiter = 0;

@@ -13,15 +13,12 @@ import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphEdgeSquareManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphNode;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphNodeListener;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphNodeListenerAdapter;
-import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphPlaceholder;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.IGraphNodeContents;
-import com.pnfsoftware.jeb.rcpclient.extensions.graph.NodeContentsInteractiveTextFactory;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.NodeContentsInteractiveTextView;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.layout.CFGLayoutManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.layout.Cell;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.layout.ICFGLayout;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.layout.Spreadsheet;
-import com.pnfsoftware.jeb.rcpclient.iviewers.text.ITextDocumentViewer;
 import com.pnfsoftware.jeb.rcpclient.parts.units.IRcpUnitView;
 import com.pnfsoftware.jeb.rcpclient.util.ColorsGradient;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -72,9 +69,9 @@ public abstract class AbstractControlFlowGraphView<T extends IUnit> extends Abst
         this.blockToNodes = new IdentityHashMap();
         Cell<BasicBlock<IInstruction>> cell;
         GraphNode n1;
-        for (Iterator localIterator1 = grid0.getRealCells().iterator(); localIterator1.hasNext(); ) {
-            cell = (Cell) localIterator1.next();
-            BasicBlock<IInstruction> b = (BasicBlock) cell.getObject();
+        for (Cell<BasicBlock<IInstruction>> basicBlockCell : grid0.getRealCells()) {
+            cell = (Cell) basicBlockCell;
+            BasicBlock<IInstruction> b = cell.getObject();
             GraphNode node = new GraphNode(getGraph(), 17);
             node.setData("bb", b);
             this.blockToNodes.put(b, node);
@@ -88,11 +85,11 @@ public abstract class AbstractControlFlowGraphView<T extends IUnit> extends Abst
         GraphEdgeSquareManager edgeman = new GraphEdgeSquareManager(g);
         g.setEdgeManager(edgeman);
         for (BasicBlock<IInstruction> src : cfg) {
-            n1 = (GraphNode) this.blockToNodes.get(src);
+            n1 = this.blockToNodes.get(src);
             List<BasicBlock<IInstruction>> dstlist = src.getOutputBlocks();
             int iedge = 0;
             for (BasicBlock<IInstruction> dst : dstlist) {
-                GraphNode n2 = (GraphNode) this.blockToNodes.get(dst);
+                GraphNode n2 = this.blockToNodes.get(dst);
                 GraphEdgeSquare edge = edgeman.create(n1, n2);
                 if (dstlist.size() >= 2) {
                     edge.setColor(0, iedge == 0 ? cRed : cGreen);
@@ -100,7 +97,7 @@ public abstract class AbstractControlFlowGraphView<T extends IUnit> extends Abst
                 iedge++;
             }
             for (BasicBlock<IInstruction> dst : src.getIrregularOutputBlocks()) {
-                GraphNode n2 = (GraphNode) this.blockToNodes.get(dst);
+                GraphNode n2 = this.blockToNodes.get(dst);
                 GraphEdgeSquare edge = edgeman.create(n1, n2);
                 edge.setColor(0, cOrange);
                 edge.setStyle(2);
@@ -149,14 +146,14 @@ public abstract class AbstractControlFlowGraphView<T extends IUnit> extends Abst
         } else {
             return;
         }
-        node1 = (GraphNode) this.blockToNodes.get(b1);
+        node1 = this.blockToNodes.get(b1);
         this.contentsFactory.getContentsForNode(node1).setFocus();
         this.contentsFactory.getContentsForNode(node1).setActiveAddress(address1);
         getGraph().showNode(node1, true);
     }
 
     protected String buildAddress(long offset) {
-        return String.format("%Xh", new Object[]{Long.valueOf(offset)});
+        return String.format("%Xh", offset);
     }
 }
 

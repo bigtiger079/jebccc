@@ -4,7 +4,6 @@ import com.pnfsoftware.jeb.client.ErrorLogGenerator;
 import com.pnfsoftware.jeb.client.JebNet;
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.exceptions.UnitLockedException;
@@ -86,12 +85,12 @@ public class RcpErrorHandler {
             return;
         }
         long currentTs = System.currentTimeMillis();
-        this.errorTimestamps.add(Long.valueOf(currentTs));
+        this.errorTimestamps.add(currentTs);
         if ((this.failsafeMaxReportCountPerSlidingWindow > 0) && (this.failsafeSlidingWindowDurationMs > 0L) && (this.errorTimestamps.size() > this.failsafeMaxReportCountPerSlidingWindow)) {
-            long ts = ((Long) this.errorTimestamps.get(this.errorTimestamps.size() - this.failsafeMaxReportCountPerSlidingWindow - 1)).longValue();
+            long ts = (Long) this.errorTimestamps.get(this.errorTimestamps.size() - this.failsafeMaxReportCountPerSlidingWindow - 1);
             long delta = currentTs - ts;
             if (delta <= this.failsafeSlidingWindowDurationMs) {
-                logger.debug("Error report not generated, too many exceptions are being reported", new Object[0]);
+                logger.debug("Error report not generated, too many exceptions are being reported");
                 return;
             }
         }
@@ -99,15 +98,15 @@ public class RcpErrorHandler {
         boolean done = false;
         if (((t0 instanceof ClassNotFoundException)) || ((t0 instanceof NoSuchFieldException)) || ((t0 instanceof NoSuchMethodException)) || ((t0 instanceof NoClassDefFoundError)) || ((t0 instanceof IncompatibleClassChangeError))) {
             StringBuilder msg = new StringBuilder();
-            msg.append(String.format("%s.\n%s.", new Object[]{S.s(310), S.s(193)}));
-            msg.append(String.format("\n\n%s: %s", new Object[]{S.s(304), t0}));
+            msg.append(String.format("%s.\n%s.", S.s(310), S.s(193)));
+            msg.append(String.format("\n\n%s: %s", S.s(304), t0));
             display(msg, verbose);
             logger.catching(t);
             done = true;
         } else if ((t0 instanceof Error)) {
             StringBuilder msg = new StringBuilder();
-            msg.append(String.format("%s. %s.", new Object[]{S.s(795), S.s(323)}));
-            msg.append(String.format("\n\n%s: %s", new Object[]{S.s(304), t0}));
+            msg.append(String.format("%s. %s.", S.s(795), S.s(323)));
+            msg.append(String.format("\n\n%s: %s", S.s(304), t0));
             display(msg, verbose);
             logger.catching(t);
             done = true;
@@ -130,7 +129,7 @@ public class RcpErrorHandler {
         }
         String prjReloaded = "unknown";
         String prjSha256 = "";
-        Long prjFilesize = Long.valueOf(-1L);
+        Long prjFilesize = -1L;
         List<String> artSha256List = new ArrayList<>();
         List<Long> artFilesizeList = new ArrayList<>();
         IRuntimeProject prj = this.ctx.getOpenedProject();
@@ -146,7 +145,7 @@ public class RcpErrorHandler {
                         HashCalculator h = new HashCalculator(in, 16);
                         if (h.compute()) {
                             artSha256List.add(Formatter.byteArrayToHexString(h.getSha256()));
-                            artFilesizeList.add(Long.valueOf(input.getCurrentSize()));
+                            artFilesizeList.add(input.getCurrentSize());
                         }
                     } catch (Throwable localThrowable2) {
                         localThrowable7 = localThrowable2;
@@ -166,7 +165,7 @@ public class RcpErrorHandler {
         if (this.ctx.getLastReloadedProjectPath() != null) {
             File prjFile = new File(this.ctx.getLastReloadedProjectPath());
             if ((prjFile.exists()) && (prjFile.canRead())) {
-                prjFilesize = Long.valueOf(prjFile.length());
+                prjFilesize = prjFile.length();
                 try {
                     InputStream in = new FileInputStream(prjFile);
                     input = null;
@@ -175,8 +174,6 @@ public class RcpErrorHandler {
                         if (h.compute()) {
                             prjSha256 = Formatter.byteArrayToHexString(h.getSha256());
                         }
-                    } catch (Throwable localThrowable5) {
-                        throw localThrowable5;
                     } finally {
                         if (in != null) {
                             if (t0 != null) {
@@ -200,9 +197,9 @@ public class RcpErrorHandler {
         gen.addRecord("artifacts-sha256-list", Strings.join(",", artSha256List));
         gen.addRecord("artifacts-filesize-list", Strings.join(",", artFilesizeList));
         IPropertyManager pm = this.ctx.getPropertyManager();
-        boolean cfgUploadErrorLogs = BooleanUtils.toBoolean(Boolean.valueOf(pm.getBoolean(".UploadErrorLogs")));
-        boolean cfgUploadErrorFiles = BooleanUtils.toBoolean(Boolean.valueOf(pm.getBoolean(".UploadErrorFiles")));
-        gen.addRecord("up-set", String.format("%b;%b", new Object[]{Boolean.valueOf(cfgUploadErrorLogs), Boolean.valueOf(cfgUploadErrorFiles)}));
+        boolean cfgUploadErrorLogs = BooleanUtils.toBoolean(pm.getBoolean(".UploadErrorLogs"));
+        boolean cfgUploadErrorFiles = BooleanUtils.toBoolean(pm.getBoolean(".UploadErrorFiles"));
+        gen.addRecord("up-set", String.format("%b;%b", cfgUploadErrorLogs, cfgUploadErrorFiles));
         if (details != null) {
             gen.addRecord("details", details);
         }
@@ -260,8 +257,8 @@ public class RcpErrorHandler {
                     errorlogsFolder.mkdir();
                     String path = gen.dumpTo(errorlogsFolder.getAbsolutePath());
                     StringBuilder msg = new StringBuilder();
-                    msg.append(String.format("%s.", new Object[]{S.s(305)}));
-                    msg.append(String.format("\n\n%s: %s.", new Object[]{S.s(307), path}));
+                    msg.append(String.format("%s.", S.s(305)));
+                    msg.append(String.format("\n\n%s: %s.", S.s(307), path));
                     RcpErrorHandler.this.display(msg, verbose1);
                 }
             }
@@ -277,7 +274,7 @@ public class RcpErrorHandler {
     private File getPrimaryArtifact() throws IOException {
         IRuntimeProject prj = this.ctx.getOpenedProject();
         if ((prj != null) && (!prj.getLiveArtifacts().isEmpty())) {
-            IInput input = ((ILiveArtifact) prj.getLiveArtifacts().get(0)).getArtifact().getInput();
+            IInput input = prj.getLiveArtifacts().get(0).getArtifact().getInput();
             if ((input instanceof FileInput)) {
                 return ((FileInput) input).getFile();
             }

@@ -5,22 +5,16 @@ import com.pnfsoftware.jeb.core.output.code.coordinates.InstructionCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.MethodCoordinates;
 import com.pnfsoftware.jeb.core.output.code.coordinates.NativeCoordinates;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.EntryPointDescription;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.CallGraphVertex;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.ICallGraph;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeModel;
-import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.model.Digraph;
 import com.pnfsoftware.jeb.util.collect.MultiMap;
 import com.pnfsoftware.jeb.util.collect.WeakIdentityHashMap;
 import com.pnfsoftware.jeb.util.collect.WeakValueMap;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class NativeCallgraphBuilder implements ICallgraphBuilder {
     private INativeCodeUnit<IInstruction> unit;
@@ -44,8 +38,8 @@ public class NativeCallgraphBuilder implements ICallgraphBuilder {
                     INativeMethodItem dst = this.unit.getInternalMethod(target.getInternalAddress().getAddress(), true);
                     if (dst != null) {
                         int i1 = methods.indexOf(dst);
-                        if (!mm.getSafe(Integer.valueOf(i0)).contains(Integer.valueOf(i1))) {
-                            mm.put(Integer.valueOf(i0), Integer.valueOf(i1));
+                        if (!mm.getSafe(i0).contains(i1)) {
+                            mm.put(i0, i1);
                         }
                     }
                 }
@@ -57,22 +51,22 @@ public class NativeCallgraphBuilder implements ICallgraphBuilder {
         int i = 0;
         for (INativeMethodItem m : methods) {
             int insncnt = m.getData().getCFG().getInstructionCount();
-            this.model.v(i, Double.valueOf((double) insncnt), m.getName(true));
-            this.vertexIdToMethodObject.put(Integer.valueOf(i), m);
-            this.methodObjectToVertexId.put(m, Integer.valueOf(i));
+            this.model.v(i, (double) insncnt, m.getName(true));
+            this.vertexIdToMethodObject.put(i, m);
+            this.methodObjectToVertexId.put(m, i);
             i++;
         }
         for (Integer intValue : mm.keySet()) {
-            i0 = intValue.intValue();
-            for (Integer intValue2 : mm.getSafe(Integer.valueOf(i0))) {
-                this.model.e(i0, intValue2.intValue());
+            i0 = intValue;
+            for (Integer intValue2 : mm.getSafe(i0)) {
+                this.model.e(i0, intValue2);
             }
         }
         return this.model;
     }
 
     public String getAddressForVertexId(int vertexId) {
-        INativeMethodItem m = this.vertexIdToMethodObject == null ? null : (INativeMethodItem) this.vertexIdToMethodObject.get(Integer.valueOf(vertexId));
+        INativeMethodItem m = this.vertexIdToMethodObject == null ? null : this.vertexIdToMethodObject.get(vertexId);
         if (m == null) {
             return null;
         }
@@ -97,7 +91,7 @@ public class NativeCallgraphBuilder implements ICallgraphBuilder {
         if (m == null) {
             return null;
         }
-        return (Integer) this.methodObjectToVertexId.get(m);
+        return this.methodObjectToVertexId.get(m);
     }
 }
 

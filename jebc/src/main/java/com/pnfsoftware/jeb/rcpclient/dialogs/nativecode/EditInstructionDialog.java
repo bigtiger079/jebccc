@@ -2,12 +2,9 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.nativecode;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.BranchTarget;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IBranchResolution;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IBranchTarget;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeAnalyzer;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeModel;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeInstructionItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;

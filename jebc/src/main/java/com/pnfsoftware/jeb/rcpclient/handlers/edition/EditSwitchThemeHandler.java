@@ -1,7 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.themes.ThemeManager;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import org.eclipse.swt.SWT;
 

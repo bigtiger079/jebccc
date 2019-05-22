@@ -22,7 +22,7 @@ public class PointAndLineFactory {
     }
 
     public P p(double x, double y) {
-        P p = new P(Integer.valueOf(this.id++), x, y);
+        P p = new P(this.id++, x, y);
         this.points.add(p);
         return p;
     }
@@ -40,7 +40,7 @@ public class PointAndLineFactory {
     }
 
     public String toString() {
-        return String.format("points=%s,edges=%s", new Object[]{this.points, this.lines});
+        return String.format("points=%s,edges=%s", this.points, this.lines);
     }
 }
 

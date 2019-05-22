@@ -48,13 +48,13 @@ public final class Assets {
     public static final String ICON_SCRIPT = "jeb1/icon-script.png";
 
     public static InputStream getAsset(String filename) {
-        String path = String.format("../../../../../icons/%s", new Object[]{filename});
+        String path = String.format("../../../../../icons/%s", filename);
         InputStream in = Assets.class.getResourceAsStream(path);
         if (in == null) {
-            path = String.format("../../../../icons/%s", new Object[]{filename});
+            path = String.format("../../../../icons/%s", filename);
             in = Assets.class.getResourceAsStream(path);
             if (in == null) {
-                path = String.format("/icons/%s", new Object[]{filename});
+                path = String.format("/icons/%s", filename);
                 in = Assets.class.getResourceAsStream(path);
                 if (in == null) {
                     File f = new File(path.substring(1));
@@ -64,7 +64,7 @@ public final class Assets {
                         } catch (FileNotFoundException localFileNotFoundException) {
                         }
                     }
-                    logger.warn("Cannot find asset: ", new Object[]{path});
+                    logger.warn("Cannot find asset: ", path);
                 }
             }
         }

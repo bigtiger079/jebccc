@@ -3,9 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.handlers;
 import com.pnfsoftware.jeb.client.api.IOperable;
 import com.pnfsoftware.jeb.client.api.Operation;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 

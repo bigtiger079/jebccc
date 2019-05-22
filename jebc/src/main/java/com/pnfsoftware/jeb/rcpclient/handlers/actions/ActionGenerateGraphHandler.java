@@ -1,16 +1,12 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.actions;
 
 import com.pnfsoftware.jeb.client.Licensing;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeSourceUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpErrorHandler;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphPlaceholder;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
 import com.pnfsoftware.jeb.rcpclient.parts.units.InteractiveTextView;
@@ -58,7 +54,7 @@ public class ActionGenerateGraphHandler extends JebBaseHandler {
         }
         if (activeView != graphView) {
             if (!graphView.canDisplayAtAddress(address)) {
-                logger.warn("Cannot display graph at address: %s", new Object[]{address});
+                logger.warn("Cannot display graph at address: %s", address);
                 return;
             }
             String msg = GraphPlaceholder.standardHepMessage;
@@ -70,12 +66,12 @@ public class ActionGenerateGraphHandler extends JebBaseHandler {
                 if (Licensing.isDebugBuild()) {
                     throw e;
                 }
-                String details = String.format("requested_address=%s", new Object[]{address});
+                String details = String.format("requested_address=%s", address);
                 this.context.getErrorHandler().processThrowable(e, false, false, false, details, null, graphView.getUnit());
                 UI.error("An error occurred when generating the graph.");
             }
         } else {
-            InteractiveTextView codeView = (InteractiveTextView) manager.getFragmentByType(InteractiveTextView.class);
+            InteractiveTextView codeView = manager.getFragmentByType(InteractiveTextView.class);
             if (codeView == null) {
                 return;
             }

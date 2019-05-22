@@ -18,7 +18,6 @@ import com.pnfsoftware.jeb.util.format.Strings;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
 public abstract class AbstractFilteredTableView<T extends IUnit, V> extends AbstractInteractiveTableView<T, V> {

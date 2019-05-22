@@ -1,14 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.util;
 
 import com.pnfsoftware.jeb.core.output.text.ILine;
-import com.pnfsoftware.jeb.core.units.code.java.IJavaMethod;
-import com.pnfsoftware.jeb.core.units.code.java.IJavaSourceUnit;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.Part;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.apache.commons.lang3.tuple.Pair;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;

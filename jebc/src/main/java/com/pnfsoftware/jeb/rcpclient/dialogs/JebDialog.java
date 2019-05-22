@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs;
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.rcpclient.IWidgetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper.BoundsRestorationType;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.FilterText;
 import com.pnfsoftware.jeb.rcpclient.util.SwtUtil;
@@ -230,7 +229,7 @@ public abstract class JebDialog extends Dialog {
     private Map<Integer, Button> buttons = new HashMap();
 
     protected Button getButtonByStyle(int style) {
-        return (Button) this.buttons.get(Integer.valueOf(style));
+        return this.buttons.get(style);
     }
 
     protected Composite createOkayButton(Composite parent) {
@@ -249,7 +248,7 @@ public abstract class JebDialog extends Dialog {
                 avails.add(button);
             }
         }
-        return createButtons(parent, 0, (int[][]) avails.toArray(new int[avails.size()][]), defaultButton);
+        return createButtons(parent, 0, avails.toArray(new int[avails.size()][]), defaultButton);
     }
 
     protected Composite createButtons(Composite parent, int style, int[][] availableButtons, int defaultButtonId) {
@@ -267,7 +266,7 @@ public abstract class JebDialog extends Dialog {
                     JebDialog.this.onButtonClick(buttonId);
                 }
             });
-            this.buttons.put(Integer.valueOf(button[0]), btn);
+            this.buttons.put(button[0], btn);
             if (buttonId == defaultButtonId) {
                 this.shell.setDefaultButton(btn);
             }

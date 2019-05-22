@@ -39,9 +39,9 @@ public class ShellActivationTracker implements Listener {
 
     private void set(Shell shell) {
         if (shell == null) {
-            logger.i("Shell is null", new Object[0]);
+            logger.i("Shell is null");
         } else if (this.shell == null) {
-            logger.i("Shell was null, now: %s", new Object[]{shell});
+            logger.i("Shell was null, now: %s", shell);
         }
         this.shell = shell;
     }

@@ -14,7 +14,7 @@ public class TriStateField extends Composite {
         super(parent, 0);
         setLayout(new GridLayout(2, false));
         this.wlist = new Combo(this, 8);
-        this.wlist.setItems(new String[]{Strings.safe(thirdStateLabel, "Unknown"), "Yes", "No"});
+        this.wlist.setItems(Strings.safe(thirdStateLabel, "Unknown"), "Yes", "No");
         this.wlist.setLayoutData(UIUtil.createGridDataFillHorizontally());
         setState(initialState);
         Label label = new Label(this, 0);
@@ -22,7 +22,7 @@ public class TriStateField extends Composite {
     }
 
     public void setState(Boolean state) {
-        int index = state.booleanValue() ? 1 : state == null ? 0 : 2;
+        int index = state ? 1 : state == null ? 0 : 2;
         this.wlist.select(index);
     }
 

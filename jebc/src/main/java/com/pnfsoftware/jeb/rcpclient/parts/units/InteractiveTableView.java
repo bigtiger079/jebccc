@@ -11,21 +11,14 @@ import com.pnfsoftware.jeb.core.output.table.ITableRow;
 import com.pnfsoftware.jeb.core.output.table.impl.CellCoordinates;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
-import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JumpToDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.export.ExportUtil;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTableViewer;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTableContentProvider;
 import com.pnfsoftware.jeb.rcpclient.iviewers.table.InteractiveTableViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.table.TableUtil;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-
-import java.util.List;
-
-import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -33,7 +26,6 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 
 public class InteractiveTableView extends AbstractInteractiveTableView<IUnit, ITableRow> {
     private static final ILogger logger = GlobalLog.getLogger(InteractiveTableView.class);
@@ -66,7 +58,7 @@ public class InteractiveTableView extends AbstractInteractiveTableView<IUnit, IT
                         location = iunit.addressToLocation(address);
                     }
                 }
-                String statusText = String.format("coord: %s | addr: %s | loc: %s", new Object[]{Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?")});
+                String statusText = String.format("coord: %s | addr: %s | loc: %s", Strings.safe(coord, "?"), Strings.safe(address, "?"), Strings.safe(location, "?"));
                 context.getStatusIndicator().setText(statusText);
             }
         });
@@ -85,7 +77,7 @@ public class InteractiveTableView extends AbstractInteractiveTableView<IUnit, IT
         if ((row == null) || (row.getCells() == null)) {
             return null;
         }
-        return (IItem) row.getCells().get(0);
+        return row.getCells().get(0);
     }
 
     public String getActiveAddress(AddressConversionPrecision precision) {

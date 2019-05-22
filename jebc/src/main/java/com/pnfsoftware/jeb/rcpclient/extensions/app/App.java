@@ -12,7 +12,6 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -27,15 +26,15 @@ import org.eclipse.swt.widgets.ToolItem;
 
 public class App {
     private static final ILogger logger = GlobalLog.getLogger(App.class);
-    Display display;
-    String appname;
-    Shell shell;
-    boolean hasToolbar;
-    MenuManager menuManager;
-    Composite toolbarContainer;
-    ToolBarManager toolbarManager;
-    Dock dock;
-    StatusLineManager statusManager;
+    private Display display;
+    private String appname;
+    private Shell shell;
+    private boolean hasToolbar;
+    private MenuManager menuManager;
+    private Composite toolbarContainer;
+    private ToolBarManager toolbarManager;
+    private Dock dock;
+    private StatusLineManager statusManager;
 
     public App(String name, int style) {
         onPreDisplayCreation(name, "");
@@ -92,7 +91,7 @@ public class App {
         this.dock.setLayoutData(formData);
         this.shell.addShellListener(new ShellAdapter() {
             public void shellClosed(ShellEvent e) {
-                App.logger.i("Primary shell is about to close", new Object[0]);
+                App.logger.i("Primary shell is about to close");
                 if (!App.this.onApplicationCloseAttempt()) {
                     e.doit = false;
                 }
@@ -100,7 +99,7 @@ public class App {
         });
         this.shell.addDisposeListener(new DisposeListener() {
             public void widgetDisposed(DisposeEvent e) {
-                App.logger.i("Primary shell is being disposed", new Object[0]);
+                App.logger.i("Primary shell is being disposed");
             }
         });
         buildShell(this.shell);
@@ -196,7 +195,7 @@ public class App {
     }
 
     public boolean onApplicationException(Exception e) {
-        String msg = String.format("The following error was reported on the UI thread:\n\n%s", new Object[]{Throwables.formatStacktraceShort(e)});
+        String msg = String.format("The following error was reported on the UI thread:\n\n%s", Throwables.formatStacktraceShort(e));
         MessageDialog.openError(null, "Error", msg);
         return true;
     }
@@ -238,8 +237,7 @@ public class App {
         if (!visible) {
             ((FormData) bar.getLayoutData()).height = 0;
         } else {
-            int height = bar.computeSize(-1, -1, true).y;
-            ((FormData) bar.getLayoutData()).height = height;
+            ((FormData) bar.getLayoutData()).height = bar.computeSize(-1, -1, true).y;
         }
         this.shell.layout();
     }

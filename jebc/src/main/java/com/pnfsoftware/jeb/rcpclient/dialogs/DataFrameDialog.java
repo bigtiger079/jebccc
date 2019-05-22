@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.controls.DataFrameView;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
-import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.widgets.Composite;

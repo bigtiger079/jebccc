@@ -5,17 +5,17 @@ import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import java.util.List;
 
 public interface IFileExport<T> {
-    public abstract List<? extends T> getItems();
+    List<? extends T> getItems();
 
-    public abstract boolean canProcess(T paramT);
+    boolean canProcess(T paramT);
 
-    public abstract String getFullName(T paramT);
+    String getFullName(T paramT);
 
-    public abstract boolean isAtAddress(T paramT, String paramString);
+    boolean isAtAddress(T paramT, String paramString);
 
-    public abstract List<String> getPath(T paramT);
+    List<String> getPath(T paramT);
 
-    public abstract String getNameFromSourceUnit(ISourceUnit paramISourceUnit);
+    String getNameFromSourceUnit(ISourceUnit paramISourceUnit);
 }
 
 

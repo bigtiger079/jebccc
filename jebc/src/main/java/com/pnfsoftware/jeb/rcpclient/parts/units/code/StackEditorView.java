@@ -2,13 +2,11 @@ package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.ICommentManager;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IMemoryModel;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
-import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.WidgetActionWrapper;
@@ -17,7 +15,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.AbstractInfiniTableSecti
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.DefaultCellLabelProvider;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.InfiniTableViewer;
 import com.pnfsoftware.jeb.util.base.Assert;
-import com.pnfsoftware.jeb.util.collect.ISegmentFactory;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
@@ -35,11 +32,9 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
@@ -142,11 +137,11 @@ public class StackEditorView extends Composite {
             switch (key) {
                 case 0:
                     if (e.offset >= 0) {
-                        return String.format("+%08X", new Object[]{Integer.valueOf(e.offset)});
+                        return String.format("+%08X", e.offset);
                     }
-                    return String.format("-%08X", new Object[]{Integer.valueOf(-e.offset)});
+                    return String.format("-%08X", -e.offset);
                 case 1:
-                    return String.format("%04X", new Object[]{Integer.valueOf(e.size)});
+                    return String.format("%04X", e.size);
                 case 3:
                     if (e.type != null) {
                         return e.type.getSignature(true);
@@ -170,16 +165,16 @@ public class StackEditorView extends Composite {
 
         public Object[] getRowElements(Object row) {
             ItemEntry e = (ItemEntry) row;
-            return new Object[]{Integer.valueOf(e.offset), Integer.valueOf(e.size), e.name, e.type, e.comment};
+            return new Object[]{e.offset, e.size, e.name, e.type, e.comment};
         }
 
         public Object[] get(Object inputElement, long id, int cnt) {
-            Assert.a(StackEditorView.this.routine == (INativeMethodItem) inputElement);
+            Assert.a(StackEditorView.this.routine == inputElement);
             return readSlots(StackEditorView.this.unit, StackEditorView.this.routine, id, cnt);
         }
 
         private INativeContinuousItem createGapItem(IMemoryModel model, long address, int size) {
-            INativeContinuousItem item = (INativeContinuousItem) model.getGapFactory().create(Long.valueOf(address), Long.valueOf(address + size));
+            INativeContinuousItem item = model.getGapFactory().create(address, address + size);
             item.setName("undefined");
             return item;
         }
@@ -196,32 +191,32 @@ public class StackEditorView extends Composite {
                 SortedMap<Long, INativeContinuousItem> view_ = stk.getView(null, null);
                 TreeMap<Long, INativeContinuousItem> view = new TreeMap(view_);
                 for (Long address : view.descendingKeySet()) {
-                    INativeContinuousItem item = (INativeContinuousItem) view.get(address);
+                    INativeContinuousItem item = view.get(address);
                     if ((lastAddress != null) && (lastAddress != item.getEnd())) {
-                        for (a = lastAddress.longValue() - 1L; a >= ((Long) item.getEnd()).longValue(); a -= 1L) {
+                        for (a = lastAddress - 1L; a >= (Long) item.getEnd(); a -= 1L) {
                             list.add(createGapItem(stk, a, 1));
                         }
                     }
                     list.add(item);
-                    lastAddress = (Long) item.getBegin();
+                    lastAddress = item.getBegin();
                 }
-                INativeContinuousItem slot = (INativeContinuousItem) list.get(0);
-                long first = Math.max(0L, ((Long) slot.getEnd()).longValue() + cnt * 1);
+                INativeContinuousItem slot = list.get(0);
+                long first = Math.max(0L, (Long) slot.getEnd() + cnt);
                 List<INativeContinuousItem> tmplist = new ArrayList<>();
-                for (a = first - 1L; a >= ((Long) slot.getEnd()).longValue(); a -= 1L) {
+                for (a = first - 1L; a >= (Long) slot.getEnd(); a -= 1L) {
                     tmplist.add(createGapItem(stk, a, 1));
-                    slackset.add(Long.valueOf(a));
+                    slackset.add(a);
                 }
                 list.addAll(0, tmplist);
-                slot = (INativeContinuousItem) list.get(list.size() - 1);
-                long last = Math.min(0L, ((Long) slot.getBegin()).longValue() - cnt * 1);
-                for (a = ((Long) slot.getBegin()).longValue() - 1L; a >= last; a -= 1L) {
+                slot = list.get(list.size() - 1);
+                long last = Math.min(0L, (Long) slot.getBegin() - cnt);
+                for (a = (Long) slot.getBegin() - 1L; a >= last; a -= 1L) {
                     list.add(createGapItem(stk, a, 1));
-                    slackset.add(Long.valueOf(a));
+                    slackset.add(a);
                 }
                 indexZero = -1;
                 for (INativeContinuousItem item : list) {
-                    if ((((Long) item.getBegin()).longValue() <= 0L) && (((Long) item.getEnd()).longValue() > 0L)) {
+                    if (((Long) item.getBegin() <= 0L) && ((Long) item.getEnd() > 0L)) {
                         break;
                     }
                     indexZero++;
@@ -232,21 +227,21 @@ public class StackEditorView extends Composite {
                 for (a = id; a < id + cnt; a += 1L) {
                     INativeContinuousItem item = createGapItem(stk, -a, 1);
                     list.add(item);
-                    slackset.add(Long.valueOf(-a));
+                    slackset.add(-a);
                 }
                 indexZero = (int) -id;
             }
             List<ItemEntry> r = new ArrayList<>();
             int i0 = (int) (id + indexZero);
             for (int i = i0; i < i0 + cnt; i++) {
-                INativeContinuousItem item = (INativeContinuousItem) list.get(i);
+                INativeContinuousItem item = list.get(i);
                 ItemEntry e = new ItemEntry();
                 e.offset = ((int) item.getMemoryAddress());
                 e.name = item.getName(true);
                 e.size = ((int) item.getMemorySize());
                 e.type = ((item instanceof INativeDataItem) ? ((INativeDataItem) item).getType() : null);
                 e.comment = stk.getCommentManager().getComment(e.offset);
-                e.slack = slackset.contains(Long.valueOf(e.offset));
+                e.slack = slackset.contains((long) e.offset);
                 r.add(e);
             }
             return r.toArray();

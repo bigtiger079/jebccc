@@ -4,8 +4,6 @@ import com.pnfsoftware.jeb.util.format.Strings;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PatternFilter implements IPattern {
@@ -43,7 +41,7 @@ public class PatternFilter implements IPattern {
                         if (endIndex != -1) {
                             String intermediatePattern = pattern.substring(filterByColumn + columnTitle.length() + 2, endIndex);
                             pattern = pattern.substring(0, filterByColumn).trim() + " " + pattern.substring(endIndex + 1).trim();
-                            this.patternByColumn.put(Integer.valueOf(i), Pattern.compile(intermediatePattern, 114));
+                            this.patternByColumn.put(i, Pattern.compile(intermediatePattern, 114));
                         }
                     }
                 }
@@ -55,9 +53,9 @@ public class PatternFilter implements IPattern {
     public boolean match(Object element, Object[] list) {
         if (!this.patternByColumn.isEmpty()) {
             for (Map.Entry<Integer, Pattern> entry : this.patternByColumn.entrySet()) {
-                String iColumn = Strings.safe(this.patternMatcher.getValueProvider().getStringAt(element, ((Integer) entry.getKey()).intValue()));
+                String iColumn = Strings.safe(this.patternMatcher.getValueProvider().getStringAt(element, (Integer) entry.getKey()));
                 iColumn = iColumn.replace("\"", "\\\"");
-                boolean match = ((Pattern) entry.getValue()).matcher(iColumn).find();
+                boolean match = entry.getValue().matcher(iColumn).find();
                 if (!match) {
                     return false;
                 }

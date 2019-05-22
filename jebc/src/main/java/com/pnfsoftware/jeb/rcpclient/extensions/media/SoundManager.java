@@ -123,7 +123,7 @@ public class SoundManager implements LineListener {
 
     public boolean reset() {
         if (this.state != 0) {
-            logger.i("reset() FAILED", new Object[0]);
+            logger.i("reset() FAILED");
             return false;
         }
         this.datastream = new ByteArrayOutputStream();
@@ -145,7 +145,7 @@ public class SoundManager implements LineListener {
 
     public boolean record() throws Exception {
         if (this.state != 0) {
-            logger.i("record() FAILED", new Object[0]);
+            logger.i("record() FAILED");
             return false;
         }
         setState(1);
@@ -182,7 +182,7 @@ public class SoundManager implements LineListener {
 
     public boolean stopRecording() throws Exception {
         if (this.state != 1) {
-            logger.i("stopRecording() FAILED", new Object[0]);
+            logger.i("stopRecording() FAILED");
             return false;
         }
         setState(0);
@@ -193,7 +193,7 @@ public class SoundManager implements LineListener {
 
     public boolean play() throws LineUnavailableException {
         if ((this.state != 0) || (this.datastream == null)) {
-            logger.i("play() FAILED", new Object[0]);
+            logger.i("play() FAILED");
             return false;
         }
         setState(2);
@@ -232,7 +232,7 @@ public class SoundManager implements LineListener {
 
     public boolean stopPlaying() throws Exception {
         if (this.state != 2) {
-            logger.i("stopPlaying() FAILED", new Object[0]);
+            logger.i("stopPlaying() FAILED");
             return false;
         }
         setState(0);
@@ -242,7 +242,7 @@ public class SoundManager implements LineListener {
     }
 
     public void update(LineEvent e) {
-        logger.i("[+] Event: %s", new Object[]{e});
+        logger.i("[+] Event: %s", e);
     }
 }
 

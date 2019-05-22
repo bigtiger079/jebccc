@@ -5,16 +5,13 @@ import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IMemoryModel;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IStackframeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeContinuousItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeDataItem;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.rcpclient.dialogs.AdaptivePopupDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.operations.JebAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedMap;
 
 public abstract class StackEditorAction extends JebAction {
     protected StackEditorView v;
@@ -74,9 +71,9 @@ public abstract class StackEditorAction extends JebAction {
     static boolean offerClearItems(INativeMethodItem routine, int offset, int size) {
         List<INativeContinuousItem> r = collectItemsToBeUndefined(routine, offset, size);
         if (r.size() > 1) {
-            String msg = String.format("This action will undefine %d fields. Proceed?", new Object[]{Integer.valueOf(r.size() - 1)});
+            String msg = String.format("This action will undefine %d fields. Proceed?", r.size() - 1);
             AdaptivePopupDialog dlg2 = new AdaptivePopupDialog(UI.getShellTracker().get(), 2, S.s(207), msg, null);
-            if (dlg2.open().intValue() == 0) {
+            if (dlg2.open() == 0) {
                 return false;
             }
         }

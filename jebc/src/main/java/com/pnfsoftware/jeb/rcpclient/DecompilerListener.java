@@ -26,7 +26,7 @@ public class DecompilerListener {
     private int clientCount;
 
     public static synchronized DecompilerListener listenTo(IDecompilerUnit decomp, RcpClientContext context) {
-        DecompilerListener listener = (DecompilerListener) map.get(decomp);
+        DecompilerListener listener = map.get(decomp);
         if (listener == null) {
             listener = new DecompilerListener(decomp, context);
             map.put(decomp, listener);
@@ -36,7 +36,7 @@ public class DecompilerListener {
     }
 
     public static synchronized boolean stopListening(IDecompilerUnit decomp) {
-        DecompilerListener listener = (DecompilerListener) map.get(decomp);
+        DecompilerListener listener = map.get(decomp);
         if (listener == null) {
             return false;
         }
@@ -49,7 +49,7 @@ public class DecompilerListener {
     }
 
     public static synchronized DecompilerListener get(IDecompilerUnit decomp) {
-        return (DecompilerListener) map.get(decomp);
+        return map.get(decomp);
     }
 
     public static synchronized List<DecompilerListener> getAll() {
@@ -104,9 +104,9 @@ public class DecompilerListener {
     }
 
     private void processEvent(IEvent e) {
-        String addition = String.format("%s", new Object[]{e.getType()});
+        String addition = String.format("%s", e.getType());
         if (e.getData() != null) {
-            addition = addition + String.format(" / %s", new Object[]{e.getData()});
+            addition = addition + String.format(" / %s", e.getData());
         }
         addition = addition + "\n";
         this.eventLog.append(addition);
@@ -118,7 +118,7 @@ public class DecompilerListener {
         } else if (e.getType() == J.DecompSrcUnitResetEvent) {
             ISourceUnit srcUnit = (ISourceUnit) e.getData();
             if (srcUnit != null) {
-                logger.i("The following source unit was reset: %s", new Object[]{srcUnit});
+                logger.i("The following source unit was reset: %s", srcUnit);
                 synchronized (this.resetMap) {
                     this.resetMap.put(srcUnit, null);
                 }

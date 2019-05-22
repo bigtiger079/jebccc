@@ -41,18 +41,18 @@ import org.eclipse.swt.widgets.Shell;
 public class Folder extends Composite implements IMFolder {
     private static final ILogger logger = GlobalLog.getLogger(Folder.class);
     private static int internalFolderCreationCount = 0;
-    int internalFolderId;
-    String elementId;
-    int defaultTabStyle;
-    boolean insideDock;
-    boolean closeOnEmpty;
+    private int internalFolderId;
+    private String elementId;
+    private int defaultTabStyle;
+    private boolean insideDock;
+    private boolean closeOnEmpty;
     private CTabFolder folderWidget;
-    List<IFolderListener> folderListeners = new ArrayList<>();
-    GhostWidget g;
-    CTabItem draggedTab;
-    CTabItem previouslySelectedTab;
-    CTabItem selectedTab;
-    List<Part> parts = new ArrayList<>();
+    private List<IFolderListener> folderListeners = new ArrayList<>();
+    private GhostWidget g;
+    private CTabItem draggedTab;
+    private CTabItem previouslySelectedTab;
+    private CTabItem selectedTab;
+    private List<Part> parts = new ArrayList<>();
     public static final int HIDDEN = 0;
     public static final int VISIBLE = 1;
     public static final int SHOWN = 2;
@@ -96,11 +96,11 @@ public class Folder extends Composite implements IMFolder {
         });
         this.folderWidget.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
-                Folder.logger.i("FocusGained: %s@%d", new Object[]{e.widget, Integer.valueOf(e.widget.hashCode())});
+                Folder.logger.i("FocusGained: %s@%d", e.widget, e.widget.hashCode());
             }
 
             public void focusLost(FocusEvent e) {
-                Folder.logger.i("FocusLost: %s@%d", new Object[]{e.widget, Integer.valueOf(e.widget.hashCode())});
+                Folder.logger.i("FocusLost: %s@%d", e.widget, e.widget.hashCode());
             }
         });
         this.folderWidget.addListener(29, new Listener() {
@@ -211,7 +211,7 @@ public class Folder extends Composite implements IMFolder {
         });
         this.folderWidget.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                Folder.logger.i("KeyPressed: %s", new Object[]{e});
+                Folder.logger.i("KeyPressed: %s", e);
                 if ((Folder.this.g != null) && (e.keyCode == 27)) {
                     Folder.this.g.dispose();
                     Folder.this.g = null;
@@ -414,19 +414,19 @@ public class Folder extends Composite implements IMFolder {
     }
 
     public void hidePart(Part part) {
-        setPartVisibility(part, 0);
+        setPartVisibility(part, HIDDEN);
     }
 
     public void unhidePart(Part part) {
-        setPartVisibility(part, 1);
+        setPartVisibility(part, VISIBLE);
     }
 
     public void showPart(Part part) {
-        setPartVisibility(part, 2);
+        setPartVisibility(part, SHOWN);
     }
 
     public void focusPart(Part part) {
-        setPartVisibility(part, 3);
+        setPartVisibility(part, FOCUSED);
     }
 
     void setPartVisibility(Part part, int action) {
@@ -434,14 +434,14 @@ public class Folder extends Composite implements IMFolder {
     }
 
     void setPartVisibility(Part part, int action, boolean notify) {
-        if ((action < 0) || (action > 3)) {
+        if ((action < HIDDEN) || (action > FOCUSED)) {
             throw new IllegalArgumentException();
         }
         int index = this.parts.indexOf(part);
         if ((index < 0) || (index > this.folderWidget.getItemCount())) {
             index = this.folderWidget.getItemCount();
         }
-        if (action == 0) {
+        if (action == HIDDEN) {
             if (!part.isHidden()) {
                 if (part.isCloseOnHide()) {
                     removePart(part, notify);
@@ -461,17 +461,17 @@ public class Folder extends Composite implements IMFolder {
                 notifyPartVisible(part);
             }
         }
-        if (action >= 2) {
+        if (action >= SHOWN) {
             IMPartManager partManager = part.getManager();
-            if ((part.state == 0) && (partManager != null)) {
+            if ((part.state == HIDDEN) && (partManager != null)) {
                 Composite container = part.getContainerWidget();
                 partManager.createView(container, part);
                 container.layout();
-                part.state = 1;
+                part.state = VISIBLE;
             }
             this.folderWidget.setSelection(part.tab);
         }
-        if (action >= 3) {
+        if (action >= FOCUSED) {
             this.folderWidget.setSelection(part.tab);
             part.tab.getControl().setFocus();
             if (part.getManager() != null) {
@@ -486,15 +486,15 @@ public class Folder extends Composite implements IMFolder {
             index = this.folderWidget.getItemCount();
         }
         if (part.isHidden()) {
-            return 0;
+            return HIDDEN;
         }
         if (this.folderWidget.getSelection() != part.tab) {
-            return 1;
+            return VISIBLE;
         }
         if (!hasFocus(part.getContainerWidget(), false)) {
-            return 2;
+            return SHOWN;
         }
-        return 3;
+        return FOCUSED;
     }
 
     public static boolean hasFocus(Control ctl, boolean direct) {
@@ -521,7 +521,7 @@ public class Folder extends Composite implements IMFolder {
     }
 
     public void clearPart(Part part) {
-        if (part.state == 0) {
+        if (part.state == HIDDEN) {
             return;
         }
         if (part.getManager() != null) {
@@ -533,7 +533,7 @@ public class Folder extends Composite implements IMFolder {
             }
         }
         part.getContainerWidget().layout(true, true);
-        part.state = 0;
+        part.state = HIDDEN;
     }
 
     public void removePart(Part part) {
@@ -560,7 +560,7 @@ public class Folder extends Composite implements IMFolder {
     }
 
     public String toString() {
-        return String.format("Folder@%d", new Object[]{Integer.valueOf(this.internalFolderId)});
+        return String.format("Folder@%d", this.internalFolderId);
     }
 
     public void setElementId(String elementId) {
@@ -595,7 +595,7 @@ public class Folder extends Composite implements IMFolder {
             }
         }
         if (cnt != this.folderWidget.getItemCount()) {
-            throw new IllegalStateException(String.format("Unexpected count of visible parts: %d, %d", new Object[]{Integer.valueOf(cnt), Integer.valueOf(this.folderWidget.getItemCount())}));
+            throw new IllegalStateException(String.format("Unexpected count of visible parts: %d, %d", cnt, this.folderWidget.getItemCount()));
         }
         return cnt;
     }
@@ -624,7 +624,7 @@ public class Folder extends Composite implements IMFolder {
                 ThreadUtil.start(new Runnable() {
                     public void run() {
                         try {
-                            for (; ; ) {
+                            while (true) {
                                 Folder.this.getDisplay().asyncExec(new Runnable() {
                                     public void run() {
                                         text.setText("Nanotime: " + System.nanoTime());
@@ -633,8 +633,7 @@ public class Folder extends Composite implements IMFolder {
                                 Thread.sleep(autoRefreshPeriodMs);
                             }
 //                            return;
-                        } catch (InterruptedException e) {
-                        } catch (SWTException e) {
+                        } catch (InterruptedException | SWTException e) {
                         }
                     }
                 });

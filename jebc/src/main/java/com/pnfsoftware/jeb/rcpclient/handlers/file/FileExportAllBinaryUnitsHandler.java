@@ -2,15 +2,12 @@ package com.pnfsoftware.jeb.rcpclient.handlers.file;
 
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.exceptions.JebException;
-import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.units.IBinaryUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.WellKnownUnitTypes;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.util.io.IO;
@@ -49,7 +46,7 @@ public class FileExportAllBinaryUnitsHandler extends JebBaseHandler {
         if (filepath == null) {
             return;
         }
-        logger.i("%s: %s", new Object[]{S.s(340), filepath});
+        logger.i("%s: %s", S.s(340), filepath);
         File path = new File(filepath);
         List<ILiveArtifact> artifacts = prj.getLiveArtifacts();
         try {

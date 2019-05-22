@@ -18,7 +18,7 @@ public class Position {
     }
 
     public String toString() {
-        return String.format("%s(%s)", new Object[]{this.address, this.extra});
+        return String.format("%s(%s)", this.address, this.extra);
     }
 }
 

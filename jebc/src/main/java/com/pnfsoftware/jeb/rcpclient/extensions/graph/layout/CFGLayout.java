@@ -44,22 +44,22 @@ class CFGLayout<T extends IInstruction> implements ICFGLayout<T> {
         this.grid = new Spreadsheet();
         this.processed = new HashSet();
         process(cfg.getEntryBlock(), 0, 0);
-        logger.i("Layout:\n%s", new Object[]{this.grid});
+        logger.i("Layout:\n%s", this.grid);
         return this.grid;
     }
 
     private boolean process(BasicBlock<T> b, int row, int col) {
         long base = b.getFirstAddress();
-        if (this.processed.contains(Long.valueOf(base))) {
+        if (this.processed.contains(base)) {
             return false;
         }
-        this.processed.add(Long.valueOf(base));
+        this.processed.add(base);
         Cell<BasicBlock<T>> cell0 = this.grid.writeCell(row, col, b);
         Assert.a(cell0.isPrimary());
-        if (this.skipDstProc.contains(Long.valueOf(base))) {
+        if (this.skipDstProc.contains(base)) {
             return true;
         }
-        if (this.diamondExits.contains(Long.valueOf(base))) {
+        if (this.diamondExits.contains(base)) {
             this.grid.mergeCells(row, col, 2, 1);
         }
         if (cell0.isPartOfMergedCell()) {
@@ -70,19 +70,19 @@ class CFGLayout<T extends IInstruction> implements ICFGLayout<T> {
         List<BasicBlock<T>> dstlist = getDests(b);
         BasicBlock<T> bB;
         if ((this.specialHandlingForDiamonds) && (dstlist.size() == 2)) {
-            BasicBlock<T> bA = (BasicBlock) dstlist.get(0);
-            bB = (BasicBlock) dstlist.get(1);
-            if ((!this.processed.contains(Long.valueOf(bA.getFirstAddress()))) && (!this.processed.contains(Long.valueOf(bB.getFirstAddress())))) {
+            BasicBlock<T> bA = dstlist.get(0);
+            bB = dstlist.get(1);
+            if ((!this.processed.contains(bA.getFirstAddress())) && (!this.processed.contains(bB.getFirstAddress()))) {
                 List<BasicBlock<T>> d_bA = getDests(bA);
-                if ((d_bA.size() == 1) && (d_bA.equals(getDests(bB))) && (!this.processed.contains(Long.valueOf(((BasicBlock) d_bA.get(0)).getFirstAddress())))) {
-                    this.skipDstProc.add(Long.valueOf(bB.getFirstAddress()));
-                    this.diamondExits.add(Long.valueOf(((BasicBlock) d_bA.get(0)).getFirstAddress()));
+                if ((d_bA.size() == 1) && (d_bA.equals(getDests(bB))) && (!this.processed.contains(((BasicBlock) d_bA.get(0)).getFirstAddress()))) {
+                    this.skipDstProc.add(bB.getFirstAddress());
+                    this.diamondExits.add(((BasicBlock) d_bA.get(0)).getFirstAddress());
                 }
             }
         }
         int splitcount = 0;
         for (BasicBlock<T> b2 : dstlist) {
-            if (!this.processed.contains(Long.valueOf(b2.getFirstAddress()))) {
+            if (!this.processed.contains(b2.getFirstAddress())) {
                 splitcount++;
             }
         }

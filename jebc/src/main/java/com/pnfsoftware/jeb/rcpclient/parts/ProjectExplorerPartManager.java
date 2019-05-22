@@ -5,30 +5,24 @@ import com.pnfsoftware.jeb.client.api.IOperable;
 import com.pnfsoftware.jeb.client.api.Operation;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.client.events.JC;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
 import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.input.SubInput;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.IBinaryUnit;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitIdentifier;
 import com.pnfsoftware.jeb.core.units.IUnitProcessor;
-import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
 import com.pnfsoftware.jeb.core.units.impl.ContainerUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ArtifactPropertiesDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JebDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ProjectPropertiesDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ReparseDialog;
-import com.pnfsoftware.jeb.rcpclient.dialogs.ReparseDialog.Information;
 import com.pnfsoftware.jeb.rcpclient.dialogs.UnitPropertiesDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.PatternTreeView;
@@ -118,12 +112,12 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
         this.ftv.setInput(this.context.getEnginesContext());
         this.context.addListener(new IEventListener() {
             public void onEvent(IEvent e) {
-                if ((e.getType() == JC.InitializationComplete) && (!((TreeViewer) ProjectExplorerPartManager.this.ftv.getViewer()).getControl().isDisposed())) {
+                if ((e.getType() == JC.InitializationComplete) && (!ProjectExplorerPartManager.this.ftv.getViewer().getControl().isDisposed())) {
                     ProjectExplorerPartManager.this.ftv.setInput(ProjectExplorerPartManager.this.context.getEnginesContext());
                 }
             }
         });
-        new ContextMenu(((TreeViewer) this.ftv.getViewer()).getControl()).addContextMenu(new IContextMenu() {
+        new ContextMenu(this.ftv.getViewer().getControl()).addContextMenu(new IContextMenu() {
             public void fillContextMenu(IMenuManager menuMgr) {
                 if (!ProjectExplorerPartManager.this.context.hasOpenedProject()) {
                     return;
@@ -150,7 +144,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
         if ((!(node instanceof IRuntimeProject)) && (!(node instanceof ILiveArtifact)) && (!(node instanceof IUnit))) {
             return false;
         }
-        TreeViewer v = (TreeViewer) this.ftv.getViewer();
+        TreeViewer v = this.ftv.getViewer();
         ISelection selection = new StructuredSelection(node);
         IRuntimeProject project = this.context.getOpenedProject();
         if ((node instanceof IRuntimeProject)) {
@@ -205,7 +199,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
 
     public static void setupDragAndDrop(final Control parent, RcpClientContext context) {
         DropTarget dt = new DropTarget(parent, 7);
-        dt.setTransfer(new Transfer[]{FileTransfer.getInstance()});
+        dt.setTransfer(FileTransfer.getInstance());
         dt.addDropListener(new DropTargetAdapter() {
             public void drop(DropTargetEvent event) {
                 if ((FileTransfer.getInstance().isSupportedType(event.currentDataType)) && ((event.data instanceof String[]))) {
@@ -274,7 +268,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                 setFocus();
             }
         } else if (action == 1) {
-            ((TreeViewer) this.ftv.getViewer()).setExpandedState(elt, !((TreeViewer) this.ftv.getViewer()).getExpandedState(elt));
+            this.ftv.getViewer().setExpandedState(elt, !this.ftv.getViewer().getExpandedState(elt));
         }
     }
 
@@ -310,7 +304,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                 if (info == null) {
                     return false;
                 }
-                logger.info("info= %s", new Object[]{info});
+                logger.info("info= %s", info);
                 IInput subinput = null;
                 if ((unit instanceof IBinaryUnit)) {
                     IInput input = ((IBinaryUnit) unit).getInput();
@@ -352,7 +346,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                     }
                 }
                 if (subunit == null) {
-                    String msg = String.format("%s: \"%s\".", new Object[]{S.s(390), ident.getFormatType()});
+                    String msg = String.format("%s: \"%s\".", S.s(390), ident.getFormatType());
                     MessageDialog.openError(this.parent.getShell(), S.s(629), msg);
                     return false;
                 }
@@ -391,7 +385,7 @@ public class ProjectExplorerPartManager extends AbstractPartManager implements I
                 if (filepath == null) {
                     return false;
                 }
-                logger.info("%s: %s", new Object[]{S.s(340), filepath});
+                logger.info("%s: %s", S.s(340), filepath);
                 byte[] data;
                 try {
                     InputStream in = input.getStream();

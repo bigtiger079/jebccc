@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient;
 
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.events.AbstractQuestionNotification;
@@ -9,7 +8,6 @@ import com.pnfsoftware.jeb.core.events.ExceptionNotification;
 import com.pnfsoftware.jeb.core.events.J;
 import com.pnfsoftware.jeb.core.events.JebEvent;
 import com.pnfsoftware.jeb.core.events.QuestionNotificationYesNo;
-import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.units.ICommandInterpreter;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitInterpreter;
@@ -62,11 +60,11 @@ public class EnginesListener implements IEventListener {
         if (type == J.UnitStatusChanged) {
             JebEvent event = (JebEvent) e;
             IUnit unit = (IUnit) event.getSource();
-            logger.debug("Unit \"%s\" status has changed to: %s", new Object[]{unit.getName(), unit.getStatus()});
+            logger.debug("Unit \"%s\" status has changed to: %s", unit.getName(), unit.getStatus());
         } else if (type == J.UnitCreated) {
             JebEvent event = (JebEvent) e;
             final IUnit unit = (IUnit) event.getData();
-            logger.debug("Unit \"%s\" (%s) was created", new Object[]{unit.getName(), unit.getFormatType()});
+            logger.debug("Unit \"%s\" (%s) was created", unit.getName(), unit.getFormatType());
             UIExecutor.sync(this.context.getDisplay(), new UIRunnable() {
                 public void runi() {
                     if (UnitUtil.isTopLevelUnit(unit)) {
@@ -84,10 +82,10 @@ public class EnginesListener implements IEventListener {
                     List<IUnitInterpreter> interpreters = unit.getInterpreters();
                     if ((interpreters != null) && (!interpreters.isEmpty())) {
                         MultiInterpreter mi = EnginesListener.this.context.getMasterInterpreter();
-                        int interpreterIndex = mi.registerInterpreter((ICommandInterpreter) interpreters.get(0));
+                        int interpreterIndex = mi.registerInterpreter(interpreters.get(0));
                         if (interpreterIndex >= 0) {
-                            EnginesListener.this.interpreterIds.put(unit, Integer.valueOf(interpreterIndex));
-                            EnginesListener.logger.info("A command interpreter for unit \"%s\" was registered to the console view\nSwitch to it by issuing the \"use %d\" command", new Object[]{unit.getName(), Integer.valueOf(interpreterIndex)});
+                            EnginesListener.this.interpreterIds.put(unit, interpreterIndex);
+                            EnginesListener.logger.info("A command interpreter for unit \"%s\" was registered to the console view\nSwitch to it by issuing the \"use %d\" command", unit.getName(), interpreterIndex);
                         }
                     }
                 }
@@ -95,17 +93,17 @@ public class EnginesListener implements IEventListener {
         } else if (type == J.UnitDestroyed) {
             JebEvent event = (JebEvent) e;
             final IUnit unit = (IUnit) event.getData();
-            logger.debug("Unit \"%s\" was destroyed", new Object[]{unit.getName()});
+            logger.debug("Unit \"%s\" was destroyed", unit.getName());
             UIExecutor.sync(this.context.getDisplay(), new UIRunnable() {
                 public void runi() {
                     PartManager pman = EnginesListener.this.context.getPartManager();
                     for (IMPart part : pman.getPartsForUnit(unit)) {
                         pman.unbindUnitPart(part);
                     }
-                    Integer interpreterIndex = (Integer) EnginesListener.this.interpreterIds.get(unit);
+                    Integer interpreterIndex = EnginesListener.this.interpreterIds.get(unit);
                     if (interpreterIndex != null) {
                         MultiInterpreter mi = EnginesListener.this.context.getMasterInterpreter();
-                        mi.unregisterInterpreter(interpreterIndex.intValue());
+                        mi.unregisterInterpreter(interpreterIndex);
                     }
                     if ((unit instanceof IDecompilerUnit)) {
                         IDecompilerUnit decomp = (IDecompilerUnit) unit;
@@ -152,7 +150,7 @@ public class EnginesListener implements IEventListener {
                 public void runi() {
                     if ((n instanceof QuestionNotificationYesNo)) {
                         boolean r = UI.question(null, "Question", n.getMessage());
-                        ((QuestionNotificationYesNo) n).setResponse(Boolean.valueOf(r));
+                        ((QuestionNotificationYesNo) n).setResponse(r);
                     } else {
                     }
                 }
@@ -173,7 +171,7 @@ public class EnginesListener implements IEventListener {
                         context.getErrorHandler().processThrowable(t, !silent, forceUpload, doNotUploadSample, null, extramap, null);
                     } else {
                         String msg = notif.getMessage();
-                        msg = String.format("Notification from: %s\n\nMessage: %s", new Object[]{source, msg});
+                        msg = String.format("Notification from: %s\n\nMessage: %s", source, msg);
                         int level = RcpClientContext.clientNotificationLevelToLoggerLevel(notif.getLevel());
                         UI.log(level, null, "Notification", msg);
                     }

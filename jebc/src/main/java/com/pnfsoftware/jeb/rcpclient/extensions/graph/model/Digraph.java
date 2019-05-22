@@ -157,19 +157,19 @@ public class Digraph {
     }
 
     public V getVertex(int id) {
-        return (V) this.vertexmap.get(Integer.valueOf(id));
+        return this.vertexmap.get(id);
     }
 
     public V getVertexByIndex(int index) {
-        return (V) this.vertices.get(index);
+        return this.vertices.get(index);
     }
 
     public String getVertexLabel(int id) {
-        return ((V) this.vertexmap.get(Integer.valueOf(id))).getLabel();
+        return this.vertexmap.get(id).getLabel();
     }
 
     public void setVertexLabel(int id, String label) {
-        ((V) this.vertexmap.get(Integer.valueOf(id))).setLabel(label);
+        this.vertexmap.get(id).setLabel(label);
     }
 
     private static boolean lambda$removeVertex$0(V v, E e) {
@@ -183,36 +183,20 @@ public class Digraph {
     private void verify() {
         boolean z;
         Assert.a(this.vertices.size() == this.vertexmap.size());
-        if (this.edgefrommap.values().size() == this.edges.size()) {
-            z = true;
-        } else {
-            z = false;
-        }
+        z = this.edgefrommap.values().size() == this.edges.size();
         Assert.a(z, this.edgefrommap.values().size() + " != " + this.edges.size());
-        if (this.edgetomap.values().size() == this.edges.size()) {
-            z = true;
-        } else {
-            z = false;
-        }
+        z = this.edgetomap.values().size() == this.edges.size();
         Assert.a(z, this.edgetomap.values().size() + " != " + this.edges.size());
         if (!Licensing.isReleaseBuild()) {
             Set<Integer> idset = new HashSet();
             int index = 0;
             for (V v : this.vertices) {
-                if (v.index == index) {
-                    z = true;
-                } else {
-                    z = false;
-                }
+                z = v.index == index;
                 Assert.a(z, "Unexpected index");
                 index++;
-                if (this.vertexmap.get(Integer.valueOf(v.id)) == v) {
-                    z = true;
-                } else {
-                    z = false;
-                }
+                z = this.vertexmap.get(v.id) == v;
                 Assert.a(z, "Vertex is missing");
-                Assert.a(idset.add(Integer.valueOf(v.id)), "Duplicate id: " + v.id);
+                Assert.a(idset.add(v.id), "Duplicate id: " + v.id);
             }
             for (E e : this.edges) {
                 Assert.a(this.vertices.contains(e.src));
@@ -232,7 +216,7 @@ public class Digraph {
     }
 
     public E getEdge(int index) {
-        return (E) this.edges.get(index);
+        return this.edges.get(index);
     }
 
     public void removeEdge(E e) {
@@ -242,13 +226,13 @@ public class Digraph {
     }
 
     public void removeEdge(int index) {
-        E e = (E) this.edges.remove(index);
+        E e = this.edges.remove(index);
         Assert.a(this.edgefrommap.removeElement(e.src.index, e));
         Assert.a(this.edgetomap.removeElement(e.dst.index, e));
     }
 
     public E getEdge(int srcId, int dstId) {
-        V src = (V) this.vertexmap.get(Integer.valueOf(srcId));
+        V src = this.vertexmap.get(srcId);
         Assert.a(src != null, "Source vertex " + srcId + " does not exist");
         for (E e : getEdgesFrom(src.index)) {
             if (e.dst.id == dstId) {
@@ -281,11 +265,11 @@ public class Digraph {
 
     private V addVertex(int id, Double weight, String label, boolean failOnDup) {
         verifyNotDone();
-        V v = (V) this.vertexmap.get(Integer.valueOf(id));
+        V v = this.vertexmap.get(id);
         if (v == null) {
             v = new V(this.vertices.size(), id, weight, label);
             this.vertices.add(v);
-            this.vertexmap.put(Integer.valueOf(id), v);
+            this.vertexmap.put(id, v);
             return v;
         } else if (!failOnDup) {
             return v;
@@ -320,19 +304,19 @@ public class Digraph {
 
     public void resetEdgeBetweennessScores() {
         for (E e : this.edges) {
-            e.ebscore = Double.valueOf(0.0d);
+            e.ebscore = 0.0d;
         }
         for (V v : this.vertices) {
-            v.vcscore = Double.valueOf(0.0d);
+            v.vcscore = 0.0d;
         }
     }
 
     private int lambda$getEdgeIndexesByDescendingBetweenness$5(Integer a, Integer b) {
-        return -Double.compare(((E) this.edges.get(a.intValue())).ebscore.doubleValue(), ((E) this.edges.get(b.intValue())).ebscore.doubleValue());
+        return -Double.compare(this.edges.get(a).ebscore, this.edges.get(b).ebscore);
     }
 
     private int lambda$getVertexIndexesByDescendingCentrality$6(Integer a, Integer b) {
-        return -Double.compare(((V) this.vertices.get(a.intValue())).vcscore.doubleValue(), ((V) this.vertices.get(b.intValue())).vcscore.doubleValue());
+        return -Double.compare(this.vertices.get(a).vcscore, this.vertices.get(b).vcscore);
     }
 
     private void computeEdgeBetweennessFromSingleNode(int startNodeIndex) {
@@ -342,24 +326,24 @@ public class Digraph {
             e2.score = null;
         }
         for (V v : this.vertices) {
-            v.score = Double.valueOf(0.0d);
+            v.score = 0.0d;
         }
         int[] vPathCounts = new int[getVertexCount()];
         vPathCounts[startNodeIndex] = 1;
         List<List<E>> levels = new ArrayList<>();
         Set<Integer> seen = new HashSet();
         List<Integer> startIndexes = new ArrayList<>();
-        startIndexes.add(Integer.valueOf(startNodeIndex));
+        startIndexes.add(startNodeIndex);
         Set<Integer> nextStartIndexes = new HashSet();
         while (!startIndexes.isEmpty()) {
             level = new ArrayList<>();
             for (Integer intValue : startIndexes) {
-                int srcIndex = intValue.intValue();
+                int srcIndex = intValue;
                 for (E edge : getEdgesFrom(srcIndex)) {
                     int dstIndex = edge.dst.index;
-                    if (!seen.contains(Integer.valueOf(dstIndex))) {
+                    if (!seen.contains(dstIndex)) {
                         level.add(edge);
-                        nextStartIndexes.add(Integer.valueOf(dstIndex));
+                        nextStartIndexes.add(dstIndex);
                         vPathCounts[dstIndex] = vPathCounts[dstIndex] + vPathCounts[srcIndex];
                     }
                 }
@@ -375,15 +359,15 @@ public class Digraph {
             }
         }
         for (int i = levels.size() - 1; i >= 0; i--) {
-            level = (List) levels.get(i);
+            level = levels.get(i);
             for (int j = 0; j < level.size(); j++) {
-                E e0 = (E) level.get(j);
+                E e0 = level.get(j);
                 if (e0.score == null) {
                     List<E> coll = new ArrayList<>();
                     coll.add(e0);
                     V dst = e0.dst;
                     for (int k = j + 1; k < level.size(); k++) {
-                        E e2 = (E) level.get(k);
+                        E e2 = level.get(k);
                         if (e2.dst == dst) {
                             coll.add(e2);
                         }
@@ -392,12 +376,12 @@ public class Digraph {
                     for (E e22 : coll) {
                         total += (double) vPathCounts[e22.src.index];
                     }
-                    double s = 1.0d + ((V) this.vertices.get(dst.index)).score.doubleValue();
+                    double s = 1.0d + this.vertices.get(dst.index).score;
                     for (E e222 : coll) {
                         double score = s * (((double) vPathCounts[e222.src.index]) / total);
-                        e222.score = Double.valueOf(score);
-                        V v2 = (V) this.vertices.get(e222.src.index);
-                        v2.score = Double.valueOf(v2.score.doubleValue() + score);
+                        e222.score = score;
+                        V v2 = this.vertices.get(e222.src.index);
+                        v2.score = v2.score.doubleValue() + score;
                     }
                 }
             }
@@ -408,32 +392,32 @@ public class Digraph {
         StringBuilder sb = new StringBuilder();
         for (E e2222 : this.edges) {
             if (e2222.score != null) {
-                sb.append(String.format("%s>%s:%.1f,", new Object[]{(e2222).src, (e2222).dst, (e2222).score}));
+                sb.append(String.format("%s>%s:%.1f,", (e2222).src, (e2222).dst, (e2222).score));
             }
         }
     }
 
     public boolean isWeaklyConnected() {
         Set<Integer> startIndexes = new HashSet();
-        startIndexes.add(Integer.valueOf(0));
+        startIndexes.add(0);
         Set<Integer> seen = new HashSet(startIndexes);
         while (!startIndexes.isEmpty()) {
             Set<Integer> nextStartIndexes = new HashSet();
             for (Integer intValue : startIndexes) {
                 int index;
-                int startIndex = intValue.intValue();
+                int startIndex = intValue;
                 for (E edge : getEdgesFrom(startIndex)) {
                     index = edge.dst.index;
-                    if (!seen.contains(Integer.valueOf(index))) {
-                        nextStartIndexes.add(Integer.valueOf(index));
-                        seen.add(Integer.valueOf(index));
+                    if (!seen.contains(index)) {
+                        nextStartIndexes.add(index);
+                        seen.add(index);
                     }
                 }
                 for (E edge2 : getEdgesTo(startIndex)) {
                     index = edge2.src.index;
-                    if (!seen.contains(Integer.valueOf(index))) {
-                        nextStartIndexes.add(Integer.valueOf(index));
-                        seen.add(Integer.valueOf(index));
+                    if (!seen.contains(index)) {
+                        nextStartIndexes.add(index);
+                        seen.add(index);
                     }
                 }
             }
@@ -446,7 +430,7 @@ public class Digraph {
         List<Digraph> gcomponents = new ArrayList<>();
         Set<Integer> left = new HashSet(getVertexCount());
         for (int i = 0; i < getVertexCount(); i++) {
-            left.add(Integer.valueOf(i));
+            left.add(i);
         }
         int round = 0;
         while (!left.isEmpty()) {
@@ -457,19 +441,19 @@ public class Digraph {
             while (!startIndexes.isEmpty()) {
                 Set<Integer> nextStartIndexes = new HashSet();
                 for (Integer intValue : startIndexes) {
-                    int startIndex = intValue.intValue();
+                    int startIndex = intValue;
                     for (E edge : getEdgesFrom(startIndex)) {
                         index = edge.dst.index;
-                        if (!seen.contains(Integer.valueOf(index))) {
-                            nextStartIndexes.add(Integer.valueOf(index));
-                            seen.add(Integer.valueOf(index));
+                        if (!seen.contains(index)) {
+                            nextStartIndexes.add(index);
+                            seen.add(index);
                         }
                     }
                     for (E edge2 : getEdgesTo(startIndex)) {
                         index = edge2.src.index;
-                        if (!seen.contains(Integer.valueOf(index))) {
-                            nextStartIndexes.add(Integer.valueOf(index));
-                            seen.add(Integer.valueOf(index));
+                        if (!seen.contains(index)) {
+                            nextStartIndexes.add(index);
+                            seen.add(index);
                         }
                     }
                 }
@@ -481,8 +465,8 @@ public class Digraph {
             }
             Digraph gs = create();
             for (Integer intValue2 : seen) {
-                index = intValue2.intValue();
-                V vertex = (V) this.vertices.get(index);
+                index = intValue2;
+                V vertex = this.vertices.get(index);
                 gs.addVertex(vertex.id, vertex.weight, vertex.label, false);
                 for (E e : getEdgesFrom(index)) {
                     gs.e(e.src.id, e.dst.id, e.weight);
@@ -496,7 +480,7 @@ public class Digraph {
     }
 
     public String toString() {
-        return String.format("V=%s:E=%s", new Object[]{this.vertices, this.edges});
+        return String.format("V=%s:E=%s", this.vertices, this.edges);
     }
 
     private void computeTransitiveClosure() {
@@ -506,13 +490,13 @@ public class Digraph {
             Set<Integer> seen = new HashSet();
             List<Integer> startIndices = new ArrayList<>();
             Set<Integer> nextStartIndexes = new HashSet();
-            startIndices.add(Integer.valueOf(i));
+            startIndices.add(i);
             while (!startIndices.isEmpty()) {
                 for (Integer intValue : startIndices) {
-                    for (E edge : getEdgesFrom(intValue.intValue())) {
+                    for (E edge : getEdgesFrom(intValue)) {
                         int dstIndex = edge.dst.index;
-                        if (!seen.contains(Integer.valueOf(dstIndex))) {
-                            nextStartIndexes.add(Integer.valueOf(dstIndex));
+                        if (!seen.contains(dstIndex)) {
+                            nextStartIndexes.add(dstIndex);
                         }
                     }
                 }
@@ -540,22 +524,22 @@ public class Digraph {
         if (this.reachabilityIndices == null) {
             computeTransitiveClosure();
         }
-        if (((Set) this.reachabilityIndices.get(from.index)) == null) {
+        if (this.reachabilityIndices.get(from.index) == null) {
             return false;
         }
-        return ((Set) this.reachabilityIndices.get(from.index)).contains(Integer.valueOf(to.index));
+        return this.reachabilityIndices.get(from.index).contains(to.index);
     }
 
     public Set<Integer> getReachableVertices(int fromId) {
-        V src = (V) this.vertexmap.get(Integer.valueOf(fromId));
+        V src = this.vertexmap.get(fromId);
         Assert.a(src != null, "Vertex id does not exist: " + fromId);
         if (this.reachabilityIndices == null) {
             computeTransitiveClosure();
         }
-        Set<Integer> indices = (Set) this.reachabilityIndices.get(src.index);
+        Set<Integer> indices = this.reachabilityIndices.get(src.index);
         Set<Integer> r = new HashSet();
         for (Integer intValue : indices) {
-            r.add(Integer.valueOf(((V) this.vertices.get(intValue.intValue())).id));
+            r.add(((V) this.vertices.get(intValue.intValue())).id);
         }
         return r;
     }

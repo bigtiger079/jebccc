@@ -12,14 +12,11 @@ import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
 import com.pnfsoftware.jeb.core.units.code.android.IDexUnit;
 import com.pnfsoftware.jeb.core.units.code.android.dex.IDalvikInstruction;
-import com.pnfsoftware.jeb.core.units.code.android.dex.IDexCodeItem;
 import com.pnfsoftware.jeb.core.units.code.android.dex.IDexMethod;
-import com.pnfsoftware.jeb.core.units.code.android.dex.IDexMethodData;
 import com.pnfsoftware.jeb.core.units.code.android.render.DexDisassemblyProperties;
 import com.pnfsoftware.jeb.core.units.code.android.render.IDexDisassemblyDocument;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
-import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.Graph;
 import com.pnfsoftware.jeb.rcpclient.extensions.graph.GraphNode;
@@ -47,7 +44,7 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
     }
 
     private Couple<IDexMethod, Integer> processAddress(String address) {
-        ICodeCoordinates cc = ((IDexUnit) this.unit).getCodeCoordinatesFromAddress(address);
+        ICodeCoordinates cc = this.unit.getCodeCoordinatesFromAddress(address);
         if (cc == null) {
             return null;
         }
@@ -64,15 +61,15 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
                 return null;
             }
         }
-        IDexMethod method = ((IDexUnit) this.unit).getMethod(methodId);
+        IDexMethod method = this.unit.getMethod(methodId);
         if (method == null) {
             return null;
         }
-        return new Couple(method, Integer.valueOf(offset));
+        return new Couple(method, offset);
     }
 
     protected String buildAddress(long offset) {
-        return ((IDexUnit) this.unit).getAddressFromCodeCoordinates(new InstructionCoordinates(this.currentMethod.getIndex(), (int) offset));
+        return this.unit.getAddressFromCodeCoordinates(new InstructionCoordinates(this.currentMethod.getIndex(), (int) offset));
     }
 
     public boolean canDisplayAtAddress(String address) {
@@ -89,8 +86,8 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
             return false;
         }
         GlobalPosition pos0 = (!record) || (getViewManager() == null) ? null : getViewManager().getCurrentGlobalPosition();
-        IDexMethod method = (IDexMethod) details.getFirst();
-        int offset = ((Integer) details.getSecond()).intValue();
+        IDexMethod method = details.getFirst();
+        int offset = (Integer) details.getSecond();
         if ((method.getData() == null) || (method.getData().getCodeItem() == null)) {
             return false;
         }
@@ -115,7 +112,7 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
         IItem item = getActiveItem();
         if ((item instanceof IActionableItem)) {
             long itemId = ((IActionableItem) item).getItemId();
-            String address = ((IDexUnit) this.unit).getAddressOfItem(itemId);
+            String address = this.unit.getAddressOfItem(itemId);
             if (address != null) {
                 setActiveAddress(address);
             }
@@ -141,20 +138,20 @@ public class DalvikCodeGraphView extends AbstractControlFlowGraphView<IDexUnit> 
             return;
         }
         IDalvikInstruction insn;
-        for (Iterator localIterator = cfg0.getInstructions().iterator(); localIterator.hasNext(); ) {
-            insn = (IDalvikInstruction) localIterator.next();
-            insnmap.put(Long.valueOf(insn.getOffset()), insn);
+        for (IDalvikInstruction iDalvikInstruction : cfg0.getInstructions()) {
+            insn = iDalvikInstruction;
+            insnmap.put(insn.getOffset(), insn);
         }
         Object irrdata = new ArrayList<>();
         for (com.pnfsoftware.jeb.core.units.code.android.controlflow.IrregularFlowData o : cfg0.generateIrregularFlowDataObjects()) {
             ((List) irrdata).add(new com.pnfsoftware.jeb.core.units.code.asm.cfg.IrregularFlowData(o.getFirstAddress(), o.getLastAddress(), o.getTargetAddress()));
         }
         com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG<IInstruction> cfg = new com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG(insnmap, (List) irrdata, null, 0L, 3);
-        this.disasDoc = ((IDexUnit) this.unit).getDisassemblyDocument();
+        this.disasDoc = this.unit.getDisassemblyDocument();
         DexDisassemblyProperties propertyOverrides = new DexDisassemblyProperties();
         IPropertyManager pm = this.context.getPropertyManager();
-        propertyOverrides.setShowAddresses(Boolean.valueOf(pm.getBoolean(".ui.text.cfg.ShowAddresses")));
-        propertyOverrides.setShowBytecode(Boolean.valueOf(pm.getInteger(".ui.text.cfg.ShowBytesCount") > 0));
+        propertyOverrides.setShowAddresses(pm.getBoolean(".ui.text.cfg.ShowAddresses"));
+        propertyOverrides.setShowBytecode(pm.getInteger(".ui.text.cfg.ShowBytesCount") > 0);
         this.disasDoc.setPropertyOverrides(propertyOverrides);
         generateGraphForCFG(cfg);
     }

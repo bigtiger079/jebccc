@@ -6,7 +6,6 @@ import com.pnfsoftware.jeb.core.units.codeobject.ICodeObjectUnit;
 import com.pnfsoftware.jeb.core.units.codeobject.ISegmentInformation;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.DataFrameView;
-import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractDataFrameView;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
@@ -18,7 +17,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUnit> {
@@ -29,7 +27,7 @@ public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUni
         super(parent, style, unit, null, context);
         setLayout(new FillLayout());
         this.segmentsOrNotSections = segmentsOrNotSections;
-        this.dfv = buildSimple(this, new String[]{"Name", "Flags", "Offset in File", "Size in File", "Offset in Memory", "Size in Memory"});
+        this.dfv = buildSimple(this, "Name", "Flags", "Offset in File", "Size in File", "Offset in Memory", "Size in Memory");
         this.dfv.getContextMenu().addContextMenu(new IContextMenu() {
             public void fillContextMenu(IMenuManager menuMgr) {
                 CodeLoaderSegmentsView.this.addOperationsToContextMenu(menuMgr);
@@ -56,10 +54,10 @@ public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUni
             List<Object> row = new ArrayList<>();
             row.add(s.getName());
             row.add(formatSegmentFlags(s.getFlags()));
-            row.add(Long.valueOf(s.getOffsetInFile()));
-            row.add(Long.valueOf(s.getSizeInFile()));
-            row.add(Long.valueOf(s.getOffsetInMemory()));
-            row.add(Long.valueOf(s.getSizeInMemory()));
+            row.add(s.getOffsetInFile());
+            row.add(s.getSizeInFile());
+            row.add(s.getOffsetInMemory());
+            row.add(s.getSizeInMemory());
             df.addRow(row);
         }
     }
@@ -91,7 +89,7 @@ public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUni
             flags &= 0xDFFFFFFF;
         }
         if (flags != 0) {
-            sb.append(String.format("(other:%X)", new Object[]{Integer.valueOf(flags)}));
+            sb.append(String.format("(other:%X)", flags));
         }
         return sb.toString().trim();
     }
@@ -99,7 +97,7 @@ public class CodeLoaderSegmentsView extends AbstractDataFrameView<ICodeObjectUni
     public IItem getActiveItem() {
         TableItem[] sel = this.dfv.getTable().getSelection();
         if ((sel != null) && (sel.length == 1)) {
-            return new CodeLoaderCellItem((ICodeObjectUnit) this.unit, sel[0].getText(0), sel[0].getText(4));
+            return new CodeLoaderCellItem(this.unit, sel[0].getText(0), sel[0].getText(4));
         }
         return null;
     }

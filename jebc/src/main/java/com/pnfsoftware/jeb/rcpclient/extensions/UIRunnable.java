@@ -27,7 +27,7 @@ public abstract class UIRunnable implements Runnable {
                 if (Licensing.isDebugBuild()) {
                     this.name = e.toString();
                 } else {
-                    this.name = String.format("%s.%s", new Object[]{e.getClassName(), e.getMethodName()});
+                    this.name = String.format("%s.%s", e.getClassName(), e.getMethodName());
                 }
             }
         }

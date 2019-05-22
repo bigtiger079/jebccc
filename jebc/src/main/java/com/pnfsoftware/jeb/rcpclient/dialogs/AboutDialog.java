@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs;
 import com.pnfsoftware.jeb.client.AbstractClientContext;
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.ButtonGroup;

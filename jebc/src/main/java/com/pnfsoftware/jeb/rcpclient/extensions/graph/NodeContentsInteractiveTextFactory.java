@@ -11,7 +11,6 @@ import com.pnfsoftware.jeb.rcpclient.parts.units.ItemStyleProvider2;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
-import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 
@@ -53,11 +52,11 @@ public class NodeContentsInteractiveTextFactory implements Iterable<NodeContents
     }
 
     public NodeContentsInteractiveTextView getContentsForNode(GraphNode node) {
-        return (NodeContentsInteractiveTextView) this.map.get(node);
+        return this.map.get(node);
     }
 
     public GraphNode getNodeForContents(NodeContentsInteractiveTextView contents) {
-        return (GraphNode) this.rmap.get(contents);
+        return this.rmap.get(contents);
     }
 }
 

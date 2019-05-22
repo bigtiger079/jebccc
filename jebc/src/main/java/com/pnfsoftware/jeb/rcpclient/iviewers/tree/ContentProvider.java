@@ -24,12 +24,12 @@ class ContentProvider implements IFilteredTreeContentProvider {
 
     public Object[] getChildren(Object e) {
         if ((e instanceof ITreeDocument)) {
-            logger.i("getChildren() of root", new Object[0]);
+            logger.i("getChildren() of root");
             return ((ITreeDocument) e).getRoots().toArray();
         }
         if ((e instanceof INode)) {
             List<? extends INode> l = ((INode) e).getChildren();
-            logger.i("getChildren(%s)", new Object[]{((INode) e).getLabel()});
+            logger.i("getChildren(%s)", ((INode) e).getLabel());
             if (l != null) {
                 return l.toArray();
             }

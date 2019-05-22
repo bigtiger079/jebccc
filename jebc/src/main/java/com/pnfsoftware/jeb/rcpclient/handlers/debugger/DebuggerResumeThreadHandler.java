@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 
 public class DebuggerResumeThreadHandler extends DebuggerBaseHandler {
     public DebuggerResumeThreadHandler() {

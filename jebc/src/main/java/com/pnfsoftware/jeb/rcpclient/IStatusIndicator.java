@@ -3,31 +3,31 @@ package com.pnfsoftware.jeb.rcpclient;
 import org.eclipse.jface.action.StatusLineContributionItem;
 
 public interface IStatusIndicator {
-    public abstract StatusLineContributionItem getContribution(String paramString);
+    StatusLineContributionItem getContribution(String paramString);
 
-    public abstract boolean hasContribution(String paramString);
+    boolean hasContribution(String paramString);
 
-    public abstract void addContribution(StatusLineContributionItem paramStatusLineContributionItem);
+    void addContribution(StatusLineContributionItem paramStatusLineContributionItem);
 
-    public abstract boolean removeContribution(StatusLineContributionItem paramStatusLineContributionItem);
+    boolean removeContribution(StatusLineContributionItem paramStatusLineContributionItem);
 
-    public abstract boolean removeContribution(String paramString);
+    boolean removeContribution(String paramString);
 
-    public abstract void clearAdditionalContributions();
+    void clearAdditionalContributions();
 
-    public abstract StatusIndicatorData save();
+    StatusIndicatorData save();
 
-    public abstract boolean restore(StatusIndicatorData paramStatusIndicatorData);
+    boolean restore(StatusIndicatorData paramStatusIndicatorData);
 
-    public abstract void clear();
+    void clear();
 
-    public abstract void setText(String paramString);
+    void setText(String paramString);
 
-    public abstract String getText();
+    String getText();
 
-    public abstract void setText(int paramInt, String paramString);
+    void setText(int paramInt, String paramString);
 
-    public abstract String getText(int paramInt);
+    String getText(int paramInt);
 }
 
 

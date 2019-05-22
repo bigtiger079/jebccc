@@ -4,17 +4,17 @@ import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyListener;
 
 public interface IFilterText {
-    public abstract void addFocusListener(FocusListener paramFocusListener);
+    void addFocusListener(FocusListener paramFocusListener);
 
-    public abstract void addKeyListener(KeyListener paramKeyListener);
+    void addKeyListener(KeyListener paramKeyListener);
 
-    public abstract void setText(String paramString);
+    void setText(String paramString);
 
-    public abstract String getText();
+    String getText();
 
-    public abstract void submitText(String paramString);
+    void submitText(String paramString);
 
-    public abstract void setStatus(Boolean paramBoolean);
+    void setStatus(Boolean paramBoolean);
 }
 
 

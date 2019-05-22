@@ -68,18 +68,18 @@ public class Cell<T> {
     }
 
     public T getObject() {
-        return (T) this.obj;
+        return this.obj;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[" + this.coords.getRow());
         if (this.horiMergerDisp != 0) {
-            sb.append(String.format("%+d", new Object[]{Integer.valueOf(this.horiMergerDisp)}));
+            sb.append(String.format("%+d", this.horiMergerDisp));
         }
         sb.append("," + this.coords.getColumn());
         if (this.vertMergerDisp != 0) {
-            sb.append(String.format("%+d", new Object[]{Integer.valueOf(this.vertMergerDisp)}));
+            sb.append(String.format("%+d", this.vertMergerDisp));
         }
         sb.append("]");
         if (this.obj != null) {

@@ -2,16 +2,13 @@ package com.pnfsoftware.jeb.rcpclient.iviewers.text;
 
 import com.pnfsoftware.jeb.core.output.text.IAnchor;
 import com.pnfsoftware.jeb.core.output.text.ICoordinates;
-import com.pnfsoftware.jeb.core.output.text.ITextDocument;
 import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.output.text.TextPartUtil;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.wrapped.WrappedAnchor;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.wrapped.WrappedText;
-import com.pnfsoftware.jeb.rcpclient.iviewers.text.wrapped.WrappedText.SelectionData;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.graphics.Point;
 
 public class ScrollBufferManager {
     private static final ILogger logger = GlobalLog.getLogger(ScrollBufferManager.class, Integer.MAX_VALUE);
@@ -46,7 +43,7 @@ public class ScrollBufferManager {
             return;
         }
         long t0 = System.currentTimeMillis();
-        logger.debug("viewAtAnchor(%d)", new Object[]{Long.valueOf(anchorId)});
+        logger.debug("viewAtAnchor(%d)", anchorId);
         boolean goToEndOfFile = false;
         if (anchorId < this.wrappedText.getAnchorFirst()) {
             anchorId = 0L;
@@ -83,7 +80,7 @@ public class ScrollBufferManager {
                 this.wrappedText.setTopIndex(currentAnchor);
                 this.textWidget.update();
             } else {
-                logger.debug("scrolling to EOF", new Object[0]);
+                logger.debug("scrolling to EOF");
                 viewAtAnchor(anchorId, doNotSetCaret);
                 this.wrappedText.setTopIndex(this.wrappedText.getLineCount());
             }
@@ -94,14 +91,11 @@ public class ScrollBufferManager {
             this.textWidget.setRedraw(true);
         }
         long t1 = System.currentTimeMillis();
-        logger.debug("viewAtAnchor took %dms", new Object[]{Long.valueOf(t1 - t0)});
+        logger.debug("viewAtAnchor took %dms", t1 - t0);
     }
 
     private boolean isSinglePartLoaded() {
-        if ((this.docManager.getDocument().getAnchorCount() == 1L) && (this.docManager.getCurrentPart() != null)) {
-            return true;
-        }
-        return false;
+        return (this.docManager.getDocument().getAnchorCount() == 1L) && (this.docManager.getCurrentPart() != null);
     }
 
     public void viewAtBufferLine(int reqLine) {
@@ -193,7 +187,7 @@ public class ScrollBufferManager {
         if ((this.wrappedText.isAnchorFirstDisplayed()) && (this.wrappedText.getTopIndex() == 0)) {
             if (bufferLineCount >= 2 * maxlineCount) {
                 if (reqLine < 0) {
-                    logger.debug("Top document reached", new Object[0]);
+                    logger.debug("Top document reached");
                     return null;
                 }
             }
@@ -204,11 +198,11 @@ public class ScrollBufferManager {
                 reqLine = reqMaxAllowed;
             }
             if (this.wrappedText.isCurrentPartLastLineDisplayed()) {
-                logger.debug("Bottom document reached", new Object[0]);
+                logger.debug("Bottom document reached");
                 return null;
             }
         }
-        return Integer.valueOf(reqLine);
+        return reqLine;
     }
 
     private static class UpdateDocumentData {
@@ -253,7 +247,7 @@ public class ScrollBufferManager {
                 maxLine.after = (selEndLine - selStartLine + maxlineCount);
             }
             if (((reqLine < 0) || (reqLine - maxVisibleLineCount < 0)) && (!this.wrappedText.isAnchorFirstDisplayed())) {
-                logger.debug("Requesting more data backward", new Object[0]);
+                logger.debug("Requesting more data backward");
                 if (a == null) {
                     a = this.wrappedText.getFirstVisibleAnchor();
                 }
@@ -263,11 +257,11 @@ public class ScrollBufferManager {
                 updateData.reqBefore = Math.max(maxLine.before, anchorLineIndex - reqLine);
                 updateData.delta = (reqLine - anchorLineIndex);
             } else if ((reqLine + maxlineCount >= bufferLineCount) && (!this.wrappedText.isAnchorEndDisplayed())) {
-                logger.debug("Requesting more data forward, maxlinecntAfter(%d), bufferLineCount(%d)", new Object[]{Integer.valueOf(maxLine.after), Integer.valueOf(bufferLineCount)});
+                logger.debug("Requesting more data forward, maxlinecntAfter(%d), bufferLineCount(%d)", maxLine.after, bufferLineCount);
                 if (a == null) {
                     a = this.wrappedText.getEndVisibleAnchor();
                     if (a == null) {
-                        logger.i("", new Object[0]);
+                        logger.i("");
                     }
                 }
                 int anchorLineIndex = a.getWrappedLineIndex();
@@ -294,12 +288,12 @@ public class ScrollBufferManager {
                 }
             }
             if (newReqLine >= 0) {
-                logger.debug("New top line index to %d", new Object[]{Integer.valueOf(newReqLine)});
+                logger.debug("New top line index to %d", newReqLine);
                 this.wrappedText.setTopIndex(newReqLine);
                 this.wrappedText.setHorizontalIndex(horizontalIndex);
             }
         } else {
-            logger.debug("Setting top line index to %d", new Object[]{Integer.valueOf(reqLine)});
+            logger.debug("Setting top line index to %d", reqLine);
             this.wrappedText.setTopIndex(reqLine);
             this.wrappedText.setHorizontalIndex(horizontalIndex);
             this.viewer.updateAnnotationBar();
@@ -311,7 +305,7 @@ public class ScrollBufferManager {
         int caretLine = this.wrappedText.getLineAtOffset(this.wrappedText.getCaretOffset());
         int topIndex = this.wrappedText.getTopIndex();
         if (caretLine < topIndex) {
-            this.wrappedText.setTopIndex(caretLine == 0 ? 0 : caretLine);
+            this.wrappedText.setTopIndex(caretLine);
         } else if (caretLine > topIndex + this.wrappedText.getMaxVisibleLineCount()) {
             this.wrappedText.setTopIndex(caretLine - this.wrappedText.getMaxVisibleLineCount() + 1);
         }
@@ -365,14 +359,14 @@ public class ScrollBufferManager {
             int offsetMax = offset + this.wrappedText.getLineLength(lineIndex);
             offset += deltaX + p.columnOffset;
             if (offset > offsetMax) {
-                logger.debug("Attempting to position caret beyond EOL by %d chars, truncating", new Object[]{Integer.valueOf(offset - offsetMax)});
+                logger.debug("Attempting to position caret beyond EOL by %d chars, truncating", offset - offsetMax);
                 offset = offsetMax;
             }
             if ((offset == 0) && (this.wrappedText.getCaretOffset() == 0)) {
                 this.wrappedText.setCaretWithColumnAffinity(this.wrappedText.getLineLength(0));
             }
             this.wrappedText.setCaretWithColumnAffinity(offset);
-            logger.debug("Set caret at offset %d (deltaY=%d)", new Object[]{Integer.valueOf(offset), Integer.valueOf(deltaY)});
+            logger.debug("Set caret at offset %d (deltaY=%d)", offset, deltaY);
         }
     }
 
@@ -380,7 +374,7 @@ public class ScrollBufferManager {
         boolean eol = this.wrappedText.isCaretEol();
         if (this.wrappedText.hasSelection()) {
             WrappedText.SelectionData sel = this.wrappedText.getSelectionData();
-            logger.debug("current Selection Start(%s), selection length(%d)", new Object[]{sel.getSelectionStartCoord(), Integer.valueOf(sel.getSelectionLength())});
+            logger.debug("current Selection Start(%s), selection length(%d)", sel.getSelectionStartCoord(), sel.getSelectionLength());
             return new VisualSelectionUnwrapped(sel.getSelectionStartCoord(), eol, sel.getSelectionLength());
         }
         return new VisualSelectionUnwrapped(this.wrappedText.getCaretCoordinates(), eol);
@@ -392,7 +386,7 @@ public class ScrollBufferManager {
         } else {
             this.wrappedText.setCaretCoordinates(selection.docCoord, selection.eol);
             if ((selection.docCoord != null) && (!selection.docCoord.equals(this.wrappedText.getCaretCoordinates()))) {
-                logger.error("Restore caret failed: caret are not equals %s:%s", new Object[]{selection.docCoord, this.wrappedText.getCaretCoordinates()});
+                logger.error("Restore caret failed: caret are not equals %s:%s", selection.docCoord, this.wrappedText.getCaretCoordinates());
             }
         }
     }

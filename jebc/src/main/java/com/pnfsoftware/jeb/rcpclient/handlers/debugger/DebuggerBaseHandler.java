@@ -3,20 +3,15 @@ package com.pnfsoftware.jeb.rcpclient.handlers.debugger;
 import com.pnfsoftware.jeb.core.IUnitCreator;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitIdentifier;
-import com.pnfsoftware.jeb.core.units.IUnitProcessor;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerOperationType;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerBreakpoint;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.HandlerUtil;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 import com.pnfsoftware.jeb.rcpclient.parts.ProjectExplorerPartManager;
-import com.pnfsoftware.jeb.rcpclient.parts.UIState;
 import com.pnfsoftware.jeb.rcpclient.parts.UnitPartManager;
 
 import java.util.ArrayList;
@@ -91,15 +86,14 @@ public abstract class DebuggerBaseHandler extends JebBaseHandler {
         List<IUnit> candidates = new ArrayList<>();
         candidates.add(unit);
         for (int i = 0; i < 3; i++) {
-            IUnit last = (IUnit) candidates.get(candidates.size() - 1);
+            IUnit last = candidates.get(candidates.size() - 1);
             IUnitCreator parent = last.getParent();
             if (!(parent instanceof IUnit)) break;
             candidates.add((IUnit) parent);
         }
         IUnitIdentifier identifier;
-        Iterator<IUnitIdentifier> iterator = unit.getUnitProcessor().getUnitIdentifiers().iterator();
-        while (iterator.hasNext()) {
-            identifier = iterator.next();
+        for (IUnitIdentifier iUnitIdentifier : unit.getUnitProcessor().getUnitIdentifiers()) {
+            identifier = iUnitIdentifier;
             String ftype = identifier.getFormatType();
             if ((ftype != null) && (ftype.startsWith("dbug_"))) {
                 for (IUnit candidate : candidates) {
@@ -114,13 +108,12 @@ public abstract class DebuggerBaseHandler extends JebBaseHandler {
     public void restoreUIBreakpoints(IDebuggerUnit dbg) {
         ICodeUnit target;
         Map<String, Boolean> uiBreakpoints;
-        Iterator<? extends ICodeUnit> iterator = dbg.getPotentialDebuggees().iterator();
-        while (iterator.hasNext()) {
-            target = iterator.next();
+        for (ICodeUnit iCodeUnit : dbg.getPotentialDebuggees()) {
+            target = iCodeUnit;
             uiBreakpoints = this.context.getUIState(target).getBreakpoints();
             for (String bpAddress : uiBreakpoints.keySet()) {
                 IDebuggerBreakpoint bp = dbg.setBreakpoint(bpAddress, target);
-                if (bp != null) bp.setEnabled(((Boolean) uiBreakpoints.get(bpAddress)).booleanValue());
+                if (bp != null) bp.setEnabled((Boolean) uiBreakpoints.get(bpAddress));
             }
         }
     }

@@ -65,7 +65,7 @@ public class GenericHistory<T> {
         if ((this.ptr <= 0) || (this.ptr > this.history.size())) {
             throw new IllegalStateException("pointer is not coherent with History");
         }
-        return (T) this.history.get(this.ptr - 1);
+        return this.history.get(this.ptr - 1);
     }
 
     public boolean hasBackward() {
@@ -79,7 +79,7 @@ public class GenericHistory<T> {
     public T backward() {
         if (this.ptr > 1) {
             this.ptr -= 1;
-            return (T) getLast();
+            return getLast();
         }
         throw new ArrayIndexOutOfBoundsException("There is no backward element");
     }
@@ -87,7 +87,7 @@ public class GenericHistory<T> {
     public T forward() {
         if (this.ptr < size()) {
             this.ptr += 1;
-            return (T) getLast();
+            return getLast();
         }
         throw new ArrayIndexOutOfBoundsException("There is no forward element");
     }

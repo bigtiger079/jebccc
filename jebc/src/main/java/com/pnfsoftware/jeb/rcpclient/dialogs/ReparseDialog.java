@@ -2,13 +2,11 @@ package com.pnfsoftware.jeb.rcpclient.dialogs;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.IPluginInformation;
-import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
 import com.pnfsoftware.jeb.core.input.IInput;
 import com.pnfsoftware.jeb.core.units.IBinaryUnit;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitIdentifier;
-import com.pnfsoftware.jeb.core.units.IUnitProcessor;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -228,7 +226,7 @@ public class ReparseDialog extends JebDialog {
                 if ((index < 0) || (index >= ReparseDialog.this.unitIdentifiers.size())) {
                     return;
                 }
-                IPluginInformation pi = ((IUnitIdentifier) ReparseDialog.this.unitIdentifiers.get(index)).getPluginInformation();
+                IPluginInformation pi = ReparseDialog.this.unitIdentifiers.get(index).getPluginInformation();
                 if (pi == null) {
                     return;
                 }

@@ -5,7 +5,7 @@ import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
 
 public interface ICFGLayout<T extends IInstruction> {
-    public abstract Spreadsheet<BasicBlock<T>> build(CFG<T> paramCFG);
+    Spreadsheet<BasicBlock<T>> build(CFG<T> paramCFG);
 }
 
 

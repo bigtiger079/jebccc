@@ -16,7 +16,6 @@ import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
 import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
-import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.ZoomableUtil;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.BufferPoint;
@@ -67,19 +66,19 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
         this.master = master;
         this.styleProvider = styleProvider;
         IPropertyManager propManager = new SimplePropertyManager(new ConfigurationMemoryMap());
-        propManager.setBoolean(".ui.text.ShowVerticalScrollbar", Boolean.valueOf(false));
-        propManager.setBoolean(".ui.text.ShowHorizontalScrollbar", Boolean.valueOf(false));
-        propManager.setBoolean(".ui.text.DisplayEolAtEod", Boolean.valueOf(false));
-        propManager.setInteger(".ui.text.CharactersPerLineMax", Integer.valueOf(4000));
-        propManager.setInteger(".ui.text.CharactersPerLineAtEnd", Integer.valueOf(100));
-        propManager.setBoolean(".ui.text.AllowLineWrapping", Boolean.valueOf(false));
-        propManager.setInteger(".ui.text.CharactersWrap", Integer.valueOf(-1));
-        propManager.setInteger(".ui.text.ScrollLineSize", Integer.valueOf(0));
-        propManager.setInteger(".ui.text.PageLineSize", Integer.valueOf(0));
-        propManager.setInteger(".ui.text.PageMultiplier", Integer.valueOf(0));
-        propManager.setBoolean(".ui.text.CaretBehaviorViewportStatic", Boolean.valueOf(false));
-        propManager.setInteger(".ui.NavigationBarPosition", Integer.valueOf(0));
-        propManager.setInteger(".ui.NavigationBarThickness", Integer.valueOf(2));
+        propManager.setBoolean(".ui.text.ShowVerticalScrollbar", Boolean.FALSE);
+        propManager.setBoolean(".ui.text.ShowHorizontalScrollbar", Boolean.FALSE);
+        propManager.setBoolean(".ui.text.DisplayEolAtEod", Boolean.FALSE);
+        propManager.setInteger(".ui.text.CharactersPerLineMax", 4000);
+        propManager.setInteger(".ui.text.CharactersPerLineAtEnd", 100);
+        propManager.setBoolean(".ui.text.AllowLineWrapping", Boolean.FALSE);
+        propManager.setInteger(".ui.text.CharactersWrap", -1);
+        propManager.setInteger(".ui.text.ScrollLineSize", 0);
+        propManager.setInteger(".ui.text.PageLineSize", 0);
+        propManager.setInteger(".ui.text.PageMultiplier", 0);
+        propManager.setBoolean(".ui.text.CaretBehaviorViewportStatic", Boolean.FALSE);
+        propManager.setInteger(".ui.NavigationBarPosition", 0);
+        propManager.setInteger(".ui.NavigationBarThickness", 2);
         int flags = 2;
         this.iviewer = new InteractiveTextViewer(this, flags, idoc, propManager, null);
         this.w = this.iviewer.getTextWidget();
@@ -122,7 +121,7 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
         if (context != null) {
             this.iviewer.setHoverText(new TextHoverableProvider(context, unit, this.iviewer));
         }
-        addStandardContextMenu(new int[]{4});
+        addStandardContextMenu(4);
         addDisposeListener(new DisposeListener() {
             public void widgetDisposed(DisposeEvent e) {
                 NodeContentsInteractiveTextView.this.iviewer.dispose();
@@ -310,7 +309,7 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
     }
 
     public boolean isActiveItem(IItem item) {
-        return this.styleProvider == null ? false : this.styleProvider.isActiveItem(item);
+        return this.styleProvider != null && this.styleProvider.isActiveItem(item);
     }
 
     public IItem getActiveItem() {
@@ -383,14 +382,14 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
         FontData fd0 = fdlist[0];
         int currentHeight = fd0.getHeight();
         if (this.defaultHeight == null) {
-            this.defaultHeight = Integer.valueOf(currentHeight);
+            this.defaultHeight = currentHeight;
         }
         int newHeight = determineNextFontHeight(currentHeight, zoom);
         if ((newHeight == currentHeight) || (newHeight <= 1)) {
             return false;
         }
         if (!dryRun) {
-            logger.i("New font height after zoom: %d", new Object[]{Integer.valueOf(newHeight)});
+            logger.i("New font height after zoom: %d", newHeight);
             FontDescriptor desc = FontDescriptor.createFrom(fdlist).setHeight(newHeight);
             Font f = createFont(getDisplay(), desc);
             this.w.setFont(f);
@@ -402,7 +401,7 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
     private static Map<FontDescriptor, Font> fontmap = new HashMap();
 
     private static Font createFont(Display display, FontDescriptor desc) {
-        Font f = (Font) fontmap.get(desc);
+        Font f = fontmap.get(desc);
         if (f == null) {
             f = desc.createFont(display);
             fontmap.put(desc, f);
@@ -415,7 +414,7 @@ public class NodeContentsInteractiveTextView extends AbstractInteractiveTextView
 
     private int determineNextFontHeight(int h, int zoom) {
         if (zoom == 0) {
-            return this.defaultHeight.intValue();
+            return this.defaultHeight;
         }
         int i = 0;
         for (int v : wkhsuite) {

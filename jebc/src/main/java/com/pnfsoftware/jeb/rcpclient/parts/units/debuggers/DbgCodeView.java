@@ -6,14 +6,10 @@ import com.pnfsoftware.jeb.core.output.text.TextPartUtil;
 import com.pnfsoftware.jeb.core.output.text.impl.Coordinates;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
-import com.pnfsoftware.jeb.core.units.code.IInstruction;
-import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
 import com.pnfsoftware.jeb.core.units.code.asm.processor.IRegisterBank;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
-import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerTargetInformation;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
-import com.pnfsoftware.jeb.rcpclient.FontManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIRunnable;
@@ -21,7 +17,6 @@ import com.pnfsoftware.jeb.rcpclient.iviewers.text.ITextDocumentViewer;
 import com.pnfsoftware.jeb.rcpclient.iviewers.text.InteractiveTextViewer;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
-import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment.FragmentType;
 import com.pnfsoftware.jeb.rcpclient.parts.units.ItemStyleProvider;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 import com.pnfsoftware.jeb.util.events.IEvent;
@@ -33,7 +28,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import java.util.List;
 
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.layout.FillLayout;
@@ -102,14 +96,14 @@ public class DbgCodeView extends AbstractUnitFragment<IDebuggerUnit> implements 
                                 long previousAddress = coords.getAnchorId() - 1L;
                                 while (coords.getAnchorId() - previousAddress < 16L) {
                                     if (DbgCodeView.this.document.hasInsnAt(previousAddress)) {
-                                        previousInsnAddress = Long.valueOf(previousAddress);
+                                        previousInsnAddress = previousAddress;
                                         break;
                                     }
                                     previousAddress -= 1L;
                                 }
                                 long newAnchorId = coords.getAnchorId() & 0xFFFFFFF;
                                 if (previousInsnAddress != null) {
-                                    long gap = previousInsnAddress.longValue() + DbgCodeView.this.document.getInsnAt(previousInsnAddress.longValue()).getSize();
+                                    long gap = previousInsnAddress + DbgCodeView.this.document.getInsnAt(previousInsnAddress).getSize();
                                     newAnchorId = Math.max(newAnchorId, gap);
                                 }
                                 DbgCodeView.this.viewer.setCaretCoordinates(new Coordinates(newAnchorId), null, false);
@@ -137,7 +131,7 @@ public class DbgCodeView extends AbstractUnitFragment<IDebuggerUnit> implements 
                             case 64:
                                 return 32;
                         }
-                        throw new RuntimeException(Strings.f("Invalid default mode %d for processor %s", new Object[]{Integer.valueOf(defaultMode), DbgCodeView.this.dbg.getTargetInformation().getProcessorType()}));
+                        throw new RuntimeException(Strings.f("Invalid default mode %d for processor %s", defaultMode, DbgCodeView.this.dbg.getTargetInformation().getProcessorType()));
                 }
                 return -1;
             }
@@ -205,7 +199,7 @@ public class DbgCodeView extends AbstractUnitFragment<IDebuggerUnit> implements 
             return null;
         }
         long anchorId = coords.getAnchorId();
-        return String.format("%Xh", new Object[]{Long.valueOf(anchorId)});
+        return String.format("%Xh", anchorId);
     }
 
     public byte[] export() {

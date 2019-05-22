@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units;
 
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.IPlugin;
-import com.pnfsoftware.jeb.core.IPluginInformation;
 import com.pnfsoftware.jeb.core.IUnitContribution;
 import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
 import com.pnfsoftware.jeb.core.output.IActionableItem;
@@ -25,7 +23,6 @@ import java.util.List;
 
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Display;
 
 public class TextHoverableProvider implements IHoverableProvider {
@@ -43,7 +40,7 @@ public class TextHoverableProvider implements IHoverableProvider {
     }
 
     public Object getHoverInfo2(ITextViewer textViewer, IRegion hoverRegion) {
-        logger.debug("Hovering on: %s", new Object[]{hoverRegion});
+        logger.debug("Hovering on: %s", hoverRegion);
         TextItemRetriever retriever = new TextItemRetriever(this.iviewer, hoverRegion);
         UIExecutor.sync(this.display, retriever);
         ITextItem item = retriever.getItem();
@@ -92,7 +89,7 @@ public class TextHoverableProvider implements IHoverableProvider {
 
     private void appendContribution(StringBuilder sb, TypedContent content) {
         if ((content != null) && (!content.getText().isEmpty())) {
-            if (Strings.isContainedIn(content.getMimeType(), new String[]{"text/html", "text/plain"})) {
+            if (Strings.isContainedIn(content.getMimeType(), "text/html", "text/plain")) {
                 sb.append(content.getText());
                 sb.append("\n");
             }
@@ -117,7 +114,7 @@ public class TextHoverableProvider implements IHoverableProvider {
             }
             this.item = this.interactiveTextViewer.getItemAt(this.region.getOffset());
             String r = Strings.toString(this.item);
-            TextHoverableProvider.logger.info(r, new Object[0]);
+            TextHoverableProvider.logger.info(r);
         }
 
         public ITextItem getItem() {

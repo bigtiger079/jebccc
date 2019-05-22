@@ -8,7 +8,6 @@ import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IPrototypeItem;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeLibrary;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
-import com.pnfsoftware.jeb.core.units.code.asm.type.TypeLibraryService;
 import com.pnfsoftware.jeb.core.units.code.asm.type.TypeUtil;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.util.collect.Lists;
@@ -38,7 +37,7 @@ public class ActionEditTypeHandler extends NativeCodeBaseHandler {
             ICodeType type = pbcu.getDataTypeAt(a);
             currentTypeSig = type == null ? null : type.getSignature(true);
         }
-        String caption = String.format("Edit type at %Xh", new Object[]{Long.valueOf(a)});
+        String caption = String.format("Edit type at %Xh", a);
         TextDialog dlg = new TextDialog(this.shell, caption, currentTypeSig, null);
         dlg.setLineCount(1);
         dlg.setSelected(true);
@@ -49,16 +48,16 @@ public class ActionEditTypeHandler extends NativeCodeBaseHandler {
         if (m != null) {
             boolean r = pbcu.setRoutinePrototype(m, typestr);
             if (!r) {
-                logger.error("Failed to set prototype of method %s (%Xh)", new Object[]{m.getName(true), Long.valueOf(a)});
+                logger.error("Failed to set prototype of method %s (%Xh)", m.getName(true), a);
             }
         } else {
             ITypeManager typeman = pbcu.getTypeManager();
             INativeType t = typeman.getType(typestr);
             if (t == null) {
-                t = (INativeType) Lists.getFirst(TypeUtil.findType(pbcu.getTypeManager().getTypes(), typestr, true));
+                t = Lists.getFirst(TypeUtil.findType(pbcu.getTypeManager().getTypes(), typestr, true));
                 if (t == null) {
                     for (ITypeLibrary typelib : pbcu.getTypeLibraryService().getLoadedTypeLibraries()) {
-                        t = (INativeType) Lists.getFirst(TypeUtil.findType(typelib.getTypes(), typestr, true));
+                        t = Lists.getFirst(TypeUtil.findType(typelib.getTypes(), typestr, true));
                         if (t != null) {
                             break;
                         }
@@ -69,7 +68,7 @@ public class ActionEditTypeHandler extends NativeCodeBaseHandler {
                 return;
             }
             if (!pbcu.setDataTypeAt(a, t)) {
-                logger.error("Failed to set type at address %Xh", new Object[]{Long.valueOf(a)});
+                logger.error("Failed to set type at address %Xh", a);
             }
         }
         postExecute(this.shell);

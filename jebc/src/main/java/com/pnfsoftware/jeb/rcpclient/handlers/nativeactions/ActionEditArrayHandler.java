@@ -4,7 +4,6 @@ import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.type.IArrayType;
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
-import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.dialogs.TextDialog;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -32,8 +31,8 @@ public class ActionEditArrayHandler extends NativeCodeBaseHandler {
                 count = ((IArrayType) type).getElementCount();
                 basetype = ((IArrayType) type).getElementType();
             }
-            String currentCount = String.format("%d", new Object[]{Integer.valueOf(count)});
-            String caption = String.format("Edit array length at %Xh", new Object[]{Long.valueOf(a)});
+            String currentCount = String.format("%d", count);
+            String caption = String.format("Edit array length at %Xh", a);
             TextDialog dlg = new TextDialog(this.shell, caption, currentCount, null);
             dlg.setLineCount(1);
             dlg.setSelected(true);
@@ -47,7 +46,7 @@ public class ActionEditArrayHandler extends NativeCodeBaseHandler {
                         type = pbcu.getTypeManager().createArray(basetype, count2);
                     }
                     if (!pbcu.setDataTypeAt(a, type)) {
-                        logger.error("Failed to define array at address %Xh", new Object[]{Long.valueOf(a)});
+                        logger.error("Failed to define array at address %Xh", a);
                     }
                 }
             }

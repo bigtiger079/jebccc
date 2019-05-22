@@ -58,8 +58,8 @@ public class UnitImageView extends AbstractUnitFragment<IBinaryUnit> {
                     else stream.close();
                 }
             } catch (Exception e) {
-                UnitImageView.logger.debug("Image rendering error: %s", new Object[]{e});
-                UnitImageView.logger.error("Cannot render image for unit %s, using a dummy 1x1 pixel image instead", new Object[]{unit});
+                UnitImageView.logger.debug("Image rendering error: %s", e);
+                UnitImageView.logger.error("Cannot render image for unit %s, using a dummy 1x1 pixel image instead", unit);
                 this.image = new Image(display, new Rectangle(0, 0, 1, 1));
             }
         }
@@ -70,7 +70,7 @@ public class UnitImageView extends AbstractUnitFragment<IBinaryUnit> {
     }
 
     public byte[] export() {
-        IInput input = ((IBinaryUnit) getUnit()).getInput();
+        IInput input = getUnit().getInput();
         byte[] data = null;
         try {
             InputStream in = input.getStream();

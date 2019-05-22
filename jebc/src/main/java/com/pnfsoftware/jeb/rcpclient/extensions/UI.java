@@ -148,7 +148,7 @@ public class UI {
             UIExecutor.sync(display, r);
         }
         if (!displayed.get()) {
-            logger.log(level, false, "%s: %s", new Object[]{caption, message});
+            logger.log(level, false, "%s: %s", caption, message);
         }
     }
 
@@ -233,9 +233,9 @@ public class UI {
             return false;
         }
         if ((style & 0x2) != 0) {
-            logger.info(message, new Object[0]);
+            logger.info(message);
         } else if ((style & 0x8) != 0) {
-            logger.warn(message, new Object[0]);
+            logger.warn(message);
         }
         IWidgetManager widgetManager = JebDialog.getStandardWidgetManager();
         if ((widgetManager == null) || (!widgetManager.getShouldShowDialog(widgetName))) {

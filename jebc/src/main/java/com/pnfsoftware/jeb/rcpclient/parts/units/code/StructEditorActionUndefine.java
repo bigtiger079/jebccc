@@ -27,7 +27,7 @@ public class StructEditorActionUndefine extends StructEditorAction {
             return;
         }
         if (!typeman.removeStructureField(type, f)) {
-            UI.error(String.format("The field \"%s\" was not discarded", new Object[]{f.getName()}));
+            UI.error(String.format("The field \"%s\" was not discarded", f.getName()));
         } else {
             this.v.refresh();
         }

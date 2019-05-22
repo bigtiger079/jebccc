@@ -15,7 +15,6 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.swt.widgets.Shell;
 
@@ -56,12 +55,12 @@ public class NativeActionUtil {
     public static int redecompileStaleSourceUnits(Shell shell) {
         int cnt = 0;
         DecompilerListener listener;
-        for (Iterator localIterator1 = DecompilerListener.getAll().iterator(); localIterator1.hasNext(); ) {
-            listener = (DecompilerListener) localIterator1.next();
+        for (DecompilerListener decompilerListener : DecompilerListener.getAll()) {
+            listener = decompilerListener;
             for (ISourceUnit srcUnit : listener.pullResetUnits()) {
                 String s = srcUnit.getFullyQualifiedName();
                 if (s == null) {
-                    logger.warn("Cannot recompile unit %s, fully-qualified name is missing", new Object[]{srcUnit});
+                    logger.warn("Cannot recompile unit %s, fully-qualified name is missing", srcUnit);
                 } else {
                     HandlerUtil.decompileAsync(shell, listener.getContext(), listener.getDecompiler(), s);
                     cnt++;

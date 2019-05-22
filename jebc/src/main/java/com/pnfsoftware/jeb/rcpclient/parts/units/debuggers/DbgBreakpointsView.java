@@ -28,7 +28,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit, IDebuggerBreakpoint> implements IContextMenu {
     private static final ILogger logger = GlobalLog.getLogger(DbgBreakpointsView.class);
@@ -55,8 +54,8 @@ public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit,
         view.setFilterVisibility(false, false);
         view.addTableEventListener(new ITableEventListener() {
             public void onTableEvent(Object row, boolean isSelected, boolean isChecked) {
-                DbgBreakpointsView.logger.i("row=%s selected=%b checked=%b", new Object[]{row, Boolean.valueOf(isSelected), Boolean.valueOf(isChecked)});
-                IDebuggerUnit dbg = (IDebuggerUnit) DbgBreakpointsView.this.getUnit();
+                DbgBreakpointsView.logger.i("row=%s selected=%b checked=%b", row, isSelected, isChecked);
+                IDebuggerUnit dbg = DbgBreakpointsView.this.getUnit();
                 IDebuggerBreakpoint bp = (IDebuggerBreakpoint) row;
                 if (dbg.isAttached()) {
                     bp.setEnabled(isChecked);
@@ -72,7 +71,7 @@ public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit,
             final IDebuggerBreakpoint bp = (IDebuggerBreakpoint) elt;
             menuMgr.add(new Action("Remove") {
                 public void run() {
-                    ((IDebuggerUnit) DbgBreakpointsView.this.getUnit()).clearBreakpoint(bp);
+                    DbgBreakpointsView.this.getUnit().clearBreakpoint(bp);
                 }
             });
         }
@@ -80,7 +79,7 @@ public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit,
     }
 
     public TableViewer getJfaceViewer() {
-        return (TableViewer) getViewer().getViewer();
+        return getViewer().getViewer();
     }
 
     static class BreakpointProvider implements IFilteredTableContentProvider {
@@ -147,8 +146,7 @@ public class DbgBreakpointsView extends AbstractFilteredTableView<IDebuggerUnit,
         if (!(o instanceof IDebuggerBreakpoint)) {
             return null;
         }
-        String address = ((IDebuggerBreakpoint) o).getAddress();
-        return address;
+        return ((IDebuggerBreakpoint) o).getAddress();
     }
 
     protected boolean isCorrectRow(Object obj) {

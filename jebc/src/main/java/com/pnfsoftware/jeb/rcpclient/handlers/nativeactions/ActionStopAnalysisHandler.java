@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeAnalyzer;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
 import java.util.concurrent.Callable;
@@ -26,18 +25,18 @@ public class ActionStopAnalysisHandler extends NativeCodeBaseHandler {
     public void execute() {
         final INativeCodeAnalyzer<?> gca = getNativeCodeUnit(this.part).getCodeAnalyzer();
         gca.requestAnalysisInterruption();
-        boolean success = ((Boolean) this.context.executeTaskWithPopupDelay(1000, "Please wait...", false, new Callable() {
+        boolean success = (Boolean) this.context.executeTaskWithPopupDelay(1000, "Please wait...", false, new Callable() {
             public Boolean call() {
                 while (gca.isAnalyzing()) {
                     try {
                         Thread.sleep(100L);
                     } catch (InterruptedException e) {
-                        return Boolean.valueOf(false);
+                        return Boolean.FALSE;
                     }
                 }
-                return Boolean.valueOf(true);
+                return Boolean.TRUE;
             }
-        })).booleanValue();
+        });
         if (!success) {
             UI.error("Not interrupted!");
         }

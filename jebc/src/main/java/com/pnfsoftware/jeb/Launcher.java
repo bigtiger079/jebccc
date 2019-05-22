@@ -19,10 +19,9 @@ public class Launcher {
         Object var4 = null;
         Object var5 = null;
         int var6 = 0;
-        String[] var7 = var0;
         int var8 = var0.length;
         for (int var9 = 0; var9 < var8; ++var9) {
-            String var10 = var7[var9];
+            String var10 = var0[var9];
             if (!var10.equalsIgnoreCase("-c")) {
                 if (var10.equalsIgnoreCase("--license")) {
                     System.out.println(AbstractClientContext.generateLicenseInformation());

@@ -17,7 +17,7 @@ public class DalvikCallgraphView extends AbstractGlobalGraphView<IDexUnit> {
     }
 
     public boolean preFirstBuild() {
-        DalvikCallgraphBuilder b = (DalvikCallgraphBuilder) this.callgraphBuilder;
+        DalvikCallgraphBuilder b = this.callgraphBuilder;
         String initialFilter = b.getFilter();
         if (initialFilter == null) {
             initialFilter = "# include all packages by default\n*\n# blacklisted packages and sub-packages\n-android*\n-com.android*\n-com.google*\n";

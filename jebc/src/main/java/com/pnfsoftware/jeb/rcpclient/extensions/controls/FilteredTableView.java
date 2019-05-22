@@ -9,12 +9,10 @@ import java.util.List;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Widget;
 
 public class FilteredTableView extends AbstractFilteredView<Table> {
     private List<ITableEventListener> listeners = new ArrayList<>();
@@ -59,20 +57,20 @@ public class FilteredTableView extends AbstractFilteredView<Table> {
     }
 
     public Table getTable() {
-        return (Table) getElement();
+        return getElement();
     }
 
     public int getSelectionIndex() {
-        return ((Table) getElement()).getSelectionIndex();
+        return getElement().getSelectionIndex();
     }
 
     public void setSelection(int index) {
-        ((Table) getElement()).setSelection(index);
-        ((Table) getElement()).showSelection();
+        getElement().setSelection(index);
+        getElement().showSelection();
     }
 
     public int getItemCount() {
-        return ((Table) getElement()).getItemCount();
+        return getElement().getItemCount();
     }
 
     public void addTableEventListener(ITableEventListener listener) {
@@ -86,25 +84,25 @@ public class FilteredTableView extends AbstractFilteredView<Table> {
     }
 
     public void addSelectionListener(SelectionListener listener) {
-        ((Table) getElement()).addSelectionListener(listener);
+        getElement().addSelectionListener(listener);
     }
 
     public void removeSelectionListener(SelectionListener listener) {
-        ((Table) getElement()).removeSelectionListener(listener);
+        getElement().removeSelectionListener(listener);
     }
 
     public void pack(boolean changed) {
         super.pack(changed);
-        int cnt = ((Table) getElement()).getColumns().length;
-        int cx = ((Table) getElement()).getSize().x;
+        int cnt = getElement().getColumns().length;
+        int cx = getElement().getSize().x;
         if (cnt <= 1) {
             if (cnt == 1) {
-                ((Table) getElement()).getColumns()[0].setWidth(cx);
+                getElement().getColumns()[0].setWidth(cx);
             }
             return;
         }
         int maxWidthColumn = cx / cnt;
-        for (TableColumn tc : ((Table) getElement()).getColumns()) {
+        for (TableColumn tc : getElement().getColumns()) {
             tc.pack();
             if (tc.getWidth() > maxWidthColumn) {
                 tc.setWidth(maxWidthColumn);

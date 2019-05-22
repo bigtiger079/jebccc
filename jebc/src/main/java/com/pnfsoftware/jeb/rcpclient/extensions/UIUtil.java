@@ -88,7 +88,7 @@ public class UIUtil {
             try {
                 gc.setFont(text.getFont());
                 FontMetrics fm = gc.getFontMetrics();
-                data = new RowData(length * fm.getAverageCharWidth(), 1 * fm.getHeight());
+                data = new RowData(length * fm.getAverageCharWidth(), fm.getHeight());
             } finally {
                 gc.dispose();
             }
@@ -303,7 +303,7 @@ public class UIUtil {
             return null;
         }
         if ((v instanceof Integer)) {
-            return new FormAttachment(((Integer) v).intValue());
+            return new FormAttachment((Integer) v);
         }
         if ((v instanceof Control)) {
             return new FormAttachment((Control) v);
@@ -331,7 +331,7 @@ public class UIUtil {
     }
 
     public static String rectangleToString(Rectangle r) {
-        return String.format("%d;%d;%d;%d", new Object[]{Integer.valueOf(r.x), Integer.valueOf(r.y), Integer.valueOf(r.width), Integer.valueOf(r.height)});
+        return String.format("%d;%d;%d;%d", r.x, r.y, r.width, r.height);
     }
 
     public static void showOperationResultDialog(Shell parent, boolean success) {
@@ -368,24 +368,24 @@ public class UIUtil {
             if (!(control instanceof Shell)) {
                 Object objName = control.getData("widgetName");
                 if (!(objName instanceof String)) {
-                    logger.i("control: widgetName is missing", new Object[0]);
+                    logger.i("control: widgetName is missing");
                     return 0;
                 }
                 fqname = objName + "/" + fqname;
                 control = control.getShell();
                 if (control == null) {
-                    logger.i("non-shell control has no parent shell, wth?", new Object[0]);
+                    logger.i("non-shell control has no parent shell, wth?");
                     return 0;
                 }
             }
             while (control != null) {
                 if (!(control instanceof Shell)) {
-                    logger.i("was expecting a shell instance, got: %s", new Object[]{control.getClass().getName()});
+                    logger.i("was expecting a shell instance, got: %s", control.getClass().getName());
                     return 0;
                 }
                 Object objName = control.getData("widgetName");
                 if (!(objName instanceof String)) {
-                    logger.i("shell: widgetName is missing: %s", new Object[]{((Shell) control).getText()});
+                    logger.i("shell: widgetName is missing: %s", ((Shell) control).getText());
                     return 0;
                 }
                 fqname = objName + "/" + fqname;
@@ -438,10 +438,10 @@ public class UIUtil {
         } catch (IllegalArgumentException e) {
             if (e.getMessage().contains("Comparison method violates its general contract!")) {
                 if (!Boolean.parseBoolean(System.getProperty("java.util.Arrays.useLegacyMergeSort"))) {
-                    logger.error("A comparison error occurred, the viewer cannot be sorted!", new Object[0]);
+                    logger.error("A comparison error occurred, the viewer cannot be sorted!");
                     if (!warnedArraySort) {
                         warnedArraySort = true;
-                        logger.error("It may be a well-known issue in the UI framework: consider editing jeb.ini, and add the following line:\n  -Djava.util.Arrays.useLegacyMergeSort=true\nafter the line (add it if necessary):\n  -vmargs\nRefer to the FAQ for details: https://www.pnfsoftware.com/jeb/manual/faq/", new Object[0]);
+                        logger.error("It may be a well-known issue in the UI framework: consider editing jeb.ini, and add the following line:\n  -Djava.util.Arrays.useLegacyMergeSort=true\nafter the line (add it if necessary):\n  -vmargs\nRefer to the FAQ for details: https://www.pnfsoftware.com/jeb/manual/faq/");
                     }
                     return;
                 }
@@ -481,10 +481,7 @@ public class UIUtil {
         right0 += b.width;
         top0 -= b.height;
         bottom0 += b.height;
-        if ((left1 > left0) && (right1 < right0) && (top1 > top0) && (bottom1 < bottom0)) {
-            return true;
-        }
-        return false;
+        return (left1 > left0) && (right1 < right0) && (top1 > top0) && (bottom1 < bottom0);
     }
 
     public static Point getRectangleCenter(Rectangle r) {

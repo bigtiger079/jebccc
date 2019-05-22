@@ -10,7 +10,6 @@ import com.pnfsoftware.jeb.util.base.Assert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 class CallgraphPreparer implements Runnable {
@@ -93,8 +92,8 @@ class CallgraphPreparer implements Runnable {
         int requested_inline = 1;
         int inline = 0;
         for (int i = 0; i < cnt; i++) {
-            int vertex_index = ((Integer) indices.get(i)).intValue();
-            initial_points[vertex_index] = new P(Integer.valueOf(g.getVertexByIndex(vertex_index).getId()), x0, y0);
+            int vertex_index = (Integer) indices.get(i);
+            initial_points[vertex_index] = new P(g.getVertexByIndex(vertex_index).getId(), x0, y0);
             switch (dir) {
                 case 0:
                     x0 += d;

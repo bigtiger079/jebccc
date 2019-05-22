@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.output.IUnitDocumentPresentation;
 import com.pnfsoftware.jeb.core.output.IUnitFormatter;
 import com.pnfsoftware.jeb.core.output.text.ILine;
 import com.pnfsoftware.jeb.core.output.text.ITextDocument;
-import com.pnfsoftware.jeb.core.output.text.ITextDocumentPart;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import com.pnfsoftware.jeb.rcpclient.dialogs.AdaptivePopupDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIExecutor;
@@ -45,7 +44,7 @@ public class FileExportWriter {
 
     public Path getTargetDirectory(String[] packages) {
         if (this.mergeFiles) {
-            return Paths.get(this.outputDirectory, new String[0]);
+            return Paths.get(this.outputDirectory);
         }
         return Paths.get(this.outputDirectory, packages);
     }
@@ -66,7 +65,7 @@ public class FileExportWriter {
     }
 
     public void writeFile(ISourceUnit fileSourceUnit, List<String> packages, String className) throws IOException {
-        writeFile(fileSourceUnit, (String[]) packages.toArray(new String[packages.size()]), className);
+        writeFile(fileSourceUnit, packages.toArray(new String[packages.size()]), className);
     }
 
     class OverwritePopup implements Runnable {
@@ -78,9 +77,9 @@ public class FileExportWriter {
         }
 
         public void run() {
-            String msg = Strings.f("File %s already exists.\nDo you want to overwrite?", new Object[]{this.file});
+            String msg = Strings.f("File %s already exists.\nDo you want to overwrite?", this.file);
             AdaptivePopupDialog popup = new AdaptivePopupDialog(FileExportWriter.this.shell, 2, "Overwrite File?", msg, null);
-            FileExportWriter.this.overwrite = popup.open().intValue();
+            FileExportWriter.this.overwrite = popup.open();
             this.doNotShow = popup.isDoNotShow();
         }
     }
@@ -108,7 +107,7 @@ public class FileExportWriter {
                 resetOverwrite(pu.doNotShow);
             }
             options = new StandardOpenOption[]{StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING};
-            logger.info("Writing to %s", new Object[]{file});
+            logger.info("Writing to %s", file);
         }
         writeFile(file, getTextDocument(fileSourceUnit), options);
     }
@@ -160,7 +159,7 @@ public class FileExportWriter {
     private static ITextDocument getTextDocument(ISourceUnit sourceUnit) {
         IUnitFormatter formatter = sourceUnit.getFormatter();
         if ((formatter != null) && (CollectionUtils.isNotEmpty(formatter.getPresentations()))) {
-            IGenericDocument genericDoc = ((IUnitDocumentPresentation) formatter.getPresentations().get(0)).getDocument();
+            IGenericDocument genericDoc = formatter.getPresentations().get(0).getDocument();
             if ((genericDoc instanceof ITextDocument)) {
                 return (ITextDocument) genericDoc;
             }

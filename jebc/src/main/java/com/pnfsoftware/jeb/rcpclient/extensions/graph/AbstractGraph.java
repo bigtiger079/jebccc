@@ -161,10 +161,10 @@ public abstract class AbstractGraph extends Canvas implements IGraph {
             return null;
         }
         if (this.currentMode == null) {
-            return setMode((GraphMode) this.modes.get(0));
+            return setMode(this.modes.get(0));
         }
         int index = (this.modes.indexOf(this.currentMode) + 1) % this.modes.size();
-        return setMode((GraphMode) this.modes.get(index));
+        return setMode(this.modes.get(index));
     }
 
     protected abstract Rectangle getContainerArea();

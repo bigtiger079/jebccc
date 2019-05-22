@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.parts.units.debuggers;
 import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.core.exceptions.DebuggerException;
 import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.code.debug.DebuggerThreadStatus;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThread;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerThreadStackFrame;
@@ -19,7 +18,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTreeContentProv
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
-import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment.FragmentType;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IPatternMatcher;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IValueProvider;
 import com.pnfsoftware.jeb.rcpclient.util.regex.SimplePatternMatcher;
@@ -47,7 +45,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
@@ -130,9 +127,9 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
         Object node = getSelectedNode();
         if ((node instanceof IDebuggerThread)) {
             IDebuggerThread thread = (IDebuggerThread) node;
-            IDebuggerThread currentThread = ((IDebuggerUnit) getUnit()).getDefaultThread();
+            IDebuggerThread currentThread = getUnit().getDefaultThread();
             if ((currentThread == null) || (currentThread.getId() != thread.getId())) {
-                ((IDebuggerUnit) getUnit()).setDefaultThread(thread.getId());
+                getUnit().setDefaultThread(thread.getId());
             }
         }
     }
@@ -146,7 +143,7 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
     }
 
     public TreeViewer getJfaceViewer() {
-        return (TreeViewer) this.viewer.getViewer();
+        return this.viewer.getViewer();
     }
 
     public void fillContextMenu(IMenuManager menuMgr) {
@@ -155,11 +152,11 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
             final IDebuggerThread t = (IDebuggerThread) elt;
             menuMgr.add(new Action("Set as default thread") {
                 public void run() {
-                    ((IDebuggerUnit) DbgThreadsView.this.getUnit()).setDefaultThread(t.getId());
+                    DbgThreadsView.this.getUnit().setDefaultThread(t.getId());
                 }
 
                 public boolean isEnabled() {
-                    return ((IDebuggerUnit) DbgThreadsView.this.getUnit()).getDefaultThread() != t;
+                    return DbgThreadsView.this.getUnit().getDefaultThread() != t;
                 }
             });
             menuMgr.add(new Action("Resume") {
@@ -205,12 +202,12 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
             }
             this.listener = new IEventListener() {
                 public void onEvent(IEvent e) {
-                    DbgThreadsView.logger.i("Event: %s", new Object[]{e});
+                    DbgThreadsView.logger.i("Event: %s", e);
                     if ((DbgThreadsView.TreeContentProvider.this.dbg != null) && (e.getSource() == DbgThreadsView.TreeContentProvider.this.dbg)) {
                         UIExecutor.async(viewer.getControl(), new UIRunnable() {
                             public void runi() {
                                 if ((DbgThreadsView.TreeContentProvider.this.dbg != null) && (!viewer.getControl().isDisposed())) {
-                                    DbgThreadsView.logger.i("Refreshing threads list...", new Object[0]);
+                                    DbgThreadsView.logger.i("Refreshing threads list...");
                                     List<Integer> expanded = DbgThreadsView.TreeContentProvider.this.getExpandedTreeItems();
                                     viewer.refresh();
                                     DbgThreadsView.TreeContentProvider.this.expandTreeItems(expanded);
@@ -230,7 +227,7 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
                 for (int i = 0; i < treeItems.length; i++) {
                     TreeItem item = treeItems[i];
                     if (item.getExpanded()) {
-                        expanded.add(Integer.valueOf(i));
+                        expanded.add(i);
                     }
                 }
             }
@@ -238,8 +235,8 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
         }
 
         private void expandTreeItems(List<Integer> expanded) {
-            for (Iterator localIterator = expanded.iterator(); localIterator.hasNext(); ) {
-                int i = ((Integer) localIterator.next()).intValue();
+            for (Integer anExpanded : expanded) {
+                int i = anExpanded;
                 TreeItem[] treeItems = DbgThreadsView.this.ftv.getTree().getItems();
                 if (i < treeItems.length) {
                     treeItems[i].setExpanded(true);
@@ -280,7 +277,7 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
         public String getString(Object element) {
             if ((element instanceof IDebuggerThread)) {
                 IDebuggerThread t = (IDebuggerThread) element;
-                return Strings.join(",", Arrays.asList(new Serializable[]{t.getName(), Long.valueOf(t.getId())}));
+                return Strings.join(",", Arrays.asList(t.getName(), t.getId()));
             }
             return null;
         }
@@ -313,7 +310,7 @@ public class DbgThreadsView extends AbstractUnitFragment<IDebuggerUnit> implemen
             String text = getStringAt(elt, index);
             if ((elt instanceof IDebuggerThread)) {
                 long tid = ((IDebuggerThread) elt).getId();
-                if ((((IDebuggerUnit) DbgThreadsView.this.getUnit()).getDefaultThread() != null) && (((IDebuggerUnit) DbgThreadsView.this.getUnit()).getDefaultThread().getId() == tid)) {
+                if ((DbgThreadsView.this.getUnit().getDefaultThread() != null) && (DbgThreadsView.this.getUnit().getDefaultThread().getId() == tid)) {
                     cell.setForeground(UIAssetManager.getInstance().getColor(255, 0, 0));
                 } else {
                     cell.setForeground(null);

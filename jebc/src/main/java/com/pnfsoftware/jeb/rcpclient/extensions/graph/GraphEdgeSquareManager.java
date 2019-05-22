@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Control;
 
@@ -25,8 +24,7 @@ public class GraphEdgeSquareManager extends GraphEdgeManager {
     }
 
     public GraphEdgeSquare create(GraphNode src, GraphNode dst) {
-        GraphEdgeSquare edge = new GraphEdgeSquare(this.graph, src, dst);
-        return edge;
+        return new GraphEdgeSquare(this.graph, src, dst);
     }
 
     public void draw(GC gc, int redrawCause, Object redrawObject) {
@@ -83,8 +81,8 @@ public class GraphEdgeSquareManager extends GraphEdgeManager {
         for (GraphNode src : this.graph.getNodes()) {
             List<GraphNode> outnodes = (List) src.getData("outedges_ordered_nodes");
             if ((outnodes != null) && (outnodes.size() == 2)) {
-                GraphNode dst0 = (GraphNode) outnodes.get(0);
-                GraphNode dst1 = (GraphNode) outnodes.get(1);
+                GraphNode dst0 = outnodes.get(0);
+                GraphNode dst1 = outnodes.get(1);
                 Rectangle a = src.getBounds();
                 int a_x0 = a.x;
                 int a_y0 = a.y;

@@ -11,13 +11,9 @@ import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.ISourceUnit;
 import com.pnfsoftware.jeb.core.util.DecompilerHelper;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ExportDecompiledCodeDialog;
-import com.pnfsoftware.jeb.rcpclient.dialogs.ExportDecompiledCodeDialog.ExportStatus;
-import com.pnfsoftware.jeb.rcpclient.dialogs.ExportDecompiledCodeDialog.State;
 import com.pnfsoftware.jeb.rcpclient.dialogs.ProgressMonitorHideableDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.rcpclient.handlers.file.export.FileExportDecompileAllJob;
 import com.pnfsoftware.jeb.rcpclient.handlers.file.export.FileExportDecompiledDecompJob;
@@ -111,8 +107,8 @@ public class FileExportDecompiledCodeHandler extends JebBaseHandler {
             codeUnit = (ICodeUnit) unit;
             decompiler = DecompilerHelper.getDecompiler(codeUnit);
             if (decompiler == null) {
-                logger.warn("No decompiler available: can not export", new Object[0]);
-                if (((unit.getParent() instanceof IUnit)) && (((IUnit) unit.getParent()).getName().equals("decompiler"))) {
+                logger.warn("No decompiler available: can not export");
+                if (((unit.getParent() instanceof IUnit)) && (unit.getParent().getName().equals("decompiler"))) {
                 }
             }
         } else if ((unit instanceof IDecompilerUnit)) {
@@ -157,8 +153,7 @@ public class FileExportDecompiledCodeHandler extends JebBaseHandler {
                 progressBar.run(true, true, runnable);
                 UI.info(this.shell, "Export successful", "Decompiled files can be found in " + dlg.getOutputDirectory() + (dlg.isMergeFiles() ? File.separator + dlg.getOutputFile() : ""));
             } catch (InterruptedException e) {
-                logger.warn(e.getMessage(), new Object[0]);
-                return;
+                logger.warn(e.getMessage());
             } catch (InvocationTargetException e) {
                 UI.error(this.shell, "Export failed", e.getMessage());
                 logger.catching(e);

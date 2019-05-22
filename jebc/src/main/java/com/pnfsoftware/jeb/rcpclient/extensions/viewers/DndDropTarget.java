@@ -33,10 +33,10 @@ public class DndDropTarget extends ViewerDropAdapter {
         int location = determineLocation(event);
         Object target = determineTarget(event);
         if (this.dndProvider.performDrop((String) event.data, target, location)) {
-            logger.i("drop from %s to %s (%d)", new Object[]{event.data, target, Integer.valueOf(location)});
+            logger.i("drop from %s to %s (%d)", event.data, target, location);
             super.drop(event);
         } else {
-            logger.i("cannotDrop from %s to %s (%d)", new Object[]{event.data, target, Integer.valueOf(location)});
+            logger.i("cannotDrop from %s to %s (%d)", event.data, target, location);
         }
     }
 
@@ -49,7 +49,7 @@ public class DndDropTarget extends ViewerDropAdapter {
         if ((this.dragSource.dragData != null) && (target != null)) {
             canDrop = this.dndProvider.canDrop(this.dragSource.dragData, target, 3);
         }
-        logger.i("validate drop %s %d %s %b", new Object[]{target, Integer.valueOf(operation), transferType, Boolean.valueOf(canDrop)});
+        logger.i("validate drop %s %d %s %b", target, operation, transferType, canDrop);
         return canDrop;
     }
 

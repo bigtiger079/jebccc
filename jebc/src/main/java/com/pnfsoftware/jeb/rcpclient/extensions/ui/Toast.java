@@ -58,7 +58,7 @@ public class Toast {
     }
 
     public static Toast urgent(Composite topLevelContainer, String text) {
-        return new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getDisplay().getSystemColor(3)).setBackgroundColor(topLevelContainer.getDisplay().getSystemColor(7)).setFont(SwtRegistry.getInstance().getFont(topLevelContainer.getFont(), null, Integer.valueOf(1)));
+        return new Toast(topLevelContainer, text).setForegroundColor(topLevelContainer.getDisplay().getSystemColor(3)).setBackgroundColor(topLevelContainer.getDisplay().getSystemColor(7)).setFont(SwtRegistry.getInstance().getFont(topLevelContainer.getFont(), null, 1));
     }
 
     public Display getDisplay() {
@@ -307,8 +307,8 @@ public class Toast {
 
     private void dispose() {
         for (Couple<Control, PaintListener> e : this.paintListeners) {
-            Control ctl = (Control) e.getFirst();
-            PaintListener listener = (PaintListener) e.getSecond();
+            Control ctl = e.getFirst();
+            PaintListener listener = e.getSecond();
             if (!ctl.isDisposed()) {
                 ctl.removePaintListener(listener);
             }

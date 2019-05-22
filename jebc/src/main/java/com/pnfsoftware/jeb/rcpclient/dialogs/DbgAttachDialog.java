@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.dialogs;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerMachineInformation;
 import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerProcessInformation;
@@ -14,7 +13,6 @@ import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.DataFrameView;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
-import com.pnfsoftware.jeb.rcpclient.util.DataFrame.Row;
 import com.pnfsoftware.jeb.util.encoding.Conversion;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -25,7 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -37,7 +34,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
@@ -106,9 +102,8 @@ public class DbgAttachDialog extends JebDialog {
                         }
                     }
                 } else {
-                    Iterator<IDebuggerUnitIdentifier> iterator = DbgAttachDialog.this.idents.iterator();
-                    while (iterator.hasNext()) {
-                        ident = iterator.next();
+                    for (IDebuggerUnitIdentifier ident1 : DbgAttachDialog.this.idents) {
+                        ident = ident1;
                         ta = ident.getTargetEnumerator();
                         if (ta != null) {
                             for (IDebuggerMachineInformation machine : ta.listMachines()) {
@@ -333,9 +328,7 @@ public class DbgAttachDialog extends JebDialog {
                     candidate++;
                 }
             }
-            if (candidate == 1) {
-                return true;
-            }
+            return candidate == 1;
         }
         return false;
     }

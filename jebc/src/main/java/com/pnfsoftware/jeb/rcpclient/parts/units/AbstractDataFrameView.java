@@ -5,11 +5,8 @@ import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.DataFrameView;
 import com.pnfsoftware.jeb.rcpclient.extensions.export.ExportUtil;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IFilteredTableContentProvider;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;
-import com.pnfsoftware.jeb.rcpclient.util.DataFrame.Row;
 import com.pnfsoftware.jeb.util.format.Strings;
-import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 

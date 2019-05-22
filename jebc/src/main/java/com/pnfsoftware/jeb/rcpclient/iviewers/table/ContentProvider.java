@@ -16,16 +16,16 @@ class ContentProvider implements IFilteredTableContentProvider {
     ITableDocumentPart input;
 
     public void dispose() {
-        logger.i("dispose", new Object[0]);
+        logger.i("dispose");
     }
 
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-        logger.i("intputChanged: new=%s", new Object[]{newInput});
+        logger.i("intputChanged: new=%s", newInput);
         this.input = ((ITableDocumentPart) newInput);
     }
 
     public Object[] getElements(Object inputElement) {
-        logger.i("getElements(): input=%s", new Object[]{inputElement});
+        logger.i("getElements(): input=%s", inputElement);
         ITableDocumentPart part = (ITableDocumentPart) inputElement;
         return part.getRows().toArray();
     }
@@ -34,7 +34,7 @@ class ContentProvider implements IFilteredTableContentProvider {
         List<? extends ICell> cells = ((ITableRow) row).getCells();
         Object[] rowElements = new Object[cells.size()];
         for (int i = 0; i < cells.size(); i++) {
-            rowElements[i] = ((ICell) cells.get(i)).getLabel();
+            rowElements[i] = cells.get(i).getLabel();
         }
         return rowElements;
     }

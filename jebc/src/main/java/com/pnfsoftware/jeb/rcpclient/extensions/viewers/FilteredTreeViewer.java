@@ -34,7 +34,7 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
         super(widget);
         this.expandAfterFilter = expandAfterFilter;
         this.comparator = new FilteredViewerComparator(Strings.getDefaultComparator(), this);
-        ((TreeViewer) getViewer()).setComparator(this.comparator);
+        getViewer().setComparator(this.comparator);
         int colIndex = 0;
         for (TreeColumn col : widget.getTree().getColumns()) {
             col.addSelectionListener(new ColumnSelectionListener(colIndex, col));
@@ -43,7 +43,7 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
     }
 
     protected TreeViewer buildViewer(AbstractFilteredView<Tree> widget) {
-        return new TreeViewer((Tree) widget.getElement());
+        return new TreeViewer(widget.getElement());
     }
 
     protected AbstractFilteredFilter buildFilter(TreeViewer viewer) {
@@ -63,8 +63,8 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
             if (FilteredTreeViewer.this.comparator != null) {
                 FilteredTreeViewer.this.comparator.setColumn(this.columnIndex);
                 int dir = FilteredTreeViewer.this.comparator.getDirection();
-                ((Tree) FilteredTreeViewer.this.getWidget().getElement()).setSortDirection(dir);
-                ((Tree) FilteredTreeViewer.this.getWidget().getElement()).setSortColumn(this.column);
+                FilteredTreeViewer.this.getWidget().getElement().setSortDirection(dir);
+                FilteredTreeViewer.this.getWidget().getElement().setSortColumn(this.column);
                 FilteredTreeViewer.this.refresh();
             }
         }
@@ -72,8 +72,8 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
 
     protected Object doAfterEmptyFilter() {
         if (this.expandedElements != null) {
-            ((TreeViewer) getViewer()).collapseAll();
-            ((TreeViewer) getViewer()).setExpandedElements(this.expandedElements);
+            getViewer().collapseAll();
+            getViewer().setExpandedElements(this.expandedElements);
             this.expandedElements = null;
         }
         return null;
@@ -81,18 +81,18 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
 
     protected void doBeforeNotNullFilter() {
         if (this.expandedElements == null) {
-            this.expandedElements = ((TreeViewer) getViewer()).getExpandedElements();
+            this.expandedElements = getViewer().getExpandedElements();
         }
     }
 
     protected Object doAfterNotNullFilter() {
         if (this.expandAfterFilter) {
             try {
-                ((TreeViewer) getViewer()).getTree().setRedraw(false);
-                TreeItem[] items = ((TreeViewer) getViewer()).getTree().getItems();
-                return Integer.valueOf(expandFiltered(items, items.length));
+                getViewer().getTree().setRedraw(false);
+                TreeItem[] items = getViewer().getTree().getItems();
+                return expandFiltered(items, items.length);
             } finally {
-                ((TreeViewer) getViewer()).getTree().setRedraw(true);
+                getViewer().getTree().setRedraw(true);
             }
         }
         return null;
@@ -111,19 +111,17 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
                 }
             }
         }
-        Iterator<TreeItem> iterator = toExpand.iterator();
-//        for (??? =toExpand.iterator();
+        //        for (??? =toExpand.iterator();
 //        ((Iterator) ? ??).hasNext();){
-        while (iterator.hasNext()) {
-            TreeItem item = iterator.next();
-            ((TreeViewer) getViewer()).setExpandedState(item.getData(), true);
+        for (TreeItem item : toExpand) {
+            getViewer().setExpandedState(item.getData(), true);
             opened += item.getItems().length;
             if (opened > 2000) {
                 return -1;
             }
         }
-        for (int i = 0; i < toExpand.size(); i++) {
-            opened = expandFiltered(((TreeItem) toExpand.get(i)).getItems(), opened);
+        for (TreeItem aToExpand : toExpand) {
+            opened = expandFiltered(((TreeItem) aToExpand).getItems(), opened);
             if (opened > 2000) {
                 return -1;
             }
@@ -157,8 +155,8 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
         Transfer[] types = {TextTransfer.getInstance()};
         int operations = 10;
         DndDragSource dragSource = new DndDragSource(dndProvider);
-        ((TreeViewer) getViewer()).addDragSupport(operations, types, dragSource);
-        ((TreeViewer) getViewer()).addDropSupport(operations, types, new DndDropTarget(getViewer(), dndProvider, dragSource));
+        getViewer().addDragSupport(operations, types, dragSource);
+        getViewer().addDropSupport(operations, types, new DndDropTarget(getViewer(), dndProvider, dragSource));
     }
 
     public void setContentProvider(IFilteredTreeContentProvider provider) {
@@ -170,15 +168,15 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
     }
 
     public void expandAll() {
-        ((TreeViewer) getViewer()).expandAll();
+        getViewer().expandAll();
     }
 
     public void expandToLevel(int level) {
-        ((TreeViewer) getViewer()).expandToLevel(level);
+        getViewer().expandToLevel(level);
     }
 
     public void expandToLevel(Object elementOrTreePath, int level) {
-        ((TreeViewer) getViewer()).expandToLevel(elementOrTreePath, level);
+        getViewer().expandToLevel(elementOrTreePath, level);
     }
 
     public class RegexViewerFilter extends AbstractFilteredFilter {
@@ -230,7 +228,7 @@ public class FilteredTreeViewer extends AbstractFilteredViewer<Tree, TreeViewer>
     }
 
     public String exportToString() {
-        return TreeUtil.buildXml(((TreeViewer) getViewer()).getTree(), 2);
+        return TreeUtil.buildXml(getViewer().getTree(), 2);
     }
 }
 

@@ -1,8 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.edition;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
@@ -28,7 +26,7 @@ public class EditLanguageHandler extends JebBaseHandler {
         S.setLanguage(this.language);
         this.context.setPreferredLanguage(this.language);
         this.context.getTelemetry().record("languageChange", "code", this.language);
-        String msg = String.format("Your locale was changed to: %s.\n\nPlease restart JEB.", new Object[]{new Locale(this.language, "", "").getDisplayLanguage()});
+        String msg = String.format("Your locale was changed to: %s.\n\nPlease restart JEB.", new Locale(this.language, "", "").getDisplayLanguage());
         MessageDialog.openInformation(this.shell, "Locale change", msg);
     }
 }

@@ -18,7 +18,7 @@ public class R {
     }
 
     public String toString() {
-        return String.format("%f,%f,%f,%f", new Object[]{Double.valueOf(this.x), Double.valueOf(this.y), Double.valueOf(this.w), Double.valueOf(this.h)});
+        return String.format("%f,%f,%f,%f", this.x, this.y, this.w, this.h);
     }
 }
 

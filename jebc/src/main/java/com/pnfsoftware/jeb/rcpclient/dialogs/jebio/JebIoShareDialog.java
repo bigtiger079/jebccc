@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.jebio;
 
 import com.pnfsoftware.jeb.client.jebio.JebIoApiHelper;
 import com.pnfsoftware.jeb.client.jebio.JebIoObjectFile;
-import com.pnfsoftware.jeb.client.jebio.JebIoObjectFile.UserDetails;
 import com.pnfsoftware.jeb.client.jebio.JebIoObjectUser;
 import com.pnfsoftware.jeb.client.jebio.JebIoUtil;
 import com.pnfsoftware.jeb.client.jebio.SampleDetermination;
@@ -198,7 +197,7 @@ public class JebIoShareDialog extends TitleAreaDialog {
         final SampleDetermination _det = det;
         final JebIoApiHelper helper = new JebIoApiHelper(this.context.getNetworkUtility(), creds);
         Integer retcode = this.context.executeNetworkTask(new Callable<Integer>() {
-            public Integer call() throws Exception {
+            public Integer call() {
                 try {
                     return helper.shareFile(_f, _name, _comments, _det, false);
                 } catch (IOException e) {
@@ -232,7 +231,7 @@ public class JebIoShareDialog extends TitleAreaDialog {
         }
         final JebIoApiHelper helper = new JebIoApiHelper(context.getNetworkUtility(), creds);
         return context.executeNetworkTask(new Callable<JebIoObjectFile>() {
-            public JebIoObjectFile call() throws Exception {
+            public JebIoObjectFile call() {
                 try {
                     return helper.getFile(sha256);
                 } catch (IOException e) {

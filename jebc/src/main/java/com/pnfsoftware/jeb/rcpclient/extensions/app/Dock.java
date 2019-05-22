@@ -9,6 +9,7 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.swt.graphics.Rectangle;
@@ -28,12 +29,12 @@ public class Dock extends Composite implements IMDock {
     public static final int BOTTOM = -2;
     public static final int LEFT = -3;
     public static final int RIGHT = -4;
-    int internalDockId;
-    String elementId;
-    boolean allowTabClose;
+    private int internalDockId;
+    private String elementId;
+    private  boolean allowTabClose;
     boolean onEmptyCloseFolder;
     boolean allowForeignDocking;
-    Dock masterDock;
+    private Dock masterDock;
     private Panel mainPanel;
     private Folder initialFolder;
     private List<IDockListener> dockListeners = new ArrayList<>();
@@ -131,14 +132,14 @@ public class Dock extends Composite implements IMDock {
             throw new IllegalArgumentException("Illegal ratio: " + ratio);
         }
         int orientation;
-        if ((split == -1) || (split == -2)) {
+        if ((split == TOP) || (split == BOTTOM)) {
             orientation = 512;
         } else {
-            if ((split == -3) || (split == -4)) {
+            if ((split == LEFT) || (split == RIGHT)) {
                 orientation = 256;
             } else throw new RuntimeException("Invalid orientation: " + split);
         }
-        boolean first = (split == -1) || (split == -3);
+        boolean first = (split == TOP) || (split == LEFT);
         Panel panel0 = folder.getParentPanel();
         int[] weights0 = panel0.getWeights();
         int cnt = weights0.length;
@@ -167,7 +168,7 @@ public class Dock extends Composite implements IMDock {
             panel1.layout();
             panel0.setWeights(weights0);
         } else {
-            throw new RuntimeException(String.format("Illegal sashform (%d parts)", new Object[]{Integer.valueOf(cnt)}));
+            throw new RuntimeException(String.format("Illegal sashform (%d parts)", cnt));
         }
         panel0.layout();
         notifyFolderAdded(folder2);
@@ -246,23 +247,23 @@ public class Dock extends Composite implements IMDock {
 
     private void formatStructure(IMElement parent, IMElement elt, int depth, StringBuilder sb) {
         if ((parent != null) && (elt.getParentElement() != parent)) {
-            throw new RuntimeException(String.format("Unexpected parent for element %s: %s != %s", new Object[]{elt, parent, elt.getParentElement()}));
+            throw new RuntimeException(String.format("Unexpected parent for element %s: %s != %s", elt, parent, elt.getParentElement()));
         }
         Part part;
         if ((elt instanceof Dock)) {
             Dock dock = (Dock) elt;
-            sb.append(String.format("%sDock(#%d)\n", new Object[]{Strings.generate(' ', depth * 2), Integer.valueOf(dock.internalDockId)}));
+            sb.append(String.format("%sDock(#%d)\n", Strings.generate(' ', depth * 2), dock.internalDockId));
         } else if ((elt instanceof Panel)) {
             Panel panel = (Panel) elt;
-            sb.append(String.format("%sPanel(%s %s)\n", new Object[]{Strings.generate(' ', depth * 2), Arrays.toString(panel.getWeights()), panel.isVertical() ? "vertical" : "horizontal"}));
+            sb.append(String.format("%sPanel(%s %s)\n", Strings.generate(' ', depth * 2), Arrays.toString(panel.getWeights()), panel.isVertical() ? "vertical" : "horizontal"));
         } else if ((elt instanceof Folder)) {
             Folder folder = (Folder) elt;
-            sb.append(String.format("%sFolder(%d)\n", new Object[]{Strings.generate(' ', depth * 2), Integer.valueOf(folder.getPartsCount())}));
+            sb.append(String.format("%sFolder(%d)\n", Strings.generate(' ', depth * 2), folder.getPartsCount()));
         } else if ((elt instanceof Part)) {
             part = (Part) elt;
-            sb.append(String.format("%sPart(%s)\n", new Object[]{Strings.generate(' ', depth * 2), part.getLabel()}));
+            sb.append(String.format("%sPart(%s)\n", Strings.generate(' ', depth * 2), part.getLabel()));
         } else {
-            throw new RuntimeException(String.format("Element not supported in this dock: %s", new Object[]{elt == null ? null : elt.getClass().getSimpleName()}));
+            throw new RuntimeException(String.format("Element not supported in this dock: %s", elt == null ? null : elt.getClass().getSimpleName()));
         }
         for (IMElement child : elt.getChildrenElements()) {
             formatStructure(elt, child, depth + 1, sb);
@@ -270,7 +271,7 @@ public class Dock extends Composite implements IMDock {
     }
 
     public String toString() {
-        return String.format("Dock@%d", new Object[]{Integer.valueOf(this.internalDockId)});
+        return String.format("Dock@%d", this.internalDockId);
     }
 
     public void setElementId(String elementId) {
@@ -286,7 +287,7 @@ public class Dock extends Composite implements IMDock {
     }
 
     public List<? extends IMElement> getChildrenElements() {
-        return Arrays.asList(new IMPanel[]{getPanelElement()});
+        return Collections.singletonList(getPanelElement());
     }
 
     public IMPanel getPanelElement() {

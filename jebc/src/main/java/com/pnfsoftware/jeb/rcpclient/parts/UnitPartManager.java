@@ -22,7 +22,6 @@ import com.pnfsoftware.jeb.core.output.text.impl.AbstractTextDocument;
 import com.pnfsoftware.jeb.core.output.text.impl.AsciiDocument;
 import com.pnfsoftware.jeb.core.output.text.impl.HexDumpDocument;
 import com.pnfsoftware.jeb.core.output.tree.ITreeDocument;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.IAddressableUnit;
 import com.pnfsoftware.jeb.core.units.IBinaryUnit;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
@@ -31,7 +30,6 @@ import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
 import com.pnfsoftware.jeb.core.units.code.IDecompilerUnit;
 import com.pnfsoftware.jeb.core.units.code.android.IDexUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
-import com.pnfsoftware.jeb.core.units.code.asm.decompiler.IERoutineContext;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeDecompilationTarget;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.INativeSourceUnit;
 import com.pnfsoftware.jeb.core.units.code.asm.decompiler.ir.IEStatement;
@@ -39,7 +37,6 @@ import com.pnfsoftware.jeb.core.units.code.debug.IDebuggerUnit;
 import com.pnfsoftware.jeb.core.units.codeobject.ICodeObjectUnit;
 import com.pnfsoftware.jeb.core.units.codeobject.IPECOFFUnit;
 import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
-import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.UnitPropertiesDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.AbstractRefresher;
@@ -83,7 +80,6 @@ import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jface.action.IMenuManager;
@@ -377,7 +373,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
             INativeSourceUnit srcUnit = (INativeSourceUnit) this.unit;
             List<INativeDecompilationTarget> targets = srcUnit.getDecompilationTargets();
             if (!targets.isEmpty()) {
-                INativeDecompilationTarget target = (INativeDecompilationTarget) targets.get(0);
+                INativeDecompilationTarget target = targets.get(0);
                 CFG<IEStatement> cfg = target.getContext().getCfg();
                 StaticCodeGraphView v = new StaticCodeGraphView(folder, 0, this.context, srcUnit, this, cfg);
                 this.tabman.addEntry("IR-CFG", v);
@@ -476,7 +472,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     private void updatePartName() {
         String n0 = this.unit.getName();
         String n1 = this.tabman.getCurrentEntryName();
-        String name = String.format("%s/%s", new Object[]{n0, n1});
+        String name = String.format("%s/%s", n0, n1);
         this.part.setLabel(name);
     }
 
@@ -485,7 +481,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
         String label = Strings.safe(pres.getLabel(), "noLabel");
         String sfx = id != 0L ? "" + id : label;
         RcpClientContext.wrapWidget(this.context, ctl, unit.getFormatType() + "_" + doctype + "_" + sfx);
-        ctl.setData("presentationId", Long.valueOf(id));
+        ctl.setData("presentationId", id);
         if (pres.isDefaultRepresentation()) {
             ctl.setDefaultFragment(true);
         }
@@ -702,9 +698,9 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
             case NAVIGATE_BACKWARD:
             case NAVIGATE_FORWARD:
                 PartManager pman = this.context.getPartManager();
-                logger.i("GlobalPositionHistory=\n%s", new Object[]{this.context.getViewManager().getGlobalPositionHistory()});
+                logger.i("GlobalPositionHistory=\n%s", this.context.getViewManager().getGlobalPositionHistory());
                 GlobalPosition pos0 = this.context.getViewManager().getCurrentGlobalPosition();
-                GlobalPosition pos = req.getOperation() == Operation.NAVIGATE_BACKWARD ? (GlobalPosition) this.context.getViewManager().getGlobalPositionHistory().getPrevious(pos0) : (GlobalPosition) this.context.getViewManager().getGlobalPositionHistory().getNext(pos0);
+                GlobalPosition pos = req.getOperation() == Operation.NAVIGATE_BACKWARD ? this.context.getViewManager().getGlobalPositionHistory().getPrevious(pos0) : this.context.getViewManager().getGlobalPositionHistory().getNext(pos0);
                 if (pos == null) {
                     return false;
                 }
@@ -717,12 +713,12 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
                     if (unit.getPropertyManager() == null) {
                         return false;
                     }
-                    targetPart = (IMPart) pman.create(unit, true).get(0);
+                    targetPart = pman.create(unit, true).get(0);
                 }
                 pman.focus(targetPart);
                 UnitPartManager object = pman.getUnitPartManager(targetPart);
                 if (object == null) {
-                    throw new JebRuntimeException(String.format("Can not restore position of %s: is it a unit part?", new Object[]{targetPart.toString()}));
+                    throw new JebRuntimeException(String.format("Can not restore position of %s: is it a unit part?", targetPart.toString()));
                 }
                 Position p = pos.getPosition();
                 if (p == null) {
@@ -772,7 +768,7 @@ public class UnitPartManager extends AbstractPartManager implements IRcpUnitView
     }
 
     public String toString() {
-        return String.format("View:{%s}", new Object[]{getLabel()});
+        return String.format("View:{%s}", getLabel());
     }
 }
 

@@ -35,7 +35,7 @@ public class UIState extends EventSource {
     }
 
     public void setBreakpoint(String address, boolean enabled) {
-        this.breakpoints.put(address, Boolean.valueOf(enabled));
+        this.breakpoints.put(address, enabled);
         notifyListeners(new Event());
     }
 
@@ -57,16 +57,16 @@ public class UIState extends EventSource {
     }
 
     public void setTemporaryBreakpoint(String address, int count) {
-        this.temporaryBreakpoints.put(address, Integer.valueOf(count));
+        this.temporaryBreakpoints.put(address, count);
         setBreakpoint(address, true);
     }
 
     public boolean removeTemporaryBreakpoint(String address) {
-        Integer count = (Integer) this.temporaryBreakpoints.get(address);
+        Integer count = this.temporaryBreakpoints.get(address);
         if (count != null) {
             Integer localInteger1 = count;
-            Integer localInteger2 = count = Integer.valueOf(count.intValue() - 1);
-            if (count.intValue() == 0) {
+            Integer localInteger2 = count = count.intValue() - 1;
+            if (count == 0) {
                 this.temporaryBreakpoints.remove(address);
             } else {
                 this.temporaryBreakpoints.put(address, count);

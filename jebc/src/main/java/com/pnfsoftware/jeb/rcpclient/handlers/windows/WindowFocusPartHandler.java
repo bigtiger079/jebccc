@@ -1,9 +1,7 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.windows;
 
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
-import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
 
 public class WindowFocusPartHandler extends JebBaseHandler {
     IMPart part0;

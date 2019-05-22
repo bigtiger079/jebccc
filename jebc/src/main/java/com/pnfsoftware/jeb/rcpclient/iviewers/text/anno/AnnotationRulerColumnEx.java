@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.iviewers.text.anno;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
 import com.pnfsoftware.jeb.util.logging.ILogger;
 import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.AnnotationRulerColumn;
 import org.eclipse.jface.text.source.IAnnotationAccess;
 import org.eclipse.jface.text.source.IAnnotationModel;
@@ -22,15 +21,15 @@ public class AnnotationRulerColumnEx extends AnnotationRulerColumn {
     }
 
     protected void mouseDoubleClicked(int rulerLine) {
-        logger.i("Double clicked on line: " + rulerLine, new Object[0]);
+        logger.i("Double clicked on line: " + rulerLine);
         int offset;
         try {
             offset = this.viewer.getDocument().getLineOffset(rulerLine);
         } catch (BadLocationException e) {
-            logger.i("Invalid location", new Object[0]);
+            logger.i("Invalid location");
             return;
         }
-        logger.i("  offset in widget: " + offset, new Object[0]);
+        logger.i("  offset in widget: " + offset);
     }
 }
 

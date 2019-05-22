@@ -8,7 +8,6 @@ import com.pnfsoftware.jeb.core.output.AddressConversionPrecision;
 import com.pnfsoftware.jeb.core.output.IItem;
 import com.pnfsoftware.jeb.core.output.tree.CodeNodeUtil;
 import com.pnfsoftware.jeb.core.output.tree.ICodeNode;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.IInteractiveUnit;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeClass;
@@ -19,18 +18,13 @@ import com.pnfsoftware.jeb.core.units.code.ICodeMethod;
 import com.pnfsoftware.jeb.core.units.code.ICodePackage;
 import com.pnfsoftware.jeb.core.units.code.ICodeType;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
-import com.pnfsoftware.jeb.core.units.code.IInstruction;
-import com.pnfsoftware.jeb.core.units.code.asm.cfg.BasicBlock;
 import com.pnfsoftware.jeb.core.units.code.asm.cfg.CFG;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
-import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
 import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
 import com.pnfsoftware.jeb.rcpclient.AllHandlers;
 import com.pnfsoftware.jeb.rcpclient.AssetManagerOverlay;
-import com.pnfsoftware.jeb.rcpclient.IStatusIndicator;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpErrorHandler;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
 import com.pnfsoftware.jeb.rcpclient.actions.ActionUIContext;
 import com.pnfsoftware.jeb.rcpclient.actions.GraphicalActionExecutor;
@@ -40,7 +34,6 @@ import com.pnfsoftware.jeb.rcpclient.extensions.controls.PatternTreeView;
 import com.pnfsoftware.jeb.rcpclient.extensions.filter.AbstractFilteredFilter;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.AbstractArrayGroupFilteredTreeContentProvider;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTreeViewer;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredViewerComparator;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.IDndProvider;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup.ArrayLogicalGroup;
 import com.pnfsoftware.jeb.rcpclient.extensions.viewers.arraygroup.IArrayGroup;
@@ -48,7 +41,6 @@ import com.pnfsoftware.jeb.rcpclient.iviewers.tree.TreeUtil;
 import com.pnfsoftware.jeb.rcpclient.operations.ContextMenu;
 import com.pnfsoftware.jeb.rcpclient.operations.IContextMenu;
 import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment;
-import com.pnfsoftware.jeb.rcpclient.parts.units.AbstractUnitFragment.FragmentType;
 import com.pnfsoftware.jeb.rcpclient.parts.units.code.impl.SimpleCodeNode;
 import com.pnfsoftware.jeb.rcpclient.parts.units.code.impl.SimpleCodePackage;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IPatternMatcher;
@@ -67,7 +59,6 @@ import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -88,7 +79,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
 public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
@@ -135,9 +125,9 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         FilteredTreeViewer ftv = this.pt.getTreeViewer();
         ftv.addFilteredTextListener(new Listener() {
             public void handleEvent(Event event) {
-                if (((event.data instanceof Integer)) && (((Integer) event.data).intValue() == -1)) {
+                if (((event.data instanceof Integer)) && ((Integer) event.data == -1)) {
                     String msg = "Too many results: The tree was not fully expanded.";
-                    CodeHierarchyView.logger.warn(msg, new Object[0]);
+                    CodeHierarchyView.logger.warn(msg);
                     UI.infoOptional(CodeHierarchyView.this.getViewer().getTree().getShell(), null, msg, "dlgCodeHierFilterTooManyResults");
                 }
             }
@@ -148,11 +138,11 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             this.tree.setLinesVisible(true);
         }
         setPrimaryWidget(this.tree);
-        this.viewer = ((TreeViewer) ftv.getViewer());
+        this.viewer = ftv.getViewer();
         if (context != null) {
             this.viewer.addSelectionChangedListener(new ISelectionChangedListener() {
                 public void selectionChanged(SelectionChangedEvent event) {
-                    String text = String.format("%s", new Object[]{CodeHierarchyView.this.getActiveAddress()});
+                    String text = String.format("%s", CodeHierarchyView.this.getActiveAddress());
                     CodeHierarchyView.this.context.getStatusIndicator().setText(text);
                 }
             });
@@ -272,7 +262,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 this.root = null;
                 return;
             }
-            this.root = ((ICodeNode[]) (ICodeNode[]) newInput)[0];
+            this.root = ((ICodeNode[]) newInput)[0];
             this.eventListener = new IEventListener() {
                 public void onEvent(IEvent e) {
                     if ((J.isUnitEvent(e)) && (!CodeHierarchyView.this.autoRefreshDisabled)) {
@@ -280,7 +270,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                     }
                 }
             };
-            ((ICodeUnit) CodeHierarchyView.this.unit).addListener(this.eventListener);
+            CodeHierarchyView.this.unit.addListener(this.eventListener);
         }
 
         public void dispose() {
@@ -431,7 +421,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                     return new Object[0];
                 }
                 if (lastNode == null) {
-                    return append(firstNode, new Object[0]);
+                    return append(firstNode);
                 }
                 return append(firstNode, lastNode);
             }
@@ -461,14 +451,14 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             if ((item instanceof INativeMethodItem)) {
                 INativeMethodDataItem data = ((INativeMethodItem) item).getData();
                 if (data != null) {
-                    address = Long.valueOf(data.getMemoryAddress());
+                    address = data.getMemoryAddress();
                     CFG<?> cfg = data.getCFG();
                     try {
-                        size = Integer.valueOf(cfg.getEffectiveSize());
-                        mode = Integer.valueOf(cfg.getEntryBlock().get(0).getProcessorMode());
+                        size = cfg.getEffectiveSize();
+                        mode = cfg.getEntryBlock().get(0).getProcessorMode();
                     } catch (ConcurrentModificationException | IndexOutOfBoundsException e) {
-                        size = Integer.valueOf(0);
-                        mode = Integer.valueOf(0);
+                        size = 0;
+                        mode = 0;
                     }
                 }
             }
@@ -559,14 +549,14 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
 
             public void setOriginalLabels() {
                 for (Map.Entry<String, List<ArrayLogicalGroup>> e : this.groupByName.entrySet()) {
-                    if (((List) e.getValue()).size() == 1) {
-                        ((ArrayLogicalGroup) ((List) e.getValue()).get(0)).setGroupName(withNumberItemsSuffix((String) e.getKey(), ((ArrayLogicalGroup) ((List) e.getValue()).get(0)).size()));
+                    if (e.getValue().size() == 1) {
+                        ((ArrayLogicalGroup) ((List) e.getValue()).get(0)).setGroupName(withNumberItemsSuffix(e.getKey(), ((ArrayLogicalGroup) ((List) e.getValue()).get(0)).size()));
                     }
                 }
             }
 
             private void saveValidLabel(ArrayLogicalGroup logicalGroup, String label) {
-                List<ArrayLogicalGroup> gr = (List) this.groupByName.get(label);
+                List<ArrayLogicalGroup> gr = this.groupByName.get(label);
                 if (gr == null) {
                     gr = new ArrayList<>();
                     this.groupByName.put(label, gr);
@@ -597,7 +587,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 }
             }
             LabelRule labelRule = new LabelRule();
-            List<SeparatorRule> separators = CodeHierarchyView.this.extraDetails ? Arrays.asList(new SeparatorRule[]{this.cpp_separator, this.underscore}) : Arrays.asList(new SeparatorRule[]{this.underscore});
+            List<SeparatorRule> separators = CodeHierarchyView.this.extraDetails ? Arrays.asList(this.cpp_separator, this.underscore) : Arrays.asList(this.underscore);
             String startExpression = null;
             SeparatorRule rule = null;
             int size = 0;
@@ -652,7 +642,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             if (size >= 10) {
                 if (rule.packageSeparator) {
                     ArrayLogicalGroup group = addPackagedGroup(r, parentElement, index, size, startExpression, rule, labelRule, 1);
-                    map.put(Integer.valueOf(index), group);
+                    map.put(index, group);
                     return;
                 }
                 if (size > getGroupLimit()) {
@@ -662,14 +652,14 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                         String groupName = rule.format(startExpression) + " group_" + i;
                         String label = labelRule.withNumberItemsSuffix(groupName, realSize);
                         ArrayLogicalGroup group = buildLogicalGroup(r, parentElement, index, realSize, label);
-                        map.put(Integer.valueOf(index), group);
+                        map.put(index, group);
                         index += realSize;
                         size -= realSize;
                         i++;
                     }
                 } else {
                     ArrayLogicalGroup logicalGroup = buildLogicalGroup(r, parentElement, index, size, labelRule.generateGroupName());
-                    map.put(Integer.valueOf(index), logicalGroup);
+                    map.put(index, logicalGroup);
                     labelRule.saveValidLabel(logicalGroup, rule.format(startExpression));
                 }
             }
@@ -712,7 +702,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         public void onFirstOptimization(List<?> r) {
             super.onFirstOptimization(r);
             String msg = "Your artifact has too many chidren. They were divided into group nodes.";
-            CodeHierarchyView.logger.warn(msg, new Object[0]);
+            CodeHierarchyView.logger.warn(msg);
             UI.infoOptional(CodeHierarchyView.this.getViewer().getTree().getShell(), null, msg, "dlgCodeHierFirstGroup");
         }
     }
@@ -742,7 +732,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 if ((item instanceof ICodeField)) {
                     return false;
                 }
-                CodeHierarchyView.logger.i("data %s", new Object[]{item});
+                CodeHierarchyView.logger.i("data %s", item);
             }
             return false;
         }
@@ -785,12 +775,12 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 if (dest == null) {
                     dest = "";
                 }
-                CodeHierarchyView.logger.i("Perform drop from %d to %s", new Object[]{Long.valueOf(id), dest});
+                CodeHierarchyView.logger.i("Perform drop from %d to %s", id, dest);
                 GraphicalActionExecutor exec = new GraphicalActionExecutor(CodeHierarchyView.this.getShell(), CodeHierarchyView.this.getContext());
-                ActionContext actionContext = new ActionContext((IInteractiveUnit) CodeHierarchyView.this.unit, 11, id, dest);
+                ActionContext actionContext = new ActionContext(CodeHierarchyView.this.unit, 11, id, dest);
                 ActionUIContext uictx = new ActionUIContext(actionContext, CodeHierarchyView.this);
                 if (!exec.execute(uictx, dest)) {
-                    CodeHierarchyView.logger.error("Can not move to package %s", new Object[]{dest});
+                    CodeHierarchyView.logger.error("Can not move to package %s", dest);
                     return false;
                 }
                 return true;
@@ -953,14 +943,14 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                     return formatLongHex(new StringBuilder(), (Long) o).toString();
                 }
                 if (key == 2) {
-                    return Integer.toHexString(((Integer) o).intValue()).toUpperCase() + "h";
+                    return Integer.toHexString((Integer) o).toUpperCase() + "h";
                 }
                 if (key == 3) {
                     if (o == null) {
                         return "";
                     }
                     if (this.procType == ProcessorType.ARM) {
-                        return ((Integer) o).intValue() == 16 ? "T32" : "A32";
+                        return (Integer) o == 16 ? "T32" : "A32";
                     }
                     return o.toString();
                 }
@@ -970,7 +960,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
 
         public String getArrayGroupStringAt(IArrayGroup element, int key) {
             if (((element instanceof ArrayLogicalGroup)) && (key == 0)) {
-                return ((ArrayLogicalGroup) element).getGroupName();
+                return element.getGroupName();
             }
             if (element.isSingle()) {
                 return getStringAt(element.getFirstElement(), key);
@@ -980,13 +970,13 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 Object o = r[key];
                 if (key == 0) {
                     if ((o instanceof Object[])) {
-                        return ((Object[]) (Object[]) o)[0] + " .. " + Strings.safe(((Object[]) (Object[]) o)[1]);
+                        return ((Object[]) o)[0] + " .. " + Strings.safe(((Object[]) o)[1]);
                     }
                 } else if ((key == 1) && ((o instanceof Object[])) && ((CodeHierarchyView.this.viewer.getTree().getSortColumn() == null) || (CodeHierarchyView.this.viewer.getTree().getSortColumn().getText().equals("Address")))) {
                     StringBuilder stb = new StringBuilder();
-                    formatLongHex(stb, (Long) ((Object[]) (Object[]) o)[0]);
+                    formatLongHex(stb, (Long) ((Object[]) o)[0]);
                     stb.append(" .. ");
-                    formatLongHex(stb, (Long) ((Object[]) (Object[]) o)[1]);
+                    formatLongHex(stb, (Long) ((Object[]) o)[1]);
                     return stb.toString();
                 }
             }
@@ -997,7 +987,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             if (o == null) {
                 return stb;
             }
-            return stb.append(Long.toHexString(o.longValue()).toUpperCase()).append("h");
+            return stb.append(Long.toHexString(o).toUpperCase()).append("h");
         }
 
         public String getString(Object element) {
@@ -1094,7 +1084,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
     }
 
     public void focusOnAddress(String address) {
-        ICodeNode node = ((ICodeUnit) this.unit).getHierarchy().findNode(address, true);
+        ICodeNode node = this.unit.getHierarchy().findNode(address, true);
         if (node != null) {
             focusOnNode(node);
         }
@@ -1103,7 +1093,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
     public void focusOnNode(ICodeNode node) {
         ISelection selection = new StructuredSelection(node);
         List<Object> path = new ArrayList<>();
-        path.add(((ICodeUnit) this.unit).getHierarchy().getRoot());
+        path.add(this.unit.getHierarchy().getRoot());
         path.add(node);
         selection = new TreeSelection(new TreePath(path.toArray()));
         this.viewer.reveal(node);
@@ -1114,7 +1104,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             if (autoExpand) {
                 List<ICodeNode> pathNode = new ArrayList<>();
                 getPathNode(node, this.contentProvider.getRoot(), pathNode, true);
-                if ((usesExplicitDefaultPackage()) && (!this.extraDetails) && (!(((ICodeNode) pathNode.get(0)).getObject() instanceof ICodePackage)) && (this.contentProvider.defaultPackage != null)) {
+                if ((usesExplicitDefaultPackage()) && (!this.extraDetails) && (!(pathNode.get(0).getObject() instanceof ICodePackage)) && (this.contentProvider.defaultPackage != null)) {
                     pathNode.add(0, this.contentProvider.defaultPackage);
                 }
                 try {
@@ -1129,23 +1119,23 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                         this.viewer.setExpandedState(o, true);
                         item = updateTreeItem(item, arrayPath, 0);
                         path.addAll(arrayPath);
-                        if ((arrayPath.isEmpty()) || (!((IArrayGroup) arrayPath.get(arrayPath.size() - 1)).isSingle())) {
+                        if ((arrayPath.isEmpty()) || (!arrayPath.get(arrayPath.size() - 1).isSingle())) {
                             path.add(o);
                             item = updateTreeItem(item, o);
                         }
                         if (item == null) break;
                         items = item.getItems();
                     }
-                    logger.debug("Path to item: %s", new Object[]{Strings.joinList(path)});
+                    logger.debug("Path to item: %s", Strings.joinList(path));
                     selection = new TreeSelection(new TreePath(path.toArray()));
                     this.viewer.setSelection(selection);
                     if (getSelectedElement() == null) {
                         AbstractFilteredFilter filter = getAbstractFilter();
                         String msg = null;
                         if ((filter != null) && (filter.isFiltered())) {
-                            msg = Strings.f("The item %s can not be focused.\nMaybe it is hidden by current filter?", new Object[]{node.getLabel()});
+                            msg = Strings.f("The item %s can not be focused.\nMaybe it is hidden by current filter?", node.getLabel());
                         } else {
-                            msg = Strings.f("The item  %s can not be focused.", new Object[]{node.getLabel()});
+                            msg = Strings.f("The item  %s can not be focused.", node.getLabel());
                             this.context.getErrorHandler().processThrowableSilent(new JebRuntimeException(msg));
                         }
                         UI.error(msg);
@@ -1156,7 +1146,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
                 return;
             }
             getPath(node, this.viewer.getTree().getItems(), path);
-            path.add(0, ((ICodeUnit) this.unit).getHierarchy().getRoot());
+            path.add(0, this.unit.getHierarchy().getRoot());
             int pathSize = path.size();
             while ((getSelectedElement() == null) && (!path.isEmpty())) {
                 selection = new TreeSelection(new TreePath(path.toArray()));
@@ -1166,7 +1156,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
             boolean focused = (getSelectedElement() != null) && (path.size() + 1 == pathSize);
             if (!focused) {
                 String msg = "For performance reason, the node can not be automatically expanded.";
-                logger.warn(msg, new Object[0]);
+                logger.warn(msg);
                 UI.infoOptional(getViewer().getTree().getShell(), null, msg, "dlgCodeHierNoExpand");
             }
         }
@@ -1191,7 +1181,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
         if (arrayPath.isEmpty()) {
             return item;
         }
-        IArrayGroup match = (IArrayGroup) arrayPath.get(i);
+        IArrayGroup match = arrayPath.get(i);
         if ((arrayPath.size() == 1) && (item.getData() == match)) {
             return item;
         }
@@ -1223,9 +1213,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
 
     private boolean getIntermediatePathArrayGroup(ICodeNode node, IArrayGroup ag, List<IArrayGroup> arrayPath) {
         if (ag.isSingle()) {
-            if (ag.getFirstElement() == node) {
-                return true;
-            }
+            return ag.getFirstElement() == node;
         } else {
             for (Object o : ag.getChildren()) {
                 if (o == node) {
@@ -1270,9 +1258,7 @@ public class CodeHierarchyView extends AbstractUnitFragment<ICodeUnit> {
 
     private boolean getPathArrayGroup(ICodeNode node, IArrayGroup ag, List<Object> path) {
         if (ag.isSingle()) {
-            if (ag.getFirstElement() == node) {
-                return true;
-            }
+            return ag.getFirstElement() == node;
         } else {
             for (Object o : ag.getChildren()) {
                 if (getPath(node, o, path)) {

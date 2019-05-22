@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.rcpclient.dialogs.JebDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.ShellWrapper;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
-import com.pnfsoftware.jeb.rcpclient.extensions.viewers.FilteredTableViewer;
 import com.pnfsoftware.jeb.rcpclient.parts.units.code.NativeRoutinesView;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;

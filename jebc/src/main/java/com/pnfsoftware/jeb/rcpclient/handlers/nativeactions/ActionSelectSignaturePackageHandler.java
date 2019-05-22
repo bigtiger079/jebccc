@@ -1,16 +1,10 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.client.telemetry.ITelemetryDatabase;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
 import com.pnfsoftware.jeb.core.units.code.IInstruction;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.INativeCodeAnalyzer;
-import com.pnfsoftware.jeb.core.units.code.asm.processor.IProcessor;
 import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignatureDBManager;
 import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageEntry;
-import com.pnfsoftware.jeb.core.units.code.asm.sig.NativeSignaturePackageMetadata;
-import com.pnfsoftware.jeb.core.units.codeobject.ProcessorType;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.DataFrameDialog;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.util.DataFrame;

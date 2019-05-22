@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.handlers.help;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.handlers.JebBaseHandler;
 
 public class HelpChangelistHandler extends JebBaseHandler {

@@ -93,8 +93,7 @@ public class InfiniTableViewer extends Viewer {
 
             public Object[] getElements(Object inputElement) {
                 int visicount = ctl.getMaximumVisibleRowCount(true);
-                Object[] data = InfiniTableViewer.this.clientContentProvider.get(inputElement, InfiniTableViewer.this.sectionBase, InfiniTableViewer.this.sectionSize + visicount);
-                return data;
+                return InfiniTableViewer.this.clientContentProvider.get(inputElement, InfiniTableViewer.this.sectionBase, InfiniTableViewer.this.sectionSize + visicount);
             }
         });
     }

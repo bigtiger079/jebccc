@@ -31,14 +31,14 @@ public final class UIAssetManager extends SwtRegistry {
     }
 
     public Image getImage(String filename) {
-        Image asset = (Image) this.images.get(filename);
+        Image asset = this.images.get(filename);
         if (asset == null) {
             try {
                 InputStream in = Assets.getAsset(filename);
                 Throwable localThrowable3 = null;
                 try {
                     if (in == null) {
-                        logger.warn("Image not found: %s", new Object[]{filename});
+                        logger.warn("Image not found: %s", filename);
                     } else {
                         asset = new Image(this.display, in);
                     }
@@ -69,7 +69,7 @@ public final class UIAssetManager extends SwtRegistry {
         if (!overlay.hasLayer()) {
             return getImage(filename);
         }
-        Image asset = (Image) this.images.get(filename + overlay.getId());
+        Image asset = this.images.get(filename + overlay.getId());
         if (asset == null) {
             asset = overlay.build(getImage(filename));
             this.images.put(filename + overlay.getId(), asset);

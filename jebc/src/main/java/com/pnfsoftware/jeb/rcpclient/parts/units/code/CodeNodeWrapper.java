@@ -55,13 +55,13 @@ public class CodeNodeWrapper implements Comparable<CodeNodeWrapper> {
         }
         Integer r = compareNullFirst(item1, item2);
         if (r != null) {
-            return r.intValue();
+            return r;
         }
         String name1 = a.name;
         String name2 = b.name;
         r = compareNullFirst(name1, name2);
         if (r != null) {
-            return r.intValue();
+            return r;
         }
         return name1.compareTo(name2);
     }
@@ -85,12 +85,12 @@ public class CodeNodeWrapper implements Comparable<CodeNodeWrapper> {
     private static Integer compareNullFirst(Object item1, Object item2) {
         if (item1 == null) {
             if (item2 == null) {
-                return Integer.valueOf(0);
+                return 0;
             }
-            return Integer.valueOf(-1);
+            return -1;
         }
         if (item2 == null) {
-            return Integer.valueOf(1);
+            return 1;
         }
         return null;
     }

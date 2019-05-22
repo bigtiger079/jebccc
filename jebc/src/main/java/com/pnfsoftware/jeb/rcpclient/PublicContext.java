@@ -7,7 +7,6 @@ import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.Version;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.rcpclient.dialogs.InputDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.ShellActivationTracker;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IMPart;
 import com.pnfsoftware.jeb.rcpclient.parts.PartManager;
@@ -56,8 +55,7 @@ public class PublicContext implements IGraphicalClientContext {
     public String displayQuestionBox(String caption, String message, String defaultValue) {
         InputDialog dlg = new InputDialog(UI.getShellTracker().get(), caption, defaultValue);
         dlg.setMessage(message);
-        String value = dlg.open();
-        return value;
+        return dlg.open();
     }
 
     public int displayMessageBox(String caption, String message, IconType iconType, ButtonGroupType bgType) {
@@ -120,7 +118,7 @@ public class PublicContext implements IGraphicalClientContext {
     }
 
     public <T> T executeAsyncWithReturn(String taskName, Callable<T> callable) {
-        return (T) this.ctx.executeTask(taskName, callable);
+        return this.ctx.executeTask(taskName, callable);
     }
 
     public List<UnitPartManager> getViews() {
@@ -145,7 +143,7 @@ public class PublicContext implements IGraphicalClientContext {
     public UnitPartManager getFocusedView() {
         PartManager upm = this.ctx.getPartManager();
         IMPart part = upm.getActivePart();
-        if ((part != null) && (PartManager.isUnitPart(part))) {
+        if ((PartManager.isUnitPart(part))) {
             return upm.getUnitPartManager(part);
         }
         return null;

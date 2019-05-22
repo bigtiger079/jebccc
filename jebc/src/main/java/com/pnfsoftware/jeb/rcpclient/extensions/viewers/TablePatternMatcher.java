@@ -3,7 +3,6 @@ package com.pnfsoftware.jeb.rcpclient.extensions.viewers;
 import com.pnfsoftware.jeb.rcpclient.util.regex.IValueProvider;
 import com.pnfsoftware.jeb.rcpclient.util.regex.SimplePatternMatcher;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TablePatternMatcher extends SimplePatternMatcher {

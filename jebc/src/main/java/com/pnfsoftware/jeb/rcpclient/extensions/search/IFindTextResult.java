@@ -1,9 +1,9 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.search;
 
 public interface IFindTextResult {
-    public abstract boolean isEndOfSearch();
+    boolean isEndOfSearch();
 
-    public abstract boolean isWrappedAround();
+    boolean isWrappedAround();
 }
 
 

@@ -3,11 +3,11 @@ package com.pnfsoftware.jeb.rcpclient;
 import com.pnfsoftware.jeb.util.collect.ItemHistory;
 
 public interface IViewManager {
-    public abstract ItemHistory<GlobalPosition> getGlobalPositionHistory();
+    ItemHistory<GlobalPosition> getGlobalPositionHistory();
 
-    public abstract GlobalPosition getCurrentGlobalPosition();
+    GlobalPosition getCurrentGlobalPosition();
 
-    public abstract boolean recordGlobalPosition(GlobalPosition paramGlobalPosition);
+    boolean recordGlobalPosition(GlobalPosition paramGlobalPosition);
 }
 
 

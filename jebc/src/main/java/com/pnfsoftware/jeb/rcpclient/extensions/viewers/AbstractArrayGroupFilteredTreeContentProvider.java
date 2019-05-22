@@ -36,17 +36,17 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
     }
 
     protected ArrayGroup getArrayGroup(Object parentElement, int firstIndex, int toplevel) {
-        Map<Integer, Map<Object, ArrayGroup>> lev = (Map) this.arrayGroups.get(Integer.valueOf(toplevel));
+        Map<Integer, Map<Object, ArrayGroup>> lev = this.arrayGroups.get(toplevel);
         if (lev == null) {
             lev = new HashMap();
-            this.arrayGroups.put(Integer.valueOf(toplevel), lev);
+            this.arrayGroups.put(toplevel, lev);
         }
-        Map<Object, ArrayGroup> gr = (Map) lev.get(Integer.valueOf(firstIndex));
+        Map<Object, ArrayGroup> gr = lev.get(firstIndex);
         if (gr == null) {
             gr = new HashMap();
-            lev.put(Integer.valueOf(firstIndex), gr);
+            lev.put(firstIndex, gr);
         }
-        ArrayGroup g = (ArrayGroup) gr.get(parentElement);
+        ArrayGroup g = gr.get(parentElement);
         if (g == null) {
             g = new ArrayGroup(firstIndex);
             gr.put(parentElement, g);
@@ -56,17 +56,17 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
     }
 
     protected ArrayLogicalGroup getArrayLogicalGroup(Object parentElement, int firstIndex, String groupName, boolean packaged, int toplevel) {
-        Map<Integer, Map<Object, ArrayLogicalGroup>> lev = (Map) this.arrayLogicalGroups.get(Integer.valueOf(toplevel));
+        Map<Integer, Map<Object, ArrayLogicalGroup>> lev = this.arrayLogicalGroups.get(toplevel);
         if (lev == null) {
             lev = new HashMap();
-            this.arrayLogicalGroups.put(Integer.valueOf(toplevel), lev);
+            this.arrayLogicalGroups.put(toplevel, lev);
         }
-        Map<Object, ArrayLogicalGroup> gr = (Map) lev.get(Integer.valueOf(firstIndex));
+        Map<Object, ArrayLogicalGroup> gr = lev.get(firstIndex);
         if (gr == null) {
             gr = new HashMap();
-            lev.put(Integer.valueOf(firstIndex), gr);
+            lev.put(firstIndex, gr);
         }
-        ArrayLogicalGroup g = (ArrayLogicalGroup) gr.get(parentElement);
+        ArrayLogicalGroup g = gr.get(parentElement);
         if ((g == null) || (!Strings.equals(g.getGroupName(), groupName)) || (g.isPackaged() != packaged)) {
             g = new ArrayLogicalGroup(firstIndex, groupName, packaged);
             gr.put(parentElement, g);
@@ -76,12 +76,12 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
     }
 
     protected VirtualArrayGroup getVirtualElement(Object elt, int firstIndex, String label) {
-        Map<Object, VirtualArrayGroup> gr = (Map) this.virtualElements.get(Integer.valueOf(firstIndex));
+        Map<Object, VirtualArrayGroup> gr = this.virtualElements.get(firstIndex);
         if (gr == null) {
             gr = new HashMap();
-            this.virtualElements.put(Integer.valueOf(firstIndex), gr);
+            this.virtualElements.put(firstIndex, gr);
         }
-        VirtualArrayGroup g = (VirtualArrayGroup) gr.get(elt);
+        VirtualArrayGroup g = gr.get(elt);
         if ((g == null) || (!Strings.equals(g.getGroupName(), label))) {
             g = new VirtualArrayGroup(firstIndex, elt, label);
             gr.put(elt, g);
@@ -144,7 +144,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
             boolean shouldCreateIntermediateGroups = r.size() - logicalGroupSize > this.limit;
             for (int i = 0; i < r.size(); i++) {
                 if (!logicalGroups.isEmpty()) {
-                    ArrayLogicalGroup logicalGroup = (ArrayLogicalGroup) logicalGroups.get(Integer.valueOf(i));
+                    ArrayLogicalGroup logicalGroup = logicalGroups.get(i);
                     if (logicalGroup != null) {
                         currentGroup = null;
                         groups.add(logicalGroup);
@@ -170,10 +170,10 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
                         break;
                     }
                     for (int j = groupsBySize.size() - 1; j >= 0; j--) {
-                        int index = ((Integer) groupsBySize.get(j)).intValue();
-                        flattenedElements -= ((IArrayGroup) groups.get(index)).size();
+                        int index = (Integer) groupsBySize.get(j);
+                        flattenedElements -= groups.get(index).size();
                         if (flattenedElements < 0) break;
-                        IArrayGroup g = (IArrayGroup) groups.remove(index);
+                        IArrayGroup g = groups.remove(index);
                         for (int k = 0; k < g.size(); k++) {
                             groups.add(index + k, new VirtualArrayGroup(g.getFirstElementIndex() + k, g.getChildren().get(k)));
                         }
@@ -189,16 +189,16 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
         int minSize = -1;
         List<Integer> subGroups = new ArrayList<>();
         for (int i = 1; i < groups.size(); i++) {
-            IArrayGroup g = (IArrayGroup) groups.get(i);
+            IArrayGroup g = groups.get(i);
             if (!(g instanceof ArrayLogicalGroup)) {
                 int size = g.size();
                 if (size != 1) {
                     if ((size < minSize) || (minSize == -1)) {
                         minSize = size;
                         subGroups.clear();
-                        subGroups.add(Integer.valueOf(i));
+                        subGroups.add(i);
                     } else if (size == minSize) {
-                        subGroups.add(Integer.valueOf(i));
+                        subGroups.add(i);
                     }
                 }
             }
@@ -224,12 +224,12 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
         if (r.size() > this.limit) {
             List<IArrayGroup> groups = new ArrayList<>();
             ArrayGroup currentGroup = null;
-            for (int i = 0; i < r.size(); i++) {
+            for (IArrayGroup aR : r) {
                 if ((currentGroup == null) || (currentGroup.size() >= this.groupLimit)) {
-                    currentGroup = getArrayGroup(parentElement, ((IArrayGroup) r.get(i)).getFirstElementIndex(), toplevel);
+                    currentGroup = getArrayGroup(parentElement, ((IArrayGroup) aR).getFirstElementIndex(), toplevel);
                     groups.add(currentGroup);
                 }
-                currentGroup.add(r.get(i));
+                currentGroup.add(aR);
             }
             return noMoreThanNChildrenGroup(groups, parentElement, toplevel + 1);
         }
@@ -251,7 +251,7 @@ public abstract class AbstractArrayGroupFilteredTreeContentProvider implements I
         if ((element instanceof IArrayGroup)) {
             IArrayGroup v = (IArrayGroup) element;
             if (index == 0) {
-                return String.format("[%d..%d]", new Object[]{Integer.valueOf(v.getFirstElementIndex()), Integer.valueOf(v.getLastElementIndex())});
+                return String.format("[%d..%d]", v.getFirstElementIndex(), v.getLastElementIndex());
             }
         }
         return null;

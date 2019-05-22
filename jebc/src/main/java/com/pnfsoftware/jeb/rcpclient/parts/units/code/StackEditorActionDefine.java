@@ -1,11 +1,7 @@
 package com.pnfsoftware.jeb.rcpclient.parts.units.code;
 
-import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.analyzer.IStackframeManager;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.core.units.code.asm.type.INativeType;
-import com.pnfsoftware.jeb.core.units.code.asm.type.IPrimitiveTypeManager;
 import com.pnfsoftware.jeb.core.units.code.asm.type.ITypeManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UI;
 
@@ -45,7 +41,7 @@ public class StackEditorActionDefine extends StackEditorAction {
             return;
         }
         if (routine.getData().getStackframeManager().defineItem(e.offset, itemType) == null) {
-            UI.error(String.format("An item of type \"%s\" could not be created at offset %Xh", new Object[]{itemType.getName(true), Integer.valueOf(e.offset)}));
+            UI.error(String.format("An item of type \"%s\" could not be created at offset %Xh", itemType.getName(true), e.offset));
         } else {
             this.v.refresh();
         }

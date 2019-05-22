@@ -29,7 +29,7 @@ public class StateDataProvider implements IPersistenceProvider, IAsciiable {
     }
 
     public String load(String objectName) {
-        return (String) this.map.get(objectName);
+        return this.map.get(objectName);
     }
 
     public void clear() {

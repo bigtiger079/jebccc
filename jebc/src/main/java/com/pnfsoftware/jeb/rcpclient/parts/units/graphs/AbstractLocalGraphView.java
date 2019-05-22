@@ -33,7 +33,6 @@ import com.pnfsoftware.jeb.util.logging.ILogger;
 import java.util.List;
 
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -91,7 +90,7 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
     }
 
     public Graph getGraph() {
-        return (Graph) this.gp.getGraph();
+        return this.gp.getGraph();
     }
 
     public boolean setFocus() {
@@ -124,7 +123,7 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
         if (!this.inUse) {
             return null;
         }
-        GraphNode node = ((Graph) this.gp.getGraph()).getActiveNode();
+        GraphNode node = this.gp.getGraph().getActiveNode();
         if (node == null) {
             return null;
         }
@@ -135,7 +134,7 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
         if (!this.inUse) {
             return null;
         }
-        GraphNode node = (GraphNode) ((Graph) this.gp.getGraph()).getNodes().get(index);
+        GraphNode node = this.gp.getGraph().getNodes().get(index);
         if (node == null) {
             return null;
         }
@@ -288,13 +287,13 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
         boolean end;
 
         public FindTextInGraphImpl() {
-            List<GraphNode> nodes = ((Graph) AbstractLocalGraphView.this.gp.getGraph()).getNodes();
-            GraphNode node = ((Graph) AbstractLocalGraphView.this.gp.getGraph()).getActiveNode();
+            List<GraphNode> nodes = AbstractLocalGraphView.this.gp.getGraph().getNodes();
+            GraphNode node = AbstractLocalGraphView.this.gp.getGraph().getActiveNode();
             if (node != null) {
                 this.index = nodes.indexOf(node);
             } else {
                 this.index = 0;
-                node = (GraphNode) nodes.get(0);
+                node = nodes.get(0);
             }
             this.startIndex = this.index;
             this.currentNode = node;
@@ -303,9 +302,9 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
         }
 
         private boolean nextNode() {
-            int nodecnt = ((Graph) AbstractLocalGraphView.this.gp.getGraph()).getNodeCount();
+            int nodecnt = AbstractLocalGraphView.this.gp.getGraph().getNodeCount();
             this.index = ((this.index + 1) % nodecnt);
-            this.currentNode = ((Graph) AbstractLocalGraphView.this.gp.getGraph()).getNode(this.index);
+            this.currentNode = AbstractLocalGraphView.this.gp.getGraph().getNode(this.index);
             this.currentNodeContents = ((NodeContentsInteractiveTextView) this.currentNode.getContents());
             this.currentNodeViewer = this.currentNodeContents.getViewer();
             this.currentNodeViewer.resetFindTextOptions();
@@ -348,7 +347,7 @@ public abstract class AbstractLocalGraphView<T extends IUnit> extends AbstractUn
             for (; ; ) {
                 FindTextOptions inNodeOptions = options.clone();
                 inNodeOptions.setWrapAround(false);
-                InteractiveTextFindResult r = (InteractiveTextFindResult) this.currentNodeViewer.findText(inNodeOptions);
+                InteractiveTextFindResult r = this.currentNodeViewer.findText(inNodeOptions);
                 if (r == null) {
                     return null;
                 }

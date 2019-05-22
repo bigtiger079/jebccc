@@ -78,7 +78,7 @@ public class FileShareHandler extends JebBaseHandler {
         IArtifact target = null;
         Object object = part == null ? null : part.getManager();
         if (!(object instanceof UnitPartManager)) {
-            target = ((ILiveArtifact) alist.get(0)).getArtifact();
+            target = alist.get(0).getArtifact();
         } else {
             IUnit unit = ((UnitPartManager) object).getUnit();
             if (unit != null) {

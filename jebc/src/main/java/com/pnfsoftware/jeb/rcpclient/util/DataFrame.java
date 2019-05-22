@@ -70,7 +70,7 @@ public class DataFrame {
     }
 
     public Row getRow(int index) {
-        return (Row) this.rows.get(index);
+        return this.rows.get(index);
     }
 
     public List<Row> getRows() {
@@ -82,9 +82,9 @@ public class DataFrame {
         if (((o instanceof Long)) || ((o instanceof Integer)) || ((o instanceof Short)) || ((o instanceof Byte))) {
             long v = 0L;
             if ((o instanceof Long)) {
-                v = ((Long) o).longValue();
+                v = (Long) o;
             } else if ((o instanceof Integer)) {
-                v = ((Integer) o).longValue() & 0xFFFFFFFF;
+                v = ((Integer) o).longValue();
             } else if ((o instanceof Short)) {
                 v = ((Short) o).longValue() & 0xFFFF;
             } else if ((o instanceof Byte)) {
@@ -92,11 +92,11 @@ public class DataFrame {
             }
             switch (this.numbersRenderingBase) {
                 case 16:
-                    return String.format("%X", new Object[]{Long.valueOf(v)});
+                    return String.format("%X", v);
                 case 8:
-                    return String.format("%o", new Object[]{Long.valueOf(v)});
+                    return String.format("%o", v);
             }
-            return String.format("%d", new Object[]{Long.valueOf(v)});
+            return String.format("%d", v);
         }
         return null;
     }

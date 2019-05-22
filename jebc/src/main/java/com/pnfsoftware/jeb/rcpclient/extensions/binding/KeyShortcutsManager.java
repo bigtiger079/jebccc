@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.extensions.binding;
 
-import com.pnfsoftware.jeb.core.properties.IConfiguration;
 import com.pnfsoftware.jeb.core.properties.impl.SimplePropertyManager;
 import com.pnfsoftware.jeb.util.format.Strings;
 import com.pnfsoftware.jeb.util.logging.GlobalLog;
@@ -15,27 +14,27 @@ import org.eclipse.jface.bindings.keys.ParseException;
 public class KeyShortcutsManager {
     private static final ILogger logger = GlobalLog.getLogger(KeyShortcutsManager.class);
     SimplePropertyManager pm;
-    Map<String, Integer> map = new HashMap();
-    Map<Integer, String> rmap = new HashMap();
+    Map<String, Integer> map = new HashMap<>();
+    Map<Integer, String> rmap = new HashMap<>();
 
     public KeyShortcutsManager(SimplePropertyManager pm) {
         this.pm = pm;
         for (String actionId : pm.getConfiguration().getAllPropertyKeys()) {
             if (Strings.isBlank(actionId)) {
-                logger.error("Action id is blank \"%s\"", new Object[]{actionId});
+                logger.error("Action id is blank \"%s\"", actionId);
             }
             int keycode = processEntry(actionId);
             if (keycode == 0) {
-                logger.error("Illegal action definition \"%s=%s\"", new Object[]{actionId, pm.getString(actionId)});
+                logger.error("Illegal action definition \"%s=%s\"", actionId, pm.getString(actionId));
             }
             if (this.map.containsKey(actionId)) {
-                logger.error("Action \"%s\" is already defined", new Object[]{actionId});
+                logger.error("Action \"%s\" is already defined", actionId);
             }
-            if (this.rmap.containsKey(Integer.valueOf(keycode))) {
-                logger.error("Action \"%s\" is attempting to use a key reserved by action \"%s\"", new Object[]{actionId, this.rmap.get(Integer.valueOf(keycode))});
+            if (this.rmap.containsKey(keycode)) {
+                logger.error("Action \"%s\" is attempting to use a key reserved by action \"%s\"", actionId, this.rmap.get(keycode));
             }
-            this.map.put(actionId, Integer.valueOf(keycode));
-            this.rmap.put(Integer.valueOf(keycode), actionId);
+            this.map.put(actionId, keycode);
+            this.rmap.put(keycode, actionId);
         }
     }
 
@@ -44,12 +43,12 @@ public class KeyShortcutsManager {
     }
 
     public String getActionIdForKeycode(int keycode) {
-        return this.rmap.get(Integer.valueOf(keycode));
+        return this.rmap.get(keycode);
     }
 
     public int getShortcutKeycode(String actionId) {
         Integer r = this.map.get(actionId);
-        return r == null ? 0 : r.intValue();
+        return r == null ? 0 : r;
     }
 
     private int processEntry(String actionId) {
@@ -66,7 +65,6 @@ public class KeyShortcutsManager {
         } catch (ParseException e) {
             return 0;
         }
-        int keycode = ks.getModifierKeys() | ks.getNaturalKey();
-        return keycode;
+        return ks.getModifierKeys() | ks.getNaturalKey();
     }
 }

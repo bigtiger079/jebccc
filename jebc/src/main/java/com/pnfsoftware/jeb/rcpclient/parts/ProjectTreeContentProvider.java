@@ -1,6 +1,5 @@
 package com.pnfsoftware.jeb.rcpclient.parts;
 
-import com.pnfsoftware.jeb.core.IArtifact;
 import com.pnfsoftware.jeb.core.IEnginesContext;
 import com.pnfsoftware.jeb.core.ILiveArtifact;
 import com.pnfsoftware.jeb.core.IRuntimeProject;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
 class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
@@ -44,7 +42,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
     }
 
     public void inputChanged(final Viewer viewer, Object oldInput, Object newInput) {
-        logger.info("Input changed from %s to %s", new Object[]{oldInput, newInput});
+        logger.info("Input changed from %s to %s", oldInput, newInput);
         if (this.listener != null) {
             if (oldInput != this.engctx) {
                 throw new RuntimeException();
@@ -58,25 +56,20 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
             this.engctx = (IEnginesContext) newInput;
             final Display display = viewer.getControl().getDisplay();
             IEnginesContext iEnginesContext = this.engctx;
-            final Viewer viewer2 = viewer;
             this.listener = new AggregatorDispatcher(10000, 500) {
                 public void onMultipleEvents(final List<IEvent> events) {
-                    ProjectTreeContentProvider.logger.info("Event received: %s", new Object[]{events});
+                    ProjectTreeContentProvider.logger.info("Event received: %s", events);
                     if (!display.isDisposed()) {
                         UIExecutor.async(display, new UIRunnable() {
                             public void runi() {
-                                if (!display.isDisposed() && !viewer2.getControl().isDisposed()) {
-                                    TreeViewer treeViewer = (TreeViewer) viewer2;
-                                    viewer2.refresh();
+                                if (!display.isDisposed() && !viewer.getControl().isDisposed()) {
+                                    TreeViewer treeViewer = (TreeViewer) viewer;
+                                    viewer.refresh();
                                     for (IEvent e : events) {
                                         Object object = e.getData();
                                         if (object instanceof ILiveArtifact) {
                                             boolean useAManager;
-                                            if (ProjectTreeContentProvider.this.contextProperties == null || !ProjectTreeContentProvider.this.contextProperties.shouldAutoOpenDefaultUnit()) {
-                                                useAManager = false;
-                                            } else {
-                                                useAManager = true;
-                                            }
+                                            useAManager = ProjectTreeContentProvider.this.contextProperties != null && ProjectTreeContentProvider.this.contextProperties.shouldAutoOpenDefaultUnit();
                                             IArtifactManager amanager = ArtifactManager.getInstance();
                                             List<Object> expanded = new ArrayList<>();
                                             expanded.add(((ILiveArtifact) object).getRuntimeProject());
@@ -84,7 +77,7 @@ class ProjectTreeContentProvider implements IFilteredTreeContentProvider {
                                             if (useAManager) {
                                                 expanded.addAll(amanager.getExpandedUnits((ILiveArtifact) object));
                                             }
-                                            ProjectTreeContentProvider.logger.info("  newly expanded (%d): %s", new Object[]{Integer.valueOf(expanded.size()), expanded});
+                                            ProjectTreeContentProvider.logger.info("  newly expanded (%d): %s", expanded.size(), expanded);
                                             expanded.addAll(0, Arrays.asList(treeViewer.getExpandedElements()));
                                             treeViewer.setExpandedElements(expanded.toArray());
                                             if (useAManager) {

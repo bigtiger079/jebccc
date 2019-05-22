@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.dialogs.options;
 
 import com.pnfsoftware.jeb.client.Licensing;
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.rcpclient.extensions.UIUtil;
 import com.pnfsoftware.jeb.rcpclient.extensions.controls.DirectorySelectorView;
 import com.pnfsoftware.jeb.util.format.Strings;
@@ -65,7 +64,7 @@ public class OptionsSimpleViewGeneral extends Composite {
         Text passwordText = createTextOption(proxyAuth, S.s(631), null, CLIENT, "NetworkProxy", 4);
         this.proxySubEntries.add(passwordText);
         addVerifyListenerIntOnly(portText);
-        ((OptionsSimpleListener) this.listeners.get(CLIENT)).addEnabledOnCheckbox(proxyButton, this.proxySubEntries);
+        this.listeners.get(CLIENT).addEnabledOnCheckbox(proxyButton, this.proxySubEntries);
         initProxyOptions(CLIENT, "NetworkProxy");
     }
 
@@ -85,11 +84,11 @@ public class OptionsSimpleViewGeneral extends Composite {
     }
 
     private DirectorySelectorView createDirectoryOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey) {
-        return new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).createDirectory(parent, label, toolTip);
+        return new OptionsSimpleViewText(getChanges(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey).createDirectory(parent, label, toolTip);
     }
 
     private Text createTextOption(Composite parent, String label, String toolTip, String propertyManagerKey, String propertyKey, int tokenPosition) {
-        return new OptionsSimpleViewText(getChanges(propertyManagerKey), (OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip, tokenPosition);
+        return new OptionsSimpleViewText(getChanges(propertyManagerKey), this.listeners.get(propertyManagerKey), propertyKey).create(parent, label, toolTip, tokenPosition);
     }
 
     private void initProxyOptions(String propertyManagerKey, String propertyKey) {
@@ -141,7 +140,7 @@ public class OptionsSimpleViewGeneral extends Composite {
             b.setToolTipText(toolTip);
         }
         b.setLayoutData(UIUtil.createGridDataSpanHorizontally(2));
-        AbstractOptionsSimpleWidget.addSimpleViewElements((OptionsSimpleListener) this.listeners.get(propertyManagerKey), propertyKey, b);
+        AbstractOptionsSimpleWidget.addSimpleViewElements(this.listeners.get(propertyManagerKey), propertyKey, b);
         return b;
     }
 
@@ -163,8 +162,8 @@ public class OptionsSimpleViewGeneral extends Composite {
                 String string = e.text;
                 char[] chars = new char[string.length()];
                 string.getChars(0, chars.length, chars, 0);
-                for (int i = 0; i < chars.length; i++) {
-                    if (('0' > chars[i]) || (chars[i] > '9')) {
+                for (char aChar : chars) {
+                    if (('0' > aChar) || (aChar > '9')) {
                         e.doit = false;
                         return;
                     }

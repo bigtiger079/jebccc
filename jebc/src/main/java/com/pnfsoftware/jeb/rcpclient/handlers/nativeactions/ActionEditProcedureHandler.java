@@ -2,7 +2,6 @@ package com.pnfsoftware.jeb.rcpclient.handlers.nativeactions;
 
 import com.pnfsoftware.jeb.client.S;
 import com.pnfsoftware.jeb.core.units.INativeCodeUnit;
-import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodDataItem;
 import com.pnfsoftware.jeb.core.units.code.asm.items.INativeMethodItem;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.EditMethodDialog;
 import com.pnfsoftware.jeb.rcpclient.dialogs.nativecode.MethodSetupInformation;

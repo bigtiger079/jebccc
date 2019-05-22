@@ -4,16 +4,13 @@ import com.pnfsoftware.jeb.client.api.OperationRequest;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.dialogs.FindTextDialog;
-import com.pnfsoftware.jeb.rcpclient.extensions.search.FindTextOptions;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.GraphicalTextFinder;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.SimpleTextFindResults;
 import com.pnfsoftware.jeb.rcpclient.extensions.search.StyledTextFindImpl;
 import com.pnfsoftware.jeb.rcpclient.util.TextHistory;
 import com.pnfsoftware.jeb.util.format.Strings;
 import org.eclipse.jface.text.TextViewer;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 
 public abstract class AbstractTextView<T extends IUnit> extends AbstractUnitFragment<T> {
     private TextViewer viewer;

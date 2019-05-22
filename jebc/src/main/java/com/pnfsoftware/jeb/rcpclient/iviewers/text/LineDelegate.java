@@ -65,7 +65,7 @@ public class LineDelegate implements ILine {
     }
 
     public List<? extends ITextMark> getMarks() {
-        logger.error("Marks retrieval in delegated lines is currently not implemented; will not fail, returning empty list instead", new Object[0]);
+        logger.error("Marks retrieval in delegated lines is currently not implemented; will not fail, returning empty list instead");
         return Collections.emptyList();
     }
 

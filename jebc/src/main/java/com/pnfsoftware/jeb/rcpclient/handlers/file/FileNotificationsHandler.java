@@ -5,7 +5,6 @@ import com.pnfsoftware.jeb.core.IRuntimeProject;
 import com.pnfsoftware.jeb.core.RuntimeProjectUtil;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IUnitNotification;
-import com.pnfsoftware.jeb.core.units.IUnitNotificationManager;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
 import com.pnfsoftware.jeb.rcpclient.actions.GraphicalActionExecutor;
 import com.pnfsoftware.jeb.rcpclient.dialogs.AllNotificationsDialog;
@@ -59,14 +58,14 @@ public class FileNotificationsHandler extends JebBaseHandler {
             }
         }
         dlg = new AllNotificationsDialog(shell, elements);
-        int index = dlg.open().intValue();
-        logger.debug("Selected row: %d", new Object[]{Integer.valueOf(index)});
+        int index = dlg.open();
+        logger.debug("Selected row: %d", index);
         if (index >= 0) {
             unit = (IUnit) ((Couple) elements.get(index)).getFirst();
             IUnitNotification notif = (IUnitNotification) ((Couple) elements.get(index)).getSecond();
             String address = notif.getAddress();
             if (address != null) {
-                logger.debug("address= %s", new Object[]{address});
+                logger.debug("address= %s", address);
                 GraphicalActionExecutor.gotoAddress(context, unit, address);
             }
         }

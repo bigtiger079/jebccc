@@ -31,8 +31,7 @@ public class L {
         if (getClass() != obj.getClass()) return false;
         L other = (L) obj;
         if (this.dst != other.dst) return false;
-        if (this.src != other.src) return false;
-        return true;
+        return this.src == other.src;
     }
 
     public L clone() {
@@ -40,7 +39,7 @@ public class L {
     }
 
     public String toString() {
-        return String.format("%d>%d", new Object[]{Integer.valueOf(this.src), Integer.valueOf(this.dst)});
+        return String.format("%d>%d", this.src, this.dst);
     }
 }
 

@@ -33,7 +33,7 @@ public class SimpleTextFindResults implements IFindTextResult {
     }
 
     public String toString() {
-        return String.format("%d-%d", new Object[]{Integer.valueOf(this.indexBegin), Integer.valueOf(this.indexEnd)});
+        return String.format("%d-%d", this.indexBegin, this.indexEnd);
     }
 }
 

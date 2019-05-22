@@ -1,7 +1,6 @@
 package com.pnfsoftware.jeb.rcpclient.parts;
 
 import com.pnfsoftware.jeb.client.S;
-import com.pnfsoftware.jeb.core.properties.IPropertyManager;
 import com.pnfsoftware.jeb.core.units.IUnit;
 import com.pnfsoftware.jeb.core.units.IXmlUnit;
 import com.pnfsoftware.jeb.core.units.code.ICodeUnit;
@@ -11,9 +10,7 @@ import com.pnfsoftware.jeb.rcpclient.GlobalPosition;
 import com.pnfsoftware.jeb.rcpclient.IViewManager;
 import com.pnfsoftware.jeb.rcpclient.JebApp;
 import com.pnfsoftware.jeb.rcpclient.RcpClientContext;
-import com.pnfsoftware.jeb.rcpclient.RcpClientProperties;
 import com.pnfsoftware.jeb.rcpclient.UIAssetManager;
-import com.pnfsoftware.jeb.rcpclient.extensions.app.Dock;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.Folder;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.AppService;
 import com.pnfsoftware.jeb.rcpclient.extensions.app.model.IAppService;
@@ -41,7 +38,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Shell;
 
 public class PartManager implements IViewManager {
     private static final ILogger logger = GlobalLog.getLogger(PartManager.class);
@@ -463,11 +459,11 @@ public class PartManager implements IViewManager {
     }
 
     public IMPart createEmpty(IUnit unit) {
-        return createInternal(unit, createFragmentList(new Class[0]), null, true);
+        return createInternal(unit, createFragmentList(), null, true);
     }
 
     public IMPart createSingle(IUnit unit, Class<?> cl) {
-        return createInternal(unit, createFragmentList(new Class[]{cl}), null, true);
+        return createInternal(unit, createFragmentList(cl), null, true);
     }
 
     public List<IMPart> create(IUnit unit, boolean tryActivationFirst) {
@@ -574,8 +570,8 @@ public class PartManager implements IViewManager {
         if ((unit instanceof ICodeUnit)) {
             boolean createHierarchy = true;
             boolean createMain = true;
-            for (Iterator localIterator = parts.iterator(); localIterator.hasNext(); ) {
-                part = (IMPart) localIterator.next();
+            for (IMPart part1 : parts) {
+                part = part1;
                 if (part.getData().get(dataFragmentList) != null) {
                     List<String> fragmentList = (List) part.getData().get(dataFragmentList);
                     if (fragmentList.contains(CodeHierarchyView.class.getName())) {
@@ -658,8 +654,7 @@ public class PartManager implements IViewManager {
     public List<IMPart> getPartsForUnitFamily(IUnit base, int flags) {
         List<IUnit> family = new ArrayList<>();
         buildFamily(base, family);
-        List<IMPart> r = getPartsForUnits(family, flags);
-        return r;
+        return getPartsForUnits(family, flags);
     }
 
     private void buildFamily(IUnit base, List<IUnit> r) {
@@ -758,7 +753,7 @@ public class PartManager implements IViewManager {
 
     public void setOriginator(IMPart target, IMPart origin) {
         int id = getPartId(origin);
-        target.getData().put(dataOriginatorUnitPartId, Integer.valueOf(id));
+        target.getData().put(dataOriginatorUnitPartId, id);
     }
 
     public IMPart selectWithOriginator(List<IMPart> potentialOrigins, IMPart formerTarget) {
@@ -839,9 +834,7 @@ public class PartManager implements IViewManager {
         } catch (Exception e) {
             logger.catchingSilent(e);
             if (!redraw) {
-                Iterator<AbstractUnitFragment<?>> iterator = fragmentsDisabled.iterator();
-                while (iterator.hasNext()) {
-                    AbstractUnitFragment<?> f = iterator.next();
+                for (AbstractUnitFragment<?> f : fragmentsDisabled) {
                     f.setRedraw(true);
                 }
             }

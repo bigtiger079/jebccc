@@ -4,9 +4,9 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 
 public interface IHoverableProvider {
-    public abstract Object getHoverInfo2(ITextViewer paramITextViewer, IRegion paramIRegion);
+    Object getHoverInfo2(ITextViewer paramITextViewer, IRegion paramIRegion);
 
-    public abstract Object getHoverInfoOnLocationRequest(String paramString, boolean paramBoolean);
+    Object getHoverInfoOnLocationRequest(String paramString, boolean paramBoolean);
 }
 
 

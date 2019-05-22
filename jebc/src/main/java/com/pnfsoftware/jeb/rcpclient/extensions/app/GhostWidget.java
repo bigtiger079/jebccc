@@ -135,8 +135,8 @@ class GhostWidget {
 
     public void dispose() {
         for (Couple<Control, PaintListener> e : this.paintListeners) {
-            Control ctl = (Control) e.getFirst();
-            PaintListener listener = (PaintListener) e.getSecond();
+            Control ctl = e.getFirst();
+            PaintListener listener = e.getSecond();
             if (!ctl.isDisposed()) {
                 ctl.removePaintListener(listener);
             }

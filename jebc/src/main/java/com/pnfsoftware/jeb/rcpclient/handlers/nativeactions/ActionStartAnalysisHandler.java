@@ -20,7 +20,7 @@ public class ActionStartAnalysisHandler extends NativeCodeBaseHandler {
 
     public void execute() {
         INativeCodeUnit<?> pbcu = getNativeCodeUnit(this.part);
-        pbcu.performAnalysis(true, Boolean.valueOf(true), null);
+        pbcu.performAnalysis(true, Boolean.TRUE, null);
         postExecute(this.shell);
     }
 }
